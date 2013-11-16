@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>what's the point</title><link href="/" rel="alternate"></link><link href="/feeds/internet.atom.xml" rel="self"></link><id>/</id><updated>2013-10-02T10:43:00-03:00</updated><entry><title>In the beginning there was static HTML</title><link href="/in-the-beginning-there-was-static-html.html" rel="alternate"></link><updated>2013-10-02T10:43:00-03:00</updated><author><name>hernantz</name></author><id>tag:,2013-10-02:in-the-beginning-there-was-static-html.html</id><summary type="html">&lt;p&gt;In the beginning there was static HTML, and it scaled.
+Now the are lots of frameworks and services running fiercely to dinamically generate HTML.
+It's great, but if your site happens to get an increasing amount of users, then you hire an expert
+that will tell you "best practices" to turn your dinamically generated HTML into a 
+static one (mostly throw complex caching technique). Your site will scale again.
+All the dynamicity is still there, but behind a caching wall.&lt;/p&gt;
+&lt;p&gt;Cacheable content requires to don't change very often and to be generic for all visitors.
+The problem is that your perfectly cacheable content has some dinamically changing pieces, like the 
+welcome user22!. This could be fixed with some Javascript of course.&lt;/p&gt;
+&lt;p&gt;Now, going a bit further. Im not downloading my phone apps every time I enter them, 
+I just get the bits of data that make it seem alive and kicking. Do I need to download Youtube HTML 
+every time I visit it? or would it make more sense to install the app and follow the 
+pattern mentioned above?&lt;/p&gt;
+&lt;p&gt;Makes me wonder if at some point it would be better to get back to roots and 
+build HTML with a static site generator or force the site to be installed to be consumed.
+Shall we compare the traffic generated from a chached website vs an installed version 
+of the site (be it a native app or an installed webapp) to arrive to a conclusion.&lt;/p&gt;</summary><category term="cache"></category><category term="internet"></category></entry></feed>
