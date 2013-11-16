@@ -33,7 +33,7 @@
           <section class="meta">
                   <a href="http://twitter.com/hernantz" target="_blank"><i class="icon icon-twitter"></i></a>
                   <a href="http://github.com/hernantz" target="_blank"><i class="icon icon-github"></i></a>
-                  <a href="rss.xml" target="_blank"><i class="icon icon-rss"></i></a>
+                  <a href="/rss.xml" target="_blank"><i class="icon icon-rss"></i></a>
               </section>
     
           <section class="sections">
@@ -49,71 +49,21 @@
       
                           <header>
             <h1><a href="" id="site-title">what's the point  <strong>Mostly lies and rants in plain text</strong></a> </h1> 
-            <h1><a href="/if-you-write-ifs.html" id="page-title">If (you write ifs)</a></h1>
-            <time datetime="2013-10-24T22:56:00">Thu 24 October 2013</time>          </header>
+            <h1><a href="/sorry-for-the-length-of-this-post.html" id="page-title">Sorry for the length of this post</a></h1>
+            <time datetime="2013-08-30T22:56:00">Fri 30 August 2013</time>          </header>
 
           <article>
-            <p>As a programmer, most of your time you will be writing ifs.
-Not only becouse this is the main flow control structure, in c like languages,
-but becouse writing an else is (or shoud be at least) a code smell. It's a trap. </p>
-<h2>Cut the flow ifs</h2>
-<div class="highlight"><pre><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">item</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="k">continue</span>
-
-<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">item</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">log</span><span class="p">(</span><span class="s">&#39;None found&#39;</span><span class="p">)</span>
-        <span class="k">break</span>
-</pre></div>
-
-
-<p>rather than</p>
-<div class="highlight"><pre><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">item</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">blah</span>
-        <span class="n">blah</span> 
-        <span class="n">blah</span>
-        <span class="n">blah</span> 
-        <span class="k">if</span> <span class="n">is_nested_if</span><span class="p">:</span>
-            <span class="n">blah</span>
-            <span class="n">blah</span> 
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">blah</span>
-            <span class="k">except</span><span class="p">:</span>
-                <span class="n">blah</span> 
-<span class="k">else</span><span class="p">:</span>
-    <span class="n">log</span><span class="p">(</span><span class="s">&#39;None found&#39;</span><span class="p">)</span>
-</pre></div>
-
-
-<p>If your programming language has curly braces, nesting ifs leads you to
-the pyramid of doom.
-Pyramid of doom picture here.
-While in Python it looks more like a stairs of doom.
-stair of doom in python picture
-In functional languages, it pretty much always looks ugly.</p>
-<h2>Single check ifs</h2>
-<div class="highlight"><pre><span class="k">if</span> <span class="p">(</span><span class="n">this</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">that</span><span class="p">)</span> <span class="ow">or</span> <span class="n">there</span> <span class="ow">and</span> <span class="p">(</span><span class="n">here</span> <span class="ow">or</span> <span class="n">nearby</span><span class="p">):</span>
-    <span class="n">blah</span>
-</pre></div>
-
-
-<p>if your are asking too many contions and of different kind, you are doing it 
-wrong</p>          </article>
+            <p>I didn't have the time to make it shorter.</p>
+<p>In this blog, I do my best to get to the point. Quality over quantity.
+Why write a thousand words if a picture says more than a thousand words? 
+Why write six paragraphs if you can fit an introduction, main idea 
+and conclusion in just three?</p>
+<p>Life is short, read this and move on.</p>          </article>
                         <section id="article-list">
                   <h2>All posts</h2>
                   <ol>
                               
-                        <li><a href="/sorry-for-the-length-of-this-post.html" rel="bookmark" title="Permalink to Sorry for the length of this post">Sorry for the length of this post</a> <i><time datetime="2013-08-30T22:56:00">Fri 30 August 2013</time></i></li>
-            
                         <li><a href="/init.html" rel="bookmark" title="Permalink to Init">Init</a> <i><time datetime="2013-07-03T18:06:00">Wed 03 July 2013</time></i></li>
-            
-                        <li><a href="/init.html" rel="bookmark" title="Permalink to /path/to/seniority">/path/to/seniority</a> <i><time datetime="2013-07-03T18:06:00">Wed 03 July 2013</time></i></li>
-            
-                        <li><a href="/init.html" rel="bookmark" title="Permalink to Init">Init</a> <i><time datetime="2013-07-03T18:06:00">Wed 03 July 2013</time></i></li>
-            
-                        <li><a href="/the-desintegrators.html" rel="bookmark" title="Permalink to The desintegrators">The desintegrators</a> <i><time datetime="2013-07-03T18:06:00">Wed 03 July 2013</time></i></li>
                         </ol>
         </section><!-- #article-list -->
         </section>

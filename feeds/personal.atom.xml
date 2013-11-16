@@ -1,52 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>what's the point</title><link href="/" rel="alternate"></link><link href="/feeds/personal.atom.xml" rel="self"></link><id>/</id><updated>2013-10-24T22:56:00-03:00</updated><entry><title>If (you write ifs)</title><link href="/if-you-write-ifs.html" rel="alternate"></link><updated>2013-10-24T22:56:00-03:00</updated><author><name>hernantz</name></author><id>tag:,2013-10-24:if-you-write-ifs.html</id><summary type="html">&lt;p&gt;As a programmer, most of your time you will be writing ifs.
-Not only becouse this is the main flow control structure, in c like languages,
-but becouse writing an else is (or shoud be at least) a code smell. It's a trap. &lt;/p&gt;
-&lt;h2&gt;Cut the flow ifs&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="k"&gt;continue&lt;/span&gt;
-
-&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;None found&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="k"&gt;break&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;rather than&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="n"&gt;blah&lt;/span&gt;
-        &lt;span class="n"&gt;blah&lt;/span&gt; 
-        &lt;span class="n"&gt;blah&lt;/span&gt;
-        &lt;span class="n"&gt;blah&lt;/span&gt; 
-        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;is_nested_if&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="n"&gt;blah&lt;/span&gt;
-            &lt;span class="n"&gt;blah&lt;/span&gt; 
-            &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-                &lt;span class="n"&gt;blah&lt;/span&gt;
-            &lt;span class="k"&gt;except&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-                &lt;span class="n"&gt;blah&lt;/span&gt; 
-&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;None found&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;If your programming language has curly braces, nesting ifs leads you to
-the pyramid of doom.
-Pyramid of doom picture here.
-While in Python it looks more like a stairs of doom.
-stair of doom in python picture
-In functional languages, it pretty much always looks ugly.&lt;/p&gt;
-&lt;h2&gt;Single check ifs&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;this&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;that&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="n"&gt;there&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;here&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="n"&gt;nearby&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;blah&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;if your are asking too many contions and of different kind, you are doing it 
-wrong&lt;/p&gt;</summary><category term="personal"></category></entry><entry><title>Sorry for the length of this post</title><link href="/sorry-for-the-length-of-this-post.html" rel="alternate"></link><updated>2013-08-30T22:56:00-03:00</updated><author><name>hernantz</name></author><id>tag:,2013-08-30:sorry-for-the-length-of-this-post.html</id><summary type="html">&lt;p&gt;I didn't have the time to make it shorter.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>what's the point</title><link href="/" rel="alternate"></link><link href="/feeds/personal.atom.xml" rel="self"></link><id>/</id><updated>2013-08-30T22:56:00-03:00</updated><entry><title>Sorry for the length of this post</title><link href="/sorry-for-the-length-of-this-post.html" rel="alternate"></link><updated>2013-08-30T22:56:00-03:00</updated><author><name>hernantz</name></author><id>tag:,2013-08-30:sorry-for-the-length-of-this-post.html</id><summary type="html">&lt;p&gt;I didn't have the time to make it shorter.&lt;/p&gt;
 &lt;p&gt;In this blog, I do my best to get to the point. Quality over quantity.
 Why write a thousand words if a picture says more than a thousand words? 
 Why write six paragraphs if you can fit an introduction, main idea 
@@ -58,32 +11,4 @@ Knowing my thoughts will be publicly available forces me to think wisely,
 and arrive to better conclusions. 
 Aditionally, until now didn't like any of the blogging platforms out there, 
 but now with pelican, being able to craft my own posts with markdown and vim
-is also part of the motivation.&lt;/p&gt;</summary><category term="pelican"></category><category term="personal"></category></entry><entry><title>/path/to/seniority</title><link href="/init.html" rel="alternate"></link><updated>2013-07-03T18:06:00-03:00</updated><author><name>hernantz</name></author><id>tag:,2013-07-03:init.html</id><summary type="html">&lt;h2&gt;Miguel Angel&lt;/h2&gt;
-&lt;p&gt;Practice and learn from tightly scoped side-projects. You will:
-&lt;em&gt; finish them (you have to, hence the tight scope)
-&lt;/em&gt; explore fearlessly new ways of doing things
-&lt;em&gt; learn a lot
-&lt;/em&gt; practice current skills
-Iterate.&lt;/p&gt;
-&lt;h2&gt;Toyota&lt;/h2&gt;
-&lt;p&gt;las piezas que duran 25 anos
-en que momento mejorar?&lt;/p&gt;
-&lt;h2&gt;Who is this senior after all?&lt;/h2&gt;
-&lt;p&gt;relationship between quality/time
-(Ejemplo de sketchs miguel angel y prototipos de toyota)
-sos purista, no pierdas tiempo en detalles, no sos pragmatico.
-En que momento mejorar?
-Escribir tests, ui design, ux, etc. Tenes que tener ganas de ser mejor.
-No sos senior en todo.&lt;/p&gt;
-&lt;p&gt;A bad programmer will be a bad programmer whatever the framework, 
-language or pattern happens to use.&lt;/p&gt;
-&lt;p&gt;I mean, programming the job, not programming the hobby. I still like programming in my spare time, 
-but I don't think I ever caught myself writing code for my employer and thinking "hey, I really enjoy this".
-An annonymous internaut (http://pastebin.com/ed1pP9Ak)&lt;/p&gt;</summary><category term="personal"></category></entry><entry><title>Init</title><link href="/init.html" rel="alternate"></link><updated>2013-07-03T18:06:00-03:00</updated><author><name>hernantz</name></author><id>tag:,2013-07-03:init.html</id><summary type="html">&lt;p&gt;This is my not-sexy static new blog. It starts with a single post and a single
-blog. I hope this is not one of those things I start and abandon.&lt;/p&gt;
-&lt;p&gt;Why now? Becouse in the last weeks I felt the urge to write for myself. 
-Knowing my thoughts will be publicly available forces me to think wisely, 
-and arrive to better conclusions. 
-Aditionally, until now didn't like any of the blogging platforms out there, 
-but now with pelican, being able to craft my own posts with python and vim
 is also part of the motivation.&lt;/p&gt;</summary><category term="pelican"></category><category term="personal"></category></entry></feed>
