@@ -5,7 +5,7 @@ body {
   color: #333;
   font: 18px Hoefler Text, bodyfont, serif;
   line-height: 30px;
-  max-width: 30em; }
+  max-width: 40em; }
 
 
 h1 {
@@ -40,6 +40,7 @@ time {
 
 
 img {
+  max-width: 100%;
   border: none; }
 
 
@@ -84,7 +85,7 @@ strong {
     font-weight: bold; }
 
 
-tt, pre {
+tt {
   background-color: #fafafa;
   font-family: Inconsolata, Monaco, monospace;
   line-height: 1.2em; }

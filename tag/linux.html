@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>what's the point - hernantz</title>
+  <title>what's the point - linux</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
@@ -49,38 +49,48 @@
       
                           <header>
             <h1><a href="" id="site-title">what's the point  <strong>Mostly lies and rants in plain text</strong></a> </h1> 
-            <h1><a href="/an-mvp-is-not-a-product-its-an-mvp.html" id="page-title">An MVP is not a product, it's an MVP</a></h1>
-            <time datetime="2013-11-09T12:03:00">Sat 09 November 2013</time>          </header>
+            <h1><a href="/fixing-virtualbox-vtx-amdv-is-not-available.html" id="page-title">Fixing VirtualBox VT-X or AMD-V is not available</a></h1>
+            <time datetime="2014-04-10T22:36:00">Thu 10 April 2014</time>          </header>
 
           <article>
-            <p>Minimum Viable Product, or even better Minimum Viable Prototype (MVP from now on),
-is a technique born in the Lean Startup movement to reduce the risk of gaining validated
-learning, without spending too much effort, money and time in the wrong project direction.</p>
-<p>You build a MVP to validate an idea, be it for a brand new product or a new feature 
-in an existing one. 
-In this stage of the project you don't care about: tests, QA, copy-pasting code, 
-mocking the UI, security, code reviews, maintainability, scalability, etc.</p>
-<p>In case this prototype is successfull, you should go and build the product or the feature to 
-capitalize that validated learning, but this time, following industries best practices, 
-so it can be used in production by your (paying?) users.</p>
-<p>This last step is crucial. There will be the tempatation of not taking it.
-The consequences of not doing it are well known, that's why we have best practices afterall.
-The risk is low now. Money, time and effort won't be wasted. There is no excuse. 
-An MVP is not a product, it's an MVP.</p>          </article>
+            <p><img alt="Y U NO RUN MY VM" src="/static/images/y-u-no-run-my-vm.png" /></p>
+<p>This warning/error started to appear in VirtualBox v4.3, where using Intel's VT-X and AMD's AMD-V
+native virtualization technologies is set to enabled by default on every VM. 
+You computer may or may not have this goodies. </p>
+<p>Check the output of these commands to verify this in case you are not sure:</p>
+<div class="highlight"><pre>grep --color vmx /proc/cpuinfo <span class="c">## for an Intel processor</span>
+grep --color svm /proc/cpuinfo <span class="c">## for an AMD processor</span>
+</pre></div>
+
+
+<p>In case you have support for VT-x or AMD-v, you will see an option to enable the 
+virtualization in the BIOS, and after doing that the problem is solved.</p>
+<p><img alt="Enable virtualization in BIOS" src="/static/images/BIOS-enable-virtualization.png" /></p>
+<p>In case you do not have support for VT-x or AMD-v, you can disable that feature.
+The configuration file for your VM is in /path/to/vm/files/myvmname/myvmname.vbox (where myvmname is 
+your VM name n_n).</p>
+<p>It is an xml, but it states that you should not modify it directly becouse changes won't take effect, 
+so we have to use other tools, such as the VirtualBox UI or VBoxManage.
+As that option didn't appear in the UI, I had to go with the VBoxManage command line tool.
+To disable Hardware Virtualization I run the following command:</p>
+<div class="highlight"><pre>VBoxManage modifyvm myvmname --hwvirtex off
+</pre></div>
+
+
+<p>In case you run more configuration problems and your current virtualbox ui does not display, 
+just check:</p>
+<div class="highlight"><pre>VBoxManag --help | less
+</pre></div>
+
+
+<p>and for sure you will be able to configure almost anything.</p>
+<blockquote>
+<p>BIOS image taken from: <a href="http://askubuntu.com/a/256853">http://askubuntu.com/a/256853</a></p>
+</blockquote>          </article>
                         <section id="article-list">
                   <h2>All posts</h2>
                   <ol>
                               
-                        <li><a href="/fixing-virtualbox-vtx-amdv-is-not-available.html" rel="bookmark" title="Permalink to Fixing VirtualBox VT-X or AMD-V is not available">Fixing VirtualBox VT-X or AMD-V is not available</a> <i><time datetime="2014-04-10T22:36:00">Thu 10 April 2014</time></i></li>
-            
-                        <li><a href="/improvement-marathon.html" rel="bookmark" title="Permalink to Improvement marathon">Improvement marathon</a> <i><time datetime="2013-11-26T22:29:00">Tue 26 November 2013</time></i></li>
-            
-                        <li><a href="/init.html" rel="bookmark" title="Permalink to Init">Init</a> <i><time datetime="2013-07-03T18:06:00">Wed 03 July 2013</time></i></li>
-            
-                        <li><a href="/open-tabs-buffer-overflow.html" rel="bookmark" title="Permalink to Open tabs buffer overflow">Open tabs buffer overflow</a> <i><time datetime="2013-08-21T22:56:00">Wed 21 August 2013</time></i></li>
-            
-                        <li><a href="/sorry-for-the-length-of-this-post.html" rel="bookmark" title="Permalink to Sorry for the length of this post">Sorry for the length of this post</a> <i><time datetime="2013-08-30T22:56:00">Fri 30 August 2013</time></i></li>
-            
                         <li><a href="/why-ditch-windows.html" rel="bookmark" title="Permalink to Why ditch Windows">Why ditch Windows</a> <i><time datetime="2013-07-03T18:06:00">Wed 03 July 2013</time></i></li>
                         </ol>
         </section><!-- #article-list -->
