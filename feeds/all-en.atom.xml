@@ -1,5 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>what's the point</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/all-en.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2014-04-10T22:36:00-03:00</updated><entry><title>Fixing VirtualBox VT-X or AMD-V is not available</title><link href="http://hernantz.github.io/fixing-virtualbox-vtx-amdv-is-not-available.html" rel="alternate"></link><updated>2014-04-10T22:36:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2014-04-10:fixing-virtualbox-vtx-amdv-is-not-available.html</id><summary type="html">&lt;p&gt;&lt;img alt="Y U NO RUN MY VM" src="/static/images/y-u-no-run-my-vm.png" /&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>what's the point</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/all-en.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2014-05-18T17:50:00-03:00</updated><entry><title>How to publish a pelican site on Github</title><link href="http://hernantz.github.io/how-to-publish-a-pelican-site-on-github.html" rel="alternate"></link><updated>2014-05-18T17:50:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2014-05-18:how-to-publish-a-pelican-site-on-github.html</id><summary type="html">&lt;p&gt;This is a step by step guide on how to publish a pelican website on Github, and how not to get the site's
+codebase so tightly coupled to where it is deployed. If in the future we want to publish it somewhere else
+there isn't much to be changed.&lt;/p&gt;
+&lt;p&gt;1) Create a repository in github with exactly the following naming convention:
+&lt;code&gt;your-github-username.github.io&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;2) Setup your pelican site on a separate repository, ie &lt;code&gt;my-blog&lt;/code&gt;, and start adding content to it.
+You'll notice that the generated output goes by default to a folder (conveniently) named &lt;code&gt;output&lt;/code&gt;,
+but it can be changed to something else with the setting &lt;code&gt;OUTPUT_PATH&lt;/code&gt; in your &lt;code&gt;pelicanconf.py&lt;/code&gt; file&lt;/p&gt;
+&lt;p&gt;3) We will make use of "git submodules" to point our output directory to the 
+repo created in step 1, so that it holds what's going to be published in github.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;git submodule add https://github.com/username/username.github.io.git output
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Adding a git submodule will create another version controlled file called &lt;code&gt;.gitmodules&lt;/code&gt; with the following content:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;[submodule &amp;quot;output&amp;quot;]&lt;/span&gt;
+    &lt;span class="na"&gt;path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;output&lt;/span&gt;
+&lt;span class="s"&gt;    url = https://github.com/username/username.github.io.git&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;4) As the output directory is now managed by the independant git repository from step 1, we don't want to have to version
+controlled it again from our pelican site repo. To ignore it just add a &lt;code&gt;ignore&lt;/code&gt; statement like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;[submodule &amp;quot;output&amp;quot;]&lt;/span&gt;
+    &lt;span class="na"&gt;path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;output&lt;/span&gt;
+&lt;span class="s"&gt;    url = https://github.com/username/username.github.io.git&lt;/span&gt;
+&lt;span class="s"&gt;    ignore = all&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;4) Now every time you regenerate you site contents and want to publish them, cd to your output directory
+and run git commands (like add, commit, push, etc) that will only take effect on your repo from step 1. Once you 
+push your output content to your master branch of &lt;code&gt;your-github-username.github.io&lt;/code&gt; Github will take some minutes to update
+your site with the new contents.&lt;/p&gt;
+&lt;p&gt;Fin.&lt;/p&gt;</summary><category term="pelican"></category><category term="git"></category></entry><entry><title>Fixing VirtualBox VT-X or AMD-V is not available</title><link href="http://hernantz.github.io/fixing-virtualbox-vtx-amdv-is-not-available.html" rel="alternate"></link><updated>2014-04-10T22:36:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2014-04-10:fixing-virtualbox-vtx-amdv-is-not-available.html</id><summary type="html">&lt;p&gt;&lt;img alt="Y U NO RUN MY VM" src="/static/images/y-u-no-run-my-vm.png" /&gt;&lt;/p&gt;
 &lt;p&gt;This warning/error started to appear in VirtualBox v4.3, where using Intel's VT-X and AMD's AMD-V
 native virtualization technologies is set to enabled by default on every VM. 
 You computer may or may not have this goodies. &lt;/p&gt;

@@ -50,19 +50,53 @@
       
                           <header>
             <h1><a href="http://hernantz.github.io" id="site-title">what's the point  <strong>Mostly lies and rants in plain text</strong></a> </h1> 
-            <h1><a href="http://hernantz.github.io/init.html" id="page-title">Init</a></h1>
-            <time datetime="2013-07-03T18:06:00">Wed 03 July 2013</time>          </header>
+            <h1><a href="http://hernantz.github.io/how-to-publish-a-pelican-site-on-github.html" id="page-title">How to publish a pelican site on Github</a></h1>
+            <time datetime="2014-05-18T17:50:00">Sun 18 May 2014</time>          </header>
 
           <article>
-            <p>This is my not-sexy static new blog. It starts with a single post and a single
-blog. I hope this is not one of those things I start and abandon.</p>
-<p>Why now? Becouse in the last weeks I felt the urge to write for myself. 
-Knowing my thoughts will be publicly available forces me to think wisely, 
-and arrive to better conclusions. 
-Aditionally, until now didn't like any of the blogging platforms out there, 
-but now with pelican, being able to craft my own posts with markdown and vim
-is also part of the motivation.</p>          </article>
-                                      </section>
+            <p>This is a step by step guide on how to publish a pelican website on Github, and how not to get the site's
+codebase so tightly coupled to where it is deployed. If in the future we want to publish it somewhere else
+there isn't much to be changed.</p>
+<p>1) Create a repository in github with exactly the following naming convention:
+<code>your-github-username.github.io</code></p>
+<p>2) Setup your pelican site on a separate repository, ie <code>my-blog</code>, and start adding content to it.
+You'll notice that the generated output goes by default to a folder (conveniently) named <code>output</code>,
+but it can be changed to something else with the setting <code>OUTPUT_PATH</code> in your <code>pelicanconf.py</code> file</p>
+<p>3) We will make use of "git submodules" to point our output directory to the 
+repo created in step 1, so that it holds what's going to be published in github.</p>
+<div class="highlight"><pre>git submodule add https://github.com/username/username.github.io.git output
+</pre></div>
+
+
+<p>Adding a git submodule will create another version controlled file called <code>.gitmodules</code> with the following content:</p>
+<div class="highlight"><pre><span class="k">[submodule &quot;output&quot;]</span>
+    <span class="na">path</span> <span class="o">=</span> <span class="s">output</span>
+<span class="s">    url = https://github.com/username/username.github.io.git</span>
+</pre></div>
+
+
+<p>4) As the output directory is now managed by the independant git repository from step 1, we don't want to have to version
+controlled it again from our pelican site repo. To ignore it just add a <code>ignore</code> statement like this:</p>
+<div class="highlight"><pre><span class="k">[submodule &quot;output&quot;]</span>
+    <span class="na">path</span> <span class="o">=</span> <span class="s">output</span>
+<span class="s">    url = https://github.com/username/username.github.io.git</span>
+<span class="s">    ignore = all</span>
+</pre></div>
+
+
+<p>4) Now every time you regenerate you site contents and want to publish them, cd to your output directory
+and run git commands (like add, commit, push, etc) that will only take effect on your repo from step 1. Once you 
+push your output content to your master branch of <code>your-github-username.github.io</code> Github will take some minutes to update
+your site with the new contents.</p>
+<p>Fin.</p>          </article>
+                        <section id="article-list">
+                  <h2>All posts</h2>
+                  <ol>
+                              
+                        <li><a href="http://hernantz.github.io/init.html" rel="bookmark" title="Permalink to Init">Init</a> <i><time datetime="2013-07-03T18:06:00">Wed 03 July 2013</time></i></li>
+                        </ol>
+        </section><!-- #article-list -->
+        </section>
 
   <footer class="column-right">
       <nav>
