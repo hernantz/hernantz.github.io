@@ -43,6 +43,11 @@ img {
   max-width: 100%;
   border: none; }
 
+code {
+    background: #B9E1EE;
+    font-family: inherit;
+    padding: 0px 5px;
+}
 
 blockquote {
   border-left: 1px solid #A5ABAB;
