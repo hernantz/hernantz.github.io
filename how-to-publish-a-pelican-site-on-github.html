@@ -75,8 +75,8 @@ repo created in step 1, so that it holds what's going to be published in github.
 </pre></div>
 
 
-<p>4) As the output directory is now managed by the independant git repository from step 1, we don't want to have to version
-controlled it again from our pelican site repo. To ignore it just add a <code>ignore</code> statement like this:</p>
+<p>4) As the output directory is now managed by the independant git repository from step 1, we don't want to have to version-control 
+it again from our pelican site repo. To ignore it just add a <code>ignore</code> statement like this:</p>
 <div class="highlight"><pre><span class="k">[submodule &quot;output&quot;]</span>
     <span class="na">path</span> <span class="o">=</span> <span class="s">output</span>
 <span class="s">    url = https://github.com/username/username.github.io.git</span>
