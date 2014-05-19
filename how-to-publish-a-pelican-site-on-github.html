@@ -57,7 +57,8 @@ codebase so tightly coupled to where it is deployed. If in the future we want to
 there isn't much to be changed.</p>
 <p>1) Create a repository in github with exactly the following naming convention:
 <code>your-github-username.github.io</code></p>
-<p>2) Setup your pelican site on a separate repository, ie <code>my-blog</code>, and start adding content to it.
+<p>2) <a href="http://docs.getpelican.com/en/latest/install.html#kickstart-your-site">Setup your pelican site</a> 
+on a separate repository, ie my-blog, and <a href="http://docs.getpelican.com/en/latest/content.html#writing-content">start adding content</a> to it.
 You'll notice that the generated output goes by default to a folder (conveniently) named <code>output</code>,
 but it can be changed to something else with the setting <code>OUTPUT_PATH</code> in your <code>pelicanconf.py</code> file</p>
 <p>3) We will make use of "git submodules" to point our output directory to the 
@@ -82,7 +83,7 @@ controlled it again from our pelican site repo. To ignore it just add a <code>ig
 </pre></div>
 
 
-<p>4) Now every time you regenerate you site contents and want to publish them, cd to your output directory
+<p>5) Now every time you regenerate you site contents and want to publish them, cd to your output directory
 and run git commands (like add, commit, push, etc) that will only take effect on your repo from step 1. Once you 
 push your new output content to your master branch of <code>your-github-username.github.io</code>, Github will take 
 some minutes to update your site.</p>

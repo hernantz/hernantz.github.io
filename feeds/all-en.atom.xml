@@ -4,7 +4,8 @@ codebase so tightly coupled to where it is deployed. If in the future we want to
 there isn't much to be changed.&lt;/p&gt;
 &lt;p&gt;1) Create a repository in github with exactly the following naming convention:
 &lt;code&gt;your-github-username.github.io&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;2) Setup your pelican site on a separate repository, ie &lt;code&gt;my-blog&lt;/code&gt;, and start adding content to it.
+&lt;p&gt;2) &lt;a href="http://docs.getpelican.com/en/latest/install.html#kickstart-your-site"&gt;Setup your pelican site&lt;/a&gt; 
+on a separate repository, ie my-blog, and &lt;a href="http://docs.getpelican.com/en/latest/content.html#writing-content"&gt;start adding content&lt;/a&gt; to it.
 You'll notice that the generated output goes by default to a folder (conveniently) named &lt;code&gt;output&lt;/code&gt;,
 but it can be changed to something else with the setting &lt;code&gt;OUTPUT_PATH&lt;/code&gt; in your &lt;code&gt;pelicanconf.py&lt;/code&gt; file&lt;/p&gt;
 &lt;p&gt;3) We will make use of "git submodules" to point our output directory to the 
@@ -29,7 +30,7 @@ controlled it again from our pelican site repo. To ignore it just add a &lt;code
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;4) Now every time you regenerate you site contents and want to publish them, cd to your output directory
+&lt;p&gt;5) Now every time you regenerate you site contents and want to publish them, cd to your output directory
 and run git commands (like add, commit, push, etc) that will only take effect on your repo from step 1. Once you 
 push your new output content to your master branch of &lt;code&gt;your-github-username.github.io&lt;/code&gt;, Github will take 
 some minutes to update your site.&lt;/p&gt;
