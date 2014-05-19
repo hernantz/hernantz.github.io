@@ -31,8 +31,8 @@ controlled it again from our pelican site repo. To ignore it just add a &lt;code
 
 &lt;p&gt;4) Now every time you regenerate you site contents and want to publish them, cd to your output directory
 and run git commands (like add, commit, push, etc) that will only take effect on your repo from step 1. Once you 
-push your output content to your master branch of &lt;code&gt;your-github-username.github.io&lt;/code&gt; Github will take some minutes to update
-your site with the new contents.&lt;/p&gt;
+push your new output content to your master branch of &lt;code&gt;your-github-username.github.io&lt;/code&gt;, Github will take 
+some minutes to update your site.&lt;/p&gt;
 &lt;p&gt;Fin.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">hernantz</dc:creator><pubDate>Sun, 18 May 2014 17:50:00 -0300</pubDate><guid>tag:hernantz.github.io,2014-05-18:how-to-publish-a-pelican-site-on-github.html</guid><category>pelican</category><category>git</category></item><item><title>Fixing VirtualBox VT-X or AMD-V is not available</title><link>http://hernantz.github.io/fixing-virtualbox-vtx-amdv-is-not-available.html</link><description>&lt;p&gt;&lt;img alt="Y U NO RUN MY VM" src="/static/images/y-u-no-run-my-vm.png" /&gt;&lt;/p&gt;
 &lt;p&gt;This warning/error started to appear in VirtualBox v4.3, where using Intel's VT-X and AMD's AMD-V
 native virtualization technologies is set to enabled by default on every VM. 
@@ -59,7 +59,7 @@ To disable Hardware Virtualization I run the following command:&lt;/p&gt;
 
 &lt;p&gt;In case you run more configuration problems and your current virtualbox ui does not display, 
 just check:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;VBoxManag --help | less
+&lt;div class="highlight"&gt;&lt;pre&gt;VBoxManage --help | less
 &lt;/pre&gt;&lt;/div&gt;
 
 

@@ -25,7 +25,7 @@ To disable Hardware Virtualization I run the following command:&lt;/p&gt;
 
 &lt;p&gt;In case you run more configuration problems and your current virtualbox ui does not display, 
 just check:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;VBoxManag --help | less
+&lt;div class="highlight"&gt;&lt;pre&gt;VBoxManage --help | less
 &lt;/pre&gt;&lt;/div&gt;
 
 
