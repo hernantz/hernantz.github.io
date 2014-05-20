@@ -2,7 +2,9 @@
 <feed xmlns="http://www.w3.org/2005/Atom"><title>what's the point</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/all-en.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2014-05-18T17:50:00-03:00</updated><entry><title>How to publish a pelican site on Github</title><link href="http://hernantz.github.io/how-to-publish-a-pelican-site-on-github.html" rel="alternate"></link><updated>2014-05-18T17:50:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2014-05-18:how-to-publish-a-pelican-site-on-github.html</id><summary type="html">&lt;p&gt;&lt;img alt="Pelican a static site publishing tool" src="/static/images/pelican-a-static-site-publishing-tool-github.png" /&gt;&lt;/p&gt;
 &lt;p&gt;This is a step by step guide on how to publish a pelican website on Github, and how not to get the site's
 codebase so tightly coupled to where it is deployed. If in the future we want to publish it somewhere else
-there isn't much to be changed.&lt;/p&gt;
+there isn't much to be changed. Another thing to mention is that even though we
+reference pelican here, this process can be applied to almost any static site
+generator tool.&lt;/p&gt;
 &lt;p&gt;1) Create a repository in github with exactly the following naming convention:
 &lt;code&gt;your-github-username.github.io&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;2) &lt;a href="http://docs.getpelican.com/en/latest/install.html#kickstart-your-site"&gt;Setup your pelican site&lt;/a&gt; 
