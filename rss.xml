@@ -102,13 +102,7 @@ so it can be used in production by your (paying?) users.&lt;/p&gt;
 &lt;p&gt;This last step is crucial. There will be the tempatation of not taking it.
 The consequences of not doing it are well known, that's why we have best practices afterall.
 The risk is low now. Money, time and effort won't be wasted. There is no excuse. 
-An MVP is not a product, it's an MVP.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">hernantz</dc:creator><pubDate>Sat, 09 Nov 2013 12:03:00 -0300</pubDate><guid>tag:hernantz.github.io,2013-11-09:an-mvp-is-not-a-product-its-an-mvp.html</guid><category>startups</category></item><item><title>Sorry for the length of this post</title><link>http://hernantz.github.io/sorry-for-the-length-of-this-post.html</link><description>&lt;p&gt;I didn't have the time to make it shorter.&lt;/p&gt;
-&lt;p&gt;In this blog, I do my best to get to the point. Quality over quantity.
-Why write a thousand words if a picture says more than a thousand words? 
-Why write six paragraphs if you can fit an introduction, main idea 
-and conclusion in just three?&lt;/p&gt;
-&lt;p&gt;Life is short, read this and move on.&lt;/p&gt;
-&lt;p&gt;Inspired by &lt;a href="http://getnashty.com/write-less"&gt;write less&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">hernantz</dc:creator><pubDate>Fri, 30 Aug 2013 22:56:00 -0300</pubDate><guid>tag:hernantz.github.io,2013-08-30:sorry-for-the-length-of-this-post.html</guid><category>personal</category></item><item><title>Open tabs buffer overflow</title><link>http://hernantz.github.io/open-tabs-buffer-overflow.html</link><description>&lt;p&gt;&lt;img alt="Bored Elon Musk knows" src="/static/images/genius-is-1-inspiration-and-99-closing-the-two-hundred-open-tabs-in-your-browser.png" /&gt;&lt;/p&gt;
+An MVP is not a product, it's an MVP.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">hernantz</dc:creator><pubDate>Sat, 09 Nov 2013 12:03:00 -0300</pubDate><guid>tag:hernantz.github.io,2013-11-09:an-mvp-is-not-a-product-its-an-mvp.html</guid><category>startups</category></item><item><title>Open tabs buffer overflow</title><link>http://hernantz.github.io/open-tabs-buffer-overflow.html</link><description>&lt;p&gt;&lt;img alt="Bored Elon Musk knows" src="/static/images/genius-is-1-inspiration-and-99-closing-the-two-hundred-open-tabs-in-your-browser.png" /&gt;&lt;/p&gt;
 &lt;h2&gt;The interwebs and the power it holds&lt;/h2&gt;
 &lt;p&gt;There is so much out there and just a click of distance.
 Fun videos, new music, interesting articles, tutorials, blog posts, games.&lt;/p&gt;
@@ -140,4 +134,10 @@ Knowing my thoughts will be publicly available forces me to think wisely,
 and arrive to better conclusions. 
 Aditionally, until now didn't like any of the blogging platforms out there, 
 but now with pelican, being able to craft my own posts with markdown and vim
-is also part of the motivation.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">hernantz</dc:creator><pubDate>Wed, 03 Jul 2013 18:06:00 -0300</pubDate><guid>tag:hernantz.github.io,2013-07-03:init.html</guid><category>pelican</category><category>personal</category></item></channel></rss>
+is also part of the motivation.&lt;/p&gt;
+&lt;p&gt;In this blog, I do my best to get to the point. Quality over quantity.
+Why write a thousand words if a picture says more than a thousand words?
+Why write six paragraphs if you can fit an introduction, main idea
+and conclusion in just three?&lt;/p&gt;
+&lt;p&gt;Life is short, &lt;a href="http://getnashty.com/write-less"&gt;write less&lt;/a&gt;, read this and move on.&lt;/p&gt;
+&lt;p&gt;P.S. Sorry for the length of this post. I didn't have time to make it shorter.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">hernantz</dc:creator><pubDate>Wed, 03 Jul 2013 18:06:00 -0300</pubDate><guid>tag:hernantz.github.io,2013-07-03:init.html</guid><category>pelican</category><category>personal</category></item></channel></rss>
