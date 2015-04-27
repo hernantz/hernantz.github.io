@@ -37,7 +37,7 @@ it again from our pelican site repo. To ignore it just add a &lt;code&gt;ignore&
 and run git commands (like add, commit, push, etc) that will only take effect on your repo from step 1. Once you 
 push your new output content to your master branch of &lt;code&gt;your-github-username.github.io&lt;/code&gt;, Github will take 
 some minutes to update your site.&lt;/p&gt;
-&lt;p&gt;Fin.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">hernantz</dc:creator><pubDate>Sun, 18 May 2014 17:50:00 -0300</pubDate><guid>tag:hernantz.github.io,2014-05-18:how-to-publish-a-pelican-site-on-github.html</guid><category>pelican</category><category>git</category></item><item><title>Fixing VirtualBox VT-X or AMD-V is not available</title><link>http://hernantz.github.io/fixing-virtualbox-vtx-amdv-is-not-available.html</link><description>&lt;p&gt;&lt;img alt="Y U NO RUN MY VM" src="/static/images/y-u-no-run-my-vm.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Fin.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">hernantz</dc:creator><pubDate>Sun, 18 May 2014 17:50:00 -0300</pubDate><guid>tag:hernantz.github.io,2014-05-18:how-to-publish-a-pelican-site-on-github.html</guid><category>pelican</category><category>git</category></item><item><title>Fixing VirtualBox VT-X or AMD-V is not available</title><link>http://hernantz.github.io/fixing-virtualbox-vt-x-or-amd-v-is-not-available.html</link><description>&lt;p&gt;&lt;img alt="Y U NO RUN MY VM" src="/static/images/y-u-no-run-my-vm.png" /&gt;&lt;/p&gt;
 &lt;p&gt;This warning/error started to appear in VirtualBox v4.3, where using Intel's VT-X and AMD's AMD-V
 native virtualization technologies is set to enabled by default on every VM. 
 You computer may or may not have this goodies. &lt;/p&gt;
@@ -70,7 +70,7 @@ just check:&lt;/p&gt;
 &lt;p&gt;and for sure you will be able to configure almost anything.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;BIOS image taken from: &lt;a href="http://askubuntu.com/a/256853"&gt;http://askubuntu.com/a/256853&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">hernantz</dc:creator><pubDate>Thu, 10 Apr 2014 22:36:00 -0300</pubDate><guid>tag:hernantz.github.io,2014-04-10:fixing-virtualbox-vtx-amdv-is-not-available.html</guid><category>linux</category><category>virtualization</category><category>virtualbox</category></item><item><title>Improvement marathon</title><link>http://hernantz.github.io/improvement-marathon.html</link><description>&lt;p&gt;I quitted my job. Got some money to spare (very little though). And lots of time.
+&lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">hernantz</dc:creator><pubDate>Thu, 10 Apr 2014 22:36:00 -0300</pubDate><guid>tag:hernantz.github.io,2014-04-10:fixing-virtualbox-vt-x-or-amd-v-is-not-available.html</guid><category>linux</category><category>virtualization</category><category>virtualbox</category></item><item><title>Improvement marathon</title><link>http://hernantz.github.io/improvement-marathon.html</link><description>&lt;p&gt;I quitted my job. Got some money to spare (very little though). And lots of time.
 In the following moths (starting today), I'm planning spending them both on:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Pet projects (some with millionaire aspirations)&lt;/li&gt;
