@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>what's the point</title><link>http://hernantz.github.io/</link><description>Mostly lies and rants in plain text</description><atom:link href="http://hernantz.github.io/rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 18 May 2014 17:50:00 -0300</lastBuildDate><item><title>How to publish a pelican site on Github</title><link>http://hernantz.github.io/how-to-publish-a-pelican-site-on-github.html</link><description>&lt;p&gt;&lt;img alt="Pelican a static site publishing tool" src="/static/images/pelican-a-static-site-publishing-tool-github.png" /&gt;&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>what's the point</title><link>http://hernantz.github.io/</link><description>Mostly lies and rants in plain text</description><atom:link href="http://hernantz.github.io/rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 27 Apr 2015 19:53:00 -0300</lastBuildDate><item><title>Air, the next big thing</title><link>http://hernantz.github.io/air-the-next-big-thing.html</link><description>&lt;p&gt;What is wrong with startups today?&lt;/p&gt;
+&lt;p&gt;Slack is &lt;a href="http://blogs.wsj.com/digits/2014/10/31/one-year-old-business-software-maker-slack-valued-at-1-12-billion/"&gt;valuated at $1.12b&lt;/a&gt;.
+While freenode hosts ~55846 chat rooms and ~89238 users, or even when
+&lt;a href="http://getkaiwa.com/"&gt;this kind of software&lt;/a&gt; is available for free and you can move your 
+entire team there, as you did when you moved to Slack.
+It's not like Twitter or Youtube where you have a comunity around the
+service and it's kind of unlikely there would be a massive migration to
+other service.
+In Slack, the number of users doesn't matter, because is a team
+communication tool, and as soon as the team decides to move elsewhere,
+Slack is dead.&lt;/p&gt;
+&lt;p&gt;I give you another example. Docker, &lt;a href="http://www.bloomberg.com/news/articles/2015-04-14/docker-said-to-join-1-billion-valuation-club-with-new-funding"&gt;said to be valuated at $1b&lt;/a&gt;. 
+Provides an open source tool on top other open source tool, which 
+aparently &lt;a href="http://chimeracoder.github.io/docker-without-docker/#1"&gt;is not even needed now&lt;/a&gt;, thanks to the systemd guys.
+Even if Docker tries to provide a web platform, similar to what GitHub 
+does for git, does that really justifies $1b valuation?&lt;/p&gt;
+&lt;p&gt;Ladies and gentlemen I'm here to sell you air.
+A product everyone needs. We currently have 7 billion active users and
+growing. Nobody is paying for it yet, but this userbase's got to worth
+something, plus we have no competitors.
+Sign up now on our &lt;a href="http://everyfuckingwebsite.com/"&gt;website&lt;/a&gt; and connect with your friends!&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">hernantz</dc:creator><pubDate>Mon, 27 Apr 2015 19:53:00 -0300</pubDate><guid>tag:hernantz.github.io,2015-04-27:air-the-next-big-thing.html</guid><category>startups</category></item><item><title>How to publish a pelican site on Github</title><link>http://hernantz.github.io/how-to-publish-a-pelican-site-on-github.html</link><description>&lt;p&gt;&lt;img alt="Pelican a static site publishing tool" src="/static/images/pelican-a-static-site-publishing-tool-github.png" /&gt;&lt;/p&gt;
 &lt;p&gt;This is a step by step guide on how to publish a pelican website on Github, and how not to get the site's
 codebase so tightly coupled to where it is deployed. If in the future we want to publish it somewhere else
 there isn't much to be changed. Another thing to mention is that even though we
