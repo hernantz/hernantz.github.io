@@ -1,24 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>what's the point</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/personal.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2013-11-26T22:29:00-03:00</updated><entry><title>Improvement marathon</title><link href="http://hernantz.github.io/improvement-marathon.html" rel="alternate"></link><updated>2013-11-26T22:29:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2013-11-26:improvement-marathon.html</id><summary type="html">&lt;p&gt;I quitted my job. Got some money to spare (very little though). And lots of time.
-In the following moths (starting today), I'm planning spending them both on:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Pet projects (some with millionaire aspirations)&lt;/li&gt;
-&lt;li&gt;On demand learning&lt;/li&gt;
-&lt;li&gt;Reading&lt;/li&gt;
-&lt;li&gt;Exercising&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2&gt;Pet projects (4 hours a day)&lt;/h2&gt;
-&lt;p&gt;Got some really small projects like jay. And bigger and more ambitious projects like
-Gotune and Foodly. I hope to grow as entrepreneur with the latter ones.&lt;/p&gt;
-&lt;h2&gt;Ondemand learning (4 hours a day)&lt;/h2&gt;
-&lt;p&gt;I'm really into Android development and Javascript. Also
-some unix/networking/python/go/docker/salt things I will be trying, not
-necessarily all related.&lt;/p&gt;
-&lt;h2&gt;Readding (1 hour a day)&lt;/h2&gt;
-&lt;p&gt;To practice my english, I'm readding &lt;code&gt;The Hitchickers guide to the galaxy&lt;/code&gt;, and 
-got some books from the mind of &lt;code&gt;Stephen King&lt;/code&gt; and &lt;code&gt;Game of thrones&lt;/code&gt; on my way. &lt;/p&gt;
-&lt;h2&gt;Exercising&lt;/h2&gt;
-&lt;p&gt;Will do mostly running, 3 times a week (40 min each), and biking 2 hours on weekends.&lt;/p&gt;</summary><category term="personal"></category></entry><entry><title>Init</title><link href="http://hernantz.github.io/init.html" rel="alternate"></link><updated>2013-07-03T18:06:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2013-07-03:init.html</id><summary type="html">&lt;p&gt;This is my not-sexy static new blog. It starts with a single post and a single
+<feed xmlns="http://www.w3.org/2005/Atom"><title>what's the point</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/personal.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2013-07-03T18:06:00-03:00</updated><entry><title>Init</title><link href="http://hernantz.github.io/init.html" rel="alternate"></link><updated>2013-07-03T18:06:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2013-07-03:init.html</id><summary type="html">&lt;p&gt;This is my not-sexy static new blog. It starts with a single post and a single
 blog. I hope this is not one of those things I start and abandon.&lt;/p&gt;
 &lt;p&gt;Why now? Becouse in the last weeks I felt the urge to write for myself. 
 Knowing my thoughts will be publicly available forces me to think wisely, 

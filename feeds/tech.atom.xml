@@ -1,35 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>what's the point</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/tech.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2014-04-10T22:36:00-03:00</updated><entry><title>Fixing VirtualBox VT-X or AMD-V is not available</title><link href="http://hernantz.github.io/fixing-virtualbox-vt-x-or-amd-v-is-not-available.html" rel="alternate"></link><updated>2014-04-10T22:36:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2014-04-10:fixing-virtualbox-vt-x-or-amd-v-is-not-available.html</id><summary type="html">&lt;p&gt;&lt;img alt="Y U NO RUN MY VM" src="/static/images/y-u-no-run-my-vm.png" /&gt;&lt;/p&gt;
-&lt;p&gt;This warning/error started to appear in VirtualBox v4.3, where using Intel's VT-X and AMD's AMD-V
-native virtualization technologies is set to enabled by default on every VM. 
-You computer may or may not have this goodies. &lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>what's the point</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/tech.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2014-04-10T22:36:00-03:00</updated><entry><title>Fixing VirtualBox VT-X or AMD-V is not available</title><link href="http://hernantz.github.io/fixing-virtualbox-vt-x-or-amd-v-is-not-available.html" rel="alternate"></link><updated>2014-04-10T22:36:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2014-04-10:fixing-virtualbox-vt-x-or-amd-v-is-not-available.html</id><summary type="html">&lt;p&gt;This warning/error started to appear in VirtualBox v4.3, where using Intel's
+VT-X and AMD's AMD-V native virtualization technologies is set to enabled by
+default on every VM. You computer may or may not have these goodies.&lt;/p&gt;
 &lt;p&gt;Check the output of these commands to verify this in case you are not sure:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;grep --color vmx /proc/cpuinfo &lt;span class="c"&gt;## for an Intel processor&lt;/span&gt;
-grep --color svm /proc/cpuinfo &lt;span class="c"&gt;## for an AMD processor&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;grep --color vmx /proc/cpuinfo  &lt;span class="c"&gt;## for an Intel processor&lt;/span&gt;
+grep --color svm /proc/cpuinfo  &lt;span class="c"&gt;## for an AMD processor&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;In case you have support for VT-x or AMD-v, you will see an option to enable the 
-virtualization in the BIOS, and after doing that the problem is solved.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Enable virtualization in BIOS" src="/static/images/BIOS-enable-virtualization.png" /&gt;&lt;/p&gt;
+&lt;p&gt;In case you have support for VT-x or AMD-v, you will see an option to enable
+the virtualization in the BIOS, and after doing that the problem is solved.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Enable virtualization in BIOS" src="/images/BIOS-enable-virtualization.png" /&gt;&lt;/p&gt;
 &lt;p&gt;In case you do not have support for VT-x or AMD-v, you can disable that feature.
-The configuration file for your VM is in /path/to/vm/files/myvmname/myvmname.vbox (where myvmname is 
-your VM name n_n).&lt;/p&gt;
-&lt;p&gt;It is an xml, but it states that you should not modify it directly becouse changes won't take effect, 
-so we have to use other tools, such as the VirtualBox UI or VBoxManage.
-As that option didn't appear in the UI, I had to go with the VBoxManage command line tool.
-To disable Hardware Virtualization I run the following command:&lt;/p&gt;
+The configuration file for your VM is in &lt;code&gt;/path/to/vm/files/myvmname/myvmname.vbox&lt;/code&gt;
+(where myvmname is your VM name n_n).&lt;/p&gt;
+&lt;p&gt;It is an xml, but it states that you should not modify it directly becouse
+changes won't take effect, so we have to use other tools, such as the VirtualBox
+UI or VBoxManage.  As that option didn't appear in the UI, I had to go with the
+VBoxManage command line tool. To disable Hardware Virtualization I run the
+following command:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;VBoxManage modifyvm myvmname --hwvirtex off
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;In case you run more configuration problems and your current virtualbox ui does not display, 
-just check:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;VBoxManage --help | less
+&lt;p&gt;In case you run more configuration problems and your current virtualbox ui does
+not display, just check:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;VBoxManage --help &lt;span class="p"&gt;|&lt;/span&gt; less
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;and for sure you will be able to configure almost anything.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;BIOS image taken from: &lt;a href="http://askubuntu.com/a/256853"&gt;http://askubuntu.com/a/256853&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</summary><category term="linux"></category><category term="virtualization"></category><category term="virtualbox"></category></entry></feed>
+&lt;p&gt;&lt;em&gt;-BIOS image taken from: &lt;a href="http://askubuntu.com/a/256853"&gt;http://askubuntu.com/a/256853&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;</summary><category term="linux"></category><category term="virtualization"></category><category term="virtualbox"></category></entry></feed>

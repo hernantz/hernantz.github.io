@@ -19,7 +19,7 @@ does for git, does that really justifies $1b valuation?&lt;/p&gt;
 A product everyone needs. We currently have 7 billion active users and
 growing. Nobody is paying for it yet, but this userbase's got to worth
 something, plus we have no competitors.
-Sign up now on our &lt;a href="http://everyfuckingwebsite.com/"&gt;website&lt;/a&gt; and connect with your friends!&lt;/p&gt;</summary><category term="startups"></category></entry><entry><title>How to publish a pelican site on Github</title><link href="http://hernantz.github.io/how-to-publish-a-pelican-site-on-github.html" rel="alternate"></link><updated>2014-05-18T17:50:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2014-05-18:how-to-publish-a-pelican-site-on-github.html</id><summary type="html">&lt;p&gt;&lt;img alt="Pelican a static site publishing tool" src="/static/images/pelican-a-static-site-publishing-tool-github.png" /&gt;&lt;/p&gt;
+Sign up now on our &lt;a href="http://everyfuckingwebsite.com/"&gt;website&lt;/a&gt; and connect with your friends!&lt;/p&gt;</summary><category term="startups"></category></entry><entry><title>How to publish a pelican site on Github</title><link href="http://hernantz.github.io/how-to-publish-a-pelican-site-on-github.html" rel="alternate"></link><updated>2014-05-18T17:50:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2014-05-18:how-to-publish-a-pelican-site-on-github.html</id><summary type="html">&lt;p&gt;&lt;img alt="Pelican a static site publishing tool" src="/images/pelican-a-static-site-publishing-tool-github.png" /&gt;&lt;/p&gt;
 &lt;p&gt;This is a step by step guide on how to publish a pelican website on Github, and how not to get the site's
 codebase so tightly coupled to where it is deployed. If in the future we want to publish it somewhere else
 there isn't much to be changed. Another thing to mention is that even though we
@@ -57,59 +57,38 @@ it again from our pelican site repo. To ignore it just add a &lt;code&gt;ignore&
 and run git commands (like add, commit, push, etc) that will only take effect on your repo from step 1. Once you 
 push your new output content to your master branch of &lt;code&gt;your-github-username.github.io&lt;/code&gt;, Github will take 
 some minutes to update your site.&lt;/p&gt;
-&lt;p&gt;Fin.&lt;/p&gt;</summary><category term="pelican"></category><category term="git"></category></entry><entry><title>Fixing VirtualBox VT-X or AMD-V is not available</title><link href="http://hernantz.github.io/fixing-virtualbox-vt-x-or-amd-v-is-not-available.html" rel="alternate"></link><updated>2014-04-10T22:36:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2014-04-10:fixing-virtualbox-vt-x-or-amd-v-is-not-available.html</id><summary type="html">&lt;p&gt;&lt;img alt="Y U NO RUN MY VM" src="/static/images/y-u-no-run-my-vm.png" /&gt;&lt;/p&gt;
-&lt;p&gt;This warning/error started to appear in VirtualBox v4.3, where using Intel's VT-X and AMD's AMD-V
-native virtualization technologies is set to enabled by default on every VM. 
-You computer may or may not have this goodies. &lt;/p&gt;
+&lt;p&gt;Fin.&lt;/p&gt;</summary><category term="pelican"></category><category term="git"></category></entry><entry><title>Fixing VirtualBox VT-X or AMD-V is not available</title><link href="http://hernantz.github.io/fixing-virtualbox-vt-x-or-amd-v-is-not-available.html" rel="alternate"></link><updated>2014-04-10T22:36:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2014-04-10:fixing-virtualbox-vt-x-or-amd-v-is-not-available.html</id><summary type="html">&lt;p&gt;This warning/error started to appear in VirtualBox v4.3, where using Intel's
+VT-X and AMD's AMD-V native virtualization technologies is set to enabled by
+default on every VM. You computer may or may not have these goodies.&lt;/p&gt;
 &lt;p&gt;Check the output of these commands to verify this in case you are not sure:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;grep --color vmx /proc/cpuinfo &lt;span class="c"&gt;## for an Intel processor&lt;/span&gt;
-grep --color svm /proc/cpuinfo &lt;span class="c"&gt;## for an AMD processor&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;grep --color vmx /proc/cpuinfo  &lt;span class="c"&gt;## for an Intel processor&lt;/span&gt;
+grep --color svm /proc/cpuinfo  &lt;span class="c"&gt;## for an AMD processor&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;In case you have support for VT-x or AMD-v, you will see an option to enable the 
-virtualization in the BIOS, and after doing that the problem is solved.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Enable virtualization in BIOS" src="/static/images/BIOS-enable-virtualization.png" /&gt;&lt;/p&gt;
+&lt;p&gt;In case you have support for VT-x or AMD-v, you will see an option to enable
+the virtualization in the BIOS, and after doing that the problem is solved.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Enable virtualization in BIOS" src="/images/BIOS-enable-virtualization.png" /&gt;&lt;/p&gt;
 &lt;p&gt;In case you do not have support for VT-x or AMD-v, you can disable that feature.
-The configuration file for your VM is in /path/to/vm/files/myvmname/myvmname.vbox (where myvmname is 
-your VM name n_n).&lt;/p&gt;
-&lt;p&gt;It is an xml, but it states that you should not modify it directly becouse changes won't take effect, 
-so we have to use other tools, such as the VirtualBox UI or VBoxManage.
-As that option didn't appear in the UI, I had to go with the VBoxManage command line tool.
-To disable Hardware Virtualization I run the following command:&lt;/p&gt;
+The configuration file for your VM is in &lt;code&gt;/path/to/vm/files/myvmname/myvmname.vbox&lt;/code&gt;
+(where myvmname is your VM name n_n).&lt;/p&gt;
+&lt;p&gt;It is an xml, but it states that you should not modify it directly becouse
+changes won't take effect, so we have to use other tools, such as the VirtualBox
+UI or VBoxManage.  As that option didn't appear in the UI, I had to go with the
+VBoxManage command line tool. To disable Hardware Virtualization I run the
+following command:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;VBoxManage modifyvm myvmname --hwvirtex off
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;In case you run more configuration problems and your current virtualbox ui does not display, 
-just check:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;VBoxManage --help | less
+&lt;p&gt;In case you run more configuration problems and your current virtualbox ui does
+not display, just check:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;VBoxManage --help &lt;span class="p"&gt;|&lt;/span&gt; less
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;and for sure you will be able to configure almost anything.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;BIOS image taken from: &lt;a href="http://askubuntu.com/a/256853"&gt;http://askubuntu.com/a/256853&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</summary><category term="linux"></category><category term="virtualization"></category><category term="virtualbox"></category></entry><entry><title>Improvement marathon</title><link href="http://hernantz.github.io/improvement-marathon.html" rel="alternate"></link><updated>2013-11-26T22:29:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2013-11-26:improvement-marathon.html</id><summary type="html">&lt;p&gt;I quitted my job. Got some money to spare (very little though). And lots of time.
-In the following moths (starting today), I'm planning spending them both on:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Pet projects (some with millionaire aspirations)&lt;/li&gt;
-&lt;li&gt;On demand learning&lt;/li&gt;
-&lt;li&gt;Reading&lt;/li&gt;
-&lt;li&gt;Exercising&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2&gt;Pet projects (4 hours a day)&lt;/h2&gt;
-&lt;p&gt;Got some really small projects like jay. And bigger and more ambitious projects like
-Gotune and Foodly. I hope to grow as entrepreneur with the latter ones.&lt;/p&gt;
-&lt;h2&gt;Ondemand learning (4 hours a day)&lt;/h2&gt;
-&lt;p&gt;I'm really into Android development and Javascript. Also
-some unix/networking/python/go/docker/salt things I will be trying, not
-necessarily all related.&lt;/p&gt;
-&lt;h2&gt;Readding (1 hour a day)&lt;/h2&gt;
-&lt;p&gt;To practice my english, I'm readding &lt;code&gt;The Hitchickers guide to the galaxy&lt;/code&gt;, and 
-got some books from the mind of &lt;code&gt;Stephen King&lt;/code&gt; and &lt;code&gt;Game of thrones&lt;/code&gt; on my way. &lt;/p&gt;
-&lt;h2&gt;Exercising&lt;/h2&gt;
-&lt;p&gt;Will do mostly running, 3 times a week (40 min each), and biking 2 hours on weekends.&lt;/p&gt;</summary><category term="personal"></category></entry><entry><title>An MVP is not a product, it's an MVP</title><link href="http://hernantz.github.io/an-mvp-is-not-a-product-its-an-mvp.html" rel="alternate"></link><updated>2013-11-09T12:03:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2013-11-09:an-mvp-is-not-a-product-its-an-mvp.html</id><summary type="html">&lt;p&gt;Minimum Viable Product, or even better Minimum Viable Prototype (MVP from now on),
+&lt;p&gt;&lt;em&gt;-BIOS image taken from: &lt;a href="http://askubuntu.com/a/256853"&gt;http://askubuntu.com/a/256853&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;</summary><category term="linux"></category><category term="virtualization"></category><category term="virtualbox"></category></entry><entry><title>An MVP is not a product, it's an MVP</title><link href="http://hernantz.github.io/an-mvp-is-not-a-product-its-an-mvp.html" rel="alternate"></link><updated>2013-11-09T12:03:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2013-11-09:an-mvp-is-not-a-product-its-an-mvp.html</id><summary type="html">&lt;p&gt;Minimum Viable Product, or even better Minimum Viable Prototype (MVP from now on),
 is a technique born in the Lean Startup movement to reduce the risk of gaining validated
 learning, without spending too much effort, money and time in the wrong project direction.&lt;/p&gt;
 &lt;p&gt;You build a MVP to validate an idea, be it for a brand new product or a new feature 
@@ -122,7 +101,7 @@ so it can be used in production by your (paying?) users.&lt;/p&gt;
 &lt;p&gt;This last step is crucial. There will be the tempatation of not taking it.
 The consequences of not doing it are well known, that's why we have best practices afterall.
 The risk is low now. Money, time and effort won't be wasted. There is no excuse. 
-An MVP is not a product, it's an MVP.&lt;/p&gt;</summary><category term="startups"></category></entry><entry><title>Open tabs buffer overflow</title><link href="http://hernantz.github.io/open-tabs-buffer-overflow.html" rel="alternate"></link><updated>2013-08-21T22:56:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2013-08-21:open-tabs-buffer-overflow.html</id><summary type="html">&lt;p&gt;&lt;img alt="Bored Elon Musk knows" src="/static/images/genius-is-1-inspiration-and-99-closing-the-two-hundred-open-tabs-in-your-browser.png" /&gt;&lt;/p&gt;
+An MVP is not a product, it's an MVP.&lt;/p&gt;</summary><category term="startups"></category></entry><entry><title>Open tabs buffer overflow</title><link href="http://hernantz.github.io/open-tabs-buffer-overflow.html" rel="alternate"></link><updated>2013-08-21T22:56:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2013-08-21:open-tabs-buffer-overflow.html</id><summary type="html">&lt;p&gt;&lt;img alt="Bored Elon Musk knows" src="/images/genius-is-1-inspiration-and-99-closing-the-two-hundred-open-tabs-in-your-browser.png" /&gt;&lt;/p&gt;
 &lt;h2&gt;The interwebs and the power it holds&lt;/h2&gt;
 &lt;p&gt;There is so much out there and just a click of distance.  Fun videos, new music,
 interesting articles, tutorials, blog posts, games.&lt;/p&gt;
