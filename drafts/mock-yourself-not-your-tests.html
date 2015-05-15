@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Mock yourself, not your tests | what's the point</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="../theme/css/main.css" type="text/css" />
+  <link rel="stylesheet" href="../theme/css/fontawesome.min.css" type="text/css" media="screen, projection" />
+  <link href="../" type="application/atom+xml" rel="alternate" title="what's the point ATOM Feed" />
+  <link href="../favicon.ico" rel="icon" type="image/x-icon" />
+  <link href="../humans.txt" rel="author" type="text/plain" />
+  <link href="../rss.xml" type="application/atom+xml" rel="alternate" title="what's the point RSS Feed" />
+  <!--[if IE]>
+          <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <!--[if lte IE 7]>
+          <link rel="stylesheet" type="text/css" media="all" href="../css/ie.css"/>
+          <script src="../js/IE8.js" type="text/javascript"></script><![endif]-->
+
+  <!--[if lt IE 7]>
+          <link rel="stylesheet" type="text/css" media="all" href="../css/ie6.css"/><![endif]-->
+  <meta name="description" content="Every mock is a smell, avoid them as much as you can.">
+  <meta name="keywords" content="testing, python">
+  <meta name="author" content="hernantz">
+</head>
+
+<body>
+
+  <aside class="sidebar">
+    <section class="avatar centered-block">
+      <a href="/"><img class="rounded-img" src="../images/avatar.png" height="75" width="75" /></a>
+    </section>
+
+    <section class="name centered-block">
+      <a href="/">hernantz</a>
+    </section>
+
+      <section class="meta centered-block">
+          <a href="http://twitter.com/hernantz" target="_blank"><i class="icon icon-twitter"></i></a>
+          <a href="http://github.com/hernantz" target="_blank"><i class="icon icon-github"></i></a>
+          <a href="/rss.xml" target="_blank"><i class="icon icon-rss"></i></a>
+      </section>
+
+
+  </aside>
+
+  <section class="column-right">
+      <header>
+        <span><a href=".." id="site-title">what's the point  <strong>Mostly lies and rants in plain text</strong></a> </span>
+      </header>
+
+        
+<article>
+  <h1 class="page-title"><a href="../drafts/mock-yourself-not-your-tests.html">Mock yourself, not your tests</a></h1>
+  <section>
+<time datetime="2015-04-19T19:56:00-03:00">Sun 19 April 2015</time>    <p><em>tl;dr</em>: While sometimes mocks are needed, they should not be the first tool 
+you use to write tests. It is a shame to be mocking your code when you could 
+be writting meaningful tests at almost the same cost.</p>
+<p><img alt="Enable virtualization in BIOS" src="/images/bridge-fail.jpg" /></p>
+<p>In this post I try to discourage the use of mocks when writing tests.
+I'm not completely against them (I see their value) but it's that sometimes 
+I feel like we abuse of them, just to make tests pass, feel confortable of 
+seeing another green dot in your test suite and to release yourself from the 
+burden of having to test your code.</p>
+<h2>Why do we use mocks anyway?</h2>
+<p>Well, I'll name a few reasons that seem legit to me.</p>
+<p>One reason to use mocks is to <strong>force a desired state</strong> for your test 
+and easyly trigger side effects. Mocks facilitate a lot the testing of 
+corner cases.
+Another reason is <strong>to gain speed</strong> by staying away of slow code, like 
+system calls, db, network calls, costly calculations, etc. Also it could be 
+a short path to increase code coverage. But probably the primary reason for 
+using mocks is to <strong>make a unit test more specific</strong>.  Just testing exaclty 
+one piece of code, and thus, reducing the number of asserts you have to make, 
+by avoiding having to test things that (hopefully) are already tested and you 
+trust to work.</p>
+<h3>Testing with mocks</h3>
+<p>Let's see some example code:</p>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">Payment</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">invoice_id</span><span class="p">,</span> <span class="n">credit_card</span><span class="p">):</span>
+        <span class="c"># more code here</span>
+
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">amount</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_amount</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">credit_card</span><span class="o">.</span><span class="n">has_credit</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">credit_card</span><span class="o">.</span><span class="n">withdraw</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span>
+</pre></div>
+
+
+<p>As we can see, the <code>process()</code> method uses other objects (credit_card), called 
+colaborators. If we were to write a <strong>unit test</strong> for this method, we would 
+mock all it's colaborators, so that we test the codepaths involved, and 
+only caring that the function calls the colaborators, nothing more. We do this, 
+because we are assuming that all the colaborators work and have their own unit 
+tests.</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">mymodule</span> <span class="kn">import</span> <span class="n">Payment</span>
+<span class="kn">from</span> <span class="nn">mock</span> <span class="kn">import</span> <span class="n">Mock</span>
+<span class="kn">import</span> <span class="nn">unittest</span>
+
+
+<span class="k">class</span> <span class="nc">PaymentTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+    <span class="nd">@mock.patch.object</span><span class="p">(</span><span class="n">Payment</span><span class="p">,</span> <span class="s">&#39;calculate_amount&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">test_process_cc_with_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calculate_amount_mock</span><span class="p">):</span>
+        <span class="n">cc</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
+        <span class="n">calculate_amount_mock</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s">&quot;foo&quot;</span> 
+        <span class="n">cc</span><span class="o">.</span><span class="n">has_credit</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="n">payment</span> <span class="o">=</span> <span class="n">Payment</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">cc</span><span class="p">)</span>
+        <span class="n">payment</span><span class="o">.</span><span class="n">process</span><span class="p">()</span>
+        <span class="n">cc</span><span class="o">.</span><span class="n">withdraw</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">)</span>
+
+    <span class="nd">@mock.patch.object</span><span class="p">(</span><span class="n">Payment</span><span class="p">,</span> <span class="s">&#39;calculate_amount&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">test_process_cc_without_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calculate_amount_mock</span><span class="p">):</span>
+        <span class="n">cc</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
+        <span class="n">cc</span><span class="o">.</span><span class="n">has_credit</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="n">payment</span> <span class="o">=</span> <span class="n">Payment</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">cc</span><span class="p">)</span>
+        <span class="n">payment</span><span class="o">.</span><span class="n">process</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">cc</span><span class="o">.</span><span class="n">withdraw</span><span class="o">.</span><span class="n">called</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Now lets think for a moment if these tests we just wrote tell us, with a good 
+level of confidence, if <code>process()</code> works or not. Or are we just asserting that 
+some methods are called in specific order with specific parameters. This feels
+almost like testing that the compiler/interpreter works!</p>
+<blockquote>
+<p><em>"We've fallen into a trap of testing that the code does what the code says 
+it does, rather than testing functional behaviour we care about."</em></p>
+<p>Every mock.patch() is a little smell. <cite><a href="http://mauveweb.co.uk/posts/2014/09/every-mock-patch-is-a-little-smell.html">Daniel Pope</a></cite></p>
+</blockquote>
+<p>This kind of unit testing makes too many assumptions on how <code>process()</code> is 
+implemented. Tightly coupling your tests with mocks, make refactors to be painfull. 
+As soon as you change a detail of the implementation your tests will <em>break</em> (which 
+is not the same as to <em>fail</em>), with helpless tracebacks about functions that were
+not called, or mocks that break because some method is not there anymore, like:</p>
+<div class="highlight"><pre><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s">&quot;test.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">9</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+    <span class="n">m</span><span class="o">.</span><span class="n">process_with_currency</span><span class="p">()</span>
+  <span class="n">File</span> <span class="s">&quot;/usr/local/lib/python2.7/site-packages/mock.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">65</span><span class="p">,</span> <span class="ow">in</span> <span class="n">__getattr__</span>
+    <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s">&quot;Mock object has no attribute </span><span class="si">%r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
+<span class="ne">AttributeError</span><span class="p">:</span> <span class="n">Mock</span> <span class="nb">object</span> <span class="n">has</span> <span class="n">no</span> <span class="n">attribute</span> <span class="s">&#39;some_old_method&#39;</span>
+</pre></div>
+
+
+<p>Another drawback I wanted to point out is that mocks tend to be too permisive, in 
+the sense that they swallow errors that should occure because of a change in the 
+api of the mocked object.</p>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">Payment</span><span class="p">():</span>
+    <span class="c"># ... </span>
+
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">currency</span><span class="p">):</span>
+        <span class="c"># ...</span>
+</pre></div>
+
+
+<p>If suddendly I decided to change the firm of the <code>process()</code> method, to charge 
+the credit card with a specific currency, the mocked tests above would still 
+pass successfully, so they will not tell you anymore whether you have introduced 
+a regression bug or not. Yes, I'm aware of the <code>autospec=True</code> param, that would 
+restrict the mock to just follow the object's api, but I'll refer to this later.</p>
+<h2>Testing without mocks</h2>
+<p>Now, how would I test this, without mocks?</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">mymodule</span> <span class="kn">import</span> <span class="n">Payment</span> 
+<span class="kn">from</span> <span class="nn">myfactories</span> <span class="kn">import</span> <span class="n">CreditCardFactory</span><span class="p">,</span> <span class="n">InvoiceFactory</span>
+<span class="kn">import</span> <span class="nn">unittest</span>
+
+
+<span class="k">class</span> <span class="nc">PaymentTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">test_process_cc_with_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">InvoiceFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cost</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">cc</span> <span class="o">=</span> <span class="n">CreditCardFactory</span><span class="p">(</span><span class="n">balance</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">payment</span> <span class="o">=</span> <span class="n">Payment</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">cc</span><span class="p">)</span>
+        <span class="n">payment</span><span class="o">.</span><span class="n">process</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">cc</span><span class="o">.</span><span class="n">balance</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">test_process_cc_without_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">InvoiceFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cost</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">cc</span> <span class="o">=</span> <span class="n">CreditCardFactory</span><span class="p">(</span><span class="n">balance</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">payment</span> <span class="o">=</span> <span class="n">Payment</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">cc</span><span class="p">)</span>
+        <span class="n">payment</span><span class="o">.</span><span class="n">process</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">cc</span><span class="o">.</span><span class="n">balance</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Comparing the test above, with the one that uses mocks, we can see that it has 
+almost the same amount of code, but this test is not bound to the implementation, 
+it is still deterministic, plus it tests goals in an automated way, similar to 
+the manual check I would do to trust that the <code>process()</code> method works.</p>
+<p>We have used two techniques here that helped us get way from mocks.</p>
+<p>The first technique was to start testing how collaborators interact between
+each other inside <code>process()</code>. These type of tests are called <strong>integration
+tests</strong>, that test larger units of your code, with real components. This also 
+helped reducing the chance of bugs that sneak away when you tests units in 
+aisolation. 
+Keep in mind that you need to have a good balance in the amount of code under 
+test, speed and reliability. While there might not be too much value in writing 
+tests for very small units of code (because their might be adding noise to your 
+test suite), you don't want to be testing a huge portion of your code neither.</p>
+<p>The second technique consisted on using factories. Whats important is that
+factories <strong>build real objects</strong> for you in a declarative and straighforward
+way, which lets you focus on the bits of data you need to setup your test and
+leave the rest for the factory to implement.</p>
+<div class="highlight"><pre><span class="c"># we asume that &quot;process()&quot; will query the database to ask for this invoice</span>
+<span class="n">InvoiceFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cost</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c"># on the other hand, credit card can be passed as an param, `cc` is a real </span>
+<span class="c"># CreditCard(), and there&#39;s no need to hit the db for this test</span>
+<span class="n">cc</span> <span class="o">=</span> <span class="n">CreditCardFactory</span><span class="p">(</span><span class="n">balance</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+
+<h2>In the quest for <em>real mocks</em></h2>
+<p>There are cases where it really makes sense to use mocks. I'll show you a couple
+of examples that, in my opinion, could serve as inspiration to use them
+successfully and write better tests. These mocks are: </p>
+<ul>
+<li>Agnostic: the details of your code change, but your mocks continue to work.</li>
+<li>Swapable: you can easily turn them on/off or switch to them on the fly.</li>
+<li>Precise: they stub only the sensible parts of the real object.</li>
+<li>Verified: the interfaces of such mock are carefully maintained and mimic the 
+  real object.</li>
+</ul>
+<h3>Did you receive my email?</h3>
+<p>Django gives us an in-memory mailbox that captures all outgoing emails. What's 
+interesting is that it sets up this dummy double  <strong>by default</strong> when you 
+inherit from <code>TestCase</code>, so writing these kind of tests becomes really easy.</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">mymodule</span> <span class="kn">import</span> <span class="n">Payment</span>
+<span class="c"># ...</span>
+<span class="kn">from</span> <span class="nn">django.core</span> <span class="kn">import</span> <span class="n">mail</span>
+<span class="kn">from</span> <span class="nn">django.test</span> <span class="kn">import</span> <span class="n">TestCase</span>
+
+
+<span class="k">class</span> <span class="nc">PaymentTestCase</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">test_process_cc_with_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c"># this factory will create an Invoice and a User associated to </span>
+        <span class="c"># it, with the specified email</span>
+        <span class="n">InvoiceFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cost</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">user__email</span><span class="o">=</span><span class="s">&quot;foo@bar.com&quot;</span><span class="p">)</span>
+        <span class="c"># ... more code </span>
+
+        <span class="c"># Test that payment receipt email has been sent.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mail</span><span class="o">.</span><span class="n">outbox</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">mail</span><span class="o">.</span><span class="n">outbox</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">,</span> <span class="p">[</span><span class="s">&quot;foo@bar.com&quot;</span><span class="p">])</span>
+</pre></div>
+
+
+<h3>This call is being recorded</h3>
+<p>Say for example that you need to hit a 3rd party API that you don't own, that
+probably has throttle limitations, no sandbox/testing ground, you cannot setup 
+and run it locally, or all these together. Doing live testing is not really an 
+option. But if you use something like <a href="https://github.com/kevin1024/vcrpy">vrc.py</a>, then you profit from testing
+against real requests/responses that are recorded so that next time you run the 
+test suit it runs under safe and repeatable conditions, without hitting the net.</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">mymodule</span> <span class="kn">import</span> <span class="n">Payment</span> 
+<span class="c"># ...</span>
+<span class="kn">import</span> <span class="nn">vcr</span>
+
+
+<span class="k">class</span> <span class="nc">PaymentTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+    <span class="nd">@vcr.use_cassette</span><span class="p">(</span><span class="s">&#39;vcr_cassettes/cc_with_credit.yaml&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">test_process_cc_with_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c"># ... more code</span>
+
+    <span class="nd">@vcr.use_cassette</span><span class="p">(</span><span class="s">&#39;vcr_cassettes/cc_without_credit.yaml&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">test_process_cc_without_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c"># ... more code </span>
+</pre></div>
+
+
+<p>If the 3rd party API changes, you don't have to do anything but delete the
+recorded responses, and your test will do all the work for you.
+Should you need more control over a certain response that is not easy to 
+reproduce, (like a 500 error response), you can achieve that with httpretty.</p>
+<h3>The philosophy of time travel</h3>
+<p>When you need to test code that deals with dates, mocks will come to be very 
+handy too. Let's see an example.</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="p">(</span><span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">tomorrow</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+
+<p>To test this, you would have to write tests that have almost the same code 
+you are trying to test, and the bugs in your code will also pass unnoticed 
+into your tests.</p>
+<div class="highlight"><pre><span class="k">assert</span> <span class="n">tomorrow</span><span class="p">()</span> <span class="o">==</span> <span class="k">return</span> <span class="n">today</span><span class="p">()</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c"># silly test</span>
+</pre></div>
+
+
+<p>Now, when we test using the <a href="https://github.com/spulec/freezegun">freezegun</a> module</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">freezegun</span> <span class="kn">import</span> <span class="n">freeze_time</span>
+
+<span class="k">with</span> <span class="n">freeze_time</span><span class="p">(</span><span class="s">&#39;2012-01-01&#39;</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">tomorrow</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&#39;%Y-%m-</span><span class="si">%d</span><span class="s">&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s">&#39;2012-01-02&#39;</span>
+</pre></div>
+
+
+<p>You can see how we avoided mocking <code>datetime()</code> and <code>timedelta()</code> and we can 
+even use <code>strftime()</code> in our tests. We made time behave deterministically 
+using a nice declarative api, that doesn't get in our way. We can even make 
+<code>tomorrow()</code> to be calculated using other libraries.</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">arrow</span>
+
+<span class="k">def</span> <span class="nf">tomorrow</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">arrow</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c"># Our test still passes :)</span>
+</pre></div>
+
+
+<h2>Need for speed</h2>
+<p>I mentioned that using mocks was a legit excuse for speeding your tests, and 
+staying away of slow parts like the database. Well if you used an ORM and your 
+data structures are pretty stardard, then you may be able to <a href="http://www.machinalis.com/blog/optimizing-your-tests-in-django/">switch to an 
+in-memory sqlite database</a> just to run your tests.</p>
+<p>Another posibility that's worth exploring, but I haven't tried myself though, is
+to <a href="https://gist.github.com/zekefast/07fa5434afcd0ba77f9b" title="Run postgresql in a ram disk">mount the database</a> in a <code>tmpfs</code> filesystem, or combine that with a 
+<a href="https://github.com/gentics/docker-tmpfs-mysql" title="Docker tmpfs mysql">custom docker build</a> to gain speed, but at the same time, run the tests 
+against the db engine you use in production, and thus, gain also reliability.</p>
+<p>In case you don't want to mess with custom setups for testing, there are some
+easy tricks to speed your tests like running them in parallel:</p>
+<div class="highlight"><pre><span class="nv">$ </span>nosetests --processes<span class="o">=</span>NUM
+</pre></div>
+
+
+<p>provided that your tests <a href="http://nose.readthedocs.org/en/latest/plugins/multiprocess.html#beware">can run concurrently</a> and are IO bound, or simply
+throw hardware at the problem with more RAM, a more powerful CPU or an SSD.</p>
+<h2>In conclusion</h2>
+<ul>
+<li>Integration tests are one honking great idea, let's do more of those. Don't 
+  relay exclusively in unit tests, test goals.</li>
+<li>Use factories to reduce boilerplate of tests's setup and asserting a known state 
+  before they run.</li>
+<li>Avoid using mocks as much as you can. There's a good chance you'll be testing 
+  what the code does, not what it should do.</li>
+<li>In times of need, apply well maintained global mocks, the closest possible to 
+  the danger zone.</li>
+</ul>
+  </section>
+</article>
+  </section>
+
+  <footer class="column-right">
+      <nav>
+          <ul>
+              <li>:: <a href="../categories.html">Categories</a></li>
+              <li>:: <a href="../tags.html">Tags</a></li>
+          </ul>
+      </nav>
+  </footer>
+
+</body>
+</html>
