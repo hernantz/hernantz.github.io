@@ -1,25 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>what's the point</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/startups.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2015-04-27T19:53:00-03:00</updated><entry><title>Air, the next big thing</title><link href="http://hernantz.github.io/air-the-next-big-thing.html" rel="alternate"></link><updated>2015-04-27T19:53:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2015-04-27:air-the-next-big-thing.html</id><summary type="html">&lt;p&gt;What is wrong with startups today?&lt;/p&gt;
-&lt;p&gt;Slack is &lt;a href="http://blogs.wsj.com/digits/2014/10/31/one-year-old-business-software-maker-slack-valued-at-1-12-billion/"&gt;valuated at $1.12b&lt;/a&gt;.
-While freenode hosts ~55846 chat rooms and ~89238 users, or even when
-&lt;a href="http://getkaiwa.com/"&gt;this kind of software&lt;/a&gt; is available for free and you can move your 
-entire team there, as you did when you moved to Slack.
-It's not like Twitter or Youtube where you have a comunity around the
-service and it's kind of unlikely there would be a massive migration to
-other service.
-In Slack, the number of users doesn't matter, because is a team
-communication tool, and as soon as the team decides to move elsewhere,
-Slack is dead.&lt;/p&gt;
-&lt;p&gt;I give you another example. Docker, &lt;a href="http://www.bloomberg.com/news/articles/2015-04-14/docker-said-to-join-1-billion-valuation-club-with-new-funding"&gt;said to be valuated at $1b&lt;/a&gt;. 
-Provides an open source tool on top other open source tool, which 
-apparently &lt;a href="http://chimeracoder.github.io/docker-without-docker/#1"&gt;is not even needed now&lt;/a&gt;, thanks to the systemd guys.
-Even if Docker tries to provide a web platform, similar to what GitHub 
-does for git, does that really justifies $1b valuation?&lt;/p&gt;
-&lt;p&gt;Ladies and gentlemen I'm here to sell you air.
-A product everyone needs. We currently have 7 billion active users and
-growing. Nobody is paying for it yet, but this userbase's got to worth
-something, plus we have no competitors.
-Sign up now on our &lt;a href="http://everyfuckingwebsite.com/"&gt;website&lt;/a&gt; and connect with your friends!&lt;/p&gt;</summary><category term="startups"></category></entry><entry><title>An MVP is not a product, it's an MVP</title><link href="http://hernantz.github.io/an-mvp-is-not-a-product-its-an-mvp.html" rel="alternate"></link><updated>2013-11-09T12:03:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2013-11-09:an-mvp-is-not-a-product-its-an-mvp.html</id><summary type="html">&lt;p&gt;Minimum Viable Product, or even better Minimum Viable Prototype (MVP from now on),
+<feed xmlns="http://www.w3.org/2005/Atom"><title>what's the point</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/startups.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2013-11-09T12:03:00-03:00</updated><entry><title>An MVP is not a product, it's an MVP</title><link href="http://hernantz.github.io/an-mvp-is-not-a-product-its-an-mvp.html" rel="alternate"></link><updated>2013-11-09T12:03:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2013-11-09:an-mvp-is-not-a-product-its-an-mvp.html</id><summary type="html">&lt;p&gt;Minimum Viable Product, or even better Minimum Viable Prototype (MVP from now on),
 is a technique born in the Lean Startup movement to reduce the risk of gaining validated
 learning, without spending too much effort, money and time in the wrong project direction.&lt;/p&gt;
 &lt;p&gt;You build a MVP to validate an idea, be it for a brand new product or a new feature 
