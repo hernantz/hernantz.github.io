@@ -55,17 +55,17 @@
   <section>
 <time datetime="2015-04-19T19:56:00-03:00">Sun 19 April 2015</time>    <p><em>tl;dr</em>: While sometimes mocks are needed, they should not be the first tool 
 you use to write tests. It is a shame to be mocking your code when you could 
-be writting meaningful tests at almost the same cost.</p>
+be writing meaningful tests at almost the same cost.</p>
 <p><img alt="Enable virtualization in BIOS" src="/images/bridge-fail.jpg" /></p>
 <p>In this post I try to discourage the use of mocks when writing tests.
 I'm not completely against them (I see their value) but it's that sometimes 
-I feel like we abuse of them, just to make tests pass, feel confortable of 
-seeing another green dot in your test suite and to release yourself from the 
+I feel like we abuse of them, just to make tests pass, feel comfortable of
+seeing another green dot in your test suite and to release yourself from the
 burden of having to test your code.</p>
 <h2>Why do we use mocks anyway?</h2>
 <p>Well, I'll name a few reasons that seem legit to me.</p>
-<p>One reason to use mocks is to <strong>force a desired state</strong> for your test 
-and easily trigger side effects. Mocks facilitate a lot the testing of 
+<p>One reason to use mocks is to <strong>force a desired state</strong> for your test
+and easily trigger side effects. Mocks facilitate a lot the testing of
 corner cases.
 Another reason is <strong>to gain speed</strong> by staying away of slow code, like 
 system calls, db, network calls, costly calculations, etc. Also it could be 
@@ -87,10 +87,10 @@ are already tested.</p>
 
 
 <p>As we can see, the <code>process()</code> method uses other objects (credit_card), called 
-colaborators. If we were to write a <strong>unit test</strong> for this method, we would 
-mock all it's colaborators, so that we test the codepaths involved, and 
-only caring that the function calls the colaborators, nothing more. We do this, 
-because we are assuming that all the colaborators work and have their own unit 
+collaborators. If we were to write a <strong>unit test</strong> for this method, we would 
+mock all its collaborators, so that we test the codepaths involved, and 
+only caring that the function calls the collaborators, nothing more. We do this, 
+because we are assuming that all the collaborators work and have their own unit 
 tests.</p>
 <div class="highlight"><pre><span class="kn">from</span> <span class="nn">mymodule</span> <span class="kn">import</span> <span class="n">Payment</span>
 <span class="kn">from</span> <span class="nn">mock</span> <span class="kn">import</span> <span class="n">Mock</span>
@@ -142,9 +142,9 @@ method doesn't exist anymore, like:</p>
 </pre></div>
 
 
-<p>Another drawback I wanted to point out is that mocks tend to be too permisive, in 
-the sense that they swallow errors that should occure because of a change in the 
-api of the mocked object.</p>
+<p>Another drawback I wanted to point out is that mocks tend to be too permissive, in 
+the sense that they swallow errors that should occur because of a change in the 
+API of the mocked object.</p>
 <div class="highlight"><pre><span class="k">class</span> <span class="nc">Payment</span><span class="p">():</span>
     <span class="c"># ... </span>
 
@@ -192,7 +192,7 @@ the manual check I would do to trust that the <code>process()</code> method work
 each other inside <code>process()</code>. These type of tests are called <strong>integration
 tests</strong>, that test larger units of your code, with real components. This also 
 helped reducing the chance of bugs that sneak away when you test units in 
-aisolation.</p>
+isolation.</p>
 <p>Keep a reasonable amount of code under your tests. While writing tests for very
 small units of code might be adding noise to your test suite, there won't be too
 much value in testing a huge portion of your code either. </p>
@@ -215,7 +215,7 @@ of examples that, in my opinion, could serve as inspiration to use them
 successfully and write better tests. These mocks are: </p>
 <ul>
 <li>Agnostic: the details of your code change, but your mocks continue to work.</li>
-<li>Swapable: you can easily turn them on/off or switch to them on the fly.</li>
+<li>Swappable: you can easily turn them on/off or switch to them on the fly.</li>
 <li>Precise: they stub only the sensible parts of the real object.</li>
 <li>Verified: the interfaces of such mock are carefully maintained and mimic the 
   real object.</li>
@@ -273,8 +273,8 @@ recorded responses, and your test will do all the work for you.
 Should you need more control over a certain response that is not easy to 
 reproduce, (like a 500 error response), you can achieve that with httpretty.</p>
 <h3>The philosophy of time travel</h3>
-<p>When you need to test code that deals with dates, mocks will come to be very 
-handy too. Let's see an example.</p>
+<p>When you need to test code that deals with dates, mocks will be very handy
+too. Let's see an example.</p>
 <div class="highlight"><pre><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="p">(</span><span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">tomorrow</span><span class="p">():</span>
@@ -297,9 +297,9 @@ into your tests.</p>
 </pre></div>
 
 
-<p>You can see how we avoided mocking <code>datetime()</code> and <code>timedelta()</code> and we can 
-even use <code>strftime()</code> in our tests. We made time behave deterministically 
-using a nice declarative api, that doesn't get in our way. We can even make 
+<p>You can see how we avoided mocking <code>datetime()</code> and <code>timedelta()</code> and we can
+even use <code>strftime()</code> in our tests. We made time behave deterministically
+using a nice declarative API, that doesn't get in our way. We can even make
 <code>tomorrow()</code> to be calculated using other libraries.</p>
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">arrow</span>
 
@@ -309,13 +309,13 @@ using a nice declarative api, that doesn't get in our way. We can even make
 
 
 <h2>Need for speed</h2>
-<p>I mentioned that using mocks was a legit excuse for speeding your tests, and 
-staying away of slow parts like the database. Well if you used an ORM and your 
-data structures are pretty stardard, then you may be able to <a href="http://www.machinalis.com/blog/optimizing-your-tests-in-django/">switch to an 
+<p>I mentioned that using mocks was a legit excuse for speeding your tests, and
+staying away of slow parts like the database. Well if you used an ORM and your
+data structures are pretty standard, then you may be able to <a href="http://www.machinalis.com/blog/optimizing-your-tests-in-django/">switch to an
 in-memory sqlite database</a> just to run your tests.</p>
-<p>Another posibility that's worth exploring, but I haven't tried myself though, is
-to <a href="https://gist.github.com/zekefast/07fa5434afcd0ba77f9b" title="Run postgresql in a ram disk">mount the database</a> in a <code>tmpfs</code> filesystem, or combine that with a 
-<a href="https://github.com/gentics/docker-tmpfs-mysql" title="Docker tmpfs mysql">custom docker build</a> to gain speed, but at the same time, run the tests 
+<p>Another possibility that's worth exploring, but I haven't tried myself though,
+is to <a href="https://gist.github.com/zekefast/07fa5434afcd0ba77f9b" title="Run postgresql in a ram disk">mount the database</a> in a <code>tmpfs</code> filesystem, or combine that with a
+<a href="https://github.com/gentics/docker-tmpfs-mysql" title="Docker tmpfs mysql">custom docker build</a> to gain speed, but at the same time, run the tests
 against the db engine you use in production, and thus, gain also reliability.</p>
 <p>In case you don't want to mess with custom setups for testing, there are some
 easy tricks to speed your tests like running them in parallel:</p>
@@ -329,7 +329,7 @@ throw hardware at the problem with more RAM, a more powerful CPU or an SSD.</p>
 <ul>
 <li>Integration tests are one honking great idea, let's do more of those. Don't 
   relay exclusively in unit tests, test goals.</li>
-<li>Use factories to reduce boilerplate of tests's setup and asserting a known state 
+<li>Use factories to reduce boilerplate of tests setup and asserting a known state
   before they run.</li>
 <li>Avoid using mocks as much as you can. There's a good chance you'll be testing 
   what the code does, not what it should do.</li>
