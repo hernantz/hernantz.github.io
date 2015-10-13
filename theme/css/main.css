@@ -1,15 +1,14 @@
-@import url("pygment.css");
-
 body {
   background: #fff;
-  color: #333;
+  color: #444;
   font: 18px Hoefler Text, bodyfont, serif;
   line-height: 30px;
+  margin: 0.8em 1em;
   max-width: 40em; }
 
 
 h1, h2, h3, h4 {
-  color: #333333;
+  color: black;
   font-family: Helvetica, sans-serif;
   font-weight: normal;
   margin-bottom: 0;
@@ -19,25 +18,21 @@ h1, h2, h3, h4 {
 h1 {
   font-size: 1.5em; }
 
-
 h2 {
   margin-top: 2em;
   font-size: 1.3em; }
 
-
 h3 {
-  margin-top: 1.6em;
+  margin-top: 2em;
   font-size: 1.1em; }
-
 
 h4 {
   font-size: 1em; }
 
-
-time {
+.light {
   color: #b0b0b0;
-  font-size: 0.7em; }
-
+  font-size: 0.8em;
+  line-height: 1.4em; }
 
 img {
   max-width: 100%;
@@ -51,11 +46,9 @@ code {
 }
 
 blockquote {
-  border-left: 1px solid darkgoldenrod;
+  border-left: 0.3em solid #b0b0b0;
   margin: 0px;
-  background-color: lightgoldenrodyellow;
   padding: 0 12px 0 12px; }
-
 
 p {
   text-indent: 0px; }
@@ -64,17 +57,19 @@ p.caption {
   font-size: 80%;
   margin-top: 0; }
 
-
 a {
   color: #227ce8;
   text-decoration: none; }
 
 a:hover {
-  border-bottom: #227ce8 1px solid; }
+  text-decoration: underline; }
 
+a:visited {
+  color: #60B;
+}
 
 ul, ol {
-  padding: 0em 0em 1em 0em; }
+  padding: 0; }
 
 ul li, ol li {
   line-height: 30px;
@@ -83,47 +78,31 @@ ul li, ol li {
 article ul, article ol {
   padding: 0em 0em 0em 1em; }
 
-
-strong {
-    color: #555555;
-    font-family: Georgia, "Times New Roman", Times, serif; }
-
-
-tt {
-  background-color: #fafafa;
-  font-family: Inconsolata, Monaco, monospace;
-  line-height: 1.2em; }
-
-
 pre {
   font-size: 0.65em;
   line-height: 1.3em;
   overflow: auto;
   padding: 7px; }
 
+.page-title {
+  font-size: 1.5em;
+  font-style: italic;
+  margin-bottom: 0.5em;
+  color: goldenrod; }
 
-.page-title a {
-  border-bottom: none; }
+.page-title small {
+  font-style: normal;
+  color: #444;
+  font-size: 14px;
+}
 
-.page-title  {
-  font-weight: bold;
-  border-bottom: none;
-  margin-top: 0.5em; }
-
-
-header {
-  font-size: 1.5em; }
-
-header span strong {
-  font-size: 0.5em; }
-
-header a {
-  border-bottom: none; }
+.article-title {
+  margin-top: 0;
+  color: goldenrod;
+}
 
 .sidebar {
     position: fixed;
-    left: 15px;
-    top: 15px;
     font-family: Helvetica, sans-serif; }
 
 .sidebar a {
@@ -141,6 +120,7 @@ header a {
     color: black; }
 
 .sidebar .meta a:hover {
+    text-decoration: none;
     color: #227ce8; }
 
 .centered-block {
@@ -178,40 +158,18 @@ header a {
   list-style-type: none;
   padding-bottom: 10px; }
 
-#article-list {
-  margin-top: 3em;}
+.article-list p {
+  margin-top: 0.3em;
+}
 
-#article-list h3 {
-  margin-bottom: 0;
-  color: #b0b0b0;}
-
-#article-list ol {
+.article-list ol {
   margin-top: 0; }
-
-#article-list ol li time {
-  font-size: 0.7em; }
 
 .column-right {
   max-width: 650px;
-  min-width: 550px;
   margin-left: 120px;
   margin-right: 20px;
   margin-bottom: 50px; }
 
-  
-footer {
-  background: #fff;
-  color: #666;
-  font-family: helvetica, sans-serif;
-  font-size: 13px;
-  letter-spacing: 4px; }
-
-footer a {
-  border-bottom: none;
-  color: #c0c0c0; }
-
-footer li {
-  display: inline; }
-
-footer p {
-  text-align: right; }
+.highlight {
+  border: 1px solid lightblue; }

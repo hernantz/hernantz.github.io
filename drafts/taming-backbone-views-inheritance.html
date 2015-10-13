@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Taming Backbone view's inheritance | what's the point</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="http://hernantz.github.io/theme/css/main.css" type="text/css" />
+  <link rel="stylesheet" href="http://hernantz.github.io/theme/css/fontawesome.min.css" type="text/css" media="screen, projection" />
+  <link rel="stylesheet" href="http://hernantz.github.io/theme/css/github.css" type="text/css" />
+  <link href="http://hernantz.github.io/" type="application/atom+xml" rel="alternate" title="what's the point ATOM Feed" />
+  <link href="http://hernantz.github.io/images/favicon.ico" rel="icon" type="image/x-icon" />
+  <link href="http://hernantz.github.io/rss.xml" type="application/atom+xml" rel="alternate" title="what's the point RSS Feed" />
+  <meta name="description" content="Some strategies to reuse code in your views">
+  <meta name="keywords" content="backbone, javascript">
+  <meta name="author" content="hernantz">
+</head>
+
+<body>
+
+  <aside class="sidebar">
+    <div class="avatar centered-block">
+      <a href="/"><img class="rounded-img" src="http://hernantz.github.io/images/avatar.png" height="75" width="75" /></a>
+    </div>
+
+    <div class="name centered-block">
+      <a href="/">hernantz</a>
+    </div>
+
+      <section class="meta centered-block">
+          <a href="http://twitter.com/hernantz" target="_blank"><i class="icon icon-twitter"></i></a>
+          <a href="http://github.com/hernantz" target="_blank"><i class="icon icon-github"></i></a>
+          <a href="/rss.xml" target="_blank"><i class="icon icon-rss"></i></a>
+      </section>
+
+
+  </aside>
+
+        
+<article class="column-right">
+  <h1 class="article-title">Taming Backbone view's inheritance</h1>
+  <p class="light">
+    Published
+on <time datetime="2015-05-15T00:00:00-03:00">Fri 15 May 2015</time>,     under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
+    tagged with <a href="http://hernantz.github.io/tag/backbone.html">backbone</a> and <a href="http://hernantz.github.io/tag/javascript.html">javascript</a>.
+  </p>
+  <p><img alt="X-Ray by Eric Drooker" src="/images/x-ray.jpg" title="X-Ray by Eric Drooker" /></p>
+<p>The idea of this post is to show some possible approaches to reuse code
+in your backbone views.</p>
+<p>Firts things first, let's see what views are, or should be. In the
+<a href="http://backbonejs.org/">Backbone docs</a> there's a clear indication that views are a component that
+should just pipe user input into models and display the model's state in a
+reactive manner.</p>
+<p><img alt="Pelican a static site publishing tool" src="/images/backbone-model-views-flow.png" /></p>
+<p>By following this pattern, views become very lightweight and straightforward to
+reason about. So, if your views have too much code in them, then your are very
+probably doing it wrong.</p>
+<h2>First approach: extend a generic view</h2>
+<p>MarionetteJS item view y collectionview
+podes tener 100 de estos tipos de vistas, y cambian muy pocas cosas, como el template.</p>
+<h2>First approach: extend a parent view</h2>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">BaseView</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">ChildView</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">BaseView</span><span class="p">,</span> <span class="p">{});</span>
+</pre></div>
+
+
+<h2>Second approach: parent view contains child views</h2>
+<p>LEER http://blog.siftscience.com/blog/2015/best-practices-for-building-large-react-applications
+Ejemplo de MarionetteJS.Behaviour
+Ejemplo modales + login o las columnas del dashboard de divvy
+LEER https://code.mixpanel.com/2015/04/08/straightening-our-backbone-a-lesson-in-event-driven-ui-development/</p>
+</article>
+
+  <footer class="column-right light">
+    <hr/>
+    <p>Hola internauta! If you liked the content of this blog and want to talk about it, you can find me on twitter as <a target="_blank" href="http://twitter.com/hernantz">@hernantz</a>.</p>
+    <nav><a href="http://hernantz.github.io">Home</a> - <a href="http://hernantz.github.io/archives.html">Archives</a> - <a href="http://hernantz.github.io/categories.html">Categories</a> - <a href="http://hernantz.github.io/tags.html">Tags</a> - <a href="http://hernantz.github.io/rss.xml">RSS</a> | what's the point (© 2015)</nav>
+    <p></p>
+  </footer>
+
+</body>
+</html>

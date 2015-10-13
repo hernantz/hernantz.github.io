@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Is SCRUM buggy? | what's the point</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="http://hernantz.github.io/theme/css/main.css" type="text/css" />
+  <link rel="stylesheet" href="http://hernantz.github.io/theme/css/fontawesome.min.css" type="text/css" media="screen, projection" />
+  <link rel="stylesheet" href="http://hernantz.github.io/theme/css/github.css" type="text/css" />
+  <link href="http://hernantz.github.io/" type="application/atom+xml" rel="alternate" title="what's the point ATOM Feed" />
+  <link href="http://hernantz.github.io/images/favicon.ico" rel="icon" type="image/x-icon" />
+  <link href="http://hernantz.github.io/rss.xml" type="application/atom+xml" rel="alternate" title="what's the point RSS Feed" />
+  <meta name="description" content="Books, series, games and movies reviews. Part 1?">
+  <meta name="keywords" content="reviews, rants, ideas">
+  <meta name="author" content="hernantz">
+</head>
+
+<body>
+
+  <aside class="sidebar">
+    <div class="avatar centered-block">
+      <a href="/"><img class="rounded-img" src="http://hernantz.github.io/images/avatar.png" height="75" width="75" /></a>
+    </div>
+
+    <div class="name centered-block">
+      <a href="/">hernantz</a>
+    </div>
+
+      <section class="meta centered-block">
+          <a href="http://twitter.com/hernantz" target="_blank"><i class="icon icon-twitter"></i></a>
+          <a href="http://github.com/hernantz" target="_blank"><i class="icon icon-github"></i></a>
+          <a href="/rss.xml" target="_blank"><i class="icon icon-rss"></i></a>
+      </section>
+
+
+  </aside>
+
+        
+<article class="column-right">
+  <h1 class="article-title">Is SCRUM buggy?</h1>
+  <p class="light">
+    Published
+on <time datetime="2015-05-15T16:46:00-03:00">Fri 15 May 2015</time>,     under <a href="http://hernantz.github.io/category/personal.html">Personal</a>,
+    tagged with <a href="http://hernantz.github.io/tag/reviews.html">reviews</a>, <a href="http://hernantz.github.io/tag/rants.html">rants</a> and <a href="http://hernantz.github.io/tag/ideas.html">ideas</a>.
+  </p>
+  <p>Area mantenimiento</p>
+<p>He escrito estas propuestas porque creo que son factibles de implementar y porque con el trabajo hecho hasta el momento, llegamos a un punto de inflexión donde un cambio es posible y necesario.</p>
+<h2>Problema 1: Falta de impacto</h2>
+<p>Tratar el área de mantenimiento como un área separada tiene sus ventajas y desventajas.
+Al tener recursos humanos dedicados exclusivamente a resolver bugs, se puede evitar las burocracias de scrum, y atacar los problemas directamente. Esto posibilitó que en 11 meses de trabajo, pasamos de 40 tickets abiertos en el board de mantenimiento, que luego fue de un promedio de 20 tickets por varios meses, a un promedio de 2 tickets abiertos permanentemente. También fue fundamental el proceso de reviews para evitar introducir regresiones.</p>
+<p>Como desventajas ésta que los problemas que se atacan en esta área no tienen el impacto necesario en la planificación y trabajo del área de desarrollo principal. En la medida que los parches permitan "safar", las soluciones de fondo pierden relevancia frente a otras tareas como nuevas features, y en momentos críticos, como en la planning meeting, cuando hay que decidir que tareas entran en el sprint, los refactors y enhancements ligan primero.</p>
+<p>Como hay alguien que ataja las balas, siempre está latente el riesgo de "impunidad", donde cualquier problema que haya, se crea un ticket de mantenimiento y listo. El área de mantenimiento permite "ocultar" el verdadero estado del proyecto, ya que el área principal no tiene que afrontar las consecuencias de falta de refactor, falta de especificación, tareas mal hechas, etc.</p>
+<h2>Solución problema 1: Preventive Maintenance and constant refactor</h2>
+<p>https://pbs.twimg.com/media/CHFrCPkW8AAuJna.jpg
+Sun (now Oracle) estimates that over the lifetime of a standard piece of code, 20 percent of the effort will go into the original creation and testing of the code, and 80 percent of the effort will go into the subsequent maintenance and enhancement of the code.</p>
+<p>Es importante que nuestros sprint se empiecen a parecer más a esos números. La solución sería negociar un porcentaje fijo de puntos destinados a mantenimiento preventivo y mejoras, no se bien que porcentaje, pero un 50/50 o 40/60 no sería descabellado.
+Esto tiene la ventaja de que afecta la planificación, el cliente tiene restringido su libertad de acción (por su propio bien), se mejora la salud de la app (previniendo problemas futuros), y el cliente puede apreciar en que se gastan los puntos y está al tanto de los desafíos del proyecto, Patrick y el Brody siguen teniendo voz y voto en las planificaciones y groomings.
+El riesgo acá es que el cliente pueda tomar esta pérdida de libertad de acción con rechazo, sin ver sus beneficios.</p>
+<p>Ya se empezó a trabajar en esta dirección y creo que esta dando buenos resultados, pero es un punto importante a aclarar y acordar con Brody, cosa de evitar generar falsas expectativas sobre el equipo. Lo único que falta mejorar, de nuestro lado, es trabajar más sobre las prioridades de estas tareas de mantenimiento preventivo (ver propuesta 3 más adelante).</p>
+<h2>Problema 2: Sumidero de puntos</h2>
+<p>Esta pasando cada vez más seguido que los bugs son de baja prioridad, entonces esos recursos humanos dedicados pueden no estar siendo bien aprovechados. Hay tareas importantes en el backlog, que no se hacen, por falta de recursos, y tener una persona atendiendo cosas poco importantes, no planificadas en un marco global, es un derroche de plata/esfuerzo.
+Por otro lado, muchos de los bugs vienen como cambios de requerimiento encubiertos, nuevos requerimientos, refactors que no se hacen, etc.
+Esto hace que en el área de mantenimiento se trabaje no solo en bugs críticos sino en "muchos de puntos" que podrían ser planificados tranquilamente, ya que actualmente implican costos ocultos.</p>
+<p>Algunos ejemplos:
+El importador csv se "terminó de hacer en el área mantenimiento", no contemplaba casos básicos errores de usuario para hacerla más robusta y terminamos usando a los clientes como QA.
+DIV-4196: Content Interface &gt; Dates Filter - When selecting From and To dates as the same day, no content is displayed. Así funcionaban los filtros siempre, y esto se hizo pasar como un bug, cuando en realidad era un nuevo requerimiento.
+DIV-4179: Content Editor: Production tasks populating date with 0 hr duration. Nunca se especificó en detalle que hacer con las duraciones de los tasks. Es más apenas termine esta tarea brody cargo otra para manejar más casos afectados por esta feature.
+DIV-4002: Content Editor: Recurring series, change of content type does not get applied to entire series. El código para esto era inexistente, es decir, nunca anduvo. Se podría haber planificado.
+DIV-4274 enforce billing requirements on the backend when activating an account: No había ninguna validación en el backend. Se podría haber planificado.
+DIV-4066 Content Editor: empty text documents pop error when try to attach to content item. Un bug de muy baja prioridad.</p>
+<h2>Solución problema 2: Disciplina y triage procedure para sólo hacer lo importante.</h2>
+<p>Que el área mantenimiento sea sólo para emergencias, todo lo que puede ser planificable o no es un bug, se mueve al área de desarrollo.
+Como ejemplo donde sí se trabajó en el área de desarrollo un supuesto bug tengo la re-autenticación de Twitter, que no había sido terminada, se cargo como blocker bug, pero se trabajó en el área de desarrollo. También son ejemplo muchos de los UI-TWEAKS.</p>
+<h2>Problema 3: Tedio</h2>
+<p>El área de mantenimiento ha estado mucho tiempo a cargo de la misma persona, hay una sola visión de los hechos, se rompe la noción de responsabilidades de equipo, y por sobre todo padezco de "síndrome de la piedra de Sísifo", ya que no hay una noción de "logro alcanzable".
+Personalmente estoy cansado y me gustaría un cambio de aire, creo que puedo ir haciendo aportes en el área de desarrollo.
+Creo también que es oportuno aclarar que trabajar con Tony y Christine ha sido muy bueno, porque trabajan con mucha responsabilidad y compromiso por obtener resultados concretos (es un compliment bueno para comunicar a Brody).</p>
+<h2>Solución problema 3: Rotación</h2>
+<p>Que el área de mantenimiento rote entre los desarrolladores, cosa de que en cada sprint hay un responsable distinto. Como se hace con las groomings.
+Esto sería saludable para que todos los miembros del equipo experimenten en primera persona los desafíos que se presentan en este proyecto (esta área funciona como un cable a tierra del día a día de los usuarios) y haya una noción de compromiso colectivo. También, es oportunidad buenísima de aprender de nuestros errores (lo puedo afirmar con mi experiencia). A su vez, atacando los problemas 1 y 2, la cantidad de esfuerzo invertido en esta área bajará notoriamente.</p>
+</article>
+
+  <footer class="column-right light">
+    <hr/>
+    <p>Hola internauta! If you liked the content of this blog and want to talk about it, you can find me on twitter as <a target="_blank" href="http://twitter.com/hernantz">@hernantz</a>.</p>
+    <nav><a href="http://hernantz.github.io">Home</a> - <a href="http://hernantz.github.io/archives.html">Archives</a> - <a href="http://hernantz.github.io/categories.html">Categories</a> - <a href="http://hernantz.github.io/tags.html">Tags</a> - <a href="http://hernantz.github.io/rss.xml">RSS</a> | what's the point (© 2015)</nav>
+    <p></p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,708 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>what's the point</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/hernantz.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2015-08-28T00:00:00-03:00</updated><entry><title>The branch is dead, short live the branch!</title><link href="http://hernantz.github.io/the-branch-is-dead-short-live-the-branch.html" rel="alternate"></link><updated>2015-08-28T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2015-08-28:the-branch-is-dead-short-live-the-branch.html</id><summary type="html">&lt;p&gt;&lt;em&gt;tl;dr&lt;/em&gt;: When implementing big changesets, maintaining and merging long-lived
+branches is hard. Use short-lived branches instead, and merge them ASAP.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The ship of Theseus" src="/images/ship.jpg" /&gt;&lt;/p&gt;
+&lt;h2&gt;The Theseus paradox&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;"The ship of Theseus, also known as Theseus' paradox, is a thought experiment
+that raises the question of whether an object which has had all of its 
+components replaced remains fundamentally the same object."&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;cite&gt;&lt;a href="https://en.wikipedia.org/wiki/Ship_of_Theseus" title="Ship of Theseus"&gt;Ship of Theseus&lt;/a&gt;&lt;/cite&gt;. Wikipedia.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The answer to the paradox is easy if a large portion of the ship is replaced at
+once, but it becomes more confusing if the change happens gradually, one plank
+at a time. The answer to the paradox seems to be related to how those changes
+are implemented.&lt;/p&gt;
+&lt;p&gt;On software projects, something similar occurs. There's a new requirement that
+implies many changes, could be a refactor, a redesign or a new feature, that
+can be implemented in small or huge stages.&lt;/p&gt;
+&lt;h2&gt;Branches for all&lt;/h2&gt;
+&lt;p&gt;To implement these changes, collaboratively and simultaneously with other
+developers (among other advantages) is that we use a version control system,
+where each feature and sub task is implemented in its own branch.&lt;/p&gt;
+&lt;p&gt;Generally, every serious project also has an integration branch and a stable
+branch, which may be the same &lt;a href="http://nvie.com/posts/a-successful-git-branching-model/" title="Git Flow"&gt;or not&lt;/a&gt;. When the feature/redesign/refactor is
+complete, the changes can be merged into the integration or stable branch.&lt;/p&gt;
+&lt;h2&gt;The problem with long-lived branches&lt;/h2&gt;
+&lt;p&gt;The strategy of not integrating a branch until it is ready can lead to some
+complications, especially when working with long-lived branches, where &lt;strong&gt;these
+complications become unnecessarily complicated&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Long-lived branches exist because a big changeset needs to be implemented, and
+the merge is delayed for a long time until all tasks are finished.&lt;/p&gt;
+&lt;p&gt;Let's review some of these complications that arise from working with
+long-lived branches.&lt;/p&gt;
+&lt;h3&gt;1. Merge conflicts&lt;/h3&gt;
+&lt;p&gt;In a project with a medium-sized team, the integration branch may have a higher
+refresh rate, as smaller features or bugfixes get merged, that will cause
+conflicts with the long-lived branch, which gets quite often out of sync.&lt;/p&gt;
+&lt;p&gt;Consider this scenario: &lt;em&gt;On a branch, some comments are added to a function.
+On a second branch, the name of that function is changed and everywhere it is
+invoked. On a third branch, the function declaration is moved to another file.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;This is an extreme example, I know, but even if you you are not &lt;strong&gt;polluting your
+branches with merges&lt;/strong&gt; (in git this would mean &lt;a href="https://www.atlassian.com/git/tutorials/merging-vs-rebasing/workflow-walkthrough" title="Merging vs Rebasing"&gt;using rebase&lt;/a&gt;), and you have
+managed to &lt;strong&gt;avoid the merge hell&lt;/strong&gt; that makes your branch history look like a
+&lt;a href="http://www.tugberkugurlu.com/archive/resistance-against-london-tube-map-commit-history-a-k-a--git-merge-hell" title="Merge Hell"&gt;metro map&lt;/a&gt;, in general, &lt;strong&gt;solving merge conflicts is hard&lt;/strong&gt;, and the bigger
+the changeset is, the trickier it gets.&lt;/p&gt;
+&lt;h3&gt;2. Sharing improvements between branches&lt;/h3&gt;
+&lt;p&gt;Enhancements, refactors, bugfixes and other &lt;strong&gt;improvements cannot be easily
+shared between feature-branches&lt;/strong&gt; because they are WIP. Creating a common
+&lt;em&gt;develop&lt;/em&gt; branch, to integrate all WIP would require having all the features
+finished in order to merge it into the integration branch, and thus, defeat the
+purpose of using separate branches to enable parallel work.&lt;/p&gt;
+&lt;h3&gt;3. Quality of code&lt;/h3&gt;
+&lt;p&gt;Long branches have to be catching up with the ever changing integration branch,
+and more often than not, you'll see lots of commits with messages like: &lt;em&gt;fixing
+abc, fixing more abc, revert fixing abc, WIP broken tests&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Because feature branches are &lt;em&gt;work in progress&lt;/em&gt;, documenting and testing are
+left as last-minute tasks. You may think that the big messy branch will be
+prevented from geting merged until it gets polished, but in reality, &lt;strong&gt;code
+reviews become code overviews&lt;/strong&gt;, and big changesets just &lt;a href="https://twitter.com/iamdevloper/status/397664295875805184" title="Code reviews"&gt;look fine&lt;/a&gt;. Who
+dares to approve a merge of &lt;em&gt;225 commits with 6,180 additions and 1,313
+deletions that affect 112 files&lt;/em&gt;, and say it is DRY, well tested, etc?.&lt;/p&gt;
+&lt;h3&gt;4. Big releases&lt;/h3&gt;
+&lt;p&gt;It turns out that on personal projects and sometimes on many community driven
+open-source projects, development is focused on big releases that are shipped
+&lt;em&gt;when ready&lt;/em&gt;. &lt;/p&gt;
+&lt;p&gt;Following the analogy of the ship, this means that it won't set sail until all
+the work is finished. But for startups and technology based companies, it
+happens that the ship is sailing! and it cannot wait on stand-by mode until it
+gets fixed, re-painted and it's oars replaced, all this must be done on the fly.&lt;/p&gt;
+&lt;p&gt;All the aforementioned pain points cannot be avoided but mitigated, with enough
+care and discipline, but this last one requires a mind change, commiting towards
+&lt;strong&gt;shipping something valuable&lt;/strong&gt; sprint by sprint. This becomes especially
+important once the app is already being used because of the unpredictable
+&lt;a href="http://projectcartoon.com/cartoon/1" title="How Projects Really Work"&gt;nature of software projects&lt;/a&gt;, where priorities and requirements change quite
+often, and the branch could be left incomplete at any time.&lt;/p&gt;
+&lt;h2&gt;Always. Be. Merging.&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Coffee is for mergers&lt;/em&gt;. The quicker you merge a piece of code/feature/refactor,
+the better, and for this, &lt;a href="http://scottchacon.com/2011/08/31/github-flow.html" title="Github Flow"&gt;the simpler&lt;/a&gt; the branching model you adopt, the
+better.&lt;/p&gt;
+&lt;p&gt;When you plan a big changeset, dividing it into smaller tasks and start working
+with the ones whom all the other tasks depend on, it's not enough. The key
+thing is that &lt;strong&gt;each task that is finished has to be mergeable&lt;/strong&gt;, and this
+implies that:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Merge conflicts are resolved from day one.&lt;/li&gt;
+&lt;li&gt;Other features, refactores and bugfixes have to deal with or can make use of
+   the new (good quality? working?) code that is shipped sprint after sprint.&lt;/li&gt;
+&lt;li&gt;Changes might not be tackled in the original logical order, but the
+   transition towards the big changeset happens in a smooth and predictable
+   manner.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Dispite having mentioned branches a lot, the ideas expressed here still apply,
+no matter the technique used to integrate the changes.&lt;/p&gt;
+&lt;h2&gt;Some examples of smooth transitions&lt;/h2&gt;
+&lt;p&gt;I think I've gotten to the point already, but I felt like sharing some examples,
+without getting into too much detail, of real life scenarios where requirements
+are implemented by using other strategies than long-lived branches.&lt;/p&gt;
+&lt;p&gt;Among all the &lt;a href="http://python3porting.com/strategies.html" title="Migration strategies"&gt;strategies available&lt;/a&gt; to &lt;strong&gt;migrate an Python app from Python 2
+to Python 3&lt;/strong&gt;, I would try to modify the code so that it runs under both Python
+2 and Python 3  as much as I can. I certaintly wouldn't create a
+&lt;em&gt;python-3-migration&lt;/em&gt; branch to do all the work there, because chances are that
+your Python 2 app would still be used for a long time until the migration is
+finished, and you'll have to be duplicating features, bugs and bugfixes in your
+main branch and in the migration branch.&lt;/p&gt;
+&lt;p&gt;To &lt;strong&gt;translate the app&lt;/strong&gt; into another language, you can start by notifying the
+entire team that translation is in progress so that each new piece of ui that is
+added has the labels modified to be translatable.&lt;/p&gt;
+&lt;p&gt;The customer wants &lt;strong&gt;a redesign of the site&lt;/strong&gt; (change colors and layouts), and
+decides take the opportunity to also to upgrade to the latest version of
+Bootstrap. Do not! Upgrade Bootstrap first and then do the redesign. But the
+&lt;a href="http://slides.com/pamelafox/when-bootstrap-attacks" title="When bootstrap attacks"&gt;upgrade must live&lt;/a&gt; with the previous version for a while, so &lt;a href="http://ruby.bvision.com/blog/please-stop-embedding-bootstrap-classes-in-your-html" title="Please stop embedding Bootstrap classes in your HTML!"&gt;compile your
+own version&lt;/a&gt;, merge that and then start the migration, page by page.&lt;/p&gt;
+&lt;p&gt;When &lt;strong&gt;renaming a class&lt;/strong&gt; that is used everywhere, is better to just create an
+alias for that class and simply commit that change. From then on, make every
+developer use the alias for the new code and at last, when all the codebase is
+using the alias, rename the original class.&lt;/p&gt;
+&lt;p&gt;Finally, you could try &lt;strong&gt;feature flags or compile time flags&lt;/strong&gt;, to &lt;a href="http://blog.travis-ci.com/2014-03-04-use-feature-flags-to-ship-changes-with-confidence/" title="Using Feature Flags to Ship Changes with Confidence"&gt;enable or
+disable certain parts&lt;/a&gt; of the system depending on some conditions, but
+keeping all the parts integrated in the same codebase.&lt;/p&gt;</summary><category term="ideas"></category><category term="agile"></category><category term="git"></category></entry><entry><title>Some reviews</title><link href="http://hernantz.github.io/some-reviews.html" rel="alternate"></link><updated>2015-08-09T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2015-08-09:some-reviews.html</id><summary type="html">&lt;p&gt;I plan to be reviewing books, series, albums, games, bands and movies. I'm no
+expert in any of these, It's just that I want to put my impressions on ink (or
+pixels I should say). These reviews are a subset of what I had consumed over
+time. The order in which these reviews appear is not necessarily the order in
+which I consumed those things. &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;DISCLAIMER&lt;/strong&gt;: Expect spoilers, all ye who enter here.&lt;/p&gt;
+&lt;h2&gt;It Follows&lt;/h2&gt;
+&lt;p&gt;&lt;a href="http://www.imdb.com/title/tt3235888/" title="It follows"&gt;&lt;img alt="It follows" src="/images/it-follows.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The idea of a sexually-transmitted curse is very original, plus the soundtrack
+and the 80'ish atmosphere makes it not the the average horror movie that
+&lt;a href="https://www.youtube.com/watch?v=zz6KOsePEHs"&gt;Hollywood has us used to&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Nonetheless, there are many mistakes in the plot. Some basic unanswered
+questions that are: Why didn't they go to school? where are their parents? how
+did the ex-boyfriend know so much about the curse? why did the ex-boyfriend do
+that stupid "kidnapping"?&lt;/p&gt;
+&lt;p&gt;It would have been better if this group of friends discovered more and more
+about the curse by accident, like relating the moment when Jay started seen
+&lt;em&gt;the thing&lt;/em&gt; (her sexual encounter with her boyfriend) with an infidelity of her
+boyfriend. That way they would have learned how the curse operates and is
+passed around. The plan to get rid of it could have consisted on passing the
+curse to someone undesirable, like one of the bullies from school.
+&lt;strong&gt;&lt;em&gt;Score: 3.3/5&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2&gt;The Wonderful Wizard of Oz&lt;/h2&gt;
+&lt;p&gt;&lt;a href="http://www.goodreads.com/book/show/236093.The_Wonderful_Wizard_of_Oz" title="The Wonderful Wizard of Oz"&gt;&lt;img alt="The Wonderful Wizard of Oz" src="/images/the-wonderful-wizard-of-oz.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Despite being a childish fantasy book, the weird characters have thoughts are
+susceptible of a more mature interpretation. I found it somehow entertaining and
+relevant, I would say that this book can be enjoyed no matter the age or time.
+That's what makes it a classic I think. &lt;strong&gt;&lt;em&gt;Score: 4/5&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2&gt;Eyes wide shut&lt;/h2&gt;
+&lt;p&gt;&lt;a href="http://www.imdb.com/title/tt0120663/" title="Eyes wide shut"&gt;&lt;img alt="Eyes wide shut" src="/images/eyes-wide-shut.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The scenes with the russian guy and his daughter are bizarre and stupid, I
+would have skipped that entirely. Also, the part where Mr Bill is being followed
+on the street, wasn't very convincing either. A threatening letter sent by the
+mysterious guys to Mr Bill's house, would've been more appropriate. But aside
+from that, the movie is incredibly well done (and realistic in it's own way).
+It all about the idea of having an adventure, the constant struggle of a normal
+couple to keep the marriage vows, which seem so unnatural in this modern era,
+and how that adventure ended up becoming a nightmare. I bought it.
+&lt;strong&gt;&lt;em&gt;Score: 4.6/5&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2&gt;Mad Max: Fury Road&lt;/h2&gt;
+&lt;p&gt;&lt;a href="http://www.imdb.com/title/tt1392190/" title="Mad max"&gt;&lt;img alt="Mad Max: Fury Road" src="/images/mad-max.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I'm ok with the idea of doing a pure action, dialog-free movie. But even that
+extreme action has to make sense. 
+The movie has three parts: &lt;em&gt;the escape, the return and the ending&lt;/em&gt;.
+The first 30 minutes are great, the atmosphere, the cars, the costumes, the
+sand storm, the pursuit, the action. Then comes the return, and the movie
+faints till the end showing more of the same, only this time the cars, costumes,
+pursuit and action don't make any sense. And finally comes the end, which to put
+it short, it simply a crap. Score should be less, but since the &lt;strong&gt;flame
+guitarist was so awesome&lt;/strong&gt;, it gets a 3. &lt;strong&gt;&lt;em&gt;Score: 3/5&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2&gt;Ex Machina&lt;/h2&gt;
+&lt;p&gt;&lt;a href="http://www.imdb.com/title/tt0470752/" title="Ex Machina"&gt;&lt;img alt="Ex Machina" src="/images/ex-machina.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Nice movie. I'm not sure about how realistic is the eccentricity of the CEO. I
+would have ended the movie with the helicopter arriving, and let you imagine
+what could have happened. &lt;strong&gt;&lt;em&gt;Score: 4/5&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2&gt;Chappie&lt;/h2&gt;
+&lt;p&gt;&lt;a href="http://www.imdb.com/title/tt1823672/" title="Chappie"&gt;&lt;img alt="Chappie" src="/images/chappie.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;In no way this movie tries to be realistic/serious, and that is why I forgive
+it all the mistakes I would not forgive to any other movie. If you wanted to
+watch a movie about the philosophical implications of introducing AI in our
+lives, go watch "I'm robot" or "Ex-machina". This movie narrates a tale throw
+different events and dialogs that converge to an epic ending. An that's it. Well
+chosen characters. Excellent idea of including Die Artwoord on the movie. I
+would have ended the movie, when they were buryng Yolandi. &lt;strong&gt;&lt;em&gt;Score: 4.6/5&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2&gt;Getting things done&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://www.goodreads.com/book/show/1633.Getting_Things_Done" title="Getting Things Done"&gt;&lt;img alt="Getting things done" src="/images/getting-things-done.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Very bad book. I couldn't read pass the second chapter. This is one of those
+books that tells you the obvious, like "you need to organize yourself", and all
+in a very verbose way to fill lots of pages instead of being concise. You won't
+get too much out of this book other than the obvious. &lt;strong&gt;&lt;em&gt;Score: 2/5&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2&gt;A storm of swords&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://www.goodreads.com/book/show/62291.A_Storm_of_Swords" title="A Storm Of Swords"&gt;&lt;img alt="A storm of swords" src="/images/a-storm-of-swords.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I really enjoyed the whole book. There are one main concern I had when I
+finished it was that Daenerys got too much power too easy. I would have made
+her rise to power a combination of: her beauty, Sir Jorah's wisdom, her dragons
+(with their meaning to common folks) and her populism. I'm still unsure what to
+think about Tyron's luck, Lysa's death and Catelyn's resurrection.
+&lt;strong&gt;&lt;em&gt;Score: 4.3/5&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2&gt;Team America: World Police&lt;/h2&gt;
+&lt;p&gt;&lt;a href="http://www.imdb.com/title/tt0372588/" title="Team America"&gt;&lt;img alt="Team America" src="/images/team-america.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Very funny movie that demonstrates that (the real) America might want to free
+the world, but &lt;em&gt;freedom is not free&lt;/em&gt;. &lt;strong&gt;&lt;em&gt;Score: 4.6/5&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2&gt;Cannibal Holocaust&lt;/h2&gt;
+&lt;p&gt;&lt;a href="http://www.imdb.com/title/tt0078935/" title="Cannibal Holocaust"&gt;&lt;img alt="Cannibal Holocaust" src="/images/cannibal-holocaust.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Gore/horror movie from the 80's. The quid of the plot is that despite the
+progress of our modern society, mankind still behaves in inhuman and primitive
+ways. At first you feel despise for the cannibals but then you end up hating
+the white guys. &lt;/p&gt;
+&lt;p&gt;It's real intention wasn't to be scary, but to be shocking, and while watching
+it, I felt like it's gotten old, and as if it's lost that effect. This is why
+it doesn't get a higher score, but still, it might be worth watching it if you
+enjoy strange movies from the 80's. It's interesting to see that The Bleir
+Witch Project was not original at all. &lt;strong&gt;&lt;em&gt;Score: 2.4/5&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;</summary><category term="reviews"></category><category term="rants"></category><category term="ideas"></category></entry><entry><title>Mock yourself, not your tests</title><link href="http://hernantz.github.io/mock-yourself-not-your-tests.html" rel="alternate"></link><updated>2015-07-27T15:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2015-07-27:mock-yourself-not-your-tests.html</id><summary type="html">&lt;p&gt;&lt;em&gt;tl;dr&lt;/em&gt;: While sometimes mocks are needed, they should not be the first tool 
+you use to write tests. It is a pity to be mocking your code when you could
+be writing meaningful tests at &lt;em&gt;almost&lt;/em&gt; the same cost.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Enable virtualization in BIOS" src="/images/bridge-fail.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;In this post I try to discourage the use of mocks when writing tests.
+I'm not completely against them (I see their value) but it's that sometimes 
+I feel like we abuse of them, just to make tests pass, feel comfortable of
+seeing another green dot in our test suite and to release ourselves from the
+burden of having to test our code.&lt;/p&gt;
+&lt;h2&gt;Why do we use mocks anyway?&lt;/h2&gt;
+&lt;p&gt;Well, I'll name a few reasons that seem legit to me.&lt;/p&gt;
+&lt;p&gt;One reason to use mocks is to &lt;strong&gt;force a desired state&lt;/strong&gt; for your test
+and easily trigger side effects. Mocks facilitate a lot the testing of
+corner cases.
+Another reason is &lt;strong&gt;to gain speed&lt;/strong&gt; by staying away from slow code, like
+system calls, db, network calls, costly calculations, etc. Also it could be a
+short path to &lt;strong&gt;increase code coverage&lt;/strong&gt;. But probably the primary reason for
+using mocks is to &lt;strong&gt;make a unit test more specific&lt;/strong&gt;. Just testing exactly
+one piece of code, and thus, avoiding having to test things that (hopefully)
+are already tested.&lt;/p&gt;
+&lt;h3&gt;Testing with mocks&lt;/h3&gt;
+&lt;p&gt;Let's see some example code:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;invoice_id&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;credit_card&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="c"&gt;# more code here&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;process&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;amount&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;calculate_amount&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;credit_card&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;has_credit&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;credit_card&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;withdraw&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;amount&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;status&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;processed&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;As we can see, the &lt;code&gt;process()&lt;/code&gt; method uses other objects (credit_card), called 
+collaborators. If we were to write a &lt;strong&gt;unit test&lt;/strong&gt; for this method, we would 
+mock all its collaborators, so that we test the codepaths involved, and 
+only caring that the function calls the collaborators, nothing more. We do this, 
+because we are assuming that all the collaborators work and have their own unit 
+tests.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;mymodule&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Payment&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;mock&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Mock&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;unittest&lt;/span&gt;
+
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;PaymentTestCase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unittest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+
+    &lt;span class="nd"&gt;@mock.patch.object&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;calculate_amount&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_process_cc_with_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;calculate_amount_mock&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;cc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Mock&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="n"&gt;calculate_amount_mock&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;return_value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;
+        &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;has_credit&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;return_value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+        &lt;span class="n"&gt;payment&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;payment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;withdraw&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;assert_called_with&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="nd"&gt;@mock.patch.object&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;calculate_amount&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_process_cc_without_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;calculate_amount_mock&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;cc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Mock&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;has_credit&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;return_value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;
+        &lt;span class="n"&gt;payment&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;payment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;assertFalse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;withdraw&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;called&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now let's think for a moment if these tests we just wrote tell us, with a good
+level of confidence, whether &lt;code&gt;process()&lt;/code&gt; works or not. Or are we just asserting
+that some methods are called in a specific order with specific parameters. This
+feels almost like testing that the compiler/interpreter works!&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;"We've fallen into a trap of testing that the code does what the code says 
+it does, rather than testing functional behaviour we care about."&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;cite&gt;&lt;a href="http://mauveweb.co.uk/posts/2014/09/every-mock-patch-is-a-little-smell.html"&gt;Every mock.patch() is a little smell&lt;/a&gt;&lt;/cite&gt;. Daniel Pope.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This kind of unit testing makes too many assumptions on how &lt;code&gt;process()&lt;/code&gt; is
+implemented. Tightly coupling your tests with mocks, causes refactors to be
+painfull.  As soon as you change a detail of the implementation your tests will
+&lt;em&gt;break&lt;/em&gt; (which is not the same as to &lt;em&gt;fail&lt;/em&gt;), with helpless tracebacks about
+functions that were not called, or mocks that fail to be applied because some
+method doesn't exist anymore, like:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Traceback&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;most&lt;/span&gt; &lt;span class="n"&gt;recent&lt;/span&gt; &lt;span class="n"&gt;call&lt;/span&gt; &lt;span class="n"&gt;last&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+  &lt;span class="n"&gt;File&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;test.py&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;module&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;process_with_currency&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+  &lt;span class="n"&gt;File&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;/usr/local/lib/python2.7/site-packages/mock.py&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="mi"&gt;65&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;__getattr__&lt;/span&gt;
+    &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="ne"&gt;AttributeError&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Mock object has no attribute &lt;/span&gt;&lt;span class="si"&gt;%r&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="ne"&gt;AttributeError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Mock&lt;/span&gt; &lt;span class="nb"&gt;object&lt;/span&gt; &lt;span class="n"&gt;has&lt;/span&gt; &lt;span class="n"&gt;no&lt;/span&gt; &lt;span class="n"&gt;attribute&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;some_old_method&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Another drawback I wanted to point out is that mocks tend to be too permissive, in 
+the sense that they swallow errors that should occur because of a change in the 
+API of the mocked object.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;CreditCard&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="c"&gt;# ...&lt;/span&gt;
+
+    &lt;span class="c"&gt;# the old signature was: withdraw(self, amount)&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;withdraw&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;amount&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;currency&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="c"&gt;# ...&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If suddendly I decided to change the signature of the &lt;code&gt;withdraw()&lt;/code&gt; method, to
+charge the credit card with a specific currency, the mocked tests above would
+still pass successfully. They will not tell you anymore whether you have
+introduced a regression bug or not!&lt;/p&gt;
+&lt;p&gt;And even if you had a &lt;em&gt;real&lt;/em&gt; test for the &lt;code&gt;withdraw()&lt;/code&gt; method somewere, you
+would still have to go change every test that assumed that this method worked and
+did not fail.&lt;/p&gt;
+&lt;p&gt;Yes, I'm aware of the &lt;code&gt;autospec=True&lt;/code&gt; param, that would restrict the mock to
+just follow the object's api, making our tests a little bit less permissive.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;mymodule&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;CreditCard&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;mock&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Mock&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;create_autospec&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;unittest&lt;/span&gt;
+
+
+&lt;span class="c"&gt;# create a mock that mimics the real CreditCard object&lt;/span&gt;
+&lt;span class="n"&gt;CreditCardMock&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;create_autospec&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;CreditCard&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;spec_set&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;PaymentTestCase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unittest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+
+    &lt;span class="nd"&gt;@mock.patch.object&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;calculate_amount&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;autospec&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_process_cc_with_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;calculate_amount_mock&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;cc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;CreditCardMock&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="n"&gt;calculate_amount_mock&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;return_value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;
+        &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;has_credit&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;return_value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+        &lt;span class="n"&gt;payment&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;payment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;withdraw&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;assert_called_with&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="nd"&gt;@mock.patch.object&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;calculate_amount&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;autospec&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_process_cc_without_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;calculate_amount_mock&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;cc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;CreditCardMock&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;has_credit&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;return_value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;
+        &lt;span class="n"&gt;payment&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;payment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;assertFalse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;withdraw&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;called&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Or we could have gone a little bit further, and inject a double to our
+&lt;code&gt;process()&lt;/code&gt; function, for example:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;FakeCreditCard&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Replace our CreditCard with a double to avoid hitting the db or&lt;/span&gt;
+&lt;span class="sd"&gt;    3rd party services (if any).&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;amount&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;amount&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;amount&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;has_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;amount&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;withdraw&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;amount&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;amount&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;amount&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;amount&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This is also an interesting strategy, but, now you'll have to be maintaining
+this double by hand, every time you real object is updated.&lt;/p&gt;
+&lt;p&gt;Let's try a completely different approach and see if we can do any better.&lt;/p&gt;
+&lt;h3&gt;Testing without mocks&lt;/h3&gt;
+&lt;p&gt;Now, how would I test this, without mocks?&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;mymodule&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Payment&lt;/span&gt; 
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;myfactories&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;CreditCardFactory&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;InvoiceFactory&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;unittest&lt;/span&gt;
+
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;PaymentTestCase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unittest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_process_cc_with_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;InvoiceFactory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cost&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;cc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;CreditCardFactory&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;balance&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;payment&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;payment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;assertEqual&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;balance&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_process_cc_without_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;InvoiceFactory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cost&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;cc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;CreditCardFactory&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;balance&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;payment&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;payment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;assertEqual&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;balance&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Comparing the test above, with the one that uses mocks, we can see that it has 
+almost the same amount of code, but this test is not bound to the implementation, 
+it is still deterministic, plus it tests goals in an automated way, similar to 
+the manual check I would do to trust that the &lt;code&gt;process()&lt;/code&gt; method works.&lt;/p&gt;
+&lt;p&gt;We have used two techniques here that helped us get way from mocks.&lt;/p&gt;
+&lt;p&gt;The first technique was to start testing how collaborators interact between
+each other inside &lt;code&gt;process()&lt;/code&gt;. These type of tests are called &lt;strong&gt;integration
+tests&lt;/strong&gt;, that test larger units of your code, with real components. This also 
+helped reducing the chance of bugs that sneak away when you test units in 
+isolation.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Side note&lt;/em&gt;: Keep a reasonable amount of code under your tests. While writing
+tests for very small units of code might be adding noise to your test suite,
+there won't be too much value in testing a huge portion of your code either.&lt;/p&gt;
+&lt;p&gt;The second technique consisted in using factories. I mention this, because we
+(lazy developers) often use mocks as a quick solution to creating the complex
+conditions.&lt;/p&gt;
+&lt;p&gt;What's important is that factories &lt;strong&gt;build real objects&lt;/strong&gt; for you in a
+declarative and straighforward way, which let's you focus on the bits of data
+you need to setup your test and leave the rest for the factory to implement.&lt;/p&gt;
+&lt;h2&gt;In the quest for &lt;em&gt;real mocks&lt;/em&gt;&lt;/h2&gt;
+&lt;p&gt;Alright! This is looking better, but does this mean that we can get rid of
+mocks once for all? Nope.&lt;/p&gt;
+&lt;p&gt;There are cases where it really makes sense to use mocks. I'll show you a couple
+of examples that, in my opinion, could serve as inspiration to use them
+successfully and write better tests. These mocks are: &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Agnostic&lt;/strong&gt;: the details of your code change, but your mocks continue to work.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Swappable&lt;/strong&gt;: you can easily turn them on/off or switch to them on the fly.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Precise&lt;/strong&gt;: they stub only the sensible parts of the real object.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Verified&lt;/strong&gt;: the interfaces of such mock are carefully maintained and mimic the
+  real object.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Example 1: A verified mock&lt;/h3&gt;
+&lt;p&gt;Django gives us an in-memory mailbox that captures all outgoing emails. What's 
+interesting is that it sets up this dummy double  &lt;strong&gt;by default&lt;/strong&gt; when you 
+inherit from &lt;code&gt;TestCase&lt;/code&gt;, so writing these kind of tests becomes really easy.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;mymodule&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Payment&lt;/span&gt;
+&lt;span class="c"&gt;# ...&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.core&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;mail&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.test&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;TestCase&lt;/span&gt;
+
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;PaymentTestCase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_process_cc_with_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="c"&gt;# this factory will create an Invoice and a User associated to &lt;/span&gt;
+        &lt;span class="c"&gt;# it, with the specified email&lt;/span&gt;
+        &lt;span class="n"&gt;InvoiceFactory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cost&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;user__email&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;foo@bar.com&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="c"&gt;# ... more code &lt;/span&gt;
+
+        &lt;span class="c"&gt;# Test that payment receipt email has been sent.&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;assertEqual&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mail&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;outbox&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;assertEqual&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mail&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;outbox&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;foo@bar.com&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now, you might be thinking that I'm contradicting myself with this example,
+since no email is really being sent.&lt;/p&gt;
+&lt;p&gt;That is a valid concern, but, provided that in my code, I interact with an
+abstraction a framework gives us for sending emails, and that behind the scenes
+it is replacing the real email machinery with a double that mimics that
+behaviour, I believe I can still make assertions about my code that are &lt;em&gt;good
+enough&lt;/em&gt; (even though no mail is sent). That framework is responsible for
+providing us with a good &lt;em&gt;verified&lt;/em&gt; stub.&lt;/p&gt;
+&lt;h3&gt;Example 2: An agnostic mock&lt;/h3&gt;
+&lt;p&gt;Say for example that you need to hit a 3rd party API that you don't own, that
+probably has throttle limitations, no sandbox/testing ground, you cannot setup
+and run it locally, or all these together. Doing live testing is not really an
+option. But if you use something like &lt;a href="https://github.com/kevin1024/vcrpy"&gt;vrc.py&lt;/a&gt;, then you profit from testing
+against real requests/responses that are recorded, so that next time you run the
+test suite it runs under safe and repeatable conditions, without hitting the net.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;mymodule&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Payment&lt;/span&gt; 
+&lt;span class="c"&gt;# ...&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;vcr&lt;/span&gt;
+
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;PaymentTestCase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unittest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+
+    &lt;span class="nd"&gt;@vcr.use_cassette&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;stripe_responses/cc_with_credit.yaml&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_process_cc_with_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="c"&gt;# ... more code&lt;/span&gt;
+
+    &lt;span class="nd"&gt;@vcr.use_cassette&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;stripe_responses/cc_without_credit.yaml&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_process_cc_without_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="c"&gt;# ... more code &lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If the 3rd party API changes, you don't have to do anything but delete the
+recorded responses, and your test will do all the work for you, updating the
+test cases with the new responses.
+Should you need more control over a certain response that is not easy to 
+reproduce, (like a 500 error response), you can achieve that with &lt;a href="https://github.com/gabrielfalcao/HTTPretty"&gt;httpretty&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;httpretty&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;PaymentTestCase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unittest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="nd"&gt;@httpretty.activate&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_process_handles_failure_from_stripe&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+        &lt;span class="n"&gt;httpretty&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;register_uri&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;httpretty&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GET&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;https://api.stripe.com&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                               &lt;span class="n"&gt;body&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;{&amp;quot;success&amp;quot;: false}&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;500&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                               &lt;span class="n"&gt;content_type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;text/json&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="c"&gt;# ... more code&lt;/span&gt;
+        &lt;span class="n"&gt;payment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;assertEqual&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;payment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;failed&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;I consider httpretty and vcr.py to be good examples of &lt;em&gt;agnostic&lt;/em&gt; mocks, since
+they can be used no matter which network library you are using.&lt;/p&gt;
+&lt;h3&gt;Example 3: A precise mock&lt;/h3&gt;
+&lt;p&gt;When you need to test code that deals with dates, mocks will be very handy
+too. Let's see an example.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;process&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="c"&gt;# ... more code&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;date&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;now&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;save&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;To test this, you would have to write tests that have almost the same code you
+are trying to test, and, depending on how precise the dates you are handling
+are, &lt;strong&gt;your tests could fail from time to time&lt;/strong&gt;, ie: some tests might fail
+when you run them at midnight, or fail because of a difference of one
+millisecond.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;PaymentTestCase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unittest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_payment_date_is_saved&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="c"&gt;# ... more code&lt;/span&gt;
+        &lt;span class="n"&gt;payment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;assertEqual&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;payment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;date&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;now&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;  &lt;span class="c"&gt;# this won&amp;#39;t work&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now, when we test using the &lt;a href="https://github.com/spulec/freezegun"&gt;freezegun&lt;/a&gt; module, we can ditch the &lt;em&gt;mock
+everything&lt;/em&gt; strategy.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;freezegun&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;freeze_time&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;PaymentTestCase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unittest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_payment_date_is_saved&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="c"&gt;# ... more code&lt;/span&gt;
+        &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;freeze_time&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;2012-01-01&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="n"&gt;payment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;assertEqual&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;payment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;date&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strftime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;%Y-%m-&lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;2012-01-02&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You can see how we avoided mocking &lt;code&gt;datetime.now()&lt;/code&gt; and we how we can even use
+&lt;code&gt;strftime()&lt;/code&gt; in our tests. Because freezegun is &lt;em&gt;precise&lt;/em&gt;, it only mocks
+datetime functions that are used to obtain the current time, and leaves
+everything else untouched. We made time behave deterministically using a nice
+declarative API, that doesn't get in our way. We can even calculate the payment
+date using other libraries.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;arrow&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;process&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="c"&gt;# ... more code&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;date&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;arrow&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;now&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;  &lt;span class="c"&gt;# Our test still passes :)&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;save&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Need for speed&lt;/h2&gt;
+&lt;p&gt;I mentioned that using mocks was a legit excuse for speeding your tests, and
+staying away from slow parts like the database. Well if you used an ORM and your
+data structures are pretty standard, then you may be able to &lt;a href="http://www.machinalis.com/blog/optimizing-your-tests-in-django/"&gt;switch to an
+in-memory sqlite database&lt;/a&gt; just to run your tests.&lt;/p&gt;
+&lt;p&gt;Another possibility that's worth exploring, but I haven't tried myself though,
+is to &lt;a href="https://gist.github.com/zekefast/07fa5434afcd0ba77f9b" title="Run postgresql in a ram disk"&gt;mount the database&lt;/a&gt; in a &lt;code&gt;tmpfs&lt;/code&gt; filesystem, or combine that with a
+&lt;a href="https://github.com/gentics/docker-tmpfs-mysql" title="Docker tmpfs mysql"&gt;custom docker build&lt;/a&gt; to gain speed, but at the same time, run the tests
+against the db engine you use in production, and thus, gain also reliability.&lt;/p&gt;
+&lt;p&gt;In case you don't want to mess with custom setups for testing, there are some
+easy tricks to speed your tests like running them in parallel:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;nosetests --processes&lt;span class="o"&gt;=&lt;/span&gt;NUM
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;provided that your tests &lt;a href="http://nose.readthedocs.org/en/latest/plugins/multiprocess.html#beware"&gt;can run concurrently&lt;/a&gt; and are IO bound, or simply
+&lt;a href="https://twitter.com/df07/status/607562584401821696"&gt;throw hardware at the problem&lt;/a&gt; with more RAM, a more powerful CPU or an
+SSD.&lt;/p&gt;
+&lt;h2&gt;In conclusion&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Integration tests are one honking great idea, let's do more of those. Don't 
+  rely exclusively in unit tests, test goals.&lt;/li&gt;
+&lt;li&gt;Use factories to reduce boilerplate of tests setup and asserting a known state
+  before they run.&lt;/li&gt;
+&lt;li&gt;Avoid using mocks as much as you can. There's a good chance you'll be testing 
+  what the code does, not what it should do.&lt;/li&gt;
+&lt;li&gt;In times of need, apply well maintained global mocks, the closest possible to 
+  the danger zone.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Mock yourself not your tests :P&lt;/p&gt;</summary><category term="testing"></category><category term="python"></category><category term="mocks"></category><category term="rants"></category></entry><entry><title>How to publish a pelican site on Github</title><link href="http://hernantz.github.io/how-to-publish-a-pelican-site-on-github.html" rel="alternate"></link><updated>2014-05-18T17:50:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2014-05-18:how-to-publish-a-pelican-site-on-github.html</id><summary type="html">&lt;p&gt;&lt;img alt="Pelican a static site publishing tool" src="/images/pelican-a-static-site-publishing-tool-github.png" /&gt;&lt;/p&gt;
+&lt;p&gt;This is a step by step guide on how to publish a pelican website on Github, and
+how not to get the site's codebase so tightly coupled to where it is deployed.
+If in the future we want to publish it somewhere else, there isn't much to be
+changed. Another thing to mention is that even though we reference pelican
+here, the process I'll show you can be applied to almost any static site
+generator tool.&lt;/p&gt;
+&lt;p&gt;1) Create a repository in Github following this exact naming convention:
+&lt;code&gt;username.github.io&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;2) &lt;a href="http://docs.getpelican.com/en/latest/install.html#kickstart-your-site"&gt;Setup your pelican site&lt;/a&gt; on a separate repository, ie my-blog, and
+&lt;a href="http://docs.getpelican.com/en/latest/content.html#writing-content"&gt;start adding content&lt;/a&gt; to it. You'll notice that the generated output goes
+by default to a folder (conveniently) named &lt;em&gt;output&lt;/em&gt;, but it can be changed to
+something else with the &lt;code&gt;OUTPUT_PATH&lt;/code&gt; setting in your &lt;code&gt;pelicanconf.py&lt;/code&gt; file&lt;/p&gt;
+&lt;p&gt;3) We will make use of &lt;em&gt;git submodules&lt;/em&gt; to point our output directory to the
+repo created in step 1, so that it holds what's going to be published in Github.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;git submodule add https://github.com/username/username.github.io.git output
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Adding a git submodule will create another version controlled file called
+&lt;code&gt;.gitmodules&lt;/code&gt; with the following content:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;[submodule &amp;quot;output&amp;quot;]&lt;/span&gt;
+    &lt;span class="na"&gt;path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;output&lt;/span&gt;
+&lt;span class="s"&gt;    url = https://github.com/username/username.github.io.git&lt;/span&gt;
+&lt;span class="s"&gt;    ignore = all&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;As the output directory is now managed by the independant git repository
+from step 1, we don't want to have to version-control it again from our pelican
+site repo, and that's why we added the last &lt;em&gt;ignore&lt;/em&gt; statement.&lt;/p&gt;
+&lt;p&gt;4) Pelican has two types of configuration files, &lt;code&gt;pelicanconf.py&lt;/code&gt; for general
+settings, and &lt;code&gt;publishconf.py&lt;/code&gt; that is used for publishing, as you probably
+guessed. Pelican's Makefile comes with a built-in command to generate the
+output that will be published:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;make publish  &lt;span class="c"&gt;# generates output using publishconf.py&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;But before running it, make sure the following settings are in &lt;code&gt;publishconf.py&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# don&amp;#39;t delete our .git submodule dir&lt;/span&gt;
+&lt;span class="n"&gt;DELETE_OUTPUT_DIRECTORY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;
+
+&lt;span class="c"&gt;# use the correct abs url&lt;/span&gt;
+&lt;span class="n"&gt;SITEURL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;http://username.github.io&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;RELATIVE_URLS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;Heads up!&lt;/strong&gt; Pelican regenerates the output automatically when running the http
+server and making changes to the contents. So &lt;code&gt;make publish&lt;/code&gt; should be the last
+command to be run before releasing.&lt;/p&gt;
+&lt;p&gt;5) Now every time you regenerate your site contents and want to publish them, cd
+to your output directory and run git commands (like add, commit, push, etc).
+Those commands will only take effect on your repo from step 1, because you are
+inside the output submodule. Once you push your new output content to your master
+branch of &lt;code&gt;username.github.io&lt;/code&gt;, Github will take some minutes to update your site.
+And that's it.&lt;/p&gt;
+&lt;p&gt;Happy blogging!&lt;/p&gt;</summary><category term="pelican"></category><category term="git"></category><category term="python"></category></entry><entry><title>An MVP is not a product, it's an MVP</title><link href="http://hernantz.github.io/an-mvp-is-not-a-product-its-an-mvp.html" rel="alternate"></link><updated>2013-11-09T12:03:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2013-11-09:an-mvp-is-not-a-product-its-an-mvp.html</id><summary type="html">&lt;p&gt;tl;dr: Build, measure and learn. But don't avoid best practices afterwards.&lt;/p&gt;
+&lt;p&gt;Minimum Viable Product, or even better Minimum Viable Prototype (MVP from now
+on), is a technique born in the Lean Startup movement to reduce the risk of
+gaining validated learning, without spending too much effort, money and time in
+the wrong project direction.&lt;/p&gt;
+&lt;p&gt;You build a MVP to validate an idea, be it for a brand new product or a new
+feature in an existing one.
+In this stage of the project you don't care about: tests, QA, copy-pasting code,
+mocking the UI, security, code reviews, maintainability, scalability, etc.&lt;/p&gt;
+&lt;p&gt;In case this prototype is successful, you should go and build the product or
+the feature to capitalize that validated learning, but this time, following
+the industry's best practices, so it can be used in production by your
+(paying?) users.&lt;/p&gt;
+&lt;p&gt;This last step is crucial. There will be the temptation of not taking it.
+The consequences of not doing it are well known, that's why we have best
+practices afterall.
+The risk is low now. Money, time and effort won't be wasted. There is no excuse.
+An MVP is not a product, it's an MVP.&lt;/p&gt;</summary><category term="rants"></category><category term="mvp"></category></entry><entry><title>Open tabs buffer overflow</title><link href="http://hernantz.github.io/open-tabs-buffer-overflow.html" rel="alternate"></link><updated>2013-08-21T22:56:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2013-08-21:open-tabs-buffer-overflow.html</id><summary type="html">&lt;p&gt;&lt;img alt="Bored Elon Musk knows" src="/images/genius-is-1-inspiration-and-99-closing-the-two-hundred-open-tabs-in-your-browser.png" /&gt;&lt;/p&gt;
+&lt;h2&gt;The interwebs and the power it holds&lt;/h2&gt;
+&lt;p&gt;There is so much out there and just a click of distance.  Fun videos, new music,
+interesting articles, tutorials, blog posts, games.&lt;/p&gt;
+&lt;p&gt;So now I have lots of open tabs that I would like to close some day but there is
+always new content that keeps being added to my information processing buffer
+AKA open tabs buffer.&lt;/p&gt;
+&lt;h2&gt;Why do I even check reddit/hackernews?&lt;/h2&gt;
+&lt;p&gt;Partly becouse it's addictive. Small dosis of information of stuff I like,
+injected right to my brain. But mostly it's becouse this way, I feel less guilty
+about procrastinating.&lt;/p&gt;
+&lt;h2&gt;Ideas for surviving an open tabs buffer overflow.&lt;/h2&gt;
+&lt;p&gt;&lt;a href="http://en.wikipedia.org/wiki/Triage" title="Triage mode"&gt;Triage mode&lt;/a&gt; for new content, is my current approach. If I find something 
+that could be benefitial at some point, I throw it in the bookmarks limbo 
+(that place where goes everything I will never read), and I feel released that 
+it is in a safe place, and eventually I will read it.&lt;/p&gt;
+&lt;p&gt;Also:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Don't check for rss/newsletters/twitter/hackernews/reddit. You don't really 
+  need them, trust me.&lt;/li&gt;
+&lt;li&gt;Fresh start. Don't reopen last tabs every session.  This will help you forget 
+  what wasn't important when you open the browser and read what is important before 
+  closing the browser.&lt;/li&gt;
+&lt;li&gt;Limit the number of browser tabs with a plugin.&lt;/li&gt;
+&lt;li&gt;Use a read-it-later diggesting tool (like &lt;a href="http://getpocket.com/"&gt;Pocket&lt;/a&gt;), which also removes the 
+  comments and ads cutter from your read.&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="ideas"></category></entry><entry><title>Init</title><link href="http://hernantz.github.io/init.html" rel="alternate"></link><updated>2013-07-03T18:06:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2013-07-03:init.html</id><summary type="html">&lt;p&gt;This is my not-sexy static new blog. It starts with a single post and a single
+blog. I hope this is not one of those things I start and abandon.&lt;/p&gt;
+&lt;p&gt;Why now? Becouse in the last weeks I felt the urge to write for myself. 
+Knowing my thoughts will be publicly available forces me to think wisely, 
+and arrive to better conclusions. 
+Aditionally, until now didn't like any of the blogging platforms out there, 
+but now with pelican, being able to craft my own posts with markdown and vim
+is also part of the motivation.&lt;/p&gt;
+&lt;p&gt;In this blog, I do my best to get to the point. Quality over quantity.
+Why write a thousand words if a picture says more than a thousand words?
+Why write six paragraphs if you can fit an introduction, main idea
+and conclusion in just three?&lt;/p&gt;
+&lt;p&gt;Life is short, &lt;a href="http://getnashty.com/write-less"&gt;write less&lt;/a&gt;, read this and move on.&lt;/p&gt;
+&lt;p&gt;P.S. Sorry for the length of this post. I didn't have time to make it shorter.&lt;/p&gt;</summary><category term="pelican"></category><category term="ideas"></category></entry></feed>

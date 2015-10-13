@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Taming Backbone Views: Part 1 | what's the point</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="http://hernantz.github.io/theme/css/main.css" type="text/css" />
+  <link rel="stylesheet" href="http://hernantz.github.io/theme/css/fontawesome.min.css" type="text/css" media="screen, projection" />
+  <link rel="stylesheet" href="http://hernantz.github.io/theme/css/github.css" type="text/css" />
+  <link href="http://hernantz.github.io/" type="application/atom+xml" rel="alternate" title="what's the point ATOM Feed" />
+  <link href="http://hernantz.github.io/images/favicon.ico" rel="icon" type="image/x-icon" />
+  <link href="http://hernantz.github.io/rss.xml" type="application/atom+xml" rel="alternate" title="what's the point RSS Feed" />
+  <meta name="description" content="Some bro tips I learned the hard way when dealing with Backbone views">
+  <meta name="keywords" content="backbonejs, best-practices, javascript">
+  <meta name="author" content="hernantz">
+</head>
+
+<body>
+
+  <aside class="sidebar">
+    <div class="avatar centered-block">
+      <a href="/"><img class="rounded-img" src="http://hernantz.github.io/images/avatar.png" height="75" width="75" /></a>
+    </div>
+
+    <div class="name centered-block">
+      <a href="/">hernantz</a>
+    </div>
+
+      <section class="meta centered-block">
+          <a href="http://twitter.com/hernantz" target="_blank"><i class="icon icon-twitter"></i></a>
+          <a href="http://github.com/hernantz" target="_blank"><i class="icon icon-github"></i></a>
+          <a href="/rss.xml" target="_blank"><i class="icon icon-rss"></i></a>
+      </section>
+
+
+  </aside>
+
+        
+<article class="column-right">
+  <h1 class="article-title">Taming Backbone Views: Part 1</h1>
+  <p class="light">
+    Published
+on <time datetime="2014-08-25T19:42:00-03:00">Mon 25 August 2014</time>,     under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
+    tagged with <a href="http://hernantz.github.io/tag/backbonejs.html">backbonejs</a>, <a href="http://hernantz.github.io/tag/best-practices.html">best-practices</a> and <a href="http://hernantz.github.io/tag/javascript.html">javascript</a>.
+  </p>
+  <p>It often seems to me that Backbone developers sometimes do not trust that the 
+<code>view.el</code> property be present when needed, eg: when rendering the view.</p>
+<h1>"el", you there?</h1>
+<p>But the true story is that Backbone ensures this element is up and running 
+for us, since the view construction.  These snippets where taken directly from 
+Backbone's source and show a bit of two methods that are ment to be used internally 
+by Backbone when instantiating a new View:</p>
+<div class="highlight"><pre><span class="nx">_ensureElement</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="cm">/* check if this view was not initialize </span>
+<span class="cm">         with an {el: &#39;.selector&#39;} option  */</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span>  
+        <span class="cm">/* ... after constructing an `attrs` object with</span>
+<span class="cm">           the param options for `id`, `className` and `attributes` </span>
+<span class="cm">           create the element specified by `tagName` */</span>
+        <span class="kd">var</span> <span class="nx">$el</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;&lt;&#39;</span> <span class="o">+</span> <span class="nx">_</span><span class="p">.</span><span class="nx">result</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="s1">&#39;tagName&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="nx">attrs</span><span class="p">);</span>
+
+        <span class="c1">// now attach this.$el and this.el properties</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">setElement</span><span class="p">(</span><span class="nx">$el</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+      <span class="p">}</span>     
+      <span class="c1">// ... more here omited for brevity</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="nx">delegateEvents</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">events</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">undelegateEvents</span><span class="p">();</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">events</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// ...</span>
+        <span class="c1">// the the context of the callback to `this`</span>
+        <span class="nx">method</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">method</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+        <span class="c1">// set a unique namespace to be easyly unbindable later</span>
+        <span class="nx">eventName</span> <span class="o">+=</span> <span class="s1">&#39;.delegateEvents&#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">cid</span><span class="p">;</span>
+        <span class="c1">// ...</span>
+        <span class="c1">// lazyly listen to the event</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">eventName</span><span class="p">,</span> <span class="nx">selector</span><span class="p">,</span> <span class="nx">method</span><span class="p">);</span>
+    <span class="p">}</span>
+</pre></div>
+
+
+<p><code>_ensureElement</code> will construct our element a attach it to the view instance and 
+<code>delegateEvents()</code> will lazyly bind DOM events for that element, and all this without worring about 
+the element having to be inserted into the DOM to interact with it's view.</p>
+<p>Backbone being very flexible, lets us override the <code>el</code> property with some other element.
+We can pass a jquery object or simply a selector and backbone will handle it.</p>
+<div class="highlight"><pre><span class="c1">// Backbone also lets us override the `el` with either of these ways </span>
+<span class="kd">var</span> <span class="nx">view</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">({</span><span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#selector&#39;</span><span class="p">});</span>
+<span class="kd">var</span> <span class="nx">view</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">({</span><span class="nx">el</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#selector&#39;</span><span class="p">)});</span>
+</pre></div>
+
+
+<p>In the example above, we need to make sure that, at the moment that View is declared or
+executed, the <code>#selector</code> exists in the DOM. Otherwise we won't have any html to get from 
+the View. So, continueing with the previous example and with a little help from jquery we 
+can be sure that <code>#selector</code> element can be reached.</p>
+<div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">view</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">({</span><span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#selector&#39;</span><span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+
+
+<p>But even if we make sure of that, <strong>is it a good practice to pass around the <code>el</code> object to the
+View?</strong></p>
+<p>I'll try to cover the pros and cons of dealing with an encapsulated <code>el</code> property vs passing it 
+directly to the view in the following post.</p>
+<p>it uses event delegation for the events hash, so as long as the element eventually exists</p>
+<p><domino14> if i define an event in a Backbone view, like in events { 'click #btn': 'someFunction'}  does the button have to exist when the view is created?
+<domino14> i was under the impression that it didn't
+<domino14> yet my "someFunction" isn't executing when i click the button...
+<corbanb> yes it has to be in the scope of that view
+<domino14> ive had plenty of times where render() creates the buttons that are defined in events {}
+<domino14> and the click works
+<domino14> render would presumably be created after</p>
+</article>
+
+  <footer class="column-right light">
+    <hr/>
+    <p>Hola internauta! If you liked the content of this blog and want to talk about it, you can find me on twitter as <a target="_blank" href="http://twitter.com/hernantz">@hernantz</a>.</p>
+    <nav><a href="http://hernantz.github.io">Home</a> - <a href="http://hernantz.github.io/archives.html">Archives</a> - <a href="http://hernantz.github.io/categories.html">Categories</a> - <a href="http://hernantz.github.io/tags.html">Tags</a> - <a href="http://hernantz.github.io/rss.xml">RSS</a> | what's the point (© 2015)</nav>
+    <p></p>
+  </footer>
+
+</body>
+</html>
