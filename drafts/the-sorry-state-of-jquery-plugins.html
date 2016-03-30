@@ -114,7 +114,7 @@ we want for this popover.</p>
 </pre></div>
 
 
-<p>Yes, it won't be possitioned, and won't be dismissed when you click somewhere
+<p>Yes, it won't be positioned, and won't be dismissed when you click somewhere
 else in the page, but it can be reused as a template for your custom widget.</p>
 <p>Say we needed to take full control of a popover. I wrote a simple Backbone view
 to achieve that:</p>
@@ -136,7 +136,7 @@ to achieve that:</p>
 
 
 <p>We've got a minimum working piece of popover that we control, but it's not
-possitioned. So we can make use of another library that knows how to possition
+positioned. So we can make use of another library that knows how to position
 elements. In this case I'll use <a href="http://github.hubspot.com/tether/" title="Tether">Tether</a> and modify the popover view so
 that it can clean up itself before it's removed.</p>
 <div class="highlight"><pre><span class="kd">var</span> <span class="nx">Popover</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
@@ -171,12 +171,12 @@ that it can clean up itself before it's removed.</p>
 
 
 <p>We have combined Bootstrap for presentation, Backbone for logic and Tether as
-a helper for possitioning elements. Live demo <a href="https://jsfiddle.net/p82fsx06/1/" title="Live demo">here</a>.</p>
+a helper for positioning elements. Live demo <a href="https://jsfiddle.net/p82fsx06/1/" title="Live demo">here</a>.</p>
 <h2>Wishful thinking - the best?</h2>
 <p>It's perfectly fine if plugins expose a simple way to cover the 80% of use cases
 or some basic functionality. But it's clear that pure libraries tend to
 outperform ready-made plugins in terms of flexibility. I often see plugins
-hidding their methods behind closures, when they could be opening them as
+hiding their methods behind closures, when they could be opening them as
 <strong>documented building blocks</strong> to be used at your will. If only plugins allowed
 a <strong>clear separation of UI and logic</strong> then you would be able seamlessly
 integrate it with the rest of your frameworks.</p>
