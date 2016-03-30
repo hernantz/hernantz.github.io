@@ -1,0 +1,7 @@
+# humanstxt.org/
+
+# Author and webmaster
+@hernantz
+
+# Technology colophon
+Using `pelican` with the `pelican-left` theme

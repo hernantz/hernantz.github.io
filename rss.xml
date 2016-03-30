@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>what's the point</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/hernantz.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2015-08-28T00:00:00-03:00</updated><entry><title>The branch is dead, short live the branch!</title><link href="http://hernantz.github.io/the-branch-is-dead-short-live-the-branch.html" rel="alternate"></link><updated>2015-08-28T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2015-08-28:the-branch-is-dead-short-live-the-branch.html</id><summary type="html">&lt;p&gt;&lt;em&gt;tl;dr&lt;/em&gt;: When implementing big changesets, maintaining and merging long-lived
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>what's the point</title><link>http://hernantz.github.io/</link><description>Mostly lies and rants in plain text</description><atom:link href="http://hernantz.github.io/rss.xml" rel="self"></atom:link><lastBuildDate>Fri, 28 Aug 2015 00:00:00 -0300</lastBuildDate><item><title>The branch is dead, short live the branch!</title><link>http://hernantz.github.io/the-branch-is-dead-short-live-the-branch.html</link><description>&lt;p&gt;&lt;em&gt;tl;dr&lt;/em&gt;: When implementing big changesets, maintaining and merging long-lived
 branches is hard. Use short-lived branches instead, and merge them ASAP.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="The ship of Theseus" src="/images/ship.jpg" /&gt;&lt;/p&gt;
 &lt;h2&gt;The Theseus paradox&lt;/h2&gt;
@@ -116,7 +116,7 @@ developer use the alias for the new code and at last, when all the codebase is
 using the alias, rename the original class.&lt;/p&gt;
 &lt;p&gt;Finally, you could try &lt;strong&gt;feature flags or compile time flags&lt;/strong&gt;, to &lt;a href="http://blog.travis-ci.com/2014-03-04-use-feature-flags-to-ship-changes-with-confidence/" title="Using Feature Flags to Ship Changes with Confidence"&gt;enable or
 disable certain parts&lt;/a&gt; of the system depending on some conditions, but
-keeping all the parts integrated in the same codebase.&lt;/p&gt;</summary><category term="ideas"></category><category term="agile"></category><category term="git"></category></entry><entry><title>Some reviews</title><link href="http://hernantz.github.io/some-reviews.html" rel="alternate"></link><updated>2015-08-09T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2015-08-09:some-reviews.html</id><summary type="html">&lt;p&gt;I plan to be reviewing books, series, albums, games, bands and movies. I'm no
+keeping all the parts integrated in the same codebase.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">hernantz</dc:creator><pubDate>Fri, 28 Aug 2015 00:00:00 -0300</pubDate><guid>tag:hernantz.github.io,2015-08-28:the-branch-is-dead-short-live-the-branch.html</guid><category>ideas</category><category>agile</category><category>git</category></item><item><title>Some reviews</title><link>http://hernantz.github.io/some-reviews.html</link><description>&lt;p&gt;I plan to be reviewing books, series, albums, games, bands and movies. I'm no
 expert in any of these, It's just that I want to put my impressions on ink (or
 pixels I should say). These reviews are a subset of what I had consumed over
 time. The order in which these reviews appear is not necessarily the order in
@@ -208,7 +208,7 @@ the white guys. &lt;/p&gt;
 it, I felt like it's gotten old, and as if it's lost that effect. This is why
 it doesn't get a higher score, but still, it might be worth watching it if you
 enjoy strange movies from the 80's. It's interesting to see that The Bleir
-Witch Project was not original at all. &lt;strong&gt;&lt;em&gt;Score: 2.4/5&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;</summary><category term="reviews"></category><category term="rants"></category><category term="ideas"></category></entry><entry><title>Mock yourself, not your tests</title><link href="http://hernantz.github.io/mock-yourself-not-your-tests.html" rel="alternate"></link><updated>2015-07-27T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2015-07-27:mock-yourself-not-your-tests.html</id><summary type="html">&lt;p&gt;&lt;em&gt;tl;dr&lt;/em&gt;: While sometimes mocks are needed, they should not be the first tool 
+Witch Project was not original at all. &lt;strong&gt;&lt;em&gt;Score: 2.4/5&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">hernantz</dc:creator><pubDate>Sun, 09 Aug 2015 00:00:00 -0300</pubDate><guid>tag:hernantz.github.io,2015-08-09:some-reviews.html</guid><category>reviews</category><category>rants</category><category>ideas</category></item><item><title>Mock yourself, not your tests</title><link>http://hernantz.github.io/mock-yourself-not-your-tests.html</link><description>&lt;p&gt;&lt;em&gt;tl;dr&lt;/em&gt;: While sometimes mocks are needed, they should not be the first tool 
 you use to write tests. It is a pity to be mocking your code when you could
 be writing meaningful tests at &lt;em&gt;almost&lt;/em&gt; the same cost.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="stower-titanic" src="/images/mock-yourself-not-your-tests.jpg" title="Der Untergang der Titanic by Willy Stöwer" /&gt;&lt;/p&gt;
@@ -591,7 +591,7 @@ SSD.&lt;/p&gt;
 &lt;li&gt;In times of need, apply well maintained global mocks, the closest possible to 
   the danger zone.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Mock yourself not your tests :P&lt;/p&gt;</summary><category term="testing"></category><category term="python"></category><category term="mocks"></category><category term="rants"></category></entry><entry><title>How to publish a pelican site on Github</title><link href="http://hernantz.github.io/how-to-publish-a-pelican-site-on-github.html" rel="alternate"></link><updated>2014-05-18T17:50:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2014-05-18:how-to-publish-a-pelican-site-on-github.html</id><summary type="html">&lt;p&gt;&lt;img alt="Pelican a static site publishing tool" src="/images/pelican-a-static-site-publishing-tool-github.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Mock yourself not your tests :P&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">hernantz</dc:creator><pubDate>Mon, 27 Jul 2015 00:00:00 -0300</pubDate><guid>tag:hernantz.github.io,2015-07-27:mock-yourself-not-your-tests.html</guid><category>testing</category><category>python</category><category>mocks</category><category>rants</category></item><item><title>How to publish a pelican site on Github</title><link>http://hernantz.github.io/how-to-publish-a-pelican-site-on-github.html</link><description>&lt;p&gt;&lt;img alt="Pelican a static site publishing tool" src="/images/pelican-a-static-site-publishing-tool-github.png" /&gt;&lt;/p&gt;
 &lt;p&gt;This is a step by step guide on how to publish a pelican website on Github, and
 how not to get the site's codebase so tightly coupled to where it is deployed.
 If in the future we want to publish it somewhere else, there isn't much to be
@@ -649,7 +649,7 @@ Those commands will only take effect on your repo from step 1, because you are
 inside the output submodule. Once you push your new output content to your master
 branch of &lt;code&gt;username.github.io&lt;/code&gt;, Github will take some minutes to update your site.
 And that's it.&lt;/p&gt;
-&lt;p&gt;Happy blogging!&lt;/p&gt;</summary><category term="pelican"></category><category term="git"></category><category term="python"></category></entry><entry><title>An MVP is not a product, it's an MVP</title><link href="http://hernantz.github.io/an-mvp-is-not-a-product-its-an-mvp.html" rel="alternate"></link><updated>2013-11-09T12:03:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2013-11-09:an-mvp-is-not-a-product-its-an-mvp.html</id><summary type="html">&lt;p&gt;tl;dr: Build, measure and learn. But don't avoid best practices afterwards.&lt;/p&gt;
+&lt;p&gt;Happy blogging!&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">hernantz</dc:creator><pubDate>Sun, 18 May 2014 17:50:00 -0300</pubDate><guid>tag:hernantz.github.io,2014-05-18:how-to-publish-a-pelican-site-on-github.html</guid><category>pelican</category><category>git</category><category>python</category></item><item><title>An MVP is not a product, it's an MVP</title><link>http://hernantz.github.io/an-mvp-is-not-a-product-its-an-mvp.html</link><description>&lt;p&gt;tl;dr: Build, measure and learn. But don't avoid best practices afterwards.&lt;/p&gt;
 &lt;p&gt;Minimum Viable Product, or even better Minimum Viable Prototype (MVP from now
 on), is a technique born in the Lean Startup movement to reduce the risk of
 gaining validated learning, without spending too much effort, money and time in
@@ -666,7 +666,7 @@ the industry's best practices, so it can be used in production by your
 The consequences of not doing it are well known, that's why we have best
 practices afterall.
 The risk is low now. Money, time and effort won't be wasted. There is no excuse.
-An MVP is not a product, it's an MVP.&lt;/p&gt;</summary><category term="rants"></category><category term="mvp"></category></entry><entry><title>Open tabs buffer overflow</title><link href="http://hernantz.github.io/open-tabs-buffer-overflow.html" rel="alternate"></link><updated>2013-08-21T22:56:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2013-08-21:open-tabs-buffer-overflow.html</id><summary type="html">&lt;p&gt;&lt;img alt="Bored Elon Musk knows" src="/images/genius-is-1-inspiration-and-99-closing-the-two-hundred-open-tabs-in-your-browser.png" /&gt;&lt;/p&gt;
+An MVP is not a product, it's an MVP.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">hernantz</dc:creator><pubDate>Sat, 09 Nov 2013 12:03:00 -0300</pubDate><guid>tag:hernantz.github.io,2013-11-09:an-mvp-is-not-a-product-its-an-mvp.html</guid><category>rants</category><category>mvp</category></item><item><title>Open tabs buffer overflow</title><link>http://hernantz.github.io/open-tabs-buffer-overflow.html</link><description>&lt;p&gt;&lt;img alt="Bored Elon Musk knows" src="/images/genius-is-1-inspiration-and-99-closing-the-two-hundred-open-tabs-in-your-browser.png" /&gt;&lt;/p&gt;
 &lt;h2&gt;The interwebs and the power it holds&lt;/h2&gt;
 &lt;p&gt;In programming, it is said that the number of tabs you have open is directly
 proportinal to the severity of your problem, or better said, the severity of
@@ -705,7 +705,7 @@ remember that you once saved something interesting for later read.&lt;/p&gt;
 &lt;p&gt;The other improvement has been to stop using the desktop to browse twitter.
 Instead I force myself to read it on a tablet, which is not so distracting and
 at the same time helps with the &lt;em&gt;triage process&lt;/em&gt; since it is somewhat cumbersome
-to multitask on it.&lt;/p&gt;</summary><category term="ideas"></category></entry><entry><title>Init</title><link href="http://hernantz.github.io/init.html" rel="alternate"></link><updated>2013-07-03T18:06:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2013-07-03:init.html</id><summary type="html">&lt;p&gt;This is my not-sexy static new blog. It starts with a single post and a single
+to multitask on it.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">hernantz</dc:creator><pubDate>Wed, 21 Aug 2013 22:56:00 -0300</pubDate><guid>tag:hernantz.github.io,2013-08-21:open-tabs-buffer-overflow.html</guid><category>ideas</category></item><item><title>Init</title><link>http://hernantz.github.io/init.html</link><description>&lt;p&gt;This is my not-sexy static new blog. It starts with a single post and a single
 blog. I hope this is not one of those things I start and abandon.&lt;/p&gt;
 &lt;p&gt;Why now? Becouse in the last weeks I felt the urge to write for myself. 
 Knowing my thoughts will be publicly available forces me to think wisely, 
@@ -718,4 +718,4 @@ Why write a thousand words if a picture says more than a thousand words?
 Why write six paragraphs if you can fit an introduction, main idea
 and conclusion in just three?&lt;/p&gt;
 &lt;p&gt;Life is short, &lt;a href="http://getnashty.com/write-less"&gt;write less&lt;/a&gt;, read this and move on.&lt;/p&gt;
-&lt;p&gt;P.S. Sorry for the length of this post. I didn't have time to make it shorter.&lt;/p&gt;</summary><category term="pelican"></category><category term="ideas"></category></entry></feed>
+&lt;p&gt;P.S. Sorry for the length of this post. I didn't have time to make it shorter.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">hernantz</dc:creator><pubDate>Wed, 03 Jul 2013 18:06:00 -0300</pubDate><guid>tag:hernantz.github.io,2013-07-03:init.html</guid><category>pelican</category><category>ideas</category></item></channel></rss>

@@ -11,7 +11,7 @@
   <link href="http://hernantz.github.io/images/favicon.ico" rel="icon" type="image/x-icon" />
   <link href="http://hernantz.github.io/rss.xml" type="application/atom+xml" rel="alternate" title="what's the point RSS Feed" />
   <meta name="description" content="As a programmer, most of your time you will be writing ifs.">
-  <meta name="keywords" content="personal">
+  <meta name="keywords" content="python, ideas">
   <meta name="author" content="hernantz">
 </head>
 
@@ -26,12 +26,14 @@
       <a href="/">hernantz</a>
     </div>
 
-      <section class="meta centered-block">
-          <a href="http://twitter.com/hernantz" target="_blank"><i class="icon icon-twitter"></i></a>
-          <a href="http://github.com/hernantz" target="_blank"><i class="icon icon-github"></i></a>
-          <a href="/rss.xml" target="_blank"><i class="icon icon-rss"></i></a>
-      </section>
 
+      <section class="sections">
+        <ul>
+            <li><a href="http://twitter.com/hernantz">twitter</i></a></li>
+            <li><a href="http://github.com/hernantz">github</i></a></li>
+            <li><a href="/">blog</a></li>
+        </ul>
+      </section>
 
   </aside>
 
@@ -40,10 +42,11 @@
   <h1 class="article-title">If (you write ifs)</h1>
   <p class="light">
     Published
-on <time datetime="2013-10-24T22:56:00-03:00">Thu 24 October 2013</time>,     under <a href="http://hernantz.github.io/category/personal.html">Personal</a>,
-    tagged with <a href="http://hernantz.github.io/tag/personal.html">personal</a>.
+on <time datetime="2013-10-24T22:56:00-03:00">Thu 24 October 2013</time>,     under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
+    tagged with <a href="http://hernantz.github.io/tag/python.html">python</a> and <a href="http://hernantz.github.io/tag/ideas.html">ideas</a>.
   </p>
-  <p>As a programmer, most of your time you will be writing ifs.
+  <p><img alt="US Patent 1773079" src="/images/if-you-write-ifs.jpg" title="US Patent 1773079" /></p>
+<p>As a programmer, most of your time you will be writing ifs.
 Not only becouse this is the main flow control structure, in c like languages,
 but becouse writing an else is (or shoud be at least) a code smell. It's a trap. </p>
 <h2>Cut the flow ifs</h2>
@@ -93,6 +96,87 @@ In functional languages, it pretty much always looks ugly.</p>
 wrong</p>
 <p>NOMBRAR LAS CONDICIONES EN VARIABLES
 USAR NOMBRES POSITIVOS no (not is_admin)</p>
+<p>def min(x, y):
+    if x &lt; y:
+        return x
+    else:
+        return y</p>
+<p>should be written as</p>
+<p>def min(x, y):
+    if x &lt; y:
+        return x
+    return y</p>
+<p>USAR LAZYNESS</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>from toolz import map  # toolz' map is lazy by default
+loud_book = map(str.upper, book)</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>HABLAR DE por que no usar el inline if/else </p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>a = 'hola' if False else True if False else None
+a
+a = 'hola' if False else True if False else 'chau'
+a
+'chau'</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>http://www.idiotinside.com/2015/10/18/5-methods-to-use-else-block-in-python/</p>
+<p>Al no anidar if/else estamos leyendo una tabla de la verdad y compuertas logicas</p>
+<p>PARA GUARDAR VALORES BOOLEANOS USAR
+x = this or that
+x = is not None 
+x = something </p>
+<p>instead of </p>
+<p>if this or that:
+   x = true</p>
+<p>if something:
+    x = True
+else:
+    x = False</p>
+<p>POST SOBRE COUNTING THINGS IN PYTHON
+escribir sobre cadena de responsabilidad?
+escribir sobre actions: {} y despues actions<a href="">var</a> como reemplazo al switch</p>
+<p>Usar all([condicion==condicion2, condicion3==condicion4, etc])</p>
+<p>VER GENERATORS WILL FREE YOUR MIND
+para usar generadores y asi evirtar for loops y while loops?</p>
+<p>https://speakerdeck.com/nb/else-considered-harmful</p>
+<p>////////////</p>
+<p>Titulo charla: Tenemos que dejar de escribir else por dos anos</p>
+<p>En Python hacemos fuerte incapie en que el codigo sea elegante y facil de interpretar,
+pero con PEP8 solo no alcanza, muchas veces nuestra logica puede quedar anidada en 
+una catarata de if(s) y else(s) dificil de mantener.
+En esta charla exploraremos algunas estrategias para evitar esa complejidad inecesaria.</p>
+<p>Se llama Hernan Lozano, pero se pone hernantz de nickname,
+le gusta la musica en general y el metal en particular, pero no tiene una banda,
+es hincha de Talleres, pero nunca va a la cancha,
+es avido lector, pero casi siempre termina leyendo el mismo autor,
+y por sobre todo, le gusta aprender cosas nuevas, pero despues nunca hace nada con lo que aprendio.</p>
+<h6></h6>
+<p>http://code.activestate.com/recipes/577786-smarter-default-arguments/
+Currently if you want to avoid any confusion with mutable defaults, you set the default argument to some (immutable) sentinel that indicates the real default argument should be used:</p>
+<p>def f(x=None):
+    if x is None:
+        x = []
+There are downsides though:</p>
+<p>The default argument no longer reflects the expectation for the argument type.
+You can no longer introspect the default argument.
+If you want to have the default actually be None, you will have to use some other value for the sentinel. At that point you'll probably then have two different sentinels in use: None and and its surrogate.
+The real default must be re-evaluated during each call it is used.
+There are two more [seemingly superfluous] lines cluttering up your function body.</p>
+<h6></h6>
+<p>La monada de usear [] o [User]
+La idea de monadas es tener dos flujos separados para tratar cosas distintas
+y si usamos excepciones como una forma de crear un canal alternativo para lo que
+pasa en nuestro programa? Las excepciones no son necesariamente algo malo, en python
+se pueden usar para crear un canal nuevo de comunicacion.
+http://www.holger-peters.de/exceptions-the-dark-side-of-the-force.html</p>
 </article>
 
   <footer class="column-right light">

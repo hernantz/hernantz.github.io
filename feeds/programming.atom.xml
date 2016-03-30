@@ -116,10 +116,10 @@ developer use the alias for the new code and at last, when all the codebase is
 using the alias, rename the original class.&lt;/p&gt;
 &lt;p&gt;Finally, you could try &lt;strong&gt;feature flags or compile time flags&lt;/strong&gt;, to &lt;a href="http://blog.travis-ci.com/2014-03-04-use-feature-flags-to-ship-changes-with-confidence/" title="Using Feature Flags to Ship Changes with Confidence"&gt;enable or
 disable certain parts&lt;/a&gt; of the system depending on some conditions, but
-keeping all the parts integrated in the same codebase.&lt;/p&gt;</summary><category term="ideas"></category><category term="agile"></category><category term="git"></category></entry><entry><title>Mock yourself, not your tests</title><link href="http://hernantz.github.io/mock-yourself-not-your-tests.html" rel="alternate"></link><updated>2015-07-27T15:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2015-07-27:mock-yourself-not-your-tests.html</id><summary type="html">&lt;p&gt;&lt;em&gt;tl;dr&lt;/em&gt;: While sometimes mocks are needed, they should not be the first tool 
+keeping all the parts integrated in the same codebase.&lt;/p&gt;</summary><category term="ideas"></category><category term="agile"></category><category term="git"></category></entry><entry><title>Mock yourself, not your tests</title><link href="http://hernantz.github.io/mock-yourself-not-your-tests.html" rel="alternate"></link><updated>2015-07-27T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2015-07-27:mock-yourself-not-your-tests.html</id><summary type="html">&lt;p&gt;&lt;em&gt;tl;dr&lt;/em&gt;: While sometimes mocks are needed, they should not be the first tool 
 you use to write tests. It is a pity to be mocking your code when you could
 be writing meaningful tests at &lt;em&gt;almost&lt;/em&gt; the same cost.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Enable virtualization in BIOS" src="/images/bridge-fail.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="stower-titanic" src="/images/mock-yourself-not-your-tests.jpg" title="Der Untergang der Titanic by Willy Stöwer" /&gt;&lt;/p&gt;
 &lt;p&gt;In this post I try to discourage the use of mocks when writing tests.
 I'm not completely against them (I see their value) but it's that sometimes 
 I feel like we abuse of them, just to make tests pass, feel comfortable of
