@@ -131,24 +131,24 @@ pre {
 .sidebar .meta .icon {
     margin: 5px; }
 
-.sidebar .sections {
+.sidebar nav {
     margin: 15px 0 0 0; }
 
-.sidebar .sections a {
+.sidebar nav a {
     padding: 3px 0;
     color: black;
     font-weight: bold;
     font-size: 12px;
     display: block; }
 
-.sidebar .sections a:hover {
+.sidebar nav a:hover {
     color: #227ce8; }
 
-.sidebar .sections ul {
+.sidebar nav ul {
     margin: 0;
     padding: 0; }
 
-.sidebar .sections li {
+.sidebar nav li {
     line-height: 18px;
     padding: 0;
     list-style: none; }

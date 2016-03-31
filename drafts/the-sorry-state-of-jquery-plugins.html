@@ -27,13 +27,13 @@
     </div>
 
 
-      <section class="sections">
+      <nav>
         <ul>
             <li><a href="http://twitter.com/hernantz">twitter</i></a></li>
             <li><a href="http://github.com/hernantz">github</i></a></li>
             <li><a href="/">blog</a></li>
         </ul>
-      </section>
+      </nav>
 
   </aside>
 
@@ -48,10 +48,9 @@ on <time datetime="2016-03-29T00:00:00-03:00">Tue 29 March 2016</time>,     unde
   <p>When adding jQuery widgets to enhance your web app, you'll find <strong>two possible
 approaches</strong> in their implementation: On one the plugin does everything for
 you (and by <em>everything</em> I simply mean <em>too much</em>), on the other, the plugin
-does the minimum. But of course there is a wide range in between. I'll try to
-expose the good?, the bad? and the ugly?</p>
+does the minimum. But of course there is a wide range in between.</p>
 <p><img alt="Bootstrap 3 popovers" src="/images/popovers.png" title="Bootstrap 3 popovers" /></p>
-<h2>The way of jQuery plugins - the ugly?</h2>
+<h2>The way of jQuery plugins</h2>
 <p>To begin, lets see what Boostrap offers for using it's plugins. A plugin
 (ie. popover) can be instantiated directly via HTML with lots of <code>data-</code>
 attributes that will be picked up automatically:</p>
@@ -71,15 +70,14 @@ Click me!<span class="nt">&lt;/a&gt;</span>
 attributes. Either way, most plugins follow these techniques and <strong>allow
 certain amount of customization</strong> so that we can hook into some of it's
 functionality via options and callbacks.</p>
-<h2>Going down the rabbit hole - the bad?</h2>
-<p>A more radical example would be the <a href="http://fullcalendar.io/" title="A JavaScript event calendar">fullCalendar</a> plugin. It is in charge
+<p>An extreme example would be the <a href="http://fullcalendar.io/" title="A JavaScript event calendar">fullCalendar</a> plugin. It is in charge
 of rendering a rather complex <a href="http://fullcalendar.io/js/fullcalendar-2.6.1/demos/agenda-views.html" title="Rendered calendar">DOM hierachy</a> inside an empty <code>div</code> you
 define, and everything from fetching events to be displayed on the calendar,
 to determining how to behave when you click on an event is done through
-configuration, it is controlling some inner state, so you are forced to
-initialize it and follow the rules this plugin immposes. </p>
+configuration. Since it is controlling some inner state, so you are forced to
+initialize it and follow the rules this plugin immposes.</p>
 <p>This may work for simple scenarios, but when you need more control, you'll be
-forced to implement <em>hacky tricks</em> or even roll your own solution. </p>
+forced to implement <em>hacky tricks</em> or even roll your own solution.</p>
 <p>For example, the API of this plugin does not expose a way to handle a double
 click on an event, but we can set up this behaviour because this plugin
 provides a <code>eventRender</code> callback to manipulate a rendered event.</p>
@@ -97,7 +95,7 @@ provides a <code>eventRender</code> callback to manipulate a rendered event.</p>
 <p>Should you need something more custom like be able to drag-n-drop events
 between months, which could be implemented with an infinite scroll of months,
 you would be really close to having to fork the entire project.</p>
-<h2>Take over popovers - the good?</h2>
+<h2>Take over popovers</h2>
 <p>One of the best things about Bootstrap's widgets is that they can be represented
 entirely with HTML, without the need to initialize them through JavaScript.</p>
 <p>As a follow up of the popover example, the snippet below shows how to represent
@@ -172,7 +170,7 @@ that it can clean up itself before it's removed.</p>
 
 <p>We have combined Bootstrap for presentation, Backbone for logic and Tether as
 a helper for positioning elements. Live demo <a href="https://jsfiddle.net/p82fsx06/1/" title="Live demo">here</a>.</p>
-<h2>Wishful thinking - the best?</h2>
+<h2>Wishful thinking</h2>
 <p>It's perfectly fine if plugins expose a simple way to cover the 80% of use cases
 or some basic functionality. But it's clear that pure libraries tend to
 outperform ready-made plugins in terms of flexibility. I often see plugins
