@@ -49,20 +49,20 @@ on <time datetime="2013-10-24T22:56:00-03:00">Thu 24 October 2013</time>,     un
 <p>As a programmer, most of your time you will be writing ifs.
 Not only becouse this is the main flow control structure, in c like languages,
 but becouse writing an else is (or shoud be at least) a code smell. It's a trap. </p>
-<h2>Cut the flow ifs</h2>
-<div class="highlight"><pre><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
+<h2 id="cut-the-flow-ifs">Cut the flow ifs<a class="headerlink" href="#cut-the-flow-ifs" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">item</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
         <span class="k">continue</span>
 
 <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">item</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">log</span><span class="p">(</span><span class="s">&#39;None found&#39;</span><span class="p">)</span>
+        <span class="n">log</span><span class="p">(</span><span class="s1">&#39;None found&#39;</span><span class="p">)</span>
         <span class="k">break</span>
 </pre></div>
 
 
 <p>rather than</p>
-<div class="highlight"><pre><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">item</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
         <span class="n">blah</span>
         <span class="n">blah</span> 
@@ -76,7 +76,7 @@ but becouse writing an else is (or shoud be at least) a code smell. It's a trap.
             <span class="k">except</span><span class="p">:</span>
                 <span class="n">blah</span> 
 <span class="k">else</span><span class="p">:</span>
-    <span class="n">log</span><span class="p">(</span><span class="s">&#39;None found&#39;</span><span class="p">)</span>
+    <span class="n">log</span><span class="p">(</span><span class="s1">&#39;None found&#39;</span><span class="p">)</span>
 </pre></div>
 
 
@@ -86,8 +86,8 @@ Pyramid of doom picture here.
 While in Python it looks more like a stairs of doom.
 stair of doom in python picture
 In functional languages, it pretty much always looks ugly.</p>
-<h2>Single check ifs</h2>
-<div class="highlight"><pre><span class="k">if</span> <span class="p">(</span><span class="n">this</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">that</span><span class="p">)</span> <span class="ow">or</span> <span class="n">there</span> <span class="ow">and</span> <span class="p">(</span><span class="n">here</span> <span class="ow">or</span> <span class="n">nearby</span><span class="p">):</span>
+<h2 id="single-check-ifs">Single check ifs<a class="headerlink" href="#single-check-ifs" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">this</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">that</span><span class="p">)</span> <span class="ow">or</span> <span class="n">there</span> <span class="ow">and</span> <span class="p">(</span><span class="n">here</span> <span class="ow">or</span> <span class="n">nearby</span><span class="p">):</span>
     <span class="n">blah</span>
 </pre></div>
 
@@ -158,7 +158,7 @@ le gusta la musica en general y el metal en particular, pero no tiene una banda,
 es hincha de Talleres, pero nunca va a la cancha,
 es avido lector, pero casi siempre termina leyendo el mismo autor,
 y por sobre todo, le gusta aprender cosas nuevas, pero despues nunca hace nada con lo que aprendio.</p>
-<h6></h6>
+<h6 id="_1"><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h6>
 <p>http://code.activestate.com/recipes/577786-smarter-default-arguments/
 Currently if you want to avoid any confusion with mutable defaults, you set the default argument to some (immutable) sentinel that indicates the real default argument should be used:</p>
 <p>def f(x=None):
@@ -170,7 +170,7 @@ You can no longer introspect the default argument.
 If you want to have the default actually be None, you will have to use some other value for the sentinel. At that point you'll probably then have two different sentinels in use: None and and its surrogate.
 The real default must be re-evaluated during each call it is used.
 There are two more [seemingly superfluous] lines cluttering up your function body.</p>
-<h6></h6>
+<h6 id="_2"><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h6>
 <p>La monada de usear [] o [User]
 La idea de monadas es tener dos flujos separados para tratar cosas distintas
 y si usamos excepciones como una forma de crear un canal alternativo para lo que

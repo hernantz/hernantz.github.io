@@ -48,7 +48,7 @@ on <time datetime="2015-08-28T00:00:00-03:00">Fri 28 August 2015</time>,     und
   <p><em>tl;dr</em>: When implementing big changesets, maintaining and merging long-lived
 branches is hard. Use short-lived branches instead, and merge them ASAP.</p>
 <p><img alt="The ship of Theseus" src="/images/ship.jpg" /></p>
-<h2>The Theseus paradox</h2>
+<h2 id="the-theseus-paradox">The Theseus paradox<a class="headerlink" href="#the-theseus-paradox" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p><em>"The ship of Theseus, also known as Theseus' paradox, is a thought experiment
 that raises the question of whether an object which has had all of its 
@@ -62,14 +62,14 @@ are implemented.</p>
 <p>On software projects, something similar occurs. There's a new requirement that
 implies many changes, could be a refactor, a redesign or a new feature, that
 can be implemented in small or huge stages.</p>
-<h2>Branches for all</h2>
+<h2 id="branches-for-all">Branches for all<a class="headerlink" href="#branches-for-all" title="Permanent link">&para;</a></h2>
 <p>To implement these changes, collaboratively and simultaneously with other
 developers (among other advantages) is that we use a version control system,
 where each feature and sub task is implemented in its own branch.</p>
 <p>Generally, every serious project also has an integration branch and a stable
 branch, which may be the same <a href="http://nvie.com/posts/a-successful-git-branching-model/" title="Git Flow">or not</a>. When the feature/redesign/refactor is
 complete, the changes can be merged into the integration or stable branch.</p>
-<h2>The problem with long-lived branches</h2>
+<h2 id="the-problem-with-long-lived-branches">The problem with long-lived branches<a class="headerlink" href="#the-problem-with-long-lived-branches" title="Permanent link">&para;</a></h2>
 <p>The strategy of not integrating a branch until it is ready can lead to some
 complications, especially when working with long-lived branches, where <strong>these
 complications become unnecessarily complicated</strong>.</p>
@@ -77,7 +77,7 @@ complications become unnecessarily complicated</strong>.</p>
 the merge is delayed for a long time until all tasks are finished.</p>
 <p>Let's review some of these complications that arise from working with
 long-lived branches.</p>
-<h3>1. Merge conflicts</h3>
+<h3 id="1-merge-conflicts">1. Merge conflicts<a class="headerlink" href="#1-merge-conflicts" title="Permanent link">&para;</a></h3>
 <p>In a project with a medium-sized team, the integration branch may have a higher
 refresh rate, as smaller features or bugfixes get merged, that will cause
 conflicts with the long-lived branch, which gets quite often out of sync.</p>
@@ -89,13 +89,13 @@ branches with merges</strong> (in git this would mean <a href="https://www.atlas
 managed to <strong>avoid the merge hell</strong> that makes your branch history look like a
 <a href="http://www.tugberkugurlu.com/archive/resistance-against-london-tube-map-commit-history-a-k-a--git-merge-hell" title="Merge Hell">metro map</a>, in general, <strong>solving merge conflicts is hard</strong>, and the bigger
 the changeset is, the trickier it gets.</p>
-<h3>2. Sharing improvements between branches</h3>
+<h3 id="2-sharing-improvements-between-branches">2. Sharing improvements between branches<a class="headerlink" href="#2-sharing-improvements-between-branches" title="Permanent link">&para;</a></h3>
 <p>Enhancements, refactors, bugfixes and other <strong>improvements cannot be easily
 shared between feature-branches</strong> because they are WIP. Creating a common
 <em>develop</em> branch, to integrate all WIP would require having all the features
 finished in order to merge it into the integration branch, and thus, defeat the
 purpose of using separate branches to enable parallel work.</p>
-<h3>3. Quality of code</h3>
+<h3 id="3-quality-of-code">3. Quality of code<a class="headerlink" href="#3-quality-of-code" title="Permanent link">&para;</a></h3>
 <p>Long branches have to be catching up with the ever changing integration branch,
 and more often than not, you'll see lots of commits with messages like: <em>fixing
 abc, fixing more abc, revert fixing abc, WIP broken tests</em>.</p>
@@ -105,7 +105,7 @@ prevented from geting merged until it gets polished, but in reality, <strong>cod
 reviews become code overviews</strong>, and big changesets just <a href="https://twitter.com/iamdevloper/status/397664295875805184" title="Code reviews">look fine</a>. Who
 dares to approve a merge of <em>225 commits with 6,180 additions and 1,313
 deletions that affect 112 files</em>, and say it is DRY, well tested, etc?.</p>
-<h3>4. Big releases</h3>
+<h3 id="4-big-releases">4. Big releases<a class="headerlink" href="#4-big-releases" title="Permanent link">&para;</a></h3>
 <p>It turns out that on personal projects and sometimes on many community driven
 open-source projects, development is focused on big releases that are shipped
 <em>when ready</em>. </p>
@@ -119,7 +119,7 @@ care and discipline, but this last one requires a mind change, commiting towards
 important once the app is already being used because of the unpredictable
 <a href="http://projectcartoon.com/cartoon/1" title="How Projects Really Work">nature of software projects</a>, where priorities and requirements change quite
 often, and the branch could be left incomplete at any time.</p>
-<h2>Always. Be. Merging.</h2>
+<h2 id="always-be-merging">Always. Be. Merging.<a class="headerlink" href="#always-be-merging" title="Permanent link">&para;</a></h2>
 <p><em>Coffee is for mergers</em>. The quicker you merge a piece of code/feature/refactor,
 the better, and for this, <a href="http://scottchacon.com/2011/08/31/github-flow.html" title="Github Flow">the simpler</a> the branching model you adopt, the
 better.</p>
@@ -137,7 +137,7 @@ implies that:</p>
 </ol>
 <p>Dispite having mentioned branches a lot, the ideas expressed here still apply,
 no matter the technique used to integrate the changes.</p>
-<h2>Some examples of smooth transitions</h2>
+<h2 id="some-examples-of-smooth-transitions">Some examples of smooth transitions<a class="headerlink" href="#some-examples-of-smooth-transitions" title="Permanent link">&para;</a></h2>
 <p>I think I've gotten to the point already, but I felt like sharing some examples,
 without getting into too much detail, of real life scenarios where requirements
 are implemented by using other strategies than long-lived branches.</p>

@@ -56,16 +56,16 @@ reactive manner.</p>
 <p>By following this pattern, views become very lightweight and straightforward to
 reason about. So, if your views have too much code in them, then your are very
 probably doing it wrong.</p>
-<h2>First approach: extend a generic view</h2>
+<h2 id="first-approach-extend-a-generic-view">First approach: extend a generic view<a class="headerlink" href="#first-approach-extend-a-generic-view" title="Permanent link">&para;</a></h2>
 <p>MarionetteJS item view y collectionview
 podes tener 100 de estos tipos de vistas, y cambian muy pocas cosas, como el template.</p>
-<h2>First approach: extend a parent view</h2>
-<div class="highlight"><pre><span class="kd">var</span> <span class="nx">BaseView</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">();</span>
+<h2 id="first-approach-extend-a-parent-view">First approach: extend a parent view<a class="headerlink" href="#first-approach-extend-a-parent-view" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">BaseView</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">();</span>
 <span class="kd">var</span> <span class="nx">ChildView</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">BaseView</span><span class="p">,</span> <span class="p">{});</span>
 </pre></div>
 
 
-<h2>Second approach: parent view contains child views</h2>
+<h2 id="second-approach-parent-view-contains-child-views">Second approach: parent view contains child views<a class="headerlink" href="#second-approach-parent-view-contains-child-views" title="Permanent link">&para;</a></h2>
 <p>LEER http://blog.siftscience.com/blog/2015/best-practices-for-building-large-react-applications
 Ejemplo de MarionetteJS.Behaviour
 Ejemplo modales + login o las columnas del dashboard de divvy

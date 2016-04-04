@@ -47,12 +47,12 @@ on <time datetime="2014-08-25T19:42:00-03:00">Mon 25 August 2014</time>,     und
   </p>
   <p>It often seems to me that Backbone developers sometimes do not trust that the 
 <code>view.el</code> property be present when needed, eg: when rendering the view.</p>
-<h1>"el", you there?</h1>
+<h1 id="el-you-there">"el", you there?<a class="headerlink" href="#el-you-there" title="Permanent link">&para;</a></h1>
 <p>But the true story is that Backbone ensures this element is up and running 
 for us, since the view construction.  These snippets where taken directly from 
 Backbone's source and show a bit of two methods that are ment to be used internally 
 by Backbone when instantiating a new View:</p>
-<div class="highlight"><pre><span class="nx">_ensureElement</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nx">_ensureElement</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="cm">/* check if this view was not initialize </span>
 <span class="cm">         with an {el: &#39;.selector&#39;} option  */</span>
       <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span>  
@@ -69,7 +69,7 @@ by Backbone when instantiating a new View:</p>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="nx">delegateEvents</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">events</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nx">delegateEvents</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">events</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// ...</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">undelegateEvents</span><span class="p">();</span>
     <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">events</span><span class="p">)</span> <span class="p">{</span>
@@ -90,7 +90,7 @@ by Backbone when instantiating a new View:</p>
 the element having to be inserted into the DOM to interact with it's view.</p>
 <p>Backbone being very flexible, lets us override the <code>el</code> property with some other element.
 We can pass a jquery object or simply a selector and backbone will handle it.</p>
-<div class="highlight"><pre><span class="c1">// Backbone also lets us override the `el` with either of these ways </span>
+<div class="highlight"><pre><span></span><span class="c1">// Backbone also lets us override the `el` with either of these ways </span>
 <span class="kd">var</span> <span class="nx">view</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">({</span><span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#selector&#39;</span><span class="p">});</span>
 <span class="kd">var</span> <span class="nx">view</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">({</span><span class="nx">el</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#selector&#39;</span><span class="p">)});</span>
 </pre></div>
@@ -100,7 +100,7 @@ We can pass a jquery object or simply a selector and backbone will handle it.</p
 executed, the <code>#selector</code> exists in the DOM. Otherwise we won't have any html to get from 
 the View. So, continueing with the previous example and with a little help from jquery we 
 can be sure that <code>#selector</code> element can be reached.</p>
-<div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">view</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">({</span><span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#selector&#39;</span><span class="p">});</span>
 <span class="p">});</span>
 </pre></div>

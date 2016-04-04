@@ -49,8 +49,8 @@ on <time datetime="2014-04-10T22:36:00-03:00">Thu 10 April 2014</time>,     unde
 VT-X and AMD's AMD-V native virtualization technologies is set to enabled by
 default on every VM. You computer may or may not have these goodies.</p>
 <p>Check the output of these commands to verify this in case you are not sure:</p>
-<div class="highlight"><pre>grep --color vmx /proc/cpuinfo  <span class="c">## for an Intel processor</span>
-grep --color svm /proc/cpuinfo  <span class="c">## for an AMD processor</span>
+<div class="highlight"><pre><span></span>grep --color vmx /proc/cpuinfo  <span class="c1">## for an Intel processor</span>
+grep --color svm /proc/cpuinfo  <span class="c1">## for an AMD processor</span>
 </pre></div>
 
 
@@ -65,13 +65,13 @@ changes won't take effect, so we have to use other tools, such as the VirtualBox
 UI or VBoxManage.  As that option didn't appear in the UI, I had to go with the
 VBoxManage command line tool. To disable Hardware Virtualization I run the
 following command:</p>
-<div class="highlight"><pre>VBoxManage modifyvm myvmname --hwvirtex off
+<div class="highlight"><pre><span></span>VBoxManage modifyvm myvmname --hwvirtex off
 </pre></div>
 
 
 <p>In case you run more configuration problems and your current virtualbox ui does
 not display, just check:</p>
-<div class="highlight"><pre>VBoxManage --help <span class="p">|</span> less
+<div class="highlight"><pre><span></span>VBoxManage --help <span class="p">|</span> less
 </pre></div>
 
 

@@ -46,7 +46,7 @@ on <time datetime="2015-02-25T12:25:00-03:00">Wed 25 February 2015</time>,     u
     tagged with <a href="http://hernantz.github.io/tag/django.html">django</a>, <a href="http://hernantz.github.io/tag/sysadmin.html">sysadmin</a> and <a href="http://hernantz.github.io/tag/linux.html">linux</a>.
   </p>
   <p>Trying to put on paper an opinationed set the best practices for deploying django with ansible</p>
-<h2>Get yourself into the party</h2>
+<h2 id="get-yourself-into-the-party">Get yourself into the party<a class="headerlink" href="#get-yourself-into-the-party" title="Permanent link">&para;</a></h2>
 <p>This is to gain sudo access to the remote machine and be automatically identified.
 For this to happen, this tree things need to be done:
 1) Have the required ssh packages installed. <code>openssh-server</code> installed on the remote machine, 
@@ -66,30 +66,30 @@ This can be done by the following command:
 <code>ssh-copy-id "&lt;user&gt;@&lt;host&gt; -p &lt;port&gt; -o UserKnownHostsFile=/path/to/local_known_hosts_file"</code>
 Your milage may vary, for instance Digital Ocean allows you to add public keys to your new droplets 
 when they're created.</p>
-<h2>Keep your secret vars separate</h2>
+<h2 id="keep-your-secret-vars-separate">Keep your secret vars separate<a class="headerlink" href="#keep-your-secret-vars-separate" title="Permanent link">&para;</a></h2>
 <p>The strategy I'm folloing with private variables/data is to ship a <code>something.template</code> file
 that will contain the data I want to make public (if any) and ask the user to copy that template
 and put it in the same directory but with the name <code>something</code>, a file that is ignored by the VCS, 
 and you would ask the users you trust to put whatever you need them to have in those files. </p>
 <p>create a deployer user with sudo privileges -&gt; YOU SHOULN'T NEED SUDO TO RUN APP
 copy your id-rsa.pub to the remote</p>
-<h2>Bootstrap a secure initial setup</h2>
+<h2 id="bootstrap-a-secure-initial-setup">Bootstrap a secure initial setup<a class="headerlink" href="#bootstrap-a-secure-initial-setup" title="Permanent link">&para;</a></h2>
 <p>setup secure initialsetup.yaml
 http://plusbryan.com/my-first-5-minutes-on-a-server-or-essential-security-for-linux-servers
 http://lattejed.com/first-five-and-a-half-minutes-on-a-server-with-ansible
 https://lextoumbourou.com/blog/posts/getting-started-with-ansible/#part-1</p>
-<h2>bro tips</h2>
+<h2 id="bro-tips">bro tips<a class="headerlink" href="#bro-tips" title="Permanent link">&para;</a></h2>
 <p>http://hakunin.com/six-ansible-practices#avoid-perpetually-changed-and-skipping-tasks
 Separate your setup and deploy playbooks
 your app has nothing to do with your server configuration</p>
 <p>Teach Ansible to talk to Github on your behalf
 Add Github to known_hosts properly and securely</p>
-<h2>Nginx</h2>
+<h2 id="nginx">Nginx<a class="headerlink" href="#nginx" title="Permanent link">&para;</a></h2>
 <p>https://serversforhackers.com/getting-started-with-ansible/
 ssl certificates
 disable default site 
 html5boilerplate nginx settings</p>
-<h2>Django</h2>
+<h2 id="django">Django<a class="headerlink" href="#django" title="Permanent link">&para;</a></h2>
 <p>http://www.stavros.io/posts/example-provisioning-and-deployment-ansible/
 collectstatic
 bower install</p>

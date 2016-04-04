@@ -60,13 +60,13 @@ by default to a folder (conveniently) named <em>output</em>, but it can be chang
 something else with the <code>OUTPUT_PATH</code> setting in your <code>pelicanconf.py</code> file</p>
 <p>3) We will make use of <em>git submodules</em> to point our output directory to the
 repo created in step 1, so that it holds what's going to be published in Github.</p>
-<div class="highlight"><pre>git submodule add https://github.com/username/username.github.io.git output
+<div class="highlight"><pre><span></span>git submodule add https://github.com/username/username.github.io.git output
 </pre></div>
 
 
 <p>Adding a git submodule will create another version controlled file called
 <code>.gitmodules</code> with the following content:</p>
-<div class="highlight"><pre><span class="k">[submodule &quot;output&quot;]</span>
+<div class="highlight"><pre><span></span><span class="k">[submodule &quot;output&quot;]</span>
     <span class="na">path</span> <span class="o">=</span> <span class="s">output</span>
 <span class="s">    url = https://github.com/username/username.github.io.git</span>
 <span class="s">    ignore = all</span>
@@ -80,16 +80,16 @@ site repo, and that's why we added the last <em>ignore</em> statement.</p>
 settings, and <code>publishconf.py</code> that is used for publishing, as you probably
 guessed. Pelican's Makefile comes with a built-in command to generate the
 output that will be published:</p>
-<div class="highlight"><pre>make publish  <span class="c"># generates output using publishconf.py</span>
+<div class="highlight"><pre><span></span>make publish  <span class="c1"># generates output using publishconf.py</span>
 </pre></div>
 
 
 <p>But before running it, make sure the following settings are in <code>publishconf.py</code>:</p>
-<div class="highlight"><pre><span class="c"># don&#39;t delete our .git submodule dir</span>
+<div class="highlight"><pre><span></span><span class="c1"># don&#39;t delete our .git submodule dir</span>
 <span class="n">DELETE_OUTPUT_DIRECTORY</span> <span class="o">=</span> <span class="bp">False</span>
 
-<span class="c"># use the correct abs url</span>
-<span class="n">SITEURL</span> <span class="o">=</span> <span class="s">&#39;http://username.github.io&#39;</span>
+<span class="c1"># use the correct abs url</span>
+<span class="n">SITEURL</span> <span class="o">=</span> <span class="s1">&#39;http://username.github.io&#39;</span>
 <span class="n">RELATIVE_URLS</span> <span class="o">=</span> <span class="bp">False</span>
 </pre></div>
 

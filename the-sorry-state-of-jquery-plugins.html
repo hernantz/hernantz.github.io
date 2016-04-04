@@ -50,19 +50,19 @@ approaches</strong> in their implementation: On one the plugin does everything f
 you (and by <em>everything</em> I simply mean <em>too much</em>), on the other, the plugin
 does the minimum. But of course there is a wide range in between.</p>
 <p><img alt="Bootstrap 3 popovers" src="/images/popovers.png" title="Bootstrap 3 popovers" /></p>
-<h2>The way of jQuery plugins</h2>
+<h2 id="the-way-of-jquery-plugins">The way of jQuery plugins<a class="headerlink" href="#the-way-of-jquery-plugins" title="Permanent link">&para;</a></h2>
 <p>To begin, lets see what Boostrap offers for using it's plugins. A plugin
 (ie. popover) can be instantiated directly via HTML with lots of <code>data-</code>
 attributes that will be picked up automatically:</p>
-<div class="highlight"><pre><span class="nt">&lt;a</span> <span class="na">tabindex=</span><span class="s">&quot;0&quot;</span> <span class="na">class=</span><span class="s">&quot;btn btn-danger&quot;</span> <span class="na">role=</span><span class="s">&quot;button&quot;</span> <span class="na">data-trigger=</span><span class="s">&quot;focus&quot;</span> 
-<span class="na">data-toggle=</span><span class="s">&quot;popover&quot;</span> <span class="na">title=</span><span class="s">&quot;Dismissible popover&quot;</span> <span class="na">data-placement=</span><span class="s">&quot;bottom&quot;</span>
-<span class="na">data-content=</span><span class="s">&quot;And here&#39;s some amazing content. It&#39;s very engaging. Right?&quot;</span><span class="nt">&gt;</span>
-Click me!<span class="nt">&lt;/a&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">tabindex</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-danger&quot;</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">data-trigger</span><span class="o">=</span><span class="s">&quot;focus&quot;</span> 
+<span class="na">data-toggle</span><span class="o">=</span><span class="s">&quot;popover&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;Dismissible popover&quot;</span> <span class="na">data-placement</span><span class="o">=</span><span class="s">&quot;bottom&quot;</span>
+<span class="na">data-content</span><span class="o">=</span><span class="s">&quot;And here&#39;s some amazing content. It&#39;s very engaging. Right?&quot;</span><span class="p">&gt;</span>
+Click me!<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
 </pre></div>
 
 
 <p>Or using JavaScript:</p>
-<div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#example&#39;</span><span class="p">).</span><span class="nx">popover</span><span class="p">(</span><span class="nx">optionsAndCallbacks</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#example&#39;</span><span class="p">).</span><span class="nx">popover</span><span class="p">(</span><span class="nx">optionsAndCallbacks</span><span class="p">);</span>
 </pre></div>
 
 
@@ -81,7 +81,7 @@ forced to implement <em>hacky tricks</em> or even roll your own solution.</p>
 <p>For example, the API of this plugin does not expose a way to handle a double
 click on an event, but we can set up this behaviour because this plugin
 provides a <code>eventRender</code> callback to manipulate a rendered event.</p>
-<div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#calendar&#39;</span><span class="p">).</span><span class="nx">fullCalendar</span><span class="p">({</span>
+<div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#calendar&#39;</span><span class="p">).</span><span class="nx">fullCalendar</span><span class="p">({</span>
   <span class="c1">// ... more options here</span>
   <span class="nx">eventRender</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">element</span><span class="p">.</span><span class="nx">dblclick</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
@@ -95,20 +95,20 @@ provides a <code>eventRender</code> callback to manipulate a rendered event.</p>
 <p>Should you need something more custom like be able to drag-n-drop events
 between months, which could be implemented with an infinite scroll of months,
 you would be really close to having to fork the entire project.</p>
-<h2>Take over popovers</h2>
+<h2 id="take-over-popovers">Take over popovers<a class="headerlink" href="#take-over-popovers" title="Permanent link">&para;</a></h2>
 <p>One of the best things about Bootstrap's widgets is that they can be represented
 entirely with HTML, without the need to initialize them through JavaScript.</p>
 <p>As a follow up of the popover example, the snippet below shows how to represent
 a popover widget. Notice how we can use classes like <code>bottom</code> to specify the state
 we want for this popover.</p>
-<div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;popover bottom&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;arrow&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
-  <span class="nt">&lt;h3</span> <span class="na">class=</span><span class="s">&quot;popover-title&quot;</span><span class="nt">&gt;</span>Popover title<span class="nt">&lt;/h3&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;popover bottom&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;arrow&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">h3</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;popover-title&quot;</span><span class="p">&gt;</span>Popover title<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
 
-  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;popover-content&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;p&gt;</span>Popover content here.<span class="nt">&lt;/p&gt;</span>
-  <span class="nt">&lt;/div&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;popover-content&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Popover content here.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </pre></div>
 
 
@@ -116,7 +116,7 @@ we want for this popover.</p>
 else in the page, but it can be reused as a template for your custom widget.</p>
 <p>Say we needed to take full control of a popover. I wrote a simple Backbone view
 to achieve that:</p>
-<div class="highlight"><pre><span class="kd">var</span> <span class="nx">PopoverBottom</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">PopoverBottom</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
   <span class="nx">template</span><span class="o">:</span> <span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="nx">$popoverTmpl</span><span class="p">),</span>
   <span class="nx">attributes</span><span class="o">:</span> <span class="p">{</span>
     <span class="s1">&#39;class&#39;</span><span class="o">:</span> <span class="s1">&#39;popover bottom&#39;</span><span class="p">,</span>
@@ -137,7 +137,7 @@ to achieve that:</p>
 positioned. So we can make use of another library that knows how to position
 elements. In this case I'll use <a href="http://github.hubspot.com/tether/" title="Tether">Tether</a> and modify the popover view so
 that it can clean up itself before it's removed.</p>
-<div class="highlight"><pre><span class="kd">var</span> <span class="nx">Popover</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">Popover</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
   <span class="nx">template</span><span class="o">:</span> <span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="nx">popoverTmpl</span><span class="p">),</span>
   <span class="nx">attributes</span><span class="o">:</span> <span class="p">{</span>
     <span class="s1">&#39;class&#39;</span><span class="o">:</span> <span class="s1">&#39;popover bottom fade in&#39;</span><span class="p">,</span>
@@ -170,7 +170,7 @@ that it can clean up itself before it's removed.</p>
 
 <p>We have combined Bootstrap for presentation, Backbone for logic and Tether as
 a helper for positioning elements. Live demo <a href="https://jsfiddle.net/p82fsx06/1/" title="Live demo">here</a>.</p>
-<h2>Wishful thinking</h2>
+<h2 id="wishful-thinking">Wishful thinking<a class="headerlink" href="#wishful-thinking" title="Permanent link">&para;</a></h2>
 <p>It's perfectly fine if plugins expose a simple way to cover the 80% of use cases
 or some basic functionality. But it's clear that pure libraries tend to
 outperform ready-made plugins in terms of flexibility. I often see plugins

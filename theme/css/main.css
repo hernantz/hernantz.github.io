@@ -173,3 +173,18 @@ pre {
 
 .highlight {
   border: 1px solid lightblue; }
+
+.headerlink {
+  visibility: hidden;
+  margin-left: 0.5em;
+  font-size: 0.8em;
+}
+
+h1:hover .headerlink,
+h2:hover .headerlink,
+h3:hover .headerlink,
+h4:hover .headerlink,
+h5:hover .headerlink,
+h6:hover .headerlink {
+  visibility: visible;
+}
