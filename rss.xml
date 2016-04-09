@@ -141,10 +141,9 @@ that raises the question of whether an object which has had all of its
 components replaced remains fundamentally the same object."&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;cite&gt;&lt;a href="https://en.wikipedia.org/wiki/Ship_of_Theseus" title="Ship of Theseus"&gt;Ship of Theseus&lt;/a&gt;&lt;/cite&gt;. Wikipedia.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;The answer to the paradox is easy if a large portion of the ship is replaced at
-once, but it becomes more confusing if the change happens gradually, one plank
-at a time. The answer to the paradox seems to be related to how those changes
-are implemented.&lt;/p&gt;
+&lt;p&gt;The answer to the paradox seems to be related to how those changes are
+implemented. It is easy if a large portion of the ship is replaced at once, but
+it becomes more confusing if the change happens gradually, one plank at a time.&lt;/p&gt;
 &lt;p&gt;On software projects, something similar occurs. There's a new requirement that
 implies many changes, could be a refactor, a redesign or a new feature, that
 can be implemented in small or huge stages.&lt;/p&gt;
