@@ -40,11 +40,13 @@
         
 <article class="column-right">
   <h1 class="article-title">Elasticsearch your Django models</h1>
-  <p class="light">
-    Published
-on <time datetime="2016-02-07T00:00:00-03:00">Sun 07 February 2016</time>,     under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
-    tagged with <a href="http://hernantz.github.io/tag/elasticsearch.html">elasticsearch</a>, <a href="http://hernantz.github.io/tag/python.html">python</a>, <a href="http://hernantz.github.io/tag/django.html">django</a> and <a href="http://hernantz.github.io/tag/search.html">search</a>.
-  </p>
+  <summary>
+    <p class="light">
+      Published
+on <time datetime="2016-02-07T00:00:00-03:00">Sun 07 February 2016</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
+      tagged with <a href="http://hernantz.github.io/tag/elasticsearch.html">elasticsearch</a>, <a href="http://hernantz.github.io/tag/python.html">python</a>, <a href="http://hernantz.github.io/tag/django.html">django</a> and <a href="http://hernantz.github.io/tag/search.html">search</a>.
+    </p>
+  </summary>
   <p><img alt="Galileo" src="/images/django-elasticsearch.jpg" title="19th-century painting depicting Galileo Galilei displaying his telescope to Leonardo Donato in 1609." /></p>
 <h2 id="so-long-haystack">So long haystack<a class="headerlink" href="#so-long-haystack" title="Permanent link">&para;</a></h2>
 <h2 id="create-and-index-and-load-data">Create and index and load data<a class="headerlink" href="#create-and-index-and-load-data" title="Permanent link">&para;</a></h2>
@@ -68,8 +70,14 @@ Sumitting documents with new fields wont fail but succeed, following
 the process mentioned above but with the exception that since we 
 did not declare explicitly the new fields types, those will be left
 for ES to interpret.</p>
+<p>Usar las migraciones de django para realizar cambios</p>
 <p>http://bluesock.org/~willkg/blog/dev/elasticsearch_part1_index.html
-http://www.opencrowd.com/blog/post/elasticsearch-django-tutorial/</p>
+http://www.opencrowd.com/blog/post/elasticsearch-django-tutorial/
+https://github.com/liberation/django-elasticsearch
+https://github.com/ChristopherRabotin/bungiesearch/blob/master/bungiesearch/<strong>init</strong>.py
+https://github.com/jaddison/django-simple-elasticsearch
+http://elasticutils.readthedocs.org/en/latest/django.html
+https://www.youtube.com/watch?v=7FLXjgB0PQI&amp;nohtml5=False</p>
 </article>
 
   <footer class="column-right light">
