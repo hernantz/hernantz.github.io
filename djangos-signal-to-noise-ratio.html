@@ -4,12 +4,12 @@
   <title>Django's signal to noise ratio | what's the point</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="stylesheet" href="./theme/css/main.css" type="text/css" />
-  <link rel="stylesheet" href="./theme/css/fontawesome.min.css" type="text/css" media="screen, projection" />
-  <link rel="stylesheet" href="./theme/css/github.css" type="text/css" />
-  <link href="./" type="application/atom+xml" rel="alternate" title="what's the point ATOM Feed" />
-  <link href="./images/favicon.ico" rel="icon" type="image/x-icon" />
-  <link href="./rss.xml" type="application/atom+xml" rel="alternate" title="what's the point RSS Feed" />
+  <link rel="stylesheet" href="http://hernantz.github.io/theme/css/main.css" type="text/css" />
+  <link rel="stylesheet" href="http://hernantz.github.io/theme/css/fontawesome.min.css" type="text/css" media="screen, projection" />
+  <link rel="stylesheet" href="http://hernantz.github.io/theme/css/github.css" type="text/css" />
+  <link href="http://hernantz.github.io/" type="application/atom+xml" rel="alternate" title="what's the point ATOM Feed" />
+  <link href="http://hernantz.github.io/images/favicon.ico" rel="icon" type="image/x-icon" />
+  <link href="http://hernantz.github.io/rss.xml" type="application/atom+xml" rel="alternate" title="what's the point RSS Feed" />
   <meta name="description" content="Keeping a balance between decoupled and maintenable code.">
   <meta name="keywords" content="django, python">
   <meta name="author" content="hernantz">
@@ -19,7 +19,7 @@
 
   <aside class="sidebar">
     <div class="avatar centered-block">
-      <a href="/"><img class="rounded-img" src="./images/avatar.png" height="75" width="75" /></a>
+      <a href="/"><img class="rounded-img" src="http://hernantz.github.io/images/avatar.png" height="75" width="75" /></a>
     </div>
 
     <div class="name centered-block">
@@ -43,8 +43,8 @@
   <summary>
     <p class="light">
       Published
-on <time datetime="2016-04-22T00:00:00-03:00">Fri 22 April 2016</time>,       under <a href="./category/programming.html">Programming</a>,
-      tagged with <a href="./tag/django.html">django</a> and <a href="./tag/python.html">python</a>.
+on <time datetime="2016-04-29T00:00:00-03:00">Fri 29 April 2016</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
+      tagged with <a href="http://hernantz.github.io/tag/django.html">django</a> and <a href="http://hernantz.github.io/tag/python.html">python</a>.
     </p>
   </summary>
   <p><img alt="Contact (1997) scene" src="/images/signal-to-noise-ratio.png" title="Contact (1997)" /></p>
@@ -130,9 +130,9 @@ to hook in there our custom code.</p>
 <h2 id="signal">Signal<a class="headerlink" href="#signal" title="Permanent link">&para;</a></h2>
 <p>Truth be told, signals have broather applications that cannot be replaced by
 extending a single method.</p>
-<p>For example, when you have to track changes in <code>M2MField</code> fields</p>
+<p>For example, when you have to track changes in <code>ManyToManyField</code> fields</p>
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Question</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-    <span class="n">favorited</span> <span class="o">=</span> <span class="n">M2MField</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
+    <span class="n">favorited</span> <span class="o">=</span> <span class="n">ManyToManyField</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
 </pre></div>
 
 
@@ -149,7 +149,7 @@ the <code>m2m_changed</code> signals for that: </p>
 </pre></div>
 
 
-<p>In case we needed to track multiple m2m relations, we can do that all in a
+<p>In case we needed to track multiple m2m relations, we can do all that in a
 single handler:</p>
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FavableMixin</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
     <span class="n">favorited</span> <span class="o">=</span> <span class="n">M2MField</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;favorite_</span><span class="si">%(class)s</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -197,22 +197,22 @@ party app, without having to create a new login view:</p>
 
 
 <p>Django puts emphasis on <strong>following conventions</strong>, and signals shouldn't be the
-exception. You have to place signals and handlers somewhere the framework can 
+exception. You have to place signals and handlers somewhere the framework can
 pick them up automatically, and that is usually the <code>models.py</code> or <code>urls.py</code> of
 each app. Something tidier would be to place them in a <code>signals.py</code> file or
 module and import it explicitly in the app's config file, as suggested by
 <a href="https://docs.djangoproject.com/en/1.9/topics/signals/" title="Django documentation">the docs</a>.</p>
 <p>There is nothing wrong with signals <em>per se</em>, so long as there's a good balance
 between decoupled and maintenable code. As a general rule I would suggest to
-<strong>avoid using signals for code you own</strong>, i.e. put everything inside a method or
-view, and <em>try to avoid them</em> for code you don't own, <strong>except when it sounds
+<strong>avoid using signals for code you own</strong>. Instead put everything inside a method
+or view, and <em>try to avoid them</em> for code you don't own, <strong>except when it sounds
 like a good idea</strong>.</p>
 </article>
 
   <footer class="column-right light">
     <hr/>
     <p>Hola internauta! If you liked the content of this blog and want to talk about it, you can find me on twitter as <a target="_blank" href="http://twitter.com/hernantz">@hernantz</a>.</p>
-    <nav><a href=".">Home</a> - <a href="./archives.html">Archives</a> - <a href="./categories.html">Categories</a> - <a href="./tags.html">Tags</a> - <a href="./rss.xml">RSS</a> | what's the point (© 2016)</nav>
+    <nav><a href="http://hernantz.github.io">Home</a> - <a href="http://hernantz.github.io/archives.html">Archives</a> - <a href="http://hernantz.github.io/categories.html">Categories</a> - <a href="http://hernantz.github.io/tags.html">Tags</a> - <a href="http://hernantz.github.io/rss.xml">RSS</a> | what's the point (© 2016)</nav>
     <p></p>
   </footer>
 
