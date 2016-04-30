@@ -97,7 +97,7 @@ different handlers. Specially because <strong>the order in which they get execut
 not inmediatelly clear</strong>.</p>
 <h2 id="silence">Silence<a class="headerlink" href="#silence" title="Permanent link">&para;</a></h2>
 <p>The following snippet shows how to put everything in one place, gaining us some
-maintenability, but still allowing us differentiate recently created instances,
+maintainability, but still allowing us differentiate recently created instances,
 <code>pre_save</code> and <code>post_save</code> code:</p>
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
     <span class="c1"># ...</span>
@@ -128,7 +128,7 @@ maintenability, but still allowing us differentiate recently created instances,
 it is called by other frameworks like DRF or the admin so it makes a good place
 to hook in there our custom code.</p>
 <h2 id="signal">Signal<a class="headerlink" href="#signal" title="Permanent link">&para;</a></h2>
-<p>Truth be told, signals have broather applications that cannot be replaced by
+<p>Truth be told, signals have broader applications that cannot be replaced by
 extending a single method.</p>
 <p>For example, when you have to track changes in <code>ManyToManyField</code> fields</p>
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Question</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>

@@ -49,7 +49,7 @@ different handlers. Specially because &lt;strong&gt;the order in which they get 
 not inmediatelly clear&lt;/strong&gt;.&lt;/p&gt;
 &lt;h2 id="silence"&gt;Silence&lt;a class="headerlink" href="#silence" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The following snippet shows how to put everything in one place, gaining us some
-maintenability, but still allowing us differentiate recently created instances,
+maintainability, but still allowing us differentiate recently created instances,
 &lt;code&gt;pre_save&lt;/code&gt; and &lt;code&gt;post_save&lt;/code&gt; code:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;User&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="c1"&gt;# ...&lt;/span&gt;
@@ -80,7 +80,7 @@ maintenability, but still allowing us differentiate recently created instances,
 it is called by other frameworks like DRF or the admin so it makes a good place
 to hook in there our custom code.&lt;/p&gt;
 &lt;h2 id="signal"&gt;Signal&lt;a class="headerlink" href="#signal" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Truth be told, signals have broather applications that cannot be replaced by
+&lt;p&gt;Truth be told, signals have broader applications that cannot be replaced by
 extending a single method.&lt;/p&gt;
 &lt;p&gt;For example, when you have to track changes in &lt;code&gt;ManyToManyField&lt;/code&gt; fields&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Question&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
