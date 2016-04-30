@@ -130,9 +130,9 @@ to hook in there our custom code.</p>
 <h2 id="signal">Signal<a class="headerlink" href="#signal" title="Permanent link">&para;</a></h2>
 <p>Truth be told, signals have broather applications that cannot be replaced by
 extending a single method.</p>
-<p>For example, when you have to track changes in <code>M2MField</code> fields</p>
+<p>For example, when you have to track changes in <code>ManyToManyField</code> fields</p>
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Question</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-    <span class="n">favorited</span> <span class="o">=</span> <span class="n">M2MField</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
+    <span class="n">favorited</span> <span class="o">=</span> <span class="n">ManyToManyField</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
 </pre></div>
 
 
