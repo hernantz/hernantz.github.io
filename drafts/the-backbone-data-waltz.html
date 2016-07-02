@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>The Backbone data waltz | README.txt</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/github.css" type="text/css" />
+  <link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
+  <link href="/rss.xml" type="application/atom+xml" rel="alternate" title="README.txt RSS Feed" />
+  <meta name="description" content="Orchestrating data relationships in your models">
+  <meta name="keywords" content="backbone, javascript, best-practices">
+  <meta name="author" content="hernantz">
+</head>
+
+<body>
+
+  <aside class="sidebar">
+    <a href="/"><img class="rounded-img" src="/images/avatar.png" height="75" width="75" /></a>
+
+      <nav>
+        <ul>
+            <li><a href="http://twitter.com/hernantz">twitter</i></a></li>
+            <li><a href="http://github.com/hernantz">github</i></a></li>
+            <li><a href="/">blog</a></li>
+        </ul>
+      </nav>
+
+  </aside>
+
+        
+<article class="column-right">
+  <h1 class="main-title">The Backbone data waltz</h1>
+  <summary>
+    <p class="light">
+      Published
+on <time datetime="2016-05-04T00:00:00-03:00">Wed 04 May 2016</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
+      tagged with <a href="http://hernantz.github.io/tag/backbone.html">backbone</a>, <a href="http://hernantz.github.io/tag/javascript.html">javascript</a> and <a href="http://hernantz.github.io/tag/best-practices.html">best-practices</a>.
+    </p>
+  </summary>
+  <p><img alt="the arsenic waltz" src="/images/the-arsenic-waltz.jpg" title="The arsenic waltz" /></p>
+<p>We know that Backbone has done a great job at provinding the <strong>bare minimum
+structure</strong> to build apps that separate logic from presentation, and thus, making them
+easier to reason about.</p>
+<p>Because we are given just the basic tools in an unopinionated way, the implementation
+is left for the developer to design.</p>
+<p>This post is an attempt to share some strategies I find useful for <strong>building an
+event-driven UI</strong>.</p>
+<h2 id="representing-complex-data">Representing complex data<a class="headerlink" href="#representing-complex-data" title="Permanent link">&para;</a></h2>
+<p>Usually you will have models that depend of data contained in other models, because
+you a relational database behind, and you have done a good job normalizing it.</p>
+<p>If your data is presented by the server inlining all related data:</p>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s1">&#39;id&#39;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;uri&#39;</span> <span class="s1">&#39;/some/model/1/&#39;</span>
+    <span class="s1">&#39;some_field&#39;</span><span class="o">:</span> <span class="s1">&#39;some value&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;related_model&#39;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s1">&#39;id&#39;</span><span class="o">:</span> <span class="mi">1</span>
+        <span class="s1">&#39;uri&#39;</span><span class="o">:</span> <span class="s1">&#39;/other/model/1/&#39;</span>
+        <span class="s1">&#39;some_field&#39;</span><span class="o">:</span> <span class="s1">&#39;some value&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>By overriding the parse method we can hydrate an instance of the related model using
+the data sent from the server.</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">Model</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+    <span class="nx">parse</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">relatedModel</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">RelatedModel</span><span class="p">(</span><span class="nx">response</span><span class="p">[</span><span class="s1">&#39;related&#39;</span><span class="p">]);</span>
+        <span class="k">return</span> <span class="nx">response</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+
+
+<p>But this way, can potentially have two independant instances
+that refer to the same data, but they don't know about the existance of each other, so 
+if one of them changes that data, the other one doesn't get updated with the same changes. </p>
+<p>Multiple instances are best kept inside collections. If only the Model instance acepted
+a related collection, then we could store all related models just once.</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">Model</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+    <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// TODO: ver si esto no pisa los datos del modelo</span>
+        <span class="c1">// TODO: ver la firma del initialize </span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">related</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">relatedCollection</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="nx">parse</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">relatedModel</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">related</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="s1">&#39;related&#39;</span><span class="p">],</span> <span class="p">{</span><span class="s1">&#39;merge&#39;</span><span class="o">:</span> <span class="kc">true</span><span class="p">});</span>
+        <span class="k">return</span> <span class="nx">response</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+
+
+<p>Now we have a single instance per relation so that if it gets updated in one place 
+of the code base, those changes get reflected everywhere.  But the problem now is
+that we need to pass this related collection every time we create a new instance. </p>
+<p>Better off is to have both type of models into their respective collections and
+and do:</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">Model</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+    <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">relatedModel</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">RelatedModel</span><span class="p">();</span>
+    <span class="p">},</span>
+    <span class="nx">associate</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">relatedCollection</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">opts</span> <span class="o">=</span> <span class="nx">options</span> <span class="o">||</span> <span class="p">{};</span>
+
+        <span class="c1">// &#39;related&#39; is not modified in the parse method when obtained</span>
+        <span class="c1">// from the response and is stored as part of the model&#39;s data</span>
+        <span class="c1">// directly by Backbone.</span>
+        <span class="kd">var</span> <span class="nx">rel</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;related&#39;</span><span class="p">);</span> 
+
+        <span class="c1">// Be carefull here with &#39;merge&#39;, since the data that is inside</span>
+        <span class="c1">// relatedCollection could be more fresh that the one merging now.</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">relatedModel</span> <span class="o">=</span> <span class="nx">relatedCollection</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">rel</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;merge&#39;</span><span class="o">:</span> <span class="kc">true</span><span class="p">});</span>
+
+        <span class="c1">// optionally, notify that this model is fully packed now</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">opts</span><span class="p">.</span><span class="nx">silent</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;change&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+
+
+<p>Then, somewhere in your codebase, we would use it like this:</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">relatedCollection</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">RelatedCollection</span><span class="p">(),</span>
+    <span class="nx">model</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Model</span><span class="p">({</span>
+        <span class="s1">&#39;foo&#39;</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;related&#39;</span><span class="o">:</span> <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="o">:</span> <span class="mi">1</span><span class="p">}</span>
+    <span class="p">});</span>
+
+<span class="nx">model</span><span class="p">.</span><span class="nx">associate</span><span class="p">(</span><span class="nx">relatedCollection</span><span class="p">);</span>
+</pre></div>
+
+
+<p>To keep our API clean:</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">Model</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+    <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// TODO: ver la firma del initialize </span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">relatedModel</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">RelatedModel</span><span class="p">();</span>
+    <span class="p">},</span>
+    <span class="nx">associate</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">relatedCollection</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">opts</span> <span class="o">=</span> <span class="nx">options</span> <span class="o">||</span> <span class="p">{};</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">relatedModel</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;related&#39;</span><span class="p">));</span> 
+        <span class="nx">relatedCollection</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">relatedModel</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;merge&#39;</span><span class="o">:</span> <span class="kc">true</span><span class="p">});</span>
+
+        <span class="c1">// optionally, notify that this model is fully packed now,</span>
+        <span class="c1">// only if the related model has changed</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">opts</span><span class="p">.</span><span class="nx">silent</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">relatedModel</span><span class="p">.</span><span class="nx">changed</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;change&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+
+
+<p>TODO hablar de que el JSON response puede no venir inline model, solo el id
+por lo que hay que obtener los datos desde otro recurso, con id=1,2,3</p>
+<p>TODO: wait for a sync-related event triggered by the model or the entire collection</p>
+<p>TODO: override toJSON de cada modelo para que incluya esos datos en la vista?
+TODO: model para que tenga ya una instancia vacia del related, cuando hacemos set usar parse=true?</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">ModelCollection</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Collection</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+    <span class="nx">model</span><span class="o">:</span> <span class="nx">Model</span><span class="p">,</span>
+    <span class="nx">associate</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">relatedCollection</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// call each model&#39;s associate method</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">invoke</span><span class="p">(</span><span class="s1">&#39;associate&#39;</span><span class="p">,</span> <span class="nx">relatedCollection</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;silent&#39;</span><span class="o">:</span> <span class="kc">true</span><span class="p">});</span>
+
+        <span class="c1">// optionally, notify that all models in this collection are</span>
+        <span class="c1">// fully packed now</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;update&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+
+
+<ol>
+<li>A le pide los ids a B</li>
+<li>B se fija qque tiene y que pide lo que le falta</li>
+<li>B notifica que se actualizo</li>
+<li>A asocia sus datos con B</li>
+</ol>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">View</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+    <span class="nx">events</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s1">&#39;click .refresh&#39;</span><span class="o">:</span> <span class="s1">&#39;onRefresh&#39;</span>
+    <span class="p">},</span>
+    <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">products</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">products</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">listenTo</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">products</span><span class="p">,</span> <span class="s1">&#39;related-sync&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">onRefreshSuccess</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">listenTo</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">products</span><span class="p">,</span> <span class="s1">&#39;related-error&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">onRefreshError</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">onRefresh</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">products</span><span class="p">.</span><span class="nx">fetch</span><span class="p">()</span>
+    <span class="p">},</span>
+    <span class="nx">onRefreshSuccess</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// do something</span>
+    <span class="p">},</span>
+    <span class="nx">onRefreshError</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// do something</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+
+
+<p>If we remember the Backbone way of doing things, not only models can be attached to
+multiple views, but views can depend on multiple pieces of data too. How can this
+situation be handled? Well, here is my attempt:</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">trigger</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">trigger</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">Backbone</span><span class="p">),</span>
+    <span class="nx">success</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">partial</span><span class="p">(</span><span class="nx">trigger</span><span class="p">,</span> <span class="s1">&#39;refresh-success&#39;</span><span class="p">),</span>
+    <span class="nx">error</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">partial</span><span class="p">(</span><span class="nx">trigger</span><span class="p">,</span> <span class="s1">&#39;refresh-error&#39;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">View</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+    <span class="nx">events</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s1">&#39;click .refresh&#39;</span><span class="o">:</span> <span class="s1">&#39;onRefresh&#39;</span>
+    <span class="p">},</span>
+    <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">products</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">products</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">discounts</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">discounts</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">listenTo</span><span class="p">(</span><span class="nx">Backbone</span><span class="p">,</span> <span class="s1">&#39;refresh-success&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">onRefreshSuccess</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">listenTo</span><span class="p">(</span><span class="nx">Backbone</span><span class="p">,</span> <span class="s1">&#39;refresh-error&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">onRefreshError</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">onRefresh</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">products</span><span class="p">.</span><span class="nx">fetch</span><span class="p">(),</span> <span class="k">this</span><span class="p">.</span><span class="nx">discounts</span><span class="p">.</span><span class="nx">fetch</span><span class="p">())</span>
+            <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">success</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">onRefreshSuccess</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">attr1</span><span class="p">,</span> <span class="nx">attr2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// TODO: what arguments do we get?</span>
+        <span class="c1">// do something</span>
+    <span class="p">},</span>
+    <span class="nx">onRefreshError</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// TODO: what arguments do we get?</span>
+        <span class="c1">// do something</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+
+
+<p>This bad behaviour can be omitted by using an intermediary.</p>
+<p>When/Where to fetch your data?
+Mostrar el approach de usar bacbkone como lo hacen en mixpanel:
+https://code.mixpanel.com/2015/04/08/straightening-our-backbone-a-lesson-in-event-driven-ui-development/</p>
+<p>Usar MarionetteJS.Object?</p>
+<h2 id="displaying-any-state-of-your-data">Displaying any state of your data<a class="headerlink" href="#displaying-any-state-of-your-data" title="Permanent link">&para;</a></h2>
+<p>Ideally views receive instances, because those instances are shared among other views.
+The view shouldn't assume that the model has a certain state.
+It could be possible that there is an undergoing event in the background.
+The view should be able to render the model in whatever that state might be.
+Cada vista deberia solamente preocuparse de lo suyo</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">myModel</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MyModel</span><span class="p">();</span>
+<span class="nx">view</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">view</span><span class="p">({</span><span class="nx">model</span><span class="o">:</span> <span class="nx">myModel</span><span class="p">});</span>
+<span class="nx">myModel</span><span class="p">.</span><span class="nx">fetch</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Ej: loading y Backbone.SOS</p>
+</article>
+
+  <footer class="column-right light">
+    <hr/>
+    <nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> | README.txt (© 2016)</nav>
+    <p></p>
+  </footer>
+
+</body>
+</html>

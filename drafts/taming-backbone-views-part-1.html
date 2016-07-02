@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Taming Backbone Views: Part 1 | what's the point</title>
+  <title>Taming Backbone Views: Part 1 | README.txt</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="stylesheet" href="http://hernantz.github.io/theme/css/main.css" type="text/css" />
-  <link rel="stylesheet" href="http://hernantz.github.io/theme/css/fontawesome.min.css" type="text/css" media="screen, projection" />
-  <link rel="stylesheet" href="http://hernantz.github.io/theme/css/github.css" type="text/css" />
-  <link href="http://hernantz.github.io/" type="application/atom+xml" rel="alternate" title="what's the point ATOM Feed" />
-  <link href="http://hernantz.github.io/images/favicon.ico" rel="icon" type="image/x-icon" />
-  <link href="http://hernantz.github.io/rss.xml" type="application/atom+xml" rel="alternate" title="what's the point RSS Feed" />
+  <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/github.css" type="text/css" />
+  <link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
+  <link href="/rss.xml" type="application/atom+xml" rel="alternate" title="README.txt RSS Feed" />
   <meta name="description" content="Some bro tips I learned the hard way when dealing with Backbone views">
   <meta name="keywords" content="backbonejs, best-practices, javascript">
   <meta name="author" content="hernantz">
@@ -18,14 +16,7 @@
 <body>
 
   <aside class="sidebar">
-    <div class="avatar centered-block">
-      <a href="/"><img class="rounded-img" src="http://hernantz.github.io/images/avatar.png" height="75" width="75" /></a>
-    </div>
-
-    <div class="name centered-block">
-      <a href="/">hernantz</a>
-    </div>
-
+    <a href="/"><img class="rounded-img" src="/images/avatar.png" height="75" width="75" /></a>
 
       <nav>
         <ul>
@@ -39,7 +30,7 @@
 
         
 <article class="column-right">
-  <h1 class="article-title">Taming Backbone Views: Part 1</h1>
+  <h1 class="main-title">Taming Backbone Views: Part 1</h1>
   <summary>
     <p class="light">
       Published
@@ -47,7 +38,7 @@ on <time datetime="2014-08-25T19:42:00-03:00">Mon 25 August 2014</time>,       u
       tagged with <a href="http://hernantz.github.io/tag/backbonejs.html">backbonejs</a>, <a href="http://hernantz.github.io/tag/best-practices.html">best-practices</a> and <a href="http://hernantz.github.io/tag/javascript.html">javascript</a>.
     </p>
   </summary>
-  <p>It often seems to me that Backbone developers sometimes do not trust that the 
+  <p>It often seems to me that Backbone developers sometimes do not trust that the
 <code>view.el</code> property be present when needed, eg: when rendering the view.</p>
 <h1 id="el-you-there">"el", you there?<a class="headerlink" href="#el-you-there" title="Permanent link">&para;</a></h1>
 <p>But the true story is that Backbone ensures this element is up and running 
@@ -120,13 +111,17 @@ directly to the view in the following post.</p>
 <domino14> ive had plenty of times where render() creates the buttons that are defined in events {}
 <domino14> and the click works
 <domino14> render would presumably be created after</p>
-<p>USE swig template engine to share templates and do server side rendering</p>
+<h1 id="react-without-react">React without react<a class="headerlink" href="#react-without-react" title="Permanent link">&para;</a></h1>
+<p>Understanding the principles, implementing with Backbone
+USE swig template engine to share templates and do server side rendering
+Mostrar una lib donde se hace rerender sin el shadow dom
+Mostrar como usando los mismos templates se puede hacer renderizado del lado del server.
+Mostrar como hacer una "ui loading" que empieza a renderizarse en el server y termina en el frontend</p>
 </article>
 
   <footer class="column-right light">
     <hr/>
-    <p>Hola internauta! If you liked the content of this blog and want to talk about it, you can find me on twitter as <a target="_blank" href="http://twitter.com/hernantz">@hernantz</a>.</p>
-    <nav><a href="http://hernantz.github.io">Home</a> - <a href="http://hernantz.github.io/archives.html">Archives</a> - <a href="http://hernantz.github.io/categories.html">Categories</a> - <a href="http://hernantz.github.io/tags.html">Tags</a> - <a href="http://hernantz.github.io/rss.xml">RSS</a> | what's the point (© 2016)</nav>
+    <nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> | README.txt (© 2016)</nav>
     <p></p>
   </footer>
 

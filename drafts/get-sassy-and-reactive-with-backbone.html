@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Get sassy and reactive with Backbone | README.txt</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/github.css" type="text/css" />
+  <link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
+  <link href="/rss.xml" type="application/atom+xml" rel="alternate" title="README.txt RSS Feed" />
+  <meta name="description" content="Strategies to implement an event-driven UI.">
+  <meta name="keywords" content="backbone, javascript, best-practices">
+  <meta name="author" content="hernantz">
+</head>
+
+<body>
+
+  <aside class="sidebar">
+    <a href="/"><img class="rounded-img" src="/images/avatar.png" height="75" width="75" /></a>
+
+      <nav>
+        <ul>
+            <li><a href="http://twitter.com/hernantz">twitter</i></a></li>
+            <li><a href="http://github.com/hernantz">github</i></a></li>
+            <li><a href="/">blog</a></li>
+        </ul>
+      </nav>
+
+  </aside>
+
+        
+<article class="column-right">
+  <h1 class="main-title">Get sassy and reactive with Backbone</h1>
+  <summary>
+    <p class="light">
+      Published
+on <time datetime="2016-05-04T00:00:00-03:00">Wed 04 May 2016</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
+      tagged with <a href="http://hernantz.github.io/tag/backbone.html">backbone</a>, <a href="http://hernantz.github.io/tag/javascript.html">javascript</a> and <a href="http://hernantz.github.io/tag/best-practices.html">best-practices</a>.
+    </p>
+  </summary>
+  <p><img alt="The Dance of Death by Isaac Cruikshank" src="/images/dance-of-death.jpg" title="The Dance of Death by Isaac Cruikshank" /></p>
+<p>We know that Backbone has done a great job at provinding the <strong>bare minimum
+structure</strong> to build apps that separate logic from presentation, and thus, making them
+easier to reason about.</p>
+<p>Because we are given just the basic tools in an unopinionated way, the implementation
+is left for the developer to design.</p>
+<p>This post is an attempt to share some strategies I find useful for <strong>building an
+event-driven UI</strong>.</p>
+<h2 id="reacting-to-changes-in-a-model">Reacting to changes in a model<a class="headerlink" href="#reacting-to-changes-in-a-model" title="Permanent link">&para;</a></h2>
+<p>The core idea is that data and buiseness logic is managed by models or collections,
+that not only can be shared throughout the app but also rendered in many diferent data-less views.</p>
+<p>The way this is achieved is through events.</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">View</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+    <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">listenTo</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">,</span> <span class="s1">&#39;sync&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">onSave</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">listenTo</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">onError</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+
+
+<p>In the snippet above we made a view react to events that ocurr on a model.
+The first thing you'll notice is that we are using <code>listenTo()</code> over <code>on()</code>
+so that the view is put in charge of tracking the events instead of the model
+and therefore we avoid the changes of leaking memory with zombie views, since
+it would stop listening to these events once it gets <a href="http://backbonejs.org/#View-remove" title="View remove()">removed</a>.</p>
+<p>As models can be attached to multiple views, it is possible that more than one
+view is manipulating the model and reacting to the same events, which results
+in the developer loosing track of all moving pieces.</p>
+<p>The solution to this problem is becoming more specific.</p>
+<p>Backbone's <code>save()</code> and <code>fetch()</code> methods accept <strong>callbacks to react specifically</strong> to
+a successful of failed interaction.</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">View</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+    <span class="nx">events</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s1">&#39;submit form&#39;</span><span class="o">:</span> <span class="s1">&#39;onFormSubmit&#39;</span>
+    <span class="p">},</span>
+    <span class="nx">onFormSubmit</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">{</span>
+            <span class="s1">&#39;success&#39;</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">onSave</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">),</span>
+            <span class="s1">&#39;error&#39;</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">onError</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+
+
+<p>In this case we are waranteed that the <code>onSave()</code> and <code>onError()</code>
+callbacks are called as a result of the form submit event that this view handles,
+whilst other views can still hook to generic events emitted by the same model.</p>
+<p>Unfortunatelly there is a problem with this approach and it's that the model
+is holding references to a potential <em>zombie</em> view. The issue can be easyly spotted
+when the interaction with the server takes a while to finish or the view's use case is
+esphimeral in nature (like an inline edit interface). If the view is destroyed
+when the server has not responded yet, then the success or error callbacks will
+get executed, resurrecting the view from the death.</p>
+<p>We need something similar to the first snippet, where the view was in charge of
+keeping a reference to the model, but we also need to have specificity.</p>
+<p>Through the use of custom triggers, we can get close to that:</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">View</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+    <span class="nx">events</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s1">&#39;submit form&#39;</span><span class="o">:</span> <span class="s1">&#39;onFormSubmit&#39;</span>
+    <span class="p">},</span>
+    <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">listenTo</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">,</span> <span class="s1">&#39;custom-save&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">onSave</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">listenTo</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">,</span> <span class="s1">&#39;custom-error&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">onError</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">onFormSubmit</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">{</span>
+            <span class="s1">&#39;success&#39;</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">model</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+                 <span class="nx">model</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;custom-save&#39;</span><span class="p">,</span> <span class="nx">model</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+            <span class="p">},</span>
+            <span class="s1">&#39;error&#39;</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">model</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">model</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;custom-error&#39;</span><span class="p">,</span> <span class="nx">model</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+            <span class="p">},</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+
+
+<p>But, that looks like too much boilerplate, doesn't it? Lucky for us, there
+is a cleaner way to achieve the same, and is to use the options param when
+calling <code>save()</code>.</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">View</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+    <span class="nx">events</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s1">&#39;submit form&#39;</span><span class="o">:</span> <span class="s1">&#39;onFormSubmit&#39;</span>
+    <span class="p">},</span>
+    <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">listenTo</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">,</span> <span class="s1">&#39;sync&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">onSave</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">listenTo</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">onError</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">onFormSubmit</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;action&#39;</span><span class="o">:</span> <span class="s1">&#39;form-submit&#39;</span><span class="p">});</span>
+    <span class="p">},</span>
+    <span class="nx">onSave</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">model</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">action</span> <span class="o">===</span> <span class="s1">&#39;form-submit&#39;</span><span class="p">)</span> <span class="p">{</span> 
+            <span class="c1">// do something</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nx">onError</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">model</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">action</span> <span class="o">===</span> <span class="s1">&#39;form-submit&#39;</span><span class="p">)</span> <span class="p">{</span> 
+            <span class="c1">// do something</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+<span class="p">});</span>
+</pre></div>
+
+
+<p>This <code>options</code> object is useful to modify the behaviour of the underlying
+ajax request, but since it is also passed to the listening functions, we
+can add any extra information we need, like where is this event coming from.</p>
+<p>This way, every callback that needs to only perform some <em>action</em> if the event
+corresponds to a specific user interaction, it's just a matter of checking the
+value of that parameter. If a given callback should always be run, no matter
+what the action was, then it would simply omit this check. As you can see <strong>the
+solution requires following a convention</strong>.</p>
+<h2 id="modifying-a-replica">Modifying a replica<a class="headerlink" href="#modifying-a-replica" title="Permanent link">&para;</a></h2>
+<p>Use model.clone() to use inside a CRUD view so that you can modify it, see a live preview of edits, and have a cancel button which discards
+the changes.</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">View</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+    <span class="nx">events</span> <span class="p">{</span>
+        <span class="s1">&#39;click .save&#39;</span><span class="o">:</span> <span class="s1">&#39;onSave&#39;</span>
+    <span class="p">},</span>
+    <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">clone</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">clone</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">listenTo</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">clone</span><span class="p">,</span> <span class="s1">&#39;change&#39;</span><span class="p">,</span> <span class="s1">&#39;render&#39;</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">onSave</span><span class="o">:</span> <span class="nx">funtion</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">clone</span><span class="p">.</span><span class="nx">attributes</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+
+
+<p>Aca ver si conviene</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">View</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+    <span class="nx">events</span> <span class="p">{</span>
+        <span class="s1">&#39;click .save&#39;</span><span class="o">:</span> <span class="s1">&#39;onSave&#39;</span>
+    <span class="p">},</span>
+    <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">clone</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">clone</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">listenTo</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">clone</span><span class="p">,</span> <span class="s1">&#39;change&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">render</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">listenTo</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">clone</span><span class="p">,</span> <span class="s1">&#39;sync&#39;</span><span class="p">,</span> <span class="s2">&quot;TODO QUE VA ACA?&quot;</span><span class="p">)</span>
+    <span class="p">},</span>
+    <span class="nx">onSave</span><span class="o">:</span> <span class="nx">funtion</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">clone</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+
+
+<p>Comentar como hacer validacion, devolviendo un hash</p>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s1">&#39;campo1&#39;</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;error1&#39;</span><span class="p">,</span> <span class="s1">&#39;error2&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;campo2&#39;</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;error1&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;_non-field-errors&#39;</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;error1&#39;</span><span class="p">,</span> <span class="s1">&#39;error2&#39;</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Cuando creamos un modelo nuevo, es el mismo caso que <code>.clone()</code>
+No queremos que el model apenas se muestra tenga errores como "este campo es requerido".</p>
+<p>Firts things first, let's see what views are, or should be. In the
+[Backbone docs][1] there's a clear indication that views are a component that
+should just pipe user input into models and display the model's state in a
+reactive manner.</p>
+<p>By following this pattern, views become very lightweight and straightforward to
+reason about. So, if your views have too much code in them, then your are very
+probably doing it wrong.</p>
+<h1 id="dont-overreact">Don't overreact<a class="headerlink" href="#dont-overreact" title="Permanent link">&para;</a></h1>
+<p>https://github.com/facebook/react/blob/master/examples/jquery-mobile/js/app.js
+https://github.com/facebook/react/tree/master/examples/jquery-bootstrap</p>
+</article>
+
+  <footer class="column-right light">
+    <hr/>
+    <nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> | README.txt (© 2016)</nav>
+    <p></p>
+  </footer>
+
+</body>
+</html>
