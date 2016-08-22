@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/theme/css/github.css" type="text/css" />
   <link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
   <link href="/rss.xml" type="application/atom+xml" rel="alternate" title="README.txt RSS Feed" />
-  <meta name="description" content="Implement a billing system that doesn't suck.">
+  <meta name="description" content="Thougth experiment to design a generic billing system.">
   <meta name="keywords" content="">
   <meta name="author" content="hernantz">
 </head>
@@ -37,7 +37,127 @@
 on <time datetime="2016-05-04T00:00:00-03:00">Wed 04 May 2016</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>.
     </p>
   </summary>
-  <p>https://www.petekeen.net/stripe</p>
+  <p><img alt="One dollar" src="/images/one-dollar.jpg" title="One dollar" /></p>
+<h2 id="abstract">Abstract<a class="headerlink" href="#abstract" title="Permanent link">&para;</a></h2>
+<p>This post is thougth experiment to design a billing system, trying to be generic
+enough, so that hopefully it covers a wide range of situations (if not all of
+them), in which transactions that involve money take place.</p>
+<h2 id="scope">Scope<a class="headerlink" href="#scope" title="Permanent link">&para;</a></h2>
+<p>A billing system is part of the lifecycle of every organization.
+It is complex in nature and overlaps with other systems.</p>
+<p>For instance, the <strong>accounting system</strong>, whose goal is to provide
+information about the assets and liabilities an organization has.</p>
+<p>It has also responsabilities about <strong>permissions</strong>, because depending on
+your contract or credit balance you can access or not certain features.</p>
+<p>It can be used as a <strong>metrics tracking</strong> system since certain
+actions that clients perform may have an economic impact on your
+app (ie: tickets sold in a cinema, are also a metric for how many people
+watched the movie). It might also overlap with a stocks system, since each
+purchase or refund has to be accounted as a monetary and material transaction.</p>
+<p>Getting paid is a whole topic on it's own, you can issue single invoice
+but get paid in several instalments for example. These systems are known as
+<strong>payment gateways</strong>, an need to interact with the billing system too.</p>
+<p>And finally it also has to articulate with certain <strong>CRM</strong> aspects,
+as we need to record our interactions with clients and their billing information
+to offer discounts, remind them of an contract expiration date, facilitate
+nurturing, etc.</p>
+<p>These systems exist in every organization that handles money,
+but sometimes they turn invisible in the sense that they are embbeded in
+another system that does something similar, an Excel spreadsheet most likely.</p>
+<p>Naturally each of these different systems is a complex beast on it's own and is
+better off implemented separatelly.</p>
+<p>Take for example the accounting system. There are legal regulations that
+dictate how this is done, and they change from country to country.
+Some financial transactions have to be approved by regulatory authorities.
+The granularity level managed by the accounting system also differs, since
+usually you only care about the totals, so maybe exporting aggregates obtained
+by the billing or stocks system is enough.
+Also in the case of the permissions systems, there are other considerations
+taken into account, like credentials, user roles, locks, etc.
+And finally payment gateways have <a href="https://en.wikipedia.org/wiki/Payment_Card_Industry_Data_Security_Standard" title="PCI copliance">very strict security requirements</a> that
+are better off delegated to a trusted third party system.</p>
+<p>Because billing systems are also very tightly coupled with business rules,
+it's really hard to build a generic catch-all solution, making it difficult to
+attempt a proper sepparation of <a href="http://www.machinalis.com/blog/separating-mechanism-from-policy/" title="Separating mechanism from policy">mechanism and policy</a>. It's also evident
+that the boundaries of these systems aren't so clear in terms of
+responsabilities, but this doesn't mean that a common underling architecture
+cannot be identified.</p>
+<h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
+<p>From a 30k feet view, a billing system must:</p>
+<ul>
+<li>Determine what his billing status is: <strong><em>who</em></strong> owes <strong><em>how much</em></strong> and
+  <strong><em>why</em></strong>.</li>
+<li>Articulate with other specialized systems (ie: be able to query and be
+  queried, import/export data).</li>
+<li>Be flexible and fault tolerant. Flexible not only to <strong><em>adapt to ever changing
+  business rules</em></strong>, but also users should have the chance to change their
+  contracts, receive refunds, benefit from a discount or even a free-trial, etc.</li>
+</ul>
+<p>But first we must take a step back so that we can identify which are the sources
+of profit:</p>
+<ul>
+<li><strong>Free</strong>: the simplest one, no profits though.</li>
+<li><strong>Single sales</strong>: when you purchase an item or service like train tickets or
+  house cleaning.</li>
+<li><strong>Subscriptions</strong>: cable tv, hotels, insurance, fixed term deposits.</li>
+<li><strong>Usage-based</strong>: like power supply or phone calls.</li>
+<li><strong>A combination</strong> of all these.</li>
+</ul>
+<p>All these sources of profit have to be translated to money somehow.
+For this to happen, we need to <strong>determine when to record that something has
+generated some profit</strong> that needs to be "collected".</p>
+<p>In the case of single sales it's simple to identify that moment, since it's
+usually when the buy order is submitted or when the user takes hands on the
+product. But how do we determine how much someone owes in case of subscriptions
+or usage-based models?</p>
+<p>Buying and selling items is an <em>atomic</em> operation per se, but transactions which
+are always <em>on-going</em> aren't and we have to make them atomic somehow. Non-atomic
+operations need a recurring tick that will meassure or sample some quantity
+and/or a rate, in order to determine the value of the transaction. Every
+meassurement taken can be understood as a transaction that resulted in some
+profit.</p>
+<p>The other determination that needs to be taken is <strong>when to charge the
+customer</strong>, and for that it's up to the business owner to say if to use a
+<strong>pre-bill model</strong> (like when renting a house) or <strong>post-bill model</strong> (like the
+telephone bill).</p>
+<h2 id="billing-entities">Billing entities<a class="headerlink" href="#billing-entities" title="Permanent link">&para;</a></h2>
+<p>To acomplish the goals of a billing system we need some basic building blocks:</p>
+<ul>
+<li>Account: holds data about contracts, pricing plans, billing details, etc.</li>
+<li>Event: contains an atomic transaction and all it's context</li>
+<li>Journal: events are stored in an append-only journal. It contains all the billing history of an account. Can be used for an audit.</li>
+<li>Clock: it's in charge of quering the journal to determine totals, debts, which accounts are past-due, etc.</li>
+<li>Processor: The journal can be digested by procressors that can understand
+  the deltas between each event to determine the current status
+  of an account.</li>
+</ul>
+<h2 id="handling-changes">Handling changes<a class="headerlink" href="#handling-changes" title="Permanent link">&para;</a></h2>
+<p>TODO: explain here flexible and fault tolerant.</p>
+<p>Every change is represented by an event. An event should never be mutated.
+Events should freeze all context needed to fully understand them.</p>
+<p>Ability to schedule changes to take effect in the future. Example:
+apply this new plan next month.
+When applying changes (and even when scheduling them?), the system
+should look for conflicts in all transactions, including the ones
+that had not taken place yet.</p>
+<p>Payments should refer to the respective source invoice(s) = [1,2,3].</p>
+<h2 id="real-world-examples">Real world examples<a class="headerlink" href="#real-world-examples" title="Permanent link">&para;</a></h2>
+<p>So far I hope is clear what a billing system must do and what it needs to do it.
+But we still haven't tested our theory we real world examples.</p>
+<ul>
+<li>EPEC</li>
+<li>Hotel
+And these can be combined (rent a room in a hotel, and cosume
+some snack from the mini-fridge).</li>
+<li>ISP</li>
+<li>Ad based website</li>
+<li>Sass app (trials, discounts, etc)</li>
+</ul>
+<p>https://www.petekeen.net/stripe</p>
+<p>Django billing</p>
+<p>Lambda architecture
+Command-query responsability separation (CQRS)
+https://en.wikipedia.org/wiki/Command%E2%80%93query_separation</p>
 </article>
 
   <footer class="column-right light">

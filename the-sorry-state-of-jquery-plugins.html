@@ -164,13 +164,17 @@ that it can clean up itself before it's removed.</p>
 <p>We have combined Bootstrap for presentation, Backbone for logic and Tether as
 a helper for positioning elements. Live demo <a href="https://jsfiddle.net/p82fsx06/1/" title="Live demo">here</a>.</p>
 <h2 id="wishful-thinking">Wishful thinking<a class="headerlink" href="#wishful-thinking" title="Permanent link">&para;</a></h2>
+<p><a href="https://youtu.be/Qkm5h4032ko" title="Pamela Fox - Beyond jQuery Widgets: JS UI Library Design">This video</a> shows the process of hidding functionality and adding lots of
+cruft to <em>jqueryfy</em> a piece of code. This is exactly what we need to avoid.
+More often than not I see plugins hiding their methods behind closures, when
+they could be opening them as <strong>documented building blocks</strong> to be used at your
+will.</p>
 <p>It's perfectly fine if plugins expose a simple way to cover the 80% of use cases
 or some basic functionality. But it's clear that pure libraries tend to
-outperform ready-made plugins in terms of flexibility. I often see plugins
-hiding their methods behind closures, when they could be opening them as
-<strong>documented building blocks</strong> to be used at your will. If only plugins allowed
-a <strong>clear separation of UI and logic</strong> then you would be able seamlessly
-integrate it with the rest of your frameworks.</p>
+outperform ready-made plugins in terms of flexibility.</p>
+<p>If only plugins allowed a <strong>clear separation of UI and logic</strong>, and that logic
+be easily extendable, then you would be able seamlessly integrate it with the
+rest of your frameworks.</p>
 </article>
 
   <footer class="column-right light">

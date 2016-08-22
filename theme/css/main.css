@@ -1,16 +1,15 @@
 /* general */
 body {
+  font-family: Helvetica;
   background: #fff;
   color: #444;
-  font: 18px Hoefler Text, bodyfont, serif;
   line-height: 30px;
   margin: 0.8em 1em;
-  max-width: 40em; }
+  max-width: 45em; }
 
 
 h1, h2, h3, h4 {
   color: black;
-  font-family: Helvetica, sans-serif;
   font-weight: normal;
   margin-bottom: 0;
   margin-top: 1.5em; }
@@ -73,7 +72,6 @@ article ul, article ol {
   padding: 0em 0em 0em 1em; }
 
 pre {
-  font-size: 0.65em;
   line-height: 1.3em;
   overflow: auto;
   padding: 7px; }
@@ -94,8 +92,7 @@ dd {
 
 /* aside */
 .sidebar {
-  position: fixed;
-  font-family: Helvetica, sans-serif; }
+  position: fixed; }
 
 .sidebar a {
   border: none; }
@@ -126,13 +123,13 @@ dd {
   margin: 0; }
 
 .column-right {
-  max-width: 650px;
   margin-left: 120px;
   margin-right: 20px;
   margin-bottom: 50px; }
 
 /* code snippets */
 .highlight {
+  font-size: 0.9em;
   border: 1px solid lightblue; }
 
 /* headers permalink */

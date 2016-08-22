@@ -46,6 +46,8 @@ easier to reason about.</p>
 is left for the developer to design.</p>
 <p>This post is an attempt to share some strategies I find useful for <strong>building an
 event-driven UI</strong>.</p>
+<p>SELECTIVILY REACTING TO EVENTS
+WHAT HAPPENS IF A MODEL SYNCS WHILE YOU ARE EDITING IN ANOTHER VIEW?</p>
 <h2 id="reacting-to-changes-in-a-model">Reacting to changes in a model<a class="headerlink" href="#reacting-to-changes-in-a-model" title="Permanent link">&para;</a></h2>
 <p>The core idea is that data and buiseness logic is managed by models or collections,
 that not only can be shared throughout the app but also rendered in many diferent data-less views.</p>
@@ -108,11 +110,11 @@ keeping a reference to the model, but we also need to have specificity.</p>
     <span class="nx">onFormSubmit</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">{</span>
-            <span class="s1">&#39;success&#39;</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">model</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
-                 <span class="nx">model</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;custom-save&#39;</span><span class="p">,</span> <span class="nx">model</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+            <span class="s1">&#39;success&#39;</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">model</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">opts</span><span class="p">)</span> <span class="p">{</span>
+                 <span class="nx">model</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;custom-save&#39;</span><span class="p">,</span> <span class="nx">model</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">opts</span><span class="p">);</span>
             <span class="p">},</span>
-            <span class="s1">&#39;error&#39;</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">model</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
-                <span class="nx">model</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;custom-error&#39;</span><span class="p">,</span> <span class="nx">model</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+            <span class="s1">&#39;error&#39;</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">model</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">opts</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">model</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;custom-error&#39;</span><span class="p">,</span> <span class="nx">model</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">opts</span><span class="p">);</span>
             <span class="p">},</span>
         <span class="p">});</span>
     <span class="p">}</span>
@@ -157,6 +159,9 @@ corresponds to a specific user interaction, it's just a matter of checking the
 value of that parameter. If a given callback should always be run, no matter
 what the action was, then it would simply omit this check. As you can see <strong>the
 solution requires following a convention</strong>.</p>
+<h2 id="proxy-model">Proxy model<a class="headerlink" href="#proxy-model" title="Permanent link">&para;</a></h2>
+<p>para modificar un simple calendar o un parent calendar usar un modelo intermedio
+que se pasa a la vista y luego internamente hace el save o lo que fuere.</p>
 <h2 id="modifying-a-replica">Modifying a replica<a class="headerlink" href="#modifying-a-replica" title="Permanent link">&para;</a></h2>
 <p>Use model.clone() to use inside a CRUD view so that you can modify it, see a live preview of edits, and have a cancel button which discards
 the changes.</p>

@@ -284,13 +284,17 @@ that it can clean up itself before it's removed.&lt;/p&gt;
 &lt;p&gt;We have combined Bootstrap for presentation, Backbone for logic and Tether as
 a helper for positioning elements. Live demo &lt;a href="https://jsfiddle.net/p82fsx06/1/" title="Live demo"&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id="wishful-thinking"&gt;Wishful thinking&lt;a class="headerlink" href="#wishful-thinking" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://youtu.be/Qkm5h4032ko" title="Pamela Fox - Beyond jQuery Widgets: JS UI Library Design"&gt;This video&lt;/a&gt; shows the process of hidding functionality and adding lots of
+cruft to &lt;em&gt;jqueryfy&lt;/em&gt; a piece of code. This is exactly what we need to avoid.
+More often than not I see plugins hiding their methods behind closures, when
+they could be opening them as &lt;strong&gt;documented building blocks&lt;/strong&gt; to be used at your
+will.&lt;/p&gt;
 &lt;p&gt;It's perfectly fine if plugins expose a simple way to cover the 80% of use cases
 or some basic functionality. But it's clear that pure libraries tend to
-outperform ready-made plugins in terms of flexibility. I often see plugins
-hiding their methods behind closures, when they could be opening them as
-&lt;strong&gt;documented building blocks&lt;/strong&gt; to be used at your will. If only plugins allowed
-a &lt;strong&gt;clear separation of UI and logic&lt;/strong&gt; then you would be able seamlessly
-integrate it with the rest of your frameworks.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">hernantz</dc:creator><pubDate>Thu, 31 Mar 2016 00:00:00 -0300</pubDate><guid isPermaLink="false">tag:hernantz.github.io,2016-03-31:the-sorry-state-of-jquery-plugins.html</guid><category>backbone</category><category>javascript</category><category>bootstrap</category><category>jquery</category></item><item><title>The branch is dead, short live the branch!</title><link>http://hernantz.github.io/the-branch-is-dead-short-live-the-branch.html</link><description>&lt;p&gt;&lt;em&gt;tl;dr&lt;/em&gt;: When implementing big changesets, maintaining and merging long-lived
+outperform ready-made plugins in terms of flexibility.&lt;/p&gt;
+&lt;p&gt;If only plugins allowed a &lt;strong&gt;clear separation of UI and logic&lt;/strong&gt;, and that logic
+be easily extendable, then you would be able seamlessly integrate it with the
+rest of your frameworks.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">hernantz</dc:creator><pubDate>Thu, 31 Mar 2016 00:00:00 -0300</pubDate><guid isPermaLink="false">tag:hernantz.github.io,2016-03-31:the-sorry-state-of-jquery-plugins.html</guid><category>backbone</category><category>javascript</category><category>bootstrap</category><category>jquery</category></item><item><title>The branch is dead, short live the branch!</title><link>http://hernantz.github.io/the-branch-is-dead-short-live-the-branch.html</link><description>&lt;p&gt;&lt;em&gt;tl;dr&lt;/em&gt;: When implementing big changesets, maintaining and merging long-lived
 branches is hard. Use short-lived branches instead, and merge them ASAP.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="The ship of Theseus" src="/images/ship.jpg" /&gt;&lt;/p&gt;
 &lt;h2 id="the-theseus-paradox"&gt;The Theseus paradox&lt;a class="headerlink" href="#the-theseus-paradox" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
