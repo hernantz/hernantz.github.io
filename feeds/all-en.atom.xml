@@ -183,31 +183,13 @@ Click me!&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;a&lt
 attributes. Either way, most plugins follow these techniques and &lt;strong&gt;allow
 certain amount of customization&lt;/strong&gt; so that we can hook into some of it's
 functionality via options and callbacks.&lt;/p&gt;
-&lt;p&gt;An extreme example would be the &lt;a href="http://fullcalendar.io/" title="A JavaScript event calendar"&gt;fullCalendar&lt;/a&gt; plugin. It is in charge
-of rendering a rather complex &lt;a href="http://fullcalendar.io/js/fullcalendar-2.6.1/demos/agenda-views.html" title="Rendered calendar"&gt;DOM hierachy&lt;/a&gt; inside an empty &lt;code&gt;div&lt;/code&gt; you
-define, and everything from fetching events to be displayed on the calendar,
-to determining how to behave when you click on an event is done through
-configuration. Since it is controlling some inner state, so you are forced to
-initialize it and follow the rules this plugin immposes.&lt;/p&gt;
+&lt;p&gt;A more extreme example would be the &lt;a href="http://fullcalendar.io/" title="A JavaScript event calendar"&gt;fullCalendar&lt;/a&gt; or the jQuery datepicker
+plugins. They are in charge of rendering a rather complex DOM hierachy inside an
+empty &lt;code&gt;div&lt;/code&gt; or &lt;code&gt;input&lt;/code&gt; you define, and everything is done through configuration.
+Since the plugin is controlling some inner state you are forced to initialize it
+and follow the rules it immposes.&lt;/p&gt;
 &lt;p&gt;This may work for simple scenarios, but when you need more control, you'll be
 forced to implement &lt;em&gt;hacky tricks&lt;/em&gt; or even roll your own solution.&lt;/p&gt;
-&lt;p&gt;For example, the API of this plugin does not expose a way to handle a double
-click on an event, but we can set up this behaviour because this plugin
-provides a &lt;code&gt;eventRender&lt;/code&gt; callback to manipulate a rendered event.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;#calendar&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;fullCalendar&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
-  &lt;span class="c1"&gt;// ... more options here&lt;/span&gt;
-  &lt;span class="nx"&gt;eventRender&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;event&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;element&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="nx"&gt;element&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;dblclick&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-      &lt;span class="nx"&gt;alert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;do something useful!&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-    &lt;span class="p"&gt;});&lt;/span&gt;
-  &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="p"&gt;});&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Should you need something more custom like be able to drag-n-drop events
-between months, which could be implemented with an infinite scroll of months,
-you would be really close to having to fork the entire project.&lt;/p&gt;
 &lt;h2 id="take-over-popovers"&gt;Take over popovers&lt;a class="headerlink" href="#take-over-popovers" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;One of the best things about Bootstrap's widgets is that they can be represented
 entirely with HTML, without the need to initialize them through JavaScript.&lt;/p&gt;

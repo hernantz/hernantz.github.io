@@ -64,31 +64,13 @@ Click me!<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&g
 attributes. Either way, most plugins follow these techniques and <strong>allow
 certain amount of customization</strong> so that we can hook into some of it's
 functionality via options and callbacks.</p>
-<p>An extreme example would be the <a href="http://fullcalendar.io/" title="A JavaScript event calendar">fullCalendar</a> plugin. It is in charge
-of rendering a rather complex <a href="http://fullcalendar.io/js/fullcalendar-2.6.1/demos/agenda-views.html" title="Rendered calendar">DOM hierachy</a> inside an empty <code>div</code> you
-define, and everything from fetching events to be displayed on the calendar,
-to determining how to behave when you click on an event is done through
-configuration. Since it is controlling some inner state, so you are forced to
-initialize it and follow the rules this plugin immposes.</p>
+<p>A more extreme example would be the <a href="http://fullcalendar.io/" title="A JavaScript event calendar">fullCalendar</a> or the jQuery datepicker
+plugins. They are in charge of rendering a rather complex DOM hierachy inside an
+empty <code>div</code> or <code>input</code> you define, and everything is done through configuration.
+Since the plugin is controlling some inner state you are forced to initialize it
+and follow the rules it immposes.</p>
 <p>This may work for simple scenarios, but when you need more control, you'll be
 forced to implement <em>hacky tricks</em> or even roll your own solution.</p>
-<p>For example, the API of this plugin does not expose a way to handle a double
-click on an event, but we can set up this behaviour because this plugin
-provides a <code>eventRender</code> callback to manipulate a rendered event.</p>
-<div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#calendar&#39;</span><span class="p">).</span><span class="nx">fullCalendar</span><span class="p">({</span>
-  <span class="c1">// ... more options here</span>
-  <span class="nx">eventRender</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">element</span><span class="p">.</span><span class="nx">dblclick</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-      <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;do something useful!&#39;</span><span class="p">);</span>
-    <span class="p">});</span>
-  <span class="p">}</span>
-<span class="p">});</span>
-</pre></div>
-
-
-<p>Should you need something more custom like be able to drag-n-drop events
-between months, which could be implemented with an infinite scroll of months,
-you would be really close to having to fork the entire project.</p>
 <h2 id="take-over-popovers">Take over popovers<a class="headerlink" href="#take-over-popovers" title="Permanent link">&para;</a></h2>
 <p>One of the best things about Bootstrap's widgets is that they can be represented
 entirely with HTML, without the need to initialize them through JavaScript.</p>
