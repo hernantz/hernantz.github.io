@@ -205,6 +205,7 @@ implies that:&lt;/p&gt;
 &lt;li&gt;Changes might not be tackled in the original logical order, but the
    transition towards the big changeset happens in a smooth and predictable
    manner.&lt;/li&gt;
+&lt;li&gt;You avoid doing something you should &lt;a href="http://www.joelonsoftware.com/articles/fog0000000069.html" title="Things You Should Never Do, Part I"&gt;never do in software&lt;/a&gt;.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Dispite having mentioned branches a lot, the ideas expressed here still apply,
 no matter the technique used to integrate the changes.&lt;/p&gt;
@@ -218,7 +219,8 @@ to Python 3&lt;/strong&gt;, I would try to modify the code so that it runs under
 &lt;em&gt;python-3-migration&lt;/em&gt; branch to do all the work there, because chances are that
 your Python 2 app would still be used for a long time until the migration is
 finished, and you'll have to be duplicating features, bugs and bugfixes in your
-main branch and in the migration branch.&lt;/p&gt;
+main branch and in the migration branch. The guys at Pinterest had to go through
+a &lt;a href="https://engineering.pinterest.com/blog/migrating-pinterest-profiles-react" title="Migrating Pinterest profiles to React"&gt;similar experience&lt;/a&gt; but with their frontend framework.&lt;/p&gt;
 &lt;p&gt;To &lt;strong&gt;translate the app&lt;/strong&gt; into another language, you can start by notifying the
 entire team that translation is in progress so that each new piece of ui that is
 added has the labels modified to be translatable.&lt;/p&gt;

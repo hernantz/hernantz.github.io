@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/management.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2013-07-03T18:06:00-03:00</updated><entry><title>Meeting</title><link href="http://hernantz.github.io/meeting.html" rel="alternate"></link><published>2013-07-03T18:06:00-03:00</published><author><name>hernantz</name></author><id>tag:hernantz.github.io,2013-07-03:meeting.html</id><summary type="html">&lt;p&gt;&lt;img alt="Knights of the round table" src="/images/knights-of-the-round-table.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;Async comunication and the power it holds.&lt;/p&gt;
+&lt;p&gt;Team decision making should be made async and acron.
+The only way to achieve this is through text based comunication, which
+holds both properties.&lt;/p&gt;</summary><category term="devops"></category><category term="bizops"></category><category term="ideas"></category></entry></feed>

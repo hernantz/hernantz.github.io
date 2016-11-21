@@ -127,6 +127,7 @@ implies that:</p>
 <li>Changes might not be tackled in the original logical order, but the
    transition towards the big changeset happens in a smooth and predictable
    manner.</li>
+<li>You avoid doing something you should <a href="http://www.joelonsoftware.com/articles/fog0000000069.html" title="Things You Should Never Do, Part I">never do in software</a>.</li>
 </ol>
 <p>Dispite having mentioned branches a lot, the ideas expressed here still apply,
 no matter the technique used to integrate the changes.</p>
@@ -140,7 +141,8 @@ to Python 3</strong>, I would try to modify the code so that it runs under both 
 <em>python-3-migration</em> branch to do all the work there, because chances are that
 your Python 2 app would still be used for a long time until the migration is
 finished, and you'll have to be duplicating features, bugs and bugfixes in your
-main branch and in the migration branch.</p>
+main branch and in the migration branch. The guys at Pinterest had to go through
+a <a href="https://engineering.pinterest.com/blog/migrating-pinterest-profiles-react" title="Migrating Pinterest profiles to React">similar experience</a> but with their frontend framework.</p>
 <p>To <strong>translate the app</strong> into another language, you can start by notifying the
 entire team that translation is in progress so that each new piece of ui that is
 added has the labels modified to be translatable.</p>

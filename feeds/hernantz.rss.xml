@@ -205,6 +205,7 @@ implies that:&lt;/p&gt;
 &lt;li&gt;Changes might not be tackled in the original logical order, but the
    transition towards the big changeset happens in a smooth and predictable
    manner.&lt;/li&gt;
+&lt;li&gt;You avoid doing something you should &lt;a href="http://www.joelonsoftware.com/articles/fog0000000069.html" title="Things You Should Never Do, Part I"&gt;never do in software&lt;/a&gt;.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Dispite having mentioned branches a lot, the ideas expressed here still apply,
 no matter the technique used to integrate the changes.&lt;/p&gt;
@@ -218,7 +219,8 @@ to Python 3&lt;/strong&gt;, I would try to modify the code so that it runs under
 &lt;em&gt;python-3-migration&lt;/em&gt; branch to do all the work there, because chances are that
 your Python 2 app would still be used for a long time until the migration is
 finished, and you'll have to be duplicating features, bugs and bugfixes in your
-main branch and in the migration branch.&lt;/p&gt;
+main branch and in the migration branch. The guys at Pinterest had to go through
+a &lt;a href="https://engineering.pinterest.com/blog/migrating-pinterest-profiles-react" title="Migrating Pinterest profiles to React"&gt;similar experience&lt;/a&gt; but with their frontend framework.&lt;/p&gt;
 &lt;p&gt;To &lt;strong&gt;translate the app&lt;/strong&gt; into another language, you can start by notifying the
 entire team that translation is in progress so that each new piece of ui that is
 added has the labels modified to be translatable.&lt;/p&gt;
@@ -831,4 +833,8 @@ vim has become part of the motivation too.&lt;/p&gt;
 shortest post in here. But still, I'll do my best to get to the point. Give you
 quality over quantity. Why write a thousand words if a picture says more than a
 thousand words? Why write six paragraphs if you can fit an introduction, the
-main idea and a conclusion in just three?&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">hernantz</dc:creator><pubDate>Wed, 03 Jul 2013 18:06:00 -0300</pubDate><guid isPermaLink="false">tag:hernantz.github.io,2013-07-03:init.html</guid><category>pelican</category><category>ideas</category></item></channel></rss>
+main idea and a conclusion in just three?&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">hernantz</dc:creator><pubDate>Wed, 03 Jul 2013 18:06:00 -0300</pubDate><guid isPermaLink="false">tag:hernantz.github.io,2013-07-03:init.html</guid><category>pelican</category><category>ideas</category></item><item><title>Meeting</title><link>http://hernantz.github.io/meeting.html</link><description>&lt;p&gt;&lt;img alt="Knights of the round table" src="/images/knights-of-the-round-table.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;Async comunication and the power it holds.&lt;/p&gt;
+&lt;p&gt;Team decision making should be made async and acron.
+The only way to achieve this is through text based comunication, which
+holds both properties.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">hernantz</dc:creator><pubDate>Wed, 03 Jul 2013 18:06:00 -0300</pubDate><guid isPermaLink="false">tag:hernantz.github.io,2013-07-03:meeting.html</guid><category>devops</category><category>bizops</category><category>ideas</category></item></channel></rss>
