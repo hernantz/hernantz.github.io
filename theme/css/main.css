@@ -138,6 +138,10 @@ dd {
   margin-left: 0.5em;
   font-size: 0.8em; }
 
+/* footnotes */
+.footnote {
+  margin-top: 4em; }
+
 h1:hover .headerlink,
 h2:hover .headerlink,
 h3:hover .headerlink,
