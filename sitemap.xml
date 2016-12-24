@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://hernantz.github.io/</loc>
-<lastmod>2016-12-11T00:18:13-00:00</lastmod>
+<lastmod>2016-12-24T11:43:31-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://hernantz.github.io/archives.html</loc>
-<lastmod>2016-12-11T00:18:13-00:00</lastmod>
+<lastmod>2016-12-24T11:43:31-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://hernantz.github.io/tags.html</loc>
-<lastmod>2016-12-11T00:18:13-00:00</lastmod>
+<lastmod>2016-12-24T11:43:31-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://hernantz.github.io/categories.html</loc>
-<lastmod>2016-12-11T00:18:13-00:00</lastmod>
+<lastmod>2016-12-24T11:43:31-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -123,8 +123,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://hernantz.github.io/tag/mvp.html</loc>
-<lastmod>2013-11-09T12:03:00-03:54</lastmod>
+<loc>http://hernantz.github.io/tag/rants.html</loc>
+<lastmod>2015-08-09T00:00:00-03:54</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -137,14 +137,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://hernantz.github.io/tag/reviews.html</loc>
-<lastmod>2015-08-09T00:00:00-03:54</lastmod>
+<loc>http://hernantz.github.io/tag/mocks.html</loc>
+<lastmod>2015-07-27T00:00:00-03:54</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://hernantz.github.io/tag/mocks.html</loc>
+<loc>http://hernantz.github.io/tag/testing.html</loc>
 <lastmod>2015-07-27T00:00:00-03:54</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
@@ -158,15 +158,15 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://hernantz.github.io/tag/agile.html</loc>
-<lastmod>2015-08-28T00:00:00-03:54</lastmod>
+<loc>http://hernantz.github.io/tag/reviews.html</loc>
+<lastmod>2015-08-09T00:00:00-03:54</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://hernantz.github.io/tag/ideas.html</loc>
-<lastmod>2015-08-28T00:00:00-03:54</lastmod>
+<loc>http://hernantz.github.io/tag/backbone.html</loc>
+<lastmod>2016-03-31T00:00:00-03:54</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -193,22 +193,15 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://hernantz.github.io/tag/testing.html</loc>
-<lastmod>2015-07-27T00:00:00-03:54</lastmod>
+<loc>http://hernantz.github.io/tag/agile.html</loc>
+<lastmod>2015-08-28T00:00:00-03:54</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://hernantz.github.io/tag/backbone.html</loc>
-<lastmod>2016-03-31T00:00:00-03:54</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>http://hernantz.github.io/tag/rants.html</loc>
-<lastmod>2015-08-09T00:00:00-03:54</lastmod>
+<loc>http://hernantz.github.io/tag/ideas.html</loc>
+<lastmod>2015-08-28T00:00:00-03:54</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -216,6 +209,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://hernantz.github.io/tag/python.html</loc>
 <lastmod>2015-07-27T00:00:00-03:54</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://hernantz.github.io/tag/mvp.html</loc>
+<lastmod>2013-11-09T12:03:00-03:54</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
