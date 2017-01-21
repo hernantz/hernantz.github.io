@@ -60,7 +60,7 @@ didn't exist.
 |  Somebody is watching me                     | Rockwell                 | Michael Jackson           |
 |  I can't feel my face                        | The Weeknd               | Michael Jackson           |
 |  You get what you give                       | New Radicals             | Mick Jagger               |
-|  King of the kill                            | Anihilator               | Newsted                   |
+|  King of the kill                            | Annihilator              | Newsted                   |
 |  Gone Suvering                               | Stone Sour               | Newsted                   |
 |  Absolute Zero                               | Stone Sour               | Newsted                   |
 |  Sacred Reich                                | The American Way         | Newsted                   |
@@ -68,6 +68,7 @@ didn't exist.
 |  The suburbs                                 | Arcade Fire              | Queens of the stone edge  |
 |  Empire of the clouds                        | Iron Maiden              | Savatage                  |
 |  Replica                                     | Sonata Arctica           | Savatage                  |
+|  Life                                        | Sonata Arctica           | Helloween                 |
 |  Changes                                     | Tesla                    | Savatage                  |
 |  Imagenes Paganas                            | Virus                    | Soda Stereo               |
 |  My Sherona                                  | The Knack                | The Beatles               |
@@ -82,4 +83,8 @@ didn't exist.
 |  Wicked Game                                 | HIM                      | Type O Negative           |
 |  Black Magic Woman                           | Santana                  | Typo O Negative           |
 |  Movies                                      | Alien Ant Farm           | Wezzer                    |
+|  Proud To Be Loud                            | Keel                     | KISS                      |
+|  Stakk Attakk                                | Wrathchild               | KISS                      |
+|  Too Many Words                              | Sick Puppies             | Hoobastank                |
+|  Dead And Gone                               | Shadows Fall             | Nightrage                 |
 |----------------------------------------------+--------------------------+---------------------------|
