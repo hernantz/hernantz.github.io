@@ -8,18 +8,17 @@ using `pelican` with the `pelican-left` theme
 
 # Easter egg
 Now that I have your attention, let me show you something I think about when
-listening to music: Rewriting the history of music. If you don't get it, it
-might be you need some imagination.  Some of these songs are covers which are
-better than the original song.  Others would have been better if perfomed by
-the proposed artis/band.  Sometimes I'm just reassigning it because that
-artist/band only has so few songs I like that it would have been better it
-didn't exist.
+listening to music: Redistibuting songs among bands. If you don't get it, it
+might be you need some imagination. Some of these songs are covers which are
+better than the originals. Others would have been better perfomed by the
+proposed artist/band. Sometimes I'm just reassigning them because that
+artist/band only has so few songs I like, that I  would rather have someone
+else's repertoire get so much better.
 
 |----------------------------------------------+--------------------------+---------------------------|
 |  Song                                        | Original artis/band      | Proposed artist/band      |
 |----------------------------------------------+--------------------------+---------------------------|
 |  Consumed Future                             | Dreamshade               |                           |
-|  Todos las versiones de cover de The Ramones | The Ramones              |                           |
 |  Nightlife                                   | IAMX                     | Above and Beyond          |
 |  Eyes of Suffering                           | Crematory                | Acid Witch                |
 |  Wrecking Ball                               | Miley Cirus              | Adele                     |
