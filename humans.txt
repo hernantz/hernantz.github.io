@@ -19,6 +19,8 @@ else's repertoire get so much better.
 |  Song                                        | Original artis/band      | Proposed artist/band      |
 |----------------------------------------------+--------------------------+---------------------------|
 |  Consumed Future                             | Dreamshade               |                           |
+|  Todos las versiones de cover de The Ramones | The Ramones              |                           |
+|  We are Family                               | Sistes Sledge            | ABBA                      |
 |  Nightlife                                   | IAMX                     | Above and Beyond          |
 |  Eyes of Suffering                           | Crematory                | Acid Witch                |
 |  Wrecking Ball                               | Miley Cirus              | Adele                     |
@@ -47,6 +49,8 @@ else's repertoire get so much better.
 |  War for territory                           | Sepultura                | Hammer                    |
 |  Life                                        | Sonata Arctica           | Helloween                 |
 |  Too Many Words                              | Sick Puppies             | Hoobastank                |
+|  Don't You Forget About Me                   | Simple Minds             | INXS                      |
+|  She Sells Sanctuary                         | The Cult                 | INXS                      |
 |  Mourning Palace                             | Dimmu Borgir             | Immortal                  |
 |  In Death's Embrace                          | Dimmu Borgir             | Immortal                  |
 |  Excercise in Futility I                     | Mgla                     | Immortal                  |
@@ -79,6 +83,7 @@ else's repertoire get so much better.
 |  Sacred Reich                                | The American Way         | Newsted                   |
 |  Dead And Gone                               | Shadows Fall             | Nightrage                 |
 |  Zombie Autopilot                            | Unearth                  | Nightrage                 |
+|  Colossus                                    | In Mourning              | Omnium Gatherum           |
 |  Axiom                                       | Ackercocke               | Opeth                     |
 |  Leviathan                                   | Ackercocke               | Opeth                     |
 |  Believe                                     | The Bravery              | Queens of the Stone Edge  |
