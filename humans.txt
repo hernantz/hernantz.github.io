@@ -15,93 +15,93 @@ proposed artist/band. Sometimes I'm just reassigning them because that
 artist/band only has so few songs I like, that I  would rather have someone
 else's repertoire get so much better.
 
-|----------------------------------------------+--------------------------+---------------------------|
-|  Song                                        | Original artis/band      | Proposed artist/band      |
-|----------------------------------------------+--------------------------+---------------------------|
-|  Consumed Future                             | Dreamshade               |                           |
-|  Todos las versiones de cover de The Ramones | The Ramones              |                           |
-|  We are Family                               | Sistes Sledge            | ABBA                      |
-|  Nightlife                                   | IAMX                     | Above and Beyond          |
-|  Eyes of Suffering                           | Crematory                | Acid Witch                |
-|  Wrecking Ball                               | Miley Cirus              | Adele                     |
-|  Gold                                        | Chect Faker              | Alt-J                     |
-|  Crushcrushcrush                             | Paramore                 | Ashley Simpson            |
-|  Stillborn                                   | Black Label Society      | Black Sabbath             |
-|  Painkiller                                  | Mech                     | Black Sabbath             |
-|  Starships                                   | Nicki Minaj              | Britney Spears            |
-|  Siguiendo la Luna                           | Los Tipitos              | Cerati                    |
-|  Girls and Boys                              | Blur                     | Chemical Brothers         |
-|  Renegades                                   | X Embassadors            | Coldplay                  |
-|  Deny                                        | Dimension Zero           | Darkest Hour              |
-|  Hell is Within                              | Dimension Zero           | Darkest Hour              |
-|  Head over Heels                             | Tears for Fears          | David Bowie               |
-|  Coffee and TV                               | Blur                     | Death Cab for Cutie       |
-|  New Millenium Jesus Cyanide                 | Meshuggah                | Decapitated               |
-|  Born to Be Wild                             | Steppenwolf              | Deep Purple               |
-|  You Sping Me Round                          | Dead or Alive            | Depeche Mode              |
-|  Shout                                       | Tears for Fears          | Depeche Mode              |
-|  Baby Did a Bad Bad Thing                    | Chris Isaak              | Elvis Presley             |
-|  Safe and Sound                              | Capital Cities           | Empire of the Sun         |
-|  Cult of Personality                         | Living Colour            | Faith No More             |
-|  Ruby                                        | Kaiser Chiefs            | Franz Ferdinand           |
-|  (Don't Fear) The Reaper                     | Blue Oyster Cult         | Ghost                     |
-|  Walk                                        | Pantera                  | Hammer                    |
-|  War for territory                           | Sepultura                | Hammer                    |
-|  Life                                        | Sonata Arctica           | Helloween                 |
-|  Too Many Words                              | Sick Puppies             | Hoobastank                |
-|  Don't You Forget About Me                   | Simple Minds             | INXS                      |
-|  She Sells Sanctuary                         | The Cult                 | INXS                      |
-|  Mourning Palace                             | Dimmu Borgir             | Immortal                  |
-|  In Death's Embrace                          | Dimmu Borgir             | Immortal                  |
-|  Excercise in Futility I                     | Mgla                     | Immortal                  |
-|  Abduction                                   | Bruce Dickinson          | Iron Maiden               |
-|  Psycho Killer                               | Talking Heads            | Joy Division              |
-|  Steady as she goes                          | The Raconteurs           | Joy Division              |
-|  Proud To Be Loud                            | Keel                     | KISS                      |
-|  Stakk Attakk                                | Wrathchild               | KISS                      |
-|  Presuit of Happiness                        | Lissie                   | Lana del Rey              |
-|  Paper Planes                                | MIA                      | Lana del Rey              |
-|  Smooth Criminal                             | Alien Ant Farm           | Limp Bizkit               |
-|  Freak on a leash                            | Korn                     | Limp Bizkit               |
-|  Alone I Break                               | Korn                     | Limp Bizkit               |
-|  Papercut                                    | Linkin Park              | Limp Bizkit               |
-|  Boom                                        | P.O.D.                   | Limp Bizkit               |
-|  Killing in the Name                         | Rage Against the Machine | Limp Bizkit               |
-|  Just in Case                                | Static X                 | Limp Bizkit               |
-|  Dale Vieja Dale                             | Ulises Bueno             | Los Caligaris             |
-|  Pure Shores                                 | All Saints               | Madonna                   |
-|  Paranoid                                    | Black Sabbath            | Megadeth                  |
-|  Cementary Gates                             | Pantera                  | Megadeth                  |
-|  Get Lucky                                   | Daft Punk                | Michael Jackson           |
-|  Somebody is watching me                     | Rockwell                 | Michael Jackson           |
-|  I can't feel my face                        | The Weeknd               | Michael Jackson           |
-|  You get what you give                       | New Radicals             | Mick Jagger               |
-|  Honest Mistake                              | The Bravery              | Muse                      |
-|  King of the kill                            | Annihilator              | Newsted                   |
-|  Gone Suvering                               | Stone Sour               | Newsted                   |
-|  Absolute Zero                               | Stone Sour               | Newsted                   |
-|  Sacred Reich                                | The American Way         | Newsted                   |
-|  Dead And Gone                               | Shadows Fall             | Nightrage                 |
-|  Zombie Autopilot                            | Unearth                  | Nightrage                 |
-|  Colossus                                    | In Mourning              | Omnium Gatherum           |
-|  Axiom                                       | Ackercocke               | Opeth                     |
-|  Leviathan                                   | Ackercocke               | Opeth                     |
-|  Believe                                     | The Bravery              | Queens of the Stone Edge  |
-|  The suburbs                                 | Arcade Fire              | Queens of the stone edge  |
-|  Rockin' in the Free Wold                    | Neil Young               | Rocky Erickson            |
-|  Empire of the clouds                        | Iron Maiden              | Savatage                  |
-|  Replica                                     | Sonata Arctica           | Savatage                  |
-|  Changes                                     | Tesla                    | Savatage                  |
-|  Imagenes Paganas                            | Virus                    | Soda Stereo               |
-|  My Sherona                                  | The Knack                | The Beatles               |
-|  Gotta Go                                    | Agnostic Front           | The Mistfits              |
-|  Danzig                                      | Mother                   | The Mistfits              |
-|  I Fought the Law                            | The Clash                | The Ramones               |
-|  DMSLT                                       | A Pale Horse Named Death | Type O Negative           |
-|  The Dark Inside                             | Ackercocke               | Type O Negative           |
-|  Son Of The Morning                          | Ackercocke               | Type O Negative           |
-|  Legalise Drugs & Murder                     | Electric Wizard          | Type O Negative           |
-|  Wicked Game                                 | HIM                      | Type O Negative           |
-|  Black Magic Woman                           | Santana                  | Type O Negative           |
-|  Movies                                      | Alien Ant Farm           | Wezzer                    |
-|----------------------------------------------+--------------------------+---------------------------|
+|------------------------------+--------------------------+---------------------------|
+|  Song                        | Original artist/band     | Proposed artist/band      |
+|------------------------------+--------------------------+---------------------------|
+|  We are Family               | Sistes Sledge            | ABBA                      |
+|  Nightlife                   | IAMX                     | Above and Beyond          |
+|  Eyes of Suffering           | Crematory                | Acid Witch                |
+|  Wrecking Ball               | Miley Cirus              | Adele                     |
+|  Gold                        | Chect Faker              | Alt-J                     |
+|  Crushcrushcrush             | Paramore                 | Ashley Simpson            |
+|  Stillborn                   | Black Label Society      | Black Sabbath             |
+|  Painkiller                  | Mech                     | Black Sabbath             |
+|  Starships                   | Nicki Minaj              | Britney Spears            |
+|  Siguiendo la Luna           | Los Tipitos              | Cerati                    |
+|  Girls and Boys              | Blur                     | Chemical Brothers         |
+|  Renegades                   | X Embassadors            | Coldplay                  |
+|  Deny                        | Dimension Zero           | Darkest Hour              |
+|  Hell is Within              | Dimension Zero           | Darkest Hour              |
+|  Head over Heels             | Tears for Fears          | David Bowie               |
+|  Coffee and TV               | Blur                     | Death Cab for Cutie       |
+|  New Millenium Jesus Cyanide | Meshuggah                | Decapitated               |
+|  Born to Be Wild             | Steppenwolf              | Deep Purple               |
+|  You Sping Me Round          | Dead or Alive            | Depeche Mode              |
+|  Shout                       | Tears for Fears          | Depeche Mode              |
+|  Baby Did a Bad Bad Thing    | Chris Isaak              | Elvis Presley             |
+|  Safe and Sound              | Capital Cities           | Empire of the Sun         |
+|  Cult of Personality         | Living Colour            | Faith No More             |
+|  Ruby                        | Kaiser Chiefs            | Franz Ferdinand           |
+|  (Don't Fear) The Reaper     | Blue Oyster Cult         | Ghost                     |
+|  Walk                        | Pantera                  | Hammer                    |
+|  War for territory           | Sepultura                | Hammer                    |
+|  Life                        | Sonata Arctica           | Helloween                 |
+|  Too Many Words              | Sick Puppies             | Hoobastank                |
+|  Don't You Forget About Me   | Simple Minds             | INXS                      |
+|  She Sells Sanctuary         | The Cult                 | INXS                      |
+|  Mourning Palace             | Dimmu Borgir             | Immortal                  |
+|  In Death's Embrace          | Dimmu Borgir             | Immortal                  |
+|  Excercise in Futility I     | Mgla                     | Immortal                  |
+|  Consumed Future             | Dreamshade               | In Flames                 |
+|  Abduction                   | Bruce Dickinson          | Iron Maiden               |
+|  Psycho Killer               | Talking Heads            | Joy Division              |
+|  Steady as she goes          | The Raconteurs           | Joy Division              |
+|  Bad for Good                | Skull Fist               | Judas Priest              |
+|  Proud To Be Loud            | Keel                     | KISS                      |
+|  Stakk Attakk                | Wrathchild               | KISS                      |
+|  Presuit of Happiness        | Lissie                   | Lana del Rey              |
+|  Paper Planes                | MIA                      | Lana del Rey              |
+|  Smooth Criminal             | Alien Ant Farm           | Limp Bizkit               |
+|  Freak on a leash            | Korn                     | Limp Bizkit               |
+|  Alone I Break               | Korn                     | Limp Bizkit               |
+|  Papercut                    | Linkin Park              | Limp Bizkit               |
+|  Boom                        | P.O.D.                   | Limp Bizkit               |
+|  Killing in the Name         | Rage Against the Machine | Limp Bizkit               |
+|  Just in Case                | Static X                 | Limp Bizkit               |
+|  Dale Vieja Dale             | Ulises Bueno             | Los Caligaris             |
+|  Pure Shores                 | All Saints               | Madonna                   |
+|  Paranoid                    | Black Sabbath            | Megadeth                  |
+|  Cementary Gates             | Pantera                  | Megadeth                  |
+|  Get Lucky                   | Daft Punk                | Michael Jackson           |
+|  Somebody is watching me     | Rockwell                 | Michael Jackson           |
+|  I can't feel my face        | The Weeknd               | Michael Jackson           |
+|  You get what you give       | New Radicals             | Mick Jagger               |
+|  Honest Mistake              | The Bravery              | Muse                      |
+|  King of the kill            | Annihilator              | Newsted                   |
+|  Gone Suvering               | Stone Sour               | Newsted                   |
+|  Absolute Zero               | Stone Sour               | Newsted                   |
+|  Sacred Reich                | The American Way         | Newsted                   |
+|  Dead And Gone               | Shadows Fall             | Nightrage                 |
+|  Zombie Autopilot            | Unearth                  | Nightrage                 |
+|  Colossus                    | In Mourning              | Omnium Gatherum           |
+|  Axiom                       | Ackercocke               | Opeth                     |
+|  Leviathan                   | Ackercocke               | Opeth                     |
+|  Believe                     | The Bravery              | Queens of the Stone Edge  |
+|  The suburbs                 | Arcade Fire              | Queens of the stone edge  |
+|  Rockin' in the Free Wold    | Neil Young               | Rocky Erickson            |
+|  Empire of the clouds        | Iron Maiden              | Savatage                  |
+|  Replica                     | Sonata Arctica           | Savatage                  |
+|  Changes                     | Tesla                    | Savatage                  |
+|  Imagenes Paganas            | Virus                    | Soda Stereo               |
+|  My Sherona                  | The Knack                | The Beatles               |
+|  Gotta Go                    | Agnostic Front           | The Mistfits              |
+|  Danzig                      | Mother                   | The Mistfits              |
+|  I Fought the Law            | The Clash                | The Ramones               |
+|  DMSLT                       | A Pale Horse Named Death | Type O Negative           |
+|  The Dark Inside             | Ackercocke               | Type O Negative           |
+|  Son Of The Morning          | Ackercocke               | Type O Negative           |
+|  Legalise Drugs & Murder     | Electric Wizard          | Type O Negative           |
+|  Wicked Game                 | HIM                      | Type O Negative           |
+|  Black Magic Woman           | Santana                  | Type O Negative           |
+|  Movies                      | Alien Ant Farm           | Wezzer                    |
+|------------------------------+--------------------------+---------------------------|
