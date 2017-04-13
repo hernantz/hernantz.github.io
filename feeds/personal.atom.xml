@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/personal.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2015-08-09T00:00:00-03:00</updated><entry><title>Some reviews</title><link href="http://hernantz.github.io/some-reviews.html" rel="alternate"></link><published>2015-08-09T00:00:00-03:00</published><author><name>hernantz</name></author><id>tag:hernantz.github.io,2015-08-09:some-reviews.html</id><summary type="html">&lt;p&gt;I plan to be reviewing books, series, albums, games, bands and movies. I'm no
+<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt - Personal</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/personal.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2015-08-09T00:00:00-03:00</updated><entry><title>Some reviews</title><link href="http://hernantz.github.io/some-reviews.html" rel="alternate"></link><published>2015-08-09T00:00:00-03:00</published><updated>2015-08-09T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2015-08-09:/some-reviews.html</id><summary type="html">&lt;p&gt;Books, series, games and movies reviews. Part 1?&lt;/p&gt;</summary><content type="html">&lt;p&gt;I plan to be reviewing books, series, albums, games, bands and movies. I'm no
 expert in any of these, It's just that I want to put my impressions on ink (or
 pixels I should say). These reviews are a subset of what I had consumed over
 time. The order in which these reviews appear is not necessarily the order in
@@ -91,7 +91,7 @@ the white guys. &lt;/p&gt;
 it, I felt like it's gotten old, and as if it's lost that effect. This is why
 it doesn't get a higher score, but still, it might be worth watching it if you
 enjoy strange movies from the 80's. It's interesting to see that The Bleir
-Witch Project was not original at all. &lt;strong&gt;&lt;em&gt;Score: 2.4/5&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;</summary><category term="reviews"></category><category term="rants"></category><category term="ideas"></category></entry><entry><title>Init</title><link href="http://hernantz.github.io/init.html" rel="alternate"></link><published>2013-07-03T18:06:00-03:00</published><author><name>hernantz</name></author><id>tag:hernantz.github.io,2013-07-03:init.html</id><summary type="html">&lt;p&gt;This is my static new blog and it begins with this single post. I hope this is
+Witch Project was not original at all. &lt;strong&gt;&lt;em&gt;Score: 2.4/5&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;</content><category term="reviews"></category><category term="rants"></category><category term="ideas"></category></entry><entry><title>Init</title><link href="http://hernantz.github.io/init.html" rel="alternate"></link><published>2013-07-03T18:06:00-03:00</published><updated>2013-07-03T18:06:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2013-07-03:/init.html</id><summary type="html">&lt;p&gt;This is my new static blog.&lt;/p&gt;</summary><content type="html">&lt;p&gt;This is my static new blog and it begins with this single post. I hope this is
 not one of those things I start and abandon.&lt;/p&gt;
 &lt;p&gt;Why now? Because in the last weeks I felt the urge to write for myself.
 Knowing my thoughts will be publicly available forces me to think wisely, 
@@ -103,4 +103,4 @@ vim has become part of the motivation too.&lt;/p&gt;
 shortest post in here. But still, I'll do my best to get to the point. Give you
 quality over quantity. Why write a thousand words if a picture says more than a
 thousand words? Why write six paragraphs if you can fit an introduction, the
-main idea and a conclusion in just three?&lt;/p&gt;</summary><category term="pelican"></category><category term="ideas"></category></entry></feed>
+main idea and a conclusion in just three?&lt;/p&gt;</content><category term="pelican"></category><category term="ideas"></category></entry></feed>

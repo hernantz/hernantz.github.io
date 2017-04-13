@@ -1,5 +1,289 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/all-en.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2016-03-31T00:00:00-03:00</updated><entry><title>The sorry state of jQuery plugins</title><link href="http://hernantz.github.io/the-sorry-state-of-jquery-plugins.html" rel="alternate"></link><published>2016-03-31T00:00:00-03:00</published><author><name>hernantz</name></author><id>tag:hernantz.github.io,2016-03-31:the-sorry-state-of-jquery-plugins.html</id><summary type="html">&lt;p&gt;When adding jQuery widgets to enhance your web app, you'll find &lt;strong&gt;two possible
+<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/all-en.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2017-04-13T00:00:00-03:00</updated><entry><title>Calendaring events with Python</title><link href="http://hernantz.github.io/calendaring-events-with-python.html" rel="alternate"></link><published>2017-04-13T00:00:00-03:00</published><updated>2017-04-13T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2017-04-13:/calendaring-events-with-python.html</id><summary type="html">&lt;p&gt;Some gotchas you'll find when scheduling the next world's doomsday.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Aztec sun stone" src="/images/aztec-calendar.png" title="Aztec sun stone" /&gt;&lt;/p&gt;
+&lt;h2 id="one-time-events"&gt;One time events&lt;a class="headerlink" href="#one-time-events" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Because of the way we track time, a single moment can happen at different times
+of the day for different people around the globe and a single date and time can
+never happen or happen twice thanks to &lt;a href="https://en.wikipedia.org/wiki/Daylight_saving_time" title="Daylight Saving Time"&gt;DST&lt;/a&gt; or government regulations &lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;.
+Yes, working with dates is &lt;a href="http://infiniteundo.com/post/25509354022/more-falsehoods-programmers-believe-about-time" title="More falsehoods programmers believe about time"&gt;hard&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Dates mean nothing without the proper context&lt;/strong&gt;, and that context is provided
+by what it is called a &lt;a href="https://en.wikipedia.org/wiki/Tz_database" title="Olson Database"&gt;timezone&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;A timezone doesn't mean just the offset&lt;/strong&gt;, because that offset can change.
+Instead they have names, and are attached to a geographical location, under a
+certain jurisdiction, unless we are speaking of the UTC timezone, which is a
+very special one.&lt;/p&gt;
+&lt;p&gt;We should think UTC time as the entire world's current time you compare all
+other dates with. It is meant to be objective in the sense that it never was
+and won't ever be affected by local time changes.&lt;/p&gt;
+&lt;p&gt;Timezone information is available in the &lt;a href="https://en.wikipedia.org/wiki/Tz_database" title="Olson Database"&gt;Olson database&lt;/a&gt;. Since timezones
+change every now and then, it is vital to keep your software up to date &lt;sup id="fnref:3"&gt;&lt;a class="footnote-ref" href="#fn:3" rel="footnote"&gt;3&lt;/a&gt;&lt;/sup&gt;.
+If that is something you cannot control, be advised that the dates your system
+is dealing with might not be correct (i.e. in an embedded device).&lt;/p&gt;
+&lt;p&gt;Updates can be handled differently depending on the OS, program or language you
+use. For example, in Linux there is a package &lt;code&gt;tzdata&lt;/code&gt;, but some programs like
+the browser or Postgres contain their own copies &lt;sup id="fnref:4"&gt;&lt;a class="footnote-ref" href="#fn:4" rel="footnote"&gt;4&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;Python provides naive dates by default through it's &lt;code&gt;datetime&lt;/code&gt; module, and it
+is someone else's responsibility to provide tz information, for example, &lt;code&gt;pytz&lt;/code&gt;
+is a &lt;a href="http://pytz.sourceforge.net/" title="pytz - World Timezone Definitions for Python"&gt;library&lt;/a&gt; that &lt;em&gt;"brings the Olson tz database into Python"&lt;/em&gt; providing
+timezone classes to use with &lt;code&gt;datetime&lt;/code&gt; objects.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;now&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2017&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;36&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;57&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;800151&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utcnow&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2017&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;37&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;833276&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;pytz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;localize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utcnow&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2017&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;37&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;44&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;500463&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;tzinfo&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;UTC&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Some attempts have been made for providing extra help to disambiguate naive
+dates &lt;sup id="fnref:5"&gt;&lt;a class="footnote-ref" href="#fn:5" rel="footnote"&gt;5&lt;/a&gt;&lt;/sup&gt;, but still, it is highly recommended that you &lt;strong&gt;convert dates to UTC
+as soon as they enter the system&lt;/strong&gt; and work with them that way for calculations
+and queries. Despite the fact that you can take naive dates as being &lt;a href="http://lucumr.pocoo.org/2011/7/15/eppur-si-muove/" title="“Eppur si muove!”* – Dealing with Timezones in Python"&gt;UTC
+implicitly&lt;/a&gt;, I would suggest to still &lt;a href="https://julien.danjou.info/blog/2015/python-and-timezones" title="Timezones and Python"&gt;attach the UTC tz&lt;/a&gt; to them &lt;sup id="fnref:6"&gt;&lt;a class="footnote-ref" href="#fn:6" rel="footnote"&gt;6&lt;/a&gt;&lt;/sup&gt;.
+This way, all the information is there, and it becomes easier to reason about
+dates.&lt;/p&gt;
+&lt;p&gt;For example, when logging events, you can see logs that have the same date,
+that would seem to be duplicated because of DST. Instead if you have them in
+UTC and in the &lt;a href="https://en.wikipedia.org/wiki/ISO_8601" title="ISO 8601"&gt;ISO format&lt;/a&gt;, there is no place left for confusion.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;2002-10-27T01:30:00&amp;#39;&lt;/span&gt;  &lt;span class="c1"&gt;# no timezone attached&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;2002-10-27T01:30:00&amp;#39;&lt;/span&gt;
+
+&lt;span class="s1"&gt;&amp;#39;2002-10-27T01:30:00-04:00&amp;#39;&lt;/span&gt;  &lt;span class="c1"&gt;# with timezone attached&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;2002-10-27T01:30:00-05:00&amp;#39;&lt;/span&gt;
+
+&lt;span class="s1"&gt;&amp;#39;2002-10-27T05:30:00+00:00&amp;#39;&lt;/span&gt;  &lt;span class="c1"&gt;# in UTC, evidently there is an hour difference&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;2002-10-27T06:30:00+00:00&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Even more, a sever could fire repeated crons or skip them if not configured to
+&lt;a href="http://www.creativedeletion.com/2015/08/07/why-not-to-use-server-local-time.html" title="Why not to ask the server for its &amp;quot;local time"&gt;use UTC&lt;/a&gt; due to a DST switch.&lt;/p&gt;
+&lt;p&gt;When doing calculations, despite the fact that you can manipulate
+aware dates transparently &lt;sup id="fnref:7"&gt;&lt;a class="footnote-ref" href="#fn:7" rel="footnote"&gt;7&lt;/a&gt;&lt;/sup&gt; the math is evident for the programmer if those
+dates are in UTC:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;buenos_aires&lt;/span&gt;
+&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2017&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;tzinfo&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;DstTzInfo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;America/Buenos_Aires&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mo"&gt;03&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;21&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;00&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;00&lt;/span&gt; &lt;span class="n"&gt;STD&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;madrid&lt;/span&gt;
+&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2017&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+    &lt;span class="n"&gt;tzinfo&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;DstTzInfo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Europe/Madrid&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;CEST&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;00&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;00&lt;/span&gt; &lt;span class="n"&gt;DST&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;buenos_aires&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;madrid&lt;/span&gt;
+&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;timedelta&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3600&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# mmm... why? &lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;pytz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;normalize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;buenos_aires&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2017&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;tzinfo&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;UTC&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;pytz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;normalize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;madrid&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2017&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;tzinfo&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;UTC&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# a one hour diff, obvi!&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;pytz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;normalize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;buenos_aires&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;pytz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;normalize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;madrid&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;timedelta&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3600&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# yeah! same results&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Moreover, event durations can be counter-intuitive if you don't keep in mind the
+in-between jumps of DST:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;eastern&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pytz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;timezone&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;US/Eastern&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;loc_dt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2002&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;27&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mo"&gt;00&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# date occured twice&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;eastern&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;localize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;loc_dt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;is_dst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# notice the is_dst flag&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;isoformat&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;2002-10-27T01:30:00-05:00&amp;#39;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;eastern&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;localize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;loc_dt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;is_dst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;isoformat&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;2002-10-27T01:30:00-04:00&amp;#39;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt;
+&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;timedelta&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3600&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# same date, time and tz, but different offset&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If your are rendering these kind of events in some sort of calendar, you'll
+have to decide if dates or duration is what determines how to represent this
+event in a slot. And when building these dates, the user needs to disambiguate
+them explicitly, providing the &lt;code&gt;is_dst&lt;/code&gt; flag.&lt;/p&gt;
+&lt;p&gt;Also, down the line of doing calculations in local timezones, we can see
+that when adding timedeltas to a &lt;code&gt;datetime&lt;/code&gt; aware object, you may end up
+with the wrong result.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="c1"&gt;# Sunday, 7 April 2002, 02:00:00 clocks were turned forward 1 hour to&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="c1"&gt;# Sunday, 7 April 2002, 03:00:00 local daylight time instead&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;eastern&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pytz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;timezone&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;US/Eastern&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;loc_dt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2002&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;edt_dt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;eastern&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;localize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;loc_dt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;est_dt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;edt_dt&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;timedelta&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;hours&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;edt_dt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;isoformat&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;2002-04-07T02:00:00-05:00&amp;#39;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;est_dt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;isoformat&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;2002-04-07T03:00:00-05:00&amp;#39;&lt;/span&gt;  &lt;span class="c1"&gt;# mmm they have the same offset, this is odd&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;eastern&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;normalize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;est_dt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;isoformat&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;2002-04-07T04:00:00-04:00&amp;#39;&lt;/span&gt;  &lt;span class="c1"&gt;# this is what I expected&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Last, but not least, remember to never use &lt;code&gt;replace()&lt;/code&gt; for attaching timezones.
+Otherwise you will very probably end up with the wrong date as a result. Use
+pytz's &lt;code&gt;normalize()&lt;/code&gt; and &lt;code&gt;localize()&lt;/code&gt; methods instead, since they use the tz
+table for convertions.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;dt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2002&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# never existed in US/Eastern&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;dt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tzinfo&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;eastern&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2002&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;tzinfo&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;DstTzInfo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;US/Eastern&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;LMT&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;19&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;04&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;00&lt;/span&gt; &lt;span class="n"&gt;STD&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# what?&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;eastern&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;normalize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;eastern&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;localize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dt&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2002&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;tzinfo&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;DstTzInfo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;US/Eastern&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;EDT&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;00&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;00&lt;/span&gt; &lt;span class="n"&gt;DST&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# much better&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Moving on, now that we know that UTC aware dates everywhere &lt;a href="http://tommikaikkonen.github.io/timezones/" title="timezones"&gt;is the way to
+go&lt;/a&gt;, there are some extra details to pay attention to:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;It is a good idea to store the user's timezone, so that you are able
+   to format dates in case you don't trust the clients ability to display them
+   correctly (due to an outdated db on their side, most likely, or just emails).&lt;/li&gt;
+&lt;li&gt;If events are attached to a certain location, like a flight for instance, and
+   that location changes it's timezone, then we need to recalculate all scheduled
+   dates for that location and notify users about it.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;So storing &lt;strong&gt;the timezone of origin&lt;/strong&gt; as way to get back to and from UTC is
+important.&lt;/p&gt;
+&lt;h2 id="recurring-events"&gt;Recurring events&lt;a class="headerlink" href="#recurring-events" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;For generating a series of events you should use the &lt;code&gt;dateutils.rrule&lt;/code&gt; package
+&lt;sup id="fnref:8"&gt;&lt;a class="footnote-ref" href="#fn:8" rel="footnote"&gt;8&lt;/a&gt;&lt;/sup&gt;, which allows a great deal of configuration and manages corner cases like:
+&lt;em&gt;every last day of the month&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;But when it comes to creating recurring events, say every Monday at 11:00 am,
+the user wants those dates to always stay at 11:00 am even if there is a DST
+switch at some point.&lt;/p&gt;
+&lt;p&gt;The procedure is perfectly explained &lt;a href="https://coderwall.com/p/7t3qdq/datetimes-and-timezones-and-dst-oh-my"&gt;here&lt;/a&gt; and involves naive dates on
+purpose!&lt;/p&gt;
+&lt;p&gt;We first have to generate the occurrences regardless or the timezone settings,
+all at the same time. Because of the way this lib works (&lt;em&gt;basically by adding
+timedeltas&lt;/em&gt;), it is that we need to feed it with naive start and/or end dates:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2014&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;22&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# Feb 22&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2014&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;24&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# March 24&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rrule&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;WEEKLY&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dtstart&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;until&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;byweekday&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MO&lt;/span&gt;&lt;span class="p"&gt;,)))&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2014&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;24&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; 
+ &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2014&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; 
+ &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2014&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; 
+ &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2014&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;17&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;  &lt;span class="c1"&gt;# all at the same time&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now we will attach the user's timezone to these dates and normalize them to
+UTC. You can see that the change happens on the stored dates, but the time the
+user will see in their local timezone stays intact.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;tz&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pytz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;timezone&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;America/Chicago&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# observes DST switch on March 9&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;localized&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;tz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;localize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;dt&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;dates&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;dt&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;localized&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Central: {}; UTC: {}&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;astimezone&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pytz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utc&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;Central: 2014-02-24 11:00:00-06:00; UTC: 2014-02-24 17:00:00+00:00&amp;#39;&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;Central: 2014-03-03 11:00:00-06:00; UTC: 2014-03-03 17:00:00+00:00&amp;#39;&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;Central: 2014-03-10 11:00:00-05:00; UTC: 2014-03-10 16:00:00+00:00&amp;#39;&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;Central: 2014-03-17 11:00:00-05:00; UTC: 2014-03-17 16:00:00+00:00&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You should also set the &lt;code&gt;is_dst&lt;/code&gt; flag in when calling &lt;code&gt;localize()&lt;/code&gt; if needed.&lt;/p&gt;
+&lt;h2 id="notification-events"&gt;Notification events&lt;a class="headerlink" href="#notification-events" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;When it comes to scheduling events like digest emails of notifications/news,
+lists of pending tasks, aggregated activities, etc, you will also need to
+generate a series based on the user preferences, but having all future
+occurrences generated in advance is wasteful.&lt;/p&gt;
+&lt;p&gt;In this use case you only care about the next recurrence after now, and every
+now and then (i.e. every minute) you poll all scheduled reminders that expired
+and calculate the next occurrence with a cron-like job &lt;sup id="fnref:9"&gt;&lt;a class="footnote-ref" href="#fn:9" rel="footnote"&gt;9&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;tz&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pytz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;timezone&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;US/Eastern&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;now&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utcnow&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;days&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;rrule&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MO&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;rrule&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;WE&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;rule&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;rrule&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rrule&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rrule&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;WEEKLY&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dtstart&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;now&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;byweekday&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;days&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                   &lt;span class="n"&gt;byhour&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;byminute&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Get the fist recurrence right after &amp;quot;now&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;next_reminder&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;localize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rule&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;after&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;now&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;In case the user's timezone changes, remember to recalculate next occurrence.&lt;/p&gt;
+&lt;h1 id="conclusions"&gt;Conclusions&lt;a class="headerlink" href="#conclusions" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Timezones are like variables. They have a name and a value (the UTC offset),
+that changes over time thanks to some rules defined in the timezone's database.&lt;/p&gt;
+&lt;p&gt;Dates without timezones don't really represent any moment in particular.&lt;/p&gt;
+&lt;p&gt;Always use tz aware dates and specifically UTC aware dates inside your program,
+but keep a reference to a local timezone that makes sense in case you need to
+retrace changes. For all this, is vital to stay up to date with tz updates.&lt;/p&gt;
+&lt;p&gt;I hope you found this post useful. My idea was make it a compendium of all
+things related to dates I have read about, and had to work with in Python. So I
+suggest you to read all linked pages, they are there for a reason!&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;Many countries have started and stopped using DST and different times.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;For example, 1:30am on 27th Oct 2002 happened twice in the US/Eastern timezone when the
+clocks where put back at the end of Daylight Saving Time.
+Similarly, 2:30am on 7th April 2002 never happened at all in the US/Eastern timezone, as
+the clocks where put forward at 2:00am skipping the entire hour.&lt;/p&gt;
+&lt;p&gt;Extracts from &lt;em&gt;the pytz &lt;a href="http://pytz.sourceforge.net/" title="pytz - World Timezone Definitions for Python"&gt;documentation&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Moreover, timezones can change for other reasons that just DST. &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In 1915 Warsaw switched from Warsaw time to Central European time with no daylight savings
+transition. So at the stroke of midnight on August 5th 1915 the clocks were wound back 24
+minutes creating an ambiguous time period that cannot be specified without referring to the
+timezone abbreviation or the actual UTC offset. In this case midnight happened twice, neither
+time during a daylight saving time period. pytz handles this transition by treating the
+ambiguous period before the switch as daylight savings time, and the ambiguous period after
+as standard time.&lt;/p&gt;
+&lt;p&gt;Extracts from &lt;em&gt;the pytz &lt;a href="http://pytz.sourceforge.net/" title="pytz - World Timezone Definitions for Python"&gt;documentation&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:2"&gt;
+&lt;p&gt;If you see a date formatted like &lt;code&gt;yyyy-mm-ddThh:mm:ss-03:00&lt;/code&gt;, it means that it's offset is UTC-3
+  but it also means that to convert it to UTC you have to make that &lt;code&gt;-03:00&lt;/code&gt; part a &lt;code&gt;+00:00&lt;/code&gt;, so in
+  this case you have to add three hours to the date for it to be in UTC.&amp;#160;&lt;a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:3"&gt;
+&lt;p&gt;The ICANN organization, which is in charge of hosting the Olson Database, publishes updates through
+  a &lt;a href="https://mm.icann.org/mailman/listinfo/tz-announce" title="tz announce maling list"&gt;mailing list&lt;/a&gt;. Some languages like Elixir, have &lt;a href="http://www.creativedeletion.com/2015/12/03/timezone-updates-need-fixing.html" title="Timezone updates need to be fixed"&gt;automatic builds&lt;/a&gt; for their date packages
+  when the db gets updated.&amp;#160;&lt;a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:4"&gt;
+&lt;p&gt;More information about programs, libraries and systems can be found &lt;a href="https://www.iana.org/time-zones/repository/tz-link.html" title="Sources for time zone and daylight saving time data"&gt;here&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:5"&gt;
+&lt;p&gt;&lt;a href="https://www.python.org/dev/peps/pep-0495/" title="PEP 495 -- Local Time Disambiguation"&gt;PEP495&lt;/a&gt; suggests adding an attribute called &lt;code&gt;fold&lt;/code&gt; to instances of the &lt;code&gt;datetime&lt;/code&gt; classes. For
+  example, on a system set to US/Eastern timezone:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;  &amp;gt;&amp;gt;&amp;gt; dt = datetime(2014, 11, 2, 1, 30)
+  &amp;gt;&amp;gt;&amp;gt; dt.astimezone().strftime(&amp;#39;%D %T %Z%z&amp;#39;)
+  &amp;#39;11/02/14 01:30:00 EDT-0400&amp;#39;
+  &amp;gt;&amp;gt;&amp;gt; dt.replace(fold=1).astimezone().strftime(&amp;#39;%D %T %Z%z&amp;#39;)
+  &amp;#39;11/02/14 01:30:00 EST-0500&amp;#39;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This way we can represent just one moment in time in an ambiguous case.
+  Other ideas were also discussed in &lt;a href="https://www.python.org/dev/peps/pep-0431/" title="Timezone support improvements"&gt;PEP431&lt;/a&gt;&amp;#160;&lt;a class="footnote-backref" href="#fnref:5" rev="footnote" title="Jump back to footnote 5 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:6"&gt;
+&lt;p&gt;This is a peak at some of the terminology involved when dealing with dates:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;naive datetime – a datetime object without a timezone.&lt;/li&gt;
+&lt;li&gt;localized datetime – a datetime object with a timezone.&lt;/li&gt;
+&lt;li&gt;localizing – associating a naive datetime object with a timezone.&lt;/li&gt;
+&lt;li&gt;normalizing – shifting a localized datetime object from one timezone to another, this changes
+    both tzinfo and datetime object.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;As the Delorean docs &lt;a href="http://delorean.readthedocs.io/en/latest/quickstart.html" title="Delorean docs"&gt;explain it&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:6" rev="footnote" title="Jump back to footnote 6 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:7"&gt;
+&lt;p&gt;Python cannot mix aware and naive dates or you will get a &lt;code&gt;TypeError:
+  can't compare offset-naive and offset-aware datetimes&lt;/code&gt; exception.&amp;#160;&lt;a class="footnote-backref" href="#fnref:7" rev="footnote" title="Jump back to footnote 7 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:8"&gt;
+&lt;p&gt;&lt;a href="https://labix.org/python-dateutil" title="python-dateutil"&gt;dateutils&lt;/a&gt; is a must if your app makes intensive use of dates. It
+  also provides some other niceties like &lt;code&gt;relativedelta&lt;/code&gt; and &lt;code&gt;parser.parse&lt;/code&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:8" rev="footnote" title="Jump back to footnote 8 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:9"&gt;
+&lt;p&gt;If you are working with Django, you might find &lt;a href="https://github.com/ambitioninc/django-localized-recurrence" title="Django localized recurrence"&gt;django-localized-recurrence&lt;/a&gt;
+  interesting.&amp;#160;&lt;a class="footnote-backref" href="#fnref:9" rev="footnote" title="Jump back to footnote 9 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content><category term="python"></category><category term="timezones"></category></entry><entry><title>The sorry state of jQuery plugins</title><link href="http://hernantz.github.io/the-sorry-state-of-jquery-plugins.html" rel="alternate"></link><published>2016-03-31T00:00:00-03:00</published><updated>2016-03-31T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2016-03-31:/the-sorry-state-of-jquery-plugins.html</id><summary type="html">&lt;p&gt;Customization is not enough, some plugins simply do too much.&lt;/p&gt;</summary><content type="html">&lt;p&gt;When adding jQuery widgets to enhance your web app, you'll find &lt;strong&gt;two possible
 approaches&lt;/strong&gt; in their implementation: On one the plugin does everything for
 you (and by &lt;em&gt;everything&lt;/em&gt; I simply mean &lt;em&gt;too much&lt;/em&gt;), on the other, the plugin
 does the minimum. But of course there is a wide range in between.&lt;/p&gt;
@@ -117,7 +401,7 @@ or some basic functionality. But it's clear that pure libraries tend to
 outperform ready-made plugins in terms of flexibility.&lt;/p&gt;
 &lt;p&gt;If only plugins allowed a &lt;strong&gt;clear separation of UI and logic&lt;/strong&gt;, and that logic
 be easily extendable, then you would be able seamlessly integrate it with the
-rest of your frameworks.&lt;/p&gt;</summary><category term="backbone"></category><category term="javascript"></category><category term="bootstrap"></category><category term="jquery"></category></entry><entry><title>The branch is dead, short live the branch!</title><link href="http://hernantz.github.io/the-branch-is-dead-short-live-the-branch.html" rel="alternate"></link><published>2015-08-28T00:00:00-03:00</published><author><name>hernantz</name></author><id>tag:hernantz.github.io,2015-08-28:the-branch-is-dead-short-live-the-branch.html</id><summary type="html">&lt;p&gt;&lt;em&gt;tl;dr&lt;/em&gt;: When implementing big changesets, maintaining and merging long-lived
+rest of your frameworks.&lt;/p&gt;</content><category term="backbone"></category><category term="javascript"></category><category term="bootstrap"></category><category term="jquery"></category></entry><entry><title>The branch is dead, short live the branch!</title><link href="http://hernantz.github.io/the-branch-is-dead-short-live-the-branch.html" rel="alternate"></link><published>2015-08-28T00:00:00-03:00</published><updated>2015-08-28T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2015-08-28:/the-branch-is-dead-short-live-the-branch.html</id><summary type="html">&lt;p&gt;Implement big changesets little by little. Don't let Theseus' ship sink!&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;em&gt;tl;dr&lt;/em&gt;: When implementing big changesets, maintaining and merging long-lived
 branches is hard. Use short-lived branches instead, and merge them ASAP.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="The ship of Theseus" src="/images/ship.jpg" /&gt;&lt;/p&gt;
 &lt;h2 id="the-theseus-paradox"&gt;The Theseus paradox&lt;a class="headerlink" href="#the-theseus-paradox" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
@@ -235,7 +519,7 @@ developer use the alias for the new code and at last, when all the codebase is
 using the alias, rename the original class.&lt;/p&gt;
 &lt;p&gt;Finally, you could try &lt;strong&gt;feature flags or compile time flags&lt;/strong&gt;, to &lt;a href="http://blog.travis-ci.com/2014-03-04-use-feature-flags-to-ship-changes-with-confidence/" title="Using Feature Flags to Ship Changes with Confidence"&gt;enable or
 disable certain parts&lt;/a&gt; of the system depending on some conditions, but
-keeping all the parts integrated in the same codebase.&lt;/p&gt;</summary><category term="ideas"></category><category term="agile"></category><category term="git"></category></entry><entry><title>Some reviews</title><link href="http://hernantz.github.io/some-reviews.html" rel="alternate"></link><published>2015-08-09T00:00:00-03:00</published><author><name>hernantz</name></author><id>tag:hernantz.github.io,2015-08-09:some-reviews.html</id><summary type="html">&lt;p&gt;I plan to be reviewing books, series, albums, games, bands and movies. I'm no
+keeping all the parts integrated in the same codebase.&lt;/p&gt;</content><category term="ideas"></category><category term="agile"></category><category term="git"></category></entry><entry><title>Some reviews</title><link href="http://hernantz.github.io/some-reviews.html" rel="alternate"></link><published>2015-08-09T00:00:00-03:00</published><updated>2015-08-09T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2015-08-09:/some-reviews.html</id><summary type="html">&lt;p&gt;Books, series, games and movies reviews. Part 1?&lt;/p&gt;</summary><content type="html">&lt;p&gt;I plan to be reviewing books, series, albums, games, bands and movies. I'm no
 expert in any of these, It's just that I want to put my impressions on ink (or
 pixels I should say). These reviews are a subset of what I had consumed over
 time. The order in which these reviews appear is not necessarily the order in
@@ -327,7 +611,7 @@ the white guys. &lt;/p&gt;
 it, I felt like it's gotten old, and as if it's lost that effect. This is why
 it doesn't get a higher score, but still, it might be worth watching it if you
 enjoy strange movies from the 80's. It's interesting to see that The Bleir
-Witch Project was not original at all. &lt;strong&gt;&lt;em&gt;Score: 2.4/5&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;</summary><category term="reviews"></category><category term="rants"></category><category term="ideas"></category></entry><entry><title>Mock yourself, not your tests</title><link href="http://hernantz.github.io/mock-yourself-not-your-tests.html" rel="alternate"></link><published>2015-07-27T00:00:00-03:00</published><author><name>hernantz</name></author><id>tag:hernantz.github.io,2015-07-27:mock-yourself-not-your-tests.html</id><summary type="html">&lt;p&gt;&lt;em&gt;tl;dr&lt;/em&gt;: While sometimes mocks are needed, they should not be the first tool 
+Witch Project was not original at all. &lt;strong&gt;&lt;em&gt;Score: 2.4/5&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;</content><category term="reviews"></category><category term="rants"></category><category term="ideas"></category></entry><entry><title>Mock yourself, not your tests</title><link href="http://hernantz.github.io/mock-yourself-not-your-tests.html" rel="alternate"></link><published>2015-07-27T00:00:00-03:00</published><updated>2015-07-27T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2015-07-27:/mock-yourself-not-your-tests.html</id><summary type="html">&lt;p&gt;Every mock is a smell, avoid them as much as you can.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;em&gt;tl;dr&lt;/em&gt;: While sometimes mocks are needed, they should not be the first tool 
 you use to write tests. It is a pity to be mocking your code when you could
 be writing meaningful tests at &lt;em&gt;almost&lt;/em&gt; the same cost.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="stower-titanic" src="/images/mock-yourself-not-your-tests.jpg" title="Der Untergang der Titanic by Willy Stöwer" /&gt;&lt;/p&gt;
@@ -350,7 +634,7 @@ are already tested.&lt;/p&gt;
 &lt;h3 id="testing-with-mocks"&gt;Testing with mocks&lt;a class="headerlink" href="#testing-with-mocks" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Let's see some example code:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;invoice_id&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;credit_card&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;invoice_id&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;credit_card&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="c1"&gt;# more code here&lt;/span&gt;
 
     &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;process&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
@@ -411,7 +695,7 @@ method doesn't exist anymore, like:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Traceback&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;most&lt;/span&gt; &lt;span class="n"&gt;recent&lt;/span&gt; &lt;span class="n"&gt;call&lt;/span&gt; &lt;span class="n"&gt;last&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
   &lt;span class="n"&gt;File&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;test.py&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;module&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
     &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;process_with_currency&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-  &lt;span class="n"&gt;File&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/usr/local/lib/python2.7/site-packages/mock.py&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="mi"&gt;65&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;__getattr__&lt;/span&gt;
+  &lt;span class="n"&gt;File&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/usr/local/lib/python2.7/site-packages/mock.py&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="mi"&gt;65&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="fm"&gt;__getattr__&lt;/span&gt;
     &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="ne"&gt;AttributeError&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Mock object has no attribute &lt;/span&gt;&lt;span class="si"&gt;%r&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="ne"&gt;AttributeError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Mock&lt;/span&gt; &lt;span class="nb"&gt;object&lt;/span&gt; &lt;span class="n"&gt;has&lt;/span&gt; &lt;span class="n"&gt;no&lt;/span&gt; &lt;span class="n"&gt;attribute&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;some_old_method&amp;#39;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -475,7 +759,7 @@ just follow the object's api, making our tests a little bit less permissive.&lt;
 &lt;span class="sd"&gt;    Replace our CreditCard with a double to avoid hitting the db or&lt;/span&gt;
 &lt;span class="sd"&gt;    3rd party services (if any).&lt;/span&gt;
 &lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;amount&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;amount&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;amount&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;amount&lt;/span&gt;
 
     &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;has_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
@@ -710,7 +994,7 @@ SSD.&lt;/p&gt;
 &lt;li&gt;In times of need, apply well maintained global mocks, the closest possible to 
   the danger zone.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Mock yourself not your tests :P&lt;/p&gt;</summary><category term="testing"></category><category term="python"></category><category term="mocks"></category><category term="rants"></category></entry><entry><title>How to publish a pelican site on Github</title><link href="http://hernantz.github.io/how-to-publish-a-pelican-site-on-github.html" rel="alternate"></link><published>2014-05-18T17:50:00-03:00</published><author><name>hernantz</name></author><id>tag:hernantz.github.io,2014-05-18:how-to-publish-a-pelican-site-on-github.html</id><summary type="html">&lt;p&gt;&lt;img alt="Pelican a static site publishing tool" src="/images/pelican-a-static-site-publishing-tool-github.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Mock yourself not your tests :P&lt;/p&gt;</content><category term="testing"></category><category term="python"></category><category term="mocks"></category><category term="rants"></category></entry><entry><title>How to publish a pelican site on Github</title><link href="http://hernantz.github.io/how-to-publish-a-pelican-site-on-github.html" rel="alternate"></link><published>2014-05-18T17:50:00-03:00</published><updated>2014-05-18T17:50:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2014-05-18:/how-to-publish-a-pelican-site-on-github.html</id><summary type="html">&lt;p&gt;Step by step guide on how to publish a pelican website on Github.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Pelican a static site publishing tool" src="/images/pelican-a-static-site-publishing-tool-github.png" /&gt;&lt;/p&gt;
 &lt;p&gt;This is a step by step guide on how to publish a pelican website on Github, and
 how not to get the site's codebase so tightly coupled to where it is deployed.
 If in the future we want to publish it somewhere else, there isn't much to be
@@ -768,7 +1052,7 @@ Those commands will only take effect on your repo from step 1, because you are
 inside the output submodule. Once you push your new output content to your master
 branch of &lt;code&gt;username.github.io&lt;/code&gt;, Github will take some minutes to update your site.
 And that's it.&lt;/p&gt;
-&lt;p&gt;Happy blogging!&lt;/p&gt;</summary><category term="pelican"></category><category term="git"></category><category term="python"></category></entry><entry><title>An MVP is not a product, it's an MVP</title><link href="http://hernantz.github.io/an-mvp-is-not-a-product-its-an-mvp.html" rel="alternate"></link><published>2013-11-09T12:03:00-03:00</published><author><name>hernantz</name></author><id>tag:hernantz.github.io,2013-11-09:an-mvp-is-not-a-product-its-an-mvp.html</id><summary type="html">&lt;p&gt;tl;dr: Build, measure and learn. But don't avoid best practices afterwards.&lt;/p&gt;
+&lt;p&gt;Happy blogging!&lt;/p&gt;</content><category term="pelican"></category><category term="git"></category><category term="python"></category></entry><entry><title>An MVP is not a product, it's an MVP</title><link href="http://hernantz.github.io/an-mvp-is-not-a-product-its-an-mvp.html" rel="alternate"></link><published>2013-11-09T12:03:00-03:00</published><updated>2013-11-09T12:03:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2013-11-09:/an-mvp-is-not-a-product-its-an-mvp.html</id><summary type="html">&lt;p&gt;Build, measure and learn. But don't avoid best practices afterwards.&lt;/p&gt;</summary><content type="html">&lt;p&gt;tl;dr: Build, measure and learn. But don't avoid best practices afterwards.&lt;/p&gt;
 &lt;p&gt;Minimum Viable Product, or even better Minimum Viable Prototype (MVP from now
 on), is a technique born in the Lean Startup movement to reduce the risk of
 gaining validated learning, without spending too much effort, money and time in
@@ -785,7 +1069,7 @@ the industry's best practices, so it can be used in production by your
 The consequences of not doing it are well known, that's why we have best
 practices afterall.
 The risk is low now. Money, time and effort won't be wasted. There is no excuse.
-An MVP is not a product, it's an MVP.&lt;/p&gt;</summary><category term="rants"></category><category term="mvp"></category></entry><entry><title>Open tabs buffer overflow</title><link href="http://hernantz.github.io/open-tabs-buffer-overflow.html" rel="alternate"></link><published>2013-08-21T22:56:00-03:00</published><author><name>hernantz</name></author><id>tag:hernantz.github.io,2013-08-21:open-tabs-buffer-overflow.html</id><summary type="html">&lt;p&gt;&lt;img alt="Bored Elon Musk knows" src="/images/genius-is-1-inspiration-and-99-closing-the-two-hundred-open-tabs-in-your-browser.png" /&gt;&lt;/p&gt;
+An MVP is not a product, it's an MVP.&lt;/p&gt;</content><category term="rants"></category><category term="mvp"></category></entry><entry><title>Open tabs buffer overflow</title><link href="http://hernantz.github.io/open-tabs-buffer-overflow.html" rel="alternate"></link><published>2013-08-21T22:56:00-03:00</published><updated>2013-08-21T22:56:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2013-08-21:/open-tabs-buffer-overflow.html</id><summary type="html">&lt;p&gt;Ideas for surviving an open tabs buffer overflow.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Bored Elon Musk knows" src="/images/genius-is-1-inspiration-and-99-closing-the-two-hundred-open-tabs-in-your-browser.png" /&gt;&lt;/p&gt;
 &lt;h2 id="the-interwebs-and-the-power-it-holds"&gt;The interwebs and the power it holds&lt;a class="headerlink" href="#the-interwebs-and-the-power-it-holds" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;There is so much out there and just a click of distance. Funny videos, new
 music, interesting articles, tutorials, blog posts, games.&lt;/p&gt;
@@ -821,7 +1105,7 @@ remember that you once saved something interesting for later read.&lt;/p&gt;
 &lt;p&gt;The other improvement has been to stop using the desktop to browse twitter.
 Instead I force myself to read it on a tablet, which is not so distracting and
 at the same time helps with the &lt;em&gt;triage process&lt;/em&gt; since it is somewhat cumbersome
-to multitask on it.&lt;/p&gt;</summary><category term="ideas"></category></entry><entry><title>Init</title><link href="http://hernantz.github.io/init.html" rel="alternate"></link><published>2013-07-03T18:06:00-03:00</published><author><name>hernantz</name></author><id>tag:hernantz.github.io,2013-07-03:init.html</id><summary type="html">&lt;p&gt;This is my static new blog and it begins with this single post. I hope this is
+to multitask on it.&lt;/p&gt;</content><category term="ideas"></category></entry><entry><title>Init</title><link href="http://hernantz.github.io/init.html" rel="alternate"></link><published>2013-07-03T18:06:00-03:00</published><updated>2013-07-03T18:06:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2013-07-03:/init.html</id><summary type="html">&lt;p&gt;This is my new static blog.&lt;/p&gt;</summary><content type="html">&lt;p&gt;This is my static new blog and it begins with this single post. I hope this is
 not one of those things I start and abandon.&lt;/p&gt;
 &lt;p&gt;Why now? Because in the last weeks I felt the urge to write for myself.
 Knowing my thoughts will be publicly available forces me to think wisely, 
@@ -833,4 +1117,4 @@ vim has become part of the motivation too.&lt;/p&gt;
 shortest post in here. But still, I'll do my best to get to the point. Give you
 quality over quantity. Why write a thousand words if a picture says more than a
 thousand words? Why write six paragraphs if you can fit an introduction, the
-main idea and a conclusion in just three?&lt;/p&gt;</summary><category term="pelican"></category><category term="ideas"></category></entry></feed>
+main idea and a conclusion in just three?&lt;/p&gt;</content><category term="pelican"></category><category term="ideas"></category></entry></feed>

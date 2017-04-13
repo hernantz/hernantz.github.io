@@ -24,6 +24,7 @@ else's repertoire get so much better.
 |  Wrecking Ball               | Miley Cirus              | Adele                     |
 |  Gold                        | Chect Faker              | Alt-J                     |
 |  Crushcrushcrush             | Paramore                 | Ashley Simpson            |
+|  Galaxies                    | Laura Veirs              | Aurora                    |
 |  Stillborn                   | Black Label Society      | Black Sabbath             |
 |  Painkiller                  | Mech                     | Black Sabbath             |
 |  Starships                   | Nicki Minaj              | Britney Spears            |
@@ -45,6 +46,7 @@ else's repertoire get so much better.
 |  (Don't Fear) The Reaper     | Blue Oyster Cult         | Ghost                     |
 |  Walk                        | Pantera                  | Hammer                    |
 |  War for territory           | Sepultura                | Hammer                    |
+|  Somebody to Love            | Jefferson Plane          | Heart                     |
 |  Life                        | Sonata Arctica           | Helloween                 |
 |  Too Many Words              | Sick Puppies             | Hoobastank                |
 |  Don't You Forget About Me   | Simple Minds             | INXS                      |
@@ -77,6 +79,7 @@ else's repertoire get so much better.
 |  Somebody is watching me     | Rockwell                 | Michael Jackson           |
 |  I can't feel my face        | The Weeknd               | Michael Jackson           |
 |  You get what you give       | New Radicals             | Mick Jagger               |
+|  Acid Fuzz                   | Toxic Holocaust          | Municipal Waste           |
 |  Honest Mistake              | The Bravery              | Muse                      |
 |  King of the kill            | Annihilator              | Newsted                   |
 |  Gone Suvering               | Stone Sour               | Newsted                   |
@@ -97,6 +100,7 @@ else's repertoire get so much better.
 |  My Sherona                  | The Knack                | The Beatles               |
 |  Gotta Go                    | Agnostic Front           | The Mistfits              |
 |  Danzig                      | Mother                   | The Mistfits              |
+|  Bitter End                  | Placebo                  | The Music                 |
 |  I Fought the Law            | The Clash                | The Ramones               |
 |  DMSLT                       | A Pale Horse Named Death | Type O Negative           |
 |  The Dark Inside             | Ackercocke               | Type O Negative           |

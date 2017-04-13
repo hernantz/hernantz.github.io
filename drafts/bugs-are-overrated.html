@@ -75,6 +75,19 @@ Creo también que es oportuno aclarar que trabajar con Tony y Christine ha sido 
 <h2 id="solucion-problema-3-rotacion">Solución problema 3: Rotación<a class="headerlink" href="#solucion-problema-3-rotacion" title="Permanent link">&para;</a></h2>
 <p>Que el área de mantenimiento rote entre los desarrolladores, cosa de que en cada sprint hay un responsable distinto. Como se hace con las groomings.
 Esto sería saludable para que todos los miembros del equipo experimenten en primera persona los desafíos que se presentan en este proyecto (esta área funciona como un cable a tierra del día a día de los usuarios) y haya una noción de compromiso colectivo. También, es oportunidad buenísima de aprender de nuestros errores (lo puedo afirmar con mi experiencia). A su vez, atacando los problemas 1 y 2, la cantidad de esfuerzo invertido en esta área bajará notoriamente.</p>
+<h1 id="por-que-hacemos-testing">Por qué hacemos testing<a class="headerlink" href="#por-que-hacemos-testing" title="Permanent link">&para;</a></h1>
+<p>Testing es una técnica que consiste en escribir tests para ejecutarlos contra la aplicacion y asi determinar si funciona bien o mal.
+Idealmente estos tests están automatizados. Esto es, nos tomamos el trabajo de escribir un software que prueba nuestro software. Así podemos tener feedback rápido de si la aplicación funciona o no.</p>
+<p>Existen tres desafios:
+Hay funcionalidades que son difíciles de testear:
+Cuestiones visuales de UI, integraciones con servicios de pago o login externos, etc. Generalmente estos se hacen a mano de vez en cuando.
+Los tests que escribimos pueden no ser prueba suficiente de que la aplicación funciona:
+Es posible tener 3k tests unitarios + mocks, pero si actualizo una librería, como se que todo sigue andando?.
+A su vez, es posible tener tests que no cubren todos los casos de uso, porque no tuve tiempo o ganas de escribirlos.
+Testear requiere un esfuerzo, cuesta tiempo y plata:
+Los tests tienen que ser vistos como una inversión que debe rendir sus frutos. Hay que ser inteligentes en que testear y que no testear, qué tipos de testing hacer, que nivel de automatización, etc. Como no existen recursos infinitos, siempre hay sacrificios para hacer.
+Por ejemplo me gustaría tener testing de regresión, de performance, de usabilidad, de seguridad, que todo corra rápido y automatizado. Como ven, esto es super costoso de hacer, entonces no todos los proyectos pueden darse ese lujo. No es lo mismo testear una aplicación que usan en la ISS vs una aplicación web para gente que labura en marketing. Entonces esto es algo a definir.</p>
+<p>when you bump up priorities of something, you have to know what got bumped down.</p>
 <p>Bugs are overrated
 Ejemplo de collin mc rae de arreglar el auto al final de cada tramo</p>
 <p>Los bugs pueden ser planificados, las emergencias no
@@ -83,10 +96,37 @@ Contestar al post de exception zero.</p>
 <p>In general: specific problems are overrated to require specific treatment
 Python: Special cases aren't special enough to break the rules.</p>
 <p>https://henrikwarne.com/2016/04/28/learning-from-your-bugs/</p>
+<blockquote>
+<p>That’s why Erik called it the most destructive type of work. It’s not
+really work at all, like the others. The others are what you planned on
+doing, allegedly because you needed to do it.
+Unplanned work is what prevents you from doing it. Like matter and
+antimatter, in the presence of unplanned work, all planned work ignites
+with incandescent fury, incinerating everything around it.
+The Phoenix Project</p>
+</blockquote>
+<p>“Unlike the other categories of work, unplanned work is recovery
+work, which almost always takes you away from your goals. That’s why
+it’s so important to know where your unplanned work is coming from.”
+The Phoenix Project</p>
+<p>“Erik asked me how we made the same type of decision in IT ,” I recall. “I told him then, and I’ll
+tell you now, I don’t know. I’m pretty sure we don’t do any sort of analysis of capacity and demand
+before we accept work. Which means we’re always scrambling, having to take shortcuts, which
+means more fragile applications in production. Which means more unplanned work and firefighting in
+the future. So, around and around we go.”
+To my surprise, Erik interrupts. “Well put, Bill. You’ve just described ‘technical debt’ that is not
+being paid down. It comes from taking shortcuts, which may make sense in the short-term. But like
+financial debt, the compounding interest costs grow over time. If an organization doesn’t pay down its
+technical debt, every calorie in the organization can be spent just paying interest, in the form of
+unplanned work.”
+“As you know, unplanned work is not free,” he continues. “Quite the opposite. It’s very expensive,
+because unplanned work comes at the expense of...”
+He looks around professorially for an answer.
+Wes finally speaks up, “Planned work?”</p>
 </article>
 
   <footer class="column-right light">
-    <nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> | README.txt (© 2016)</nav>
+    <nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> | README.txt (© 2017)</nav>
     <p></p>
   </footer>
 
