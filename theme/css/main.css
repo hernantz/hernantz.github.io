@@ -5,7 +5,10 @@ body {
   color: #444;
   line-height: 30px;
   margin: 0.8em 1em;
-  max-width: 45em; }
+  display: flex;
+  max-width: 45em;
+  flex-direction: row;
+  align-content: stretch; }
 
 
 h1, h2, h3, h4 {
@@ -92,20 +95,18 @@ dd {
 
 /* aside */
 .sidebar {
-  position: fixed; }
+  min-width: 5em;
+  margin-bottom: 2em;
+  margin-right: 2em; }
 
 .sidebar a {
   border: none; }
-
-.sidebar nav {
-  margin: 15px 0 0 0; }
 
 .sidebar nav a {
   padding: 3px 0;
   color: black;
   font-weight: bold;
-  font-size: 12px;
-  display: block; }
+  font-size: 12px; }
 
 .sidebar nav a:hover {
   color: #227ce8; }
@@ -116,15 +117,13 @@ dd {
 
 .sidebar nav li {
   line-height: 18px;
-  padding: 0;
+  padding: 0.1em 0;
   list-style: none; }
 
 .article-list p {
   margin: 0; }
 
 .column-right {
-  margin-left: 120px;
-  margin-right: 20px;
   margin-bottom: 50px; }
 
 /* code snippets */
