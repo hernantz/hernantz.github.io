@@ -43,6 +43,7 @@ else's repertoire get so much better.
 |  Shout                        | Tears for Fears           | Depeche Mode              |
 |  Black Friday Rule            | Flogging Molly            | Dropkick Murphys          |
 |  Baby Did a Bad Bad Thing     | Chris Isaak               | Elvis Presley             |
+|  Shooting Stars               | Bag Riders                | Empire of the Sun         |
 |  Safe and Sound               | Capital Cities            | Empire of the Sun         |
 |  Cult of Personality          | Living Colour             | Faith No More             |
 |  Ruby                         | Kaiser Chiefs             | Franz Ferdinand           |
@@ -78,6 +79,7 @@ else's repertoire get so much better.
 |  Just in Case                 | Static X                  | Limp Bizkit               |
 |  Dale Vieja Dale              | Ulises Bueno              | Los Caligaris             |
 |  Pumped Up Kicks              | Foster The People         | MGMT                      |
+|  Midnight City                | M83                       | MGMT                      |
 |  Pure Shores                  | All Saints                | Madonna                   |
 |  Paranoid                     | Black Sabbath             | Megadeth                  |
 |  Cementary Gates              | Pantera                   | Megadeth                  |
