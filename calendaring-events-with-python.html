@@ -41,6 +41,10 @@ on <time datetime="2017-04-13T00:00:00-03:00">Thu 13 April 2017</time>,       un
     </p>
   </summary>
   <p><img alt="Aztec sun stone" src="/images/aztec-calendar.png" title="Aztec sun stone" /></p>
+<p>Scheduling the next world's doomsday can be tricky, because working with dates
+is so. In this post I'll try to share some basic tips and gotchas I learned the
+hard way while building a calendaring app, that hopefully will make this task
+easier for you.</p>
 <h2 id="one-time-events">One time events<a class="headerlink" href="#one-time-events" title="Permanent link">&para;</a></h2>
 <p>Because of the way we track time, a single moment can happen at different times
 of the day for different people around the globe and a single date and time can
@@ -218,22 +222,112 @@ user will see in their local timezone stays intact.</p>
 
 
 <p>You should also set the <code>is_dst</code> flag in when calling <code>localize()</code> if needed.</p>
+<h2 id="quering-events">Quering events<a class="headerlink" href="#quering-events" title="Permanent link">&para;</a></h2>
+<p>When retriving entries for a given period, we need to <strong>think in buckets
+determined by the user's localized start and end boundaries</strong> for that period.</p>
+<p>For example, if we want today's entries, for a user with an offset of UTC-3, it
+is important to request those dates in the UTC version of the user's 00:00 to
+23:59 time lapse. <em>Today</em> is relative to the timezone the user is currently at,
+and using <em>UTC's today</em> is not an option since it's going to get us entries
+from yesterday's 21:00 to today's 20:59 potentially including or excluding
+incorrect results. We need to normalize the user's date range to UTC:</p>
+<table>
+<thead>
+<tr>
+<th>UTC offset</th>
+<th>Day start</th>
+<th>Day end</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-03:00</td>
+<td>00:00</td>
+<td>23:59</td>
+<td>User's date range</td>
+</tr>
+<tr>
+<td>+00:00</td>
+<td>00:00</td>
+<td>23:59</td>
+<td>UTC's date range</td>
+</tr>
+<tr>
+<td>-03:00</td>
+<td>21:00</td>
+<td>20:59</td>
+<td>UTC's date range compared to user's</td>
+</tr>
+<tr>
+<td>+00:00</td>
+<td>03:00</td>
+<td>02:59</td>
+<td>User's date range normalized with UTC [✓]</td>
+</tr>
+</tbody>
+</table>
+<p>The following piece of code shows exactly how to query today's entries for a
+user. See how <code>time.min</code> and <code>time.max</code> come in handy when calculating the
+start and end boundaries for a date:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">today_only</span><span class="p">():</span>
+    <span class="c1"># datetime.datetime.combine returns naive dates :(</span>
+    <span class="n">local_now</span> <span class="o">=</span> <span class="n">user_tz</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">tzinfo</span><span class="o">=</span><span class="n">utc</span><span class="p">))</span>
+    <span class="n">local_today_min</span> <span class="o">=</span> <span class="n">user_tz</span><span class="o">.</span><span class="n">localize</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">local_now</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">min</span><span class="p">))</span>
+    <span class="n">local_today_max</span> <span class="o">=</span> <span class="n">user_tz</span><span class="o">.</span><span class="n">localize</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">local_now</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">max</span><span class="p">))</span>
+    <span class="n">today_min</span> <span class="o">=</span> <span class="n">utc</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">local_today_min</span><span class="p">)</span>
+    <span class="n">today_max</span> <span class="o">=</span> <span class="n">utc</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">local_today_max</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">events</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">start</span><span class="o">&gt;=</span><span class="n">today_min</span><span class="p">,</span> <span class="n">end</span><span class="o">&lt;=</span><span class="n">today_max</span><span class="p">)</span>
+</pre></div>
+
+
+<p>For next/previous month or next/previous week you should use <code>rrule</code> which can
+give you those dates, since the math is not as simple as adding 30 days to get
+the next month's results (not every month has the same length) or calculating
+when the next week starts. Then you just have to follow the same aforementioned
+approach.</p>
+<p>Quering past or future events, with that sole condition, is a different story.
+Since dates are typically stored in UTC and we care about entries before or
+after <em>now</em>, it doesn't matter which timezone the user is at, <em>now</em> represents
+the same moment in any timezone, so we don't have to translate the user's <em>now</em>
+to UTC's <em>now</em>.</p>
+<div class="highlight"><pre><span></span><span class="c1"># Assuming event dates are stored in UTC (like postgres does).</span>
+<span class="c1"># These convertions might not be needed depending on the storage engine</span>
+<span class="c1"># or frameworks you are using.</span>
+
+<span class="k">def</span> <span class="nf">past</span><span class="p">():</span>
+    <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">tzinfo</span><span class="o">=</span><span class="n">utc</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">events</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">end</span><span class="o">&lt;=</span><span class="n">now</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">future</span><span class="p">():</span>
+    <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">tzinfo</span><span class="o">=</span><span class="n">utc</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">events</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">start</span><span class="o">&gt;=</span><span class="n">now</span><span class="p">)</span>
+</pre></div>
+
+
+<p><strong>Be extra carefull if you are caching these results afected by a date range</strong>,
+and make sure that the timezone is part of the cache's key. This way, if the
+timezone changes, because the user is on a trip for instance, the cache gets
+invalidated automatically for that user. Otherwise this week's promotions won't
+be correctly applied to customers in the case of an e-commerce site for
+example.</p>
 <h2 id="notification-events">Notification events<a class="headerlink" href="#notification-events" title="Permanent link">&para;</a></h2>
 <p>When it comes to scheduling events like digest emails of notifications/news,
 lists of pending tasks, aggregated activities, etc, you will also need to
-generate a series based on the user preferences, but having all future
-occurrences generated in advance is wasteful.</p>
-<p>In this use case you only care about the next recurrence after now, and every
-now and then (i.e. every minute) you poll all scheduled reminders that expired
-and calculate the next occurrence with a cron-like job <sup id="fnref:9"><a class="footnote-ref" href="#fn:9" rel="footnote">9</a></sup>.</p>
-<div class="highlight"><pre><span></span><span class="n">tz</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="s1">&#39;US/Eastern&#39;</span><span class="p">)</span>
+generate a series based on the user preferences for when to receive them.</p>
+<p>You guessed it, <code>rrule</code> again to the rescue! But having all future occurrences
+generated in advance is wasteful.</p>
+<p>In this use case you only care about the next recurrence after now. Every now
+and then (i.e. every minute) you poll all scheduled reminders that expired,
+execute the task and calculate the next occurrence with a cron-like job <sup id="fnref:9"><a class="footnote-ref" href="#fn:9" rel="footnote">9</a></sup>.</p>
+<div class="highlight"><pre><span></span><span class="n">user_tz</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="s1">&#39;US/Eastern&#39;</span><span class="p">)</span>
 <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span>
 <span class="n">days</span> <span class="o">=</span> <span class="p">[</span><span class="n">rrule</span><span class="o">.</span><span class="n">MO</span><span class="p">,</span> <span class="n">rrule</span><span class="o">.</span><span class="n">WE</span><span class="p">]</span>
 <span class="n">rule</span> <span class="o">=</span> <span class="n">rrule</span><span class="o">.</span><span class="n">rrule</span><span class="p">(</span><span class="n">rrule</span><span class="o">.</span><span class="n">WEEKLY</span><span class="p">,</span> <span class="n">dtstart</span><span class="o">=</span><span class="n">now</span><span class="p">,</span> <span class="n">byweekday</span><span class="o">=</span><span class="n">days</span><span class="p">,</span>
                    <span class="n">byhour</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">byminute</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 
 <span class="c1"># Get the fist recurrence right after &quot;now&quot;</span>
-<span class="n">next_reminder</span> <span class="o">=</span> <span class="n">tz</span><span class="o">.</span><span class="n">localize</span><span class="p">(</span><span class="n">rule</span><span class="o">.</span><span class="n">after</span><span class="p">(</span><span class="n">now</span><span class="p">))</span>
+<span class="n">next_notification</span> <span class="o">=</span> <span class="n">user_tz</span><span class="o">.</span><span class="n">localize</span><span class="p">(</span><span class="n">rule</span><span class="o">.</span><span class="n">after</span><span class="p">(</span><span class="n">now</span><span class="p">))</span>
 </pre></div>
 
 
@@ -244,7 +338,8 @@ that changes over time thanks to some rules defined in the timezone's database.<
 <p>Dates without timezones don't really represent any moment in particular.</p>
 <p>Always use tz aware dates and specifically UTC aware dates inside your program,
 but keep a reference to a local timezone that makes sense in case you need to
-retrace changes. For all this, is vital to stay up to date with tz updates.</p>
+retrace changes.</p>
+<p>For all this, it is vital to stay up to date with tz updates.</p>
 <p>I hope you found this post useful. My idea was make it a compendium of all
 things related to dates I have read about, and had to work with in Python. So I
 suggest you to read all linked pages, they are there for a reason!</p>

@@ -83,6 +83,12 @@ dd {
   margin: 0;
   margin-bottom: 1.5em; }
 
+table {
+  width: 100%; }
+
+th {
+  text-align: left; }
+
 /* site header */
 .main-title {
   margin-top: 0;

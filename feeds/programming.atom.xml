@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt - Programming</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/programming.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2017-04-13T00:00:00-03:00</updated><entry><title>Calendaring events with Python</title><link href="http://hernantz.github.io/calendaring-events-with-python.html" rel="alternate"></link><published>2017-04-13T00:00:00-03:00</published><updated>2017-04-13T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2017-04-13:/calendaring-events-with-python.html</id><summary type="html">&lt;p&gt;Some gotchas you'll find when scheduling the next world's doomsday.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Aztec sun stone" src="/images/aztec-calendar.png" title="Aztec sun stone" /&gt;&lt;/p&gt;
+&lt;p&gt;Scheduling the next world's doomsday can be tricky, because working with dates
+is so. In this post I'll try to share some basic tips and gotchas I learned the
+hard way while building a calendaring app, that hopefully will make this task
+easier for you.&lt;/p&gt;
 &lt;h2 id="one-time-events"&gt;One time events&lt;a class="headerlink" href="#one-time-events" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Because of the way we track time, a single moment can happen at different times
 of the day for different people around the globe and a single date and time can
@@ -177,22 +181,112 @@ user will see in their local timezone stays intact.&lt;/p&gt;
 
 
 &lt;p&gt;You should also set the &lt;code&gt;is_dst&lt;/code&gt; flag in when calling &lt;code&gt;localize()&lt;/code&gt; if needed.&lt;/p&gt;
+&lt;h2 id="quering-events"&gt;Quering events&lt;a class="headerlink" href="#quering-events" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;When retriving entries for a given period, we need to &lt;strong&gt;think in buckets
+determined by the user's localized start and end boundaries&lt;/strong&gt; for that period.&lt;/p&gt;
+&lt;p&gt;For example, if we want today's entries, for a user with an offset of UTC-3, it
+is important to request those dates in the UTC version of the user's 00:00 to
+23:59 time lapse. &lt;em&gt;Today&lt;/em&gt; is relative to the timezone the user is currently at,
+and using &lt;em&gt;UTC's today&lt;/em&gt; is not an option since it's going to get us entries
+from yesterday's 21:00 to today's 20:59 potentially including or excluding
+incorrect results. We need to normalize the user's date range to UTC:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;UTC offset&lt;/th&gt;
+&lt;th&gt;Day start&lt;/th&gt;
+&lt;th&gt;Day end&lt;/th&gt;
+&lt;th&gt;Meaning&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;-03:00&lt;/td&gt;
+&lt;td&gt;00:00&lt;/td&gt;
+&lt;td&gt;23:59&lt;/td&gt;
+&lt;td&gt;User's date range&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;+00:00&lt;/td&gt;
+&lt;td&gt;00:00&lt;/td&gt;
+&lt;td&gt;23:59&lt;/td&gt;
+&lt;td&gt;UTC's date range&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;-03:00&lt;/td&gt;
+&lt;td&gt;21:00&lt;/td&gt;
+&lt;td&gt;20:59&lt;/td&gt;
+&lt;td&gt;UTC's date range compared to user's&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;+00:00&lt;/td&gt;
+&lt;td&gt;03:00&lt;/td&gt;
+&lt;td&gt;02:59&lt;/td&gt;
+&lt;td&gt;User's date range normalized with UTC [✓]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The following piece of code shows exactly how to query today's entries for a
+user. See how &lt;code&gt;time.min&lt;/code&gt; and &lt;code&gt;time.max&lt;/code&gt; come in handy when calculating the
+start and end boundaries for a date:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;today_only&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="c1"&gt;# datetime.datetime.combine returns naive dates :(&lt;/span&gt;
+    &lt;span class="n"&gt;local_now&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;user_tz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;normalize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utcnow&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tzinfo&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;utc&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="n"&gt;local_today_min&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;user_tz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;localize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;combine&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;local_now&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;min&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="n"&gt;local_today_max&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;user_tz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;localize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;combine&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;local_now&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="n"&gt;today_min&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;utc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;normalize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;local_today_min&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;today_max&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;utc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;normalize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;local_today_max&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;events&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;=&lt;/span&gt;&lt;span class="n"&gt;today_min&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;=&lt;/span&gt;&lt;span class="n"&gt;today_max&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;For next/previous month or next/previous week you should use &lt;code&gt;rrule&lt;/code&gt; which can
+give you those dates, since the math is not as simple as adding 30 days to get
+the next month's results (not every month has the same length) or calculating
+when the next week starts. Then you just have to follow the same aforementioned
+approach.&lt;/p&gt;
+&lt;p&gt;Quering past or future events, with that sole condition, is a different story.
+Since dates are typically stored in UTC and we care about entries before or
+after &lt;em&gt;now&lt;/em&gt;, it doesn't matter which timezone the user is at, &lt;em&gt;now&lt;/em&gt; represents
+the same moment in any timezone, so we don't have to translate the user's &lt;em&gt;now&lt;/em&gt;
+to UTC's &lt;em&gt;now&lt;/em&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Assuming event dates are stored in UTC (like postgres does).&lt;/span&gt;
+&lt;span class="c1"&gt;# These convertions might not be needed depending on the storage engine&lt;/span&gt;
+&lt;span class="c1"&gt;# or frameworks you are using.&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;past&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="n"&gt;now&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utcnow&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tzinfo&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;utc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;events&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;=&lt;/span&gt;&lt;span class="n"&gt;now&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;future&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="n"&gt;now&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utcnow&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tzinfo&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;utc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;events&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;=&lt;/span&gt;&lt;span class="n"&gt;now&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;Be extra carefull if you are caching these results afected by a date range&lt;/strong&gt;,
+and make sure that the timezone is part of the cache's key. This way, if the
+timezone changes, because the user is on a trip for instance, the cache gets
+invalidated automatically for that user. Otherwise this week's promotions won't
+be correctly applied to customers in the case of an e-commerce site for
+example.&lt;/p&gt;
 &lt;h2 id="notification-events"&gt;Notification events&lt;a class="headerlink" href="#notification-events" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;When it comes to scheduling events like digest emails of notifications/news,
 lists of pending tasks, aggregated activities, etc, you will also need to
-generate a series based on the user preferences, but having all future
-occurrences generated in advance is wasteful.&lt;/p&gt;
-&lt;p&gt;In this use case you only care about the next recurrence after now, and every
-now and then (i.e. every minute) you poll all scheduled reminders that expired
-and calculate the next occurrence with a cron-like job &lt;sup id="fnref:9"&gt;&lt;a class="footnote-ref" href="#fn:9" rel="footnote"&gt;9&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;tz&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pytz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;timezone&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;US/Eastern&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+generate a series based on the user preferences for when to receive them.&lt;/p&gt;
+&lt;p&gt;You guessed it, &lt;code&gt;rrule&lt;/code&gt; again to the rescue! But having all future occurrences
+generated in advance is wasteful.&lt;/p&gt;
+&lt;p&gt;In this use case you only care about the next recurrence after now. Every now
+and then (i.e. every minute) you poll all scheduled reminders that expired,
+execute the task and calculate the next occurrence with a cron-like job &lt;sup id="fnref:9"&gt;&lt;a class="footnote-ref" href="#fn:9" rel="footnote"&gt;9&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;user_tz&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pytz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;timezone&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;US/Eastern&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;now&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utcnow&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="n"&gt;days&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;rrule&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MO&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;rrule&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;WE&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="n"&gt;rule&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;rrule&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rrule&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rrule&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;WEEKLY&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dtstart&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;now&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;byweekday&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;days&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
                    &lt;span class="n"&gt;byhour&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;byminute&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
 &lt;span class="c1"&gt;# Get the fist recurrence right after &amp;quot;now&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;next_reminder&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;localize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rule&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;after&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;now&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="n"&gt;next_notification&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;user_tz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;localize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rule&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;after&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;now&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -203,7 +297,8 @@ that changes over time thanks to some rules defined in the timezone's database.&
 &lt;p&gt;Dates without timezones don't really represent any moment in particular.&lt;/p&gt;
 &lt;p&gt;Always use tz aware dates and specifically UTC aware dates inside your program,
 but keep a reference to a local timezone that makes sense in case you need to
-retrace changes. For all this, is vital to stay up to date with tz updates.&lt;/p&gt;
+retrace changes.&lt;/p&gt;
+&lt;p&gt;For all this, it is vital to stay up to date with tz updates.&lt;/p&gt;
 &lt;p&gt;I hope you found this post useful. My idea was make it a compendium of all
 things related to dates I have read about, and had to work with in Python. So I
 suggest you to read all linked pages, they are there for a reason!&lt;/p&gt;
