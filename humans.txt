@@ -48,6 +48,7 @@ else's repertoire get so much better.
 |  Cult of Personality          | Living Colour             | Faith No More             |
 |  Ruby                         | Kaiser Chiefs             | Franz Ferdinand           |
 |  (Don't Fear) The Reaper      | Blue Oyster Cult          | Ghost                     |
+|  Ghost Ship                   | Blur                      | Gorillaz                  |
 |  Walk                         | Pantera                   | Hammer                    |
 |  War for Territory            | Sepultura                 | Hammer                    |
 |  Somebody to Love             | Jefferson Plane           | Heart                     |
@@ -107,6 +108,7 @@ else's repertoire get so much better.
 |  Believe                      | The Bravery               | Queens of the Stone Edge  |
 |  The Suburbs                  | Arcade Fire               | Queens of the stone edge  |
 |  White Walls                  | Between the Buried and Me | Revocation                |
+|  Divination And Violition     | Cephalic Carnage          | Rings of Saturn           |
 |  Rockin' in the Free Wold     | Neil Young                | Rocky Erickson            |
 |  Empire of the Clouds         | Iron Maiden               | Savatage                  |
 |  Replica                      | Sonata Arctica            | Savatage                  |
