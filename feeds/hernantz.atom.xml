@@ -1,5 +1,370 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt - hernantz</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/hernantz.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2017-04-13T00:00:00-03:00</updated><entry><title>Calendaring events with Python</title><link href="http://hernantz.github.io/calendaring-events-with-python.html" rel="alternate"></link><published>2017-04-13T00:00:00-03:00</published><updated>2017-04-13T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2017-04-13:/calendaring-events-with-python.html</id><summary type="html">&lt;p&gt;Some gotchas you'll find when scheduling the next world's doomsday.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Aztec sun stone" src="/images/aztec-calendar.png" title="Aztec sun stone" /&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt - hernantz</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/hernantz.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2018-03-07T00:00:00-03:00</updated><entry><title>It's the competition, stupid</title><link href="http://hernantz.github.io/its-the-competition-stupid.html" rel="alternate"></link><published>2018-03-07T00:00:00-03:00</published><updated>2018-03-07T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2018-03-07:/its-the-competition-stupid.html</id><summary type="html">&lt;p&gt;Increasing your chances of prosperity.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="it's the competition stupid" src="/images/competition.jpg" title="Picture of Advertisements in Saigon, Vietnam" /&gt;&lt;/p&gt;
+&lt;h2 id="abstract"&gt;Abstract&lt;a class="headerlink" href="#abstract" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Since high school I've always had the hunch that freedom was the obvious way
+for a society to progress in terms of efficiency, equality, wealth, knowledge
+and justice. I've been biased to justify everything as lack of freedom or as a
+consequence worth suffering because of an excess of freedom.&lt;/p&gt;
+&lt;p&gt;But I later came to a realization: concepts like justice and equality are mere
+ideals hard to reach universally. What is fair for some, might not be so for
+others. Concepts like these, only make sense when applied in a pragmatic way in
+a given time and place.&lt;/p&gt;
+&lt;p&gt;So maybe socialists, anarchists, conservatives and liberals all have something
+to add to the table. To some extent, their claims might be relevant or absurd,
+again, depending on the context of such claims.&lt;/p&gt;
+&lt;p&gt;Using mantras like seize the means of production, let the free market solve the
+problem, education should be our priority, etc, are hollow and vague, without
+proper context, hypotheses and facts.&lt;/p&gt;
+&lt;p&gt;So now I don't simply praise freedom &lt;em&gt;per se&lt;/em&gt;, but freedom as a framework for
+decision making,  freedom to explore different ideas, that on purpose or as an
+unintended consequence, increase the chances of prosperity for our society, as
+a whole, in the long run.&lt;/p&gt;
+&lt;h2 id="and-justice-for-all"&gt;...And justice for all&lt;a class="headerlink" href="#and-justice-for-all" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;There is no way to specify in precise general rules, known beforehand, what
+might be necessary to achieve results that would meet the standards of cosmic
+justice.&lt;/p&gt;
+&lt;p&gt;&lt;cite&gt; ― Thomas Sowell, &lt;a href="https://www.goodreads.com/book/show/86312.The_Quest_for_Cosmic_Justice" title="The Quest for Cosmic Justice"&gt;The Quest for Cosmic Justice&lt;/a&gt;&lt;/cite&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;First we need to understand some key limitations about the nature of our
+existence.&lt;/p&gt;
+&lt;p&gt;We live and die in a universe where many things are defined in a way we do not
+understand nor control and can change for that matter. The flow of time,
+cancer, gravity, the weather, the certainty of death, the Creation itself &lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;Because of that, we are not 100% free. &lt;strong&gt;We are conditioned, limited and
+biased&lt;/strong&gt; by what we know and don't know, by what we can and cannot do, by what
+we perceive and feel, by what we believe.&lt;/p&gt;
+&lt;p&gt;Every day, all of us are making decisions that involve gambles. These gambles
+are sometimes big like what occupation to pursue, whom to marry, how to invest
+your savings or to have unprotected sex. Other times those gambles are small:
+ignoring a phone call or trying a different menu in your favorite fast-food
+restaurant.&lt;/p&gt;
+&lt;p&gt;The decisions we make are based on ideas of a reality we interpret according to
+our limited vision of partial facts. We also need to factor the cost of
+opportunity, you only have so much money or some much time.&lt;/p&gt;
+&lt;p&gt;In every decision we make, we take our chances. Every choice has it's
+consequences. Since no one knows the future for granted, there are always risks
+implied, unexpected outcomes. In other words, &lt;strong&gt;success cannot be guaranteed&lt;/strong&gt;
+for anyone and by anyone.&lt;/p&gt;
+&lt;p&gt;We can point to an idea of "doing the best according to the circumstances we
+live in", and that in these circumstances, part of our future depends on the
+quality of decisions we make, but other times it depends on our luck. Because
+as it happens, in a sufficiently complex system, often those decisions are not
+made by us, yet we bear the consequences nonetheless: the candidate you didn't
+like gets elected president, a lighting strikes your home and burns your
+appliances, your neighbors were noisy celebrating a birthday party and you
+couldn't sleep the night before the final exam, etc. You can imagine that,
+under these circumstances, &lt;strong&gt;there is no perfect decision&lt;/strong&gt;, because the
+obvious right thing to do might not always be an option.&lt;/p&gt;
+&lt;p&gt;In a sufficiently diverse society, &lt;strong&gt;equality of opportunities is not
+guaranteed&lt;/strong&gt; either. Some are born in rich families and some are born in poor
+ones. Some go to good schools and some don't even go to school. Some suffered
+an accident and some won the lottery. Some are deaf and some are blind. Some
+are strong and some are weak. Some are handsome and some are ugly. Some were
+loved by their parents and some were not even wanted.&lt;/p&gt;
+&lt;p&gt;Amidst the multiple factors that generate differences in a population there's
+gender. Very basic and yet very profound in &lt;a href="https://www.psychologytoday.com/articles/201711/the-truth-about-sex-differences"&gt;it's impact on personality and
+behavior&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;And even if opportunities are provided, not everyone might be wise to take
+advantage of them. Some act rationally and some act compulsively. Some might
+love to travel, some just prefer to stay home &lt;sup id="fnref:2"&gt;&lt;a class="footnote-ref" href="#fn:2" rel="footnote"&gt;2&lt;/a&gt;&lt;/sup&gt;. Some like to study or work
+hard and some simply like to slack. Some only read the finance section in the
+newspaper and some just read the horoscope. Some eat healthy and do sports
+while others smoke and follow a sedentary lifestyle. Well you get the point,
+&lt;strong&gt;equality of outcome cannot be guaranteed&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Seeing how complex, limited and fragile our existence is, would you say that
+life is fair? And if not, who should fix it? How should justice be provided?
+What does justice or equality mean? What if to benefit some, others have to be
+affected negatively? Can a fair society be built? How would you define fair?
+&lt;sup id="fnref:3"&gt;&lt;a class="footnote-ref" href="#fn:3" rel="footnote"&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;But wait, not only we are interested in some form of justice, we also want to
+have the chance to enjoy the fruits of prosperity. So we have to agree on it's
+definition too.&lt;/p&gt;
+&lt;p&gt;Some societies may measure progress by advancements in human rights or the
+level of happiness of it's individuals &lt;sup id="fnref:4"&gt;&lt;a class="footnote-ref" href="#fn:4" rel="footnote"&gt;4&lt;/a&gt;&lt;/sup&gt;, others by more &lt;a href="https://www.learnliberty.org/blog/permissionless-innovation-the-fuzzy-idea-that-rules-our-lives/" title="Permissionless innovation"&gt;concrete
+figures&lt;/a&gt; like GDP, child mortality, use of green energy or number of
+college graduates.&lt;/p&gt;
+&lt;p&gt;Maybe all of them are desirable, but which one is more important and how much
+more important? Remember you always have limited resources, so there will be
+sacrifices needed to be done.&lt;/p&gt;
+&lt;p&gt;Moreover, pray consider that there are multiple ways to measure things like
+efficiency, innovation or even poverty.&lt;/p&gt;
+&lt;p&gt;If the right thing to do is not self evident, this leads to an obvious
+conclusion: &lt;strong&gt;there is no absolute standard of justice and prosperity&lt;/strong&gt;. The
+pursuit of these universal goals &lt;a href="https://www.youtube.com/watch?v=dCnxOICRtLE" title="Milton Friedman - Equality and Freedom"&gt;is futile&lt;/a&gt;. They can only be approximated
+to an agreed ideal that might change over time and is prone to subjective
+interpretation, if no reliable metrics are provided.&lt;/p&gt;
+&lt;p&gt;Something we can do to mitigate this is to agree on a set of artificial
+impositions and metrics that we are all going to live by. Rules of the game, if
+you will, that are better, to our understanding, for the kind of society we
+want to live in.&lt;/p&gt;
+&lt;p&gt;While these arbitrary rules might come from traditions, the constitution, moral
+conventions or even scientific papers, they cannot be agreed universally, nor
+will they be perfect. Ideally we would have the opportunity to be part of their
+selection and later fine tuning somehow.&lt;/p&gt;
+&lt;h2 id="public-enemy-number-one"&gt;Public enemy number one&lt;a class="headerlink" href="#public-enemy-number-one" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Now how do get there? As it happens, in the search for justice, equality,
+happiness or a better life for that matter, we come together with people alike
+and form an organization, that would pursue the common goals we share.&lt;/p&gt;
+&lt;p&gt;To achieve those goals, different organizations might have different
+approaches.&lt;/p&gt;
+&lt;p&gt;There are organizations that allow other organizations to co-exists, ie.
+multiple newspapers, soccer teams, microprocessors manufacturers, NGOs, etc.
+Anyone can choose which one to interact with, based on whatever their
+motivations and possibilities are.&lt;/p&gt;
+&lt;p&gt;There are other types of organizations that don't allow alternatives to
+co-exist. Governments are the most representative example of this kind.&lt;/p&gt;
+&lt;p&gt;I'm considering the government as an organization that defines rules and takes
+measures that are for all to obey or comply (a.k.a forced collectivism).
+Governments have the power of law enforcement, which other organizations don't.&lt;/p&gt;
+&lt;p&gt;Can governments be the right tool for the job, to become agents of change,
+bring prosperity and justice to it's people? Of course they can!&lt;/p&gt;
+&lt;p&gt;Yet you might want to hear some aspects to keep in mind before you fully commit
+to them.&lt;/p&gt;
+&lt;h3 id="governments-are-run-by-politicians"&gt;Governments are run by politicians&lt;a class="headerlink" href="#governments-are-run-by-politicians" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Lets assume politicians are honest and corruption is a thing of the past (left
+behind with the roman empire). They would rather loose votes than lie to their
+people and promise things they cannot deliver.&lt;/p&gt;
+&lt;p&gt;They were elected because they are the right choice for the job, not because
+they are friends or family of powerful people, nor because they are famous or
+charismatic and give beautiful speeches. They do what is correct and not what
+is politically correct. They define themselves as public servants and do not
+look to increase their influence and power and least they want to perpetuate in
+it.&lt;/p&gt;
+&lt;p&gt;They convince people about their ideas by providing reasonable arguments backed
+by real data, and not through costly advertising campaigns or feeding
+sensationalism.  They do listen to constructive feedback and do not demonize
+those who have different opinions.&lt;/p&gt;
+&lt;p&gt;Finally, they do not believe reality can be shaped by laws, but rather
+understand that changes have to be implemented in scheduled phases and their
+results tracked down.&lt;/p&gt;
+&lt;p&gt;We all know that this is asking a lot, but, even if you are not governed by
+populist, dishonest or mediocre bureaucrats...&lt;/p&gt;
+&lt;h3 id="governments-are-the-opium-of-the-people"&gt;Governments are the opium of the people&lt;a class="headerlink" href="#governments-are-the-opium-of-the-people" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The best way to take control over a people and control them utterly is
+to take a little of their freedom at a time, to erode rights by a thousand
+tiny and almost imperceptible reductions. In this way, the people will not
+see those rights and freedoms being removed until past the point at which
+these changes cannot be reversed.&lt;/p&gt;
+&lt;p&gt;&lt;cite&gt;― Pat Miller, &lt;a href="https://www.goodreads.com/book/show/22033450-willfully-ignorant" title="Willfully Ignorant"&gt;Willfully Ignorant&lt;/a&gt;&lt;/cite&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;See, it's not all about politicians.&lt;/p&gt;
+&lt;p&gt;Alfred Adler once said: "It is always easier to fight for one's principles than
+to live up to them", and this is precisely why it is very common to have
+zombies supporting visions that sometimes they don't fully understand or have
+the interest in scrutinizing.&lt;/p&gt;
+&lt;p&gt;This hypocrisy is a golden opportunity for aspiring leaders to influence
+people's desires and discontent.&lt;/p&gt;
+&lt;p&gt;Political campaigns nowadays are not that different from marketing campaigns,
+where ideas of a "better nation" or "let me solve all your problems for free"
+are being sold by messianic reformers.&lt;/p&gt;
+&lt;p&gt;In this sense, paternalism, understood as a mechanism of managing individuals,
+often benevolently, but intrusively for sure, is a real threat for the
+governed.&lt;/p&gt;
+&lt;p&gt;The state, as any other organization, is a living organism, that expands trying
+to survive and perpetuate. There's a natural tendency for governments to grow
+and freedoms to shrink, taxes are never enough, regulations lead to more
+regulations &lt;sup id="fnref:5"&gt;&lt;a class="footnote-ref" href="#fn:5" rel="footnote"&gt;5&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;Soon the government becomes a services company, providing or overseeing
+unemployment insurance, energy production and distribution, health care,
+education, food stamps, housing, security, you name it, taking decisions for
+people as opposed to having each individual figure out their ways to solve
+their particular necessities, through voluntary transactions. Now there is a
+government dependent horde of voters that need someone to fix their problems.
+Decision making is transfered to the state. The costs, are never accounted for,
+neither mentioned explicitly.&lt;/p&gt;
+&lt;h3 id="governments-dont-have-enough-competition"&gt;Governments don't have enough competition&lt;a class="headerlink" href="#governments-dont-have-enough-competition" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;An economy has untold possible outcomes. Its complexity comes both from the
+near infinite variety that can come from permutations of simple rules, and
+from the fact that billions of humans are playing the game simultaneously,
+each affecting the outcomes for each other. Many of the rules are written down
+nowhere, controlled by no one, and constantly evolving. Individuals,
+businesses, and governments are all players, and none of them can know the
+full consequences of their decisions.&lt;/p&gt;
+&lt;p&gt;&lt;cite&gt;― Tim O'Reilly, &lt;a href="https://www.linkedin.com/pulse/survive-game-business-needs-update-rules-tim-o-reilly" title="To survive, the game of business needs to update its rules"&gt;To survive, the game of business needs to update its rules&lt;/a&gt;.&lt;/cite&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Every policy that any organization imposes is an experiment basically. If the
+organization affects too many people (an entire nation for example), the
+experiment feels a lot like putting all the eggs in the same basket.&lt;/p&gt;
+&lt;p&gt;Governments make decisions that are difficult in nature (basically they
+regulate how people should live), which is very dangerous if there is only one
+choice.&lt;/p&gt;
+&lt;p&gt;In this regard, governments have become accepted monopolies. More specifically,
+they are thought to be &lt;em&gt;good&lt;/em&gt; monopolies, managed by well intentioned experts
+with grand schemes to solve big problems.&lt;/p&gt;
+&lt;p&gt;Policymakers might only be &lt;em&gt;"experts"&lt;/em&gt; on some field but will never come up
+with a sufficiently intelligent design for social engineering and problem
+solving, that compares to the vast knowledge embedded in the cultural
+intelligence &lt;sup id="fnref:6"&gt;&lt;a class="footnote-ref" href="#fn:6" rel="footnote"&gt;6&lt;/a&gt;&lt;/sup&gt; of a society, which has developed a luck-affected
+trial-and-error method for dealing with challenges on top of decentralized
+flows of information.&lt;/p&gt;
+&lt;p&gt;Moreover, the way representative democracies work today resembles a lot like a
+winner takes all kind of game. Sure you can change it every 2, 4 or 5 years,
+but what voters end up doing is buying a combo of policies, or giving a blank
+check to full-time employed senators paid with generous wages to figure out new
+regulations. You like the minister of education but you dislike the
+minister of culture? Want to keep the economic policies but change the
+immigration policies? You cannot handpick what you want and what you don't
+want, it's an all-in, pretty much.&lt;/p&gt;
+&lt;p&gt;In this sense, your choices are limited to picking an ideology and backing it
+up so that it gets to power and hope the government does more of what you
+support and less of what you dislike. &lt;/p&gt;
+&lt;p&gt;Should something go wrong, the cost of switching to a different provider of
+public affairs planning is too high and sometimes unaffordable for and
+individual, the only choices left for free citizens are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;To go outlaw&lt;/li&gt;
+&lt;li&gt;To leave the country/state/province/city (if you are lucky you just leave the
+  city, if you are unlucky you leave the country, if you are really unlucky
+  you'll have to leave the region/continent)&lt;/li&gt;
+&lt;li&gt;To change government (if you are lucky via elections or, if you are really
+  unlucky, through a ~~violent~~ revolution)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Henceforth, centralized and external decision making doesn't seem like a good
+idea, even if the ones that make those decisions are doing what they think
+best, specially when considering the unforetold consequences of well
+intentioned initiatives &lt;sup id="fnref:7"&gt;&lt;a class="footnote-ref" href="#fn:7" rel="footnote"&gt;7&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;What this really means is that governments as a mean of change, can be slow,
+inefficient and a bottleneck for progress. But, above all, they are a very
+risky choice.&lt;/p&gt;
+&lt;p&gt;The existence of the state is a necessary evil, but a constant menace to free
+society if strict limits are not imposed to it's responsibilities and size.&lt;/p&gt;
+&lt;h2 id="possible-solutions"&gt;Possible solutions&lt;a class="headerlink" href="#possible-solutions" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;To have progress, you want a system that is competitive, not one that is
+dominated by a single power.&lt;/p&gt;
+&lt;p&gt;&lt;cite&gt;― Joel Mokyr, &lt;a href="https://www.washingtonpost.com/news/wonk/wp/2016/10/28/why-the-industrial-revolution-didnt-happen-in-china/" title="Why the Industrial Revolution didn’t happen in China"&gt;Why the Industrial Revolution didn't happen in China&lt;/a&gt;&lt;/cite&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The important thing to note here is that even if the government is the chosen
+agent of change, the odds of succeeding with top-down central planning are
+going to be low, compared to a society where decentralized experimentation and
+discord are the core values.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;A society that tests it's ideas constantly&lt;/strong&gt;, enabled by freedom
+(understood as a very limited set of artificial impositions &lt;sup id="fnref:8"&gt;&lt;a class="footnote-ref" href="#fn:8" rel="footnote"&gt;8&lt;/a&gt;&lt;/sup&gt;), and guided
+by humility (necessary to accept that one does not have all the answers), will
+see higher chances of success over those who do not have a framework of
+constant improvement that challenges &lt;em&gt;status quo&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;This is precisely what free markets propose and, to some extent, accomplish.
+Non profit and for-profit organizations compete openly to achieve their goals
+through transactions and resource management, trying to influence one another,
+in a profit and loss system.&lt;/p&gt;
+&lt;p&gt;A handful of governments are also implementing some form of social
+experimentation to test ideas and their impact and help reduce the risks of new
+legislation.&lt;/p&gt;
+&lt;p&gt;Consider the controversial example of universal basic income, in which people
+are given money for the sole reason of being alive, no strings attached. This
+idea brings up many intriguing possibilities, like reducing extreme poverty,
+simplifying governmental aid programs, but at the risk of letting people slack
+and spend the money on vices or simply bankrupt the system. How much money, how
+often, etc, are questions hard to answer. Pilot studies are being run by
+&lt;a href="http://blog.ycombinator.com/moving-forward-on-basic-income" title="Moving Forward on Basic Income"&gt;governments&lt;/a&gt; and &lt;a href="http://www.nytimes.com/2016/06/01/business/economy/universal-basic-income-poverty.html"&gt;NGOs&lt;/a&gt; alike with randomly chosen samples of citizens
+to confirm hypotheses, before claiming it as a genius or stupid plan.&lt;/p&gt;
+&lt;p&gt;Lastly, the closer the government is to it's governed, the better. Prefer local
+institutions over federal governments and direct democracy to help reduce
+collateral damages and the gap between what the sate does and what people want.
+This way, lots of &lt;a href="https://www.seasteading.org/"&gt;small and independent governments&lt;/a&gt; can act as
+socio-economic labs running experiments simultaneously. Cities could be a
+minimal viable independent unit of government.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;There is no absolute standard of justice and progress. Justice should be
+provided and progress should be sought in ways that compete with other views
+or understandings of the same concepts.&lt;/p&gt;
+&lt;p&gt;The availability of choices cannot guarantee, but increases the chances of
+prosperity in a free society by enabling ideas to be probed in competition with
+other alternatives.&lt;/p&gt;
+&lt;p&gt;In the long term, and even in an unfair system, competition is what drives
+progress while centralized planning is the public enemy number one in this
+regard.&lt;/p&gt;
+&lt;p&gt;It's the competition, stupid &lt;sup id="fnref:9"&gt;&lt;a class="footnote-ref" href="#fn:9" rel="footnote"&gt;9&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;"There is a theory which states that if ever anyone discovers exactly
+  what the Universe is for and why it is here, it will instantly disappear
+  and be replaced by something even more bizarre and inexplicable. There is
+  another theory which states that this has already happened."&lt;/p&gt;
+&lt;p&gt;― Douglas Adams, &lt;a href="https://www.goodreads.com/quotes/2397-there-is-a-theory-which-states-that-if-ever-anyone" title="Douglas Adams, The Restaurant at the End of the Universe"&gt;The Restaurant at the End of the Universe&lt;/a&gt;&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:2"&gt;
+&lt;p&gt;"Travel is fatal to prejudice, bigotry, and narrow-mindedness, and many
+  of our people need it sorely on these accounts. Broad, wholesome,
+  charitable views of men and things cannot be acquired by vegetating in
+  one little corner of the earth all one's lifetime."&lt;/p&gt;
+&lt;p&gt;― Mark Twain, &lt;a href="https://www.goodreads.com/quotes/1716-travel-is-fatal-to-prejudice-bigotry-and-narrow-mindedness-and-many"&gt;The Innocents Abroad/Roughing It&lt;/a&gt;&amp;#160;&lt;a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:3"&gt;
+&lt;p&gt;The &lt;a href="https://www.flexport.com/blog/port-automation-oakland-rotterdam/" title="Why is the port of Rotterdam more automated than the port of Oakland?"&gt;container revolution&lt;/a&gt; increased world's trade level and
+  productivity enormously.  Within 5 years of “containerization,” trade
+  among nations increased 320%; within 20 years, trade increased by 790%.
+  In 1965, before containerization, a crew could move 1.7 tons of goods
+  per hour. After containerization, a crew could move 30 tons per hour — a
+  17.6x increase in productivity.  Prior to their introduction, cargo
+  shipping was a labor intensive job, requiring multiple packing and
+  unpacking of the goods.  The container revolution was of course opposed
+  by unions whose jobs would be affected/replaced by automated cranes.
+  What should be done in cases like this, where automation and
+  standardization affects workers but benefits the productivity of a
+  nation? Going further, what would be a just policy for fair trade? When
+  is it ok to apply protectionism? Should it be done at national level?
+  Regional level? For how long?&amp;#160;&lt;a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:4"&gt;
+&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Gross_National_Happiness" title="Gross National Happiness"&gt;Gross National Happiness&lt;/a&gt;: The term was coined in 1972 by Bhutan's
+  fourth Dragon King, Jigme Singye Wangchuck. Originally the phrase
+  represented a commitment to building an economy that would serve Bhutan's
+  culture based on Buddhist spiritual values, instead of western material
+  development gauged by gross domestic product (GDP).&amp;#160;&lt;a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:5"&gt;
+&lt;p&gt;The effects of regulation -- both benefits and costs -- are difficult to
+  measure, particularly when considered in the aggregate. As a result,
+  analysts often turn to indirect proxies to understand the reach and
+  impact of regulations over time. Some of the statistics used to track
+  aggregate regulatory activity over time are presented &lt;a href="https://regulatorystudies.columbian.gwu.edu/reg-stats"&gt;here&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:5" rev="footnote" title="Jump back to footnote 5 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:6"&gt;
+&lt;p&gt;Apparently we tend to overstate the importance of the individual genius
+  or leader while understating the gradual, cumulative nature of
+  change. The Evolution of Everything, a book by Matt Ridley, argues that
+  we observe the decentralized, incremental, trial-and-error process of
+  evolution in all human endeavors, including culture, law, business, and
+  technology. All this learning and knowledge is condensed in the
+  &lt;a href="http://www.nationalaffairs.com/publications/detail/cultural-intelligence" title="Cultural Intelligence"&gt;Cultural Intelligence&lt;/a&gt; of a society.
+  This might also explain why top-down solutions to alleviate extreme
+  poverty are &lt;a href="https://www.theguardian.com/global-development-professionals-network/2017/feb/08/obsession-with-ending-poverty-is-where-development-is-going-wrong" title="Obsession with ending poverty is where development is going wrong"&gt;often ineffective&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:6" rev="footnote" title="Jump back to footnote 6 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:7"&gt;
+&lt;p&gt;Plans not always go as expected. Sometimes this is because the solution
+  was narrow-focused on solving just one side of the equation, and the
+  solution backfires because affected agents react. For example, a minimum
+  wage law is focused in getting workers paid more, yet this could
+  increase prices consumers have to pay and increase the willingness of
+  shops to &lt;a href="http://www.forbes.com/sites/realspin/2016/11/29/thanks-to-fight-for-15-minimum-wage-mcdonalds-unveils-job-replacing-self-service-kiosks-nationwide/" title="Thanks To 'Fight For $15' Minimum Wage, McDonald's Unveils Job-Replacing Self-Service Kiosks Nationwide"&gt;replace employees with self-service kiosks&lt;/a&gt;, affecting
+  existing a future employees who were supposed to be benefited by this
+  regulation.
+  Another example is environmental legislation, that forces industries to
+  use/sell energy efficient products, in hopes of reducing energy
+  consumption and pollution, just to later find out that this leads to an
+  overall &lt;a href="https://en.wikipedia.org/wiki/Jevons_paradox" title="Jevons paradox"&gt;greater demand of energy&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:7" rev="footnote" title="Jump back to footnote 7 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:8"&gt;
+&lt;p&gt;&lt;a href="https://www.learnliberty.org/blog/permissionless-innovation-the-fuzzy-idea-that-rules-our-lives/" title="Permissionless innovation"&gt;Innovation&lt;/a&gt; is often threatened by regulators who require licenses
+  or interfere with it through incentives and subsidies.  Napoleon
+  Bonaparte said: "My motto has always been: A career open to all talents,
+  without distinctions of birth", meaning that every person should not
+  have artificial impositions or obstacles that prevent them from pursuing
+  a career/goal, should they have the opportunity and capacity to do it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:8" rev="footnote" title="Jump back to footnote 8 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:9"&gt;
+&lt;p&gt;"It's the competition, stupid" is a slight variation of the phrase &lt;a href="https://en.wikipedia.org/wiki/It%27s_the_economy,_stupid" title="It's the economy, stupid"&gt;"It's
+  the economy, stupid"&lt;/a&gt;. At some point I even thought on putting
+  "Competition motherfucker, do you speak it?".&amp;#160;&lt;a class="footnote-backref" href="#fnref:9" rev="footnote" title="Jump back to footnote 9 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content><category term="ideas"></category></entry><entry><title>Calendaring events with Python</title><link href="http://hernantz.github.io/calendaring-events-with-python.html" rel="alternate"></link><published>2017-04-13T00:00:00-03:00</published><updated>2017-04-13T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2017-04-13:/calendaring-events-with-python.html</id><summary type="html">&lt;p&gt;Some gotchas you'll find when scheduling the next world's doomsday.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Aztec sun stone" src="/images/aztec-calendar.png" title="Aztec sun stone" /&gt;&lt;/p&gt;
 &lt;p&gt;2012 passed and the world did not end. Well, scheduling the next world's
 doomsday can be tricky, because working with dates is so. In this post I'll try
 to share some basic tips and gotchas I learned the hard way while building a
@@ -1359,16 +1724,19 @@ remember that you once saved something interesting for later read.&lt;/p&gt;
 &lt;p&gt;The other improvement has been to stop using the desktop to browse twitter.
 Instead I force myself to read it on a tablet, which is not so distracting and
 at the same time helps with the &lt;em&gt;triage process&lt;/em&gt; since it is somewhat cumbersome
-to multitask on it.&lt;/p&gt;</content><category term="ideas"></category></entry><entry><title>Init</title><link href="http://hernantz.github.io/init.html" rel="alternate"></link><published>2013-07-03T18:06:00-03:00</published><updated>2013-07-03T18:06:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2013-07-03:/init.html</id><summary type="html">&lt;p&gt;This is my new static blog.&lt;/p&gt;</summary><content type="html">&lt;p&gt;This is my static new blog and it begins with this single post. I hope this is
+to multitask on it.&lt;/p&gt;</content><category term="ideas"></category></entry><entry><title>Init</title><link href="http://hernantz.github.io/init.html" rel="alternate"></link><published>2013-07-03T18:06:00-03:00</published><updated>2013-07-03T18:06:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2013-07-03:/init.html</id><summary type="html">&lt;p&gt;This is my new static blog.&lt;/p&gt;</summary><content type="html">&lt;blockquote&gt;
+&lt;p&gt;Everyone's unwritten work is brilliant. And the more unwritten it is, the more brilliant it is.
+We have all met those glib, intimidating graduate students or faculty members. They are at their
+most dangerous holding a beer in one hand and a cigarette in the other, in some bar or at an
+office party. They have all the answers. They can tell you just what they will write about, and
+how great it will be.&lt;/p&gt;
+&lt;p&gt;&lt;cite&gt; ― Michael C. Munger, &lt;a href="https://las.ucsd.edu/_files/graduate/10tipsonwritinglessbadly2010"&gt;10 Tips on How to Write Less Badly&lt;/a&gt;&lt;/cite&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is my static new blog and it begins with this single post. I hope this is
 not one of those things I start and abandon.&lt;/p&gt;
 &lt;p&gt;Why now? Because in the last weeks I felt the urge to write for myself.
 Knowing my thoughts will be publicly available forces me to think wisely, 
-and arrive to better conclusions. 
-Additionally, until now didn't like any of the blogging platforms out there,
+and arrive to better conclusions, inpired by &lt;a href="http://getnashty.com/write-less"&gt;this&lt;/a&gt; and &lt;a href="http://www.paulgraham.com/writing44.html" title="Writing,  Briefly"&gt;this&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Additionally, until now didn't like any of the blogging platforms out there,
 but now with &lt;a href="http://blog.getpelican.com/"&gt;pelican&lt;/a&gt;, being able to craft my own posts with markdown and
-vim has become part of the motivation too.&lt;/p&gt;
-&lt;p&gt;I know I should &lt;a href="http://getnashty.com/write-less"&gt;write less&lt;/a&gt;, but it's possible that this will be the
-shortest post in here. But still, I'll do my best to get to the point. Give you
-quality over quantity. Why write a thousand words if a picture says more than a
-thousand words? Why write six paragraphs if you can fit an introduction, the
-main idea and a conclusion in just three?&lt;/p&gt;</content><category term="pelican"></category><category term="ideas"></category></entry></feed>
+vim has become part of the motivation too.&lt;/p&gt;</content><category term="pelican"></category><category term="ideas"></category></entry></feed>

@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://hernantz.github.io/</loc>
-<lastmod>2017-10-15T09:11:07-00:00</lastmod>
+<lastmod>2018-03-07T11:53:31-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://hernantz.github.io/archives.html</loc>
-<lastmod>2017-10-15T09:11:07-00:00</lastmod>
+<lastmod>2018-03-07T11:53:31-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://hernantz.github.io/tags.html</loc>
-<lastmod>2017-10-15T09:11:07-00:00</lastmod>
+<lastmod>2018-03-07T11:53:31-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://hernantz.github.io/categories.html</loc>
-<lastmod>2017-10-15T09:11:07-00:00</lastmod>
+<lastmod>2018-03-07T11:53:31-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -34,6 +34,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://hernantz.github.io/whoami.html</loc>
 <lastmod>2013-08-04T19:26:00-03:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://hernantz.github.io/its-the-competition-stupid.html</loc>
+<lastmod>2018-03-07T00:00:00-03:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -116,6 +123,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>http://hernantz.github.io/category/politics.html</loc>
+<lastmod>2018-03-07T00:00:00-03:54</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>http://hernantz.github.io/category/productivity.html</loc>
 <lastmod>2013-08-21T22:56:00-03:54</lastmod>
 <changefreq>daily</changefreq>
@@ -132,6 +146,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://hernantz.github.io/category/startups.html</loc>
 <lastmod>2013-11-09T12:03:00-03:54</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://hernantz.github.io/tag/ideas.html</loc>
+<lastmod>2018-03-07T00:00:00-03:54</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -188,13 +209,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://hernantz.github.io/tag/jquery.html</loc>
 <lastmod>2016-03-31T00:00:00-03:54</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>http://hernantz.github.io/tag/ideas.html</loc>
-<lastmod>2015-08-28T00:00:00-03:54</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -257,7 +271,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://hernantz.github.io/author/hernantz.html</loc>
-<lastmod>2017-04-13T00:00:00-03:54</lastmod>
+<lastmod>2018-03-07T00:00:00-03:54</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

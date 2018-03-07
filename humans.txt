@@ -26,11 +26,13 @@ else's repertoire get so much better.
 |  Crushcrushcrush              | Paramore                  | Ashley Simpson            |
 |  Galaxies                     | Laura Veirs               | Aurora                    |
 |  Sprinter                     | Torres                    | Aurora                    |
+|  Believers                    | Not Fun At All            | Bad Religion              |
 |  Stillborn                    | Black Label Society       | Black Sabbath             |
 |  Painkiller                   | Mech                      | Black Sabbath             |
 |  Starships                    | Nicki Minaj               | Britney Spears            |
 |  Siguiendo la Luna            | Los Tipitos               | Cerati                    |
 |  Girls and Boys               | Blur                      | Chemical Brothers         |
+|  Letters From The Sky         | Civil Twilight            | Coldplay                  |
 |  Renegades                    | X Embassadors             | Coldplay                  |
 |  Deny                         | Dimension Zero            | Darkest Hour              |
 |  Hell is Within               | Dimension Zero            | Darkest Hour              |
@@ -39,10 +41,15 @@ else's repertoire get so much better.
 |  Coffee and TV                | Blur                      | Death Cab for Cutie       |
 |  New Millenium Jesus Cyanide  | Meshuggah                 | Decapitated               |
 |  Born to Be Wild              | Steppenwolf               | Deep Purple               |
+|  Bullet                       | Covenant                  | Depeche Mode              |
 |  You Spin Me Round            | Dead or Alive             | Depeche Mode              |
+|  Slow                         | Partners in Crime         | Depeche Mode              |
 |  Shout                        | Tears for Fears           | Depeche Mode              |
 |  Black Friday Rule            | Flogging Molly            | Dropkick Murphys          |
+|  Off My Mind                  | RUTH                      | Ellie Goulding            |
 |  Baby Did a Bad Bad Thing     | Chris Isaak               | Elvis Presley             |
+|  Química                      | Banda de Turistas         | Emmanuel Horvilleur       |
+|  Get Away With It             | Animal Kindom             | Empire of the Sun         |
 |  Shooting Stars               | Bag Riders                | Empire of the Sun         |
 |  Safe and Sound               | Capital Cities            | Empire of the Sun         |
 |  Cult of Personality          | Living Colour             | Faith No More             |
@@ -56,6 +63,8 @@ else's repertoire get so much better.
 |  Too Many Words               | Sick Puppies              | Hoobastank                |
 |  Don't You Forget About Me    | Simple Minds              | INXS                      |
 |  She Sells Sanctuary          | The Cult                  | INXS                      |
+|  Rox                          | The Aliens                | Ian Brown                 |
+|  The Heart of Darkness        | Catamenia                 | Immortal                  |
 |  Mourning Palace              | Dimmu Borgir              | Immortal                  |
 |  In Death's Embrace           | Dimmu Borgir              | Immortal                  |
 |  Excercise in Futility I      | Mgla                      | Immortal                  |
@@ -72,13 +81,14 @@ else's repertoire get so much better.
 |  Presuit of Happiness         | Lissie                    | Lana del Rey              |
 |  Paper Planes                 | MIA                       | Lana del Rey              |
 |  Smooth Criminal              | Alien Ant Farm            | Limp Bizkit               |
+|  Butterfly                    | Crazy Town                | Limp Bizkit               |
 |  Freak on a Leash             | Korn                      | Limp Bizkit               |
 |  Alone I Break                | Korn                      | Limp Bizkit               |
 |  Papercut                     | Linkin Park               | Limp Bizkit               |
 |  Boom                         | P.O.D.                    | Limp Bizkit               |
-|  Killing in the Name          | Rage Against the Machine  | Limp Bizkit               |
 |  Just in Case                 | Static X                  | Limp Bizkit               |
 |  Dale Vieja Dale              | Ulises Bueno              | Los Caligaris             |
+|  Panda                        | Astro                     | MGMT                      |
 |  Pumped Up Kicks              | Foster The People         | MGMT                      |
 |  Midnight City                | M83                       | MGMT                      |
 |  Pure Shores                  | All Saints                | Madonna                   |
@@ -99,6 +109,7 @@ else's repertoire get so much better.
 |  Dead And Gone                | Shadows Fall              | Nightrage                 |
 |  Zombie Autopilot             | Unearth                   | Nightrage                 |
 |  I Am Weighless               | Septembre                 | Nirvana                   |
+|  A Bloodred Path              | Gates of Ishtar           | Norther                   |
 |  Colossus                     | In Mourning               | Omnium Gatherum           |
 |  The Smoke                    | In Mourning               | Omnium Gatherum           |
 |  The Black Lodge              | In Mourning               | Omnium Gatherum           |
@@ -115,6 +126,8 @@ else's repertoire get so much better.
 |  Changes                      | Tesla                     | Savatage                  |
 |  Imagenes Paganas             | Virus                     | Soda Stereo               |
 |  Somebody That I Used To Know | Goyte                     | Sting                     |
+|  Glow Deep                    | Baltimore                 | Tame Impala               |
+|  Daffodils                    | Mark Ronson               | Tame Impala               |
 |  My Sherona                   | The Knack                 | The Beatles               |
 |  Gotta Go                     | Agnostic Front            | The Mistfits              |
 |  Danzig                       | Mother                    | The Mistfits              |
