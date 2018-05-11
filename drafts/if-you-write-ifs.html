@@ -51,6 +51,7 @@ again have to discuss this in the future.</p>
 <p>As a programmer, most of your time you will be writing ifs.
 Not only becouse this is the main flow control structure, in c like languages,
 but because writing an else is (or shoud be at least) a code smell. It's a trap.</p>
+<p>https://news.ycombinator.com/item?id=16678209</p>
 <h2 id="cut-the-flow-ifs">Cut the flow ifs<a class="headerlink" href="#cut-the-flow-ifs" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">item</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
@@ -194,6 +195,34 @@ http://pozorvlak.livejournal.com/94558.html
 https://blog.feabhas.com/2017/02/abusing-c-switch-statement-beauty-eye-beholder/
 https://youtu.be/D_6ybDcU5gc?t=8m43s</p>
 <p>Django PermissionDenied para custom authentication backend</p>
+<div class="highlight"><pre><span></span>def extract_timestamp(self):
+    record = self.get_parsed_record()
+    timestamp = record.get(&#39;timestamp&#39;)
+    if timestamp is None:
+        return None
+    if isinstance(timestamp, datetime):
+        return timestamp
+    return dateutil.parser.parse(record[&#39;timestamp&#39;])
+
+
+
+def get_parsed_record(self):
+    record = self.record
+    event_name = self.event_name
+    if event_name in (SasEvents.KNOWLEDGE_COMPONENT_MODEL,
+                      SasEvents.KCM_UPDATE):
+        parsed_record = record
+    elif event_name == CeEvents.QUESTION_PART_ATTEMPT:
+        require_kcm = &#39;knowledge_component_model&#39; in record
+        parsed_record = qpa.parse_question_part_attempt(
+            record, require_kcm=require_kcm)
+    elif event_name == SasEvents.TUNING_STATUS_CHANGED:
+        parsed_record = record
+    else:
+        parsed_record = record
+
+    return parsed_record
+</pre></div>
 </article>
 
       <footer class="column-right light">

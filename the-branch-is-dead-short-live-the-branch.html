@@ -109,7 +109,7 @@ the work is finished. But for startups and technology based companies, it
 happens that the ship is sailing! and it cannot wait on stand-by mode until it
 gets fixed, re-painted and it's oars replaced, all this must be done on the fly.</p>
 <p>All the aforementioned pain points cannot be avoided but mitigated, with enough
-care and discipline, but this last one requires a mind change, commiting towards
+care and discipline, but this last one requires a mind change, committing towards
 <strong>shipping something valuable</strong> sprint by sprint. This becomes especially
 important once the app is already being used because of the unpredictable
 <a href="http://projectcartoon.com/cartoon/1" title="How Projects Really Work">nature of software projects</a>, where priorities and requirements change quite
@@ -124,29 +124,30 @@ thing is that <strong>each task that is finished has to be mergeable</strong>, a
 implies that:</p>
 <ol>
 <li>Merge conflicts are resolved from day one.</li>
-<li>Other features, refactores and bugfixes have to deal with or can make use of
+<li>Other features, refactors and bugfixes have to deal with or can make use of
    the new (good quality? working?) code that is shipped sprint after sprint.</li>
 <li>Changes might not be tackled in the original logical order, but the
    transition towards the big changeset happens in a smooth and predictable
    manner.</li>
 <li>You avoid doing something you should <a href="http://www.joelonsoftware.com/articles/fog0000000069.html" title="Things You Should Never Do, Part I">never do in software</a>.</li>
 </ol>
-<p>Dispite having mentioned branches a lot, the ideas expressed here still apply,
-no matter the technique used to integrate the changes.</p>
+<p>Despite having mentioned branches a lot, the ideas expressed here still apply,
+no matter the technique used to integrate the changes. Some have gone as far as
+suggest a <a href="https://trunkbaseddevelopment.com/" title="Trunk Based Development">branchless trunk model</a>.</p>
 <h2 id="some-examples-of-smooth-transitions">Some examples of smooth transitions<a class="headerlink" href="#some-examples-of-smooth-transitions" title="Permanent link">&para;</a></h2>
 <p>I think I've gotten to the point already, but I felt like sharing some examples,
 without getting into too much detail, of real life scenarios where requirements
 are implemented by using other strategies than long-lived branches.</p>
 <p>Among all the <a href="http://python3porting.com/strategies.html" title="Migration strategies">strategies available</a> to <strong>migrate an Python app from Python 2
 to Python 3</strong>, I would try to modify the code so that it runs under both Python
-2 and Python 3  as much as I can. I certaintly wouldn't create a
+2 and Python 3  as much as I can. I certainly wouldn't create a
 <em>python-3-migration</em> branch to do all the work there, because chances are that
 your Python 2 app would still be used for a long time until the migration is
 finished, and you'll have to be duplicating features, bugs and bugfixes in your
 main branch and in the migration branch. The guys at Pinterest had to go through
 a <a href="https://engineering.pinterest.com/blog/migrating-pinterest-profiles-react" title="Migrating Pinterest profiles to React">similar experience</a> but with their frontend framework.</p>
 <p>To <strong>translate the app</strong> into another language, you can start by notifying the
-entire team that translation is in progress so that each new piece of ui that is
+entire team that translation is in progress so that each new piece of UI that is
 added has the labels modified to be translatable.</p>
 <p>The customer wants <strong>a redesign of the site</strong> (change colors and layouts), and
 decides take the opportunity to also to upgrade to the latest version of

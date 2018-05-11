@@ -1,5 +1,326 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/all.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2018-03-07T00:00:00-03:00</updated><entry><title>It's the competition, stupid</title><link href="http://hernantz.github.io/its-the-competition-stupid.html" rel="alternate"></link><published>2018-03-07T00:00:00-03:00</published><updated>2018-03-07T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2018-03-07:/its-the-competition-stupid.html</id><summary type="html">&lt;p&gt;Increasing your chances of prosperity.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="it's the competition stupid" src="/images/competition.jpg" title="Picture of Advertisements in Saigon, Vietnam" /&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/all.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2018-05-05T00:00:00-03:00</updated><entry><title>One config.py to config them all</title><link href="http://hernantz.github.io/one-configpy-to-config-them-all.html" rel="alternate"></link><published>2018-05-05T00:00:00-03:00</published><updated>2018-05-05T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2018-05-05:/one-configpy-to-config-them-all.html</id><summary type="html">&lt;p&gt;How to do configuration management.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="configuration management" src="/images/configuration.png" title="Configuration management" /&gt;&lt;/p&gt;
+&lt;p&gt;Configuration allows us to modify the behavior of our software based on a
+number of settings, with the goal of providing more flexibility to the users of
+such software.&lt;/p&gt;
+&lt;p&gt;Configuration management is an important aspect of the architecture of any
+system. But it is sometimes overlooked.&lt;/p&gt;
+&lt;p&gt;The purpose of this post is to explore a proposed solution for proper config
+management in general, and for a python app in particular.&lt;/p&gt;
+&lt;h2 id="types-of-configuration"&gt;Types of configuration&lt;a class="headerlink" href="#types-of-configuration" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Hold on a moment. Configuration understood as a mechanism of altering the state
+and behavior of a program can be very broad.&lt;/p&gt;
+&lt;p&gt;We are interested in the &lt;em&gt;deterministic configuration&lt;/em&gt; that presets the state
+of a program, without having to interact with it, like static config files or
+environment variables.&lt;/p&gt;
+&lt;p&gt;On the other hand, there's the &lt;em&gt;runtime configuration&lt;/em&gt;, which happens when the
+user interacts with the system. User preferences are a typical example of this
+kind.&lt;/p&gt;
+&lt;p&gt;It may not always apply, but a general rule of thumb is to separate config by
+how it affects code: Code that varies depending on where it is run (static),
+as oposed on how it is used (runtime).&lt;/p&gt;
+&lt;p&gt;We make the distinction because the later is not very general and is up to the
+developer to decide how to manage it. If it is a desktop app, a file or a
+sqlite database might suffice, but for a cloud app, maybe a distributed
+key-value store is needed.&lt;/p&gt;
+&lt;h2 id="project-app-vs-library"&gt;Project (app) vs Library&lt;a class="headerlink" href="#project-app-vs-library" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The first thing to determine is the type of software that needs to be
+configured. There is a difference between configuring a library vs configuring
+a project.&lt;/p&gt;
+&lt;p&gt;Lets see an example of how &lt;code&gt;sqlalchemy&lt;/code&gt;, a database toolkit library, provides
+us with the needed building blocks for us to use as we please.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sqlalchemy&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Column&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Integer&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sqlalchemy.ext.declarative&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;declarative_base&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sqlalchemy&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;create_engine&lt;/span&gt;
+
+&lt;span class="n"&gt;Base&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;declarative_base&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Person&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Base&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;__tablename__&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;person&amp;#39;&lt;/span&gt;
+    &lt;span class="nb"&gt;id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Column&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Integer&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;primary_key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Column&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;250&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;nullable&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Engine used to store data&lt;/span&gt;
+&lt;span class="n"&gt;engine&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;create_engine&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;sqlite:///sqlalchemy_example.db&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Create all tables in the engine.&lt;/span&gt;
+&lt;span class="n"&gt;Base&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;metadata&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;create_all&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;engine&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;A library is meant to be a reusable piece of code that should not make
+assumptions on where and how it is going to be used. &lt;/p&gt;
+&lt;p&gt;Imagine if &lt;code&gt;sqlalchemy&lt;/code&gt; gathered it's engine configuration from an environment
+variable &lt;code&gt;SQLALCHEMY_ENGINE=sqlite:///sqlalchemy_example.db&lt;/code&gt; or a file in
+&lt;code&gt;/etc/sqlalchemy/engine.cfg&lt;/code&gt;. It would be complicated for an app reuse that
+library to connect to different databases.&lt;/p&gt;
+&lt;p&gt;For this reason a library should be only configured through code, and never
+require env variables or configuration files to exist in order to be used. &lt;/p&gt;
+&lt;p&gt;A project might use many libraries that require different configs (a database
+connector, s3 storage, etc). So it is in charge of gathering required config
+and using these libraries.&lt;/p&gt;
+&lt;p&gt;In this case, it is the app's responsibility to gather the connection settings
+and use the library to connect to two separate databases, because the app knows
+what it needs, not the library.&lt;/p&gt;
+&lt;h2 id="how-to-configure-a-project-or-application"&gt;How to configure a project (or application)&lt;a class="headerlink" href="#how-to-configure-a-project-or-application" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;It is important to provide a clear separation of configuration and code. This
+is because config varies substantially across deploys and executions, code does
+not. The same code can be run inside a container or in a regular machine, it
+can be executed in production or in testing environments.&lt;/p&gt;
+&lt;h3 id="where-to-get-configuration-from"&gt;Where to get configuration from&lt;a class="headerlink" href="#where-to-get-configuration-from" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Configuration for a project might come from different sources, like &lt;code&gt;.ini&lt;/code&gt;
+files, envirionment variables, etc.&lt;/p&gt;
+&lt;p&gt;For example, there is a common pattern to read configurations in &lt;a href="https://12factor.net/config" title="The twelve-factor app | config"&gt;environment
+variables&lt;/a&gt; that look similar to the code below:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;DEBUG&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Why is getting config variables directly a bad idea?&lt;/p&gt;
+&lt;p&gt;If env var &lt;code&gt;DEBUG=False&lt;/code&gt; this code will print &lt;code&gt;True&lt;/code&gt; because
+&lt;code&gt;os.environ.get("DEBUG", False)&lt;/code&gt; will return an string &lt;code&gt;‘False’&lt;/code&gt; instead of a
+boolean &lt;code&gt;False&lt;/code&gt;. And a non-empty string has a &lt;code&gt;True&lt;/code&gt; boolean value. We can't
+(dis|en)able debug with env var &lt;code&gt;DEBUG=yes|no&lt;/code&gt;, &lt;code&gt;DEBUG=1|0&lt;/code&gt;,
+&lt;code&gt;DEBUG=True|False&lt;/code&gt;. We need to start casting/parsing everywhere.&lt;/p&gt;
+&lt;p&gt;If we want to use this configuration during development we need to define this
+env var all the time. We can't define this setting in a configuration file that
+will be used if &lt;code&gt;DEBUG&lt;/code&gt; envvar is not defined.&lt;/p&gt;
+&lt;p&gt;Well designed applications allow different ways to be configured. A proper
+settings-discoverability chain goes as follows:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;CLI args.&lt;/li&gt;
+&lt;li&gt;Environment variables.&lt;/li&gt;
+&lt;li&gt;Config files in different directories, that also imply some hierarchy. For
+   example: config files in &lt;code&gt;/etc/myapp/settings.ini&lt;/code&gt; are applied system-wide,
+   while &lt;code&gt;~/.config/myapp/settings.ini&lt;/code&gt; take precedence and are user-specific.&lt;/li&gt;
+&lt;li&gt;Hardcoded constants.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The rises the need to consolidate configuration in a single source of truth to
+avoid having config management scattered all over the codebase. &lt;/p&gt;
+&lt;p&gt;All this configuration management should be handled before the program starts,
+to avoid parsing files, or passing CLI args everywhere. So ideally we would
+have a single &lt;code&gt;config.py&lt;/code&gt; file where settings are gathered, parsed and
+processed. The app imports that config module and distributes it to all the
+different libraries it is using.&lt;/p&gt;
+&lt;p&gt;An example startup script for your app could be:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;config&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;gather_conf&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;conf&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;gather_conf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/etc/app/config_file&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+    &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# conf is a dict of settings&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 id="a-single-executable-file"&gt;A single executable file&lt;a class="headerlink" href="#a-single-executable-file" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Another anti-pattern to be aware of is having as many configuration modules as
+environment there are:  &lt;code&gt;dev_settings.py&lt;/code&gt;, &lt;code&gt;staging_settings.py&lt;/code&gt;,
+&lt;code&gt;local_settings.py&lt;/code&gt;, etc, and including different logic on them.&lt;/p&gt;
+&lt;p&gt;A very simple example of custom logic is:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# base_settings.py&lt;/span&gt;
+&lt;span class="n"&gt;PLUGINS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;foo&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;bar&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+
+&lt;span class="c1"&gt;# dev_settings.py&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;base_settings&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
+&lt;span class="n"&gt;PLUGINS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;PLUGINS&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;baz&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Should be a single &lt;code&gt;settings.py&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# settings.py&lt;/span&gt;
+&lt;span class="n"&gt;config&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ConfigParser&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;config.ini&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# this is what the app uses&lt;/span&gt;
+&lt;span class="n"&gt;PLUGINS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;BASE_PLUGINS&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;EXTRA_PLUGINS&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Which gets its config from a local ini file for example:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# /etc/app/config.ini for everyone&lt;/span&gt;
+&lt;span class="na"&gt;BASE_PLUGINS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;foo,bar&lt;/span&gt;
+
+&lt;span class="c1"&gt;# ~/.config/app/config.ini that a user overrides based on the template&lt;/span&gt;
+&lt;span class="na"&gt;EXTRA_PLUGINS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;baz&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This way the only thing that changes is pure configuration variables, but the
+same configuration code gets executed everywhere. We also were able to separate
+configuration from code, which gives us some nice features:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Ship configuration separately from code. There is no need to modify code in
+   order to change it's behavior.&lt;/li&gt;
+&lt;li&gt;Plain text files are &lt;em&gt;universal&lt;/em&gt;. Can be edited with any text editor, no
+   need to mess with db connectors/sql/scripts to configure an app.&lt;/li&gt;
+&lt;li&gt;No need to know a programming language to configure the app. &lt;a href="https://www.vagrantup.com/docs/vagrantfile/" title="Vagrantfile"&gt;Vagrant&lt;/a&gt;,
+   for example, uses Ruby for it's &lt;code&gt;Vagrantfile&lt;/code&gt;, it is a bummer to have to
+   learn the syntax of a language just to use a tool.&lt;/li&gt;
+&lt;li&gt;Since config files are not executable, they can partially override other
+   config files in a line of hierarchy, as opposed to &lt;code&gt;.vimrc&lt;/code&gt; files for
+   example, that are executable and have to be &lt;em&gt;forked&lt;/em&gt; to be adapted and a
+   base config cannot be shared for all users in the system).&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The example of configuring plugins is not accidental. The idea is to show that
+if you need to enable the user to do some scripting as customization, do so
+through a plugin system, but never through scriptable config files.&lt;/p&gt;
+&lt;h3 id="the-settingstemplate-trick"&gt;The &lt;code&gt;settings.template&lt;/code&gt; trick&lt;a class="headerlink" href="#the-settingstemplate-trick" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;We still need a way to bundle settings for different environments: QA, stating,
+production, test, Bill's dev machine, etc&lt;/p&gt;
+&lt;p&gt;Also, a litmus test for whether an app has all config correctly factored out of
+the code is whether the codebase could be made open source at any moment,
+without compromising any credentials. What this means is that credentials and
+secrets should also be kept outside the codebase and made configurable.&lt;/p&gt;
+&lt;p&gt;So secrets and environment dependant settings have to be handled somehow.&lt;/p&gt;
+&lt;p&gt;Config files are very convenient since they can be version-controlled, can be
+put into templates by Config Management/Orchestration tools and come handy when
+developing.&lt;/p&gt;
+&lt;p&gt;Following the example above, a &lt;code&gt;config.ini.template&lt;/code&gt; could look like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# config.ini.template that each environment can implement&lt;/span&gt;
+&lt;span class="c1"&gt;# EXTRA_PLUGINS = one_plugin,another_plugin&lt;/span&gt;
+&lt;span class="c1"&gt;# SECRET_KEY = &amp;lt;change me&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Even env vars can be put into a file (typically named &lt;code&gt;.env&lt;/code&gt;) that gets loaded
+before the program starts. Many tools that manage processes/containers, like
+&lt;a href="https://docs.docker.com/compose/env-file/" title="Declare default environment variables in file"&gt;docker-compose&lt;/a&gt; and &lt;a href="https://coreos.com/os/docs/latest/using-environment-variables-in-systemd-units.html" title="Using environment variables in systemd units"&gt;systemd&lt;/a&gt;, or even &lt;a href="https://github.com/theskumar/python-dotenv" title="python-dotenv"&gt;libraries&lt;/a&gt; have support for
+loading them.&lt;/p&gt;
+&lt;p&gt;It is common practice to put an example &lt;code&gt;settings.template&lt;/code&gt; file that is in the
+VCS, and then provide a way to copy + populate that template to a name that is
+excluded by your VCS so that we never accidentally commit that. These files
+might also be tracked by VCS, but encrypted, like it is done with &lt;a href="https://docs.ansible.com/ansible/2.4/vault.html" title="Ansible Vault"&gt;Ansible
+Vault&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id="devops-tools"&gt;Devops tools&lt;a class="headerlink" href="#devops-tools" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Code needs to be &lt;a href="https://12factor.net/build-release-run" title="The twelve-factor app | build, release, run"&gt;packaged, distributed, installed, executed&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;These are all steps that make use of external tools that are not part of the
+codebase and should be replaceable. An app could be packaged for Ubuntu or
+Windows differently, can be installed manually or put in a container. For this
+reason, code should be as agnostic of these steps as possible and delegate that
+to another actor called: &lt;em&gt;Installer/Builder&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;This new actor can be one or many tools combined, for example &lt;code&gt;docker-compose&lt;/code&gt;,
+&lt;code&gt;yum&lt;/code&gt;, &lt;code&gt;gcc&lt;/code&gt;, &lt;code&gt;ansible&lt;/code&gt;, etc.&lt;/p&gt;
+&lt;p&gt;The installer actor is the one that knows how to bind code with the right
+configuration it needs and how to do it (through env vars or files or cli args
+or all of them). Because it knows the configuration it needs to inject into the
+project, it makes a good candidate to manage  configuration templates for
+files, vars that will be injected into the environment, or how to keep
+secret/sensitive information protected.&lt;/p&gt;
+&lt;p&gt;The development and operations flow has two clearly distinct realms:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;+-------+           +-------+          +--------+         +-------+         +-------+
+|       |           |       |          |        |         |       |         |       |
+| code  +----------&amp;gt;| build +---------&amp;gt;|        |&amp;lt;--------+service|&amp;lt;--------+ conf  +
+|       |           |       |          |        |         |       |         |       |
++-------+           +-------+          |        |         +-------+         +-------+
+                                       |        |
+                    +-------+          |        |         +-------+         +-------+
+                    |       |          |        |         |       |         |       |
+                    | conf  +---------&amp;gt;|release |&amp;lt;--------+service|&amp;lt;--------+ conf  +
+                    |       |          |        |         |       |         |       |
+                    +-------+          |        |         +-------+         +-------+
+                                       |        |
+                    +-------+          |        |         +-------+         +-------+
+                    |       |          |        |         |       |         |       |
+                    | deps  +---------&amp;gt;|        |&amp;lt;--------+service|&amp;lt;--------+ conf  +
+                    |       |          |        |         |       |         |       |
+                    +-------+          +--------+         +-------          +-------+
+
++-------------------+---------------------------------------------------------------+
+|    code realm     |                   Devops/CM/Orchestraion realm                |
++-------------------+---------------------------------------------------------------+
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If you use different tools when developing and when deploying, all these
+scripts and templates will start to increase in number. When that moment comes,
+there will be the temptation to delegate all this responsibility to the app to
+"auto-configure and install itself".&lt;/p&gt;
+&lt;p&gt;Sometimes an app not only needs to be configured, but it might need &lt;a href="https://12factor.net/backing-services" title="The twelve-factor app | backing services"&gt;other
+services to be running&lt;/a&gt;, so you'll have to replace an orchestration tool and
+a supervisor. This basically means that you will be replacing specialized tools
+with battle-tested ready-made solutions with your own implementation. More
+code, mode problems.&lt;/p&gt;
+&lt;p&gt;The important thing to note here is that the application's code should not
+install dependencies or start services or export variables to the environment
+because an external service needs them.&lt;/p&gt;
+&lt;p&gt;Ideally, a project should support &lt;a href="https://12factor.net/dev-prod-parity" title="The twelve-factor app | dev/prod parity"&gt;one set of build tools&lt;/a&gt; and use it for
+development and production. For example: docker everywhere.&lt;/p&gt;
+&lt;h3 id="managing-config-changes"&gt;Managing config changes&lt;a class="headerlink" href="#managing-config-changes" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The &lt;a href="https://en.wikipedia.org/wiki/Signal_(IPC)#SIGHUP" title="Posix signals"&gt;SIGHUP signal&lt;/a&gt; is usually used to trigger a reload of configurations
+for daemons.&lt;/p&gt;
+&lt;p&gt;In Python, this can be achieved with the &lt;code&gt;signal&lt;/code&gt; module, as the following gist shows:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;signal&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_config&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rel&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;config&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;rel&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="nb"&gt;reload&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;config&lt;/span&gt;
+
+&lt;span class="n"&gt;running&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;run&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="n"&gt;running&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="c1"&gt;# do something with get_config().foo&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="c1"&gt;# teardown&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;signal_handler&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;signum&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;frame&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="c1"&gt;# Use kill -15 &amp;lt;pid&amp;gt;&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;signum&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;signal&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SIGTERM&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;global&lt;/span&gt; &lt;span class="n"&gt;running&lt;/span&gt;
+        &lt;span class="n"&gt;running&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;  &lt;span class="c1"&gt;# terminate daemon&lt;/span&gt;
+
+    &lt;span class="c1"&gt;# kill -1 &amp;lt;pid&amp;gt;&lt;/span&gt;
+    &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;signum&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;signal&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SIGHUP&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;get_config&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rel&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# reload config&lt;/span&gt;
+
+
+&lt;span class="n"&gt;signal&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;signal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;signal&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SIGHUP&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;signal_handler&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;signal&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;signal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;signal&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SIGTERM&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;signal_handler&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then, the program can be notified about new config by using &lt;code&gt;kill -1&lt;/code&gt; or: &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ sudo systemctl reload application.service
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If the app is part of a distributed cloud system, the same principle can still
+be used. For example, Consul, a tool for service and configuration discovery
+provides &lt;code&gt;consult-template&lt;/code&gt;, a command to populate values from Consul into
+automatically &lt;a href="https://vimeo.com/109626825" title="Consul template demo"&gt;updated templates&lt;/a&gt; that can emit reload commands to programs
+to pick it up.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ consul-template &lt;span class="se"&gt;\&lt;/span&gt;
+    -template &lt;span class="s2"&gt;&amp;quot;/tmp/nginx.ctmpl:/var/nginx/nginx.conf:nginx -s reload&amp;quot;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+    -template &lt;span class="s2"&gt;&amp;quot;/tmp/redis.ctmpl:/var/redis/redis.conf:service redis restart&amp;quot;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+    -template &lt;span class="s2"&gt;&amp;quot;/tmp/haproxy.ctmpl:/var/haproxy/haproxy.conf&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2 id="conclusions"&gt;Conclusions&lt;a class="headerlink" href="#conclusions" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Don't take responsibility of gathering configuration when developing a library.&lt;/p&gt;
+&lt;p&gt;In your app, always use a single &lt;code&gt;config.py&lt;/code&gt; file that gathers all settings and
+load it before starting the program. Use &lt;a href="https://github.com/osantana/prettyconf" title="Prettyconf"&gt;prettyconf&lt;/a&gt; since it follows the
+settings discovery architecture for projects that we've shown, &lt;a href="https://github.com/osantana/prettyconf/issues/18)"&gt;or will
+soon&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Keep in mind what belongs to which realm when writing code/scripts. Everything
+can live in the same repo, but at least they will be in different folders
+(&lt;code&gt;src/&lt;/code&gt; and &lt;code&gt;ops/&lt;/code&gt;, for example). Configuration for each service should be
+handled separately, do not use a single &lt;code&gt;config.py&lt;/code&gt; to configure Nginx and
+Postgres for instance.&lt;/p&gt;
+&lt;p&gt;Consolidate a very similar set of tools for dev and production envs.
+Containers are gaining popularity everywhere, use something like &lt;a href="https://www.docker.com/" title="Docker"&gt;docker&lt;/a&gt;
+or &lt;a href="https://github.com/ansible/ansible-container" title="Ansible Container"&gt;ansible-container&lt;/a&gt; for both realms.&lt;/p&gt;</content><category term="python"></category><category term="best-practices"></category><category term="configuration"></category><category term="architecture"></category><category term="django"></category></entry><entry><title>It's the competition, stupid</title><link href="http://hernantz.github.io/its-the-competition-stupid.html" rel="alternate"></link><published>2018-03-07T00:00:00-03:00</published><updated>2018-03-07T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2018-03-07:/its-the-competition-stupid.html</id><summary type="html">&lt;p&gt;Increasing your chances of prosperity.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="it's the competition stupid" src="/images/competition.jpg" title="Picture of Advertisements in Saigon, Vietnam" /&gt;&lt;/p&gt;
 &lt;h2 id="abstract"&gt;Abstract&lt;a class="headerlink" href="#abstract" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Since high school I've always had the hunch that freedom was the obvious way
 for a society to progress in terms of efficiency, equality, wealth, knowledge
@@ -1088,7 +1409,7 @@ the work is finished. But for startups and technology based companies, it
 happens that the ship is sailing! and it cannot wait on stand-by mode until it
 gets fixed, re-painted and it's oars replaced, all this must be done on the fly.&lt;/p&gt;
 &lt;p&gt;All the aforementioned pain points cannot be avoided but mitigated, with enough
-care and discipline, but this last one requires a mind change, commiting towards
+care and discipline, but this last one requires a mind change, committing towards
 &lt;strong&gt;shipping something valuable&lt;/strong&gt; sprint by sprint. This becomes especially
 important once the app is already being used because of the unpredictable
 &lt;a href="http://projectcartoon.com/cartoon/1" title="How Projects Really Work"&gt;nature of software projects&lt;/a&gt;, where priorities and requirements change quite
@@ -1103,29 +1424,30 @@ thing is that &lt;strong&gt;each task that is finished has to be mergeable&lt;/s
 implies that:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Merge conflicts are resolved from day one.&lt;/li&gt;
-&lt;li&gt;Other features, refactores and bugfixes have to deal with or can make use of
+&lt;li&gt;Other features, refactors and bugfixes have to deal with or can make use of
    the new (good quality? working?) code that is shipped sprint after sprint.&lt;/li&gt;
 &lt;li&gt;Changes might not be tackled in the original logical order, but the
    transition towards the big changeset happens in a smooth and predictable
    manner.&lt;/li&gt;
 &lt;li&gt;You avoid doing something you should &lt;a href="http://www.joelonsoftware.com/articles/fog0000000069.html" title="Things You Should Never Do, Part I"&gt;never do in software&lt;/a&gt;.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;Dispite having mentioned branches a lot, the ideas expressed here still apply,
-no matter the technique used to integrate the changes.&lt;/p&gt;
+&lt;p&gt;Despite having mentioned branches a lot, the ideas expressed here still apply,
+no matter the technique used to integrate the changes. Some have gone as far as
+suggest a &lt;a href="https://trunkbaseddevelopment.com/" title="Trunk Based Development"&gt;branchless trunk model&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id="some-examples-of-smooth-transitions"&gt;Some examples of smooth transitions&lt;a class="headerlink" href="#some-examples-of-smooth-transitions" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I think I've gotten to the point already, but I felt like sharing some examples,
 without getting into too much detail, of real life scenarios where requirements
 are implemented by using other strategies than long-lived branches.&lt;/p&gt;
 &lt;p&gt;Among all the &lt;a href="http://python3porting.com/strategies.html" title="Migration strategies"&gt;strategies available&lt;/a&gt; to &lt;strong&gt;migrate an Python app from Python 2
 to Python 3&lt;/strong&gt;, I would try to modify the code so that it runs under both Python
-2 and Python 3  as much as I can. I certaintly wouldn't create a
+2 and Python 3  as much as I can. I certainly wouldn't create a
 &lt;em&gt;python-3-migration&lt;/em&gt; branch to do all the work there, because chances are that
 your Python 2 app would still be used for a long time until the migration is
 finished, and you'll have to be duplicating features, bugs and bugfixes in your
 main branch and in the migration branch. The guys at Pinterest had to go through
 a &lt;a href="https://engineering.pinterest.com/blog/migrating-pinterest-profiles-react" title="Migrating Pinterest profiles to React"&gt;similar experience&lt;/a&gt; but with their frontend framework.&lt;/p&gt;
 &lt;p&gt;To &lt;strong&gt;translate the app&lt;/strong&gt; into another language, you can start by notifying the
-entire team that translation is in progress so that each new piece of ui that is
+entire team that translation is in progress so that each new piece of UI that is
 added has the labels modified to be translatable.&lt;/p&gt;
 &lt;p&gt;The customer wants &lt;strong&gt;a redesign of the site&lt;/strong&gt; (change colors and layouts), and
 decides take the opportunity to also to upgrade to the latest version of
