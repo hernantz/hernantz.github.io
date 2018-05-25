@@ -18,7 +18,6 @@ else's repertoire get so much better.
 |-------------------------------+----------------------------+---------------------------|
 |  Song                         | Original artist/band       | Proposed artist/band      |
 |-------------------------------+----------------------------+---------------------------|
-|  It’s Been Awhile             | Staind                     |                           |
 |  We are Family                | Sisters Sledge             | ABBA                      |
 |  Nightlife                    | IAMX                       | Above and Beyond          |
 |  Eyes of Suffering            | Crematory                  | Acid Witch                |
@@ -55,6 +54,7 @@ else's repertoire get so much better.
 |  Shooting Stars               | Bag Riders                 | Empire of the Sun         |
 |  Safe and Sound               | Capital Cities             | Empire of the Sun         |
 |  Cult of Personality          | Living Colour              | Faith No More             |
+|  It’s Been Awhile             | Staind                     | Foo Fighters              |
 |  Ruby                         | Kaiser Chiefs              | Franz Ferdinand           |
 |  (Don't Fear) The Reaper      | Blue Oyster Cult           | Ghost                     |
 |  Ghost Ship                   | Blur                       | Gorillaz                  |
@@ -139,6 +139,7 @@ else's repertoire get so much better.
 |  I Fought the Law             | The Clash                  | The Ramones               |
 |  Amor Fati                    | Washed Out                 | The Verve                 |
 |  In the Stars                 | Witchfynde                 | The Who                   |
+|  Disparate Youth              | Santigold                  | Twenty One Pilots         |
 |  DMSLT                        | A Pale Horse Named Death   | Type O Negative           |
 |  The Dark Inside              | Ackercocke                 | Type O Negative           |
 |  Son Of The Morning           | Ackercocke                 | Type O Negative           |
