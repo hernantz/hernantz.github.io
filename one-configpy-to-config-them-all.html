@@ -38,14 +38,14 @@
   <summary>
     <p class="light">
       Published
-on <time datetime="2018-05-11T00:00:00-03:00">Fri 11 May 2018</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
+on <time datetime="2018-05-11T00:00:00-03:00">2018-05-11</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
       tagged with <a href="http://hernantz.github.io/tag/python.html">python</a>, <a href="http://hernantz.github.io/tag/best-practices.html">best-practices</a>, <a href="http://hernantz.github.io/tag/configuration.html">configuration</a>, <a href="http://hernantz.github.io/tag/architecture.html">architecture</a> and <a href="http://hernantz.github.io/tag/tools.html">tools</a>.
     </p>
   </summary>
   <p><img alt="configuration management" src="/images/configuration.png" title="Configuration management" /></p>
-<p>Configuration allows us to modify the behavior of our software based on a
-number of settings, with the goal of providing more flexibility to the users of
-such software.</p>
+<p>Configuration is just another API of your app. It allows us to preset or modify
+it's behavior based on where it is installed and how it will be executed,
+providing more flexibility to the users of such software.</p>
 <p>Configuration management is an important aspect of the architecture of any
 system. But it is sometimes overlooked.</p>
 <p>The purpose of this post is to explore a proposed solution for proper config
@@ -56,7 +56,7 @@ and behavior of a program can be very broad.</p>
 <p>We are interested in the <em>deterministic configuration</em> that presets the state
 of a program, without having to interact with it, like static config files or
 environment variables.</p>
-<p>On the other hand, there's the <em>runtime configuration</em>, which happens when the
+<p>On the other hand, there's the <em>runtime configuration</em>, which is set when the
 user interacts with the system. User preferences are a typical example of this
 kind.</p>
 <p>It may not always apply, but a general rule of thumb is to separate config by
@@ -107,9 +107,9 @@ and use the library to connect to two separate databases, because the app knows
 what it needs, not the library.</p>
 <h2 id="how-to-configure-a-project-or-application">How to configure a project (or application)<a class="headerlink" href="#how-to-configure-a-project-or-application" title="Permanent link">&para;</a></h2>
 <p>It is important to provide a clear separation of configuration and code. This
-is because config varies substantially across deploys and executions, code does
-not. The same code can be run inside a container or in a regular machine, it
-can be executed in production or in testing environments.</p>
+is because config varies substantially across deploys and executions, code
+<em>should</em> not. The same code can be run inside a container or in a regular
+machine, it can be executed in production or in testing environments.</p>
 <h3 id="where-to-get-configuration-from">Where to get configuration from<a class="headerlink" href="#where-to-get-configuration-from" title="Permanent link">&para;</a></h3>
 <p>Configuration for a project might come from different sources, like <code>.ini</code>
 files, envirionment variables, etc.</p>
@@ -333,7 +333,8 @@ for daemons.</p>
 </pre></div>
 
 
-<p>Then, the program can be notified about new config by using <code>kill -1</code> or: </p>
+<p>Then, the program can be notified about new config by using <code>kill -1</code> or, with
+systemd:</p>
 <div class="highlight"><pre><span></span>$ sudo systemctl reload application.service
 </pre></div>
 
@@ -350,12 +351,42 @@ to pick it up.</p>
 </pre></div>
 
 
+<h2 id="introducing-prettyconf">Introducing prettyconf<a class="headerlink" href="#introducing-prettyconf" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/osantana/prettyconf" title="Prettyconf">Prettyconf</a> is a framework agnostic python library created to make easy
+the separation of configuration and code. It lets you use the principles we
+discribed about configuration-discovery.</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">prettyconf</span> <span class="kn">import</span> <span class="n">Configuration</span>
+<span class="kn">from</span> <span class="nn">prettyconf.loaders</span> <span class="kn">import</span> <span class="n">CommandLine</span><span class="p">,</span> <span class="n">Environment</span><span class="p">,</span> <span class="n">IniFile</span>
+
+<span class="n">system_config</span> <span class="o">=</span> <span class="s1">&#39;/etc/myapp/config.ini&#39;</span>
+<span class="n">user_config</span> <span class="o">=</span> <span class="s1">&#39;~/.config/myapp.ini&#39;</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">Configuration</span><span class="p">(</span>
+    <span class="n">loaders</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">CommandLine</span><span class="p">(</span><span class="n">parser</span><span class="o">=</span><span class="n">parser</span><span class="p">),</span>
+        <span class="n">Environment</span><span class="p">(),</span>
+        <span class="n">IniFile</span><span class="p">(</span><span class="n">user_config</span><span class="p">),</span>
+        <span class="n">IniFile</span><span class="p">(</span><span class="n">system_config</span><span class="p">)</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">DEBUG_MODE</span> <span class="o">=</span> <span class="n">config</span><span class="p">(</span><span class="s1">&#39;debug&#39;</span><span class="p">,</span> <span class="n">cast</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">boolean</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</pre></div>
+
+
+<p>With the snippet above, the <code>debug</code> config will be discovered from the command
+line args, the enviroment or different <code>.ini</code> files, even following good naming
+conventions, like checking for <code>DEBUG</code> in the environment but <code>debug</code> in the
+ini files, and pasing that to a boolean.</p>
+<p>With prettyconf there are no excuses not to follow best pratices for
+configuration management in your app.</p>
+<p>Now, not everything that is configuration should me handled through prettyconf.
+For example, <a href="https://www.getlektor.com/" title="Lektor">lektor</a> is a flat-file cms, that lets you define the models
+in <code>.ini</code> files. This type of configuration that goes beyond doing a setting's
+key lookup, should be handled apart from prettyconf.</p>
 <h2 id="conclusions">Conclusions<a class="headerlink" href="#conclusions" title="Permanent link">&para;</a></h2>
 <p>Don't take responsibility of gathering configuration when developing a library.</p>
 <p>In your app, always use a single <code>config.py</code> file that gathers all settings and
-load it before starting the program. Use <a href="https://github.com/osantana/prettyconf" title="Prettyconf">prettyconf</a> since it follows the
-settings discovery architecture for projects that we've shown, <a href="https://github.com/osantana/prettyconf/issues/18)">or will
-soon</a>.</p>
+load it before starting the program.</p>
 <p>Keep in mind what belongs to which realm when writing code/scripts. Everything
 can live in the same repo, but at least they will be in different folders
 (<code>src/</code> and <code>ops/</code>, for example). Configuration for each service should be

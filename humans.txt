@@ -19,9 +19,11 @@ else's repertoire get so much better.
 |  Song                         | Original artist/band       | Proposed artist/band      |
 |-------------------------------+----------------------------+---------------------------|
 |  We are Family                | Sisters Sledge             | ABBA                      |
+|  California Dreamin’          | The Mamas & The Papas      | ABBA                      |
 |  Nightlife                    | IAMX                       | Above and Beyond          |
 |  Eyes of Suffering            | Crematory                  | Acid Witch                |
 |  Wrecking Ball                | Miley Cirus                | Adele                     |
+|  TMCR Grand Finale            | The Pinker Tones           | Air                       |
 |  Gold                         | Chect Faker                | Alt-J                     |
 |  Crushcrushcrush              | Paramore                   | Ashley Simpson            |
 |  Galaxies                     | Laura Veirs                | Aurora                    |
@@ -40,10 +42,12 @@ else's repertoire get so much better.
 |  Call on Me                   | Eric Prydz                 | David Guetta              |
 |  Coffee and TV                | Blur                       | Death Cab for Cutie       |
 |  Six Months In A Cast         | The Trouble With Templeton | Death Cab for Cutie       |
+|  Iron Strengthens Iron        | Dyscarnate                 | Decapitated               |
 |  New Millenium Jesus Cyanide  | Meshuggah                  | Decapitated               |
 |  Born to Be Wild              | Steppenwolf                | Deep Purple               |
 |  Bullet                       | Covenant                   | Depeche Mode              |
 |  You Spin Me Round            | Dead or Alive              | Depeche Mode              |
+|  ESC – Prins Thomas Diskomiks | Lauer                      | Depeche Mode              |
 |  Slow                         | Partners in Crime          | Depeche Mode              |
 |  Shout                        | Tears for Fears            | Depeche Mode              |
 |  Black Friday Rule            | Flogging Molly             | Dropkick Murphys          |
@@ -54,10 +58,12 @@ else's repertoire get so much better.
 |  Shooting Stars               | Bag Riders                 | Empire of the Sun         |
 |  Safe and Sound               | Capital Cities             | Empire of the Sun         |
 |  Cult of Personality          | Living Colour              | Faith No More             |
+|  Hurricane                    | MS MR                      | Florence + The Machine    |
 |  It’s Been Awhile             | Staind                     | Foo Fighters              |
 |  Ruby                         | Kaiser Chiefs              | Franz Ferdinand           |
 |  (Don't Fear) The Reaper      | Blue Oyster Cult           | Ghost                     |
 |  Ghost Ship                   | Blur                       | Gorillaz                  |
+|  Outta My Head (Ay Ya Ya)     | Ashlee Simpson             | Gwen Stefani              |
 |  Walk                         | Pantera                    | Hammer                    |
 |  War for Territory            | Sepultura                  | Hammer                    |
 |  Somebody to Love             | Jefferson Plane            | Heart                     |
@@ -83,6 +89,7 @@ else's repertoire get so much better.
 |  Deadly Valentine             | Charlotte Gainsbourg       | Ladytron                  |
 |  Presuit of Happiness         | Lissie                     | Lana del Rey              |
 |  Paper Planes                 | MIA                        | Lana del Rey              |
+|  Hurricane                    | MS MR                      | Lana del Rey              |
 |  Smooth Criminal              | Alien Ant Farm             | Limp Bizkit               |
 |  Butterfly                    | Crazy Town                 | Limp Bizkit               |
 |  Freak on a Leash             | Korn                       | Limp Bizkit               |
@@ -109,6 +116,8 @@ else's repertoire get so much better.
 |  Gone Suvering                | Stone Sour                 | Newsted                   |
 |  Absolute Zero                | Stone Sour                 | Newsted                   |
 |  Sacred Reich                 | The American Way           | Newsted                   |
+|  Hurricane                    | Theory of a Deadman        | Nickleback                |
+|  I Fell in Love               | Gidge                      | Nicolas Jaar              |
 |  Dead And Gone                | Shadows Fall               | Nightrage                 |
 |  Zombie Autopilot             | Unearth                    | Nightrage                 |
 |  I Am Weighless               | Septembre                  | Nirvana                   |
@@ -119,6 +128,7 @@ else's repertoire get so much better.
 |  Axiom                        | Ackercocke                 | Opeth                     |
 |  Leviathan                    | Ackercocke                 | Opeth                     |
 |  Autre Temps                  | Alcest                     | Opeth                     |
+|  Smalltown Boy                | Bronski Beat               | Pet Shop Boys             |
 |  Believe                      | The Bravery                | Queens of the Stone Edge  |
 |  The Suburbs                  | Arcade Fire                | Queens of the stone edge  |
 |  White Walls                  | Between the Buried and Me  | Revocation                |
@@ -139,6 +149,7 @@ else's repertoire get so much better.
 |  I Fought the Law             | The Clash                  | The Ramones               |
 |  Amor Fati                    | Washed Out                 | The Verve                 |
 |  In the Stars                 | Witchfynde                 | The Who                   |
+|  Into The Sky                 | Pnau                       | Twenty One Pilots         |
 |  Disparate Youth              | Santigold                  | Twenty One Pilots         |
 |  DMSLT                        | A Pale Horse Named Death   | Type O Negative           |
 |  The Dark Inside              | Ackercocke                 | Type O Negative           |
