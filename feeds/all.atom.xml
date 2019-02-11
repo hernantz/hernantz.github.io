@@ -105,7 +105,7 @@ to avoid parsing files, or passing CLI args everywhere. So ideally we would
 have a single &lt;code&gt;config.py&lt;/code&gt; file where settings are gathered, parsed and
 processed. The app imports that config module and distributes it to all the
 different libraries it is using.&lt;/p&gt;
-&lt;p&gt;An example startup script for your app could be:&lt;/p&gt;
+&lt;p&gt;An example startup script for your app could be &lt;sup id="fnref:2"&gt;&lt;a class="footnote-ref" href="#fn:2" rel="footnote"&gt;2&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;config&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;gather_conf&lt;/span&gt;
@@ -155,8 +155,8 @@ configuration from code, which gives us some nice features:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Ship configuration separately from code. There is no need to modify code in
    order to change it's behavior.&lt;/li&gt;
-&lt;li&gt;Plain text files are &lt;em&gt;universal&lt;/em&gt;. Can be edited with any text editor, no
-   need to mess with db connectors/sql/scripts to configure an app.&lt;/li&gt;
+&lt;li&gt;Plain text files are &lt;em&gt;universal&lt;/em&gt; &lt;sup id="fnref:4"&gt;&lt;a class="footnote-ref" href="#fn:4" rel="footnote"&gt;4&lt;/a&gt;&lt;/sup&gt;. Can be edited with any text editor,
+   no need to mess with db connectors/sql/scripts to configure an app.&lt;/li&gt;
 &lt;li&gt;No need to know a programming language to configure the app. &lt;a href="https://www.vagrantup.com/docs/vagrantfile/" title="Vagrantfile"&gt;Vagrant&lt;/a&gt;,
    for example, uses Ruby for it's &lt;code&gt;Vagrantfile&lt;/code&gt;, it is a bummer to have to
    learn the syntax of a language just to use a tool.&lt;/li&gt;
@@ -197,7 +197,7 @@ might also be tracked by VCS, but encrypted, like it is done with &lt;a href="ht
 Vault&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id="devops-tools"&gt;Devops tools&lt;a class="headerlink" href="#devops-tools" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Code needs to be &lt;a href="https://12factor.net/build-release-run" title="The twelve-factor app | build, release, run"&gt;packaged, distributed, installed, executed&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;These are all steps that make use of external tools that are not part of the
+&lt;p&gt;These are all steps that make use of &lt;a href="https://twitter.com/raymondh/status/1039628786491248640"&gt;external tools&lt;/a&gt; that are not part of the
 codebase and should be replaceable. An app could be packaged for Ubuntu or
 Windows differently, can be installed manually or put in a container. For this
 reason, code should be as agnostic of these steps as possible and delegate that
@@ -207,7 +207,7 @@ to another actor called: &lt;em&gt;Installer/Builder&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;The installer actor is the one that knows how to bind code with the right
 configuration it needs and how to do it (through env vars or files or cli args
 or all of them). Because it knows the configuration it needs to inject into the
-project, it makes a good candidate to manage  configuration templates for
+project, it makes a good candidate to manage configuration templates for
 files, vars that will be injected into the environment, or how to keep
 secret/sensitive information protected.&lt;/p&gt;
 &lt;p&gt;The development and operations flow has two clearly distinct realms:&lt;/p&gt;
@@ -298,7 +298,7 @@ systemd:&lt;/p&gt;
 
 &lt;p&gt;If the app is part of a distributed cloud system, the same principle can still
 be used. For example, Consul, a tool for service and configuration discovery
-provides &lt;code&gt;consult-template&lt;/code&gt;, a command to populate values from Consul into
+provides &lt;code&gt;consult-template&lt;/code&gt;, a command to populate values from Consul &lt;sup id="fnref:3"&gt;&lt;a class="footnote-ref" href="#fn:3" rel="footnote"&gt;3&lt;/a&gt;&lt;/sup&gt; into
 automatically &lt;a href="https://vimeo.com/109626825" title="Consul template demo"&gt;updated templates&lt;/a&gt; that can emit reload commands to programs
 to pick it up.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ consul-template &lt;span class="se"&gt;\&lt;/span&gt;
@@ -312,11 +312,17 @@ to pick it up.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://github.com/osantana/prettyconf" title="Prettyconf"&gt;Prettyconf&lt;/a&gt; is a framework agnostic python library created to make easy
 the separation of configuration and code. It lets you use the principles we
 discribed about configuration-discovery.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;prettyconf&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Configuration&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;argparse&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;prettyconf&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Configuration&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;prettyconf.loaders&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;CommandLine&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Environment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;IniFile&lt;/span&gt;
+
+
+&lt;span class="n"&gt;parser&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;argparse&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ArgumentParser&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_argument&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;--debug&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
 &lt;span class="n"&gt;system_config&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/etc/myapp/config.ini&amp;#39;&lt;/span&gt;
 &lt;span class="n"&gt;user_config&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;~/.config/myapp.ini&amp;#39;&lt;/span&gt;
+
 &lt;span class="n"&gt;config&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Configuration&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
     &lt;span class="n"&gt;loaders&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
         &lt;span class="n"&gt;CommandLine&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
@@ -333,13 +339,10 @@ discribed about configuration-discovery.&lt;/p&gt;
 &lt;p&gt;With the snippet above, the &lt;code&gt;debug&lt;/code&gt; config will be discovered from the command
 line args, the enviroment or different &lt;code&gt;.ini&lt;/code&gt; files, even following good naming
 conventions, like checking for &lt;code&gt;DEBUG&lt;/code&gt; in the environment but &lt;code&gt;debug&lt;/code&gt; in the
-ini files, and pasing that to a boolean.&lt;/p&gt;
+ini files, and pasing that to a boolean. All these loaders are optional, and
+won't fail if the files are missing.&lt;/p&gt;
 &lt;p&gt;With prettyconf there are no excuses not to follow best pratices for
-configuration management in your app.&lt;/p&gt;
-&lt;p&gt;Now, not everything that is configuration should me handled through prettyconf.
-For example, &lt;a href="https://www.getlektor.com/" title="Lektor"&gt;lektor&lt;/a&gt; is a flat-file cms, that lets you define the models
-in &lt;code&gt;.ini&lt;/code&gt; files. This type of configuration that goes beyond doing a setting's
-key lookup, should be handled apart from prettyconf.&lt;/p&gt;
+configuration management in your app &lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;h2 id="conclusions"&gt;Conclusions&lt;a class="headerlink" href="#conclusions" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Don't take responsibility of gathering configuration when developing a library.&lt;/p&gt;
 &lt;p&gt;In your app, always use a single &lt;code&gt;config.py&lt;/code&gt; file that gathers all settings and
@@ -351,7 +354,48 @@ handled separately, do not use a single &lt;code&gt;config.py&lt;/code&gt; to co
 Postgres for instance.&lt;/p&gt;
 &lt;p&gt;Consolidate a very similar set of tools for dev and production envs.
 Containers are gaining popularity everywhere, use something like &lt;a href="https://www.docker.com/" title="Docker"&gt;docker&lt;/a&gt;
-or &lt;a href="https://github.com/ansible/ansible-container" title="Ansible Container"&gt;ansible-container&lt;/a&gt; for both realms.&lt;/p&gt;</content><category term="python"></category><category term="best-practices"></category><category term="configuration"></category><category term="architecture"></category><category term="tools"></category></entry><entry><title>It's the competition, stupid</title><link href="http://hernantz.github.io/its-the-competition-stupid.html" rel="alternate"></link><published>2018-03-07T00:00:00-03:00</published><updated>2018-03-07T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2018-03-07:/its-the-competition-stupid.html</id><summary type="html">&lt;p&gt;Increasing your chances of prosperity.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="it's the competition stupid" src="/images/competition.jpg" title="Picture of Advertisements in Saigon, Vietnam" /&gt;&lt;/p&gt;
+or &lt;a href="https://github.com/ansible/ansible-container" title="Ansible Container"&gt;ansible-container&lt;/a&gt; for both realms.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;Now, not everything that is configuration should me handled through prettyconf.
+  For example, &lt;a href="https://www.getlektor.com/" title="Lektor"&gt;lektor&lt;/a&gt; is a flat-file cms, that lets you define the models
+  in &lt;code&gt;.ini&lt;/code&gt; files. This type of configuration that goes beyond doing a setting's
+  key lookup, should be handled apart from prettyconf.&lt;/p&gt;
+&lt;p&gt;Another responsability that doesn't belong to prettyconf is populating
+  configuration files of setting variables in the environment, since it is
+  someone else's duty, like &lt;a href="https://github.com/theskumar/python-dotenv"&gt;python-dotenv&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:2"&gt;
+&lt;p&gt;Turns out that using &lt;code&gt;ChainMap&lt;/code&gt; you can implement this very simple
+  &lt;a href="https://blog.florimondmanca.com/a-practical-usage-of-chainmap-in-python"&gt;lookup algorithm&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:3"&gt;
+&lt;p&gt;A nice thing about &lt;code&gt;consul-template&lt;/code&gt; is that it let's you use the same
+  configuration system on any environment. So when developing locally, you
+  don't care about Consul, you app simply reads a config file. When in
+  production, you can inject dynamic settings and &lt;a href="https://github.com/theskumar/python-dotenv"&gt;even secrets&lt;/a&gt; to the app
+  lookup algorithm.&amp;#160;&lt;a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:4"&gt;
+&lt;p&gt;The problem with using something other than plain text files is that you
+  will necessarily have to execute a program in order to get the desired
+  configuration out of it. A programming language has control structures, can
+  make calls to the internet, etc, so you can't known in advance the output you
+  will get. &lt;a href="https://www.python.org/dev/peps/pep-0518/"&gt;PEP518&lt;/a&gt; is a proposal to use a TOML file for this and other
+  issues.&lt;/p&gt;
+&lt;p&gt;Take as an example python's &lt;code&gt;setup.py&lt;/code&gt;. You can't execute a &lt;code&gt;setup.py&lt;/code&gt;
+  file without knowing its dependencies, but currently there is no standard
+  way to know what those dependencies are in an automated fashion without
+  executing the &lt;code&gt;setup.py&lt;/code&gt; file where that information is stored.&lt;/p&gt;
+&lt;p&gt;Another application that faces a similar problem is Vim with it's
+  &lt;code&gt;.vimrc&lt;/code&gt; file, it's written in a custom language called &lt;code&gt;VimL&lt;/code&gt;. The &lt;a href="https://xi-editor.io/xi-editor/docs/config.html" title="Xi editor"&gt;Xi&lt;/a&gt;
+  editor, fixed this problem by switching to TOML files and plugins for
+  extending functionality.&amp;#160;&lt;a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content><category term="python"></category><category term="best-practices"></category><category term="configuration"></category><category term="architecture"></category><category term="tools"></category></entry><entry><title>It's the competition, stupid</title><link href="http://hernantz.github.io/its-the-competition-stupid.html" rel="alternate"></link><published>2018-03-07T00:00:00-03:00</published><updated>2018-03-07T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2018-03-07:/its-the-competition-stupid.html</id><summary type="html">&lt;p&gt;Increasing your chances of prosperity.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="it's the competition stupid" src="/images/competition.jpg" title="Picture of Advertisements in Saigon, Vietnam" /&gt;&lt;/p&gt;
 &lt;h2 id="abstract"&gt;Abstract&lt;a class="headerlink" href="#abstract" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Since high school I've always had the hunch that freedom was the obvious way
 for a society to progress in terms of efficiency, equality, wealth, knowledge
@@ -1491,99 +1535,7 @@ developer use the alias for the new code and at last, when all the codebase is
 using the alias, rename the original class.&lt;/p&gt;
 &lt;p&gt;Finally, you could try &lt;strong&gt;feature flags or compile time flags&lt;/strong&gt;, to &lt;a href="http://blog.travis-ci.com/2014-03-04-use-feature-flags-to-ship-changes-with-confidence/" title="Using Feature Flags to Ship Changes with Confidence"&gt;enable or
 disable certain parts&lt;/a&gt; of the system depending on some conditions, but
-keeping all the parts integrated in the same codebase.&lt;/p&gt;</content><category term="ideas"></category><category term="agile"></category><category term="git"></category></entry><entry><title>Some reviews</title><link href="http://hernantz.github.io/some-reviews.html" rel="alternate"></link><published>2015-08-09T00:00:00-03:00</published><updated>2015-08-09T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2015-08-09:/some-reviews.html</id><summary type="html">&lt;p&gt;Books, series, games and movies reviews. Part 1?&lt;/p&gt;</summary><content type="html">&lt;p&gt;I plan to be reviewing books, series, albums, games, bands and movies. I'm no
-expert in any of these, It's just that I want to put my impressions on ink (or
-pixels I should say). These reviews are a subset of what I had consumed over
-time. The order in which these reviews appear is not necessarily the order in
-which I consumed those things. &lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;DISCLAIMER&lt;/strong&gt;: Expect spoilers, all ye who enter here.&lt;/p&gt;
-&lt;h2 id="it-follows"&gt;It Follows&lt;a class="headerlink" href="#it-follows" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a href="http://www.imdb.com/title/tt3235888/" title="It follows"&gt;&lt;img alt="It follows" src="/images/it-follows.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;The idea of a sexually-transmitted curse is very original, plus the soundtrack
-and the 80'ish atmosphere makes it not the the average horror movie that
-&lt;a href="https://www.youtube.com/watch?v=zz6KOsePEHs"&gt;Hollywood has us used to&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Nonetheless, there are many mistakes in the plot. Some basic unanswered
-questions that are: Why didn't they go to school? where are their parents? how
-did the ex-boyfriend know so much about the curse? why did the ex-boyfriend do
-that stupid "kidnapping"?&lt;/p&gt;
-&lt;p&gt;It would have been better if this group of friends discovered more and more
-about the curse by accident, like relating the moment when Jay started seen
-&lt;em&gt;the thing&lt;/em&gt; (her sexual encounter with her boyfriend) with an infidelity of her
-boyfriend. That way they would have learned how the curse operates and is
-passed around. The plan to get rid of it could have consisted on passing the
-curse to someone undesirable, like one of the bullies from school.
-&lt;strong&gt;&lt;em&gt;Score: 3.3/5&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
-&lt;h2 id="the-wonderful-wizard-of-oz"&gt;The Wonderful Wizard of Oz&lt;a class="headerlink" href="#the-wonderful-wizard-of-oz" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a href="http://www.goodreads.com/book/show/236093.The_Wonderful_Wizard_of_Oz" title="The Wonderful Wizard of Oz"&gt;&lt;img alt="The Wonderful Wizard of Oz" src="/images/the-wonderful-wizard-of-oz.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Despite being a childish fantasy book, the weird characters have thoughts are
-susceptible of a more mature interpretation. I found it somehow entertaining and
-relevant, I would say that this book can be enjoyed no matter the age or time.
-That's what makes it a classic I think. &lt;strong&gt;&lt;em&gt;Score: 4/5&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
-&lt;h2 id="eyes-wide-shut"&gt;Eyes wide shut&lt;a class="headerlink" href="#eyes-wide-shut" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a href="http://www.imdb.com/title/tt0120663/" title="Eyes wide shut"&gt;&lt;img alt="Eyes wide shut" src="/images/eyes-wide-shut.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;The scenes with the russian guy and his daughter are bizarre and stupid, I
-would have skipped that entirely. Also, the part where Mr Bill is being followed
-on the street, wasn't very convincing either. A threatening letter sent by the
-mysterious guys to Mr Bill's house, would've been more appropriate. But aside
-from that, the movie is incredibly well done (and realistic in it's own way).
-It all about the idea of having an adventure, the constant struggle of a normal
-couple to keep the marriage vows, which seem so unnatural in this modern era,
-and how that adventure ended up becoming a nightmare. I bought it.
-&lt;strong&gt;&lt;em&gt;Score: 4.6/5&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
-&lt;h2 id="mad-max-fury-road"&gt;Mad Max: Fury Road&lt;a class="headerlink" href="#mad-max-fury-road" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a href="http://www.imdb.com/title/tt1392190/" title="Mad max"&gt;&lt;img alt="Mad Max: Fury Road" src="/images/mad-max.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;I'm ok with the idea of doing a pure action, dialog-free movie. But even that
-extreme action has to make sense. 
-The movie has three parts: &lt;em&gt;the escape, the return and the ending&lt;/em&gt;.
-The first 30 minutes are great, the atmosphere, the cars, the costumes, the
-sand storm, the pursuit, the action. Then comes the return, and the movie
-faints till the end showing more of the same, only this time the cars, costumes,
-pursuit and action don't make any sense. And finally comes the end, which to put
-it short, it simply a crap. Score should be less, but since the &lt;strong&gt;flame
-guitarist was so awesome&lt;/strong&gt;, it gets a 3. &lt;strong&gt;&lt;em&gt;Score: 3/5&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
-&lt;h2 id="ex-machina"&gt;Ex Machina&lt;a class="headerlink" href="#ex-machina" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a href="http://www.imdb.com/title/tt0470752/" title="Ex Machina"&gt;&lt;img alt="Ex Machina" src="/images/ex-machina.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Nice movie. I'm not sure about how realistic is the eccentricity of the CEO. I
-would have ended the movie with the helicopter arriving, and let you imagine
-what could have happened. &lt;strong&gt;&lt;em&gt;Score: 4/5&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
-&lt;h2 id="chappie"&gt;Chappie&lt;a class="headerlink" href="#chappie" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a href="http://www.imdb.com/title/tt1823672/" title="Chappie"&gt;&lt;img alt="Chappie" src="/images/chappie.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;In no way this movie tries to be realistic/serious, and that is why I forgive
-it all the mistakes I would not forgive to any other movie. If you wanted to
-watch a movie about the philosophical implications of introducing AI in our
-lives, go watch "I'm robot" or "Ex-machina". This movie narrates a tale throw
-different events and dialogs that converge to an epic ending. An that's it. Well
-chosen characters. Excellent idea of including Die Artwoord on the movie. I
-would have ended the movie, when they were buryng Yolandi. &lt;strong&gt;&lt;em&gt;Score: 4.6/5&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
-&lt;h2 id="getting-things-done"&gt;Getting things done&lt;a class="headerlink" href="#getting-things-done" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a href="https://www.goodreads.com/book/show/1633.Getting_Things_Done" title="Getting Things Done"&gt;&lt;img alt="Getting things done" src="/images/getting-things-done.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Very bad book. I couldn't read pass the second chapter. This is one of those
-books that tells you the obvious, like "you need to organize yourself", and all
-in a very verbose way to fill lots of pages instead of being concise. You won't
-get too much out of this book other than the obvious. &lt;strong&gt;&lt;em&gt;Score: 2/5&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
-&lt;h2 id="a-storm-of-swords"&gt;A storm of swords&lt;a class="headerlink" href="#a-storm-of-swords" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a href="https://www.goodreads.com/book/show/62291.A_Storm_of_Swords" title="A Storm Of Swords"&gt;&lt;img alt="A storm of swords" src="/images/a-storm-of-swords.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;I really enjoyed the whole book. There are one main concern I had when I
-finished it was that Daenerys got too much power too easy. I would have made
-her rise to power a combination of: her beauty, Sir Jorah's wisdom, her dragons
-(with their meaning to common folks) and her populism. I'm still unsure what to
-think about Tyron's luck, Lysa's death and Catelyn's resurrection.
-&lt;strong&gt;&lt;em&gt;Score: 4.3/5&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
-&lt;h2 id="team-america-world-police"&gt;Team America: World Police&lt;a class="headerlink" href="#team-america-world-police" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a href="http://www.imdb.com/title/tt0372588/" title="Team America"&gt;&lt;img alt="Team America" src="/images/team-america.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Very funny movie that demonstrates that (the real) America might want to free
-the world, but &lt;em&gt;freedom is not free&lt;/em&gt;. &lt;strong&gt;&lt;em&gt;Score: 4.6/5&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
-&lt;h2 id="cannibal-holocaust"&gt;Cannibal Holocaust&lt;a class="headerlink" href="#cannibal-holocaust" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a href="http://www.imdb.com/title/tt0078935/" title="Cannibal Holocaust"&gt;&lt;img alt="Cannibal Holocaust" src="/images/cannibal-holocaust.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Gore/horror movie from the 80's. The quid of the plot is that despite the
-progress of our modern society, mankind still behaves in inhuman and primitive
-ways. At first you feel despise for the cannibals but then you end up hating
-the white guys. &lt;/p&gt;
-&lt;p&gt;It's real intention wasn't to be scary, but to be shocking, and while watching
-it, I felt like it's gotten old, and as if it's lost that effect. This is why
-it doesn't get a higher score, but still, it might be worth watching it if you
-enjoy strange movies from the 80's. It's interesting to see that The Bleir
-Witch Project was not original at all. &lt;strong&gt;&lt;em&gt;Score: 2.4/5&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;</content><category term="reviews"></category><category term="rants"></category><category term="ideas"></category></entry><entry><title>Mock yourself, not your tests</title><link href="http://hernantz.github.io/mock-yourself-not-your-tests.html" rel="alternate"></link><published>2015-07-27T00:00:00-03:00</published><updated>2015-07-27T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2015-07-27:/mock-yourself-not-your-tests.html</id><summary type="html">&lt;p&gt;Every mock is a smell, avoid them as much as you can.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;em&gt;tl;dr&lt;/em&gt;: While sometimes mocks are needed, they should not be the first tool 
+keeping all the parts integrated in the same codebase.&lt;/p&gt;</content><category term="ideas"></category><category term="agile"></category><category term="git"></category></entry><entry><title>Mock yourself, not your tests</title><link href="http://hernantz.github.io/mock-yourself-not-your-tests.html" rel="alternate"></link><published>2015-07-27T00:00:00-03:00</published><updated>2015-07-27T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2015-07-27:/mock-yourself-not-your-tests.html</id><summary type="html">&lt;p&gt;Every mock is a smell, avoid them as much as you can.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;em&gt;tl;dr&lt;/em&gt;: While sometimes mocks are needed, they should not be the first tool 
 you use to write tests. It is a pity to be mocking your code when you could
 be writing meaningful tests at &lt;em&gt;almost&lt;/em&gt; the same cost.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="stower-titanic" src="/images/mock-yourself-not-your-tests.jpg" title="Der Untergang der Titanic by Willy Stöwer" /&gt;&lt;/p&gt;

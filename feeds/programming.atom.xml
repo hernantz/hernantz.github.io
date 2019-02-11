@@ -105,7 +105,7 @@ to avoid parsing files, or passing CLI args everywhere. So ideally we would
 have a single &lt;code&gt;config.py&lt;/code&gt; file where settings are gathered, parsed and
 processed. The app imports that config module and distributes it to all the
 different libraries it is using.&lt;/p&gt;
-&lt;p&gt;An example startup script for your app could be:&lt;/p&gt;
+&lt;p&gt;An example startup script for your app could be &lt;sup id="fnref:2"&gt;&lt;a class="footnote-ref" href="#fn:2" rel="footnote"&gt;2&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;config&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;gather_conf&lt;/span&gt;
@@ -155,8 +155,8 @@ configuration from code, which gives us some nice features:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Ship configuration separately from code. There is no need to modify code in
    order to change it's behavior.&lt;/li&gt;
-&lt;li&gt;Plain text files are &lt;em&gt;universal&lt;/em&gt;. Can be edited with any text editor, no
-   need to mess with db connectors/sql/scripts to configure an app.&lt;/li&gt;
+&lt;li&gt;Plain text files are &lt;em&gt;universal&lt;/em&gt; &lt;sup id="fnref:4"&gt;&lt;a class="footnote-ref" href="#fn:4" rel="footnote"&gt;4&lt;/a&gt;&lt;/sup&gt;. Can be edited with any text editor,
+   no need to mess with db connectors/sql/scripts to configure an app.&lt;/li&gt;
 &lt;li&gt;No need to know a programming language to configure the app. &lt;a href="https://www.vagrantup.com/docs/vagrantfile/" title="Vagrantfile"&gt;Vagrant&lt;/a&gt;,
    for example, uses Ruby for it's &lt;code&gt;Vagrantfile&lt;/code&gt;, it is a bummer to have to
    learn the syntax of a language just to use a tool.&lt;/li&gt;
@@ -197,7 +197,7 @@ might also be tracked by VCS, but encrypted, like it is done with &lt;a href="ht
 Vault&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id="devops-tools"&gt;Devops tools&lt;a class="headerlink" href="#devops-tools" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Code needs to be &lt;a href="https://12factor.net/build-release-run" title="The twelve-factor app | build, release, run"&gt;packaged, distributed, installed, executed&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;These are all steps that make use of external tools that are not part of the
+&lt;p&gt;These are all steps that make use of &lt;a href="https://twitter.com/raymondh/status/1039628786491248640"&gt;external tools&lt;/a&gt; that are not part of the
 codebase and should be replaceable. An app could be packaged for Ubuntu or
 Windows differently, can be installed manually or put in a container. For this
 reason, code should be as agnostic of these steps as possible and delegate that
@@ -207,7 +207,7 @@ to another actor called: &lt;em&gt;Installer/Builder&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;The installer actor is the one that knows how to bind code with the right
 configuration it needs and how to do it (through env vars or files or cli args
 or all of them). Because it knows the configuration it needs to inject into the
-project, it makes a good candidate to manage  configuration templates for
+project, it makes a good candidate to manage configuration templates for
 files, vars that will be injected into the environment, or how to keep
 secret/sensitive information protected.&lt;/p&gt;
 &lt;p&gt;The development and operations flow has two clearly distinct realms:&lt;/p&gt;
@@ -298,7 +298,7 @@ systemd:&lt;/p&gt;
 
 &lt;p&gt;If the app is part of a distributed cloud system, the same principle can still
 be used. For example, Consul, a tool for service and configuration discovery
-provides &lt;code&gt;consult-template&lt;/code&gt;, a command to populate values from Consul into
+provides &lt;code&gt;consult-template&lt;/code&gt;, a command to populate values from Consul &lt;sup id="fnref:3"&gt;&lt;a class="footnote-ref" href="#fn:3" rel="footnote"&gt;3&lt;/a&gt;&lt;/sup&gt; into
 automatically &lt;a href="https://vimeo.com/109626825" title="Consul template demo"&gt;updated templates&lt;/a&gt; that can emit reload commands to programs
 to pick it up.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ consul-template &lt;span class="se"&gt;\&lt;/span&gt;
@@ -312,11 +312,17 @@ to pick it up.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://github.com/osantana/prettyconf" title="Prettyconf"&gt;Prettyconf&lt;/a&gt; is a framework agnostic python library created to make easy
 the separation of configuration and code. It lets you use the principles we
 discribed about configuration-discovery.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;prettyconf&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Configuration&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;argparse&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;prettyconf&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Configuration&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;prettyconf.loaders&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;CommandLine&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Environment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;IniFile&lt;/span&gt;
+
+
+&lt;span class="n"&gt;parser&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;argparse&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ArgumentParser&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_argument&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;--debug&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
 &lt;span class="n"&gt;system_config&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/etc/myapp/config.ini&amp;#39;&lt;/span&gt;
 &lt;span class="n"&gt;user_config&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;~/.config/myapp.ini&amp;#39;&lt;/span&gt;
+
 &lt;span class="n"&gt;config&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Configuration&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
     &lt;span class="n"&gt;loaders&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
         &lt;span class="n"&gt;CommandLine&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
@@ -333,13 +339,10 @@ discribed about configuration-discovery.&lt;/p&gt;
 &lt;p&gt;With the snippet above, the &lt;code&gt;debug&lt;/code&gt; config will be discovered from the command
 line args, the enviroment or different &lt;code&gt;.ini&lt;/code&gt; files, even following good naming
 conventions, like checking for &lt;code&gt;DEBUG&lt;/code&gt; in the environment but &lt;code&gt;debug&lt;/code&gt; in the
-ini files, and pasing that to a boolean.&lt;/p&gt;
+ini files, and pasing that to a boolean. All these loaders are optional, and
+won't fail if the files are missing.&lt;/p&gt;
 &lt;p&gt;With prettyconf there are no excuses not to follow best pratices for
-configuration management in your app.&lt;/p&gt;
-&lt;p&gt;Now, not everything that is configuration should me handled through prettyconf.
-For example, &lt;a href="https://www.getlektor.com/" title="Lektor"&gt;lektor&lt;/a&gt; is a flat-file cms, that lets you define the models
-in &lt;code&gt;.ini&lt;/code&gt; files. This type of configuration that goes beyond doing a setting's
-key lookup, should be handled apart from prettyconf.&lt;/p&gt;
+configuration management in your app &lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;h2 id="conclusions"&gt;Conclusions&lt;a class="headerlink" href="#conclusions" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Don't take responsibility of gathering configuration when developing a library.&lt;/p&gt;
 &lt;p&gt;In your app, always use a single &lt;code&gt;config.py&lt;/code&gt; file that gathers all settings and
@@ -351,7 +354,48 @@ handled separately, do not use a single &lt;code&gt;config.py&lt;/code&gt; to co
 Postgres for instance.&lt;/p&gt;
 &lt;p&gt;Consolidate a very similar set of tools for dev and production envs.
 Containers are gaining popularity everywhere, use something like &lt;a href="https://www.docker.com/" title="Docker"&gt;docker&lt;/a&gt;
-or &lt;a href="https://github.com/ansible/ansible-container" title="Ansible Container"&gt;ansible-container&lt;/a&gt; for both realms.&lt;/p&gt;</content><category term="python"></category><category term="best-practices"></category><category term="configuration"></category><category term="architecture"></category><category term="tools"></category></entry><entry><title>Calendaring events with Python</title><link href="http://hernantz.github.io/calendaring-events-with-python.html" rel="alternate"></link><published>2017-04-13T00:00:00-03:00</published><updated>2017-04-13T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2017-04-13:/calendaring-events-with-python.html</id><summary type="html">&lt;p&gt;Some gotchas you'll find when scheduling the next world's doomsday.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Aztec sun stone" src="/images/aztec-calendar.png" title="Aztec sun stone" /&gt;&lt;/p&gt;
+or &lt;a href="https://github.com/ansible/ansible-container" title="Ansible Container"&gt;ansible-container&lt;/a&gt; for both realms.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;Now, not everything that is configuration should me handled through prettyconf.
+  For example, &lt;a href="https://www.getlektor.com/" title="Lektor"&gt;lektor&lt;/a&gt; is a flat-file cms, that lets you define the models
+  in &lt;code&gt;.ini&lt;/code&gt; files. This type of configuration that goes beyond doing a setting's
+  key lookup, should be handled apart from prettyconf.&lt;/p&gt;
+&lt;p&gt;Another responsability that doesn't belong to prettyconf is populating
+  configuration files of setting variables in the environment, since it is
+  someone else's duty, like &lt;a href="https://github.com/theskumar/python-dotenv"&gt;python-dotenv&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:2"&gt;
+&lt;p&gt;Turns out that using &lt;code&gt;ChainMap&lt;/code&gt; you can implement this very simple
+  &lt;a href="https://blog.florimondmanca.com/a-practical-usage-of-chainmap-in-python"&gt;lookup algorithm&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:3"&gt;
+&lt;p&gt;A nice thing about &lt;code&gt;consul-template&lt;/code&gt; is that it let's you use the same
+  configuration system on any environment. So when developing locally, you
+  don't care about Consul, you app simply reads a config file. When in
+  production, you can inject dynamic settings and &lt;a href="https://github.com/theskumar/python-dotenv"&gt;even secrets&lt;/a&gt; to the app
+  lookup algorithm.&amp;#160;&lt;a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:4"&gt;
+&lt;p&gt;The problem with using something other than plain text files is that you
+  will necessarily have to execute a program in order to get the desired
+  configuration out of it. A programming language has control structures, can
+  make calls to the internet, etc, so you can't known in advance the output you
+  will get. &lt;a href="https://www.python.org/dev/peps/pep-0518/"&gt;PEP518&lt;/a&gt; is a proposal to use a TOML file for this and other
+  issues.&lt;/p&gt;
+&lt;p&gt;Take as an example python's &lt;code&gt;setup.py&lt;/code&gt;. You can't execute a &lt;code&gt;setup.py&lt;/code&gt;
+  file without knowing its dependencies, but currently there is no standard
+  way to know what those dependencies are in an automated fashion without
+  executing the &lt;code&gt;setup.py&lt;/code&gt; file where that information is stored.&lt;/p&gt;
+&lt;p&gt;Another application that faces a similar problem is Vim with it's
+  &lt;code&gt;.vimrc&lt;/code&gt; file, it's written in a custom language called &lt;code&gt;VimL&lt;/code&gt;. The &lt;a href="https://xi-editor.io/xi-editor/docs/config.html" title="Xi editor"&gt;Xi&lt;/a&gt;
+  editor, fixed this problem by switching to TOML files and plugins for
+  extending functionality.&amp;#160;&lt;a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content><category term="python"></category><category term="best-practices"></category><category term="configuration"></category><category term="architecture"></category><category term="tools"></category></entry><entry><title>Calendaring events with Python</title><link href="http://hernantz.github.io/calendaring-events-with-python.html" rel="alternate"></link><published>2017-04-13T00:00:00-03:00</published><updated>2017-04-13T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2017-04-13:/calendaring-events-with-python.html</id><summary type="html">&lt;p&gt;Some gotchas you'll find when scheduling the next world's doomsday.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Aztec sun stone" src="/images/aztec-calendar.png" title="Aztec sun stone" /&gt;&lt;/p&gt;
 &lt;p&gt;2012 passed and the world did not end. Well, scheduling the next world's
 doomsday can be tricky, because working with dates is so. In this post I'll try
 to share some basic tips and gotchas I learned the hard way while building a

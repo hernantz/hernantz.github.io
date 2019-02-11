@@ -148,7 +148,7 @@ to avoid parsing files, or passing CLI args everywhere. So ideally we would
 have a single <code>config.py</code> file where settings are gathered, parsed and
 processed. The app imports that config module and distributes it to all the
 different libraries it is using.</p>
-<p>An example startup script for your app could be:</p>
+<p>An example startup script for your app could be <sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>:</p>
 <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">config</span> <span class="kn">import</span> <span class="n">gather_conf</span>
@@ -198,8 +198,8 @@ configuration from code, which gives us some nice features:</p>
 <ol>
 <li>Ship configuration separately from code. There is no need to modify code in
    order to change it's behavior.</li>
-<li>Plain text files are <em>universal</em>. Can be edited with any text editor, no
-   need to mess with db connectors/sql/scripts to configure an app.</li>
+<li>Plain text files are <em>universal</em> <sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup>. Can be edited with any text editor,
+   no need to mess with db connectors/sql/scripts to configure an app.</li>
 <li>No need to know a programming language to configure the app. <a href="https://www.vagrantup.com/docs/vagrantfile/" title="Vagrantfile">Vagrant</a>,
    for example, uses Ruby for it's <code>Vagrantfile</code>, it is a bummer to have to
    learn the syntax of a language just to use a tool.</li>
@@ -240,7 +240,7 @@ might also be tracked by VCS, but encrypted, like it is done with <a href="https
 Vault</a>.</p>
 <h3 id="devops-tools">Devops tools<a class="headerlink" href="#devops-tools" title="Permanent link">&para;</a></h3>
 <p>Code needs to be <a href="https://12factor.net/build-release-run" title="The twelve-factor app | build, release, run">packaged, distributed, installed, executed</a>.</p>
-<p>These are all steps that make use of external tools that are not part of the
+<p>These are all steps that make use of <a href="https://twitter.com/raymondh/status/1039628786491248640">external tools</a> that are not part of the
 codebase and should be replaceable. An app could be packaged for Ubuntu or
 Windows differently, can be installed manually or put in a container. For this
 reason, code should be as agnostic of these steps as possible and delegate that
@@ -250,7 +250,7 @@ to another actor called: <em>Installer/Builder</em>.</p>
 <p>The installer actor is the one that knows how to bind code with the right
 configuration it needs and how to do it (through env vars or files or cli args
 or all of them). Because it knows the configuration it needs to inject into the
-project, it makes a good candidate to manage  configuration templates for
+project, it makes a good candidate to manage configuration templates for
 files, vars that will be injected into the environment, or how to keep
 secret/sensitive information protected.</p>
 <p>The development and operations flow has two clearly distinct realms:</p>
@@ -341,7 +341,7 @@ systemd:</p>
 
 <p>If the app is part of a distributed cloud system, the same principle can still
 be used. For example, Consul, a tool for service and configuration discovery
-provides <code>consult-template</code>, a command to populate values from Consul into
+provides <code>consult-template</code>, a command to populate values from Consul <sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup> into
 automatically <a href="https://vimeo.com/109626825" title="Consul template demo">updated templates</a> that can emit reload commands to programs
 to pick it up.</p>
 <div class="highlight"><pre><span></span>$ consul-template <span class="se">\</span>
@@ -355,11 +355,17 @@ to pick it up.</p>
 <p><a href="https://github.com/osantana/prettyconf" title="Prettyconf">Prettyconf</a> is a framework agnostic python library created to make easy
 the separation of configuration and code. It lets you use the principles we
 discribed about configuration-discovery.</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">prettyconf</span> <span class="kn">import</span> <span class="n">Configuration</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">from</span> <span class="nn">prettyconf</span> <span class="kn">import</span> <span class="n">Configuration</span>
 <span class="kn">from</span> <span class="nn">prettyconf.loaders</span> <span class="kn">import</span> <span class="n">CommandLine</span><span class="p">,</span> <span class="n">Environment</span><span class="p">,</span> <span class="n">IniFile</span>
+
+
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--debug&#39;</span><span class="p">)</span>
 
 <span class="n">system_config</span> <span class="o">=</span> <span class="s1">&#39;/etc/myapp/config.ini&#39;</span>
 <span class="n">user_config</span> <span class="o">=</span> <span class="s1">&#39;~/.config/myapp.ini&#39;</span>
+
 <span class="n">config</span> <span class="o">=</span> <span class="n">Configuration</span><span class="p">(</span>
     <span class="n">loaders</span><span class="o">=</span><span class="p">[</span>
         <span class="n">CommandLine</span><span class="p">(</span><span class="n">parser</span><span class="o">=</span><span class="n">parser</span><span class="p">),</span>
@@ -376,13 +382,10 @@ discribed about configuration-discovery.</p>
 <p>With the snippet above, the <code>debug</code> config will be discovered from the command
 line args, the enviroment or different <code>.ini</code> files, even following good naming
 conventions, like checking for <code>DEBUG</code> in the environment but <code>debug</code> in the
-ini files, and pasing that to a boolean.</p>
+ini files, and pasing that to a boolean. All these loaders are optional, and
+won't fail if the files are missing.</p>
 <p>With prettyconf there are no excuses not to follow best pratices for
-configuration management in your app.</p>
-<p>Now, not everything that is configuration should me handled through prettyconf.
-For example, <a href="https://www.getlektor.com/" title="Lektor">lektor</a> is a flat-file cms, that lets you define the models
-in <code>.ini</code> files. This type of configuration that goes beyond doing a setting's
-key lookup, should be handled apart from prettyconf.</p>
+configuration management in your app <sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>.</p>
 <h2 id="conclusions">Conclusions<a class="headerlink" href="#conclusions" title="Permanent link">&para;</a></h2>
 <p>Don't take responsibility of gathering configuration when developing a library.</p>
 <p>In your app, always use a single <code>config.py</code> file that gathers all settings and
@@ -395,6 +398,47 @@ Postgres for instance.</p>
 <p>Consolidate a very similar set of tools for dev and production envs.
 Containers are gaining popularity everywhere, use something like <a href="https://www.docker.com/" title="Docker">docker</a>
 or <a href="https://github.com/ansible/ansible-container" title="Ansible Container">ansible-container</a> for both realms.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Now, not everything that is configuration should me handled through prettyconf.
+  For example, <a href="https://www.getlektor.com/" title="Lektor">lektor</a> is a flat-file cms, that lets you define the models
+  in <code>.ini</code> files. This type of configuration that goes beyond doing a setting's
+  key lookup, should be handled apart from prettyconf.</p>
+<p>Another responsability that doesn't belong to prettyconf is populating
+  configuration files of setting variables in the environment, since it is
+  someone else's duty, like <a href="https://github.com/theskumar/python-dotenv">python-dotenv</a>.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Turns out that using <code>ChainMap</code> you can implement this very simple
+  <a href="https://blog.florimondmanca.com/a-practical-usage-of-chainmap-in-python">lookup algorithm</a>.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>A nice thing about <code>consul-template</code> is that it let's you use the same
+  configuration system on any environment. So when developing locally, you
+  don't care about Consul, you app simply reads a config file. When in
+  production, you can inject dynamic settings and <a href="https://github.com/theskumar/python-dotenv">even secrets</a> to the app
+  lookup algorithm.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>The problem with using something other than plain text files is that you
+  will necessarily have to execute a program in order to get the desired
+  configuration out of it. A programming language has control structures, can
+  make calls to the internet, etc, so you can't known in advance the output you
+  will get. <a href="https://www.python.org/dev/peps/pep-0518/">PEP518</a> is a proposal to use a TOML file for this and other
+  issues.</p>
+<p>Take as an example python's <code>setup.py</code>. You can't execute a <code>setup.py</code>
+  file without knowing its dependencies, but currently there is no standard
+  way to know what those dependencies are in an automated fashion without
+  executing the <code>setup.py</code> file where that information is stored.</p>
+<p>Another application that faces a similar problem is Vim with it's
+  <code>.vimrc</code> file, it's written in a custom language called <code>VimL</code>. The <a href="https://xi-editor.io/xi-editor/docs/config.html" title="Xi editor">Xi</a>
+  editor, fixed this problem by switching to TOML files and plugins for
+  extending functionality.&#160;<a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
 </article>
 
       <footer class="column-right light">

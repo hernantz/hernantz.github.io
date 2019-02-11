@@ -10,7 +10,7 @@
   <link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
   <link href="/rss.xml" type="application/atom+xml" rel="alternate" title="README.txt RSS Feed" />
   <meta name="description" content="AKA else considered harmful.">
-  <meta name="keywords" content="python, ideas">
+  <meta name="keywords" content="python, ideas, best-practices">
   <meta name="author" content="hernantz">
 </head>
 
@@ -39,7 +39,7 @@
     <p class="light">
       Published
 on <time datetime="2013-10-24T00:00:00-03:00">2013-10-24</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
-      tagged with <a href="http://hernantz.github.io/tag/python.html">python</a> and <a href="http://hernantz.github.io/tag/ideas.html">ideas</a>.
+      tagged with <a href="http://hernantz.github.io/tag/python.html">python</a>, <a href="http://hernantz.github.io/tag/ideas.html">ideas</a> and <a href="http://hernantz.github.io/tag/best-practices.html">best-practices</a>.
     </p>
   </summary>
   <p><img alt="Tree branches" src="/images/tree-branches.jpg" title="Tree branches" /></p>
@@ -151,18 +151,6 @@ escribir sobre actions: {} y despues actions<a href="">var</a> como reemplazo al
 <p>VER GENERATORS WILL FREE YOUR MIND
 para usar generadores y asi evirtar for loops y while loops?</p>
 <p>https://speakerdeck.com/nb/else-considered-harmful</p>
-<p>////////////</p>
-<p>Titulo charla: Tenemos que dejar de escribir else por dos anos</p>
-<p>En Python hacemos fuerte incapie en que el codigo sea elegante y facil de interpretar,
-pero con PEP8 solo no alcanza, muchas veces nuestra logica puede quedar anidada en 
-una catarata de if(s) y else(s) dificil de mantener.
-En esta charla exploraremos algunas estrategias para evitar esa complejidad inecesaria.</p>
-<p>Se llama Hernan Lozano, pero se pone hernantz de nickname,
-le gusta la musica en general y el metal en particular, pero no tiene una banda,
-es hincha de Talleres, pero nunca va a la cancha,
-es avido lector, pero casi siempre termina leyendo el mismo autor,
-y por sobre todo, le gusta aprender cosas nuevas, pero despues nunca hace nada con lo que aprendio.</p>
-<h6 id="_1"><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h6>
 <p>http://code.activestate.com/recipes/577786-smarter-default-arguments/
 Currently if you want to avoid any confusion with mutable defaults, you set the default argument to some (immutable) sentinel that indicates the real default argument should be used:</p>
 <p>def f(x=None):
@@ -174,7 +162,6 @@ You can no longer introspect the default argument.
 If you want to have the default actually be None, you will have to use some other value for the sentinel. At that point you'll probably then have two different sentinels in use: None and and its surrogate.
 The real default must be re-evaluated during each call it is used.
 There are two more [seemingly superfluous] lines cluttering up your function body.</p>
-<h6 id="_2"><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h6>
 <p>La monada de usear [] o [User]
 La idea de monadas es tener dos flujos separados para tratar cosas distintas
 y si usamos excepciones como una forma de crear un canal alternativo para lo que
@@ -195,7 +182,8 @@ variables en un lado, clases en otro archivo, etc. Mezclar todo no es la forma i
 http://pozorvlak.livejournal.com/94558.html
 https://blog.feabhas.com/2017/02/abusing-c-switch-statement-beauty-eye-beholder/
 https://youtu.be/D_6ybDcU5gc?t=8m43s
-https://www.youtube.com/watch?v=rrBJVMyD-Gs</p>
+https://www.youtube.com/watch?v=rrBJVMyD-Gs
+https://fsharpforfunandprofit.com/rop/</p>
 <p>Django PermissionDenied para custom authentication backend</p>
 <div class="highlight"><pre><span></span>def extract_timestamp(self):
     record = self.get_parsed_record()
