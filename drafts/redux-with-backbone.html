@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Redux with backbone | README.txt</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+  <link rel="stylesheet" media="(max-width: 750px)" href="/theme/css/mobile.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/github.css" type="text/css" />
+  <link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
+  <link href="/rss.xml" type="application/atom+xml" rel="alternate" title="README.txt RSS Feed" />
+  <meta name="description" content="Strategies to implement an event-driven UI.">
+  <meta name="keywords" content="backbone, javascript, best-practices">
+  <meta name="author" content="hernantz">
+</head>
+
+<body>
+
+  <aside class="sidebar">
+    <a href="/"><img class="rounded-img" src="/images/avatar.png" height="75" width="75" /></a>
+
+      <nav>
+        <ul>
+            <li><a href="http://twitter.com/hernantz">twitter</i></a></li>
+            <li><a href="http://github.com/hernantz">github</i></a></li>
+            <li><a href="http://last.fm/user/hernantz">last.fm</i></a></li>
+            <li><a href="/talks.html">talks</a></li>
+            <li><a href="/whoami.html">whoami</a></li>
+            <li><a href="/">blog</a></li>
+        </ul>
+      </nav>
+
+  </aside>
+  <main>
+        
+<article class="column-right">
+  <h1 class="main-title">Redux with backbone</h1>
+  <summary>
+    <p class="light">
+      Published
+on <time datetime="2016-05-04T00:00:00-03:00">2016-05-04</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
+      tagged with <a href="http://hernantz.github.io/tag/backbone.html">backbone</a>, <a href="http://hernantz.github.io/tag/javascript.html">javascript</a> and <a href="http://hernantz.github.io/tag/best-practices.html">best-practices</a>.
+    </p>
+  </summary>
+  <p><img alt="The Dance of Death by Isaac Cruikshank" src="/images/dance-of-death.jpg" title="The Dance of Death by Isaac Cruikshank" /></p>
+<p>We know that Backbone has done a great job at provinding the <strong>bare minimum
+structure</strong> to build apps that separate logic from presentation, and thus, making them
+easier to reason about.</p>
+<p>Because we are given just the basic tools in an unopinionated way, the implementation
+is left for the developer to design.</p>
+<p>This post is an attempt to share some strategies I find useful for <strong>building an
+event-driven UI</strong>.</p>
+<h1 id="a-mediator-is-needed">A mediator is needed<a class="headerlink" href="#a-mediator-is-needed" title="Permanent link">&para;</a></h1>
+<p>Remember that backbone encourages models and collections to be shared among
+multiple views. Not only models can be attached to multiple views, but views
+can depend on multiple pieces of data too.</p>
+<p>Explicar que hay que empezar a extraer logica de las vistas a ese controlador.
+Vista padre
+Mucha jerarquia -&gt; se complica ir pasando eventos en un arbol muy grande -&gt; channels para solucionar eso.</p>
+<p>This bad behaviour can be omitted by using an intermediary.</p>
+<p>When/Where to fetch your data?
+Mostrar el approach de usar bacbkone como lo hacen en mixpanel:
+https://code.mixpanel.com/2015/04/08/straightening-our-backbone-a-lesson-in-event-driven-ui-development/</p>
+<p>Usar MarionetteJS.Object?</p>
+</article>
+
+      <footer class="column-right light">
+        <nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> - <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | README.txt</nav>
+      </footer>
+  </main>
+</body>
+</html>

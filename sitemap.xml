@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://hernantz.github.io/</loc>
-<lastmod>2019-02-12T19:11:55-00:00</lastmod>
+<lastmod>2019-02-15T17:18:50-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://hernantz.github.io/archives.html</loc>
-<lastmod>2019-02-12T19:11:55-00:00</lastmod>
+<lastmod>2019-02-15T17:18:50-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://hernantz.github.io/tags.html</loc>
-<lastmod>2019-02-12T19:11:55-00:00</lastmod>
+<lastmod>2019-02-15T17:18:50-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://hernantz.github.io/categories.html</loc>
-<lastmod>2019-02-12T19:11:55-00:00</lastmod>
+<lastmod>2019-02-15T17:18:50-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -95,6 +95,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>http://hernantz.github.io/air-the-next-big-thing.html</loc>
+<lastmod>2015-04-27T00:00:00-03:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>http://hernantz.github.io/how-to-publish-a-pelican-site-on-github.html</loc>
 <lastmod>2014-05-18T00:00:00-03:00</lastmod>
 <changefreq>monthly</changefreq>
@@ -152,7 +159,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://hernantz.github.io/category/startups.html</loc>
-<lastmod>2013-11-09T00:00:00-03:54</lastmod>
+<lastmod>2015-04-27T00:00:00-03:54</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -272,6 +279,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://hernantz.github.io/tag/rants.html</loc>
 <lastmod>2015-07-27T00:00:00-03:54</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://hernantz.github.io/tag/startups.html</loc>
+<lastmod>2015-04-27T00:00:00-03:54</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
