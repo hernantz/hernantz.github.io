@@ -50,6 +50,14 @@ easier to reason about.</p>
 is left for the developer to design.</p>
 <p>This post is an attempt to share some strategies I find useful for <strong>building an
 event-driven UI</strong>.</p>
+<p>We need a way to pass data and events down a deep widget tree.
+If views receive everything they need by param, they are easier
+to understand and easier to test.</p>
+<p>With events, they simply propagate them, marionette makes this transparent.</p>
+<p>But with a deep hierarchy, at some point we need a Provider.
+Provider implies a compromise between reusable child widgets, that
+don't care were data comes from or where events go to.
+A Provider gives all data it's child widget need.</p>
 <h1 id="a-mediator-is-needed">A mediator is needed<a class="headerlink" href="#a-mediator-is-needed" title="Permanent link">&para;</a></h1>
 <p>Remember that backbone encourages models and collections to be shared among
 multiple views. Not only models can be attached to multiple views, but views
@@ -62,6 +70,7 @@ Mucha jerarquia -&gt; se complica ir pasando eventos en un arbol muy grande -&gt
 Mostrar el approach de usar bacbkone como lo hacen en mixpanel:
 https://code.mixpanel.com/2015/04/08/straightening-our-backbone-a-lesson-in-event-driven-ui-development/</p>
 <p>Usar MarionetteJS.Object?</p>
+<p>https://www.youtube.com/watch?v=zKXz3pUkw9A</p>
 </article>
 
       <footer class="column-right light">

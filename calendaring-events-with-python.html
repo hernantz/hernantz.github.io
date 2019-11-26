@@ -386,11 +386,11 @@ as standard time.</p>
 <li id="fn:5">
 <p><a href="https://www.python.org/dev/peps/pep-0495/" title="PEP 495 -- Local Time Disambiguation">PEP495</a> suggests adding an attribute called <code>fold</code> to instances of the <code>datetime</code> classes. For
   example, on a system set to US/Eastern timezone:</p>
-<div class="highlight"><pre><span></span>  &gt;&gt;&gt; dt = datetime(2014, 11, 2, 1, 30)
-  &gt;&gt;&gt; dt.astimezone().strftime(&#39;%D %T %Z%z&#39;)
-  &#39;11/02/14 01:30:00 EDT-0400&#39;
-  &gt;&gt;&gt; dt.replace(fold=1).astimezone().strftime(&#39;%D %T %Z%z&#39;)
-  &#39;11/02/14 01:30:00 EST-0500&#39;
+<div class="highlight"><pre><span></span>  <span class="o">&gt;&gt;&gt;</span> <span class="n">dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2014</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+  <span class="o">&gt;&gt;&gt;</span> <span class="n">dt</span><span class="p">.</span><span class="n">astimezone</span><span class="p">().</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%D %T %Z%z&#39;</span><span class="p">)</span>
+  <span class="s1">&#39;11/02/14 01:30:00 EDT-0400&#39;</span>
+  <span class="o">&gt;&gt;&gt;</span> <span class="n">dt</span><span class="p">.</span><span class="k">replace</span><span class="p">(</span><span class="n">fold</span><span class="o">=</span><span class="mi">1</span><span class="p">).</span><span class="n">astimezone</span><span class="p">().</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%D %T %Z%z&#39;</span><span class="p">)</span>
+  <span class="s1">&#39;11/02/14 01:30:00 EST-0500&#39;</span>
 </pre></div>
 
 

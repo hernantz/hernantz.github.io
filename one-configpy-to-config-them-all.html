@@ -254,27 +254,27 @@ project, it makes a good candidate to manage configuration templates for
 files, vars that will be injected into the environment, or how to keep
 secret/sensitive information protected.</p>
 <p>The development and operations flow has two clearly distinct realms:</p>
-<div class="highlight"><pre><span></span>+-------+           +-------+          +--------+         +-------+         +-------+
-|       |           |       |          |        |         |       |         |       |
-| code  +----------&gt;| build +---------&gt;|        |&lt;--------+service|&lt;--------+ conf  +
-|       |           |       |          |        |         |       |         |       |
-+-------+           +-------+          |        |         +-------+         +-------+
-                                       |        |
-                    +-------+          |        |         +-------+         +-------+
-                    |       |          |        |         |       |         |       |
-                    | conf  +---------&gt;|release |&lt;--------+service|&lt;--------+ conf  +
-                    |       |          |        |         |       |         |       |
-                    +-------+          |        |         +-------+         +-------+
-                                       |        |
-                    +-------+          |        |         +-------+         +-------+
-                    |       |          |        |         |       |         |       |
-                    | deps  +---------&gt;|        |&lt;--------+service|&lt;--------+ conf  +
-                    |       |          |        |         |       |         |       |
-                    +-------+          +--------+         +-------          +-------+
+<div class="highlight"><pre><span></span><span class="o">+</span><span class="c1">-------+           +-------+          +--------+         +-------+         +-------+</span>
+<span class="o">|</span>       <span class="o">|</span>           <span class="o">|</span>       <span class="o">|</span>          <span class="o">|</span>        <span class="o">|</span>         <span class="o">|</span>       <span class="o">|</span>         <span class="o">|</span>       <span class="o">|</span>
+<span class="o">|</span> <span class="n">code</span>  <span class="o">+</span><span class="c1">----------&gt;| build +---------&gt;|        |&lt;--------+service|&lt;--------+ conf  +</span>
+<span class="o">|</span>       <span class="o">|</span>           <span class="o">|</span>       <span class="o">|</span>          <span class="o">|</span>        <span class="o">|</span>         <span class="o">|</span>       <span class="o">|</span>         <span class="o">|</span>       <span class="o">|</span>
+<span class="o">+</span><span class="c1">-------+           +-------+          |        |         +-------+         +-------+</span>
+                                       <span class="o">|</span>        <span class="o">|</span>
+                    <span class="o">+</span><span class="c1">-------+          |        |         +-------+         +-------+</span>
+                    <span class="o">|</span>       <span class="o">|</span>          <span class="o">|</span>        <span class="o">|</span>         <span class="o">|</span>       <span class="o">|</span>         <span class="o">|</span>       <span class="o">|</span>
+                    <span class="o">|</span> <span class="n">conf</span>  <span class="o">+</span><span class="c1">---------&gt;|release |&lt;--------+service|&lt;--------+ conf  +</span>
+                    <span class="o">|</span>       <span class="o">|</span>          <span class="o">|</span>        <span class="o">|</span>         <span class="o">|</span>       <span class="o">|</span>         <span class="o">|</span>       <span class="o">|</span>
+                    <span class="o">+</span><span class="c1">-------+          |        |         +-------+         +-------+</span>
+                                       <span class="o">|</span>        <span class="o">|</span>
+                    <span class="o">+</span><span class="c1">-------+          |        |         +-------+         +-------+</span>
+                    <span class="o">|</span>       <span class="o">|</span>          <span class="o">|</span>        <span class="o">|</span>         <span class="o">|</span>       <span class="o">|</span>         <span class="o">|</span>       <span class="o">|</span>
+                    <span class="o">|</span> <span class="n">deps</span>  <span class="o">+</span><span class="c1">---------&gt;|        |&lt;--------+service|&lt;--------+ conf  +</span>
+                    <span class="o">|</span>       <span class="o">|</span>          <span class="o">|</span>        <span class="o">|</span>         <span class="o">|</span>       <span class="o">|</span>         <span class="o">|</span>       <span class="o">|</span>
+                    <span class="o">+</span><span class="c1">-------+          +--------+         +-------          +-------+</span>
 
-+-------------------+---------------------------------------------------------------+
-|    code realm     |                   Devops/CM/Orchestraion realm                |
-+-------------------+---------------------------------------------------------------+
+<span class="o">+</span><span class="c1">-------------------+---------------------------------------------------------------+</span>
+<span class="o">|</span>    <span class="n">code</span> <span class="n">realm</span>     <span class="o">|</span>                   <span class="n">Devops</span><span class="o">/</span><span class="n">CM</span><span class="o">/</span><span class="n">Orchestraion</span> <span class="n">realm</span>                <span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------------+---------------------------------------------------------------+</span>
 </pre></div>
 
 

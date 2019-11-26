@@ -84,10 +84,11 @@ dd {
   margin-bottom: 1.5em; }
 
 table {
-  width: 100%; }
+  width: 100%; 
+  text-align: center; }
 
 th {
-  text-align: left; }
+  border: 1px solid lightblue; }
 
 /* site header */
 .main-title {
