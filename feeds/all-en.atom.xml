@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/all-en.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2018-05-11T00:00:00-03:00</updated><subtitle>- Mostly lies and rants in plain text.</subtitle><entry><title>One config.py to config them all</title><link href="http://hernantz.github.io/one-configpy-to-config-them-all.html" rel="alternate"></link><published>2018-05-11T00:00:00-03:00</published><updated>2018-05-11T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2018-05-11:/one-configpy-to-config-them-all.html</id><summary type="html">&lt;p&gt;How to do configuration management.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="configuration management" src="/images/configuration.png" title="Configuration management" /&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/all-en.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2018-05-11T00:00:00-03:00</updated><subtitle>- Mostly lies and rants in plain text.</subtitle><entry><title>One config.py to config them all</title><link href="http://hernantz.github.io/one-configpy-to-config-them-all.html" rel="alternate"></link><published>2018-05-11T00:00:00-03:00</published><updated>2018-05-11T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2018-05-11:/one-configpy-to-config-them-all.html</id><summary type="html">&lt;p&gt;How to do write configuration-friendly apps.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="configuration management" src="/images/configuration.png" title="Configuration management" /&gt;&lt;/p&gt;
 &lt;p&gt;Configuration is just another API of your app. It allows us to preset or modify
 it's behavior based on where it is installed and how it will be executed,
 providing more flexibility to the users of such software.&lt;/p&gt;
@@ -105,17 +105,32 @@ to avoid parsing files, or passing CLI args everywhere. So ideally we would
 have a single &lt;code&gt;config.py&lt;/code&gt; file where settings are gathered, parsed and
 processed. The app imports that config module and distributes it to all the
 different libraries it is using.&lt;/p&gt;
-&lt;p&gt;An example startup script for your app could be &lt;sup id="fnref:2"&gt;&lt;a class="footnote-ref" href="#fn:2" rel="footnote"&gt;2&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
+&lt;p&gt;An example startup script for your app could be:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;argparse&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;config&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;gather_conf&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;configparser&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;app&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;collections&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ChainMap&lt;/span&gt;
 
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="n"&gt;conf&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;gather_conf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/etc/app/config_file&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
-    &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# conf is a dict of settings&lt;/span&gt;
+&lt;span class="n"&gt;defaults&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;debug&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="n"&gt;parser&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;argparse&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ArgumentParser&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_argument&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;--debug&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;args&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;parse_args&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;cli_args&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;vars&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="n"&gt;iniparser&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;configparser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ConfigParser&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;iniparser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/etc/app/config.ini&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;expanduser&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;~/.myapp.ini&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
+&lt;span class="n"&gt;ini&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;iniparser&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;app&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="n"&gt;config&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ChainMap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cli_args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ini&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;defaults&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;__name___&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;p&gt;This snippet uses &lt;code&gt;ChainMap&lt;/code&gt;&lt;sup id="fnref:2"&gt;&lt;a class="footnote-ref" href="#fn:2" rel="footnote"&gt;2&lt;/a&gt;&lt;/sup&gt; to lookup values in different dictionary-like objects. To our convenience, the &lt;code&gt;configparser&lt;/code&gt; module has builtin support to read multiple &lt;code&gt;.ini&lt;/code&gt; files and merge them.&lt;/p&gt;
 &lt;h3 id="a-single-executable-file"&gt;A single executable file&lt;a class="headerlink" href="#a-single-executable-file" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Another anti-pattern to be aware of is having as many configuration modules as
 environment there are:  &lt;code&gt;dev_settings.py&lt;/code&gt;, &lt;code&gt;staging_settings.py&lt;/code&gt;,
@@ -181,6 +196,7 @@ put into templates by Config Management/Orchestration tools and come handy when
 developing.&lt;/p&gt;
 &lt;p&gt;Following the example above, a &lt;code&gt;config.ini.template&lt;/code&gt; could look like this:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# config.ini.template that each environment can implement&lt;/span&gt;
+&lt;span class="c1"&gt;#&lt;/span&gt;
 &lt;span class="c1"&gt;# EXTRA_PLUGINS = one_plugin,another_plugin&lt;/span&gt;
 &lt;span class="c1"&gt;# SECRET_KEY = &amp;lt;change me&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -196,7 +212,8 @@ excluded by your VCS so that we never accidentally commit that. These files
 might also be tracked by VCS, but encrypted, like it is done with &lt;a href="https://docs.ansible.com/ansible/2.4/vault.html" title="Ansible Vault"&gt;Ansible
 Vault&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id="devops-tools"&gt;Devops tools&lt;a class="headerlink" href="#devops-tools" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Code needs to be &lt;a href="https://12factor.net/build-release-run" title="The twelve-factor app | build, release, run"&gt;packaged, distributed, installed, executed&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Code needs to be &lt;a href="https://12factor.net/build-release-run" title="The twelve-factor app | build, release, run"&gt;packaged, distributed, configured, installed, executed and
+monitored&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;These are all steps that make use of &lt;a href="https://twitter.com/raymondh/status/1039628786491248640"&gt;external tools&lt;/a&gt; that are not part of the
 codebase and should be replaceable. An app could be packaged for Ubuntu or
 Windows differently, can be installed manually or put in a container. For this
@@ -211,44 +228,34 @@ project, it makes a good candidate to manage configuration templates for
 files, vars that will be injected into the environment, or how to keep
 secret/sensitive information protected.&lt;/p&gt;
 &lt;p&gt;The development and operations flow has two clearly distinct realms:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="c1"&gt;-------+           +-------+          +--------+         +-------+         +-------+&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;+-------+&lt;/span&gt;           &lt;span class="o"&gt;+-------+&lt;/span&gt;          &lt;span class="o"&gt;+--------+&lt;/span&gt;         &lt;span class="o"&gt;+-------+&lt;/span&gt;         &lt;span class="o"&gt;+-------+&lt;/span&gt;
 &lt;span class="o"&gt;|&lt;/span&gt;       &lt;span class="o"&gt;|&lt;/span&gt;           &lt;span class="o"&gt;|&lt;/span&gt;       &lt;span class="o"&gt;|&lt;/span&gt;          &lt;span class="o"&gt;|&lt;/span&gt;        &lt;span class="o"&gt;|&lt;/span&gt;         &lt;span class="o"&gt;|&lt;/span&gt;       &lt;span class="o"&gt;|&lt;/span&gt;         &lt;span class="o"&gt;|&lt;/span&gt;       &lt;span class="o"&gt;|&lt;/span&gt;
-&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;code&lt;/span&gt;  &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="c1"&gt;----------&amp;gt;| build +---------&amp;gt;|        |&amp;lt;--------+service|&amp;lt;--------+ conf  +&lt;/span&gt;
+&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;code&lt;/span&gt;  &lt;span class="o"&gt;+----------&amp;gt;|&lt;/span&gt; &lt;span class="n"&gt;build&lt;/span&gt; &lt;span class="o"&gt;+---------&amp;gt;|&lt;/span&gt;        &lt;span class="o"&gt;|&amp;lt;--------+&lt;/span&gt;&lt;span class="n"&gt;service&lt;/span&gt;&lt;span class="o"&gt;|&amp;lt;--------+&lt;/span&gt; &lt;span class="n"&gt;conf&lt;/span&gt;  &lt;span class="o"&gt;+&lt;/span&gt;
 &lt;span class="o"&gt;|&lt;/span&gt;       &lt;span class="o"&gt;|&lt;/span&gt;           &lt;span class="o"&gt;|&lt;/span&gt;       &lt;span class="o"&gt;|&lt;/span&gt;          &lt;span class="o"&gt;|&lt;/span&gt;        &lt;span class="o"&gt;|&lt;/span&gt;         &lt;span class="o"&gt;|&lt;/span&gt;       &lt;span class="o"&gt;|&lt;/span&gt;         &lt;span class="o"&gt;|&lt;/span&gt;       &lt;span class="o"&gt;|&lt;/span&gt;
-&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="c1"&gt;-------+           +-------+          |        |         +-------+         +-------+&lt;/span&gt;
+&lt;span class="o"&gt;+-------+&lt;/span&gt;           &lt;span class="o"&gt;+-------+&lt;/span&gt;          &lt;span class="o"&gt;|&lt;/span&gt;        &lt;span class="o"&gt;|&lt;/span&gt;         &lt;span class="o"&gt;+-------+&lt;/span&gt;         &lt;span class="o"&gt;+-------+&lt;/span&gt;
                                        &lt;span class="o"&gt;|&lt;/span&gt;        &lt;span class="o"&gt;|&lt;/span&gt;
-                    &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="c1"&gt;-------+          |        |         +-------+         +-------+&lt;/span&gt;
+                    &lt;span class="o"&gt;+-------+&lt;/span&gt;          &lt;span class="o"&gt;|&lt;/span&gt;        &lt;span class="o"&gt;|&lt;/span&gt;         &lt;span class="o"&gt;+-------+&lt;/span&gt;         &lt;span class="o"&gt;+-------+&lt;/span&gt;
                     &lt;span class="o"&gt;|&lt;/span&gt;       &lt;span class="o"&gt;|&lt;/span&gt;          &lt;span class="o"&gt;|&lt;/span&gt;        &lt;span class="o"&gt;|&lt;/span&gt;         &lt;span class="o"&gt;|&lt;/span&gt;       &lt;span class="o"&gt;|&lt;/span&gt;         &lt;span class="o"&gt;|&lt;/span&gt;       &lt;span class="o"&gt;|&lt;/span&gt;
-                    &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;conf&lt;/span&gt;  &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="c1"&gt;---------&amp;gt;|release |&amp;lt;--------+service|&amp;lt;--------+ conf  +&lt;/span&gt;
+                    &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;conf&lt;/span&gt;  &lt;span class="o"&gt;+---------&amp;gt;|&lt;/span&gt;&lt;span class="n"&gt;release&lt;/span&gt; &lt;span class="o"&gt;|&amp;lt;--------+&lt;/span&gt;&lt;span class="n"&gt;service&lt;/span&gt;&lt;span class="o"&gt;|&amp;lt;--------+&lt;/span&gt; &lt;span class="n"&gt;conf&lt;/span&gt;  &lt;span class="o"&gt;+&lt;/span&gt;
                     &lt;span class="o"&gt;|&lt;/span&gt;       &lt;span class="o"&gt;|&lt;/span&gt;          &lt;span class="o"&gt;|&lt;/span&gt;        &lt;span class="o"&gt;|&lt;/span&gt;         &lt;span class="o"&gt;|&lt;/span&gt;       &lt;span class="o"&gt;|&lt;/span&gt;         &lt;span class="o"&gt;|&lt;/span&gt;       &lt;span class="o"&gt;|&lt;/span&gt;
-                    &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="c1"&gt;-------+          |        |         +-------+         +-------+&lt;/span&gt;
+                    &lt;span class="o"&gt;+-------+&lt;/span&gt;          &lt;span class="o"&gt;|&lt;/span&gt;        &lt;span class="o"&gt;|&lt;/span&gt;         &lt;span class="o"&gt;+-------+&lt;/span&gt;         &lt;span class="o"&gt;+-------+&lt;/span&gt;
                                        &lt;span class="o"&gt;|&lt;/span&gt;        &lt;span class="o"&gt;|&lt;/span&gt;
-                    &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="c1"&gt;-------+          |        |         +-------+         +-------+&lt;/span&gt;
+                    &lt;span class="o"&gt;+-------+&lt;/span&gt;          &lt;span class="o"&gt;|&lt;/span&gt;        &lt;span class="o"&gt;|&lt;/span&gt;         &lt;span class="o"&gt;+-------+&lt;/span&gt;         &lt;span class="o"&gt;+-------+&lt;/span&gt;
                     &lt;span class="o"&gt;|&lt;/span&gt;       &lt;span class="o"&gt;|&lt;/span&gt;          &lt;span class="o"&gt;|&lt;/span&gt;        &lt;span class="o"&gt;|&lt;/span&gt;         &lt;span class="o"&gt;|&lt;/span&gt;       &lt;span class="o"&gt;|&lt;/span&gt;         &lt;span class="o"&gt;|&lt;/span&gt;       &lt;span class="o"&gt;|&lt;/span&gt;
-                    &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;deps&lt;/span&gt;  &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="c1"&gt;---------&amp;gt;|        |&amp;lt;--------+service|&amp;lt;--------+ conf  +&lt;/span&gt;
+                    &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;deps&lt;/span&gt;  &lt;span class="o"&gt;+---------&amp;gt;|&lt;/span&gt;        &lt;span class="o"&gt;|&amp;lt;--------+&lt;/span&gt;&lt;span class="n"&gt;service&lt;/span&gt;&lt;span class="o"&gt;|&amp;lt;--------+&lt;/span&gt; &lt;span class="n"&gt;conf&lt;/span&gt;  &lt;span class="o"&gt;+&lt;/span&gt;
                     &lt;span class="o"&gt;|&lt;/span&gt;       &lt;span class="o"&gt;|&lt;/span&gt;          &lt;span class="o"&gt;|&lt;/span&gt;        &lt;span class="o"&gt;|&lt;/span&gt;         &lt;span class="o"&gt;|&lt;/span&gt;       &lt;span class="o"&gt;|&lt;/span&gt;         &lt;span class="o"&gt;|&lt;/span&gt;       &lt;span class="o"&gt;|&lt;/span&gt;
-                    &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="c1"&gt;-------+          +--------+         +-------          +-------+&lt;/span&gt;
+                    &lt;span class="o"&gt;+-------+&lt;/span&gt;          &lt;span class="o"&gt;+--------+&lt;/span&gt;         &lt;span class="o"&gt;+-------&lt;/span&gt;          &lt;span class="o"&gt;+-------+&lt;/span&gt;
 
-&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="c1"&gt;-------------------+---------------------------------------------------------------+&lt;/span&gt;
+&lt;span class="o"&gt;+-------------------+---------------------------------------------------------------+&lt;/span&gt;
 &lt;span class="o"&gt;|&lt;/span&gt;    &lt;span class="n"&gt;code&lt;/span&gt; &lt;span class="n"&gt;realm&lt;/span&gt;     &lt;span class="o"&gt;|&lt;/span&gt;                   &lt;span class="n"&gt;Devops&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;CM&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Orchestraion&lt;/span&gt; &lt;span class="n"&gt;realm&lt;/span&gt;                &lt;span class="o"&gt;|&lt;/span&gt;
-&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="c1"&gt;-------------------+---------------------------------------------------------------+&lt;/span&gt;
+&lt;span class="o"&gt;+-------------------+---------------------------------------------------------------+&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;If you use different tools when developing and when deploying, all these
-scripts and templates will start to increase in number. When that moment comes,
-there will be the temptation to delegate all this responsibility to the app to
-"auto-configure and install itself".&lt;/p&gt;
-&lt;p&gt;Sometimes an app not only needs to be configured, but it might need &lt;a href="https://12factor.net/backing-services" title="The twelve-factor app | backing services"&gt;other
-services to be running&lt;/a&gt;, so you'll have to replace an orchestration tool and
-a supervisor. This basically means that you will be replacing specialized tools
-with battle-tested ready-made solutions with your own implementation. More
-code, mode problems.&lt;/p&gt;
-&lt;p&gt;The important thing to note here is that the application's code should not
-install dependencies or start services or export variables to the environment
-because an external service needs them.&lt;/p&gt;
-&lt;p&gt;Ideally, a project should support &lt;a href="https://12factor.net/dev-prod-parity" title="The twelve-factor app | dev/prod parity"&gt;one set of build tools&lt;/a&gt; and use it for
-development and production. For example: docker everywhere.&lt;/p&gt;
+scripts and templates will start to increase in number. Ideally, a project
+should support &lt;a href="https://12factor.net/dev-prod-parity" title="The twelve-factor app | dev/prod parity"&gt;one set of build tools&lt;/a&gt; and use it for development and
+production. For example: docker everywhere.&lt;/p&gt;
 &lt;h3 id="managing-config-changes"&gt;Managing config changes&lt;a class="headerlink" href="#managing-config-changes" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;The &lt;a href="https://en.wikipedia.org/wiki/Signal_(IPC)#SIGHUP" title="Posix signals"&gt;SIGHUP signal&lt;/a&gt; is usually used to trigger a reload of configurations
 for daemons.&lt;/p&gt;
@@ -308,6 +315,7 @@ to pick it up.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;p&gt;As you can see, there is another tool in charge of managing configuration, building it and notifying our code about it.&lt;/p&gt;
 &lt;h2 id="introducing-prettyconf"&gt;Introducing prettyconf&lt;a class="headerlink" href="#introducing-prettyconf" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;a href="https://github.com/osantana/prettyconf" title="Prettyconf"&gt;Prettyconf&lt;/a&gt; is a framework agnostic python library created to make easy
 the separation of configuration and code. It lets you use the principles we
@@ -349,12 +357,10 @@ configuration management in your app &lt;sup id="fnref:1"&gt;&lt;a class="footno
 load it before starting the program.&lt;/p&gt;
 &lt;p&gt;Keep in mind what belongs to which realm when writing code/scripts. Everything
 can live in the same repo, but at least they will be in different folders
-(&lt;code&gt;src/&lt;/code&gt; and &lt;code&gt;ops/&lt;/code&gt;, for example). Configuration for each service should be
-handled separately, do not use a single &lt;code&gt;config.py&lt;/code&gt; to configure Nginx and
-Postgres for instance.&lt;/p&gt;
-&lt;p&gt;Consolidate a very similar set of tools for dev and production envs.
-Containers are gaining popularity everywhere, use something like &lt;a href="https://www.docker.com/" title="Docker"&gt;docker&lt;/a&gt;
-or &lt;a href="https://github.com/ansible/ansible-container" title="Ansible Container"&gt;ansible-container&lt;/a&gt; for both realms.&lt;/p&gt;
+(&lt;code&gt;src/&lt;/code&gt; and &lt;code&gt;ops/&lt;/code&gt;, for example). Configuration for each service (Nginx, Postgresql, etc) should be handled separately, by specialized tools.&lt;/p&gt;
+&lt;p&gt;And speaking of tools, consolidate a very similar set of tool for dev and
+production envs.  Containers are gaining popularity everywhere, use something
+like &lt;a href="https://www.docker.com/" title="Docker"&gt;docker&lt;/a&gt; or &lt;a href="https://github.com/ansible/ansible-container" title="Ansible Container"&gt;ansible-container&lt;/a&gt; for both realms.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;

@@ -6,10 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
   <link rel="stylesheet" media="(max-width: 750px)" href="/theme/css/mobile.css" type="text/css" />
-  <link rel="stylesheet" href="/theme/css/github.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/monokai.css" type="text/css" />
   <link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
   <link href="/rss.xml" type="application/atom+xml" rel="alternate" title="README.txt RSS Feed" />
-  <meta name="description" content="How to do configuration management.">
+  <meta name="description" content="How to do write configuration-friendly apps.">
   <meta name="keywords" content="python, best-practices, configuration, architecture, tools">
   <meta name="author" content="hernantz">
 </head>
@@ -148,17 +148,32 @@ to avoid parsing files, or passing CLI args everywhere. So ideally we would
 have a single <code>config.py</code> file where settings are gathered, parsed and
 processed. The app imports that config module and distributes it to all the
 different libraries it is using.</p>
-<p>An example startup script for your app could be <sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>:</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<p>An example startup script for your app could be:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">argparse</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">config</span> <span class="kn">import</span> <span class="n">gather_conf</span>
+<span class="kn">import</span> <span class="nn">configparser</span>
+<span class="kn">from</span> <span class="nn">app</span> <span class="kn">import</span> <span class="n">main</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">ChainMap</span>
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">conf</span> <span class="o">=</span> <span class="n">gather_conf</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/etc/app/config_file&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
-    <span class="n">main</span><span class="p">(</span><span class="n">conf</span><span class="p">)</span>  <span class="c1"># conf is a dict of settings</span>
+<span class="n">defaults</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;debug&#39;</span><span class="p">:</span> <span class="bp">False</span><span class="p">}</span>
+
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--debug&#39;</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+<span class="n">cli_args</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">vars</span><span class="p">(</span><span class="n">args</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">value</span><span class="p">}</span>
+
+<span class="n">iniparser</span> <span class="o">=</span> <span class="n">configparser</span><span class="o">.</span><span class="n">ConfigParser</span><span class="p">()</span>
+<span class="n">iniparser</span><span class="o">.</span><span class="n">read</span><span class="p">([</span><span class="s1">&#39;/etc/app/config.ini&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~/.myapp.ini&#39;</span><span class="p">)]</span>
+<span class="n">ini</span> <span class="o">=</span> <span class="n">iniparser</span><span class="p">[</span><span class="s1">&#39;app&#39;</span><span class="p">]</span>
+
+<span class="n">config</span> <span class="o">=</span> <span class="n">ChainMap</span><span class="p">(</span><span class="n">cli_args</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">,</span> <span class="n">ini</span><span class="p">,</span> <span class="n">defaults</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name___</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 </pre></div>
 
 
+<p>This snippet uses <code>ChainMap</code><sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup> to lookup values in different dictionary-like objects. To our convenience, the <code>configparser</code> module has builtin support to read multiple <code>.ini</code> files and merge them.</p>
 <h3 id="a-single-executable-file">A single executable file<a class="headerlink" href="#a-single-executable-file" title="Permanent link">&para;</a></h3>
 <p>Another anti-pattern to be aware of is having as many configuration modules as
 environment there are:  <code>dev_settings.py</code>, <code>staging_settings.py</code>,
@@ -224,6 +239,7 @@ put into templates by Config Management/Orchestration tools and come handy when
 developing.</p>
 <p>Following the example above, a <code>config.ini.template</code> could look like this:</p>
 <div class="highlight"><pre><span></span><span class="c1"># config.ini.template that each environment can implement</span>
+<span class="c1">#</span>
 <span class="c1"># EXTRA_PLUGINS = one_plugin,another_plugin</span>
 <span class="c1"># SECRET_KEY = &lt;change me&gt;</span>
 </pre></div>
@@ -239,7 +255,8 @@ excluded by your VCS so that we never accidentally commit that. These files
 might also be tracked by VCS, but encrypted, like it is done with <a href="https://docs.ansible.com/ansible/2.4/vault.html" title="Ansible Vault">Ansible
 Vault</a>.</p>
 <h3 id="devops-tools">Devops tools<a class="headerlink" href="#devops-tools" title="Permanent link">&para;</a></h3>
-<p>Code needs to be <a href="https://12factor.net/build-release-run" title="The twelve-factor app | build, release, run">packaged, distributed, installed, executed</a>.</p>
+<p>Code needs to be <a href="https://12factor.net/build-release-run" title="The twelve-factor app | build, release, run">packaged, distributed, configured, installed, executed and
+monitored</a>.</p>
 <p>These are all steps that make use of <a href="https://twitter.com/raymondh/status/1039628786491248640">external tools</a> that are not part of the
 codebase and should be replaceable. An app could be packaged for Ubuntu or
 Windows differently, can be installed manually or put in a container. For this
@@ -254,44 +271,34 @@ project, it makes a good candidate to manage configuration templates for
 files, vars that will be injected into the environment, or how to keep
 secret/sensitive information protected.</p>
 <p>The development and operations flow has two clearly distinct realms:</p>
-<div class="highlight"><pre><span></span><span class="o">+</span><span class="c1">-------+           +-------+          +--------+         +-------+         +-------+</span>
+<div class="highlight"><pre><span></span><span class="o">+-------+</span>           <span class="o">+-------+</span>          <span class="o">+--------+</span>         <span class="o">+-------+</span>         <span class="o">+-------+</span>
 <span class="o">|</span>       <span class="o">|</span>           <span class="o">|</span>       <span class="o">|</span>          <span class="o">|</span>        <span class="o">|</span>         <span class="o">|</span>       <span class="o">|</span>         <span class="o">|</span>       <span class="o">|</span>
-<span class="o">|</span> <span class="n">code</span>  <span class="o">+</span><span class="c1">----------&gt;| build +---------&gt;|        |&lt;--------+service|&lt;--------+ conf  +</span>
+<span class="o">|</span> <span class="n">code</span>  <span class="o">+----------&gt;|</span> <span class="n">build</span> <span class="o">+---------&gt;|</span>        <span class="o">|&lt;--------+</span><span class="n">service</span><span class="o">|&lt;--------+</span> <span class="n">conf</span>  <span class="o">+</span>
 <span class="o">|</span>       <span class="o">|</span>           <span class="o">|</span>       <span class="o">|</span>          <span class="o">|</span>        <span class="o">|</span>         <span class="o">|</span>       <span class="o">|</span>         <span class="o">|</span>       <span class="o">|</span>
-<span class="o">+</span><span class="c1">-------+           +-------+          |        |         +-------+         +-------+</span>
+<span class="o">+-------+</span>           <span class="o">+-------+</span>          <span class="o">|</span>        <span class="o">|</span>         <span class="o">+-------+</span>         <span class="o">+-------+</span>
                                        <span class="o">|</span>        <span class="o">|</span>
-                    <span class="o">+</span><span class="c1">-------+          |        |         +-------+         +-------+</span>
+                    <span class="o">+-------+</span>          <span class="o">|</span>        <span class="o">|</span>         <span class="o">+-------+</span>         <span class="o">+-------+</span>
                     <span class="o">|</span>       <span class="o">|</span>          <span class="o">|</span>        <span class="o">|</span>         <span class="o">|</span>       <span class="o">|</span>         <span class="o">|</span>       <span class="o">|</span>
-                    <span class="o">|</span> <span class="n">conf</span>  <span class="o">+</span><span class="c1">---------&gt;|release |&lt;--------+service|&lt;--------+ conf  +</span>
+                    <span class="o">|</span> <span class="n">conf</span>  <span class="o">+---------&gt;|</span><span class="n">release</span> <span class="o">|&lt;--------+</span><span class="n">service</span><span class="o">|&lt;--------+</span> <span class="n">conf</span>  <span class="o">+</span>
                     <span class="o">|</span>       <span class="o">|</span>          <span class="o">|</span>        <span class="o">|</span>         <span class="o">|</span>       <span class="o">|</span>         <span class="o">|</span>       <span class="o">|</span>
-                    <span class="o">+</span><span class="c1">-------+          |        |         +-------+         +-------+</span>
+                    <span class="o">+-------+</span>          <span class="o">|</span>        <span class="o">|</span>         <span class="o">+-------+</span>         <span class="o">+-------+</span>
                                        <span class="o">|</span>        <span class="o">|</span>
-                    <span class="o">+</span><span class="c1">-------+          |        |         +-------+         +-------+</span>
+                    <span class="o">+-------+</span>          <span class="o">|</span>        <span class="o">|</span>         <span class="o">+-------+</span>         <span class="o">+-------+</span>
                     <span class="o">|</span>       <span class="o">|</span>          <span class="o">|</span>        <span class="o">|</span>         <span class="o">|</span>       <span class="o">|</span>         <span class="o">|</span>       <span class="o">|</span>
-                    <span class="o">|</span> <span class="n">deps</span>  <span class="o">+</span><span class="c1">---------&gt;|        |&lt;--------+service|&lt;--------+ conf  +</span>
+                    <span class="o">|</span> <span class="n">deps</span>  <span class="o">+---------&gt;|</span>        <span class="o">|&lt;--------+</span><span class="n">service</span><span class="o">|&lt;--------+</span> <span class="n">conf</span>  <span class="o">+</span>
                     <span class="o">|</span>       <span class="o">|</span>          <span class="o">|</span>        <span class="o">|</span>         <span class="o">|</span>       <span class="o">|</span>         <span class="o">|</span>       <span class="o">|</span>
-                    <span class="o">+</span><span class="c1">-------+          +--------+         +-------          +-------+</span>
+                    <span class="o">+-------+</span>          <span class="o">+--------+</span>         <span class="o">+-------</span>          <span class="o">+-------+</span>
 
-<span class="o">+</span><span class="c1">-------------------+---------------------------------------------------------------+</span>
+<span class="o">+-------------------+---------------------------------------------------------------+</span>
 <span class="o">|</span>    <span class="n">code</span> <span class="n">realm</span>     <span class="o">|</span>                   <span class="n">Devops</span><span class="o">/</span><span class="n">CM</span><span class="o">/</span><span class="n">Orchestraion</span> <span class="n">realm</span>                <span class="o">|</span>
-<span class="o">+</span><span class="c1">-------------------+---------------------------------------------------------------+</span>
+<span class="o">+-------------------+---------------------------------------------------------------+</span>
 </pre></div>
 
 
 <p>If you use different tools when developing and when deploying, all these
-scripts and templates will start to increase in number. When that moment comes,
-there will be the temptation to delegate all this responsibility to the app to
-"auto-configure and install itself".</p>
-<p>Sometimes an app not only needs to be configured, but it might need <a href="https://12factor.net/backing-services" title="The twelve-factor app | backing services">other
-services to be running</a>, so you'll have to replace an orchestration tool and
-a supervisor. This basically means that you will be replacing specialized tools
-with battle-tested ready-made solutions with your own implementation. More
-code, mode problems.</p>
-<p>The important thing to note here is that the application's code should not
-install dependencies or start services or export variables to the environment
-because an external service needs them.</p>
-<p>Ideally, a project should support <a href="https://12factor.net/dev-prod-parity" title="The twelve-factor app | dev/prod parity">one set of build tools</a> and use it for
-development and production. For example: docker everywhere.</p>
+scripts and templates will start to increase in number. Ideally, a project
+should support <a href="https://12factor.net/dev-prod-parity" title="The twelve-factor app | dev/prod parity">one set of build tools</a> and use it for development and
+production. For example: docker everywhere.</p>
 <h3 id="managing-config-changes">Managing config changes<a class="headerlink" href="#managing-config-changes" title="Permanent link">&para;</a></h3>
 <p>The <a href="https://en.wikipedia.org/wiki/Signal_(IPC)#SIGHUP" title="Posix signals">SIGHUP signal</a> is usually used to trigger a reload of configurations
 for daemons.</p>
@@ -351,6 +358,7 @@ to pick it up.</p>
 </pre></div>
 
 
+<p>As you can see, there is another tool in charge of managing configuration, building it and notifying our code about it.</p>
 <h2 id="introducing-prettyconf">Introducing prettyconf<a class="headerlink" href="#introducing-prettyconf" title="Permanent link">&para;</a></h2>
 <p><a href="https://github.com/osantana/prettyconf" title="Prettyconf">Prettyconf</a> is a framework agnostic python library created to make easy
 the separation of configuration and code. It lets you use the principles we
@@ -392,12 +400,10 @@ configuration management in your app <sup id="fnref:1"><a class="footnote-ref" h
 load it before starting the program.</p>
 <p>Keep in mind what belongs to which realm when writing code/scripts. Everything
 can live in the same repo, but at least they will be in different folders
-(<code>src/</code> and <code>ops/</code>, for example). Configuration for each service should be
-handled separately, do not use a single <code>config.py</code> to configure Nginx and
-Postgres for instance.</p>
-<p>Consolidate a very similar set of tools for dev and production envs.
-Containers are gaining popularity everywhere, use something like <a href="https://www.docker.com/" title="Docker">docker</a>
-or <a href="https://github.com/ansible/ansible-container" title="Ansible Container">ansible-container</a> for both realms.</p>
+(<code>src/</code> and <code>ops/</code>, for example). Configuration for each service (Nginx, Postgresql, etc) should be handled separately, by specialized tools.</p>
+<p>And speaking of tools, consolidate a very similar set of tool for dev and
+production envs.  Containers are gaining popularity everywhere, use something
+like <a href="https://www.docker.com/" title="Docker">docker</a> or <a href="https://github.com/ansible/ansible-container" title="Ansible Container">ansible-container</a> for both realms.</p>
 <div class="footnote">
 <hr />
 <ol>
