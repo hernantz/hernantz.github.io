@@ -6,11 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
   <link rel="stylesheet" media="(max-width: 750px)" href="/theme/css/mobile.css" type="text/css" />
-  <link rel="stylesheet" href="/theme/css/monokai.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/pygments-default.css" type="text/css" />
   <link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
   <link href="/rss.xml" type="application/atom+xml" rel="alternate" title="README.txt RSS Feed" />
   <meta name="description" content="Some practices and ideas for flow-control in Python.">
-  <meta name="keywords" content="python, ideas, best-practices">
+  <meta name="keywords" content="python, ideas">
   <meta name="author" content="hernantz">
 </head>
 
@@ -39,7 +39,7 @@
     <p class="light">
       Published
 on <time datetime="2013-10-24T00:00:00-03:00">2013-10-24</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
-      tagged with <a href="http://hernantz.github.io/tag/python.html">python</a>, <a href="http://hernantz.github.io/tag/ideas.html">ideas</a> and <a href="http://hernantz.github.io/tag/best-practices.html">best-practices</a>.
+      tagged with <a href="http://hernantz.github.io/tag/python.html">python</a> and <a href="http://hernantz.github.io/tag/ideas.html">ideas</a>.
     </p>
   </summary>
   <p><img alt="Tree branches" src="/images/tree-branches.jpg" title="Tree branches" /></p>
@@ -48,7 +48,8 @@ interpret, but with PEP8 alone is not enough, many times our logic can be
 nested in a cataract of <code>if</code>/<code>else</code> combinations, which is difficult to
 maintain and reduces expresability of your program.</p>
 <p>In this post we <em>incrementally</em> explore strategies that structure our code to
-avoid that unnecessary complexity in readability.</p>
+avoid that unnecessary complexity in readability in an attempt to write
+branchless code.</p>
 <h2 id="if-you-write-else">If you write else<a class="headerlink" href="#if-you-write-else" title="Permanent link">&para;</a></h2>
 <p>As a programmer, most of your time you will be writing <code>if</code>s.  Not only becouse
 this is the main flow control structure, in C like languages, but because
@@ -273,8 +274,8 @@ simple glance.</p>
 </tbody>
 </table>
 <h2 id="if-you-write-if">If you write if<a class="headerlink" href="#if-you-write-if" title="Permanent link">&para;</a></h2>
-<p>In programming readability counts. Every line of code has to be decoded in our
-heads. When reading code, we are mentally parsing a program. </p>
+<p>In programming readability counts. When reading code we are mentally parsing a
+program, every line of code has to be decoded in our heads.</p>
 <div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">is_active</span> <span class="ow">and</span> <span class="n">user</span><span class="o">.</span><span class="n">has_permission</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">user</span><span class="o">.</span><span class="n">credit</span> <span class="o">&gt;=</span> <span class="n">SOME_PRICE</span><span class="p">:</span>
     <span class="c1">######</span>
     <span class="c1">###</span>
@@ -282,9 +283,9 @@ heads. When reading code, we are mentally parsing a program. </p>
 </pre></div>
 
 
-<p>In the snipped above, we are checking if the user should access a certain
+<p>In the snippet above, we are checking if the user should access a certain
 feature and if it has enough credit to do so. Then, why not simply write the
-statement in clear words? Naming the conditionals lowers our cognitive
+statement in clearer words? Naming the conditionals lowers our cognitive
 overhead.</p>
 <div class="highlight"><pre><span></span><span class="n">can_access_foo</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">is_active</span> <span class="ow">and</span> <span class="n">user</span><span class="o">.</span><span class="n">has_permission</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span>
 <span class="n">has_credit</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">credit</span> <span class="o">&gt;=</span> <span class="n">SOME_PRICE</span>
@@ -296,7 +297,8 @@ overhead.</p>
 </pre></div>
 
 
-<p>Now say that we need to handle the cases where the user cannot access and return an error:</p>
+<p>Now say that we need to handle the cases where the user cannot access and
+return an error:</p>
 <div class="highlight"><pre><span></span><span class="n">can_access_foo</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">is_active</span> <span class="ow">and</span> <span class="n">user</span><span class="o">.</span><span class="n">has_permission</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span>
 <span class="n">has_credit</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">credit</span> <span class="o">&gt;=</span> <span class="n">SOME_PRICE</span>
 
@@ -337,7 +339,7 @@ we don't have to worry about certain checks later in the code.</p>
 </pre></div>
 
 
-<p>If this code was inside a function, we could move this checks outside of it to
+<p>If this code was inside a function, we could move these checks outside of it to
 some decorators.</p>
 <div class="highlight"><pre><span></span><span class="nd">@requires_access</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span>
 <span class="nd">@requires_credit</span><span class="p">(</span><span class="n">SOME_PRICE</span><span class="p">)</span>
@@ -351,52 +353,29 @@ some decorators.</p>
 
 
 <p>This patern greatly improves the maintenability and expresability of the
-program. These decoratiors are reusable and there are less (seemingly
-superfluous) lines cluttering up your function body.</p>
+program. Not only we have less (seemingly superfluous) lines cluttering up your
+function body, but these decorators are reusable/composable functions.</p>
 <h2 id="if-you-write-elif">If you write elif<a class="headerlink" href="#if-you-write-elif" title="Permanent link">&para;</a></h2>
 <p>Most of the time we are writing <code>if</code>s for type-checking and error-handling.
 There are some ways of not writting <code>if</code>s altogether. </p>
 <p>In the case of <code>elif</code>s, it's easy to observe the paterns that emerge from the
-code, and patterns are easy to refactor.</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+code, and patterns are easy to refactor. Consider this checks on the type of
+user to determine the right permissions:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_permissions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="c1">#####</span>
     <span class="c1">########</span>
 
-    <span class="k">if</span> <span class="n">var</span> <span class="o">==</span> <span class="s1">&#39;foo&#39;</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">do_foo</span><span class="p">()</span>
-    <span class="k">elif</span> <span class="n">var</span> <span class="o">==</span> <span class="s1">&#39;bar&#39;</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">do_baz</span><span class="p">()</span>
-    <span class="k">elif</span> <span class="n">var</span> <span class="o">==</span> <span class="s1">&#39;baz&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">do_baz</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">user</span> <span class="o">==</span> <span class="s1">&#39;admin&#39;</span><span class="p">:</span>
+        <span class="n">perms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_admin_permissions</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">var</span> <span class="o">==</span> <span class="s1">&#39;editor&#39;</span><span class="p">:</span>
+        <span class="n">perms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_editor_permissions</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">var</span> <span class="o">==</span> <span class="s1">&#39;authenticated&#39;</span>
+        <span class="n">perms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_authenticated_permissions</span><span class="p">()</span>
 </pre></div>
 
 
-<p>Can be replaced by a different form of pattern matching and written as:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="c1">#####</span>
-    <span class="c1">########</span>
-
-    <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="s1">&#39;do_{var}&#39;</span><span class="p">)()</span>
-</pre></div>
-
-
-<p>This way if we need to extend the code with more <code>do_{var}</code> methods, we
-get this branching logic for free.</p>
 <p>Although I'm not a big fan of OOP, I should point out that polymorphism can
-also replace conditionals. Consider this checks on the type of user to
-determine the right permissions:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_permissions</span><span class="p">(</span><span class="n">user</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">is_admin</span><span class="p">():</span>
-        <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;read&#39;</span><span class="p">,</span> <span class="s1">&#39;write&#39;</span><span class="p">,</span> <span class="s1">&#39;delete&#39;</span><span class="p">]</span>
-    <span class="k">elif</span> <span class="n">user</span><span class="o">.</span><span class="n">is_editor</span><span class="p">():</span>
-        <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;read&#39;</span><span class="p">,</span> <span class="s1">&#39;write&#39;</span><span class="p">]</span>
-    <span class="k">elif</span> <span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">():</span>
-        <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;read&#39;</span><span class="p">]</span>
-    <span class="k">return</span> <span class="p">[]</span>
-</pre></div>
-
-
-<p>Which could simply be replaced with:</p>
+also replace conditionals.</p>
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Admin</span><span class="p">(</span><span class="n">User</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">get_permission</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;read&#39;</span><span class="p">,</span> <span class="s1">&#39;write&#39;</span><span class="p">,</span> <span class="s1">&#39;delete&#39;</span><span class="p">]</span>
@@ -410,6 +389,20 @@ determine the right permissions:</p>
 
 <p>So you would simply write <code>user.get_permissions()</code> and let the type
 of the class determine the right method to be executed.</p>
+<p>But I suppose that at some point we will need to have the <code>if</code> logic
+to determine which instance of User to create.</p>
+<p>So a more pythonic way of doing this form of pattern matching is to user
+dictionary lookups:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_permissions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="c1">#####</span>
+    <span class="c1">########</span>
+
+    <span class="n">perms</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="s1">&#39;do_{user}_permissions&#39;</span><span class="p">)()</span>
+</pre></div>
+
+
+<p>This way if we need to extend the code with more <code>do_{user}_permissions</code>
+methods, we get this branching logic for free.</p>
 <p>Another example is turning flags on/off, with code like this:</p>
 <div class="highlight"><pre><span></span><span class="n">var</span> <span class="o">=</span> <span class="bp">False</span>
 
@@ -429,12 +422,46 @@ of the class determine the right method to be executed.</p>
 
 <p>I guess the point here is to use the right pattern that replaces the
 switch/elif structure with more readable/maintainable code.</p>
-<h2 id="if-you-have-mutable-default-arguments">if you have mutable default arguments<a class="headerlink" href="#if-you-have-mutable-default-arguments" title="Permanent link">&para;</a></h2>
-<p>Mutable arguments =&gt; immutable arguments</p>
-<h2 id="if-you-have-computation">if you have computation<a class="headerlink" href="#if-you-have-computation" title="Permanent link">&para;</a></h2>
+<h2 id="if-you-work-with-iterables">If you work with iterables<a class="headerlink" href="#if-you-work-with-iterables" title="Permanent link">&para;</a></h2>
+<p>Many times we are working with collections of data that need to be filtered,
+re-grouped, sliced, etc.</p>
+<p>The <code>itertools</code> module offers some functions that allow us to hide our <code>if</code>s
+(along with our <a href="https://jrsinclair.com/articles/2017/javascript-without-loops/" title="JavaScript Without Loops">loops</a>) by simply passing <em>predicates</em> to these functions:</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">itertools</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">less_than_one</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="n">less_than_one</span><span class="p">,</span> <span class="n">numbers</span><span class="p">))</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">filterfalse</span><span class="p">(</span><span class="n">less_than_one</span><span class="p">,</span> <span class="n">numbers</span><span class="p">))</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">numbers</span><span class="p">,</span> <span class="n">less_than_one</span><span class="p">):</span>
+<span class="o">...</span>     <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;{key}: {list(group)}&#39;</span><span class="p">)</span>
+<span class="o">...</span> 
+<span class="bp">False</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="bp">True</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+
+<h2 id="if-you-write-sentinels">If you write sentinels<a class="headerlink" href="#if-you-write-sentinels" title="Permanent link">&para;</a></h2>
+<p>Mutable arguments =&gt; immutable arguments
+http://code.activestate.com/recipes/577786-smarter-default-arguments/
+Currently if you want to avoid any confusion with mutable defaults, you set the default argument to some (immutable) sentinel that indicates the real default argument should be used:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+
+
+<p>There are downsides though:</p>
+<p>The default argument no longer reflects the expectation for the argument type.
+You can no longer introspect the default argument.
+If you want to have the default actually be None, you will have to use some other value for the sentinel. At that point you'll probably then have two different sentinels in use: None and and its surrogate.
+The real default must be re-evaluated during each call it is used.</p>
+<p>esconder el if con el interprete de python</p>
 <p>Computationally intensive jobs =&gt; lazyness =&gt; ej del orm django</p>
-<h2 id="if-you-check-for-errors">if you check for errors<a class="headerlink" href="#if-you-check-for-errors" title="Permanent link">&para;</a></h2>
-<p>Errors =&gt; exceptions =&gt; monads</p>
 <p>allows you to express pieces of computation, without having to pay the costs
 until you really need them.</p>
 <div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">toolz</span> <span class="kn">import</span> <span class="nb">map</span>  <span class="c1"># toolz&#39; map is lazy by default</span>
@@ -442,21 +469,10 @@ until you really need them.</p>
 </pre></div>
 
 
-<p>functions as if conditions that can be reused like predicates for filter()</p>
+<h2 id="if-you-check-for-errors">if you check for errors<a class="headerlink" href="#if-you-check-for-errors" title="Permanent link">&para;</a></h2>
+<p>Errors =&gt; exceptions =&gt; monads</p>
 <p>VER GENERATORS WILL FREE YOUR MIND
 para usar generadores y asi evirtar for loops y while loops?</p>
-<p>https://speakerdeck.com/nb/else-considered-harmful</p>
-<p>http://code.activestate.com/recipes/577786-smarter-default-arguments/
-Currently if you want to avoid any confusion with mutable defaults, you set the default argument to some (immutable) sentinel that indicates the real default argument should be used:</p>
-<p>def f(x=None):
-    if x is None:
-        x = []
-There are downsides though:</p>
-<p>The default argument no longer reflects the expectation for the argument type.
-You can no longer introspect the default argument.
-If you want to have the default actually be None, you will have to use some other value for the sentinel. At that point you'll probably then have two different sentinels in use: None and and its surrogate.
-The real default must be re-evaluated during each call it is used.
-There are two more [seemingly superfluous] lines cluttering up your function body.</p>
 <p>La monada de usear [] o [User]
 La idea de monadas es tener dos flujos separados para tratar cosas distintas
 y si usamos excepciones como una forma de crear un canal alternativo para lo que
@@ -473,8 +489,7 @@ http://degoes.net/articles/destroy-all-ifs
 https://returns.readthedocs.io/en/latest/index.html</p>
 <p>Agrupar variables al pricipio de las funciones porque siempre agrupamos cosas que son lo mismo 
 variables en un lado, clases en otro archivo, etc. Mezclar todo no es la forma ideal de organizarse.</p>
-<p>http://jrsinclair.com/articles/2017/javascript-without-loops/
-https://blog.feabhas.com/2017/02/abusing-c-switch-statement-beauty-eye-beholder/
+<p>https://blog.feabhas.com/2017/02/abusing-c-switch-statement-beauty-eye-beholder/
 https://youtu.be/D_6ybDcU5gc?t=8m43s
 https://www.youtube.com/watch?v=rrBJVMyD-Gs
 https://fsharpforfunandprofit.com/rop/</p>
@@ -483,11 +498,18 @@ https://fsharpforfunandprofit.com/rop/</p>
 https://www.youtube.com/watch?v=dqdsNoApJ80
 https://sobolevn.me/2019/02/python-exceptions-considered-an-antipattern</p>
 <h2 id="endif">Endif<a class="headerlink" href="#endif" title="Permanent link">&para;</a></h2>
-<p>This is supposed to be a <a href="https://meyerweb.com/eric/comment/chech.html" title="“Considered Harmful” Essays Considered Harmful">guideline</a> on how to express programs with logic
-branches. That being said, I'm not against writing <code>if</code>, <code>else</code> or <code>elif</code> per
-se. These are some ideas related to something so mundane like conditionals.</p>
-<p>Of course real life is more complex with lots of gray areas. The examples here
-are <a href="https://gist.github.com/hernantz/ca79890b9b212c6df45e615d94320f6e">not real world snippets</a>, but simply put to make a point.</p>
+<p>There are many <em>considered harmful</em> essays out there. One of those is even
+called: <em><a href="https://meyerweb.com/eric/comment/chech.html" title="“Considered Harmful” Essays Considered Harmful">"Considered Harmful" Essays Considered Harmful</a></em>.</p>
+<p><a href="https://speakerdeck.com/nb/else-considered-harmful">Else considered harmful</a> is a talk that inspired this post.  It explains
+why writing <code>else</code> can be problematic and how to get rid of it, and I thought,
+can we go further and make the same attempt with <code>if</code>?</p>
+<p>The result is supposed to be a guideline on how to express programs with less
+logic branches. That being said, I'm not against writing <code>if</code>, <code>else</code> or <code>elif</code>
+per se, life is more complex with lots of gray areas. The examples here are
+<a href="https://gist.github.com/hernantz/ca79890b9b212c6df45e615d94320f6e">not real world snippets</a>, but simply put to make a point.</p>
+<p>Interestingly enough, all the expermients lead to functional programmig
+principles, like composing functions, processing iterables, lazyness and
+immutability, etc.</p>
 </article>
 
       <footer class="column-right light">

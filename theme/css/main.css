@@ -88,7 +88,10 @@ table {
   text-align: center; }
 
 th {
-  border: 1px solid lightblue; }
+  border-bottom: 1px solid lightblue; }
+
+tr:nth-child(even) {
+  background: #f8f8f8; }
 
 /* site header */
 .main-title {
@@ -136,7 +139,7 @@ th {
 /* code snippets */
 .highlight {
   font-size: 0.9em;
-  border: 1px solid lightblue; }
+  border-left: 1px solid lightblue; }
 
 /* headers permalink */
 .headerlink {

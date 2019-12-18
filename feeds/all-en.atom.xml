@@ -70,8 +70,8 @@ machine, it can be executed in production or in testing environments.&lt;/p&gt;
 &lt;h3 id="where-to-get-configuration-from"&gt;Where to get configuration from&lt;a class="headerlink" href="#where-to-get-configuration-from" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Configuration for a project might come from different sources, like &lt;code&gt;.ini&lt;/code&gt;
 files, envirionment variables, etc.&lt;/p&gt;
-&lt;p&gt;For example, there is a common pattern to read configurations in &lt;a href="https://12factor.net/config" title="The twelve-factor app | config"&gt;environment
-variables&lt;/a&gt; that look similar to the code below:&lt;/p&gt;
+&lt;p&gt;For example, there is a common pattern to read configurations in environment
+variables&lt;sup id="fnref:0"&gt;&lt;a class="footnote-ref" href="#fn:0" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt; that look similar to the code below:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;DEBUG&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -91,8 +91,8 @@ will be used if &lt;code&gt;DEBUG&lt;/code&gt; envvar is not defined.&lt;/p&gt;
 &lt;p&gt;Well designed applications allow different ways to be configured. A proper
 settings-discoverability chain goes as follows:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;CLI args.&lt;/li&gt;
-&lt;li&gt;Environment variables.&lt;/li&gt;
+&lt;li&gt;CLI args, mostly used to allow users do some exploration while running your program.&lt;/li&gt;
+&lt;li&gt;Environment variables, that can be set in &lt;code&gt;.bashrc&lt;/code&gt; or &lt;code&gt;.env&lt;/code&gt; files and, since they are global, they should have some sort of prefix like &lt;code&gt;MYAPP_*&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;Config files in different directories, that also imply some hierarchy. For
    example: config files in &lt;code&gt;/etc/myapp/settings.ini&lt;/code&gt; are applied system-wide,
    while &lt;code&gt;~/.config/myapp/settings.ini&lt;/code&gt; take precedence and are user-specific.&lt;/li&gt;
@@ -130,7 +130,7 @@ different libraries it is using.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;This snippet uses &lt;code&gt;ChainMap&lt;/code&gt;&lt;sup id="fnref:2"&gt;&lt;a class="footnote-ref" href="#fn:2" rel="footnote"&gt;2&lt;/a&gt;&lt;/sup&gt; to lookup values in different dictionary-like objects. To our convenience, the &lt;code&gt;configparser&lt;/code&gt; module has builtin support to read multiple &lt;code&gt;.ini&lt;/code&gt; files and merge them.&lt;/p&gt;
+&lt;p&gt;This snippet uses &lt;code&gt;ChainMap&lt;/code&gt;&lt;sup id="fnref:2"&gt;&lt;a class="footnote-ref" href="#fn:2" rel="footnote"&gt;3&lt;/a&gt;&lt;/sup&gt; to lookup values in different dictionary-like objects. To our convenience, the &lt;code&gt;configparser&lt;/code&gt; module has builtin support to read multiple &lt;code&gt;.ini&lt;/code&gt; files and merge them.&lt;/p&gt;
 &lt;h3 id="a-single-executable-file"&gt;A single executable file&lt;a class="headerlink" href="#a-single-executable-file" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Another anti-pattern to be aware of is having as many configuration modules as
 environment there are:  &lt;code&gt;dev_settings.py&lt;/code&gt;, &lt;code&gt;staging_settings.py&lt;/code&gt;,
@@ -170,7 +170,7 @@ configuration from code, which gives us some nice features:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Ship configuration separately from code. There is no need to modify code in
    order to change it's behavior.&lt;/li&gt;
-&lt;li&gt;Plain text files are &lt;em&gt;universal&lt;/em&gt; &lt;sup id="fnref:4"&gt;&lt;a class="footnote-ref" href="#fn:4" rel="footnote"&gt;4&lt;/a&gt;&lt;/sup&gt;. Can be edited with any text editor,
+&lt;li&gt;Plain text files are &lt;em&gt;universal&lt;/em&gt; &lt;sup id="fnref:4"&gt;&lt;a class="footnote-ref" href="#fn:4" rel="footnote"&gt;5&lt;/a&gt;&lt;/sup&gt;. Can be edited with any text editor,
    no need to mess with db connectors/sql/scripts to configure an app.&lt;/li&gt;
 &lt;li&gt;No need to know a programming language to configure the app. &lt;a href="https://www.vagrantup.com/docs/vagrantfile/" title="Vagrantfile"&gt;Vagrant&lt;/a&gt;,
    for example, uses Ruby for it's &lt;code&gt;Vagrantfile&lt;/code&gt;, it is a bummer to have to
@@ -252,11 +252,18 @@ secret/sensitive information protected.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;p&gt;Notice that developers are also users of the software, that need to configure
+it and are constantly doing micro-releases while developing.&lt;/p&gt;
 &lt;p&gt;If you use different tools when developing and when deploying, all these
 scripts and templates will start to increase in number. Ideally, a project
 should support &lt;a href="https://12factor.net/dev-prod-parity" title="The twelve-factor app | dev/prod parity"&gt;one set of build tools&lt;/a&gt; and use it for development and
 production. For example: docker everywhere.&lt;/p&gt;
 &lt;h3 id="managing-config-changes"&gt;Managing config changes&lt;a class="headerlink" href="#managing-config-changes" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Ideally, programs should have the ability to be notified when there are new 
+configs to be picked up.&lt;/p&gt;
+&lt;p&gt;This is possible if configuration is provided through files, not so easy if we
+used environment vars or CLI arguments, in which case we would have to restart
+the program.&lt;/p&gt;
 &lt;p&gt;The &lt;a href="https://en.wikipedia.org/wiki/Signal_(IPC)#SIGHUP" title="Posix signals"&gt;SIGHUP signal&lt;/a&gt; is usually used to trigger a reload of configurations
 for daemons.&lt;/p&gt;
 &lt;p&gt;In Python, this can be achieved with the &lt;code&gt;signal&lt;/code&gt; module, as the following gist shows:&lt;/p&gt;
@@ -305,7 +312,7 @@ systemd:&lt;/p&gt;
 
 &lt;p&gt;If the app is part of a distributed cloud system, the same principle can still
 be used. For example, Consul, a tool for service and configuration discovery
-provides &lt;code&gt;consult-template&lt;/code&gt;, a command to populate values from Consul &lt;sup id="fnref:3"&gt;&lt;a class="footnote-ref" href="#fn:3" rel="footnote"&gt;3&lt;/a&gt;&lt;/sup&gt; into
+provides &lt;code&gt;consult-template&lt;/code&gt;, a command to populate values from Consul &lt;sup id="fnref:3"&gt;&lt;a class="footnote-ref" href="#fn:3" rel="footnote"&gt;4&lt;/a&gt;&lt;/sup&gt; into
 automatically &lt;a href="https://vimeo.com/109626825" title="Consul template demo"&gt;updated templates&lt;/a&gt; that can emit reload commands to programs
 to pick it up.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ consul-template &lt;span class="se"&gt;\&lt;/span&gt;
@@ -345,25 +352,32 @@ discribed about configuration-discovery.&lt;/p&gt;
 
 
 &lt;p&gt;With the snippet above, the &lt;code&gt;debug&lt;/code&gt; config will be discovered from the command
-line args, the enviroment or different &lt;code&gt;.ini&lt;/code&gt; files, even following good naming
+line args, the environment or different &lt;code&gt;.ini&lt;/code&gt; files, even following good naming
 conventions, like checking for &lt;code&gt;DEBUG&lt;/code&gt; in the environment but &lt;code&gt;debug&lt;/code&gt; in the
 ini files, and pasing that to a boolean. All these loaders are optional, and
 won't fail if the files are missing.&lt;/p&gt;
 &lt;p&gt;With prettyconf there are no excuses not to follow best pratices for
-configuration management in your app &lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+configuration management in your app &lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1" rel="footnote"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;h2 id="conclusions"&gt;Conclusions&lt;a class="headerlink" href="#conclusions" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Don't take responsibility of gathering configuration when developing a library.&lt;/p&gt;
 &lt;p&gt;In your app, always use a single &lt;code&gt;config.py&lt;/code&gt; file that gathers all settings and
 load it before starting the program.&lt;/p&gt;
 &lt;p&gt;Keep in mind what belongs to which realm when writing code/scripts. Everything
 can live in the same repo, but at least they will be in different folders
-(&lt;code&gt;src/&lt;/code&gt; and &lt;code&gt;ops/&lt;/code&gt;, for example). Configuration for each service (Nginx, Postgresql, etc) should be handled separately, by specialized tools.&lt;/p&gt;
+(&lt;code&gt;src/&lt;/code&gt; and &lt;code&gt;ops/&lt;/code&gt;, for example). Configuration for each service (Nginx,
+Postgresql, etc) should be handled separately, by specialized tools.&lt;/p&gt;
 &lt;p&gt;And speaking of tools, consolidate a very similar set of tool for dev and
 production envs.  Containers are gaining popularity everywhere, use something
 like &lt;a href="https://www.docker.com/" title="Docker"&gt;docker&lt;/a&gt; or &lt;a href="https://github.com/ansible/ansible-container" title="Ansible Container"&gt;ansible-container&lt;/a&gt; for both realms.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
+&lt;li id="fn:0"&gt;
+&lt;p&gt;They are &lt;a href="https://12factor.net/config" title="The twelve-factor app | config"&gt;very common&lt;/a&gt;, specially among cloud platforms, like AWS lambda
+  functions. It's one of the simplest ways for configuring programs without the
+  need to mess with files (which requires access to a filesystem) or CLI parsers,
+  since this ENV vars are available as is, like an already parsed config file.&amp;#160;&lt;a class="footnote-backref" href="#fnref:0" rev="footnote" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
 &lt;li id="fn:1"&gt;
 &lt;p&gt;Now, not everything that is configuration should me handled through prettyconf.
   For example, &lt;a href="https://www.getlektor.com/" title="Lektor"&gt;lektor&lt;/a&gt; is a flat-file cms, that lets you define the models
@@ -371,18 +385,18 @@ like &lt;a href="https://www.docker.com/" title="Docker"&gt;docker&lt;/a&gt; or 
   key lookup, should be handled apart from prettyconf.&lt;/p&gt;
 &lt;p&gt;Another responsability that doesn't belong to prettyconf is populating
   configuration files of setting variables in the environment, since it is
-  someone else's duty, like &lt;a href="https://github.com/theskumar/python-dotenv"&gt;python-dotenv&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+  someone else's duty, like &lt;a href="https://github.com/theskumar/python-dotenv"&gt;python-dotenv&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li id="fn:2"&gt;
 &lt;p&gt;Turns out that using &lt;code&gt;ChainMap&lt;/code&gt; you can implement this very simple
-  &lt;a href="https://blog.florimondmanca.com/a-practical-usage-of-chainmap-in-python"&gt;lookup algorithm&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+  &lt;a href="https://blog.florimondmanca.com/a-practical-usage-of-chainmap-in-python"&gt;lookup algorithm&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li id="fn:3"&gt;
 &lt;p&gt;A nice thing about &lt;code&gt;consul-template&lt;/code&gt; is that it let's you use the same
   configuration system on any environment. So when developing locally, you
   don't care about Consul, you app simply reads a config file. When in
   production, you can inject dynamic settings and &lt;a href="https://github.com/theskumar/python-dotenv"&gt;even secrets&lt;/a&gt; to the app
-  lookup algorithm.&amp;#160;&lt;a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+  lookup algorithm.&amp;#160;&lt;a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 4 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li id="fn:4"&gt;
 &lt;p&gt;The problem with using something other than plain text files is that you
@@ -398,7 +412,7 @@ like &lt;a href="https://www.docker.com/" title="Docker"&gt;docker&lt;/a&gt; or 
 &lt;p&gt;Another application that faces a similar problem is Vim with it's
   &lt;code&gt;.vimrc&lt;/code&gt; file, it's written in a custom language called &lt;code&gt;VimL&lt;/code&gt;. The &lt;a href="https://xi-editor.io/xi-editor/docs/config.html" title="Xi editor"&gt;Xi&lt;/a&gt;
   editor, fixed this problem by switching to TOML files and plugins for
-  extending functionality.&amp;#160;&lt;a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+  extending functionality.&amp;#160;&lt;a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 5 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</content><category term="Programming"></category><category term="python"></category><category term="best-practices"></category><category term="configuration"></category><category term="architecture"></category><category term="tools"></category></entry><entry><title>It's the competition, stupid</title><link href="http://hernantz.github.io/its-the-competition-stupid.html" rel="alternate"></link><published>2018-03-07T00:00:00-03:00</published><updated>2018-03-07T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2018-03-07:/its-the-competition-stupid.html</id><summary type="html">&lt;p&gt;Increasing your chances of prosperity.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="it's the competition stupid" src="/images/competition.jpg" title="Picture of Advertisements in Saigon, Vietnam" /&gt;&lt;/p&gt;
