@@ -91,33 +91,6 @@ path that could reach a certain piece of code, in the example above, this would
 be:</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
     <span class="k">if</span> <span class="n">foo</span> <span class="ow">or</span> <span class="n">bar</span><span class="p">:</span>
-        <span class="c1">### &lt;------ TRUE</span>
-        <span class="c1">###</span>
-
-        <span class="k">if</span> <span class="n">bar</span> <span class="ow">in</span> <span class="n">baz</span><span class="p">:</span> 
-            <span class="c1">### &lt;------ TRUE &amp; TRUE</span>
-            <span class="c1">###</span>
-
-        <span class="k">else</span><span class="p">:</span>
-            <span class="c1">### &lt;------ TRUE &amp; FALSE</span>
-            <span class="c1">###</span>
-
-            <span class="k">if</span> <span class="n">foo</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">qux</span><span class="p">:</span>
-                <span class="c1">### &lt;------ TRUE &amp; FALSE &amp; TRUE</span>
-                <span class="c1">###</span>
-                <span class="c1">###</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="c1">### &lt;------ FALSE</span>
-        <span class="c1">###</span>
-
-<span class="c1">###</span>
-<span class="c1">###</span>
-</pre></div>
-
-
-<p>But most likely, in our minds we are keeping track like:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
-    <span class="k">if</span> <span class="n">foo</span> <span class="ow">or</span> <span class="n">bar</span><span class="p">:</span>
         <span class="c1">### &lt;------ foo or bar</span>
         <span class="c1">###</span>
 
@@ -194,85 +167,7 @@ happening.</p>
 
 <p>You can stablish a parallelism between the full context and truth tables in
 which you have all the variables and their combinations on a single place at
-simple glance.</p>
-<table>
-<thead>
-<tr>
-<th>p</th>
-<th>q</th>
-<th>r</th>
-<th>p ∨ q</th>
-<th>r ∧ p</th>
-<th>¬(r ∧ p)</th>
-<th>(p ∨ q) → ¬(r ∧ p)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>V</td>
-<td>V</td>
-<td>V</td>
-<td>V</td>
-<td>V</td>
-<td>F</td>
-<td>F</td>
-</tr>
-<tr>
-<td>V</td>
-<td>V</td>
-<td>F</td>
-<td>V</td>
-<td>F</td>
-<td>V</td>
-<td>V</td>
-</tr>
-<tr>
-<td>V</td>
-<td>F</td>
-<td>V</td>
-<td>V</td>
-<td>F</td>
-<td>V</td>
-<td>V</td>
-</tr>
-<tr>
-<td>V</td>
-<td>F</td>
-<td>F</td>
-<td>V</td>
-<td>F</td>
-<td>V</td>
-<td>V</td>
-</tr>
-<tr>
-<td>F</td>
-<td>V</td>
-<td>F</td>
-<td>V</td>
-<td>F</td>
-<td>V</td>
-<td>V</td>
-</tr>
-<tr>
-<td>F</td>
-<td>F</td>
-<td>V</td>
-<td>F</td>
-<td>F</td>
-<td>V</td>
-<td>V</td>
-</tr>
-<tr>
-<td>F</td>
-<td>F</td>
-<td>F</td>
-<td>F</td>
-<td>F</td>
-<td>V</td>
-<td>V</td>
-</tr>
-</tbody>
-</table>
+<a href="https://en.wikipedia.org/wiki/Truth_table" title="Truth table">simple glance</a>.</p>
 <h2 id="if-you-write-if">If you write if<a class="headerlink" href="#if-you-write-if" title="Permanent link">&para;</a></h2>
 <p>In programming readability counts. When reading code we are mentally parsing a
 program, every line of code has to be decoded in our heads.</p>
@@ -377,12 +272,12 @@ user to determine the right permissions:</p>
 <p>Although I'm not a big fan of OOP, I should point out that polymorphism can
 also replace conditionals.</p>
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Admin</span><span class="p">(</span><span class="n">User</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">get_permission</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_permissions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;read&#39;</span><span class="p">,</span> <span class="s1">&#39;write&#39;</span><span class="p">,</span> <span class="s1">&#39;delete&#39;</span><span class="p">]</span>
 
 
 <span class="k">class</span> <span class="nc">Editor</span><span class="p">(</span><span class="n">User</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">get_permission</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_permissions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;read&#39;</span><span class="p">,</span> <span class="s1">&#39;write&#39;</span><span class="p">]</span>
 </pre></div>
 
@@ -391,18 +286,28 @@ also replace conditionals.</p>
 of the class determine the right method to be executed.</p>
 <p>But I suppose that at some point we will need to have the <code>if</code> logic
 to determine which instance of User to create.</p>
-<p>So a more pythonic way of doing this form of pattern matching is to user
+<p>So a more pythonic way of doing this form of pattern matching is to use
 dictionary lookups:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_permissions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_admin_permissions</span><span class="p">():</span>
     <span class="c1">#####</span>
     <span class="c1">########</span>
 
-    <span class="n">perms</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="s1">&#39;do_{user}_permissions&#39;</span><span class="p">)()</span>
+<span class="k">def</span> <span class="nf">get_editor_permissions</span><span class="p">():</span>
+    <span class="c1">#####</span>
+    <span class="c1">########</span>
+
+<span class="k">def</span> <span class="nf">get_permissions</span><span class="p">(</span><span class="n">user</span><span class="p">):</span>
+    <span class="n">perms</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;admin&#39;</span><span class="p">:</span> <span class="n">get_admin_permissions</span><span class="p">,</span>
+        <span class="s1">&#39;editor&#39;</span><span class="p">:</span> <span class="n">get_editor_permissions</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">perms</span><span class="p">[</span><span class="n">user</span><span class="p">]()</span>
 </pre></div>
 
 
-<p>This way if we need to extend the code with more <code>do_{user}_permissions</code>
-methods, we get this branching logic for free.</p>
+<p>This way if we need to extend the code with more permissions
+functions, we get this branching logic for free.</p>
 <p>Another example is turning flags on/off, with code like this:</p>
 <div class="highlight"><pre><span></span><span class="n">var</span> <span class="o">=</span> <span class="bp">False</span>
 
@@ -422,9 +327,55 @@ methods, we get this branching logic for free.</p>
 
 <p>I guess the point here is to use the right pattern that replaces the
 switch/elif structure with more readable/maintainable code.</p>
-<h2 id="if-you-work-with-iterables">If you work with iterables<a class="headerlink" href="#if-you-work-with-iterables" title="Permanent link">&para;</a></h2>
+<h2 id="if-you-write-flags">If you write flags<a class="headerlink" href="#if-you-write-flags" title="Permanent link">&para;</a></h2>
+<p>Flags or sentinels are checks we do to avoid executing pieces of code that are
+optional or blocks that are computationally expensive.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="c1">###</span>
+    <span class="c1">#####</span>
+
+    <span class="k">if</span> <span class="nb">filter</span><span class="p">:</span>
+        <span class="c1">###</span>
+        <span class="c1">#####  &lt;---- optinal piece of code that gets activated</span>
+</pre></div>
+
+
+<p>Would be better off if we let the user of our function execute any pluggable code
+to filter:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">noop</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kws</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">None</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="n">noop</span><span class="p">):</span>
+    <span class="c1">###</span>
+    <span class="c1">#####</span>
+
+    <span class="nb">filter</span><span class="p">(</span><span class="n">some</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>  <span class="c1"># &lt;-- look ma, no ifs!</span>
+</pre></div>
+
+
+<p>We know that function arguments hide <code>if</code>s behind the interpreter to initialize
+variables, by allowing you to set some defaults that can be overriwritten at
+runtime. But currently if you want to avoid any confusion with mutable
+defaults, you set the default argument to some (immutable) sentinel that
+indicates the real default argument should be used.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
+    <span class="c1">###</span>
+    <span class="c1">#####</span>
+</pre></div>
+
+
+<p>Should be ideally written with some immutable data structure:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)):</span>
+    <span class="c1">###</span>
+    <span class="c1">#####</span>
+</pre></div>
+
+
 <p>Many times we are working with collections of data that need to be filtered,
-re-grouped, sliced, etc.</p>
+re-grouped, sliced, etc. These checks are also flags!</p>
 <p>The <code>itertools</code> module offers some functions that allow us to hide our <code>if</code>s
 (along with our <a href="https://jrsinclair.com/articles/2017/javascript-without-loops/" title="JavaScript Without Loops">loops</a>) by simply passing <em>predicates</em> to these functions:</p>
 <div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">itertools</span>
@@ -445,22 +396,6 @@ re-grouped, sliced, etc.</p>
 </pre></div>
 
 
-<h2 id="if-you-write-sentinels">If you write sentinels<a class="headerlink" href="#if-you-write-sentinels" title="Permanent link">&para;</a></h2>
-<p>Mutable arguments =&gt; immutable arguments
-http://code.activestate.com/recipes/577786-smarter-default-arguments/
-Currently if you want to avoid any confusion with mutable defaults, you set the default argument to some (immutable) sentinel that indicates the real default argument should be used:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="p">[]</span>
-</pre></div>
-
-
-<p>There are downsides though:</p>
-<p>The default argument no longer reflects the expectation for the argument type.
-You can no longer introspect the default argument.
-If you want to have the default actually be None, you will have to use some other value for the sentinel. At that point you'll probably then have two different sentinels in use: None and and its surrogate.
-The real default must be re-evaluated during each call it is used.</p>
-<p>esconder el if con el interprete de python</p>
 <p>Computationally intensive jobs =&gt; lazyness =&gt; ej del orm django</p>
 <p>allows you to express pieces of computation, without having to pay the costs
 until you really need them.</p>
@@ -469,7 +404,7 @@ until you really need them.</p>
 </pre></div>
 
 
-<h2 id="if-you-check-for-errors">if you check for errors<a class="headerlink" href="#if-you-check-for-errors" title="Permanent link">&para;</a></h2>
+<h2 id="if-you-handle-errors">if you handle errors<a class="headerlink" href="#if-you-handle-errors" title="Permanent link">&para;</a></h2>
 <p>Errors =&gt; exceptions =&gt; monads</p>
 <p>VER GENERATORS WILL FREE YOUR MIND
 para usar generadores y asi evirtar for loops y while loops?</p>
@@ -508,8 +443,10 @@ logic branches. That being said, I'm not against writing <code>if</code>, <code>
 per se, life is more complex with lots of gray areas. The examples here are
 <a href="https://gist.github.com/hernantz/ca79890b9b212c6df45e615d94320f6e">not real world snippets</a>, but simply put to make a point.</p>
 <p>Interestingly enough, all the expermients lead to functional programmig
-principles, like composing functions, processing iterables, lazyness and
-immutability, etc.</p>
+principles, like composing functions, passing functions as parameters,
+processing iterables, lazyness and immutability, etc.</p>
+<p>Maybe this implies that functional languages are superior in terms of
+expresability.</p>
 </article>
 
       <footer class="column-right light">
