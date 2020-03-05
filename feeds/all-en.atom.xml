@@ -921,7 +921,8 @@ go&lt;/a&gt;, there are some extra details to pay attention to:&lt;/p&gt;
    correctly (due to an outdated db on their side, most likely, or just emails).&lt;/li&gt;
 &lt;li&gt;If events are attached to a certain location, like a flight for instance, and
    that location changes it's timezone, then we need to recalculate all scheduled
-   dates for that location and notify users about it.&lt;/li&gt;
+   dates for that location and notify users about it. &lt;a href="https://codeblog.jonskeet.uk/2019/03/27/storing-utc-is-not-a-silver-bullet/" title="Storing UTC is not a silver bullet"&gt;Simply storing these
+   dates in UTC is not enough&lt;/a&gt;.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;So storing &lt;strong&gt;the timezone of origin&lt;/strong&gt; as way to get back to and from UTC is
 important.&lt;/p&gt;
