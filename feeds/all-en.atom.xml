@@ -1,5 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/all-en.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2018-05-11T00:00:00-03:00</updated><subtitle>- Mostly lies and rants in plain text.</subtitle><entry><title>Configuration-friendly apps</title><link href="http://hernantz.github.io/configuration-friendly-apps.html" rel="alternate"></link><published>2018-05-11T00:00:00-03:00</published><updated>2018-05-11T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2018-05-11:/configuration-friendly-apps.html</id><summary type="html">&lt;p&gt;Some guidelines for config management in general and Python apps in particular.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="configuration management" src="/images/configuration.png" title="Configuration management" /&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/all-en.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2020-02-10T00:00:00-03:00</updated><subtitle>- Mostly lies and rants in plain text.</subtitle><entry><title>Privileged victimhood</title><link href="http://hernantz.github.io/privileged-victimhood.html" rel="alternate"></link><published>2020-02-10T00:00:00-03:00</published><updated>2020-02-10T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2020-02-10:/privileged-victimhood.html</id><summary type="html">&lt;p&gt;The dangers of identity politics and state imposed privileges.&lt;/p&gt;</summary><content type="html">&lt;blockquote&gt;
+&lt;p&gt;The Newtonian principle of gravitation is now more firmly established on the
+basis of reason, that it would were the government to step in and to make it
+an article of necessary faith. Reason and experiment have been indulged, and
+error has fled before them. It is error alone which needs the support of
+government. Truth can stand by itself.&lt;/p&gt;
+&lt;p&gt;Thomas Jefferson&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;There is nothing wrong with seeking privileges that generate inequality in your
+favor. It is what every lobby or group does to improve their individual or
+collective well-being, be that a better salary, more stability, less taxes,
+less controls, free stuff, etc.&lt;/p&gt;
+&lt;p&gt;Many times these privileges have an ideological justification behind with
+certain factual basis, in which lobbyists believe for their right to impose
+them, either because they are morally superior or, in the most common case,
+victims oppressed by wars, patriarchy, slavery, segregation, inquisition,
+conquests, poverty, labor exploitation, holocausts or dictatorships.&lt;/p&gt;
+&lt;p&gt;Identity politics are on the raise these days and embrace these claims, under
+lobby groups like union workers, LGBT, blacks, indigenous people, etc, where
+your individuality is no longer defined by your ideas, abilities and efforts,
+but by your race, sex, religion, salary, etc, which identifies and predetermine
+your future based on the heritage of the collective you belong within.&lt;/p&gt;
+&lt;p&gt;If these groups, through the free exchange of ideas, manage to convince others,
+to obtain some privilege, that's not intrinsically bad. In the end, each one
+does with his hard-earned money what he thinks best.&lt;/p&gt;
+&lt;p&gt;Profiting from your suffering or alleged oppressed conditions is morally
+debatable, but not forbidden. Gender-quotas, safe spaces, tuition-free
+scholarships, etc are certainly plausible in a free society, so long as they
+are practiced in the private sphere through mutually agreed contracts.&lt;/p&gt;
+&lt;p&gt;If a certain university wants to facilitate the admission to ethnic minorities,
+or if in a company, it is enough that any woman denounces harassment to
+immediately result in your dismissal without prior trial, it is still your
+choice to study in that university or work for that company.&lt;/p&gt;
+&lt;p&gt;A less controversial example could be extended maternity leave, which might be
+a way for a company to attract more valuable female workers, away from their
+competition. This is a privilege that company can offer, that may or may not
+work, but it is a risk that is contained within the walls of that organization.&lt;/p&gt;
+&lt;p&gt;It is through tolerance of experimentation that a society can learn what ideas
+work and which ones don't. Tolerance is a pillar of a free society, where there
+are no artificial impediments for anyone to live according to their beliefs,
+their sexuality, their biases or their ideology, and to run these kind of
+experiments accordingly.&lt;/p&gt;
+&lt;p&gt;Consider a case where a group of employees asks for free coffee at the office.
+Nobody would claim that it is an inalienable human right, and it is an
+obligation for the company to provide it. It's resolution is left as a private
+affair. But in the case of identity politics, is a different story. The
+privileges being demanded are not to be questioned. Of course they are not
+referred to as privileges, but as social justice, historical compensations or
+human rights instead. They are a public affair, thus making them prone to be
+used as a platform by politicians to get to power and liberate the oppressed.&lt;/p&gt;
+&lt;p&gt;The morality or effectiveness of these ideas should not be censored, but fought
+with logical arguments and tested in real life. After all, opinions should also
+compete in a market of ideas and speeches.&lt;/p&gt;
+&lt;p&gt;A free exchange of ideas in a society (understood as a set of individuals) can
+lead to results that are undesirable or, at least, questionable by certain
+people. But it is in each persons's responsibility to analyze alternatives and
+propose them in competition with those ideas that still govern society.&lt;/p&gt;
+&lt;p&gt;The problem is whether those privileges are achieved through the repressive
+power of the state. There, they are not the result of a voluntary transaction
+between parties, but instead a violent imposition.&lt;/p&gt;
+&lt;p&gt;To imply that the state must be in charge of imposing privileges is a very
+dangerous idea. Like any public policy, it is difficult to anticipate its
+effects, thus making that experiment much more risky for society as a whole.&lt;/p&gt;
+&lt;p&gt;If you can assign privileges to a collective, you might as well attribute guilt
+to it. Class conflicts, sexism, xenophobia, antisemitism, racism, cultural
+wars, etc. are some of the possible consequences of trying to subject certain
+groups to the ideology of others. Someday the tide can turn around and history
+shows it doesn't end well.&lt;/p&gt;</content><category term="Politics"></category><category term="rants"></category><category term="ideas"></category><category term="libertarianism"></category></entry><entry><title>Configuration-friendly apps</title><link href="http://hernantz.github.io/configuration-friendly-apps.html" rel="alternate"></link><published>2018-05-11T00:00:00-03:00</published><updated>2018-05-11T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2018-05-11:/configuration-friendly-apps.html</id><summary type="html">&lt;p&gt;Some guidelines for config management in general and Python apps in particular.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="configuration management" src="/images/configuration.png" title="Configuration management" /&gt;&lt;/p&gt;
 &lt;p&gt;Configuration is just another API of your app. It allows us to preset or modify
 it's behavior based on where it is installed and how it will be executed,
 providing more flexibility to the users of such software.&lt;/p&gt;
