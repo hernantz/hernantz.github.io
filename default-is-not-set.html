@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Default is not set | README.txt</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+  <link rel="stylesheet" media="(max-width: 750px)" href="/theme/css/mobile.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/pygments-default.css" type="text/css" />
+  <link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
+  <link href="/rss.xml" type="application/atom+xml" rel="alternate" title="README.txt RSS Feed" />
+  <meta name="description" content="How can you tell if an optional parameter was set or not?">
+  <meta name="keywords" content="python">
+  <meta name="author" content="hernantz">
+</head>
+
+<body>
+
+  <aside class="sidebar">
+    <a href="/"><img class="rounded-img" src="/images/avatar.png" height="75" width="75" /></a>
+
+      <nav>
+        <ul>
+            <li><a href="http://twitter.com/hernantz">twitter</i></a></li>
+            <li><a href="http://github.com/hernantz">github</i></a></li>
+            <li><a href="http://last.fm/user/hernantz">last.fm</i></a></li>
+            <li><a href="/talks.html">talks</a></li>
+            <li><a href="/whoami.html">whoami</a></li>
+            <li><a href="/">blog</a></li>
+        </ul>
+      </nav>
+
+  </aside>
+  <main>
+        
+<article class="column-right">
+  <h1 class="main-title">Default is not set</h1>
+  <summary>
+    <p class="light">
+      Published
+on <time datetime="2020-04-23T00:00:00-03:00">2020-04-23</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
+      tagged with <a href="http://hernantz.github.io/tag/python.html">python</a>.
+    </p>
+  </summary>
+  <p>Usually for optional params we use <code>None</code> as default in the function signature.
+If it is <code>None</code> we assume the user did not specify one.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">param</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">param</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">param</span> <span class="o">=</span> <span class="n">get_system_default</span><span class="p">()</span>
+    <span class="c1"># ...</span>
+
+
+<span class="n">main</span><span class="p">(</span><span class="n">param</span><span class="o">=</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span>  <span class="c1"># use &#39;foo&#39;</span>
+<span class="n">main</span><span class="p">()</span>             <span class="c1"># dynamically set param</span>
+</pre></div>
+
+
+<p>But what if <code>None</code> is a possible value too?</p>
+<div class="highlight"><pre><span></span><span class="n">main</span><span class="p">(</span><span class="n">param</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>   <span class="c1"># OOPS, will calculate anther value for param</span>
+</pre></div>
+
+
+<p>The parameter still needs to be optional, because we can calculate a good
+default if it is not set, but how can we know if an optional parameter was
+explicitely set by the caller?</p>
+<p>One way would be make it a required parameter and expose the
+<code>get_system_default()</code> function. We then change the signature of our <code>main()</code>
+so that Python ensures param is always set.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="c1"># ...</span>
+
+
+<span class="n">main</span><span class="p">(</span><span class="n">param</span><span class="o">=</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span>                      <span class="c1"># use &#39;foo&#39;</span>
+<span class="n">main</span><span class="p">(</span><span class="n">param</span><span class="o">=</span><span class="n">get_system_default</span><span class="p">())</span>       <span class="c1"># dynamically set param</span>
+</pre></div>
+
+
+<p>With this approach we delegated that responsabilty to the user of our function,
+this is style and is perfectly feasable. But if <code>main()</code> is called a lot, we
+complicated things for our user.</p>
+<p>Another trick is to use the <code>**kwargs</code> dict and check if a param is there or
+not.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">if</span> <span class="s1">&#39;param&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">param</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;param&#39;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">param</span> <span class="o">=</span> <span class="n">get_system_default</span><span class="p">()</span>
+    <span class="c1"># ...</span>
+</pre></div>
+
+
+<p>This also works fine, but we kind of loose visibility on what parameters
+<code>main()</code> accepts. This is a bummer if you are using autocomplete tools of other
+helpers that analyse the code.</p>
+<p>So my last trick kind of mitigates that by introducing a custom default value,
+the <code>NotSet</code> type.</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">NotSet</span><span class="p">():</span>
+    <span class="k">pass</span>
+
+
+<span class="n">NOT_SET</span> <span class="o">=</span> <span class="n">NotSet</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">param</span><span class="o">=</span><span class="n">NOT_SET</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">param</span> <span class="ow">is</span> <span class="n">NOT_SET</span><span class="p">:</span>
+        <span class="n">param</span> <span class="o">=</span> <span class="n">get_system_default</span><span class="p">()</span>
+    <span class="c1"># ...</span>
+</pre></div>
+
+
+<p>This is a unique type that won't collide with any other possible value for
+<code>param</code>. If it is <code>NOT_SET</code>, then it is not set :)</p>
+<p>I kind of like the first solution, but if you think that you will end up with
+lots of <code>get_system_default()</code> calls everywhere in your code, at some point
+switching to this <code>NOT_SET</code> approach would make sense.</p>
+</article>
+
+      <footer class="column-right light">
+        <nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> - <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | README.txt</nav>
+      </footer>
+  </main>
+</body>
+</html>

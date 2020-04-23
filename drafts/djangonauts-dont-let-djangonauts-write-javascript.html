@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="/theme/css/pygments-default.css" type="text/css" />
   <link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
   <link href="/rss.xml" type="application/atom+xml" rel="alternate" title="README.txt RSS Feed" />
-  <meta name="description" content="JS Fatigue happens when people use tools they don't need to solve problems they don't have. ― Lucas F. Costa, The Ultimate Guide to JavaScript Fatigue: Realities of our industry You probably don't need a SPA. Sometimes it feels like you could hide in a bunker for 2 years, come out …">
+  <meta name="description" content="Yet another Javascript rant¶ JS Fatigue happens when people use tools they don't need to solve problems they don't have. ― Lucas F. Costa, The Ultimate Guide to JavaScript Fatigue: Realities of our industry You probably don't need a SPA. Sometimes it feels like you could hide in a bunker for …">
   <meta name="keywords" content="python, django, javascript">
   <meta name="author" content="hernantz">
 </head>
@@ -42,7 +42,8 @@ on <time datetime="2017-05-25T00:00:00-03:00">2017-05-25</time>,       under <a 
       tagged with <a href="http://hernantz.github.io/tag/python.html">python</a>, <a href="http://hernantz.github.io/tag/django.html">django</a> and <a href="http://hernantz.github.io/tag/javascript.html">javascript</a>.
     </p>
   </summary>
-  <blockquote>
+  <h2 id="yet-another-javascript-rant">Yet another Javascript rant<a class="headerlink" href="#yet-another-javascript-rant" title="Permanent link">&para;</a></h2>
+<blockquote>
 <p>JS Fatigue happens when people use tools
 they don't need to solve problems they
 don't have.</p>
@@ -53,8 +54,21 @@ don't have.</p>
 to find out thousands of overengeneered frameworks and libraries that bloomed
 and died solving the same old problems, state management and view rendering,
 most of the time.</p>
+<p>A woodsman was once asked, “What would you do if you had just five minutes to
+chop down a tree?” He answered, “I would spend the first two and a half minutes
+sharpening my axe.”</p>
+<p>The desing of your forms would probably have to change a bit, for example, mark
+all checkbox of todo items before hitting "mark a done" instead of marking them
+as done as soon as you check their checkbox, or set all filters you need before
+hitting "Apply Filters", instad of filtering as soon as you change them.</p>
+<p>Yes, there is some overhead of rendering on the server side and sending extra
+bits of html that you wouldn't have to if you compresed all that html into a
+bundle.js (couple megabytes heavy) all at once, plus many json api calls, to
+use the user's cpu time to generate the template.</p>
+<p>That could be mitigated by using partial caching inside the page.</p>
+<p>When building websites, some latency is expected. Use that to your favor!</p>
 <h2 id="welcome-user22">Welcome user22!<a class="headerlink" href="#welcome-user22" title="Permanent link">&para;</a></h2>
-<p>In the beginning there was static HTML, and it scaled.  Now the are lots of
+<p>In the beginning there was static HTML, and it scaled. Now the are lots of
 frameworks and services running fiercely to dinamically generate HTML.  It's
 great, but if your site happens to get an increasing amount of users, then
 you hire an expert that will tell you "best practices" to turn your
@@ -115,7 +129,7 @@ http://blog.mattwoodward.com/2015/02/dynamically-adding-forms-to-and.html</li>
 <p>Poner imagen de jesus rompiendo los puestos en el mercado
 Poner imagen del principito</p>
 <p>casi siempre la principal justificacion para hacer una SPA es la fuidez en la
-exp de usuario que se logra. Yo opino que podes llegar a algo parecido con
+user experience que se logra. Yo opino que podes llegar a algo parecido con
 turbolinks, prefetch, caching, etc + algunos widgets en js sobre todo
 considerando que el 90% de los sitios son forms + texto y eso es un problema ya
 resuelto ^</p>

@@ -1,5 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt - Programming</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/programming.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2018-05-11T00:00:00-03:00</updated><subtitle>- Mostly lies and rants in plain text.</subtitle><entry><title>Configuration-friendly apps</title><link href="http://hernantz.github.io/configuration-friendly-apps.html" rel="alternate"></link><published>2018-05-11T00:00:00-03:00</published><updated>2018-05-11T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2018-05-11:/configuration-friendly-apps.html</id><summary type="html">&lt;p&gt;Some guidelines for config management in general and Python apps in particular.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="configuration management" src="/images/configuration.png" title="Configuration management" /&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt - Programming</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/programming.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2020-04-23T00:00:00-03:00</updated><subtitle>- Mostly lies and rants in plain text.</subtitle><entry><title>Default is not set</title><link href="http://hernantz.github.io/default-is-not-set.html" rel="alternate"></link><published>2020-04-23T00:00:00-03:00</published><updated>2020-04-23T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2020-04-23:/default-is-not-set.html</id><summary type="html">&lt;p&gt;How can you tell if an optional parameter was set or not?&lt;/p&gt;</summary><content type="html">&lt;p&gt;Usually for optional params we use &lt;code&gt;None&lt;/code&gt; as default in the function signature.
+If it is &lt;code&gt;None&lt;/code&gt; we assume the user did not specify one.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;param&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;param&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;param&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get_system_default&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="c1"&gt;# ...&lt;/span&gt;
+
+
+&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;param&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;foo&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# use &amp;#39;foo&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;             &lt;span class="c1"&gt;# dynamically set param&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;But what if &lt;code&gt;None&lt;/code&gt; is a possible value too?&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;param&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;   &lt;span class="c1"&gt;# OOPS, will calculate anther value for param&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The parameter still needs to be optional, because we can calculate a good
+default if it is not set, but how can we know if an optional parameter was
+explicitely set by the caller?&lt;/p&gt;
+&lt;p&gt;One way would be make it a required parameter and expose the
+&lt;code&gt;get_system_default()&lt;/code&gt; function. We then change the signature of our &lt;code&gt;main()&lt;/code&gt;
+so that Python ensures param is always set.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;param&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="c1"&gt;# ...&lt;/span&gt;
+
+
+&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;param&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;foo&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;                      &lt;span class="c1"&gt;# use &amp;#39;foo&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;param&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;get_system_default&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;       &lt;span class="c1"&gt;# dynamically set param&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;With this approach we delegated that responsabilty to the user of our function,
+this is style and is perfectly feasable. But if &lt;code&gt;main()&lt;/code&gt; is called a lot, we
+complicated things for our user.&lt;/p&gt;
+&lt;p&gt;Another trick is to use the &lt;code&gt;**kwargs&lt;/code&gt; dict and check if a param is there or
+not.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;param&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;param&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;param&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;param&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get_system_default&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="c1"&gt;# ...&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This also works fine, but we kind of loose visibility on what parameters
+&lt;code&gt;main()&lt;/code&gt; accepts. This is a bummer if you are using autocomplete tools of other
+helpers that analyse the code.&lt;/p&gt;
+&lt;p&gt;So my last trick kind of mitigates that by introducing a custom default value,
+the &lt;code&gt;NotSet&lt;/code&gt; type.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;NotSet&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="k"&gt;pass&lt;/span&gt;
+
+
+&lt;span class="n"&gt;NOT_SET&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;NotSet&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;param&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;NOT_SET&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;param&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="n"&gt;NOT_SET&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;param&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get_system_default&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="c1"&gt;# ...&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This is a unique type that won't collide with any other possible value for
+&lt;code&gt;param&lt;/code&gt;. If it is &lt;code&gt;NOT_SET&lt;/code&gt;, then it is not set :)&lt;/p&gt;
+&lt;p&gt;I kind of like the first solution, but if you think that you will end up with
+lots of &lt;code&gt;get_system_default()&lt;/code&gt; calls everywhere in your code, at some point
+switching to this &lt;code&gt;NOT_SET&lt;/code&gt; approach would make sense.&lt;/p&gt;</content><category term="Programming"></category><category term="python"></category></entry><entry><title>Configuration-friendly apps</title><link href="http://hernantz.github.io/configuration-friendly-apps.html" rel="alternate"></link><published>2018-05-11T00:00:00-03:00</published><updated>2018-05-11T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2018-05-11:/configuration-friendly-apps.html</id><summary type="html">&lt;p&gt;Some guidelines for config management in general and Python apps in particular.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="configuration management" src="/images/configuration.png" title="Configuration management" /&gt;&lt;/p&gt;
 &lt;p&gt;Configuration is just another API of your app. It allows us to preset or modify
 it's behavior based on where it is installed and how it will be executed,
 providing more flexibility to the users of such software.&lt;/p&gt;
