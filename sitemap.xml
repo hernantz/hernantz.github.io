@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://hernantz.github.io/</loc>
-<lastmod>2020-05-11T09:59:06-00:00</lastmod>
+<lastmod>2020-05-14T22:43:55-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://hernantz.github.io/archives.html</loc>
-<lastmod>2020-05-11T09:59:06-00:00</lastmod>
+<lastmod>2020-05-14T22:43:55-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://hernantz.github.io/tags.html</loc>
-<lastmod>2020-05-11T09:59:06-00:00</lastmod>
+<lastmod>2020-05-14T22:43:55-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://hernantz.github.io/categories.html</loc>
-<lastmod>2020-05-11T09:59:06-00:00</lastmod>
+<lastmod>2020-05-14T22:43:55-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -41,6 +41,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://hernantz.github.io/whoami.html</loc>
 <lastmod>2013-08-04T00:00:00-03:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://hernantz.github.io/socialism-works-but-doesnt-scale.html</loc>
+<lastmod>2020-05-14T00:00:00-03:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -159,7 +166,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://hernantz.github.io/category/politics.html</loc>
-<lastmod>2020-02-10T00:00:00-03:54</lastmod>
+<lastmod>2020-05-14T00:00:00-03:54</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -188,6 +195,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://hernantz.github.io/category/writings.html</loc>
 <lastmod>2020-03-27T00:00:00-03:54</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://hernantz.github.io/tag/libertarianism.html</loc>
+<lastmod>2020-05-14T00:00:00-03:54</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -222,13 +236,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://hernantz.github.io/tag/ideas.html</loc>
-<lastmod>2020-02-10T00:00:00-03:54</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>http://hernantz.github.io/tag/libertarianism.html</loc>
 <lastmod>2020-02-10T00:00:00-03:54</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
@@ -355,7 +362,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://hernantz.github.io/author/hernantz.html</loc>
-<lastmod>2020-04-23T00:00:00-03:54</lastmod>
+<lastmod>2020-05-14T00:00:00-03:54</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

@@ -73,7 +73,8 @@ https://ostree.readthedocs.io/en/latest/manual/related-projects/
 https://xyrillian.de/thoughts/posts/argh-pm.html
 https://www.microsoft.com/en-us/research/uploads/prod/2018/03/build-systems.pdf
 https://dependabot.com/
-https://nixos.org/nixos/nix-pills/</p>
+https://nixos.org/nixos/nix-pills/
+https://michael.stapelberg.ch/posts/2020-05-09-distri-hermetic-packages/</p>
 <p>• unpriviliged package management
 • per-user profiles (Pak profiles are package groups (bundles of packages))
 • atomic updates and rollbacks
@@ -86,7 +87,8 @@ https://stefanoborini.com/current-status-of-python-packaging/
 https://github.com/David-OConnor/pyflow
 https://sedimental.org/the_packaging_gradient.html
 https://github.com/g-plane/tiny-package-manager
-https://www.youtube.com/watch?v=ULqoCjANK-I</p>
+https://www.youtube.com/watch?v=ULqoCjANK-I
+For building: https://zserge.com/posts/containers/ (Linux containers in a few lines of code)</p>
 <p>Over time there has been a shift to let developers ship their apps with their
 own libraries and versions. Users also enjoy having the lates features and fixes.
 The problem is that since traditional package managers maintain a global state
@@ -97,16 +99,22 @@ all packages need to be curated, or users would have to embrace the dependency h
 - Ship them as a single artifact to any distro
 - To avoid duplication and save disk space, docker uses layered images. So you download ubuntu once. But many containers use different base images and you can't delete files, images only grow since they are an append only log.
 - Containers also allow sandboxing, limiting cpu, memory, network and filesystem access.</p>
-<p>pak --lock should create a Pakfile.lock?</p>
-<p>Maybe each pak install <package-name==version> --lock</p>
-<p>Do you have to be in the same dir where the Pakfile is?</p>
-<p>Pakfile lists dependencies and package metadata. It is better that KISS packages that have one file for each metadatum (version, sources, checksums, etc)</p>
-<p>pak shell enters the enviroment</p>
-<p>pak run <commmand> run the command within the enviroment</p>
+<p><code>pak --lock</code> should create a Pakfile.lock?</p>
+<p>Maybe each <code>pak install &lt;package-name==version&gt; --lock</code></p>
+<p>This uses a local <code>Pakfile</code> in the pwd, other files can be used by passing the <code>--pakfile=&lt;path-to-pakfile&gt;</code> param or <code>PAKFILE</code> environment variable.</p>
+<p>All packages are installed in a store <code>/var/lib/pak/&lt;package-name-and-version&gt;/&lt;package-md5-sum&gt;/</code>.</p>
+<p><code>Pakfile</code> lists dependencies and package metadata. It is better that KISS packages that have one file for each metadatum (version, sources, checksums, etc)</p>
+<p><code>pak env &lt;envname&gt;</code> enters the enviroment, and sets the <code>PAKFILE</code> env to <code>/usr/share/pak/envs/envname/Pakfile</code> </p>
+<p><code>pak env --list</code> lists all available envs in <code>/usr/share/pak/envs/</code></p>
+<p><code>pak run &lt;commmand&gt;</code> run the command within the enviroment</p>
+<p><code>pak update</code> updates all versions updating also the lock file</p>
+<p><code>pak update &lt;package-name==version&gt;</code> updates only the package name, updating also the lock file</p>
 <p>Sandboxing GUI apps should be done with another binary that allows to set firewalls and also allow GUI interactions to happen via portals like in flatpak (https://github.com/containers/bubblewrap). Another example would be Opensnitch.</p>
 <p>Docker + docker-compose re implement a package distribution + process manager and orchestration + build system.</p>
 <p>https://utcc.utoronto.ca/~cks/space/blog/linux/MicrosoftTeamsBadArrogance</p>
 <p>Los packetes se pueden obtener de distintos repos/mirrors (http/ipfs/torrent/etc), that return a URI (http link, magnet link, etc) for a given key (package name)</p>
+<p>Pak is a runtime environment manager.
+An environment is defined in a Pakfile it might list dependencies of <code>.pak</code> files that can be pinned in a Pakfile.lock</p>
 </article>
 
       <footer class="column-right light">
