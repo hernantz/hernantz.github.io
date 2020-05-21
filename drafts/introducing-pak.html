@@ -99,22 +99,29 @@ all packages need to be curated, or users would have to embrace the dependency h
 - Ship them as a single artifact to any distro
 - To avoid duplication and save disk space, docker uses layered images. So you download ubuntu once. But many containers use different base images and you can't delete files, images only grow since they are an append only log.
 - Containers also allow sandboxing, limiting cpu, memory, network and filesystem access.</p>
+<p>"The downside is that the approach works best when packages are aware of the Nix approach. But the packages have not been written with Nix in mind, and some work is needed per package to adapt to the approach."</p>
+<p>nix-thesis: https://edolstra.github.io/pubs/phd-thesis.pdf</p>
 <p><code>pak --lock</code> should create a Pakfile.lock?</p>
-<p>Maybe each <code>pak install &lt;package-name==version&gt; --lock</code></p>
+<p>Maybe each <code>pak [un]install &lt;package-name==version&gt; --lock</code></p>
 <p>This uses a local <code>Pakfile</code> in the pwd, other files can be used by passing the <code>--pakfile=&lt;path-to-pakfile&gt;</code> param or <code>PAKFILE</code> environment variable.</p>
 <p>All packages are installed in a store <code>/var/lib/pak/&lt;package-name-and-version&gt;/&lt;package-md5-sum&gt;/</code>.</p>
 <p><code>Pakfile</code> lists dependencies and package metadata. It is better that KISS packages that have one file for each metadatum (version, sources, checksums, etc)</p>
-<p><code>pak env &lt;envname&gt;</code> enters the enviroment, and sets the <code>PAKFILE</code> env to <code>/usr/share/pak/envs/envname/Pakfile</code> </p>
+<p><code>package-name-version.pak</code> is a tar file with all the package content that needs to be extracted. Pak keeps track of all files. We can ask pak which package installed which file.</p>
+<p><code>pak env &lt;envname&gt;</code> enters the enviroment, and sets the <code>PAKFILE</code> env to <code>/usr/share/pak/envs/envname/Pakfile</code></p>
 <p><code>pak env --list</code> lists all available envs in <code>/usr/share/pak/envs/</code></p>
 <p><code>pak run &lt;commmand&gt;</code> run the command within the enviroment</p>
 <p><code>pak update</code> updates all versions updating also the lock file</p>
 <p><code>pak update &lt;package-name==version&gt;</code> updates only the package name, updating also the lock file</p>
+<p><code>pak search &lt;package-name&gt;</code> search</p>
+<p><code>pak gc</code> removes all unreachable packages from the store.</p>
+<p>Hierarchy: package stores/environments/configs can be also defined in <code>~/.local/share/pak/</code>, etc.</p>
 <p>Sandboxing GUI apps should be done with another binary that allows to set firewalls and also allow GUI interactions to happen via portals like in flatpak (https://github.com/containers/bubblewrap). Another example would be Opensnitch.</p>
 <p>Docker + docker-compose re implement a package distribution + process manager and orchestration + build system.</p>
 <p>https://utcc.utoronto.ca/~cks/space/blog/linux/MicrosoftTeamsBadArrogance</p>
 <p>Los packetes se pueden obtener de distintos repos/mirrors (http/ipfs/torrent/etc), that return a URI (http link, magnet link, etc) for a given key (package name)</p>
 <p>Pak is a runtime environment manager.
 An environment is defined in a Pakfile it might list dependencies of <code>.pak</code> files that can be pinned in a Pakfile.lock</p>
+<p>System directories should be mounted as RO. To avoid malicius packages from globally altering the system.</p>
 </article>
 
       <footer class="column-right light">
