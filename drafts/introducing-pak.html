@@ -15,7 +15,6 @@
 </head>
 
 <body>
-
   <aside class="sidebar">
     <a href="/"><img class="rounded-img" src="/images/avatar.png" height="75" width="75" /></a>
 
@@ -69,12 +68,15 @@ http://holocm.org/
 https://wiki.archlinux.org/index.php/Pacman/Rosetta
 https://micromind.me/en/posts/from-docker-container-to-bootable-linux-disk-image/
 https://reproducible-builds.org/
+https://www.tweag.io/posts/2020-05-25-flakes.html
 https://ostree.readthedocs.io/en/latest/manual/related-projects/
 https://xyrillian.de/thoughts/posts/argh-pm.html
 https://www.microsoft.com/en-us/research/uploads/prod/2018/03/build-systems.pdf
 https://dependabot.com/
 https://nixos.org/nixos/nix-pills/
-https://michael.stapelberg.ch/posts/2020-05-09-distri-hermetic-packages/</p>
+https://michael.stapelberg.ch/posts/2020-05-09-distri-hermetic-packages/
+https://github.com/andrewchambers/hermes -&gt; nix in c
+https://github.com/spack/spack -&gt; python package manager (https://spack.io/)</p>
 <p>• unpriviliged package management
 • per-user profiles (Pak profiles are package groups (bundles of packages))
 • atomic updates and rollbacks
@@ -102,11 +104,13 @@ all packages need to be curated, or users would have to embrace the dependency h
 <p>"The downside is that the approach works best when packages are aware of the Nix approach. But the packages have not been written with Nix in mind, and some work is needed per package to adapt to the approach."</p>
 <p>nix-thesis: https://edolstra.github.io/pubs/phd-thesis.pdf</p>
 <p><code>pak --lock</code> should create a Pakfile.lock?</p>
+<p>--root can change the default store directory.</p>
+<p>there are no optional dependencies, if something is optional it can be installed explicitly by the user.</p>
 <p>Maybe each <code>pak [un]install &lt;package-name==version&gt; --lock</code></p>
 <p>This uses a local <code>Pakfile</code> in the pwd, other files can be used by passing the <code>--pakfile=&lt;path-to-pakfile&gt;</code> param or <code>PAKFILE</code> environment variable.</p>
 <p>All packages are installed in a store <code>/var/lib/pak/&lt;package-name-and-version&gt;/&lt;package-md5-sum&gt;/</code>.</p>
 <p><code>Pakfile</code> lists dependencies and package metadata. It is better that KISS packages that have one file for each metadatum (version, sources, checksums, etc)</p>
-<p><code>package-name-version.pak</code> is a tar file with all the package content that needs to be extracted. Pak keeps track of all files. We can ask pak which package installed which file.</p>
+<p><code>package-name-version.pak.zst</code> is a tar file (zstd) with all the package content that needs to be extracted. Pak keeps track of all files. We can ask pak which package installed which file.</p>
 <p><code>pak env &lt;envname&gt;</code> enters the enviroment, and sets the <code>PAKFILE</code> env to <code>/usr/share/pak/envs/envname/Pakfile</code></p>
 <p><code>pak env --list</code> lists all available envs in <code>/usr/share/pak/envs/</code></p>
 <p><code>pak run &lt;commmand&gt;</code> run the command within the enviroment</p>

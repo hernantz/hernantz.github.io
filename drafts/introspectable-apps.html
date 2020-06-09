@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Introspectable apps | README.txt</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+  <link rel="stylesheet" media="(max-width: 750px)" href="/theme/css/mobile.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/pygments-default.css" type="text/css" />
+  <link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
+  <link href="/rss.xml" type="application/atom+xml" rel="alternate" title="README.txt RSS Feed" />
+  <meta name="description" content="Thinking apps as functions.">
+  <meta name="keywords" content="programming, ideas">
+  <meta name="author" content="hernantz">
+</head>
+
+<body>
+  <aside class="sidebar">
+    <a href="/"><img class="rounded-img" src="/images/avatar.png" height="75" width="75" /></a>
+
+      <nav>
+        <ul>
+            <li><a href="http://twitter.com/hernantz">twitter</i></a></li>
+            <li><a href="http://github.com/hernantz">github</i></a></li>
+            <li><a href="http://last.fm/user/hernantz">last.fm</i></a></li>
+            <li><a href="/talks.html">talks</a></li>
+            <li><a href="/whoami.html">whoami</a></li>
+            <li><a href="/">blog</a></li>
+        </ul>
+      </nav>
+
+  </aside>
+  <main>
+        
+<article class="column-right">
+  <h1 class="main-title">Introspectable apps</h1>
+  <summary>
+    <p class="light">
+      Published
+on <time datetime="2013-07-03T00:00:00-03:00">2013-07-03</time>,       under <a href="http://hernantz.github.io/category/personal.html">Personal</a>,
+      tagged with <a href="http://hernantz.github.io/tag/programming.html">programming</a> and <a href="http://hernantz.github.io/tag/ideas.html">ideas</a>.
+    </p>
+  </summary>
+  <p>Programmers know the convinience of using libraries.
+Reusable pieces of code.
+Can we provide the same convinience to our users?
+Usually this means building a API.
+For CLI applications we can simply spawn a new shell and call the right methods.
+BUt for GUI apps this is not possible.
+But what if instead every app, be it GUI or CLI used the D-bus. D-bus would the api to call and coordinate applications in your desktop.
+It could also expose a socket to coordinate apps from the network.
+Imagine a webrtc channel in your DBUS session.</p>
+<p>GUI apps need to be built differently for this. Here is were the idea of using redux, where every change in the GUI is represented by intents.
+The gui simply sends intents to the Redux server via the DBUS session and the server responds.</p>
+<p>All of the sudden we can implement diffent external middlewares and plugins, without having to modify the GUI of the app.</p>
+<p>this idea is also implemented to some degree by neovim (sever to process text and external guis that communicate via msgpack) or GIMP et al, with the.</p>
+<p>So apps would become little engines that can be extended or combined (like functions or libraries) while GUIs, CLIs and Websites are simply interfaces to those engines via a COM Bus.</p>
+<p>This could also help expose databases.</p>
+<p>Another way to instrospect apps is if they use standard data formats, like exposing a sql database or simply use files on disk like .md, .json, .txt etc</p>
+<p>Connecting computers and sharing data/applications and commands would be a matter of opening sockets to stream channels.</p>
+<p>The bus could be also used for streaming replication over the network.</p>
+<p>Yes there might be an overhead on complexity and performance.</p>
+<p>The bus is a repl, apps are libraries (or collections of functions), the user is the new developer.</p>
+<p>We have some of that with Zapier and Integromat.</p>
+</article>
+
+      <footer class="column-right light">
+        <nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> - <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | README.txt</nav>
+      </footer>
+  </main>
+</body>
+</html>

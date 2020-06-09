@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Deploying at 6am, a postmortem | README.txt</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+  <link rel="stylesheet" media="(max-width: 750px)" href="/theme/css/mobile.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/pygments-default.css" type="text/css" />
+  <link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
+  <link href="/rss.xml" type="application/atom+xml" rel="alternate" title="README.txt RSS Feed" />
+  <meta name="description" content="Another chapter in the IT nightmare stories.">
+  <meta name="keywords" content="devops">
+  <meta name="author" content="hernantz">
+</head>
+
+<body>
+  <aside class="sidebar">
+    <a href="/"><img class="rounded-img" src="/images/avatar.png" height="75" width="75" /></a>
+
+      <nav>
+        <ul>
+            <li><a href="http://twitter.com/hernantz">twitter</i></a></li>
+            <li><a href="http://github.com/hernantz">github</i></a></li>
+            <li><a href="http://last.fm/user/hernantz">last.fm</i></a></li>
+            <li><a href="/talks.html">talks</a></li>
+            <li><a href="/whoami.html">whoami</a></li>
+            <li><a href="/">blog</a></li>
+        </ul>
+      </nav>
+
+  </aside>
+  <main>
+        
+<article class="column-right">
+  <h1 class="main-title">Deploying at 6am, a postmortem</h1>
+  <summary>
+    <p class="light">
+      Published
+on <time datetime="2020-06-09T00:00:00-03:00">2020-06-09</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
+      tagged with <a href="http://hernantz.github.io/tag/devops.html">devops</a>.
+    </p>
+  </summary>
+  <p><img alt="Graph of number of active users" src="/images/demand.png" title="Graph of number of active users" /></p>
+<p>Our demand is pretty predictable. We thought it would be best to run deployments very early or very late hours. If they require downtime.</p>
+<p>This time we needed to delete a lot of tables that were growing too much and adding too little with features that no one uses (think of event logs etc) which we replaced with logs. Making our backups and future db replications take longer.</p>
+<p>So anyway at 6 am I started the deploy, once the app builds it runs the migrations, I put the site in maintenance mode, and the Django release command got stuck in running migrations.</p>
+<p>I knew that drop table queries shouldn't take too long, they simply remove a directory from the disk. </p>
+<p>After waiting for more than 10 minutes it was time to check what the postgres db was doing.</p>
+<p>You can basically check the logs or run queries against the <code>pg_stats_activity</code> table to get an idea of what's going on.</p>
+<div class="highlight"><pre><span></span><span class="n">proddb</span><span class="o">=&gt;</span> <span class="k">SELECT</span> <span class="n">pg_blocking_pids</span><span class="p">(</span><span class="n">pid</span><span class="p">)</span> <span class="k">AS</span> <span class="n">blocked_by</span>
+<span class="k">FROM</span> <span class="n">pg_stat_activity</span>
+<span class="k">WHERE</span> <span class="k">cardinality</span><span class="p">(</span><span class="n">pg_blocking_pids</span><span class="p">(</span><span class="n">pid</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>
+<span class="o">-</span><span class="p">[</span> <span class="n">RECORD</span> <span class="mi">1</span> <span class="p">]</span><span class="c1">-------</span>
+<span class="n">blocked_by</span> <span class="o">|</span> <span class="err">{</span><span class="mi">24484</span><span class="err">}</span>
+<span class="o">-</span><span class="p">[</span> <span class="n">RECORD</span> <span class="mi">2</span> <span class="p">]</span><span class="c1">-------</span>
+<span class="n">blocked_by</span> <span class="o">|</span> <span class="err">{</span><span class="mi">25741</span><span class="err">}</span>
+</pre></div>
+
+
+<p>Let's inspect those pids</p>
+<div class="highlight"><pre><span></span><span class="n">proddb</span><span class="o">=&gt;</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">pg_stat_activity</span> <span class="k">where</span> <span class="n">pid</span> <span class="o">=</span> <span class="mi">24484</span><span class="p">;</span>
+<span class="o">-</span><span class="p">[</span> <span class="n">RECORD</span> <span class="mi">1</span> <span class="p">]</span><span class="c1">----</span>
+<span class="n">datid</span>            <span class="o">|</span> <span class="mi">16402</span>
+<span class="n">datname</span>          <span class="o">|</span> <span class="n">proddb</span>
+<span class="n">pid</span>              <span class="o">|</span> <span class="mi">24484</span>
+<span class="n">usesysid</span>         <span class="o">|</span> <span class="mi">16384</span>
+<span class="n">usename</span>          <span class="o">|</span> <span class="n">produser</span>
+<span class="n">application_name</span> <span class="o">|</span> <span class="n">Heroku</span> <span class="n">Postgres</span> <span class="n">Backups</span>
+<span class="n">client_addr</span>      <span class="o">|</span> <span class="mi">52</span><span class="p">.</span><span class="mi">73</span><span class="p">.</span><span class="mi">131</span><span class="p">.</span><span class="mi">14</span>
+<span class="n">client_hostname</span>  <span class="o">|</span> 
+<span class="n">client_port</span>      <span class="o">|</span> <span class="mi">38811</span>
+<span class="n">backend_start</span>    <span class="o">|</span> <span class="mi">2020</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">09</span> <span class="mi">09</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mi">20</span><span class="p">.</span><span class="mi">920488</span><span class="o">+</span><span class="mi">00</span>
+<span class="n">xact_start</span>       <span class="o">|</span> <span class="mi">2020</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">09</span> <span class="mi">09</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mi">20</span><span class="p">.</span><span class="mi">935983</span><span class="o">+</span><span class="mi">00</span>
+<span class="n">query_start</span>      <span class="o">|</span> <span class="mi">2020</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">09</span> <span class="mi">09</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mi">38</span><span class="p">.</span><span class="mi">067414</span><span class="o">+</span><span class="mi">00</span>
+<span class="n">state_change</span>     <span class="o">|</span> <span class="mi">2020</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">09</span> <span class="mi">09</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mi">38</span><span class="p">.</span><span class="mi">067415</span><span class="o">+</span><span class="mi">00</span>
+<span class="n">wait_event_type</span>  <span class="o">|</span> <span class="n">Client</span>
+<span class="n">wait_event</span>       <span class="o">|</span> <span class="n">ClientWrite</span>
+<span class="k">state</span>            <span class="o">|</span> <span class="n">active</span>
+<span class="n">backend_xid</span>      <span class="o">|</span> 
+<span class="n">backend_xmin</span>     <span class="o">|</span> <span class="mi">72354912</span>
+<span class="n">query</span>            <span class="o">|</span> <span class="k">COPY</span> <span class="ss">&quot;public&quot;</span><span class="p">.</span><span class="ss">&quot;field_history_fieldhistory&quot;</span> <span class="p">(</span><span class="ss">&quot;id&quot;</span><span class="p">,</span> <span class="ss">&quot;object_id&quot;</span><span class="p">,</span> <span class="ss">&quot;field_name&quot;</span><span class="p">,</span> <span class="ss">&quot;serialized_data&quot;</span><span class="p">,</span> <span class="ss">&quot;date_created&quot;</span><span class="p">,</span> <span class="ss">&quot;content_type_id&quot;</span><span class="p">,</span> <span class="ss">&quot;user_id&quot;</span><span class="p">)</span> <span class="k">TO</span> <span class="k">stdout</span><span class="p">;</span>
+<span class="n">backend_type</span>     <span class="o">|</span> <span class="n">client</span> <span class="n">backend</span>
+</pre></div>
+
+
+<p>There is the culprit. I can see on <code>query_start</code> that it started just ten minutes after I began the deploy and the <code>application_name</code> is the Heroku automatic backups service. </p>
+<p>Turns out that when the site has low activity it is also a good time to run our db backups.</p>
+<p>After checking the timestamps for previous backups I noticed they take two hours to complete. So I couldn't wait that long with the site down.</p>
+<p>So I killed the query with:</p>
+<div class="highlight"><pre><span></span><span class="n">proddb</span><span class="o">=&gt;</span>  <span class="k">SELECT</span> <span class="n">pg_cancel_backend</span><span class="p">(</span><span class="mi">24484</span><span class="p">);</span>
+ <span class="n">pg_cancel_backend</span> 
+<span class="c1">-------------------</span>
+ <span class="n">t</span>
+</pre></div>
+
+
+<p>Immediately after, the lock was freed and the release finished successfully.</p>
+</article>
+
+      <footer class="column-right light">
+        <nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> - <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | README.txt</nav>
+      </footer>
+  </main>
+</body>
+</html>
