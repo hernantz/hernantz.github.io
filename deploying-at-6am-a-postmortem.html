@@ -10,7 +10,7 @@
   <link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
   <link href="/rss.xml" type="application/atom+xml" rel="alternate" title="README.txt RSS Feed" />
   <meta name="description" content="Another chapter in the IT nightmare stories.">
-  <meta name="keywords" content="devops">
+  <meta name="keywords" content="devops, postgresql">
   <meta name="author" content="hernantz">
 </head>
 
@@ -38,15 +38,15 @@
     <p class="light">
       Published
 on <time datetime="2020-06-09T00:00:00-03:00">2020-06-09</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
-      tagged with <a href="http://hernantz.github.io/tag/devops.html">devops</a>.
+      tagged with <a href="http://hernantz.github.io/tag/devops.html">devops</a> and <a href="http://hernantz.github.io/tag/postgresql.html">postgresql</a>.
     </p>
   </summary>
   <p><img alt="Graph of number of active users" src="/images/demand.png" title="Graph of number of active users" /></p>
-<p>Our demand is pretty predictable. We thought it would be best to run deployments very early or very late hours. If they require downtime.</p>
-<p>This time we needed to delete a lot of tables that were growing too much and adding too little with features that no one uses (think of event logs etc) which we replaced with logs. Making our backups and future db replications take longer.</p>
+<p>Our webapp has a pretty predictable demand. We thought it is best to run deployments very early or at very late hours. If they require downtime that is.</p>
+<p>This time we needed to delete a few tables that were growing too much and adding too little with features that no one uses (think of event logs etc) which we replaced with logs, duh!</p>
 <p>So anyway at 6 am I started the deploy, once the app builds it runs the migrations, I put the site in maintenance mode, and the Django release command got stuck in running migrations.</p>
 <p>I knew that drop table queries shouldn't take too long, they simply remove a directory from the disk. </p>
-<p>After waiting for more than 10 minutes it was time to check what the postgres db was doing.</p>
+<p>After waiting for more than 15 minutes it was time to check what the postgresql db was doing.</p>
 <p>You can basically check the logs or run queries against the <code>pg_stats_activity</code> table to get an idea of what's going on.</p>
 <div class="highlight"><pre><span></span><span class="n">proddb</span><span class="o">=&gt;</span> <span class="k">SELECT</span> <span class="n">pg_blocking_pids</span><span class="p">(</span><span class="n">pid</span><span class="p">)</span> <span class="k">AS</span> <span class="n">blocked_by</span>
 <span class="k">FROM</span> <span class="n">pg_stat_activity</span>
@@ -58,7 +58,7 @@ on <time datetime="2020-06-09T00:00:00-03:00">2020-06-09</time>,       under <a 
 </pre></div>
 
 
-<p>Let's inspect those pids</p>
+<p>Let's inspect those pids:</p>
 <div class="highlight"><pre><span></span><span class="n">proddb</span><span class="o">=&gt;</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">pg_stat_activity</span> <span class="k">where</span> <span class="n">pid</span> <span class="o">=</span> <span class="mi">24484</span><span class="p">;</span>
 <span class="o">-</span><span class="p">[</span> <span class="n">RECORD</span> <span class="mi">1</span> <span class="p">]</span><span class="c1">----</span>
 <span class="n">datid</span>            <span class="o">|</span> <span class="mi">16402</span>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/all-en.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2020-06-09T00:00:00-03:00</updated><subtitle>- Mostly lies and rants in plain text.</subtitle><entry><title>Deploying at 6am, a postmortem</title><link href="http://hernantz.github.io/deploying-at-6am-a-postmortem.html" rel="alternate"></link><published>2020-06-09T00:00:00-03:00</published><updated>2020-06-09T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2020-06-09:/deploying-at-6am-a-postmortem.html</id><summary type="html">&lt;p&gt;Another chapter in the IT nightmare stories.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Graph of number of active users" src="/images/demand.png" title="Graph of number of active users" /&gt;&lt;/p&gt;
-&lt;p&gt;Our demand is pretty predictable. We thought it would be best to run deployments very early or very late hours. If they require downtime.&lt;/p&gt;
-&lt;p&gt;This time we needed to delete a lot of tables that were growing too much and adding too little with features that no one uses (think of event logs etc) which we replaced with logs. Making our backups and future db replications take longer.&lt;/p&gt;
+&lt;p&gt;Our webapp has a pretty predictable demand. We thought it is best to run deployments very early or at very late hours. If they require downtime that is.&lt;/p&gt;
+&lt;p&gt;This time we needed to delete a few tables that were growing too much and adding too little with features that no one uses (think of event logs etc) which we replaced with logs, duh!&lt;/p&gt;
 &lt;p&gt;So anyway at 6 am I started the deploy, once the app builds it runs the migrations, I put the site in maintenance mode, and the Django release command got stuck in running migrations.&lt;/p&gt;
 &lt;p&gt;I knew that drop table queries shouldn't take too long, they simply remove a directory from the disk. &lt;/p&gt;
-&lt;p&gt;After waiting for more than 10 minutes it was time to check what the postgres db was doing.&lt;/p&gt;
+&lt;p&gt;After waiting for more than 15 minutes it was time to check what the postgresql db was doing.&lt;/p&gt;
 &lt;p&gt;You can basically check the logs or run queries against the &lt;code&gt;pg_stats_activity&lt;/code&gt; table to get an idea of what's going on.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;proddb&lt;/span&gt;&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="n"&gt;pg_blocking_pids&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pid&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;AS&lt;/span&gt; &lt;span class="n"&gt;blocked_by&lt;/span&gt;
 &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;pg_stat_activity&lt;/span&gt;
@@ -16,7 +16,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Let's inspect those pids&lt;/p&gt;
+&lt;p&gt;Let's inspect those pids:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;proddb&lt;/span&gt;&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;pg_stat_activity&lt;/span&gt; &lt;span class="k"&gt;where&lt;/span&gt; &lt;span class="n"&gt;pid&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;24484&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="n"&gt;RECORD&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="c1"&gt;----&lt;/span&gt;
 &lt;span class="n"&gt;datid&lt;/span&gt;            &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="mi"&gt;16402&lt;/span&gt;
@@ -53,7 +53,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Immediately after, the lock was freed and the release finished successfully.&lt;/p&gt;</content><category term="Programming"></category><category term="devops"></category></entry><entry><title>Socialism works, but doesn't scale</title><link href="http://hernantz.github.io/socialism-works-but-doesnt-scale.html" rel="alternate"></link><published>2020-05-14T00:00:00-03:00</published><updated>2020-05-14T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2020-05-14:/socialism-works-but-doesnt-scale.html</id><summary type="html">&lt;p&gt;Can libertarians and socialists agree on anything?&lt;/p&gt;</summary><content type="html">&lt;p&gt;In a discussion it is recommended to first find a common ground of agreement,
+&lt;p&gt;Immediately after, the lock was freed and the release finished successfully.&lt;/p&gt;</content><category term="Programming"></category><category term="devops"></category><category term="postgresql"></category></entry><entry><title>Socialism works, but doesn't scale</title><link href="http://hernantz.github.io/socialism-works-but-doesnt-scale.html" rel="alternate"></link><published>2020-05-14T00:00:00-03:00</published><updated>2020-05-14T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2020-05-14:/socialism-works-but-doesnt-scale.html</id><summary type="html">&lt;p&gt;Can libertarians and socialists agree on anything?&lt;/p&gt;</summary><content type="html">&lt;p&gt;In a discussion it is recommended to first find a common ground of agreement,
 before working on the differences. This puts both parties in a better mood to
 find a shared truth.&lt;/p&gt;
 &lt;p&gt;Maybe libertarianism and socialism have both something to add to the table, can
