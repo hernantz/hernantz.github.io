@@ -45,6 +45,7 @@ Each distribution establishes it's own policies on packaging, release cycle, fil
 <p>Some package managers allow you to run scripts after installing a package. This should
 be done with oneshot scripts in systemd (like run migrations for example).</p>
 <p>A package manager is a program that gets a bunch of files (binaries, images, etc) from somewhere (a package) and distributes them on a filesystem (your pc for example). The manager part implies that it can keep track of installed packages, versions, etc. Packages are archives that contain files and metadata, the metadata specifies where to place the files. </p>
+<p>https://lwn.net/Articles/821367/ Merkle trees and build systems</p>
 <p>Transactional updates: https://www.youtube.com/watch?v=ureneyH06AE</p>
 <p>We need a virtualenv but for system packages. Otherwise python, rust, javascript, etc re-implement the wheel over and over.</p>
 <p>Documentation should teach, not tell.
@@ -116,16 +117,21 @@ all packages need to be curated, or users would have to embrace the dependency h
 <p><code>pak run &lt;commmand&gt;</code> run the command within the enviroment</p>
 <p><code>pak update</code> updates all versions updating also the lock file</p>
 <p><code>pak update &lt;package-name==version&gt;</code> updates only the package name, updating also the lock file</p>
+<p><code>pak taste &lt;package-name&gt;</code> one off shell with the package installed</p>
 <p><code>pak search &lt;package-name&gt;</code> search</p>
 <p><code>pak gc</code> removes all unreachable packages from the store.</p>
 <p>Hierarchy: package stores/environments/configs can be also defined in <code>~/.local/share/pak/</code>, etc.</p>
 <p>Sandboxing GUI apps should be done with another binary that allows to set firewalls and also allow GUI interactions to happen via portals like in flatpak (https://github.com/containers/bubblewrap). Another example would be Opensnitch.</p>
+<p>https://drewdevault.com/dynlib.html -&gt; sharing packages is ok, sharing libs is an overkill</p>
 <p>Docker + docker-compose re implement a package distribution + process manager and orchestration + build system.</p>
 <p>https://utcc.utoronto.ca/~cks/space/blog/linux/MicrosoftTeamsBadArrogance</p>
 <p>Los packetes se pueden obtener de distintos repos/mirrors (http/ipfs/torrent/etc), that return a URI (http link, magnet link, etc) for a given key (package name)</p>
 <p>Pak is a runtime environment manager.
 An environment is defined in a Pakfile it might list dependencies of <code>.pak</code> files that can be pinned in a Pakfile.lock</p>
 <p>System directories should be mounted as RO. To avoid malicius packages from globally altering the system.</p>
+<p>https://www.youtube.com/watch?v=oPymb2-IXbg NixOS: How it works and how to install it!</p>
+<p>Like software which needs to be built + released, systems can also be built (packeages installed) and released (services started, db migrations run, etc).</p>
+<p>http://www.cse.unsw.edu.au/~plaice/archive/WWW/1993/P-SPE93-Sloth.pdf</p>
 </article>
 
       <footer class="column-right light">

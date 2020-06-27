@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Functions and lists are all you need | README.txt</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+  <link rel="stylesheet" media="(max-width: 750px)" href="/theme/css/mobile.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/pygments-default.css" type="text/css" />
+  <link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
+  <link href="/rss.xml" type="application/atom+xml" rel="alternate" title="README.txt RSS Feed" />
+  <meta name="description" content="The building blocks of a programming language.">
+  <meta name="keywords" content="fp, ideas">
+  <meta name="author" content="hernantz">
+</head>
+
+<body>
+  <aside class="sidebar">
+    <a href="/"><img class="rounded-img" src="/images/avatar.png" height="75" width="75" /></a>
+
+      <nav>
+        <ul>
+            <li><a href="http://twitter.com/hernantz">twitter</i></a></li>
+            <li><a href="http://github.com/hernantz">github</i></a></li>
+            <li><a href="http://last.fm/user/hernantz">last.fm</i></a></li>
+            <li><a href="/talks.html">talks</a></li>
+            <li><a href="/whoami.html">whoami</a></li>
+            <li><a href="/">blog</a></li>
+        </ul>
+      </nav>
+
+  </aside>
+  <main>
+        
+<article class="column-right">
+  <h1 class="main-title">Functions and lists are all you need</h1>
+  <summary>
+    <p class="light">
+      Published
+on <time datetime="2020-06-20T00:00:00-03:00">2020-06-20</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
+      tagged with <a href="http://hernantz.github.io/tag/fp.html">fp</a> and <a href="http://hernantz.github.io/tag/ideas.html">ideas</a>.
+    </p>
+  </summary>
+  <p>It seems that the building blocks of a programming language are lists and functions to work with them. Functions represent computations, an lists carry data around them.</p>
+<p>What about if/then structure, we can use a function:
+true x y = x
+false x y = y
+ifthen bool t e = bool t e
+if bool t = ifthen bool t noop</p>
+<p>What about loops, just use recursion
+loop fn x:xs = fn x ++ loop fn xs</p>
+<p>With loops we can now work with lists:
+mostrar como map es un loop en realidad, como filter y reduce son en realidad un map</p>
+<p>Null = []
+Maybe x = [x]</p>
+<p>lazyness (functions passed around), pasar una funcion por parametro, es curry pero con un extra al final de devolver una functon que no toma parametros pero llama a la que si</p>
+<p>return () =&gt; original(1,2,3)</p>
+<p>Exceptions?
+Dicts are lists of tuples and an index (of getters and setters)
+users = [['foo', 'bar'], ['baz', 'zaz']]</p>
+<p>firstname user = user[0] 
+lastname user = user[1]</p>
+<p>So really firstname and lastname are aliases for get, we could just write
+get i obj = obj[i]</p>
+<p>fistname = get 0
+lastname = get 1</p>
+<p>Objects hold data as state and methods to manipulate it. 
+Methods are functions bound to objects:
+circle.draw() == draw(circle)
+Python went further in it's zen of explicit vs implicit
+and passes an explicit reference of the object (self)</p>
+<p>By composing functions and piping data through we don't need inheritance.</p>
+<p>Now that we have curring, loops and data, we realize that lists can be consumed and are no longer useful, what if we need streams?
+Streams = callbag</p>
+<p>Futures and async ?</p>
+</article>
+
+      <footer class="column-right light">
+        <nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> - <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | README.txt</nav>
+      </footer>
+  </main>
+</body>
+</html>

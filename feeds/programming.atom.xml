@@ -1,14 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt - Programming</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/programming.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2020-06-09T00:00:00-03:00</updated><subtitle>- Mostly lies and rants in plain text.</subtitle><entry><title>Deploying at 6am, a postmortem</title><link href="http://hernantz.github.io/deploying-at-6am-a-postmortem.html" rel="alternate"></link><published>2020-06-09T00:00:00-03:00</published><updated>2020-06-09T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2020-06-09:/deploying-at-6am-a-postmortem.html</id><summary type="html">&lt;p&gt;Another chapter in the IT nightmare stories.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Graph of number of active users" src="/images/demand.png" title="Graph of number of active users" /&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt - Programming</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/programming.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2020-06-27T00:00:00-03:00</updated><subtitle>- Mostly lies and rants in plain text.</subtitle><entry><title>Configuration is an API, not an SDK</title><link href="http://hernantz.github.io/configuration-is-an-api-not-an-sdk.html" rel="alternate"></link><published>2020-06-27T00:00:00-03:00</published><updated>2020-06-27T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2020-06-27:/configuration-is-an-api-not-an-sdk.html</id><summary type="html">&lt;p&gt;A configuration architecture for the working dev.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Control room | photo by @patrykgradyscom at Unsplash" src="/images/control-room.jpg" title="Control room | photo by @patrykgradyscom at Unsplash" /&gt;&lt;/p&gt;
+&lt;p&gt;Configuration is every setting that needs to change based on the environment where the app is executed. It helps you &lt;em&gt;preset&lt;/em&gt; the state of your app, without having to change the code. This is why it is important to provide a clear separation of configuration and code.&lt;/p&gt;
+&lt;h2 id="why-are-executable-config-files-a-bad-idea"&gt;Why are executable config files a bad idea?&lt;a class="headerlink" href="#why-are-executable-config-files-a-bad-idea" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href="http://hernantz.github.io/configuration-friendly-apps.html" title="Configuration-friendly apps"&gt;Configuration is just another API&lt;/a&gt; of your app.&lt;/p&gt;
+&lt;p&gt;It might be used by people with or without technical skills, that install or run your app.&lt;/p&gt;
+&lt;p&gt;Executable files can be used as config sources like &lt;code&gt;.vimrc&lt;/code&gt; for Vim, &lt;code&gt;Vagrantfile&lt;/code&gt; for Vagrant, etc, but approach has some drawbacks.&lt;/p&gt;
+&lt;p&gt;First, your users now need to learn a new programming language, just to configure your application. Some apps (like the &lt;a href="http://suckless.org/" title="Software that sucks less"&gt;suckless&lt;/a&gt; bundle) go as far as requiring you to patch and compile your app to change it’s configuration.&lt;/p&gt;
+&lt;p&gt;And second, your configuration is no longer hierarchical, your application cannot extract configuration from different sources by executing different files, because you cannot know in advance what is being executed. A programming language has control structures, can make calls to the internet, etc, so you can't known in advance the output you will get.&lt;/p&gt;
+&lt;p&gt;If you need to let users alter the behaviour of your program, that is not strictly configuration, but there is a better solution for this: a plugin system.&lt;/p&gt;
+&lt;p&gt;The best way to think of configuration is as a set of key/value dicts that need to be merged into a single config dict. No need to get fancy with yet another DSL.&lt;/p&gt;
+&lt;h2 id="what-configuration-format-should-i-use"&gt;What configuration format should I use?&lt;a class="headerlink" href="#what-configuration-format-should-i-use" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The short answer is: it depends, but probably more than one.&lt;/p&gt;
+&lt;p&gt;For example command line args are great to explore an app from the  shell, and tinker around it's possibilities.&lt;/p&gt;
+&lt;p&gt;When you already know what you want it would be great to set some defaults in a configuration file somewhere. Yes, you can always set an alias, like many distros do:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class="nb"&gt;type&lt;/span&gt; ll
+ll is aliased to &lt;span class="sb"&gt;`&lt;/span&gt;ls -alF&lt;span class="sb"&gt;`&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And yes, many apps allow for both &lt;code&gt;-s&lt;/code&gt; short and long &lt;code&gt;--more-verbose&lt;/code&gt; arguments.&lt;/p&gt;
+&lt;p&gt;Alternatively, config files are naturally better documenting and declarative. Some file formats allow for comments and are great as starter templates to build upon. With files it's easier to make diffs and track changes over time.&lt;/p&gt;
+&lt;p&gt;Environment variables are the simplest way to configure apps/scripts. You just need to populate a global dictionary before executing it. There is no need to parse files or command line arguments. This practice is very common in cloud providers to inject credentials or connection strings for your app. Another example is &lt;a href="http://qutebrowser.org/doc/userscripts.html"&gt;qutebrowser&lt;/a&gt;; it allows the user to write &lt;em&gt;userscripts&lt;/em&gt; and passes many environment variables to share the browser state before executing them.&lt;/p&gt;
+&lt;p&gt;On the other hand, environment variables shouldn’t hold sensitive data, there are potential security issues regarding accidental leaks via logging and error reporting services or child process inheritance.&lt;/p&gt;
+&lt;p&gt;Well designed applications allow different ways to be configured. Each having it's pros and cons.&lt;/p&gt;
+&lt;p&gt;If your app is a long running process, like a webserver, you can issue a
+&lt;code&gt;SIGHUP&lt;/code&gt; signal so that it reloads it's config from files. Env vars and
+command line arguments cannot be easily changed from the outside after
+the program startup.&lt;/p&gt;
+&lt;p&gt;What matters here is that env vars, command line args and files (.ini, .yml and .toml) are the most standard formats to configure apps. You should be able to configure any app with standard unix tools and a text editor. Stick to these formats when possible.&lt;/p&gt;
+&lt;h2 id="settings-discoverability"&gt;Settings discoverability&lt;a class="headerlink" href="#settings-discoverability" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;But what happens if a setting is passed as command line argument but also exist in a config file? Which source is more important?&lt;/p&gt;
+&lt;p&gt;A proper settings-discoverability chain goes as follows:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;First command line args are checked.&lt;/li&gt;
+&lt;li&gt;Then environment variables.&lt;/li&gt;
+&lt;li&gt;Config files in different directories, that also imply some hierarchy. For example: config files in &lt;code&gt;/etc/myapp/settings.ini&lt;/code&gt; are applied system-wide, while &lt;code&gt;~/.config/myapp/settings.ini&lt;/code&gt; take precedence and are user-specific.&lt;/li&gt;
+&lt;li&gt;Hardcoded constants as defaults.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Some of these sources may not be present or relevant to your app. But each one of these sources of configuration needs to be properly collected and overwritten with an explicit level of hierarchy. This gives more flexibility to your users, so they can run your app/script in the cloud or in their multiuser computers, using systemd or docker, etc.&lt;/p&gt;
+&lt;h2 id="using-the-right-tool-for-the-job"&gt;Using the right tool for the job&lt;a class="headerlink" href="#using-the-right-tool-for-the-job" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Your application will require other tools, like compilers, installers, package managers, process supervisors, etc. These tools solve different problems of the architecture of your software.&lt;/p&gt;
+&lt;p&gt;Configuration is also part of that architecture. Along with your program you will have to ship the configuration artifact. But this is not an issue that only comes up when you make a new release. When you are developing you are also making tiny releases on your laptop.&lt;/p&gt;
+&lt;p&gt;So this raises the need for some tool to provide your code with the right configuration, in all it's stages. Some of these tools are only used when developing or in production, ideally both envs match.&lt;/p&gt;
+&lt;p&gt;There are many tools for managing configuration. For example, &lt;a href="https://direnv.net/"&gt;direnv&lt;/a&gt; and &lt;a href="http://cr.yp.to/daemontools/envdir.html"&gt;envdir&lt;/a&gt; load environment variables from directories and files. &lt;a href="https://serverfault.com/a/438945"&gt;Systemd units&lt;/a&gt; have a section to list them or point to an environment file populating the environment. &lt;a href="https://docs.ansible.com/ansible/latest/"&gt;Ansible&lt;/a&gt; includes a templating language to generate configuration files and place them anywhere in the system. &lt;a href="https://docs.ansible.com/ansible/latest/user_guide/vault.html"&gt;Ansible Vault&lt;/a&gt; can be used to provide the app with encrypted secrets.&lt;/p&gt;
+&lt;p&gt;Some tools like &lt;a href="https://github.com/hashicorp/consul-template"&gt;consul-template&lt;/a&gt; or &lt;a href="https://github.com/hashicorp/envconsul"&gt;envconsul&lt;/a&gt; can also listen to changes in the configuration and issue a &lt;code&gt;SIGTERM&lt;/code&gt; or (even better) a &lt;code&gt;SIGHUP&lt;/code&gt; signal to your long running process, so that it can pick up new config values without downtime.&lt;/p&gt;
+&lt;p&gt;No matter which tool you choose to manage, generate and populate the configuration artifact, the code of your app should only care about reading files, env vars and/or cli args.&lt;/p&gt;
+&lt;h2 id="naming-conventions-and-namespaces-for-settings"&gt;Naming conventions and namespaces for settings&lt;a class="headerlink" href="#naming-conventions-and-namespaces-for-settings" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;There happen to be some formatting conventions for configuration parameters based on where they are set. For example, it is common to declare environment variables in uppercase:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class="nv"&gt;DEBUG&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;yes &lt;span class="nv"&gt;OTHER_CONFIG&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt; myapp
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Since the environment is a global and shared dictionary, it is a good practice to also apply some prefix to each setting to avoid collisions with other known settings, like &lt;code&gt;LOCALE&lt;/code&gt;, &lt;code&gt;TZ&lt;/code&gt;, etc. This prefix works as a namespace for your app.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class="nv"&gt;MY_APP_DEBUG&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;yes &lt;span class="nv"&gt;MY_APP_OTHER_CONFIG&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt; myapp
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;but if you were to set this config in an .ini file, each setting should probably be in lower case, the namespace is implicit in the file path, i.e: &lt;code&gt;/etc/myapp/config.ini&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;[settings]&lt;/span&gt;
+&lt;span class="na"&gt;debug&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;yes&lt;/span&gt;
+&lt;span class="na"&gt;other_config&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;10&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Command line arguments have yet another conventions:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ myapp --debug&lt;span class="o"&gt;=&lt;/span&gt;yes --another-config&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You probably noticed that the debug setting is a boolean value. These flags should accept different inputs like &lt;code&gt;yes|no&lt;/code&gt;, &lt;code&gt;1|0&lt;/code&gt;, &lt;code&gt;true|false&lt;/code&gt; or &lt;code&gt;t|f&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;It is important to be consistent in naming these variables, but to respect the conventions too.&lt;/p&gt;
+&lt;h2 id="a-solution-for-the-working-dev"&gt;A solution for the working dev&lt;a class="headerlink" href="#a-solution-for-the-working-dev" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;If your app is written in Python, it's your lucky day.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/hernantz/classyconf" title="Classyconf: configuration management for perfectionists with deadlines"&gt;Classyconf&lt;/a&gt; is a library that helps you with a configuration architecture for perfectionists with deadlines™, or for the working dev if it sits you better.&lt;/p&gt;
+&lt;p&gt;The good practices that it suggests have an agnostic approach to configure applications, no matter if they are web, CLI or GUI apps, hosted on the cloud or running in your desktop.&lt;/p&gt;
+&lt;p&gt;You can find out more documentation at &lt;a href="https://classyconf.readthedocs.io/en/latest/index.html"&gt;Read the
+Docs&lt;/a&gt; website, but here is a preview of how to use it.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;classyconf&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Configuration&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Value&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Environment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;IniFile&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;as_boolean&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;EnvPrefix&lt;/span&gt;
+
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;AppConfig&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Configuration&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+
+    &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Meta&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;loaders&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+            &lt;span class="n"&gt;Environment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;keyfmt&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;EnvPrefix&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;MY_APP_&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt;
+            &lt;span class="n"&gt;IniFile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;config.ini&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;section&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;myapp&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="p"&gt;]&lt;/span&gt;
+
+    &lt;span class="n"&gt;DEBUG&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Value&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;default&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cast&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;as_boolean&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Toggle debugging mode.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;DATABASE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Value&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;default&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;postgres://localhost:5432/mydb&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Database connection.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;As you can see is very declarative. It uses the concept of loaders, which collect settings from different sources and merges them in the right order.&lt;/p&gt;
+&lt;p&gt;This class can be extended according to different environments or needs.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;TestConfig&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;AppConfig&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Meta&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;loaders&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;IniFile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;test_settings.ini&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;IniFile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;config.ini&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;overridden at runtime&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;dev_config&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;AppConfig&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;loaders&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;IniFile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;dev_settings.ini&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)])&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;dev_config&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DEBUG&lt;/span&gt;
+&lt;span class="bp"&gt;True&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;accessed (and lazily evaluated) as dict or object&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DEBUG&lt;/span&gt;
+&lt;span class="bp"&gt;False&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;DEBUG&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="bp"&gt;False&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;introspected and iterated&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;setting&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="o"&gt;...&lt;/span&gt;     &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;setting&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;...&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;DEBUG&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Value&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;DEBUG&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Toggle debugging on/off.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;DATABASE&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Value&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;DATABASE&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Database connection.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The idea of this blog post was to highlight the importance of thinking configuration as an API, to follow best practices and conventions and the need to be flexible for different sources of configuration.&lt;/p&gt;
+&lt;p&gt;I've shamelessly introduced &lt;a href="https://github.com/hernantz/classyconf" title="Classyconf: configuration management for perfectionists with deadlines"&gt;classyconf&lt;/a&gt; as a way to address all this topics, but I'm sure that similar libraries can be found for other languages as well.&lt;/p&gt;</content><category term="Programming"></category><category term="python"></category><category term="best-practices"></category><category term="tools"></category><category term="configuration"></category><category term="architecture"></category></entry><entry><title>Deploying at 6am, a postmortem</title><link href="http://hernantz.github.io/deploying-at-6am-a-postmortem.html" rel="alternate"></link><published>2020-06-09T00:00:00-03:00</published><updated>2020-06-09T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2020-06-09:/deploying-at-6am-a-postmortem.html</id><summary type="html">&lt;p&gt;Another chapter in the IT nightmare stories.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Graph of number of active users" src="/images/demand.png" title="Graph of number of active users" /&gt;&lt;/p&gt;
 &lt;p&gt;Our webapp has a pretty predictable demand. We thought it is best to run deployments very early or at very late hours. If they require downtime that is.&lt;/p&gt;
 &lt;p&gt;This time we needed to delete a few tables that were growing too much and adding too little with features that no one uses (think of event logs etc) which we replaced with logs, duh!&lt;/p&gt;
 &lt;p&gt;So anyway at 6 am I started the deploy, once the app builds it runs the migrations, I put the site in maintenance mode, and the Django release command got stuck in running migrations.&lt;/p&gt;
 &lt;p&gt;I knew that drop table queries shouldn't take too long, they simply remove a directory from the disk. &lt;/p&gt;
 &lt;p&gt;After waiting for more than 15 minutes it was time to check what the postgresql db was doing.&lt;/p&gt;
-&lt;p&gt;You can basically check the logs or run queries against the &lt;code&gt;pg_stats_activity&lt;/code&gt; table to get an idea of what's going on.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;proddb&lt;/span&gt;&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="n"&gt;pg_blocking_pids&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pid&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;AS&lt;/span&gt; &lt;span class="n"&gt;blocked_by&lt;/span&gt;
-&lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;pg_stat_activity&lt;/span&gt;
-&lt;span class="k"&gt;WHERE&lt;/span&gt; &lt;span class="k"&gt;cardinality&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pg_blocking_pids&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pid&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;p&gt;You can basically check the logs or run queries against the &lt;code&gt;pg_stat_activity&lt;/code&gt; table to get an idea of what's going on.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;proddb&lt;/span&gt;&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="n"&gt;pg_blocking_pids&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pid&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;AS&lt;/span&gt; &lt;span class="n"&gt;blocked_by&lt;/span&gt; &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;pg_stat_activity&lt;/span&gt; &lt;span class="k"&gt;WHERE&lt;/span&gt; &lt;span class="k"&gt;cardinality&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pg_blocking_pids&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pid&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="n"&gt;RECORD&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="c1"&gt;-------&lt;/span&gt;
 &lt;span class="n"&gt;blocked_by&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;24484&lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;
 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="n"&gt;RECORD&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="c1"&gt;-------&lt;/span&gt;
@@ -17,7 +142,7 @@
 
 
 &lt;p&gt;Let's inspect those pids:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;proddb&lt;/span&gt;&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;pg_stat_activity&lt;/span&gt; &lt;span class="k"&gt;where&lt;/span&gt; &lt;span class="n"&gt;pid&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;24484&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;proddb&lt;/span&gt;&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;pg_stat_activity&lt;/span&gt; &lt;span class="k"&gt;WHERE&lt;/span&gt; &lt;span class="n"&gt;pid&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;24484&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="n"&gt;RECORD&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="c1"&gt;----&lt;/span&gt;
 &lt;span class="n"&gt;datid&lt;/span&gt;            &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="mi"&gt;16402&lt;/span&gt;
 &lt;span class="n"&gt;datname&lt;/span&gt;          &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;proddb&lt;/span&gt;
@@ -44,8 +169,8 @@
 
 &lt;p&gt;There is the culprit. I can see on &lt;code&gt;query_start&lt;/code&gt; that it started just ten minutes after I began the deploy and the &lt;code&gt;application_name&lt;/code&gt; is the Heroku automatic backups service. &lt;/p&gt;
 &lt;p&gt;Turns out that when the site has low activity it is also a good time to run our db backups.&lt;/p&gt;
-&lt;p&gt;After checking the timestamps for previous backups I noticed they take two hours to complete. So I couldn't wait that long with the site down.&lt;/p&gt;
-&lt;p&gt;So I killed the query with:&lt;/p&gt;
+&lt;p&gt;After checking the timestamps for previous backups I noticed they take two hours to complete.&lt;/p&gt;
+&lt;p&gt;I couldn't wait that long with the site down. So I killed the query with:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;proddb&lt;/span&gt;&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt;  &lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="n"&gt;pg_cancel_backend&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;24484&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
  &lt;span class="n"&gt;pg_cancel_backend&lt;/span&gt; 
 &lt;span class="c1"&gt;-------------------&lt;/span&gt;
@@ -1726,7 +1851,7 @@ repo created in step 1, so that it holds what's going to be published in Github.
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;As the output directory is now managed by the independant git repository
+&lt;p&gt;As the output directory is now managed by the independent git repository
 from step 1, we don't want to have to version-control it again from our pelican
 site repo, and that's why we added the last &lt;em&gt;ignore&lt;/em&gt; statement.&lt;/p&gt;
 &lt;p&gt;4) Pelican has two types of configuration files, &lt;code&gt;pelicanconf.py&lt;/code&gt; for general
