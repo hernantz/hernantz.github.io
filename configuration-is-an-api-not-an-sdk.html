@@ -77,13 +77,13 @@ the program startup.</p>
 <li>First command line args are checked.</li>
 <li>Then environment variables.</li>
 <li>Config files in different directories, that also imply some hierarchy. For example: config files in <code>/etc/myapp/settings.ini</code> are applied system-wide, while <code>~/.config/myapp/settings.ini</code> take precedence and are user-specific.</li>
-<li>Hardcoded constants as defaults.</li>
+<li>Finally you fallback to hardcoded constants as defaults.</li>
 </ol>
 <p>Some of these sources may not be present or relevant to your app. But each one of these sources of configuration needs to be properly collected and overwritten with an explicit level of hierarchy. This gives more flexibility to your users, so they can run your app/script in the cloud or in their multiuser computers, using systemd or docker, etc.</p>
 <h2 id="using-the-right-tool-for-the-job">Using the right tool for the job<a class="headerlink" href="#using-the-right-tool-for-the-job" title="Permanent link">&para;</a></h2>
 <p>Your application will require other tools, like compilers, installers, package managers, process supervisors, etc. These tools solve different problems of the architecture of your software.</p>
 <p>Configuration is also part of that architecture. Along with your program you will have to ship the configuration artifact. But this is not an issue that only comes up when you make a new release. When you are developing you are also making tiny releases on your laptop.</p>
-<p>So this raises the need for some tool to provide your code with the right configuration, in all it's stages. Some of these tools are only used when developing or in production, ideally both envs match.</p>
+<p>So this raises the need for some tool to provide your code with the right configuration, in all its stages. Some of these tools are only used when developing or in production, ideally both envs match.</p>
 <p>There are many tools for managing configuration. For example, <a href="https://direnv.net/">direnv</a> and <a href="http://cr.yp.to/daemontools/envdir.html">envdir</a> load environment variables from directories and files. <a href="https://serverfault.com/a/438945">Systemd units</a> have a section to list them or point to an environment file populating the environment. <a href="https://docs.ansible.com/ansible/latest/">Ansible</a> includes a templating language to generate configuration files and place them anywhere in the system. <a href="https://docs.ansible.com/ansible/latest/user_guide/vault.html">Ansible Vault</a> can be used to provide the app with encrypted secrets.</p>
 <p>Some tools like <a href="https://github.com/hashicorp/consul-template">consul-template</a> or <a href="https://github.com/hashicorp/envconsul">envconsul</a> can also listen to changes in the configuration and issue a <code>SIGTERM</code> or (even better) a <code>SIGHUP</code> signal to your long running process, so that it can pick up new config values without downtime.</p>
 <p>No matter which tool you choose to manage, generate and populate the configuration artifact, the code of your app should only care about reading files, env vars and/or cli args.</p>
