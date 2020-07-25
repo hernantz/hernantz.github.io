@@ -1542,7 +1542,7 @@ API of the mocked object.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;If suddendly I decided to change the signature of the &lt;code&gt;withdraw()&lt;/code&gt; method, to
+&lt;p&gt;If suddenly I decided to change the signature of the &lt;code&gt;withdraw()&lt;/code&gt; method, to
 charge the credit card with a specific currency, the mocked tests above would
 still pass successfully. They will not tell you anymore whether you have
 introduced a regression bug or not!&lt;/p&gt;
@@ -1631,7 +1631,7 @@ this double by hand, every time you real object is updated.&lt;/p&gt;
 almost the same amount of code, but this test is not bound to the implementation, 
 it is still deterministic, plus it tests goals in an automated way, similar to 
 the manual check I would do to trust that the &lt;code&gt;process()&lt;/code&gt; method works.&lt;/p&gt;
-&lt;p&gt;We have used two techniques here that helped us get way from mocks.&lt;/p&gt;
+&lt;p&gt;We have used two techniques here that helped us get away from mocks.&lt;/p&gt;
 &lt;p&gt;The first technique was to start testing how collaborators interact between
 each other inside &lt;code&gt;process()&lt;/code&gt;. These type of tests are called &lt;strong&gt;integration
 tests&lt;/strong&gt;, that test larger units of your code, with real components. This also 
@@ -1691,6 +1691,7 @@ it is replacing the real email machinery with a double that mimics that
 behaviour, I believe I can still make assertions about my code that are &lt;em&gt;good
 enough&lt;/em&gt; (even though no mail is sent). That framework is responsible for
 providing us with a good &lt;em&gt;verified&lt;/em&gt; stub.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://testing.googleblog.com/2020/07/testing-on-toilet-dont-mock-types-you.html?m=1"&gt;Mocking types you don’t&lt;/a&gt; own can make maintenance more difficult.&lt;/p&gt;
 &lt;h3 id="example-2-an-agnostic-mock"&gt;Example 2: An agnostic mock&lt;a class="headerlink" href="#example-2-an-agnostic-mock" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Say for example that you need to hit a 3rd party API that you don't own, that
 probably has throttle limitations, no sandbox/testing ground, you cannot setup

@@ -143,7 +143,7 @@ API of the mocked object.</p>
 </pre></div>
 
 
-<p>If suddendly I decided to change the signature of the <code>withdraw()</code> method, to
+<p>If suddenly I decided to change the signature of the <code>withdraw()</code> method, to
 charge the credit card with a specific currency, the mocked tests above would
 still pass successfully. They will not tell you anymore whether you have
 introduced a regression bug or not!</p>
@@ -232,7 +232,7 @@ this double by hand, every time you real object is updated.</p>
 almost the same amount of code, but this test is not bound to the implementation, 
 it is still deterministic, plus it tests goals in an automated way, similar to 
 the manual check I would do to trust that the <code>process()</code> method works.</p>
-<p>We have used two techniques here that helped us get way from mocks.</p>
+<p>We have used two techniques here that helped us get away from mocks.</p>
 <p>The first technique was to start testing how collaborators interact between
 each other inside <code>process()</code>. These type of tests are called <strong>integration
 tests</strong>, that test larger units of your code, with real components. This also 
@@ -292,6 +292,7 @@ it is replacing the real email machinery with a double that mimics that
 behaviour, I believe I can still make assertions about my code that are <em>good
 enough</em> (even though no mail is sent). That framework is responsible for
 providing us with a good <em>verified</em> stub.</p>
+<p><a href="https://testing.googleblog.com/2020/07/testing-on-toilet-dont-mock-types-you.html?m=1">Mocking types you don’t</a> own can make maintenance more difficult.</p>
 <h3 id="example-2-an-agnostic-mock">Example 2: An agnostic mock<a class="headerlink" href="#example-2-an-agnostic-mock" title="Permanent link">&para;</a></h3>
 <p>Say for example that you need to hit a 3rd party API that you don't own, that
 probably has throttle limitations, no sandbox/testing ground, you cannot setup

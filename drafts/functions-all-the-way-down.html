@@ -55,12 +55,12 @@ on <time datetime="2020-06-20T00:00:00-03:00">2020-06-20</time>,       under <a 
 
 <p>Here <code>add</code> is a function that takes an argument <code>x</code>, returns a function that takes and argument <code>y</code> and adds them together.
 This is called curring. It helps you write functions that are more composable.</p>
-<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">add2</span> <span class="o">=</span> <span class="nx">add</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">incr</span> <span class="o">=</span> <span class="nx">add</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 
 
-<p>Now <code>add2</code> can be passed arround as a parameter to other functions.</p>
-<div class="highlight"><pre><span></span><span class="nx">add2</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="c1">// will output 6</span>
+<p>Now <code>incr</code> is a new function that has been loaded with one param and can be passed around as a parameter to other functions or called later with the remaining param.</p>
+<div class="highlight"><pre><span></span><span class="nx">incr</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="c1">// will output 5</span>
 </pre></div>
 
 
@@ -117,13 +117,13 @@ Something like the if/then blocks in other languages. We don't have anything but
 </pre></div>
 
 
-<p>How to we get data back? After all this list should just be a container, and perform no calculations. We will return a getter function! </p>
+<p>How to we get data back? After all this list should just be a container, and perform no calculations. We will return a getter function!</p>
 <div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">list</span> <span class="o">=</span> <span class="p">(</span><span class="nx">fst</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">snd</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">getter</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">getter</span><span class="p">(</span><span class="nx">fst</span><span class="p">)(</span><span class="nx">snd</span><span class="p">)</span>
 </pre></div>
 
 
 <p>This function <code>list</code> takes only two arguments. And returns a generic getter, to extract any of these values back.</p>
-<p>Since we are working with just two values and we already know how to  make binary decisions, let's write alias those getters.</p>
+<p>Since we are working with just two values and we already know how to  make binary decisions, let's write aliases for those getters.</p>
 <div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">head</span> <span class="o">=</span> <span class="p">(</span><span class="nx">xs</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">xs</span><span class="p">(</span><span class="nx">truthy</span><span class="p">)</span>
 <span class="kd">let</span> <span class="nx">tail</span> <span class="o">=</span> <span class="p">(</span><span class="nx">xs</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">xs</span><span class="p">(</span><span class="nx">falsy</span><span class="p">)</span>
 </pre></div>
@@ -179,11 +179,16 @@ The layout of map looks like this:</p>
 <p>Now, this won't work unless we re-define our contract with lists and booleans.</p>
 <div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">truthy</span> <span class="o">=</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">x</span><span class="p">()</span>
 <span class="kd">let</span> <span class="nx">falsy</span> <span class="o">=</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">y</span><span class="p">()</span>
-<span class="kd">let</span> <span class="nx">numbers</span> <span class="o">=</span> <span class="nx">list</span><span class="p">(()=&gt;</span><span class="mi">1</span><span class="p">)(</span><span class="nx">list</span><span class="p">(()=&gt;</span><span class="mi">2</span><span class="p">)(()=&gt;</span><span class="kc">null</span><span class="p">))</span>
+<span class="kd">let</span> <span class="nx">numbers</span> <span class="o">=</span> <span class="nx">list</span><span class="p">(()=&gt;</span><span class="mi">1</span><span class="p">)(()=&gt;</span><span class="nx">list</span><span class="p">(()=&gt;</span><span class="mi">2</span><span class="p">)(()=&gt;</span><span class="kc">null</span><span class="p">))</span>
 </pre></div>
 
 
 <p>Lists now hold functions that compute values when accessed. Not only our lists are immutable, but also lazy. We have accidentally created lazy generators. CHECK THIS. Map is a list creator so we can join maps.</p>
+<p>gen = next =&gt; list(()=&gt;next())(()=&gt;gen(next)())</p>
+<p>let numbers = (n) =&gt; list(()=&gt;n)(()=&gt;numbers(n+1)) --&gt; lazy infinite list</p>
+<p>let gen =&gt; next = (v) =&gt; list(()=&gt;v)(()=&gt;step(next(n))) --&gt; lazy infinite list</p>
+<p>gen = next =&gt; list(()=&gt;head(next))(()=&gt;gen(tail(next))</p>
+<p>nat = gen(incr(0))</p>
 <p>A more general implementation is to accept other function as the accumulator.</p>
 <div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">fold</span> <span class="o">=</span> <span class="p">(</span><span class="nx">acc</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">xs</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">acc</span><span class="p">(()=&gt;</span><span class="nx">fn</span><span class="p">(</span><span class="nx">head</span><span class="p">(</span><span class="nx">xs</span><span class="p">)))</span>
                                        <span class="p">(</span><span class="nx">ifthen</span><span class="p">(</span><span class="nx">islast</span><span class="p">(</span><span class="nx">xs</span><span class="p">))</span>
@@ -203,6 +208,9 @@ The layout of map looks like this:</p>
 </pre></div>
 
 
+<h2 id="streams">Streams<a class="headerlink" href="#streams" title="Permanent link">&para;</a></h2>
+<p>since lists are lazy, can we generate an infinite list?
+loops as generators?</p>
 <h2 id="more">More<a class="headerlink" href="#more" title="Permanent link">&para;</a></h2>
 <p>There are many other functions that we should explore, like filter, reverse, index, etc.</p>
 <p>But I think by now we can appreciate that <a href="https://www.cs.kent.ac.uk/people/staff/dat/miranda/whyfp90.pdf">functions are really powerful</a> bulding blocks.</p>
