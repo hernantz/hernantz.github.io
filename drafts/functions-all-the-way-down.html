@@ -203,7 +203,7 @@ The layout of map looks like this:</p>
 </pre></div>
 
 
-<h2 id="streams">Streams<a class="headerlink" href="#streams" title="Permanent link">&para;</a></h2>
+<h2 id="generators">Generators<a class="headerlink" href="#generators" title="Permanent link">&para;</a></h2>
 <p>Our contract with lists had to also be updated (for getters to work). Lists now contain functions that return values when inspected.</p>
 <div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">numbers</span> <span class="o">=</span> <span class="nx">list</span><span class="p">(()=&gt;</span><span class="mi">1</span><span class="p">)(()=&gt;</span><span class="nx">list</span><span class="p">(()=&gt;</span><span class="mi">2</span><span class="p">)(()=&gt;</span><span class="kc">null</span><span class="p">))</span>
 </pre></div>
@@ -215,11 +215,32 @@ The layout of map looks like this:</p>
 </pre></div>
 
 
+<p>If we start generalizing again, a way to iterate </p>
+<div class="highlight"><pre><span></span><span class="nv">let</span> <span class="nv">gen</span> <span class="o">=</span> <span class="k">next</span> <span class="o">=&gt;</span> <span class="nv">list</span><span class="ss">(()</span><span class="o">=&gt;</span><span class="nv">head</span><span class="ss">(</span><span class="k">next</span><span class="ss">))(()</span><span class="o">=&gt;</span><span class="nv">gen</span><span class="ss">(</span><span class="nv">tail</span><span class="ss">(</span><span class="k">next</span><span class="ss">))</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">range</span> <span class="o">=</span> <span class="nx">i</span> <span class="p">=&gt;</span> <span class="nx">n</span> <span class="p">=&gt;</span> <span class="nx">gen</span> <span class="nx">numbers</span> <span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+</pre></div>
+
+
 <p>Map is a list creator so we can join maps.</p>
-<p>gen = next =&gt; list(()=&gt;next())(()=&gt;gen(next)())
-let gen =&gt; next = (v) =&gt; list(()=&gt;v)(()=&gt;step(next(n))) --&gt; lazy infinite list</p>
-<p>gen = next =&gt; list(()=&gt;head(next))(()=&gt;gen(tail(next))</p>
 <p>nat = gen(incr(0))</p>
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">ends</span> <span class="o">=</span> <span class="p">(</span><span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">xs</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">ifthen</span><span class="p">(</span><span class="nx">islast</span><span class="p">(</span><span class="nx">xs</span><span class="p">))</span>
+                                   <span class="p">(()=&gt;()=&gt;</span><span class="kc">null</span><span class="p">)</span>
+                                   <span class="p">(()=&gt;()=&gt;</span><span class="nx">next</span><span class="p">(</span><span class="nx">tail</span><span class="p">(</span><span class="nx">xs</span><span class="p">)))</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">gen</span> <span class="o">=</span> <span class="p">(</span><span class="nx">check</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">acc</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">xs</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">acc</span><span class="p">(()=&gt;</span><span class="nx">fn</span><span class="p">(</span><span class="nx">head</span><span class="p">(</span><span class="nx">xs</span><span class="p">)))</span>
+                                                 <span class="p">(</span><span class="nx">check</span><span class="p">(</span><span class="nx">gen</span><span class="p">(</span><span class="nx">check</span><span class="p">)(</span><span class="nx">acc</span><span class="p">)(</span><span class="nx">fn</span><span class="p">))(</span><span class="nx">xs</span><span class="p">))</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">fold</span> <span class="o">=</span> <span class="nx">gen</span> <span class="p">(</span><span class="nx">ends</span><span class="p">)</span>
+</pre></div>
+
+
 <h2 id="more">More<a class="headerlink" href="#more" title="Permanent link">&para;</a></h2>
 <p>There are many other functions that we should explore, like filter, reverse, index, etc.</p>
 <p>But I think by now we can appreciate that <a href="https://www.cs.kent.ac.uk/people/staff/dat/miranda/whyfp90.pdf">functions are really powerful</a> bulding blocks.</p>
