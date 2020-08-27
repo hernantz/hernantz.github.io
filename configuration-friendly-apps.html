@@ -42,7 +42,7 @@ on <time datetime="2018-05-11T00:00:00-03:00">2018-05-11</time>,       under <a 
       tagged with <a href="http://hernantz.github.io/tag/python.html">python</a>, <a href="http://hernantz.github.io/tag/best-practices.html">best-practices</a>, <a href="http://hernantz.github.io/tag/configuration.html">configuration</a>, <a href="http://hernantz.github.io/tag/architecture.html">architecture</a> and <a href="http://hernantz.github.io/tag/tools.html">tools</a>.
     </p>
   </summary>
-  <p><img alt="configuration management" src="/images/configuration.png" title="Configuration management" /></p>
+  <p><img alt="configuration management" src="/images/configuration.png" title="Configuration management"></p>
 <p>Configuration is just another API of your app. It allows us to preset or modify
 it's behavior based on where it is installed and how it will be executed,
 providing more flexibility to the users of such software.</p>
@@ -80,8 +80,8 @@ us with the needed building blocks for us to use as we please.</p>
 
 <span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
     <span class="n">__tablename__</span> <span class="o">=</span> <span class="s1">&#39;person&#39;</span>
-    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">250</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">250</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="c1"># Engine used to store data</span>
 <span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;sqlite:///sqlalchemy_example.db&#39;</span><span class="p">)</span>
@@ -114,11 +114,11 @@ machine, it can be executed in production or in testing environments.</p>
 <p>Configuration for a project might come from different sources, like <code>.ini</code>
 files, envirionment variables, etc.</p>
 <p>For example, there is a common pattern to read configurations in environment
-variables<sup id="fnref:0"><a class="footnote-ref" href="#fn:0" rel="footnote">1</a></sup> that look similar to the code below:</p>
-<div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;DEBUG&quot;</span><span class="p">,</span> <span class="bp">False</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+variables<sup id="fnref:0"><a class="footnote-ref" href="#fn:0">1</a></sup> that look similar to the code below:</p>
+<div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;DEBUG&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 
 
@@ -155,7 +155,7 @@ different libraries it is using.</p>
 <span class="kn">from</span> <span class="nn">app</span> <span class="kn">import</span> <span class="n">main</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">ChainMap</span>
 
-<span class="n">defaults</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;debug&#39;</span><span class="p">:</span> <span class="bp">False</span><span class="p">}</span>
+<span class="n">defaults</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;debug&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
 
 <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
 <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--debug&#39;</span><span class="p">)</span>
@@ -173,7 +173,7 @@ different libraries it is using.</p>
 </pre></div>
 
 
-<p>This snippet uses <code>ChainMap</code><sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">3</a></sup> to lookup values in different dictionary-like objects. To our convenience, the <code>configparser</code> module has builtin support to read multiple <code>.ini</code> files and merge them.</p>
+<p>This snippet uses <code>ChainMap</code><sup id="fnref:2"><a class="footnote-ref" href="#fn:2">3</a></sup> to lookup values in different dictionary-like objects. To our convenience, the <code>configparser</code> module has builtin support to read multiple <code>.ini</code> files and merge them.</p>
 <h3 id="a-single-executable-file">A single executable file<a class="headerlink" href="#a-single-executable-file" title="Permanent link">&para;</a></h3>
 <p>Another anti-pattern to be aware of is having as many configuration modules as
 environment there are:  <code>dev_settings.py</code>, <code>staging_settings.py</code>,
@@ -213,7 +213,7 @@ configuration from code, which gives us some nice features:</p>
 <ol>
 <li>Ship configuration separately from code. There is no need to modify code in
    order to change it's behavior.</li>
-<li>Plain text files are <em>universal</em> <sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">5</a></sup>. Can be edited with any text editor,
+<li>Plain text files are <em>universal</em> <sup id="fnref:4"><a class="footnote-ref" href="#fn:4">5</a></sup>. Can be edited with any text editor,
    no need to mess with db connectors/sql/scripts to configure an app.</li>
 <li>No need to know a programming language to configure the app. <a href="https://www.vagrantup.com/docs/vagrantfile/" title="Vagrantfile">Vagrant</a>,
    for example, uses Ruby for it's <code>Vagrantfile</code>, it is a bummer to have to
@@ -313,13 +313,13 @@ for daemons.</p>
 <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">signal</span>
 
-<span class="k">def</span> <span class="nf">get_config</span><span class="p">(</span><span class="n">rel</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">get_config</span><span class="p">(</span><span class="n">rel</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="kn">import</span> <span class="nn">config</span>
     <span class="k">if</span> <span class="n">rel</span><span class="p">:</span>
-        <span class="nb">reload</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+        <span class="n">reload</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">config</span>
 
-<span class="n">running</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">running</span> <span class="o">=</span> <span class="kc">True</span>
 
 <span class="k">def</span> <span class="nf">run</span><span class="p">():</span>
     <span class="k">while</span> <span class="n">running</span><span class="p">:</span>
@@ -331,11 +331,11 @@ for daemons.</p>
     <span class="c1"># Use kill -15 &lt;pid&gt;</span>
     <span class="k">if</span> <span class="n">signum</span> <span class="o">==</span> <span class="n">signal</span><span class="o">.</span><span class="n">SIGTERM</span><span class="p">:</span>
         <span class="k">global</span> <span class="n">running</span>
-        <span class="n">running</span> <span class="o">=</span> <span class="bp">False</span>  <span class="c1"># terminate daemon</span>
+        <span class="n">running</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># terminate daemon</span>
 
     <span class="c1"># kill -1 &lt;pid&gt;</span>
     <span class="k">elif</span> <span class="n">signum</span> <span class="o">==</span> <span class="n">signal</span><span class="o">.</span><span class="n">SIGHUP</span><span class="p">:</span>
-        <span class="n">get_config</span><span class="p">(</span><span class="n">rel</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>  <span class="c1"># reload config</span>
+        <span class="n">get_config</span><span class="p">(</span><span class="n">rel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># reload config</span>
 
 
 <span class="n">signal</span><span class="o">.</span><span class="n">signal</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGHUP</span><span class="p">,</span> <span class="n">signal_handler</span><span class="p">)</span>
@@ -355,7 +355,7 @@ systemd:</p>
 
 <p>If the app is part of a distributed cloud system, the same principle can still
 be used. For example, Consul, a tool for service and configuration discovery
-provides <code>consult-template</code>, a command to populate values from Consul <sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">4</a></sup> into
+provides <code>consult-template</code>, a command to populate values from Consul <sup id="fnref:3"><a class="footnote-ref" href="#fn:3">4</a></sup> into
 automatically <a href="https://vimeo.com/109626825" title="Consul template demo">updated templates</a> that can emit reload commands to programs
 to pick it up.</p>
 <div class="highlight"><pre><span></span>$ consul-template <span class="se">\</span>
@@ -390,7 +390,7 @@ discribed about configuration-discovery.</p>
     <span class="p">]</span>
 <span class="p">)</span>
 
-<span class="n">DEBUG_MODE</span> <span class="o">=</span> <span class="n">config</span><span class="p">(</span><span class="s1">&#39;debug&#39;</span><span class="p">,</span> <span class="n">cast</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">boolean</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">DEBUG_MODE</span> <span class="o">=</span> <span class="n">config</span><span class="p">(</span><span class="s1">&#39;debug&#39;</span><span class="p">,</span> <span class="n">cast</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">boolean</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 
 
@@ -400,7 +400,7 @@ conventions, like checking for <code>DEBUG</code> in the environment but <code>d
 ini files, and pasing that to a boolean. All these loaders are optional, and
 won't fail if the files are missing.</p>
 <p>With prettyconf there are no excuses not to follow best pratices for
-configuration management in your app <sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">2</a></sup>.</p>
+configuration management in your app <sup id="fnref:1"><a class="footnote-ref" href="#fn:1">2</a></sup>.</p>
 <h2 id="conclusions">Conclusions<a class="headerlink" href="#conclusions" title="Permanent link">&para;</a></h2>
 <p>Don't take responsibility of gathering configuration when developing a library.</p>
 <p>In your app, always use a single <code>config.py</code> file that gathers all settings and
@@ -413,13 +413,13 @@ Postgresql, etc) should be handled separately, by specialized tools.</p>
 production envs.  Containers are gaining popularity everywhere, use something
 like <a href="https://www.docker.com/" title="Docker">docker</a> or <a href="https://github.com/ansible/ansible-container" title="Ansible Container">ansible-container</a> for both realms.</p>
 <div class="footnote">
-<hr />
+<hr>
 <ol>
 <li id="fn:0">
 <p>They are <a href="https://12factor.net/config" title="The twelve-factor app | config">very common</a>, specially among cloud platforms, like AWS lambda
   functions. It's one of the simplest ways for configuring programs without the
   need to mess with files (which requires access to a filesystem) or CLI parsers,
-  since this ENV vars are available as is, like an already parsed config file.&#160;<a class="footnote-backref" href="#fnref:0" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+  since this ENV vars are available as is, like an already parsed config file.&#160;<a class="footnote-backref" href="#fnref:0" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:1">
 <p>Now, not everything that is configuration should me handled through prettyconf.
@@ -428,18 +428,18 @@ like <a href="https://www.docker.com/" title="Docker">docker</a> or <a href="htt
   key lookup, should be handled apart from prettyconf.</p>
 <p>Another responsability that doesn't belong to prettyconf is populating
   configuration files of setting variables in the environment, since it is
-  someone else's duty, like <a href="https://github.com/theskumar/python-dotenv">python-dotenv</a>.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+  someone else's duty, like <a href="https://github.com/theskumar/python-dotenv">python-dotenv</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
 <p>Turns out that using <code>ChainMap</code> you can implement this very simple
-  <a href="https://blog.florimondmanca.com/a-practical-usage-of-chainmap-in-python">lookup algorithm</a>.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+  <a href="https://blog.florimondmanca.com/a-practical-usage-of-chainmap-in-python">lookup algorithm</a>.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 <li id="fn:3">
 <p>A nice thing about <code>consul-template</code> is that it let's you use the same
   configuration system on any environment. So when developing locally, you
   don't care about Consul, you app simply reads a config file. When in
   production, you can inject dynamic settings and <a href="https://github.com/theskumar/python-dotenv">even secrets</a> to the app
-  lookup algorithm.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+  lookup algorithm.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 4 in the text">&#8617;</a></p>
 </li>
 <li id="fn:4">
 <p>The problem with using something other than plain text files is that you
@@ -455,7 +455,7 @@ like <a href="https://www.docker.com/" title="Docker">docker</a> or <a href="htt
 <p>Another application that faces a similar problem is Vim with it's
   <code>.vimrc</code> file, it's written in a custom language called <code>VimL</code>. The <a href="https://xi-editor.io/xi-editor/docs/config.html" title="Xi editor">Xi</a>
   editor, fixed this problem by switching to TOML files and plugins for
-  extending functionality.&#160;<a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+  extending functionality.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 5 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>

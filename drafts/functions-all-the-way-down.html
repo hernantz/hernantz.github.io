@@ -42,7 +42,7 @@ on <time datetime="2020-06-20T00:00:00-03:00">2020-06-20</time>,       under <a 
       tagged with <a href="http://hernantz.github.io/tag/fp.html">fp</a>, <a href="http://hernantz.github.io/tag/ideas.html">ideas</a> and <a href="http://hernantz.github.io/tag/javascript.html">javascript</a>.
     </p>
   </summary>
-  <p><img alt="tutles all the way down" src="/images/turtles-all-the-way-down.jpg" title="Turtles all the way down" /></p>
+  <p><img alt="tutles all the way down" src="/images/turtles-all-the-way-down.jpg" title="Turtles all the way down"></p>
 <h2 id="computations">Computations<a class="headerlink" href="#computations" title="Permanent link">&para;</a></h2>
 <p>The basic building block of a functional language is obviously a function. Functions represent computations that take inputs and return outputs as results.</p>
 <div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">add</span> <span class="o">=</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span>
@@ -99,6 +99,13 @@ Something like the if/then blocks in other languages. We don't have anything but
 </pre></div>
 
 
+<p>We still have one problem, <code>x</code> and <code>y</code> are values already evaluated, we should only execute them if and only if they need to. For this we re-define our booleans as:</p>
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">truthy</span> <span class="o">=</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">x</span><span class="p">()</span>
+<span class="kd">let</span> <span class="nx">falsy</span> <span class="o">=</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">y</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Booleans now represent branches in computation by functions that are executed lazily.</p>
 <h2 id="containers">Containers<a class="headerlink" href="#containers" title="Permanent link">&para;</a></h2>
 <p>As we can see, functions can hold data as parameters and as return values. But how do we represent a container of x number of values?</p>
 <p>We could create a function that take n arguments.</p>
@@ -115,6 +122,16 @@ Something like the if/then blocks in other languages. We don't have anything but
 
 <p>Now I can create a list of any size, it is lists all the way down!</p>
 <div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">numbers</span> <span class="o">=</span> <span class="nx">list</span><span class="p">(</span><span class="mi">1</span><span class="p">)(</span><span class="nx">list</span><span class="p">(</span><span class="mi">2</span><span class="p">)(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+
+
+<p>It would be very convenient to be able to tell when the list finishes, so lets establish the convention that the last element of any list is always the null value.</p>
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">numbers</span> <span class="o">=</span> <span class="nx">list</span><span class="p">(</span><span class="mi">1</span><span class="p">)(</span><span class="nx">list</span><span class="p">(</span><span class="mi">2</span><span class="p">)(</span><span class="nx">list</span><span class="p">(</span><span class="mi">3</span><span class="p">)(</span><span class="kc">null</span><span class="p">)))</span>
+</pre></div>
+
+
+<p>This way we can create lists that hold just one element.</p>
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">one</span> <span class="o">=</span> <span class="nx">list</span><span class="p">(</span><span class="mi">1</span><span class="p">)(</span><span class="kc">null</span><span class="p">)</span>
 </pre></div>
 
 
@@ -137,20 +154,33 @@ Something like the if/then blocks in other languages. We don't have anything but
 </pre></div>
 
 
-<p>It would be very convenient to be able to tell when the list finishes, so lets establish the convention that the last element of any list is always the null value.</p>
-<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">numbers</span> <span class="o">=</span> <span class="nx">list</span><span class="p">(</span><span class="mi">1</span><span class="p">)(</span><span class="nx">list</span><span class="p">(</span><span class="mi">2</span><span class="p">)(</span><span class="nx">list</span><span class="p">(</span><span class="mi">3</span><span class="p">)(</span><span class="kc">null</span><span class="p">)))</span>
+<p>Now, this won't work unless we re-define our contract with lists.</p>
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">numbers</span> <span class="o">=</span> <span class="nx">list</span><span class="p">(()=&gt;</span><span class="mi">1</span><span class="p">)(()=&gt;</span><span class="nx">list</span><span class="p">(()=&gt;</span><span class="mi">2</span><span class="p">)(()=&gt;</span><span class="kc">null</span><span class="p">))</span>
 </pre></div>
 
 
-<p>This way we can create lists that hold just one element.</p>
-<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">one</span> <span class="o">=</span> <span class="nx">list</span><span class="p">(</span><span class="mi">1</span><span class="p">)(</span><span class="kc">null</span><span class="p">)</span>
+<p>Lists now contain functions that return values, only when inspected.</p>
+<h2 id="generators">Generators<a class="headerlink" href="#generators" title="Permanent link">&para;</a></h2>
+<p>Not only our lists are immutable, but also lazy. This has a nice side effect. We have accidentally created lazy generators.</p>
+<p>This means we can represent infinite lists, like all the natural numbers that are computed only when accessed/evaluated:</p>
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">numbers</span> <span class="o">=</span> <span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">list</span><span class="p">(()=&gt;</span><span class="nx">n</span><span class="p">)(()=&gt;</span><span class="nx">numbers</span><span class="p">(</span><span class="nx">n</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+
+
+<p>If we start generalizing again, the signature of every generator would look like this: </p>
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">gen</span> <span class="o">=</span> <span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">list</span><span class="p">(()=&gt;</span><span class="nx">v</span><span class="p">)(()=&gt;</span><span class="nx">gen</span><span class="p">(</span><span class="nx">fn</span><span class="p">)(</span><span class="nx">fn</span><span class="p">(</span><span class="nx">v</span><span class="p">)))</span>
+</pre></div>
+
+
+<p>And now we can rewrite our natural numbers generator reusing the <code>incr</code> function.</p>
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">numbers</span> <span class="o">=</span> <span class="nx">gen</span><span class="p">(</span><span class="nx">incr</span><span class="p">)(</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 
 
 <h2 id="loops">Loops<a class="headerlink" href="#loops" title="Permanent link">&para;</a></h2>
-<p>Instead of loops, we use recursion to manipulate values one by one.
-The layout of map looks like this:</p>
-<div class="highlight"><pre><span></span><span class="nx">map</span> <span class="o">=</span> <span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">xs</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">list</span><span class="p">(</span><span class="nx">fn</span><span class="p">(</span><span class="nx">head</span><span class="p">(</span><span class="nx">xs</span><span class="p">)))(</span><span class="nx">map</span><span class="p">(</span><span class="nx">fn</span><span class="p">)(</span><span class="nx">tail</span><span class="p">(</span><span class="nx">xs</span><span class="p">)))</span>
+<p>Instead of <em>for loops</em>, we use recursion to iterate and manipulate values one by one.</p>
+<p>The layout of map looks like this:</p>
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">map</span> <span class="o">=</span> <span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">xs</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">list</span><span class="p">(()=&gt;</span><span class="nx">fn</span><span class="p">(</span><span class="nx">head</span><span class="p">(</span><span class="nx">xs</span><span class="p">)))(()=&gt;</span><span class="nx">map</span><span class="p">(</span><span class="nx">fn</span><span class="p">)(</span><span class="nx">tail</span><span class="p">(</span><span class="nx">xs</span><span class="p">)))</span>
 </pre></div>
 
 
@@ -158,8 +188,8 @@ The layout of map looks like this:</p>
 <p>We face our first problem with recursion. We need a base case:</p>
 <div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">map</span> <span class="o">=</span> <span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">xs</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">list</span><span class="p">(()=&gt;</span><span class="nx">fn</span><span class="p">(</span><span class="nx">head</span><span class="p">(</span><span class="nx">xs</span><span class="p">)))</span>
                               <span class="p">(</span><span class="nx">ifthen</span><span class="p">(</span><span class="nx">islast</span><span class="p">(</span><span class="nx">xs</span><span class="p">))</span>
-                                     <span class="p">(</span><span class="kc">null</span><span class="p">)</span>
-                                     <span class="p">(</span><span class="nx">map</span><span class="p">(</span><span class="nx">fn</span><span class="p">)(</span><span class="nx">tail</span><span class="p">(</span><span class="nx">xs</span><span class="p">))))</span>   
+                                     <span class="p">(()=&gt;()=&gt;</span><span class="kc">null</span><span class="p">)</span>
+                                     <span class="p">(()=&gt;()=&gt;</span><span class="nx">map</span><span class="p">(</span><span class="nx">fn</span><span class="p">)(</span><span class="nx">tail</span><span class="p">(</span><span class="nx">xs</span><span class="p">))))</span>
 </pre></div>
 
 
@@ -169,21 +199,6 @@ The layout of map looks like this:</p>
 </pre></div>
 
 
-<p>We should only trigger the recursion if there is a tail left to be processed. So let's avoid the eager execution by wrapping it inside a function.</p>
-<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">map</span> <span class="o">=</span> <span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">xs</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">list</span><span class="p">(()=&gt;</span><span class="nx">fn</span><span class="p">(</span><span class="nx">head</span><span class="p">(</span><span class="nx">xs</span><span class="p">)))</span>
-                              <span class="p">(</span><span class="nx">ifthen</span><span class="p">(</span><span class="nx">islast</span><span class="p">(</span><span class="nx">xs</span><span class="p">))</span>
-                                     <span class="p">(()=&gt;()=&gt;</span><span class="kc">null</span><span class="p">)</span>
-                                     <span class="p">(()=&gt;()=&gt;</span><span class="nx">map</span><span class="p">(</span><span class="nx">fn</span><span class="p">)(</span><span class="nx">tail</span><span class="p">(</span><span class="nx">xs</span><span class="p">))))</span>
-</pre></div>
-
-
-<p>Now, this won't work unless we re-define our contract with booleans.</p>
-<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">truthy</span> <span class="o">=</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">x</span><span class="p">()</span>
-<span class="kd">let</span> <span class="nx">falsy</span> <span class="o">=</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">y</span><span class="p">()</span>
-</pre></div>
-
-
-<p>Booleans now represent branches in computation by functions that are executed lazily.</p>
 <p>A more general implementation is to accept other function as the accumulator.</p>
 <div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">fold</span> <span class="o">=</span> <span class="p">(</span><span class="nx">acc</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">xs</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">acc</span><span class="p">(()=&gt;</span><span class="nx">fn</span><span class="p">(</span><span class="nx">head</span><span class="p">(</span><span class="nx">xs</span><span class="p">)))</span>
                                        <span class="p">(</span><span class="nx">ifthen</span><span class="p">(</span><span class="nx">islast</span><span class="p">(</span><span class="nx">xs</span><span class="p">))</span>
@@ -203,20 +218,13 @@ The layout of map looks like this:</p>
 </pre></div>
 
 
-<h2 id="generators">Generators<a class="headerlink" href="#generators" title="Permanent link">&para;</a></h2>
-<p>Our contract with lists had to also be updated (for getters to work). Lists now contain functions that return values when inspected.</p>
-<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">numbers</span> <span class="o">=</span> <span class="nx">list</span><span class="p">(()=&gt;</span><span class="mi">1</span><span class="p">)(()=&gt;</span><span class="nx">list</span><span class="p">(()=&gt;</span><span class="mi">2</span><span class="p">)(()=&gt;</span><span class="kc">null</span><span class="p">))</span>
-</pre></div>
-
-
-<p>This has a nice side effect. Not only our lists are immutable, but also lazy. We have accidentally created lazy generators.</p>
-<p>This means we can represent infinite lists, like all the natural numbers that are computed only when accessed/evaluated:</p>
-<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">numbers</span> <span class="o">=</span> <span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">list</span><span class="p">(()=&gt;</span><span class="nx">n</span><span class="p">)(()=&gt;</span><span class="nx">numbers</span><span class="p">(</span><span class="nx">n</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
-</pre></div>
-
-
+<h2 id="streams">Streams<a class="headerlink" href="#streams" title="Permanent link">&para;</a></h2>
 <p>If we start generalizing again, a way to iterate </p>
-<div class="highlight"><pre><span></span><span class="nv">let</span> <span class="nv">gen</span> <span class="o">=</span> <span class="k">next</span> <span class="o">=&gt;</span> <span class="nv">list</span><span class="ss">(()</span><span class="o">=&gt;</span><span class="nv">head</span><span class="ss">(</span><span class="k">next</span><span class="ss">))(()</span><span class="o">=&gt;</span><span class="nv">gen</span><span class="ss">(</span><span class="nv">tail</span><span class="ss">(</span><span class="k">next</span><span class="ss">))</span>
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">cons</span> <span class="o">=</span> <span class="p">(</span><span class="nx">xs</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">list</span><span class="p">(()=&gt;</span><span class="nx">head</span><span class="p">(</span><span class="nx">xs</span><span class="p">))(()=&gt;</span><span class="nx">cons</span><span class="p">(</span><span class="nx">tail</span><span class="p">(</span><span class="nx">xs</span><span class="p">))</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">cons</span> <span class="o">=</span> <span class="p">(</span><span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">gen</span>
 </pre></div>
 
 
@@ -225,19 +233,28 @@ The layout of map looks like this:</p>
 
 
 <p>Map is a list creator so we can join maps.</p>
-<p>nat = gen(incr(0))</p>
 <div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">ends</span> <span class="o">=</span> <span class="p">(</span><span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">xs</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">ifthen</span><span class="p">(</span><span class="nx">islast</span><span class="p">(</span><span class="nx">xs</span><span class="p">))</span>
                                    <span class="p">(()=&gt;()=&gt;</span><span class="kc">null</span><span class="p">)</span>
-                                   <span class="p">(()=&gt;()=&gt;</span><span class="nx">next</span><span class="p">(</span><span class="nx">tail</span><span class="p">(</span><span class="nx">xs</span><span class="p">)))</span>
+                                   <span class="p">(()=&gt;()=&gt;</span><span class="nx">next</span><span class="p">(</span><span class="nx">xs</span><span class="p">))</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">gen</span> <span class="o">=</span> <span class="p">(</span><span class="nx">check</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">acc</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">xs</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">acc</span><span class="p">(()=&gt;</span><span class="nx">fn</span><span class="p">(</span><span class="nx">head</span><span class="p">(</span><span class="nx">xs</span><span class="p">)))</span>
-                                                 <span class="p">(</span><span class="nx">check</span><span class="p">(</span><span class="nx">gen</span><span class="p">(</span><span class="nx">check</span><span class="p">)(</span><span class="nx">acc</span><span class="p">)(</span><span class="nx">fn</span><span class="p">))(</span><span class="nx">xs</span><span class="p">))</span>
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">check</span> <span class="o">=</span> <span class="p">(</span><span class="nx">condition</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">xs</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">ifthen</span><span class="p">(</span><span class="nx">condition</span><span class="p">(</span><span class="nx">xs</span><span class="p">))</span>
+                                                  <span class="p">(()=&gt;()=&gt;</span><span class="kc">null</span><span class="p">)</span>
+                                                  <span class="p">(()=&gt;()=&gt;</span><span class="nx">next</span><span class="p">(</span><span class="nx">tail</span><span class="p">(</span><span class="nx">xs</span><span class="p">)))</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">fold</span> <span class="o">=</span> <span class="nx">gen</span> <span class="p">(</span><span class="nx">ends</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">ends</span> <span class="o">=</span> <span class="nx">check</span> <span class="p">(</span><span class="nx">islast</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">gen</span> <span class="o">=</span> <span class="p">(</span><span class="nx">acc</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">check</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">acc</span><span class="p">(()=&gt;</span><span class="nx">v</span><span class="p">)</span>
+                                                <span class="p">(</span><span class="nx">check</span><span class="p">(</span><span class="nx">gen</span><span class="p">(</span><span class="nx">check</span><span class="p">)(</span><span class="nx">acc</span><span class="p">)(</span><span class="nx">fn</span><span class="p">))(</span><span class="nx">fn</span><span class="p">(</span><span class="nx">v</span><span class="p">)))</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">gen</span><span class="p">(</span><span class="nx">list</span><span class="p">)(</span><span class="nx">ends</span><span class="p">)</span>
 </pre></div>
 
 

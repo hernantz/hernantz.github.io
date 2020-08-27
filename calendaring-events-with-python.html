@@ -42,7 +42,7 @@ on <time datetime="2017-04-13T00:00:00-03:00">2017-04-13</time>,       under <a 
       tagged with <a href="http://hernantz.github.io/tag/python.html">python</a> and <a href="http://hernantz.github.io/tag/timezones.html">timezones</a>.
     </p>
   </summary>
-  <p><img alt="Aztec sun stone" src="/images/aztec-calendar.png" title="Aztec sun stone" /></p>
+  <p><img alt="Aztec sun stone" src="/images/aztec-calendar.png" title="Aztec sun stone"></p>
 <p>2012 passed and the world did not end. Well, scheduling the next world's
 doomsday can be tricky, because working with dates is so. In this post I'll try
 to share some basic tips and gotchas I learned the hard way while building a
@@ -50,7 +50,7 @@ calendaring app, that hopefully will make this task easier for you.</p>
 <h2 id="one-time-events">One time events<a class="headerlink" href="#one-time-events" title="Permanent link">&para;</a></h2>
 <p>Because of the way we track time, a single moment can happen at different times
 of the day for different people around the globe and a single date and time can
-never happen or happen twice thanks to <a href="https://en.wikipedia.org/wiki/Daylight_saving_time" title="Daylight Saving Time">DST</a> or government regulations <sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>.
+never happen or happen twice thanks to <a href="https://en.wikipedia.org/wiki/Daylight_saving_time" title="Daylight Saving Time">DST</a> or government regulations <sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.
 Yes, working with dates is <a href="http://infiniteundo.com/post/25509354022/more-falsehoods-programmers-believe-about-time" title="More falsehoods programmers believe about time">hard</a>. </p>
 <p><strong>Dates mean nothing without the proper context</strong>, and that context is provided
 by what it is called a <a href="https://en.wikipedia.org/wiki/Tz_database" title="Olson Database">timezone</a>.</p>
@@ -62,12 +62,12 @@ very special one.</p>
 other dates with. It is meant to be objective in the sense that it never was
 and won't ever be affected by local time changes.</p>
 <p>Timezone information is available in the <a href="https://en.wikipedia.org/wiki/Tz_database" title="Olson Database">Olson database</a>. Since timezones
-change every now and then, it is vital to keep your software up to date <sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>.
+change every now and then, it is vital to keep your software up to date <sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>.
 If that is something you cannot control, be advised that the dates your system
 is dealing with might not be correct (i.e. in an embedded device).</p>
 <p>Updates can be handled differently depending on the OS, program or language you
 use. For example, in Linux there is a package <code>tzdata</code>, but some programs like
-the browser or Postgres contain their own copies <sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup>.</p>
+the browser or Postgres contain their own copies <sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>.</p>
 <p>Python provides naive dates by default through it's <code>datetime</code> module, and it
 is someone else's responsibility to provide tz information, for example, <code>pytz</code>
 is a <a href="http://pytz.sourceforge.net/" title="pytz - World Timezone Definitions for Python">library</a> that <em>"brings the Olson tz database into Python"</em> providing
@@ -82,10 +82,10 @@ timezone classes to use with <code>datetime</code> objects.</p>
 
 
 <p>Some attempts have been made for providing extra help to disambiguate naive
-dates <sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup>, but still, it is highly recommended that you <strong>convert dates to UTC
+dates <sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>, but still, it is highly recommended that you <strong>convert dates to UTC
 as soon as they enter the system</strong> and work with them that way for calculations
 and queries. Despite the fact that you can take naive dates as being <a href="http://lucumr.pocoo.org/2011/7/15/eppur-si-muove/" title="“Eppur si muove!”* – Dealing with Timezones in Python">UTC
-implicitly</a>, I would suggest to still <a href="https://julien.danjou.info/blog/2015/python-and-timezones" title="Timezones and Python">attach the UTC tz</a> to them <sup id="fnref:6"><a class="footnote-ref" href="#fn:6" rel="footnote">6</a></sup>.
+implicitly</a>, I would suggest to still <a href="https://julien.danjou.info/blog/2015/python-and-timezones" title="Timezones and Python">attach the UTC tz</a> to them <sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup>.
 This way, all the information is there, and it becomes easier to reason about
 dates.</p>
 <p>For example, when logging events, you can see logs that have the same date,
@@ -105,14 +105,14 @@ UTC and in the <a href="https://en.wikipedia.org/wiki/ISO_8601" title="ISO 8601"
 <p>Even more, a sever could fire repeated crons or skip them if not configured to
 <a href="http://www.creativedeletion.com/2015/08/07/why-not-to-use-server-local-time.html" title="Why not to ask the server for its &quot;local time">use UTC</a> due to a DST switch.</p>
 <p>When doing calculations, despite the fact that you can manipulate
-aware dates transparently <sup id="fnref:7"><a class="footnote-ref" href="#fn:7" rel="footnote">7</a></sup> the math is evident for the programmer if those
+aware dates transparently <sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup> the math is evident for the programmer if those
 dates are in UTC:</p>
 <div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">buenos_aires</span>
 <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="n">tzinfo</span><span class="o">=&lt;</span><span class="n">DstTzInfo</span> <span class="s1">&#39;America/Buenos_Aires&#39;</span> <span class="o">-</span><span class="mo">03</span><span class="o">-</span><span class="mi">1</span> <span class="n">day</span><span class="p">,</span> <span class="mi">21</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span> <span class="n">STD</span><span class="o">&gt;</span><span class="p">)</span>
+    <span class="n">tzinfo</span><span class="o">=&lt;</span><span class="n">DstTzInfo</span> <span class="s1">&#39;America/Buenos_Aires&#39;</span> <span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">1</span> <span class="n">day</span><span class="p">,</span> <span class="mi">21</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span> <span class="n">STD</span><span class="o">&gt;</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">madrid</span>
 <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> 
-    <span class="n">tzinfo</span><span class="o">=&lt;</span><span class="n">DstTzInfo</span> <span class="s1">&#39;Europe/Madrid&#39;</span> <span class="n">CEST</span><span class="o">+</span><span class="mi">2</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span> <span class="n">DST</span><span class="o">&gt;</span><span class="p">)</span>
+    <span class="n">tzinfo</span><span class="o">=&lt;</span><span class="n">DstTzInfo</span> <span class="s1">&#39;Europe/Madrid&#39;</span> <span class="n">CEST</span><span class="o">+</span><span class="mi">2</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span> <span class="n">DST</span><span class="o">&gt;</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">buenos_aires</span> <span class="o">-</span> <span class="n">madrid</span>
 <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3600</span><span class="p">)</span>  <span class="c1"># mmm... why? </span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">pytz</span><span class="o">.</span><span class="n">utc</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">buenos_aires</span><span class="p">)</span>
@@ -127,11 +127,11 @@ dates are in UTC:</p>
 <p>Moreover, event durations can be counter-intuitive if you don't keep in mind the
 in-between jumps of DST:</p>
 <div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">eastern</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="s1">&#39;US/Eastern&#39;</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">loc_dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2002</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mo">00</span><span class="p">)</span>  <span class="c1"># date occured twice</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">end</span> <span class="o">=</span> <span class="n">eastern</span><span class="o">.</span><span class="n">localize</span><span class="p">(</span><span class="n">loc_dt</span><span class="p">,</span> <span class="n">is_dst</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>  <span class="c1"># notice the is_dst flag</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">loc_dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2002</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">00</span><span class="p">)</span>  <span class="c1"># date occured twice</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">end</span> <span class="o">=</span> <span class="n">eastern</span><span class="o">.</span><span class="n">localize</span><span class="p">(</span><span class="n">loc_dt</span><span class="p">,</span> <span class="n">is_dst</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># notice the is_dst flag</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">end</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
 <span class="s1">&#39;2002-10-27T01:30:00-05:00&#39;</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">start</span> <span class="o">=</span> <span class="n">eastern</span><span class="o">.</span><span class="n">localize</span><span class="p">(</span><span class="n">loc_dt</span><span class="p">,</span> <span class="n">is_dst</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">start</span> <span class="o">=</span> <span class="n">eastern</span><span class="o">.</span><span class="n">localize</span><span class="p">(</span><span class="n">loc_dt</span><span class="p">,</span> <span class="n">is_dst</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">start</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
 <span class="s1">&#39;2002-10-27T01:30:00-04:00&#39;</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span>
@@ -168,10 +168,10 @@ table for convertions.</p>
 <div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2002</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>  <span class="c1"># never existed in US/Eastern</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">dt</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">tzinfo</span><span class="o">=</span><span class="n">eastern</span><span class="p">)</span>
 <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2002</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span>
-    <span class="n">tzinfo</span><span class="o">=&lt;</span><span class="n">DstTzInfo</span> <span class="s1">&#39;US/Eastern&#39;</span> <span class="n">LMT</span><span class="o">-</span><span class="mi">1</span> <span class="n">day</span><span class="p">,</span> <span class="mi">19</span><span class="p">:</span><span class="mo">04</span><span class="p">:</span><span class="mo">00</span> <span class="n">STD</span><span class="o">&gt;</span><span class="p">)</span>  <span class="c1"># what?</span>
+    <span class="n">tzinfo</span><span class="o">=&lt;</span><span class="n">DstTzInfo</span> <span class="s1">&#39;US/Eastern&#39;</span> <span class="n">LMT</span><span class="o">-</span><span class="mi">1</span> <span class="n">day</span><span class="p">,</span> <span class="mi">19</span><span class="p">:</span><span class="mi">04</span><span class="p">:</span><span class="mi">00</span> <span class="n">STD</span><span class="o">&gt;</span><span class="p">)</span>  <span class="c1"># what?</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">eastern</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">eastern</span><span class="o">.</span><span class="n">localize</span><span class="p">(</span><span class="n">dt</span><span class="p">))</span>
 <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2002</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span>
-    <span class="n">tzinfo</span><span class="o">=&lt;</span><span class="n">DstTzInfo</span> <span class="s1">&#39;US/Eastern&#39;</span> <span class="n">EDT</span><span class="o">-</span><span class="mi">1</span> <span class="n">day</span><span class="p">,</span> <span class="mi">20</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span> <span class="n">DST</span><span class="o">&gt;</span><span class="p">)</span>  <span class="c1"># much better</span>
+    <span class="n">tzinfo</span><span class="o">=&lt;</span><span class="n">DstTzInfo</span> <span class="s1">&#39;US/Eastern&#39;</span> <span class="n">EDT</span><span class="o">-</span><span class="mi">1</span> <span class="n">day</span><span class="p">,</span> <span class="mi">20</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span> <span class="n">DST</span><span class="o">&gt;</span><span class="p">)</span>  <span class="c1"># much better</span>
 </pre></div>
 
 
@@ -190,7 +190,7 @@ go</a>, there are some extra details to pay attention to:</p>
 important.</p>
 <h2 id="recurring-events">Recurring events<a class="headerlink" href="#recurring-events" title="Permanent link">&para;</a></h2>
 <p>For generating a series of events you should use the <code>dateutils.rrule</code> package
-<sup id="fnref:8"><a class="footnote-ref" href="#fn:8" rel="footnote">8</a></sup>, which allows a great deal of configuration and manages corner cases like:
+<sup id="fnref:8"><a class="footnote-ref" href="#fn:8">8</a></sup>, which allows a great deal of configuration and manages corner cases like:
 <em>every last day of the month</em>.</p>
 <p>But when it comes to creating recurring events, say every Monday at 11:00 am,
 the user wants those dates to always stay at 11:00 am even if there is a DST
@@ -216,7 +216,7 @@ user will see in their local timezone stays intact.</p>
 <div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">tz</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="s1">&#39;America/Chicago&#39;</span><span class="p">)</span>  <span class="c1"># observes DST switch on March 9</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">localized</span> <span class="o">=</span> <span class="p">[</span><span class="n">tz</span><span class="o">.</span><span class="n">localize</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span> <span class="k">for</span> <span class="n">dt</span> <span class="ow">in</span> <span class="n">dates</span><span class="p">]</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">dt</span> <span class="ow">in</span> <span class="n">localized</span><span class="p">:</span>
-        <span class="k">print</span> <span class="s1">&#39;Central: {}; UTC: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">dt</span><span class="o">.</span><span class="n">astimezone</span><span class="p">(</span><span class="n">pytz</span><span class="o">.</span><span class="n">utc</span><span class="p">))</span>
+        <span class="nb">print</span> <span class="s1">&#39;Central: </span><span class="si">{}</span><span class="s1">; UTC: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">dt</span><span class="o">.</span><span class="n">astimezone</span><span class="p">(</span><span class="n">pytz</span><span class="o">.</span><span class="n">utc</span><span class="p">))</span>
 <span class="s1">&#39;Central: 2014-02-24 11:00:00-06:00; UTC: 2014-02-24 17:00:00+00:00&#39;</span>
 <span class="s1">&#39;Central: 2014-03-03 11:00:00-06:00; UTC: 2014-03-03 17:00:00+00:00&#39;</span>
 <span class="s1">&#39;Central: 2014-03-10 11:00:00-05:00; UTC: 2014-03-10 16:00:00+00:00&#39;</span>
@@ -322,7 +322,7 @@ generate a series based on the user preferences for when to receive them.</p>
 generated in advance is wasteful.</p>
 <p>In this use case you only care about the next recurrence after now. Every now
 and then (i.e. every minute) you poll all scheduled reminders that expired,
-execute the task and calculate the next occurrence with a cron-like job <sup id="fnref:9"><a class="footnote-ref" href="#fn:9" rel="footnote">9</a></sup>.</p>
+execute the task and calculate the next occurrence with a cron-like job <sup id="fnref:9"><a class="footnote-ref" href="#fn:9">9</a></sup>.</p>
 <div class="highlight"><pre><span></span><span class="n">user_tz</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="s1">&#39;US/Eastern&#39;</span><span class="p">)</span>
 <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span>
 <span class="n">days</span> <span class="o">=</span> <span class="p">[</span><span class="n">rrule</span><span class="o">.</span><span class="n">MO</span><span class="p">,</span> <span class="n">rrule</span><span class="o">.</span><span class="n">WE</span><span class="p">]</span>
@@ -347,7 +347,7 @@ retrace changes.</p>
 things related to dates I have read about, and had to work with in Python. So I
 suggest you to read all linked pages, they are there for a reason!</p>
 <div class="footnote">
-<hr />
+<hr>
 <ol>
 <li id="fn:1">
 <p>Many countries have started and stopped using DST and different times.</p>
@@ -369,34 +369,34 @@ ambiguous period before the switch as daylight savings time, and the ambiguous p
 as standard time.</p>
 <p>Extracts from <em>the pytz <a href="http://pytz.sourceforge.net/" title="pytz - World Timezone Definitions for Python">documentation</a></em></p>
 </blockquote>
-<p><a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p><a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
 <p>If you see a date formatted like <code>yyyy-mm-ddThh:mm:ss-03:00</code>, it means that it's offset is UTC-3
   but it also means that to convert it to UTC you have to make that <code>-03:00</code> part a <code>+00:00</code>, so in
-  this case you have to add three hours to the date for it to be in UTC.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+  this case you have to add three hours to the date for it to be in UTC.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 <li id="fn:3">
 <p>The ICANN organization, which is in charge of hosting the Olson Database, publishes updates through
   a <a href="https://mm.icann.org/mailman/listinfo/tz-announce" title="tz announce maling list">mailing list</a>. Some languages like Elixir, have <a href="http://www.creativedeletion.com/2015/12/03/timezone-updates-need-fixing.html" title="Timezone updates need to be fixed">automatic builds</a> for their date packages
-  when the db gets updated.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+  when the db gets updated.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 <li id="fn:4">
-<p>More information about programs, libraries and systems can be found <a href="https://www.iana.org/time-zones/repository/tz-link.html" title="Sources for time zone and daylight saving time data">here</a>.&#160;<a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+<p>More information about programs, libraries and systems can be found <a href="https://www.iana.org/time-zones/repository/tz-link.html" title="Sources for time zone and daylight saving time data">here</a>.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
 </li>
 <li id="fn:5">
 <p><a href="https://www.python.org/dev/peps/pep-0495/" title="PEP 495 -- Local Time Disambiguation">PEP495</a> suggests adding an attribute called <code>fold</code> to instances of the <code>datetime</code> classes. For
   example, on a system set to US/Eastern timezone:</p>
-<div class="highlight"><pre><span></span>  <span class="o">&gt;&gt;&gt;</span> <span class="n">dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2014</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
-  <span class="o">&gt;&gt;&gt;</span> <span class="n">dt</span><span class="p">.</span><span class="n">astimezone</span><span class="p">().</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%D %T %Z%z&#39;</span><span class="p">)</span>
-  <span class="s1">&#39;11/02/14 01:30:00 EDT-0400&#39;</span>
-  <span class="o">&gt;&gt;&gt;</span> <span class="n">dt</span><span class="p">.</span><span class="k">replace</span><span class="p">(</span><span class="n">fold</span><span class="o">=</span><span class="mi">1</span><span class="p">).</span><span class="n">astimezone</span><span class="p">().</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%D %T %Z%z&#39;</span><span class="p">)</span>
-  <span class="s1">&#39;11/02/14 01:30:00 EST-0500&#39;</span>
+<div class="highlight"><pre><span></span><span class="err">  &gt;&gt;&gt; dt = datetime(2014, 11, 2, 1, 30)</span>
+<span class="err">  &gt;&gt;&gt; dt.astimezone().strftime(&#39;%D %T %Z%z&#39;)</span>
+<span class="err">  &#39;11/02/14 01:30:00 EDT-0400&#39;</span>
+<span class="err">  &gt;&gt;&gt; dt.replace(fold=1).astimezone().strftime(&#39;%D %T %Z%z&#39;)</span>
+<span class="err">  &#39;11/02/14 01:30:00 EST-0500&#39;</span>
 </pre></div>
 
 
 <p>This way we can represent just one moment in time in an ambiguous case.
-  Other ideas were also discussed in <a href="https://www.python.org/dev/peps/pep-0431/" title="Timezone support improvements">PEP431</a>&#160;<a class="footnote-backref" href="#fnref:5" rev="footnote" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+  Other ideas were also discussed in <a href="https://www.python.org/dev/peps/pep-0431/" title="Timezone support improvements">PEP431</a>&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">&#8617;</a></p>
 </li>
 <li id="fn:6">
 <p>This is a peak at some of the terminology involved when dealing with dates:</p>
@@ -407,19 +407,19 @@ as standard time.</p>
 <li>normalizing – shifting a localized datetime object from one timezone to another, this changes
     both tzinfo and datetime object.</li>
 </ul>
-<p>As the Delorean docs <a href="http://delorean.readthedocs.io/en/latest/quickstart.html" title="Delorean docs">explain it</a>.&#160;<a class="footnote-backref" href="#fnref:6" rev="footnote" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+<p>As the Delorean docs <a href="http://delorean.readthedocs.io/en/latest/quickstart.html" title="Delorean docs">explain it</a>.&#160;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 6 in the text">&#8617;</a></p>
 </li>
 <li id="fn:7">
 <p>Python cannot mix aware and naive dates or you will get a <code>TypeError:
-  can't compare offset-naive and offset-aware datetimes</code> exception.&#160;<a class="footnote-backref" href="#fnref:7" rev="footnote" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+  can't compare offset-naive and offset-aware datetimes</code> exception.&#160;<a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 7 in the text">&#8617;</a></p>
 </li>
 <li id="fn:8">
 <p><a href="https://labix.org/python-dateutil" title="python-dateutil">dateutils</a> is a must if your app makes intensive use of dates. It
-  also provides some other niceties like <code>relativedelta</code> and <code>parser.parse</code>.&#160;<a class="footnote-backref" href="#fnref:8" rev="footnote" title="Jump back to footnote 8 in the text">&#8617;</a></p>
+  also provides some other niceties like <code>relativedelta</code> and <code>parser.parse</code>.&#160;<a class="footnote-backref" href="#fnref:8" title="Jump back to footnote 8 in the text">&#8617;</a></p>
 </li>
 <li id="fn:9">
 <p>If you are working with Django, you might find <a href="https://github.com/ambitioninc/django-localized-recurrence" title="Django localized recurrence">django-localized-recurrence</a>
-  interesting.&#160;<a class="footnote-backref" href="#fnref:9" rev="footnote" title="Jump back to footnote 9 in the text">&#8617;</a></p>
+  interesting.&#160;<a class="footnote-backref" href="#fnref:9" title="Jump back to footnote 9 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>

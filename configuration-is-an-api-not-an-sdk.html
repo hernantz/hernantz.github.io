@@ -42,7 +42,7 @@ on <time datetime="2020-06-27T00:00:00-03:00">2020-06-27</time>,       under <a 
       tagged with <a href="http://hernantz.github.io/tag/python.html">python</a>, <a href="http://hernantz.github.io/tag/best-practices.html">best-practices</a>, <a href="http://hernantz.github.io/tag/tools.html">tools</a>, <a href="http://hernantz.github.io/tag/configuration.html">configuration</a> and <a href="http://hernantz.github.io/tag/architecture.html">architecture</a>.
     </p>
   </summary>
-  <p><img alt="Control room | photo by @patrykgradyscom at Unsplash" src="/images/control-room.jpg" title="Control room | photo by @patrykgradyscom at Unsplash" /></p>
+  <p><img alt="Control room | photo by @patrykgradyscom at Unsplash" src="/images/control-room.jpg" title="Control room | photo by @patrykgradyscom at Unsplash"></p>
 <p>Configuration is every setting that needs to change based on the environment where the app is executed. It helps you <em>preset</em> the state of your app, without having to change the code. This is why it is important to provide a clear separation of configuration and code.</p>
 <h2 id="why-are-executable-config-files-a-bad-idea">Why are executable config files a bad idea?<a class="headerlink" href="#why-are-executable-config-files-a-bad-idea" title="Permanent link">&para;</a></h2>
 <p><a href="http://hernantz.github.io/configuration-friendly-apps.html" title="Configuration-friendly apps">Configuration is just another API</a> of your app.</p>
@@ -130,7 +130,7 @@ Docs</a> website, but here is a preview of how to use it.</p>
             <span class="n">IniFile</span><span class="p">(</span><span class="s2">&quot;config.ini&quot;</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="s2">&quot;myapp&quot;</span><span class="p">)</span>
         <span class="p">]</span>
 
-    <span class="n">DEBUG</span> <span class="o">=</span> <span class="n">Value</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">cast</span><span class="o">=</span><span class="n">as_boolean</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Toggle debugging mode.&quot;</span><span class="p">)</span>
+    <span class="n">DEBUG</span> <span class="o">=</span> <span class="n">Value</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cast</span><span class="o">=</span><span class="n">as_boolean</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Toggle debugging mode.&quot;</span><span class="p">)</span>
     <span class="n">DATABASE</span> <span class="o">=</span> <span class="n">Value</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;postgres://localhost:5432/mydb&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Database connection.&quot;</span><span class="p">)</span>
 </pre></div>
 
@@ -146,21 +146,21 @@ Docs</a> website, but here is a preview of how to use it.</p>
 <p>overridden at runtime</p>
 <div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">dev_config</span> <span class="o">=</span> <span class="n">AppConfig</span><span class="p">(</span><span class="n">loaders</span><span class="o">=</span><span class="p">[</span><span class="n">IniFile</span><span class="p">(</span><span class="s2">&quot;dev_settings.ini&quot;</span><span class="p">)])</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">dev_config</span><span class="o">.</span><span class="n">DEBUG</span>
-<span class="bp">True</span>
+<span class="kc">True</span>
 </pre></div>
 
 
 <p>accessed (and lazily evaluated) as dict or object</p>
 <div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">config</span><span class="o">.</span><span class="n">DEBUG</span>
-<span class="bp">False</span>
+<span class="kc">False</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;DEBUG&quot;</span><span class="p">]</span>
-<span class="bp">False</span>
+<span class="kc">False</span>
 </pre></div>
 
 
 <p>introspected and iterated</p>
 <div class="highlight"><pre><span></span> <span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">setting</span> <span class="ow">in</span> <span class="n">config</span><span class="p">:</span>
-<span class="o">...</span>     <span class="k">print</span><span class="p">(</span><span class="n">setting</span><span class="p">)</span>
+<span class="o">...</span>     <span class="nb">print</span><span class="p">(</span><span class="n">setting</span><span class="p">)</span>
 <span class="o">...</span>
 <span class="p">(</span><span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span> <span class="n">Value</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s2">&quot;DEBUG&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Toggle debugging on/off.&quot;</span><span class="p">))</span>
 <span class="p">(</span><span class="s1">&#39;DATABASE&#39;</span><span class="p">,</span> <span class="n">Value</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s2">&quot;DATABASE&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Database connection.&quot;</span><span class="p">))</span>

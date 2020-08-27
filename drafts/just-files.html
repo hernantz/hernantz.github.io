@@ -50,7 +50,7 @@ be done with oneshot scripts in systemd (like run migrations for example).</p>
 <p>Transactional updates: https://www.youtube.com/watch?v=ureneyH06AE</p>
 <p>We need a virtualenv but for system packages. Otherwise python, rust, javascript, etc re-implement the wheel over and over.</p>
 <p>Documentation should teach, not tell.
-Reprocible builds come at the cost of more disk space, you need a lib which works fine with versions v0.[1-3], the user already installed v0.2 but you specified v0.1 in your dependencies, the user will get both copies installed (v0.1 and v0.2), even though only one was enough.</p>
+Reproducible builds come at the cost of more disk space, you need a lib which works fine with versions v0.[1-3], the user already installed v0.2 but you specified v0.1 in your dependencies, the user will get both copies installed (v0.1 and v0.2), even though only one was enough.</p>
 <p>Qué pasa en Nix con paquetes que cambian de acuerdo a la arquitectura o SO -&gt; Son packetes distintos.
 Cómo se hace configuración, man pages, etc en Nix, symlinks igual que con binarios?</p>
 <p>https://cachix.org/
@@ -68,6 +68,7 @@ Pakfile -&gt; toml: contiene el listado de dependencias
 Packfile.lock -&gt; contiene el graph freezado de dependencias
 un clon de nix en C y sin el DSL
 http://holocm.org/
+https://www.gobolinux.org/at_a_glance.html
 https://wiki.archlinux.org/index.php/Pacman/Rosetta
 https://micromind.me/en/posts/from-docker-container-to-bootable-linux-disk-image/
 https://reproducible-builds.org/
@@ -107,16 +108,19 @@ all packages need to be curated, or users would have to embrace the dependency h
 <p>"The downside is that the approach works best when packages are aware of the Nix approach. But the packages have not been written with Nix in mind, and some work is needed per package to adapt to the approach."</p>
 <p>nix-thesis: https://edolstra.github.io/pubs/phd-thesis.pdf</p>
 <p><code>pak --lock</code> should create a Pakfile.lock?</p>
-<p>--root can change the default store directory.</p>
+<p><code>--root</code> can change the default store directory.</p>
 <p>there are no optional dependencies, if something is optional it can be installed explicitly by the user.</p>
 <p>Maybe each <code>pak [un]install &lt;package-name==version&gt; --lock</code></p>
 <p>This uses a local <code>Pakfile</code> in the pwd, other files can be used by passing the <code>--pakfile=&lt;path-to-pakfile&gt;</code> param or <code>PAKFILE</code> environment variable.</p>
 <p>All packages are installed in a store <code>/var/lib/pak/&lt;package-name-and-version&gt;/&lt;package-md5-sum&gt;/</code>.</p>
 <p><code>Pakfile</code> lists dependencies and package metadata. It is better that KISS packages that have one file for each metadatum (version, sources, checksums, etc)</p>
+<p>We don't need checksums for every file inside the package, this integrity should be checked with the download file checksum and signature.</p>
 <p><code>package-name-version.pak.zst</code> is a tar file (zstd) with all the package content that needs to be extracted. Pak keeps track of all files. We can ask pak which package installed which file.</p>
-<p><code>pak env &lt;envname&gt;</code> enters the enviroment, and sets the <code>PAKFILE</code> env to <code>/usr/share/pak/envs/envname/Pakfile</code></p>
+<p><code>pak env &lt;envname&gt;</code> enters the enviroment, and sets the <code>PAKFILE</code> env to <code>/usr/share/pak/envs/envname/Pakfile</code>.</p>
+<p>It also creates symlinks in the global filesystem to all the files in the store. For example <code>/bin/nginx</code> is going to be a symlink to <code>/var/lib/pak/store/&lt;package-name-and-version&gt;/&lt;package-md5-sum&gt;/nginx</code>
+Another possibility is that <code>pak env</code> puts you in a shell with <code>$PATH</code> env var pointing to the different binaries in the store?</p>
 <p><code>pak env --list</code> lists all available envs in <code>/usr/share/pak/envs/</code></p>
-<p><code>pak run &lt;commmand&gt;</code> run the command within the enviroment</p>
+<p><code>pak run &lt;commmand&gt;</code> run the command within the environment</p>
 <p><code>pak update</code> updates all versions updating also the lock file</p>
 <p><code>pak update &lt;package-name==version&gt;</code> updates only the package name, updating also the lock file</p>
 <p><code>pak taste &lt;package-name&gt;</code> one off shell with the package installed</p>
@@ -134,7 +138,10 @@ An environment is defined in a Pakfile it might list dependencies of <code>.pak<
 <p>https://www.youtube.com/watch?v=oPymb2-IXbg NixOS: How it works and how to install it!</p>
 <p>Like software which needs to be built + released, systems can also be built (packeages installed) and released (services started, db migrations run, etc).</p>
 <p>http://www.cse.unsw.edu.au/~plaice/archive/WWW/1993/P-SPE93-Sloth.pdf</p>
-<p>Use python 3.8 + nuitka</p>
+<p>https://xkcd.com/2347/
+https://jmmv.dev/2020/08/config-files-vs-directories.html
+https://jmmv.dev/2020/08/database-directories.html</p>
+<p>Use python 3.8 + nuitka (give a talk: compyling)</p>
 </article>
 
       <footer class="column-right light">

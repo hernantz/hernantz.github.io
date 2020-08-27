@@ -42,7 +42,7 @@ on <time datetime="2020-06-09T00:00:00-03:00">2020-06-09</time>,       under <a 
       tagged with <a href="http://hernantz.github.io/tag/devops.html">devops</a> and <a href="http://hernantz.github.io/tag/postgresql.html">postgresql</a>.
     </p>
   </summary>
-  <p><img alt="Graph of number of active users" src="/images/demand.png" title="Graph of number of active users" /></p>
+  <p><img alt="Graph of number of active users" src="/images/demand.png" title="Graph of number of active users"></p>
 <p>Our webapp has a pretty predictable demand. We thought it is best to run deployments very early or at very late hours. If they require downtime that is.</p>
 <p>This time we needed to delete a few tables that were growing too much and adding too little with features that no one uses (think of event logs etc) which we replaced with logs, duh!</p>
 <p>So anyway at 6 am I started the deploy, once the app builds it runs the migrations, I put the site in maintenance mode, and the Django release command got stuck in running migrations.</p>

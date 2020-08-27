@@ -42,7 +42,7 @@ on <time datetime="2013-10-24T00:00:00-03:00">2013-10-24</time>,       under <a 
       tagged with <a href="http://hernantz.github.io/tag/python.html">python</a> and <a href="http://hernantz.github.io/tag/ideas.html">ideas</a>.
     </p>
   </summary>
-  <p><img alt="Tree branches" src="/images/tree-branches.jpg" title="Tree branches" /></p>
+  <p><img alt="Tree branches" src="/images/tree-branches.jpg" title="Tree branches"></p>
 <p>In Python we strongly emphasize that code must be elegant and easy to
 interpret, but with PEP8 alone is not enough, many times our logic can be
 nested in a cataract of <code>if</code>/<code>else</code> combinations, which is difficult to
@@ -309,14 +309,14 @@ dictionary lookups:</p>
 <p>This way if we need to extend the code with more permissions
 functions, we get this branching logic for free.</p>
 <p>Another example is turning flags on/off, with code like this:</p>
-<div class="highlight"><pre><span></span><span class="n">var</span> <span class="o">=</span> <span class="bp">False</span>
+<div class="highlight"><pre><span></span><span class="n">var</span> <span class="o">=</span> <span class="kc">False</span>
 
 <span class="k">if</span> <span class="n">foo</span><span class="p">:</span>
-    <span class="n">var</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">var</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="k">elif</span> <span class="n">bar</span><span class="p">:</span>
-    <span class="n">var</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">var</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="k">elif</span> <span class="n">baz</span><span class="p">:</span>
-    <span class="n">var</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">var</span> <span class="o">=</span> <span class="kc">True</span>
 </pre></div>
 
 
@@ -330,7 +330,7 @@ switch/elif structure with more readable/maintainable code.</p>
 <h2 id="if-you-write-flags">If you write flags<a class="headerlink" href="#if-you-write-flags" title="Permanent link">&para;</a></h2>
 <p>Flags or sentinels are checks we do to avoid executing pieces of code that are
 optional or blocks that are computationally expensive.</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="c1">###</span>
     <span class="c1">#####</span>
 
@@ -343,7 +343,7 @@ optional or blocks that are computationally expensive.</p>
 <p>Would be better off if we let the user of our function execute any pluggable code
 to filter:</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">noop</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kws</span><span class="p">):</span>
-    <span class="k">return</span> <span class="bp">None</span>
+    <span class="k">return</span> <span class="kc">None</span>
 
 <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="n">noop</span><span class="p">):</span>
     <span class="c1">###</span>
@@ -358,8 +358,8 @@ variables, by allowing you to set some defaults that can be overriwritten at
 runtime. But currently if you want to avoid any confusion with mutable
 defaults, you set the default argument to some (immutable) sentinel that
 indicates the real default argument should be used.</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 
     <span class="c1">###</span>
@@ -389,10 +389,10 @@ re-grouped, sliced, etc. These checks are also flags!</p>
 <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 <span class="o">&gt;&gt;&gt;</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">numbers</span><span class="p">,</span> <span class="n">less_than_one</span><span class="p">):</span>
-<span class="o">...</span>     <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;{key}: {list(group)}&#39;</span><span class="p">)</span>
+<span class="o">...</span>     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">group</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="o">...</span> 
-<span class="bp">False</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
-<span class="bp">True</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="kc">False</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="kc">True</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 
 

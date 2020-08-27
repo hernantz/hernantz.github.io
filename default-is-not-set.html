@@ -44,8 +44,8 @@ on <time datetime="2020-04-23T00:00:00-03:00">2020-04-23</time>,       under <a 
   </summary>
   <p>Usually for optional params we use <code>None</code> as default in the function signature.
 If it is <code>None</code> we assume the user did not specify one.</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">param</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">param</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">param</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">param</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">param</span> <span class="o">=</span> <span class="n">get_system_default</span><span class="p">()</span>
     <span class="c1"># ...</span>
 
@@ -56,7 +56,7 @@ If it is <code>None</code> we assume the user did not specify one.</p>
 
 
 <p>But what if <code>None</code> is a possible value too?</p>
-<div class="highlight"><pre><span></span><span class="n">main</span><span class="p">(</span><span class="n">param</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>   <span class="c1"># OOPS, will calculate anther value for param</span>
+<div class="highlight"><pre><span></span><span class="n">main</span><span class="p">(</span><span class="n">param</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>   <span class="c1"># OOPS, will calculate anther value for param</span>
 </pre></div>
 
 

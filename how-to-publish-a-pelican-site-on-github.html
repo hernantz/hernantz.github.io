@@ -42,7 +42,7 @@ on <time datetime="2014-05-18T00:00:00-03:00">2014-05-18</time>,       under <a 
       tagged with <a href="http://hernantz.github.io/tag/pelican.html">pelican</a>, <a href="http://hernantz.github.io/tag/git.html">git</a> and <a href="http://hernantz.github.io/tag/python.html">python</a>.
     </p>
   </summary>
-  <p><img alt="Pelican a static site publishing tool" src="/images/pelican-a-static-site-publishing-tool-github.png" /></p>
+  <p><img alt="Pelican a static site publishing tool" src="/images/pelican-a-static-site-publishing-tool-github.png"></p>
 <p>This is a step by step guide on how to publish a pelican website on Github, and
 how not to get the site's codebase so tightly coupled to where it is deployed.
 If in the future we want to publish it somewhere else, there isn't much to be
@@ -83,11 +83,11 @@ output that will be published:</p>
 
 <p>But before running it, make sure the following settings are in <code>publishconf.py</code>:</p>
 <div class="highlight"><pre><span></span><span class="c1"># don&#39;t delete our .git submodule dir</span>
-<span class="n">DELETE_OUTPUT_DIRECTORY</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="n">DELETE_OUTPUT_DIRECTORY</span> <span class="o">=</span> <span class="kc">False</span>
 
 <span class="c1"># use the correct abs url</span>
 <span class="n">SITEURL</span> <span class="o">=</span> <span class="s1">&#39;http://username.github.io&#39;</span>
-<span class="n">RELATIVE_URLS</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="n">RELATIVE_URLS</span> <span class="o">=</span> <span class="kc">False</span>
 </pre></div>
 
 

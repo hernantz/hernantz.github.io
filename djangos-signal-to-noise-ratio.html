@@ -42,7 +42,7 @@ on <time datetime="2016-04-29T00:00:00-03:00">2016-04-29</time>,       under <a 
       tagged with <a href="http://hernantz.github.io/tag/django.html">django</a>, <a href="http://hernantz.github.io/tag/python.html">python</a> and <a href="http://hernantz.github.io/tag/best-practices.html">best-practices</a>.
     </p>
   </summary>
-  <p><img alt="Contact (1997) scene" src="/images/signal-to-noise-ratio.png" title="Contact (1997)" /></p>
+  <p><img alt="Contact (1997) scene" src="/images/signal-to-noise-ratio.png" title="Contact (1997)"></p>
 <h2 id="noise">Noise<a class="headerlink" href="#noise" title="Permanent link">&para;</a></h2>
 <p>Signals allow decoupled applications get notified when actions occur elsewhere
 in the project. This decoupling can become unmaintainable if not enough care
@@ -61,7 +61,7 @@ instance.</p>
 
 <span class="nd">@receiver</span><span class="p">(</span><span class="n">post_save</span><span class="p">,</span> <span class="n">sender</span><span class="o">=</span><span class="n">User</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">create_user_cv</span><span class="p">(</span><span class="n">sender</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;created&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;created&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
         <span class="n">Resume</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get_or_create</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;instance&#39;</span><span class="p">))</span>
 </pre></div>
 
@@ -150,7 +150,7 @@ single handler:</p>
     <span class="n">favorited</span> <span class="o">=</span> <span class="n">M2MField</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;favorite_</span><span class="si">%(class)s</span><span class="s1">&#39;</span><span class="p">)</span>
 
     <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
-        <span class="n">abstract</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="n">abstract</span> <span class="o">=</span> <span class="kc">True</span>
 
     <span class="k">def</span> <span class="nf">notify_new_favorite</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span>

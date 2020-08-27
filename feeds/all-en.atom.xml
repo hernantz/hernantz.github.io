@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/all-en.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2020-06-27T00:00:00-03:00</updated><subtitle>- Mostly lies and rants in plain text.</subtitle><entry><title>Configuration is an API, not an SDK</title><link href="http://hernantz.github.io/configuration-is-an-api-not-an-sdk.html" rel="alternate"></link><published>2020-06-27T00:00:00-03:00</published><updated>2020-06-27T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2020-06-27:/configuration-is-an-api-not-an-sdk.html</id><summary type="html">&lt;p&gt;A configuration architecture for the working dev.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Control room | photo by @patrykgradyscom at Unsplash" src="/images/control-room.jpg" title="Control room | photo by @patrykgradyscom at Unsplash" /&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/all-en.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2020-06-27T00:00:00-03:00</updated><subtitle>- Mostly lies and rants in plain text.</subtitle><entry><title>Configuration is an API, not an SDK</title><link href="http://hernantz.github.io/configuration-is-an-api-not-an-sdk.html" rel="alternate"></link><published>2020-06-27T00:00:00-03:00</published><updated>2020-06-27T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2020-06-27:/configuration-is-an-api-not-an-sdk.html</id><summary type="html">&lt;p&gt;A configuration architecture for the working dev.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Control room | photo by @patrykgradyscom at Unsplash" src="/images/control-room.jpg" title="Control room | photo by @patrykgradyscom at Unsplash"&gt;&lt;/p&gt;
 &lt;p&gt;Configuration is every setting that needs to change based on the environment where the app is executed. It helps you &lt;em&gt;preset&lt;/em&gt; the state of your app, without having to change the code. This is why it is important to provide a clear separation of configuration and code.&lt;/p&gt;
 &lt;h2 id="why-are-executable-config-files-a-bad-idea"&gt;Why are executable config files a bad idea?&lt;a class="headerlink" href="#why-are-executable-config-files-a-bad-idea" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;a href="http://hernantz.github.io/configuration-friendly-apps.html" title="Configuration-friendly apps"&gt;Configuration is just another API&lt;/a&gt; of your app.&lt;/p&gt;
@@ -87,7 +87,7 @@ Docs&lt;/a&gt; website, but here is a preview of how to use it.&lt;/p&gt;
             &lt;span class="n"&gt;IniFile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;config.ini&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;section&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;myapp&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
         &lt;span class="p"&gt;]&lt;/span&gt;
 
-    &lt;span class="n"&gt;DEBUG&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Value&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;default&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cast&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;as_boolean&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Toggle debugging mode.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;DEBUG&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Value&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;default&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cast&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;as_boolean&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Toggle debugging mode.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="n"&gt;DATABASE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Value&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;default&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;postgres://localhost:5432/mydb&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Database connection.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -103,21 +103,21 @@ Docs&lt;/a&gt; website, but here is a preview of how to use it.&lt;/p&gt;
 &lt;p&gt;overridden at runtime&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;dev_config&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;AppConfig&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;loaders&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;IniFile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;dev_settings.ini&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)])&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;dev_config&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DEBUG&lt;/span&gt;
-&lt;span class="bp"&gt;True&lt;/span&gt;
+&lt;span class="kc"&gt;True&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;accessed (and lazily evaluated) as dict or object&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DEBUG&lt;/span&gt;
-&lt;span class="bp"&gt;False&lt;/span&gt;
+&lt;span class="kc"&gt;False&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;DEBUG&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="bp"&gt;False&lt;/span&gt;
+&lt;span class="kc"&gt;False&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;introspected and iterated&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;setting&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="o"&gt;...&lt;/span&gt;     &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;setting&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;...&lt;/span&gt;     &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;setting&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="o"&gt;...&lt;/span&gt;
 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;DEBUG&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Value&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;DEBUG&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Toggle debugging on/off.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;DATABASE&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Value&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;DATABASE&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Database connection.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
@@ -126,7 +126,7 @@ Docs&lt;/a&gt; website, but here is a preview of how to use it.&lt;/p&gt;
 
 &lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The idea of this blog post was to highlight the importance of thinking configuration as an API, to follow best practices and conventions and the need to be flexible for different sources of configuration.&lt;/p&gt;
-&lt;p&gt;I've shamelessly introduced &lt;a href="https://github.com/hernantz/classyconf" title="Classyconf: configuration management for perfectionists with deadlines"&gt;classyconf&lt;/a&gt; as a way to address all this topics, but I'm sure that similar libraries can be found for other languages as well.&lt;/p&gt;</content><category term="Programming"></category><category term="python"></category><category term="best-practices"></category><category term="tools"></category><category term="configuration"></category><category term="architecture"></category></entry><entry><title>Deploying at 6am, a postmortem</title><link href="http://hernantz.github.io/deploying-at-6am-a-postmortem.html" rel="alternate"></link><published>2020-06-09T00:00:00-03:00</published><updated>2020-06-09T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2020-06-09:/deploying-at-6am-a-postmortem.html</id><summary type="html">&lt;p&gt;Another chapter in the IT nightmare stories.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Graph of number of active users" src="/images/demand.png" title="Graph of number of active users" /&gt;&lt;/p&gt;
+&lt;p&gt;I've shamelessly introduced &lt;a href="https://github.com/hernantz/classyconf" title="Classyconf: configuration management for perfectionists with deadlines"&gt;classyconf&lt;/a&gt; as a way to address all this topics, but I'm sure that similar libraries can be found for other languages as well.&lt;/p&gt;</content><category term="Programming"></category><category term="python"></category><category term="best-practices"></category><category term="tools"></category><category term="configuration"></category><category term="architecture"></category></entry><entry><title>Deploying at 6am, a postmortem</title><link href="http://hernantz.github.io/deploying-at-6am-a-postmortem.html" rel="alternate"></link><published>2020-06-09T00:00:00-03:00</published><updated>2020-06-09T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2020-06-09:/deploying-at-6am-a-postmortem.html</id><summary type="html">&lt;p&gt;Another chapter in the IT nightmare stories.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Graph of number of active users" src="/images/demand.png" title="Graph of number of active users"&gt;&lt;/p&gt;
 &lt;p&gt;Our webapp has a pretty predictable demand. We thought it is best to run deployments very early or at very late hours. If they require downtime that is.&lt;/p&gt;
 &lt;p&gt;This time we needed to delete a few tables that were growing too much and adding too little with features that no one uses (think of event logs etc) which we replaced with logs, duh!&lt;/p&gt;
 &lt;p&gt;So anyway at 6 am I started the deploy, once the app builds it runs the migrations, I put the site in maintenance mode, and the Django release command got stuck in running migrations.&lt;/p&gt;
@@ -235,8 +235,8 @@ but it doesn't scale. I'm willing to accept a certain amount of forced
 collectivism, so long as it stays local, accountable and in competition with
 other regulations. But I still stand by freedom, as the beacon of light guiding society to a greater good.&lt;/p&gt;</content><category term="Politics"></category><category term="libertarianism"></category></entry><entry><title>Default is not set</title><link href="http://hernantz.github.io/default-is-not-set.html" rel="alternate"></link><published>2020-04-23T00:00:00-03:00</published><updated>2020-04-23T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2020-04-23:/default-is-not-set.html</id><summary type="html">&lt;p&gt;How can you tell if an optional parameter was set or not?&lt;/p&gt;</summary><content type="html">&lt;p&gt;Usually for optional params we use &lt;code&gt;None&lt;/code&gt; as default in the function signature.
 If it is &lt;code&gt;None&lt;/code&gt; we assume the user did not specify one.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;param&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;param&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;param&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;param&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;param&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get_system_default&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     &lt;span class="c1"&gt;# ...&lt;/span&gt;
 
@@ -247,7 +247,7 @@ If it is &lt;code&gt;None&lt;/code&gt; we assume the user did not specify one.&l
 
 
 &lt;p&gt;But what if &lt;code&gt;None&lt;/code&gt; is a possible value too?&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;param&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;   &lt;span class="c1"&gt;# OOPS, will calculate anther value for param&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;param&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;   &lt;span class="c1"&gt;# OOPS, will calculate anther value for param&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -303,7 +303,7 @@ the &lt;code&gt;NotSet&lt;/code&gt; type.&lt;/p&gt;
 &lt;code&gt;param&lt;/code&gt;. If it is &lt;code&gt;NOT_SET&lt;/code&gt;, then it is not set :)&lt;/p&gt;
 &lt;p&gt;I kind of like the first solution, but if you think that you will end up with
 lots of &lt;code&gt;get_system_default()&lt;/code&gt; calls everywhere in your code, at some point
-switching to this &lt;code&gt;NOT_SET&lt;/code&gt; approach would make sense.&lt;/p&gt;</content><category term="Programming"></category><category term="python"></category></entry><entry><title>Childe Roland to the Dark Tower came</title><link href="http://hernantz.github.io/childe-roland-to-the-dark-tower-came.html" rel="alternate"></link><published>2020-03-27T00:00:00-03:00</published><updated>2020-03-27T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2020-03-27:/childe-roland-to-the-dark-tower-came.html</id><summary type="html">&lt;p&gt;My attempt to fixing the Dark Tower series.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Roland and the Dark Tower" src="/images/the-dark-tower.jpg" title="Roland and the Dark Tower" /&gt;&lt;/p&gt;
+switching to this &lt;code&gt;NOT_SET&lt;/code&gt; approach would make sense.&lt;/p&gt;</content><category term="Programming"></category><category term="python"></category></entry><entry><title>Childe Roland to the Dark Tower came</title><link href="http://hernantz.github.io/childe-roland-to-the-dark-tower-came.html" rel="alternate"></link><published>2020-03-27T00:00:00-03:00</published><updated>2020-03-27T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2020-03-27:/childe-roland-to-the-dark-tower-came.html</id><summary type="html">&lt;p&gt;My attempt to fixing the Dark Tower series.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Roland and the Dark Tower" src="/images/the-dark-tower.jpg" title="Roland and the Dark Tower"&gt;&lt;/p&gt;
 &lt;p&gt;I tend to be very critic with the movies and books I consume. And, if the ideas
 behind them are any good, I get hooked and start to think of ways they could be
 improved.&lt;/p&gt;
@@ -802,7 +802,7 @@ effects, thus making that experiment much more risky for society as a whole.&lt;
 to it. Class conflicts, sexism, xenophobia, antisemitism, racism, cultural
 wars, etc. are some of the possible consequences of trying to subject certain
 groups to the ideology of others. Someday the tide can turn around and history
-shows it doesn't end well.&lt;/p&gt;</content><category term="Politics"></category><category term="rants"></category><category term="ideas"></category><category term="libertarianism"></category></entry><entry><title>Configuration-friendly apps</title><link href="http://hernantz.github.io/configuration-friendly-apps.html" rel="alternate"></link><published>2018-05-11T00:00:00-03:00</published><updated>2018-05-11T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2018-05-11:/configuration-friendly-apps.html</id><summary type="html">&lt;p&gt;Some guidelines for config management in general and Python apps in particular.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="configuration management" src="/images/configuration.png" title="Configuration management" /&gt;&lt;/p&gt;
+shows it doesn't end well.&lt;/p&gt;</content><category term="Politics"></category><category term="rants"></category><category term="ideas"></category><category term="libertarianism"></category></entry><entry><title>Configuration-friendly apps</title><link href="http://hernantz.github.io/configuration-friendly-apps.html" rel="alternate"></link><published>2018-05-11T00:00:00-03:00</published><updated>2018-05-11T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2018-05-11:/configuration-friendly-apps.html</id><summary type="html">&lt;p&gt;Some guidelines for config management in general and Python apps in particular.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="configuration management" src="/images/configuration.png" title="Configuration management"&gt;&lt;/p&gt;
 &lt;p&gt;Configuration is just another API of your app. It allows us to preset or modify
 it's behavior based on where it is installed and how it will be executed,
 providing more flexibility to the users of such software.&lt;/p&gt;
@@ -840,8 +840,8 @@ us with the needed building blocks for us to use as we please.&lt;/p&gt;
 
 &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Person&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Base&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;__tablename__&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;person&amp;#39;&lt;/span&gt;
-    &lt;span class="nb"&gt;id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Column&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Integer&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;primary_key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Column&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;250&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;nullable&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nb"&gt;id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Column&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Integer&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;primary_key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Column&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;250&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;nullable&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
 &lt;span class="c1"&gt;# Engine used to store data&lt;/span&gt;
 &lt;span class="n"&gt;engine&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;create_engine&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;sqlite:///sqlalchemy_example.db&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -874,11 +874,11 @@ machine, it can be executed in production or in testing environments.&lt;/p&gt;
 &lt;p&gt;Configuration for a project might come from different sources, like &lt;code&gt;.ini&lt;/code&gt;
 files, envirionment variables, etc.&lt;/p&gt;
 &lt;p&gt;For example, there is a common pattern to read configurations in environment
-variables&lt;sup id="fnref:0"&gt;&lt;a class="footnote-ref" href="#fn:0" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt; that look similar to the code below:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;DEBUG&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+variables&lt;sup id="fnref:0"&gt;&lt;a class="footnote-ref" href="#fn:0"&gt;1&lt;/a&gt;&lt;/sup&gt; that look similar to the code below:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;DEBUG&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -915,7 +915,7 @@ different libraries it is using.&lt;/p&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;app&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;collections&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ChainMap&lt;/span&gt;
 
-&lt;span class="n"&gt;defaults&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;debug&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="n"&gt;defaults&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;debug&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
 
 &lt;span class="n"&gt;parser&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;argparse&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ArgumentParser&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_argument&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;--debug&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -933,7 +933,7 @@ different libraries it is using.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;This snippet uses &lt;code&gt;ChainMap&lt;/code&gt;&lt;sup id="fnref:2"&gt;&lt;a class="footnote-ref" href="#fn:2" rel="footnote"&gt;3&lt;/a&gt;&lt;/sup&gt; to lookup values in different dictionary-like objects. To our convenience, the &lt;code&gt;configparser&lt;/code&gt; module has builtin support to read multiple &lt;code&gt;.ini&lt;/code&gt; files and merge them.&lt;/p&gt;
+&lt;p&gt;This snippet uses &lt;code&gt;ChainMap&lt;/code&gt;&lt;sup id="fnref:2"&gt;&lt;a class="footnote-ref" href="#fn:2"&gt;3&lt;/a&gt;&lt;/sup&gt; to lookup values in different dictionary-like objects. To our convenience, the &lt;code&gt;configparser&lt;/code&gt; module has builtin support to read multiple &lt;code&gt;.ini&lt;/code&gt; files and merge them.&lt;/p&gt;
 &lt;h3 id="a-single-executable-file"&gt;A single executable file&lt;a class="headerlink" href="#a-single-executable-file" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Another anti-pattern to be aware of is having as many configuration modules as
 environment there are:  &lt;code&gt;dev_settings.py&lt;/code&gt;, &lt;code&gt;staging_settings.py&lt;/code&gt;,
@@ -973,7 +973,7 @@ configuration from code, which gives us some nice features:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Ship configuration separately from code. There is no need to modify code in
    order to change it's behavior.&lt;/li&gt;
-&lt;li&gt;Plain text files are &lt;em&gt;universal&lt;/em&gt; &lt;sup id="fnref:4"&gt;&lt;a class="footnote-ref" href="#fn:4" rel="footnote"&gt;5&lt;/a&gt;&lt;/sup&gt;. Can be edited with any text editor,
+&lt;li&gt;Plain text files are &lt;em&gt;universal&lt;/em&gt; &lt;sup id="fnref:4"&gt;&lt;a class="footnote-ref" href="#fn:4"&gt;5&lt;/a&gt;&lt;/sup&gt;. Can be edited with any text editor,
    no need to mess with db connectors/sql/scripts to configure an app.&lt;/li&gt;
 &lt;li&gt;No need to know a programming language to configure the app. &lt;a href="https://www.vagrantup.com/docs/vagrantfile/" title="Vagrantfile"&gt;Vagrant&lt;/a&gt;,
    for example, uses Ruby for it's &lt;code&gt;Vagrantfile&lt;/code&gt;, it is a bummer to have to
@@ -1073,13 +1073,13 @@ for daemons.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;signal&lt;/span&gt;
 
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_config&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rel&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_config&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rel&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;config&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;rel&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="nb"&gt;reload&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;reload&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;config&lt;/span&gt;
 
-&lt;span class="n"&gt;running&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+&lt;span class="n"&gt;running&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;
 
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;run&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
     &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="n"&gt;running&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -1091,11 +1091,11 @@ for daemons.&lt;/p&gt;
     &lt;span class="c1"&gt;# Use kill -15 &amp;lt;pid&amp;gt;&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;signum&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;signal&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SIGTERM&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="k"&gt;global&lt;/span&gt; &lt;span class="n"&gt;running&lt;/span&gt;
-        &lt;span class="n"&gt;running&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;  &lt;span class="c1"&gt;# terminate daemon&lt;/span&gt;
+        &lt;span class="n"&gt;running&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;  &lt;span class="c1"&gt;# terminate daemon&lt;/span&gt;
 
     &lt;span class="c1"&gt;# kill -1 &amp;lt;pid&amp;gt;&lt;/span&gt;
     &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;signum&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;signal&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SIGHUP&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="n"&gt;get_config&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rel&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# reload config&lt;/span&gt;
+        &lt;span class="n"&gt;get_config&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rel&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# reload config&lt;/span&gt;
 
 
 &lt;span class="n"&gt;signal&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;signal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;signal&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SIGHUP&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;signal_handler&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -1115,7 +1115,7 @@ systemd:&lt;/p&gt;
 
 &lt;p&gt;If the app is part of a distributed cloud system, the same principle can still
 be used. For example, Consul, a tool for service and configuration discovery
-provides &lt;code&gt;consult-template&lt;/code&gt;, a command to populate values from Consul &lt;sup id="fnref:3"&gt;&lt;a class="footnote-ref" href="#fn:3" rel="footnote"&gt;4&lt;/a&gt;&lt;/sup&gt; into
+provides &lt;code&gt;consult-template&lt;/code&gt;, a command to populate values from Consul &lt;sup id="fnref:3"&gt;&lt;a class="footnote-ref" href="#fn:3"&gt;4&lt;/a&gt;&lt;/sup&gt; into
 automatically &lt;a href="https://vimeo.com/109626825" title="Consul template demo"&gt;updated templates&lt;/a&gt; that can emit reload commands to programs
 to pick it up.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ consul-template &lt;span class="se"&gt;\&lt;/span&gt;
@@ -1150,7 +1150,7 @@ discribed about configuration-discovery.&lt;/p&gt;
     &lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span class="n"&gt;DEBUG_MODE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;debug&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cast&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;boolean&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;default&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;DEBUG_MODE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;debug&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cast&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;boolean&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;default&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1160,7 +1160,7 @@ conventions, like checking for &lt;code&gt;DEBUG&lt;/code&gt; in the environment
 ini files, and pasing that to a boolean. All these loaders are optional, and
 won't fail if the files are missing.&lt;/p&gt;
 &lt;p&gt;With prettyconf there are no excuses not to follow best pratices for
-configuration management in your app &lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1" rel="footnote"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+configuration management in your app &lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;h2 id="conclusions"&gt;Conclusions&lt;a class="headerlink" href="#conclusions" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Don't take responsibility of gathering configuration when developing a library.&lt;/p&gt;
 &lt;p&gt;In your app, always use a single &lt;code&gt;config.py&lt;/code&gt; file that gathers all settings and
@@ -1173,13 +1173,13 @@ Postgresql, etc) should be handled separately, by specialized tools.&lt;/p&gt;
 production envs.  Containers are gaining popularity everywhere, use something
 like &lt;a href="https://www.docker.com/" title="Docker"&gt;docker&lt;/a&gt; or &lt;a href="https://github.com/ansible/ansible-container" title="Ansible Container"&gt;ansible-container&lt;/a&gt; for both realms.&lt;/p&gt;
 &lt;div class="footnote"&gt;
-&lt;hr /&gt;
+&lt;hr&gt;
 &lt;ol&gt;
 &lt;li id="fn:0"&gt;
 &lt;p&gt;They are &lt;a href="https://12factor.net/config" title="The twelve-factor app | config"&gt;very common&lt;/a&gt;, specially among cloud platforms, like AWS lambda
   functions. It's one of the simplest ways for configuring programs without the
   need to mess with files (which requires access to a filesystem) or CLI parsers,
-  since this ENV vars are available as is, like an already parsed config file.&amp;#160;&lt;a class="footnote-backref" href="#fnref:0" rev="footnote" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+  since this ENV vars are available as is, like an already parsed config file.&amp;#160;&lt;a class="footnote-backref" href="#fnref:0" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li id="fn:1"&gt;
 &lt;p&gt;Now, not everything that is configuration should me handled through prettyconf.
@@ -1188,18 +1188,18 @@ like &lt;a href="https://www.docker.com/" title="Docker"&gt;docker&lt;/a&gt; or 
   key lookup, should be handled apart from prettyconf.&lt;/p&gt;
 &lt;p&gt;Another responsability that doesn't belong to prettyconf is populating
   configuration files of setting variables in the environment, since it is
-  someone else's duty, like &lt;a href="https://github.com/theskumar/python-dotenv"&gt;python-dotenv&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+  someone else's duty, like &lt;a href="https://github.com/theskumar/python-dotenv"&gt;python-dotenv&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li id="fn:2"&gt;
 &lt;p&gt;Turns out that using &lt;code&gt;ChainMap&lt;/code&gt; you can implement this very simple
-  &lt;a href="https://blog.florimondmanca.com/a-practical-usage-of-chainmap-in-python"&gt;lookup algorithm&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+  &lt;a href="https://blog.florimondmanca.com/a-practical-usage-of-chainmap-in-python"&gt;lookup algorithm&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li id="fn:3"&gt;
 &lt;p&gt;A nice thing about &lt;code&gt;consul-template&lt;/code&gt; is that it let's you use the same
   configuration system on any environment. So when developing locally, you
   don't care about Consul, you app simply reads a config file. When in
   production, you can inject dynamic settings and &lt;a href="https://github.com/theskumar/python-dotenv"&gt;even secrets&lt;/a&gt; to the app
-  lookup algorithm.&amp;#160;&lt;a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 4 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+  lookup algorithm.&amp;#160;&lt;a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 4 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li id="fn:4"&gt;
 &lt;p&gt;The problem with using something other than plain text files is that you
@@ -1215,10 +1215,10 @@ like &lt;a href="https://www.docker.com/" title="Docker"&gt;docker&lt;/a&gt; or 
 &lt;p&gt;Another application that faces a similar problem is Vim with it's
   &lt;code&gt;.vimrc&lt;/code&gt; file, it's written in a custom language called &lt;code&gt;VimL&lt;/code&gt;. The &lt;a href="https://xi-editor.io/xi-editor/docs/config.html" title="Xi editor"&gt;Xi&lt;/a&gt;
   editor, fixed this problem by switching to TOML files and plugins for
-  extending functionality.&amp;#160;&lt;a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 5 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+  extending functionality.&amp;#160;&lt;a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 5 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</content><category term="Programming"></category><category term="python"></category><category term="best-practices"></category><category term="configuration"></category><category term="architecture"></category><category term="tools"></category></entry><entry><title>It's the competition, stupid</title><link href="http://hernantz.github.io/its-the-competition-stupid.html" rel="alternate"></link><published>2018-03-07T00:00:00-03:00</published><updated>2018-03-07T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2018-03-07:/its-the-competition-stupid.html</id><summary type="html">&lt;p&gt;Increasing your chances of prosperity.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="it's the competition stupid" src="/images/competition.jpg" title="Picture of Advertisements in Saigon, Vietnam" /&gt;&lt;/p&gt;
+&lt;/div&gt;</content><category term="Programming"></category><category term="python"></category><category term="best-practices"></category><category term="configuration"></category><category term="architecture"></category><category term="tools"></category></entry><entry><title>It's the competition, stupid</title><link href="http://hernantz.github.io/its-the-competition-stupid.html" rel="alternate"></link><published>2018-03-07T00:00:00-03:00</published><updated>2018-03-07T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2018-03-07:/its-the-competition-stupid.html</id><summary type="html">&lt;p&gt;Increasing your chances of prosperity.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="it's the competition stupid" src="/images/competition.jpg" title="Picture of Advertisements in Saigon, Vietnam"&gt;&lt;/p&gt;
 &lt;h2 id="abstract"&gt;Abstract&lt;a class="headerlink" href="#abstract" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Since high school I've always had the hunch that freedom was the obvious way
 for a society to progress in terms of efficiency, equality, wealth, knowledge
@@ -1249,7 +1249,7 @@ justice.&lt;/p&gt;
 existence.&lt;/p&gt;
 &lt;p&gt;We live and die in a universe where many things are defined in a way we do not
 understand nor control and can change for that matter. The flow of time,
-cancer, gravity, the weather, the certainty of death, the Creation itself &lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+cancer, gravity, the weather, the certainty of death, the Creation itself &lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Because of that, we are not 100% free. &lt;strong&gt;We are conditioned, limited and
 biased&lt;/strong&gt; by what we know and don't know, by what we can and cannot do, by what
 we perceive and feel, by what we believe.&lt;/p&gt;
@@ -1286,7 +1286,7 @@ gender. Very basic and yet very profound in &lt;a href="https://www.psychologyto
 behavior&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;And even if opportunities are provided, not everyone might be wise to take
 advantage of them. Some act rationally and some act compulsively. Some might
-love to travel, some just prefer to stay home &lt;sup id="fnref:2"&gt;&lt;a class="footnote-ref" href="#fn:2" rel="footnote"&gt;2&lt;/a&gt;&lt;/sup&gt;. Some like to study or work
+love to travel, some just prefer to stay home &lt;sup id="fnref:2"&gt;&lt;a class="footnote-ref" href="#fn:2"&gt;2&lt;/a&gt;&lt;/sup&gt;. Some like to study or work
 hard and some simply like to slack. Some only read the finance section in the
 newspaper and some just read the horoscope. Some eat healthy and do sports
 while others smoke and follow a sedentary lifestyle. Well you get the point,
@@ -1295,12 +1295,12 @@ while others smoke and follow a sedentary lifestyle. Well you get the point,
 life is fair? And if not, who should fix it? How should justice be provided?
 What does justice or equality mean? What if to benefit some, others have to be
 affected negatively? Can a fair society be built? How would you define fair?
-&lt;sup id="fnref:3"&gt;&lt;a class="footnote-ref" href="#fn:3" rel="footnote"&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;sup id="fnref:3"&gt;&lt;a class="footnote-ref" href="#fn:3"&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 &lt;p&gt;But wait, not only we are interested in some form of justice, we also want to
 have the chance to enjoy the fruits of prosperity. So we have to agree on it's
 definition too.&lt;/p&gt;
 &lt;p&gt;Some societies may measure progress by advancements in human rights or the
-level of happiness of it's individuals &lt;sup id="fnref:4"&gt;&lt;a class="footnote-ref" href="#fn:4" rel="footnote"&gt;4&lt;/a&gt;&lt;/sup&gt;, others by more &lt;a href="https://www.learnliberty.org/blog/permissionless-innovation-the-fuzzy-idea-that-rules-our-lives/" title="Permissionless innovation"&gt;concrete
+level of happiness of it's individuals &lt;sup id="fnref:4"&gt;&lt;a class="footnote-ref" href="#fn:4"&gt;4&lt;/a&gt;&lt;/sup&gt;, others by more &lt;a href="https://www.learnliberty.org/blog/permissionless-innovation-the-fuzzy-idea-that-rules-our-lives/" title="Permissionless innovation"&gt;concrete
 figures&lt;/a&gt; like GDP, child mortality, use of green energy or number of
 college graduates.&lt;/p&gt;
 &lt;p&gt;Maybe all of them are desirable, but which one is more important and how much
@@ -1384,7 +1384,7 @@ governed.&lt;/p&gt;
 &lt;p&gt;The state, as any other organization, is a living organism, that expands trying
 to survive and perpetuate. There's a natural tendency for governments to grow
 and freedoms to shrink, taxes are never enough, regulations lead to more
-regulations &lt;sup id="fnref:5"&gt;&lt;a class="footnote-ref" href="#fn:5" rel="footnote"&gt;5&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+regulations &lt;sup id="fnref:5"&gt;&lt;a class="footnote-ref" href="#fn:5"&gt;5&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Soon the government becomes a services company, providing or overseeing
 unemployment insurance, energy production and distribution, health care,
 education, food stamps, housing, border security, you name it, taking decisions
@@ -1416,7 +1416,7 @@ with grand schemes to solve big problems.&lt;/p&gt;
 &lt;p&gt;Policymakers might only be &lt;em&gt;"experts"&lt;/em&gt; on some field but will never come up
 with a sufficiently intelligent design for social engineering and problem
 solving, that compares to the vast knowledge embedded in the cultural
-intelligence &lt;sup id="fnref:6"&gt;&lt;a class="footnote-ref" href="#fn:6" rel="footnote"&gt;6&lt;/a&gt;&lt;/sup&gt; of a society, which has developed a luck-affected
+intelligence &lt;sup id="fnref:6"&gt;&lt;a class="footnote-ref" href="#fn:6"&gt;6&lt;/a&gt;&lt;/sup&gt; of a society, which has developed a luck-affected
 trial-and-error method for dealing with challenges on top of decentralized
 flows of information.&lt;/p&gt;
 &lt;p&gt;Moreover, the way representative democracies work today resembles a lot like a
@@ -1444,7 +1444,7 @@ individual. The only choices left for free citizens are:&lt;/p&gt;
 &lt;p&gt;Henceforth, &lt;strong&gt;centralized and external decision making doesn't seem like a good
 idea&lt;/strong&gt;, even if the ones that make those decisions are doing what they think
 best, specially when considering the unforetold consequences of well
-intentioned initiatives &lt;sup id="fnref:7"&gt;&lt;a class="footnote-ref" href="#fn:7" rel="footnote"&gt;7&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+intentioned initiatives &lt;sup id="fnref:7"&gt;&lt;a class="footnote-ref" href="#fn:7"&gt;7&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;What this really means is that governments as a mean of change, can be slow,
 inefficient and a bottleneck for progress. But, above all, they are a very
 risky choice.&lt;/p&gt;
@@ -1461,7 +1461,7 @@ agent of change, the odds of succeeding with top-down central planning are
 going to be low, compared to a society where decentralized experimentation and
 discord are the core values.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;A society that tests it's ideas constantly&lt;/strong&gt;, enabled by freedom
-(understood as a very limited set of artificial impositions &lt;sup id="fnref:8"&gt;&lt;a class="footnote-ref" href="#fn:8" rel="footnote"&gt;8&lt;/a&gt;&lt;/sup&gt;), and guided
+(understood as a very limited set of artificial impositions &lt;sup id="fnref:8"&gt;&lt;a class="footnote-ref" href="#fn:8"&gt;8&lt;/a&gt;&lt;/sup&gt;), and guided
 by humility (necessary to accept that one does not have all the answers), will
 see higher chances of success over those who do not have a framework of
 constant improvement that challenges &lt;em&gt;status quo&lt;/em&gt;.&lt;/p&gt;
@@ -1496,23 +1496,23 @@ with other alternatives.&lt;/p&gt;
 &lt;p&gt;In the long term, and even in an unfair system, competition is what drives
 progress, while centralized planning is the public enemy number one in this
 regard.&lt;/p&gt;
-&lt;p&gt;It's the competition, stupid &lt;sup id="fnref:9"&gt;&lt;a class="footnote-ref" href="#fn:9" rel="footnote"&gt;9&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;It's the competition, stupid &lt;sup id="fnref:9"&gt;&lt;a class="footnote-ref" href="#fn:9"&gt;9&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;
-&lt;hr /&gt;
+&lt;hr&gt;
 &lt;ol&gt;
 &lt;li id="fn:1"&gt;
 &lt;p&gt;"There is a theory which states that if ever anyone discovers exactly
   what the Universe is for and why it is here, it will instantly disappear
   and be replaced by something even more bizarre and inexplicable. There is
   another theory which states that this has already happened."&lt;/p&gt;
-&lt;p&gt;― Douglas Adams, &lt;a href="https://www.goodreads.com/quotes/2397-there-is-a-theory-which-states-that-if-ever-anyone" title="Douglas Adams, The Restaurant at the End of the Universe"&gt;The Restaurant at the End of the Universe&lt;/a&gt;&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;― Douglas Adams, &lt;a href="https://www.goodreads.com/quotes/2397-there-is-a-theory-which-states-that-if-ever-anyone" title="Douglas Adams, The Restaurant at the End of the Universe"&gt;The Restaurant at the End of the Universe&lt;/a&gt;&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li id="fn:2"&gt;
 &lt;p&gt;"Travel is fatal to prejudice, bigotry, and narrow-mindedness, and many
   of our people need it sorely on these accounts. Broad, wholesome,
   charitable views of men and things cannot be acquired by vegetating in
   one little corner of the earth all one's lifetime."&lt;/p&gt;
-&lt;p&gt;― Mark Twain, &lt;a href="https://www.goodreads.com/quotes/1716-travel-is-fatal-to-prejudice-bigotry-and-narrow-mindedness-and-many"&gt;The Innocents Abroad/Roughing It&lt;/a&gt;&amp;#160;&lt;a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;― Mark Twain, &lt;a href="https://www.goodreads.com/quotes/1716-travel-is-fatal-to-prejudice-bigotry-and-narrow-mindedness-and-many"&gt;The Innocents Abroad/Roughing It&lt;/a&gt;&amp;#160;&lt;a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li id="fn:3"&gt;
 &lt;p&gt;The &lt;a href="https://www.flexport.com/blog/port-automation-oakland-rotterdam/" title="Why is the port of Rotterdam more automated than the port of Oakland?"&gt;container revolution&lt;/a&gt; increased world's trade level and
@@ -1528,21 +1528,21 @@ regard.&lt;/p&gt;
   standardization affects workers but benefits the productivity of a
   nation? Going further, what would be a just policy for fair trade? When
   is it ok to apply protectionism? Should it be done at national level?
-  Regional level? For how long?&amp;#160;&lt;a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+  Regional level? For how long?&amp;#160;&lt;a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li id="fn:4"&gt;
 &lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Gross_National_Happiness" title="Gross National Happiness"&gt;Gross National Happiness&lt;/a&gt;: The term was coined in 1972 by Bhutan's
   fourth Dragon King, Jigme Singye Wangchuck. Originally the phrase
   represented a commitment to building an economy that would serve Bhutan's
   culture based on Buddhist spiritual values, instead of western material
-  development gauged by gross domestic product (GDP).&amp;#160;&lt;a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+  development gauged by gross domestic product (GDP).&amp;#160;&lt;a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li id="fn:5"&gt;
 &lt;p&gt;The effects of regulation -- both benefits and costs -- are difficult to
   measure, particularly when considered in the aggregate. As a result,
   analysts often turn to indirect proxies to understand the reach and
   impact of regulations over time. Some of the statistics used to track
-  aggregate regulatory activity over time are presented &lt;a href="https://regulatorystudies.columbian.gwu.edu/reg-stats"&gt;here&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:5" rev="footnote" title="Jump back to footnote 5 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+  aggregate regulatory activity over time are presented &lt;a href="https://regulatorystudies.columbian.gwu.edu/reg-stats"&gt;here&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li id="fn:6"&gt;
 &lt;p&gt;Apparently we tend to overstate the importance of the individual genius
@@ -1553,7 +1553,7 @@ regard.&lt;/p&gt;
   technology. All this learning and knowledge is condensed in the
   &lt;a href="http://www.nationalaffairs.com/publications/detail/cultural-intelligence" title="Cultural Intelligence"&gt;Cultural Intelligence&lt;/a&gt; of a society.
   This might also explain why top-down solutions to alleviate extreme
-  poverty are &lt;a href="https://www.theguardian.com/global-development-professionals-network/2017/feb/08/obsession-with-ending-poverty-is-where-development-is-going-wrong" title="Obsession with ending poverty is where development is going wrong"&gt;often ineffective&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:6" rev="footnote" title="Jump back to footnote 6 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+  poverty are &lt;a href="https://www.theguardian.com/global-development-professionals-network/2017/feb/08/obsession-with-ending-poverty-is-where-development-is-going-wrong" title="Obsession with ending poverty is where development is going wrong"&gt;often ineffective&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 6 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li id="fn:7"&gt;
 &lt;p&gt;Plans not always go as expected. Sometimes this is because the solution
@@ -1567,7 +1567,7 @@ regard.&lt;/p&gt;
   Another example is environmental legislation, that forces industries to
   use/sell energy efficient products, in hopes of reducing energy
   consumption and pollution, just to later find out that this leads to an
-  overall &lt;a href="https://en.wikipedia.org/wiki/Jevons_paradox" title="Jevons paradox"&gt;greater demand of energy&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:7" rev="footnote" title="Jump back to footnote 7 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+  overall &lt;a href="https://en.wikipedia.org/wiki/Jevons_paradox" title="Jevons paradox"&gt;greater demand of energy&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 7 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li id="fn:8"&gt;
 &lt;p&gt;&lt;a href="https://www.learnliberty.org/blog/permissionless-innovation-the-fuzzy-idea-that-rules-our-lives/" title="Permissionless innovation"&gt;Innovation&lt;/a&gt; is often threatened by regulators who require licenses
@@ -1575,15 +1575,15 @@ regard.&lt;/p&gt;
   Bonaparte said: "My motto has always been: A career open to all talents,
   without distinctions of birth", meaning that every person should not
   have artificial impositions or obstacles that prevent them from pursuing
-  a career/goal, should they have the opportunity and capacity to do it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:8" rev="footnote" title="Jump back to footnote 8 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+  a career/goal, should they have the opportunity and capacity to do it.&amp;#160;&lt;a class="footnote-backref" href="#fnref:8" title="Jump back to footnote 8 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li id="fn:9"&gt;
 &lt;p&gt;"It's the competition, stupid" is a slight variation of the phrase &lt;a href="https://en.wikipedia.org/wiki/It%27s_the_economy,_stupid" title="It's the economy, stupid"&gt;"It's
   the economy, stupid"&lt;/a&gt;. At some point I even thought on putting
-  "Competition motherfucker, do you speak it?".&amp;#160;&lt;a class="footnote-backref" href="#fnref:9" rev="footnote" title="Jump back to footnote 9 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+  "Competition motherfucker, do you speak it?".&amp;#160;&lt;a class="footnote-backref" href="#fnref:9" title="Jump back to footnote 9 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</content><category term="Politics"></category><category term="ideas"></category><category term="libertarianism"></category></entry><entry><title>Calendaring events with Python</title><link href="http://hernantz.github.io/calendaring-events-with-python.html" rel="alternate"></link><published>2017-04-13T00:00:00-03:00</published><updated>2017-04-13T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2017-04-13:/calendaring-events-with-python.html</id><summary type="html">&lt;p&gt;Some gotchas you'll find when scheduling the next world's doomsday.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Aztec sun stone" src="/images/aztec-calendar.png" title="Aztec sun stone" /&gt;&lt;/p&gt;
+&lt;/div&gt;</content><category term="Politics"></category><category term="ideas"></category><category term="libertarianism"></category></entry><entry><title>Calendaring events with Python</title><link href="http://hernantz.github.io/calendaring-events-with-python.html" rel="alternate"></link><published>2017-04-13T00:00:00-03:00</published><updated>2017-04-13T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2017-04-13:/calendaring-events-with-python.html</id><summary type="html">&lt;p&gt;Some gotchas you'll find when scheduling the next world's doomsday.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Aztec sun stone" src="/images/aztec-calendar.png" title="Aztec sun stone"&gt;&lt;/p&gt;
 &lt;p&gt;2012 passed and the world did not end. Well, scheduling the next world's
 doomsday can be tricky, because working with dates is so. In this post I'll try
 to share some basic tips and gotchas I learned the hard way while building a
@@ -1591,7 +1591,7 @@ calendaring app, that hopefully will make this task easier for you.&lt;/p&gt;
 &lt;h2 id="one-time-events"&gt;One time events&lt;a class="headerlink" href="#one-time-events" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Because of the way we track time, a single moment can happen at different times
 of the day for different people around the globe and a single date and time can
-never happen or happen twice thanks to &lt;a href="https://en.wikipedia.org/wiki/Daylight_saving_time" title="Daylight Saving Time"&gt;DST&lt;/a&gt; or government regulations &lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;.
+never happen or happen twice thanks to &lt;a href="https://en.wikipedia.org/wiki/Daylight_saving_time" title="Daylight Saving Time"&gt;DST&lt;/a&gt; or government regulations &lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt;.
 Yes, working with dates is &lt;a href="http://infiniteundo.com/post/25509354022/more-falsehoods-programmers-believe-about-time" title="More falsehoods programmers believe about time"&gt;hard&lt;/a&gt;. &lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Dates mean nothing without the proper context&lt;/strong&gt;, and that context is provided
 by what it is called a &lt;a href="https://en.wikipedia.org/wiki/Tz_database" title="Olson Database"&gt;timezone&lt;/a&gt;.&lt;/p&gt;
@@ -1603,12 +1603,12 @@ very special one.&lt;/p&gt;
 other dates with. It is meant to be objective in the sense that it never was
 and won't ever be affected by local time changes.&lt;/p&gt;
 &lt;p&gt;Timezone information is available in the &lt;a href="https://en.wikipedia.org/wiki/Tz_database" title="Olson Database"&gt;Olson database&lt;/a&gt;. Since timezones
-change every now and then, it is vital to keep your software up to date &lt;sup id="fnref:3"&gt;&lt;a class="footnote-ref" href="#fn:3" rel="footnote"&gt;3&lt;/a&gt;&lt;/sup&gt;.
+change every now and then, it is vital to keep your software up to date &lt;sup id="fnref:3"&gt;&lt;a class="footnote-ref" href="#fn:3"&gt;3&lt;/a&gt;&lt;/sup&gt;.
 If that is something you cannot control, be advised that the dates your system
 is dealing with might not be correct (i.e. in an embedded device).&lt;/p&gt;
 &lt;p&gt;Updates can be handled differently depending on the OS, program or language you
 use. For example, in Linux there is a package &lt;code&gt;tzdata&lt;/code&gt;, but some programs like
-the browser or Postgres contain their own copies &lt;sup id="fnref:4"&gt;&lt;a class="footnote-ref" href="#fn:4" rel="footnote"&gt;4&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+the browser or Postgres contain their own copies &lt;sup id="fnref:4"&gt;&lt;a class="footnote-ref" href="#fn:4"&gt;4&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Python provides naive dates by default through it's &lt;code&gt;datetime&lt;/code&gt; module, and it
 is someone else's responsibility to provide tz information, for example, &lt;code&gt;pytz&lt;/code&gt;
 is a &lt;a href="http://pytz.sourceforge.net/" title="pytz - World Timezone Definitions for Python"&gt;library&lt;/a&gt; that &lt;em&gt;"brings the Olson tz database into Python"&lt;/em&gt; providing
@@ -1623,10 +1623,10 @@ timezone classes to use with &lt;code&gt;datetime&lt;/code&gt; objects.&lt;/p&gt
 
 
 &lt;p&gt;Some attempts have been made for providing extra help to disambiguate naive
-dates &lt;sup id="fnref:5"&gt;&lt;a class="footnote-ref" href="#fn:5" rel="footnote"&gt;5&lt;/a&gt;&lt;/sup&gt;, but still, it is highly recommended that you &lt;strong&gt;convert dates to UTC
+dates &lt;sup id="fnref:5"&gt;&lt;a class="footnote-ref" href="#fn:5"&gt;5&lt;/a&gt;&lt;/sup&gt;, but still, it is highly recommended that you &lt;strong&gt;convert dates to UTC
 as soon as they enter the system&lt;/strong&gt; and work with them that way for calculations
 and queries. Despite the fact that you can take naive dates as being &lt;a href="http://lucumr.pocoo.org/2011/7/15/eppur-si-muove/" title="“Eppur si muove!”* – Dealing with Timezones in Python"&gt;UTC
-implicitly&lt;/a&gt;, I would suggest to still &lt;a href="https://julien.danjou.info/blog/2015/python-and-timezones" title="Timezones and Python"&gt;attach the UTC tz&lt;/a&gt; to them &lt;sup id="fnref:6"&gt;&lt;a class="footnote-ref" href="#fn:6" rel="footnote"&gt;6&lt;/a&gt;&lt;/sup&gt;.
+implicitly&lt;/a&gt;, I would suggest to still &lt;a href="https://julien.danjou.info/blog/2015/python-and-timezones" title="Timezones and Python"&gt;attach the UTC tz&lt;/a&gt; to them &lt;sup id="fnref:6"&gt;&lt;a class="footnote-ref" href="#fn:6"&gt;6&lt;/a&gt;&lt;/sup&gt;.
 This way, all the information is there, and it becomes easier to reason about
 dates.&lt;/p&gt;
 &lt;p&gt;For example, when logging events, you can see logs that have the same date,
@@ -1646,14 +1646,14 @@ UTC and in the &lt;a href="https://en.wikipedia.org/wiki/ISO_8601" title="ISO 86
 &lt;p&gt;Even more, a sever could fire repeated crons or skip them if not configured to
 &lt;a href="http://www.creativedeletion.com/2015/08/07/why-not-to-use-server-local-time.html" title="Why not to ask the server for its &amp;quot;local time"&gt;use UTC&lt;/a&gt; due to a DST switch.&lt;/p&gt;
 &lt;p&gt;When doing calculations, despite the fact that you can manipulate
-aware dates transparently &lt;sup id="fnref:7"&gt;&lt;a class="footnote-ref" href="#fn:7" rel="footnote"&gt;7&lt;/a&gt;&lt;/sup&gt; the math is evident for the programmer if those
+aware dates transparently &lt;sup id="fnref:7"&gt;&lt;a class="footnote-ref" href="#fn:7"&gt;7&lt;/a&gt;&lt;/sup&gt; the math is evident for the programmer if those
 dates are in UTC:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;buenos_aires&lt;/span&gt;
 &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2017&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="n"&gt;tzinfo&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;DstTzInfo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;America/Buenos_Aires&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mo"&gt;03&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;21&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;00&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;00&lt;/span&gt; &lt;span class="n"&gt;STD&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;tzinfo&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;DstTzInfo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;America/Buenos_Aires&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;03&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;21&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;00&lt;/span&gt; &lt;span class="n"&gt;STD&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;madrid&lt;/span&gt;
 &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2017&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
-    &lt;span class="n"&gt;tzinfo&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;DstTzInfo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Europe/Madrid&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;CEST&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;00&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;00&lt;/span&gt; &lt;span class="n"&gt;DST&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;tzinfo&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;DstTzInfo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Europe/Madrid&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;CEST&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;00&lt;/span&gt; &lt;span class="n"&gt;DST&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;buenos_aires&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;madrid&lt;/span&gt;
 &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;timedelta&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3600&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# mmm... why? &lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;pytz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;normalize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;buenos_aires&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -1668,11 +1668,11 @@ dates are in UTC:&lt;/p&gt;
 &lt;p&gt;Moreover, event durations can be counter-intuitive if you don't keep in mind the
 in-between jumps of DST:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;eastern&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pytz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;timezone&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;US/Eastern&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;loc_dt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2002&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;27&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mo"&gt;00&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# date occured twice&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;eastern&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;localize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;loc_dt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;is_dst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# notice the is_dst flag&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;loc_dt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2002&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;27&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# date occured twice&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;eastern&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;localize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;loc_dt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;is_dst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# notice the is_dst flag&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;isoformat&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="s1"&gt;&amp;#39;2002-10-27T01:30:00-05:00&amp;#39;&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;eastern&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;localize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;loc_dt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;is_dst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;eastern&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;localize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;loc_dt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;is_dst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;isoformat&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="s1"&gt;&amp;#39;2002-10-27T01:30:00-04:00&amp;#39;&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt;
@@ -1709,10 +1709,10 @@ table for convertions.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;dt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2002&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# never existed in US/Eastern&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;dt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tzinfo&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;eastern&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2002&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="n"&gt;tzinfo&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;DstTzInfo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;US/Eastern&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;LMT&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;19&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;04&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;00&lt;/span&gt; &lt;span class="n"&gt;STD&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# what?&lt;/span&gt;
+    &lt;span class="n"&gt;tzinfo&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;DstTzInfo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;US/Eastern&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;LMT&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;19&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;04&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;00&lt;/span&gt; &lt;span class="n"&gt;STD&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# what?&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;eastern&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;normalize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;eastern&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;localize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dt&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2002&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="n"&gt;tzinfo&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;DstTzInfo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;US/Eastern&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;EDT&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;00&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;00&lt;/span&gt; &lt;span class="n"&gt;DST&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# much better&lt;/span&gt;
+    &lt;span class="n"&gt;tzinfo&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;DstTzInfo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;US/Eastern&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;EDT&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;00&lt;/span&gt; &lt;span class="n"&gt;DST&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# much better&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1731,7 +1731,7 @@ go&lt;/a&gt;, there are some extra details to pay attention to:&lt;/p&gt;
 important.&lt;/p&gt;
 &lt;h2 id="recurring-events"&gt;Recurring events&lt;a class="headerlink" href="#recurring-events" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;For generating a series of events you should use the &lt;code&gt;dateutils.rrule&lt;/code&gt; package
-&lt;sup id="fnref:8"&gt;&lt;a class="footnote-ref" href="#fn:8" rel="footnote"&gt;8&lt;/a&gt;&lt;/sup&gt;, which allows a great deal of configuration and manages corner cases like:
+&lt;sup id="fnref:8"&gt;&lt;a class="footnote-ref" href="#fn:8"&gt;8&lt;/a&gt;&lt;/sup&gt;, which allows a great deal of configuration and manages corner cases like:
 &lt;em&gt;every last day of the month&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;But when it comes to creating recurring events, say every Monday at 11:00 am,
 the user wants those dates to always stay at 11:00 am even if there is a DST
@@ -1757,7 +1757,7 @@ user will see in their local timezone stays intact.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;tz&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pytz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;timezone&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;America/Chicago&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# observes DST switch on March 9&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;localized&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;tz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;localize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;dt&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;dates&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;dt&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;localized&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Central: {}; UTC: {}&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;astimezone&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pytz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utc&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+        &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Central: &lt;/span&gt;&lt;span class="si"&gt;{}&lt;/span&gt;&lt;span class="s1"&gt;; UTC: &lt;/span&gt;&lt;span class="si"&gt;{}&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;astimezone&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pytz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utc&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;span class="s1"&gt;&amp;#39;Central: 2014-02-24 11:00:00-06:00; UTC: 2014-02-24 17:00:00+00:00&amp;#39;&lt;/span&gt;
 &lt;span class="s1"&gt;&amp;#39;Central: 2014-03-03 11:00:00-06:00; UTC: 2014-03-03 17:00:00+00:00&amp;#39;&lt;/span&gt;
 &lt;span class="s1"&gt;&amp;#39;Central: 2014-03-10 11:00:00-05:00; UTC: 2014-03-10 16:00:00+00:00&amp;#39;&lt;/span&gt;
@@ -1863,7 +1863,7 @@ generate a series based on the user preferences for when to receive them.&lt;/p&
 generated in advance is wasteful.&lt;/p&gt;
 &lt;p&gt;In this use case you only care about the next recurrence after now. Every now
 and then (i.e. every minute) you poll all scheduled reminders that expired,
-execute the task and calculate the next occurrence with a cron-like job &lt;sup id="fnref:9"&gt;&lt;a class="footnote-ref" href="#fn:9" rel="footnote"&gt;9&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+execute the task and calculate the next occurrence with a cron-like job &lt;sup id="fnref:9"&gt;&lt;a class="footnote-ref" href="#fn:9"&gt;9&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;user_tz&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pytz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;timezone&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;US/Eastern&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;now&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utcnow&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="n"&gt;days&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;rrule&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MO&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;rrule&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;WE&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
@@ -1888,7 +1888,7 @@ retrace changes.&lt;/p&gt;
 things related to dates I have read about, and had to work with in Python. So I
 suggest you to read all linked pages, they are there for a reason!&lt;/p&gt;
 &lt;div class="footnote"&gt;
-&lt;hr /&gt;
+&lt;hr&gt;
 &lt;ol&gt;
 &lt;li id="fn:1"&gt;
 &lt;p&gt;Many countries have started and stopped using DST and different times.&lt;/p&gt;
@@ -1910,34 +1910,34 @@ ambiguous period before the switch as daylight savings time, and the ambiguous p
 as standard time.&lt;/p&gt;
 &lt;p&gt;Extracts from &lt;em&gt;the pytz &lt;a href="http://pytz.sourceforge.net/" title="pytz - World Timezone Definitions for Python"&gt;documentation&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li id="fn:2"&gt;
 &lt;p&gt;If you see a date formatted like &lt;code&gt;yyyy-mm-ddThh:mm:ss-03:00&lt;/code&gt;, it means that it's offset is UTC-3
   but it also means that to convert it to UTC you have to make that &lt;code&gt;-03:00&lt;/code&gt; part a &lt;code&gt;+00:00&lt;/code&gt;, so in
-  this case you have to add three hours to the date for it to be in UTC.&amp;#160;&lt;a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+  this case you have to add three hours to the date for it to be in UTC.&amp;#160;&lt;a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li id="fn:3"&gt;
 &lt;p&gt;The ICANN organization, which is in charge of hosting the Olson Database, publishes updates through
   a &lt;a href="https://mm.icann.org/mailman/listinfo/tz-announce" title="tz announce maling list"&gt;mailing list&lt;/a&gt;. Some languages like Elixir, have &lt;a href="http://www.creativedeletion.com/2015/12/03/timezone-updates-need-fixing.html" title="Timezone updates need to be fixed"&gt;automatic builds&lt;/a&gt; for their date packages
-  when the db gets updated.&amp;#160;&lt;a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+  when the db gets updated.&amp;#160;&lt;a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li id="fn:4"&gt;
-&lt;p&gt;More information about programs, libraries and systems can be found &lt;a href="https://www.iana.org/time-zones/repository/tz-link.html" title="Sources for time zone and daylight saving time data"&gt;here&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;More information about programs, libraries and systems can be found &lt;a href="https://www.iana.org/time-zones/repository/tz-link.html" title="Sources for time zone and daylight saving time data"&gt;here&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li id="fn:5"&gt;
 &lt;p&gt;&lt;a href="https://www.python.org/dev/peps/pep-0495/" title="PEP 495 -- Local Time Disambiguation"&gt;PEP495&lt;/a&gt; suggests adding an attribute called &lt;code&gt;fold&lt;/code&gt; to instances of the &lt;code&gt;datetime&lt;/code&gt; classes. For
   example, on a system set to US/Eastern timezone:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;  &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;dt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2014&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-  &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;dt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;astimezone&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="n"&gt;strftime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;%D %T %Z%z&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-  &lt;span class="s1"&gt;&amp;#39;11/02/14 01:30:00 EDT-0400&amp;#39;&lt;/span&gt;
-  &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;dt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="k"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fold&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;astimezone&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="n"&gt;strftime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;%D %T %Z%z&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-  &lt;span class="s1"&gt;&amp;#39;11/02/14 01:30:00 EST-0500&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;  &amp;gt;&amp;gt;&amp;gt; dt = datetime(2014, 11, 2, 1, 30)&lt;/span&gt;
+&lt;span class="err"&gt;  &amp;gt;&amp;gt;&amp;gt; dt.astimezone().strftime(&amp;#39;%D %T %Z%z&amp;#39;)&lt;/span&gt;
+&lt;span class="err"&gt;  &amp;#39;11/02/14 01:30:00 EDT-0400&amp;#39;&lt;/span&gt;
+&lt;span class="err"&gt;  &amp;gt;&amp;gt;&amp;gt; dt.replace(fold=1).astimezone().strftime(&amp;#39;%D %T %Z%z&amp;#39;)&lt;/span&gt;
+&lt;span class="err"&gt;  &amp;#39;11/02/14 01:30:00 EST-0500&amp;#39;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;This way we can represent just one moment in time in an ambiguous case.
-  Other ideas were also discussed in &lt;a href="https://www.python.org/dev/peps/pep-0431/" title="Timezone support improvements"&gt;PEP431&lt;/a&gt;&amp;#160;&lt;a class="footnote-backref" href="#fnref:5" rev="footnote" title="Jump back to footnote 5 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+  Other ideas were also discussed in &lt;a href="https://www.python.org/dev/peps/pep-0431/" title="Timezone support improvements"&gt;PEP431&lt;/a&gt;&amp;#160;&lt;a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li id="fn:6"&gt;
 &lt;p&gt;This is a peak at some of the terminology involved when dealing with dates:&lt;/p&gt;
@@ -1948,22 +1948,22 @@ as standard time.&lt;/p&gt;
 &lt;li&gt;normalizing – shifting a localized datetime object from one timezone to another, this changes
     both tzinfo and datetime object.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;As the Delorean docs &lt;a href="http://delorean.readthedocs.io/en/latest/quickstart.html" title="Delorean docs"&gt;explain it&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:6" rev="footnote" title="Jump back to footnote 6 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;As the Delorean docs &lt;a href="http://delorean.readthedocs.io/en/latest/quickstart.html" title="Delorean docs"&gt;explain it&lt;/a&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 6 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li id="fn:7"&gt;
 &lt;p&gt;Python cannot mix aware and naive dates or you will get a &lt;code&gt;TypeError:
-  can't compare offset-naive and offset-aware datetimes&lt;/code&gt; exception.&amp;#160;&lt;a class="footnote-backref" href="#fnref:7" rev="footnote" title="Jump back to footnote 7 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+  can't compare offset-naive and offset-aware datetimes&lt;/code&gt; exception.&amp;#160;&lt;a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 7 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li id="fn:8"&gt;
 &lt;p&gt;&lt;a href="https://labix.org/python-dateutil" title="python-dateutil"&gt;dateutils&lt;/a&gt; is a must if your app makes intensive use of dates. It
-  also provides some other niceties like &lt;code&gt;relativedelta&lt;/code&gt; and &lt;code&gt;parser.parse&lt;/code&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:8" rev="footnote" title="Jump back to footnote 8 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+  also provides some other niceties like &lt;code&gt;relativedelta&lt;/code&gt; and &lt;code&gt;parser.parse&lt;/code&gt;.&amp;#160;&lt;a class="footnote-backref" href="#fnref:8" title="Jump back to footnote 8 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li id="fn:9"&gt;
 &lt;p&gt;If you are working with Django, you might find &lt;a href="https://github.com/ambitioninc/django-localized-recurrence" title="Django localized recurrence"&gt;django-localized-recurrence&lt;/a&gt;
-  interesting.&amp;#160;&lt;a class="footnote-backref" href="#fnref:9" rev="footnote" title="Jump back to footnote 9 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+  interesting.&amp;#160;&lt;a class="footnote-backref" href="#fnref:9" title="Jump back to footnote 9 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</content><category term="Programming"></category><category term="python"></category><category term="timezones"></category></entry><entry><title>Django's signal to noise ratio</title><link href="http://hernantz.github.io/djangos-signal-to-noise-ratio.html" rel="alternate"></link><published>2016-04-29T00:00:00-03:00</published><updated>2016-04-29T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2016-04-29:/djangos-signal-to-noise-ratio.html</id><summary type="html">&lt;p&gt;Keeping a balance between decoupled and maintenable code.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Contact (1997) scene" src="/images/signal-to-noise-ratio.png" title="Contact (1997)" /&gt;&lt;/p&gt;
+&lt;/div&gt;</content><category term="Programming"></category><category term="python"></category><category term="timezones"></category></entry><entry><title>Django's signal to noise ratio</title><link href="http://hernantz.github.io/djangos-signal-to-noise-ratio.html" rel="alternate"></link><published>2016-04-29T00:00:00-03:00</published><updated>2016-04-29T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2016-04-29:/djangos-signal-to-noise-ratio.html</id><summary type="html">&lt;p&gt;Keeping a balance between decoupled and maintenable code.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Contact (1997) scene" src="/images/signal-to-noise-ratio.png" title="Contact (1997)"&gt;&lt;/p&gt;
 &lt;h2 id="noise"&gt;Noise&lt;a class="headerlink" href="#noise" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Signals allow decoupled applications get notified when actions occur elsewhere
 in the project. This decoupling can become unmaintainable if not enough care
@@ -1982,7 +1982,7 @@ instance.&lt;/p&gt;
 
 &lt;span class="nd"&gt;@receiver&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;post_save&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sender&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;User&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;create_user_cv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sender&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;created&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;created&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="n"&gt;Resume&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;objects&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_or_create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;user&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;instance&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -2071,7 +2071,7 @@ single handler:&lt;/p&gt;
     &lt;span class="n"&gt;favorited&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;M2MField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;User&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;related_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;favorite_&lt;/span&gt;&lt;span class="si"&gt;%(class)s&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
     &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Meta&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="n"&gt;abstract&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+        &lt;span class="n"&gt;abstract&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;
 
     &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;notify_new_favorite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="k"&gt;pass&lt;/span&gt;
@@ -2126,7 +2126,7 @@ like a good idea&lt;/strong&gt;.&lt;/p&gt;</content><category term="Programming"
 approaches&lt;/strong&gt; in their implementation: On one the plugin does everything for
 you (and by &lt;em&gt;everything&lt;/em&gt; I simply mean &lt;em&gt;too much&lt;/em&gt;), on the other, the plugin
 does the minimum. But of course there is a wide range in between.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Bootstrap 3 popovers" src="/images/popovers.png" title="Bootstrap 3 popovers" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Bootstrap 3 popovers" src="/images/popovers.png" title="Bootstrap 3 popovers"&gt;&lt;/p&gt;
 &lt;h2 id="the-way-of-jquery-plugins"&gt;The way of jQuery plugins&lt;a class="headerlink" href="#the-way-of-jquery-plugins" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;To begin, lets see what Boostrap offers for using it's plugins. A plugin
 (ie. popover) can be instantiated directly via HTML with lots of &lt;code&gt;data-&lt;/code&gt;
@@ -2242,7 +2242,7 @@ outperform ready-made plugins in terms of flexibility.&lt;/p&gt;
 be easily extendable, then you would be able seamlessly integrate it with the
 rest of your frameworks.&lt;/p&gt;</content><category term="Programming"></category><category term="backbone"></category><category term="javascript"></category><category term="bootstrap"></category><category term="jquery"></category></entry><entry><title>The branch is dead, short live the branch!</title><link href="http://hernantz.github.io/the-branch-is-dead-short-live-the-branch.html" rel="alternate"></link><published>2015-08-28T00:00:00-03:00</published><updated>2015-08-28T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2015-08-28:/the-branch-is-dead-short-live-the-branch.html</id><summary type="html">&lt;p&gt;Implement big changesets little by little. Don't let Theseus' ship sink!&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;em&gt;tl;dr&lt;/em&gt;: When implementing big changesets, maintaining and merging long-lived
 branches is hard. Use short-lived branches instead, and merge them ASAP.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="The ship of Theseus" src="/images/ship.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The ship of Theseus" src="/images/ship.jpg"&gt;&lt;/p&gt;
 &lt;h2 id="the-theseus-paradox"&gt;The Theseus paradox&lt;a class="headerlink" href="#the-theseus-paradox" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;em&gt;"The ship of Theseus, also known as Theseus' paradox, is a thought experiment
@@ -2362,7 +2362,7 @@ disable certain parts&lt;/a&gt; of the system depending on some conditions, but
 keeping all the parts integrated in the same codebase.&lt;/p&gt;</content><category term="Programming"></category><category term="ideas"></category><category term="agile"></category><category term="git"></category></entry><entry><title>Mock yourself, not your tests</title><link href="http://hernantz.github.io/mock-yourself-not-your-tests.html" rel="alternate"></link><published>2015-07-27T00:00:00-03:00</published><updated>2015-07-27T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2015-07-27:/mock-yourself-not-your-tests.html</id><summary type="html">&lt;p&gt;Every mock is a smell, avoid them as much as you can.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;em&gt;tl;dr&lt;/em&gt;: While sometimes mocks are needed, they should not be the first tool 
 you use to write tests. It is a pity to be mocking your code when you could
 be writing meaningful tests at &lt;em&gt;almost&lt;/em&gt; the same cost.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="stower-titanic" src="/images/mock-yourself-not-your-tests.jpg" title="Der Untergang der Titanic by Willy Stöwer" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="stower-titanic" src="/images/mock-yourself-not-your-tests.jpg" title="Der Untergang der Titanic by Willy Stöwer"&gt;&lt;/p&gt;
 &lt;p&gt;In this post I try to discourage the use of mocks when writing tests.
 I'm not completely against them (I see their value) but it's that sometimes 
 I feel like we abuse of them, just to make tests pass, feel comfortable of
@@ -2406,19 +2406,19 @@ tests.&lt;/p&gt;
 
 &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;PaymentTestCase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unittest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
 
-    &lt;span class="nd"&gt;@mock.patch.object&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;calculate_amount&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nd"&gt;@mock&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;patch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;object&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;calculate_amount&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_process_cc_with_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;calculate_amount_mock&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="n"&gt;cc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Mock&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
         &lt;span class="n"&gt;calculate_amount_mock&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;return_value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;
-        &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;has_credit&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;return_value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+        &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;has_credit&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;return_value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;
         &lt;span class="n"&gt;payment&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
         &lt;span class="n"&gt;payment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
         &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;withdraw&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;assert_called_with&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-    &lt;span class="nd"&gt;@mock.patch.object&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;calculate_amount&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nd"&gt;@mock&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;patch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;object&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;calculate_amount&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_process_cc_without_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;calculate_amount_mock&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="n"&gt;cc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Mock&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-        &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;has_credit&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;return_value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;
+        &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;has_credit&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;return_value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;
         &lt;span class="n"&gt;payment&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
         &lt;span class="n"&gt;payment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
         &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;assertFalse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;withdraw&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;called&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -2476,24 +2476,24 @@ just follow the object's api, making our tests a little bit less permissive.&lt;
 
 
 &lt;span class="c1"&gt;# create a mock that mimics the real CreditCard object&lt;/span&gt;
-&lt;span class="n"&gt;CreditCardMock&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;create_autospec&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;CreditCard&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;spec_set&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;CreditCardMock&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;create_autospec&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;CreditCard&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;spec_set&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
 
 &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;PaymentTestCase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unittest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
 
-    &lt;span class="nd"&gt;@mock.patch.object&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;calculate_amount&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;autospec&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nd"&gt;@mock&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;patch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;object&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;calculate_amount&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;autospec&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_process_cc_with_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;calculate_amount_mock&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="n"&gt;cc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;CreditCardMock&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
         &lt;span class="n"&gt;calculate_amount_mock&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;return_value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;
-        &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;has_credit&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;return_value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+        &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;has_credit&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;return_value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;
         &lt;span class="n"&gt;payment&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
         &lt;span class="n"&gt;payment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
         &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;withdraw&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;assert_called_with&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-    &lt;span class="nd"&gt;@mock.patch.object&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;calculate_amount&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;autospec&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nd"&gt;@mock&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;patch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;object&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;calculate_amount&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;autospec&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_process_cc_without_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;calculate_amount_mock&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="n"&gt;cc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;CreditCardMock&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-        &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;has_credit&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;return_value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;
+        &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;has_credit&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;return_value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;
         &lt;span class="n"&gt;payment&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
         &lt;span class="n"&gt;payment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
         &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;assertFalse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;withdraw&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;called&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -2625,11 +2625,11 @@ test suite it runs under safe and repeatable conditions, without hitting the net
 
 &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;PaymentTestCase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unittest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
 
-    &lt;span class="nd"&gt;@vcr.use_cassette&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;stripe_responses/cc_with_credit.yaml&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nd"&gt;@vcr&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;use_cassette&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;stripe_responses/cc_with_credit.yaml&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_process_cc_with_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="c1"&gt;# ... more code&lt;/span&gt;
 
-    &lt;span class="nd"&gt;@vcr.use_cassette&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;stripe_responses/cc_without_credit.yaml&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nd"&gt;@vcr&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;use_cassette&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;stripe_responses/cc_without_credit.yaml&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_process_cc_without_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="c1"&gt;# ... more code &lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -2643,7 +2643,7 @@ reproduce, (like a 500 error response), you can achieve that with &lt;a href="ht
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;httpretty&lt;/span&gt;
 
 &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;PaymentTestCase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unittest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="nd"&gt;@httpretty.activate&lt;/span&gt;
+    &lt;span class="nd"&gt;@httpretty&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;activate&lt;/span&gt;
     &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_process_handles_failure_from_stripe&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
         &lt;span class="n"&gt;httpretty&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;register_uri&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;httpretty&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GET&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;https://api.stripe.com&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
                                &lt;span class="n"&gt;body&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;{&amp;quot;success&amp;quot;: false}&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;500&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
@@ -2763,7 +2763,7 @@ does for git, does that really justifies $1b valuation?&lt;/p&gt;
 A product everyone needs. We currently have 7 billion active users and
 growing. Nobody is paying for it yet, but this userbase's got to worth
 something, plus we have no competitors.
-Sign up now on our &lt;a href="http://everyfuckingwebsite.com/"&gt;website&lt;/a&gt; and connect with your friends!&lt;/p&gt;</content><category term="Startups"></category><category term="startups"></category><category term="rants"></category></entry><entry><title>How to publish a pelican site on Github</title><link href="http://hernantz.github.io/how-to-publish-a-pelican-site-on-github.html" rel="alternate"></link><published>2014-05-18T00:00:00-03:00</published><updated>2014-05-18T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2014-05-18:/how-to-publish-a-pelican-site-on-github.html</id><summary type="html">&lt;p&gt;Step by step guide on how to publish a pelican website on Github.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Pelican a static site publishing tool" src="/images/pelican-a-static-site-publishing-tool-github.png" /&gt;&lt;/p&gt;
+Sign up now on our &lt;a href="http://everyfuckingwebsite.com/"&gt;website&lt;/a&gt; and connect with your friends!&lt;/p&gt;</content><category term="Startups"></category><category term="startups"></category><category term="rants"></category></entry><entry><title>How to publish a pelican site on Github</title><link href="http://hernantz.github.io/how-to-publish-a-pelican-site-on-github.html" rel="alternate"></link><published>2014-05-18T00:00:00-03:00</published><updated>2014-05-18T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2014-05-18:/how-to-publish-a-pelican-site-on-github.html</id><summary type="html">&lt;p&gt;Step by step guide on how to publish a pelican website on Github.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Pelican a static site publishing tool" src="/images/pelican-a-static-site-publishing-tool-github.png"&gt;&lt;/p&gt;
 &lt;p&gt;This is a step by step guide on how to publish a pelican website on Github, and
 how not to get the site's codebase so tightly coupled to where it is deployed.
 If in the future we want to publish it somewhere else, there isn't much to be
@@ -2804,11 +2804,11 @@ output that will be published:&lt;/p&gt;
 
 &lt;p&gt;But before running it, make sure the following settings are in &lt;code&gt;publishconf.py&lt;/code&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# don&amp;#39;t delete our .git submodule dir&lt;/span&gt;
-&lt;span class="n"&gt;DELETE_OUTPUT_DIRECTORY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;
+&lt;span class="n"&gt;DELETE_OUTPUT_DIRECTORY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;
 
 &lt;span class="c1"&gt;# use the correct abs url&lt;/span&gt;
 &lt;span class="n"&gt;SITEURL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;http://username.github.io&amp;#39;&lt;/span&gt;
-&lt;span class="n"&gt;RELATIVE_URLS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;
+&lt;span class="n"&gt;RELATIVE_URLS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -2838,7 +2838,7 @@ the industry's best practices, so it can be used in production by your
 The consequences of not doing it are well known, that's why we have best
 practices afterall.
 The risk is low now. Money, time and effort won't be wasted. There is no excuse.
-An MVP is not a product, it's an MVP.&lt;/p&gt;</content><category term="Startups"></category><category term="rants"></category><category term="mvp"></category></entry><entry><title>Open tabs buffer overflow</title><link href="http://hernantz.github.io/open-tabs-buffer-overflow.html" rel="alternate"></link><published>2013-08-21T00:00:00-03:00</published><updated>2013-08-21T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2013-08-21:/open-tabs-buffer-overflow.html</id><summary type="html">&lt;p&gt;Ideas for surviving an open tabs buffer overflow.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Bored Elon Musk knows" src="/images/genius-is-1-inspiration-and-99-closing-the-two-hundred-open-tabs-in-your-browser.png" /&gt;&lt;/p&gt;
+An MVP is not a product, it's an MVP.&lt;/p&gt;</content><category term="Startups"></category><category term="rants"></category><category term="mvp"></category></entry><entry><title>Open tabs buffer overflow</title><link href="http://hernantz.github.io/open-tabs-buffer-overflow.html" rel="alternate"></link><published>2013-08-21T00:00:00-03:00</published><updated>2013-08-21T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2013-08-21:/open-tabs-buffer-overflow.html</id><summary type="html">&lt;p&gt;Ideas for surviving an open tabs buffer overflow.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Bored Elon Musk knows" src="/images/genius-is-1-inspiration-and-99-closing-the-two-hundred-open-tabs-in-your-browser.png"&gt;&lt;/p&gt;
 &lt;h2 id="the-interwebs-and-the-power-it-holds"&gt;The interwebs and the power it holds&lt;a class="headerlink" href="#the-interwebs-and-the-power-it-holds" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;There is so much out there and just a click of distance. Funny videos, new
 music, interesting articles, tutorials, blog posts, games.&lt;/p&gt;

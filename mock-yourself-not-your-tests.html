@@ -45,7 +45,7 @@ on <time datetime="2015-07-27T00:00:00-03:00">2015-07-27</time>,       under <a 
   <p><em>tl;dr</em>: While sometimes mocks are needed, they should not be the first tool 
 you use to write tests. It is a pity to be mocking your code when you could
 be writing meaningful tests at <em>almost</em> the same cost.</p>
-<p><img alt="stower-titanic" src="/images/mock-yourself-not-your-tests.jpg" title="Der Untergang der Titanic by Willy Stöwer" /></p>
+<p><img alt="stower-titanic" src="/images/mock-yourself-not-your-tests.jpg" title="Der Untergang der Titanic by Willy Stöwer"></p>
 <p>In this post I try to discourage the use of mocks when writing tests.
 I'm not completely against them (I see their value) but it's that sometimes 
 I feel like we abuse of them, just to make tests pass, feel comfortable of
@@ -89,19 +89,19 @@ tests.</p>
 
 <span class="k">class</span> <span class="nc">PaymentTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 
-    <span class="nd">@mock.patch.object</span><span class="p">(</span><span class="n">Payment</span><span class="p">,</span> <span class="s1">&#39;calculate_amount&#39;</span><span class="p">)</span>
+    <span class="nd">@mock</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">Payment</span><span class="p">,</span> <span class="s1">&#39;calculate_amount&#39;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">test_process_cc_with_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calculate_amount_mock</span><span class="p">):</span>
         <span class="n">cc</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
         <span class="n">calculate_amount_mock</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="mi">100</span>
-        <span class="n">cc</span><span class="o">.</span><span class="n">has_credit</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="n">cc</span><span class="o">.</span><span class="n">has_credit</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="n">payment</span> <span class="o">=</span> <span class="n">Payment</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">cc</span><span class="p">)</span>
         <span class="n">payment</span><span class="o">.</span><span class="n">process</span><span class="p">()</span>
         <span class="n">cc</span><span class="o">.</span><span class="n">withdraw</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 
-    <span class="nd">@mock.patch.object</span><span class="p">(</span><span class="n">Payment</span><span class="p">,</span> <span class="s1">&#39;calculate_amount&#39;</span><span class="p">)</span>
+    <span class="nd">@mock</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">Payment</span><span class="p">,</span> <span class="s1">&#39;calculate_amount&#39;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">test_process_cc_without_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calculate_amount_mock</span><span class="p">):</span>
         <span class="n">cc</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
-        <span class="n">cc</span><span class="o">.</span><span class="n">has_credit</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="n">cc</span><span class="o">.</span><span class="n">has_credit</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="n">payment</span> <span class="o">=</span> <span class="n">Payment</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">cc</span><span class="p">)</span>
         <span class="n">payment</span><span class="o">.</span><span class="n">process</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">cc</span><span class="o">.</span><span class="n">withdraw</span><span class="o">.</span><span class="n">called</span><span class="p">)</span>
@@ -159,24 +159,24 @@ just follow the object's api, making our tests a little bit less permissive.</p>
 
 
 <span class="c1"># create a mock that mimics the real CreditCard object</span>
-<span class="n">CreditCardMock</span> <span class="o">=</span> <span class="n">create_autospec</span><span class="p">(</span><span class="n">CreditCard</span><span class="p">,</span> <span class="n">spec_set</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">CreditCardMock</span> <span class="o">=</span> <span class="n">create_autospec</span><span class="p">(</span><span class="n">CreditCard</span><span class="p">,</span> <span class="n">spec_set</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 
 <span class="k">class</span> <span class="nc">PaymentTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 
-    <span class="nd">@mock.patch.object</span><span class="p">(</span><span class="n">Payment</span><span class="p">,</span> <span class="s1">&#39;calculate_amount&#39;</span><span class="p">,</span> <span class="n">autospec</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="nd">@mock</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">Payment</span><span class="p">,</span> <span class="s1">&#39;calculate_amount&#39;</span><span class="p">,</span> <span class="n">autospec</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">test_process_cc_with_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calculate_amount_mock</span><span class="p">):</span>
         <span class="n">cc</span> <span class="o">=</span> <span class="n">CreditCardMock</span><span class="p">()</span>
         <span class="n">calculate_amount_mock</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="mi">100</span>
-        <span class="n">cc</span><span class="o">.</span><span class="n">has_credit</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="n">cc</span><span class="o">.</span><span class="n">has_credit</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="n">payment</span> <span class="o">=</span> <span class="n">Payment</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">cc</span><span class="p">)</span>
         <span class="n">payment</span><span class="o">.</span><span class="n">process</span><span class="p">()</span>
         <span class="n">cc</span><span class="o">.</span><span class="n">withdraw</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 
-    <span class="nd">@mock.patch.object</span><span class="p">(</span><span class="n">Payment</span><span class="p">,</span> <span class="s1">&#39;calculate_amount&#39;</span><span class="p">,</span> <span class="n">autospec</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="nd">@mock</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">Payment</span><span class="p">,</span> <span class="s1">&#39;calculate_amount&#39;</span><span class="p">,</span> <span class="n">autospec</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">test_process_cc_without_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calculate_amount_mock</span><span class="p">):</span>
         <span class="n">cc</span> <span class="o">=</span> <span class="n">CreditCardMock</span><span class="p">()</span>
-        <span class="n">cc</span><span class="o">.</span><span class="n">has_credit</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="n">cc</span><span class="o">.</span><span class="n">has_credit</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="n">payment</span> <span class="o">=</span> <span class="n">Payment</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">cc</span><span class="p">)</span>
         <span class="n">payment</span><span class="o">.</span><span class="n">process</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">cc</span><span class="o">.</span><span class="n">withdraw</span><span class="o">.</span><span class="n">called</span><span class="p">)</span>
@@ -308,11 +308,11 @@ test suite it runs under safe and repeatable conditions, without hitting the net
 
 <span class="k">class</span> <span class="nc">PaymentTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 
-    <span class="nd">@vcr.use_cassette</span><span class="p">(</span><span class="s1">&#39;stripe_responses/cc_with_credit.yaml&#39;</span><span class="p">)</span>
+    <span class="nd">@vcr</span><span class="o">.</span><span class="n">use_cassette</span><span class="p">(</span><span class="s1">&#39;stripe_responses/cc_with_credit.yaml&#39;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">test_process_cc_with_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># ... more code</span>
 
-    <span class="nd">@vcr.use_cassette</span><span class="p">(</span><span class="s1">&#39;stripe_responses/cc_without_credit.yaml&#39;</span><span class="p">)</span>
+    <span class="nd">@vcr</span><span class="o">.</span><span class="n">use_cassette</span><span class="p">(</span><span class="s1">&#39;stripe_responses/cc_without_credit.yaml&#39;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">test_process_cc_without_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># ... more code </span>
 </pre></div>
@@ -326,7 +326,7 @@ reproduce, (like a 500 error response), you can achieve that with <a href="https
 <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">httpretty</span>
 
 <span class="k">class</span> <span class="nc">PaymentTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
-    <span class="nd">@httpretty.activate</span>
+    <span class="nd">@httpretty</span><span class="o">.</span><span class="n">activate</span>
     <span class="k">def</span> <span class="nf">test_process_handles_failure_from_stripe</span><span class="p">():</span>
         <span class="n">httpretty</span><span class="o">.</span><span class="n">register_uri</span><span class="p">(</span><span class="n">httpretty</span><span class="o">.</span><span class="n">GET</span><span class="p">,</span> <span class="s1">&#39;https://api.stripe.com&#39;</span><span class="p">,</span>
                                <span class="n">body</span><span class="o">=</span><span class="s1">&#39;{&quot;success&quot;: false}&#39;</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
