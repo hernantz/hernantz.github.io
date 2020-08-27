@@ -5,7 +5,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://hernantz.github.io/</loc>
-<lastmod>2020-08-27T15:26:56-00:00</lastmod>
+<lastmod>2020-08-27T19:04:36-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -83,6 +83,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://hernantz.github.io/calendaring-events-with-python.html</loc>
 <lastmod>2017-04-13T00:00:00-03:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://hernantz.github.io/the-backbone-events-waltz.html</loc>
+<lastmod>2016-05-04T00:00:00-03:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -284,22 +291,22 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://hernantz.github.io/tag/django.html</loc>
-<lastmod>2016-04-29T00:00:00-03:54</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
 <loc>http://hernantz.github.io/tag/backbone.html</loc>
-<lastmod>2016-03-31T00:00:00-03:54</lastmod>
+<lastmod>2016-05-04T00:00:00-03:54</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://hernantz.github.io/tag/javascript.html</loc>
-<lastmod>2016-03-31T00:00:00-03:54</lastmod>
+<lastmod>2016-05-04T00:00:00-03:54</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://hernantz.github.io/tag/django.html</loc>
+<lastmod>2016-04-29T00:00:00-03:54</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

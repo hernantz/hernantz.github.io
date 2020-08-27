@@ -42,18 +42,18 @@ on <time datetime="2016-05-04T00:00:00-03:00">2016-05-04</time>,       under <a 
       tagged with <a href="http://hernantz.github.io/tag/backbone.html">backbone</a>, <a href="http://hernantz.github.io/tag/javascript.html">javascript</a> and <a href="http://hernantz.github.io/tag/best-practices.html">best-practices</a>.
     </p>
   </summary>
-  <p><img alt="the arsenic waltz" src="/images/the-arsenic-waltz.jpg" title="The arsenic waltz"></p>
+  <p><img alt="The Dance of Death by Isaac Cruikshank" src="/images/dance-of-death.jpg" title="The Dance of Death by Isaac Cruikshank"></p>
 <p>It is said that perfection is achieved not when there is nothing else to add,
 but when there is nothing else to be removed.</p>
-<p>Backbone is a minimalist library that tries to bring some sanity for javascript
+<p><a href="https://backbonejs.org/">Backbone</a> is a minimalist library that tries to bring some sanity for javascript
 interaction and state management. As of today, is falling down in popularity,
 but I still believe it offers a great ratio of usability to simplicity.</p>
 <p>The idea of this post is to show to show how versatile backbone can be, through
 some snippets of use cases that you might find in any app.</p>
 <h2 id="reacting-to-specific-changes-in-a-model">Reacting to <em>specific</em> changes in a model<a class="headerlink" href="#reacting-to-specific-changes-in-a-model" title="Permanent link">&para;</a></h2>
-<p>The core idea is that data and buiseness logic is managed by models or
+<p>The core idea is that data and business logic is managed by models or
 collections, that not only can be shared throughout the app but also rendered
-in many diferent data-less views.</p>
+in many different data-less views.</p>
 <p>The way this is achieved is through events.</p>
 <div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">View</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
     <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
@@ -90,13 +90,13 @@ specifically</strong> to a successful of failed interaction.</p>
 </pre></div>
 
 
-<p>In this case we are waranteed that the <code>onSave()</code> and <code>onError()</code> callbacks are
+<p>In this case we are guaranteed that the <code>onSave()</code> and <code>onError()</code> callbacks are
 called as a result of the form submit event that this view handles, whilst
 other views can still hook to generic events emitted by the same model.</p>
-<p>Unfortunatelly there is a problem with this approach and it's that the model is
-holding references to a potential <em>zombie</em> view. The issue can be easyly
+<p>Unfortunately there is a problem with this approach and it's that the model is
+holding references to a potential <em>zombie</em> view. The issue can be easily
 spotted when the interaction with the server takes a while to finish or the
-view's use case is esphimeral in nature (like an inline edit interface). If the
+view's use case is ephemeral in nature (like an inline edit interface). If the
 view is destroyed when the server has not responded yet, then the success or
 error callbacks will get executed, resurrecting the view from the death.</p>
 <p>We need something similar to the first snippet, where the view was in charge of
@@ -204,8 +204,8 @@ maybe at some point you can start using namespaces:</p>
 
 
 <h2 id="modifying-a-replica">Modifying a replica<a class="headerlink" href="#modifying-a-replica" title="Permanent link">&para;</a></h2>
-<p>Use model.clone() to use inside a CRUD view so that you can modify it, see a
-live preview of edits, and have a cancel button which discards the changes.</p>
+<p>Any CRUD view needs a model that will be modified, but for this modifications you might see a live preview of edits, and have a cancel button which discards the changes.</p>
+<p>Instead of the original model, use <code>model.clone()</code> to use inside the view as a replica.</p>
 <div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">View</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
     <span class="nx">events</span> <span class="p">{</span>
         <span class="s1">&#39;click .save&#39;</span><span class="o">:</span> <span class="s1">&#39;onSave&#39;</span>
@@ -221,14 +221,15 @@ live preview of edits, and have a cancel button which discards the changes.</p>
 </pre></div>
 
 
-<p>Aca ver si conviene</p>
+<p>This is so that other views that share this same model don't receive events and get intermediate updates (possibly errors too). We only update the original model if the changes can be confirmed.</p>
+<p>Since we might extend that to any server interaction, we can also get an error from the backend. So let's only apply the changes if we have a successful state:</p>
 <div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">View</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
     <span class="nx">events</span> <span class="p">{</span>
         <span class="s1">&#39;click .save&#39;</span><span class="o">:</span> <span class="s1">&#39;onSave&#39;</span>
     <span class="p">},</span>
     <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">clone</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">clone</span><span class="p">();</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">listenTo</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">clone</span><span class="p">,</span> <span class="s1">&#39;change&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">render</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">listenTo</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">clone</span><span class="p">,</span> <span class="s1">&#39;change error&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">render</span><span class="p">);</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">listenTo</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">clone</span><span class="p">,</span> <span class="s1">&#39;sync&#39;</span><span class="p">,</span> <span class="s1">&#39;onCloneSave&#39;</span><span class="p">);</span>
     <span class="p">},</span>
     <span class="nx">onSave</span><span class="o">:</span> <span class="nx">funtion</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
@@ -242,38 +243,46 @@ live preview of edits, and have a cancel button which discards the changes.</p>
 </pre></div>
 
 
-<p>Comentar como hacer validacion, devolviendo un hash</p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="s1">&#39;campo1&#39;</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;error1&#39;</span><span class="p">,</span> <span class="s1">&#39;error2&#39;</span><span class="p">],</span>
-    <span class="s1">&#39;campo2&#39;</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;error1&#39;</span><span class="p">],</span>
-    <span class="s1">&#39;_non-field-errors&#39;</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;error1&#39;</span><span class="p">,</span> <span class="s1">&#39;error2&#39;</span><span class="p">]</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<p>Cuando creamos un modelo nuevo, es el mismo caso que <code>.clone()</code>
-No queremos que el model apenas se muestra tenga errores como "este campo es requerido".</p>
 <h2 id="displaying-any-state-of-your-data">Displaying any state of your data<a class="headerlink" href="#displaying-any-state-of-your-data" title="Permanent link">&para;</a></h2>
-<p>Ideally views receive instances, because those instances are shared among other
-views.  The view shouldn't assume that the model has a certain state.  It could
-be possible that there is an undergoing event in the background.  The view
-should be able to render the model in whatever that state might be.</p>
+<p>Ideally views receive instances, because those instances are shared among other views. The view shouldn't assume that the model has a certain state.  </p>
 <div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">myModel</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MyModel</span><span class="p">();</span>
-<span class="nx">view</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">View</span><span class="p">({</span><span class="nx">model</span><span class="o">:</span> <span class="nx">myModel</span><span class="p">});</span>
-<span class="nx">myModel</span><span class="p">.</span><span class="nx">fetch</span><span class="p">()</span>
+<span class="kd">var</span> <span class="nx">view</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">View</span><span class="p">({</span><span class="nx">model</span><span class="o">:</span> <span class="nx">myModel</span><span class="p">});</span>
+<span class="nx">myModel</span><span class="p">.</span><span class="nx">fetch</span><span class="p">()</span> <span class="c1">// view should show a loading spinner</span>
+<span class="nx">view</span><span class="p">.</span><span class="nx">render</span><span class="p">()</span> <span class="c1">// will render empty</span>
 </pre></div>
 
 
 <p>In the example above, the view received a model whose lifecycle is managed
-outside.</p>
-<p>Ej: loading y Backbone.SOS</p>
-<p>https://github.com/laoshanlung/backbone.supermodel
-https://github.com/hashchange/backbone.select
-https://github.com/krasimir/react-in-patterns
-https://www.sitepoint.com/exploring-reacts-state-propagation/</p>
-<p>Models for data and models for views state.
-Every change in the DOM corresponds to a change in a model. The view is only
-responsible for simple updates and broadcasting user interactions.</p>
+outside.
+The view should be able to render the model in whatever that state might be.</p>
+<p>But it seems that we need a model that has that state: loading &amp; loaded. This state is not a responsibility of the data model. We need models for views state.</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">ViewState</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+    <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">attributes</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">model</span> <span class="o">=</span> <span class="nx">attributes</span><span class="p">.</span><span class="nx">model</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">listenTo</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">,</span> <span class="s1">&#39;request&#39;</span><span class="p">,</span> <span class="s1">&#39;setLoading&#39;</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">listenTo</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">,</span> <span class="s1">&#39;sync error&#39;</span><span class="p">,</span> <span class="s1">&#39;setLoaded&#39;</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">setLoading</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">({</span><span class="s1">&#39;loading&#39;</span><span class="o">:</span> <span class="kc">true</span><span class="p">});</span> <span class="p">},</span>
+    <span class="nx">setLoaded</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">({</span><span class="s1">&#39;loading&#39;</span><span class="o">:</span> <span class="kc">false</span><span class="p">});</span> <span class="p">},</span>
+<span class="p">})</span>
+</pre></div>
+
+
+<p>And now, to remediate the original example above:</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">myModel</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MyModel</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">viewState</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ViewState</span><span class="p">({</span><span class="nx">model</span><span class="o">:</span> <span class="nx">myModel</span><span class="p">,</span> <span class="nx">loading</span><span class="o">:</span> <span class="kc">false</span><span class="p">});</span>
+<span class="kd">var</span> <span class="nx">view</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">View</span><span class="p">({</span><span class="nx">model</span><span class="o">:</span> <span class="nx">viewState</span><span class="p">});</span>
+<span class="nx">myModel</span><span class="p">.</span><span class="nx">fetch</span><span class="p">()</span>
+<span class="nx">view</span><span class="p">.</span><span class="nx">render</span><span class="p">()</span> <span class="c1">// will show a loading spinner</span>
+</pre></div>
+
+
+<p>We now keep track of any event undergoing in a data model that represents the state of the view. In this state model we can any other data that we need to display our data model correctly, like which tab is active, or is a button disabled, etc.</p>
+<h2 id="final-thoughts">Final thoughts<a class="headerlink" href="#final-thoughts" title="Permanent link">&para;</a></h2>
+<p>As stated in the docs, philosophically, Backbone is an attempt to discover the minimal set of data-structuring (models and collections) and user interface (views and URLs) primitives that are generally useful when building web applications with JavaScript.</p>
+<p>With backbone you are in charge of managing state. So we saw some examples of real-world apps and their requirements.</p>
+<p>I think it succeeds in it's goals, and leaves the developer with a set of tools (instead of products) to be used as needed. But some best-practices and patterns need to evolve organically.</p>
+<p>Maybe the next step from here is a set of new tools, like <a href="https://marionettejs.com/">Marionette</a> proposes?</p>
 </article>
 
       <footer class="column-right light">
