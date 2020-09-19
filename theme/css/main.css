@@ -34,6 +34,7 @@ h4 {
 
 img {
   max-width: 100%;
+  border-radius: 0.3em;
   border: none; }
 
 code {
@@ -167,6 +168,3 @@ h6:hover .headerlink {
   color: #b0b0b0;
   font-size: 0.8em;
   line-height: 1.4em; }
-
-.rounded-img {
-  border-radius: 5px; }

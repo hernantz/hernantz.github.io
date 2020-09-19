@@ -16,7 +16,7 @@
 
 <body>
   <aside class="sidebar">
-    <a href="/"><img class="rounded-img" src="/images/avatar.png" height="75" width="75" /></a>
+    <a href="/"><img src="/images/avatar.png" height="75" width="75" /></a>
 
       <nav>
         <ul>
@@ -177,6 +177,48 @@ Something like the if/then blocks in other languages. We don't have anything but
 </pre></div>
 
 
+<h2 id="streams">Streams<a class="headerlink" href="#streams" title="Permanent link">&para;</a></h2>
+<p>If we start generalizing again, a way to iterate </p>
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">cons</span> <span class="o">=</span> <span class="p">(</span><span class="nx">xs</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">list</span><span class="p">(()=&gt;</span><span class="nx">head</span><span class="p">(</span><span class="nx">xs</span><span class="p">))(()=&gt;</span><span class="nx">cons</span><span class="p">(</span><span class="nx">tail</span><span class="p">(</span><span class="nx">xs</span><span class="p">))</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">cons</span> <span class="o">=</span> <span class="p">(</span><span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">gen</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">range</span> <span class="o">=</span> <span class="nx">i</span> <span class="p">=&gt;</span> <span class="nx">n</span> <span class="p">=&gt;</span> <span class="nx">gen</span> <span class="nx">numbers</span> <span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Map is a list creator so we can join maps.</p>
+<p>Imagine function next that lets you advance to the next value, based on a condition</p>
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">ends</span> <span class="o">=</span> <span class="p">(</span><span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">xs</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">ifthen</span><span class="p">(</span><span class="nx">islast</span><span class="p">(</span><span class="nx">xs</span><span class="p">))</span>
+                                   <span class="p">(()=&gt;()=&gt;</span><span class="kc">null</span><span class="p">)</span>
+                                   <span class="p">(()=&gt;()=&gt;</span><span class="nx">next</span><span class="p">(</span><span class="nx">xs</span><span class="p">))</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">check</span> <span class="o">=</span> <span class="p">(</span><span class="nx">condition</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">xs</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">ifthen</span><span class="p">(</span><span class="nx">condition</span><span class="p">(</span><span class="nx">xs</span><span class="p">))</span>
+                                                  <span class="p">(()=&gt;()=&gt;</span><span class="kc">null</span><span class="p">)</span>
+                                                  <span class="p">(()=&gt;()=&gt;</span><span class="nx">next</span><span class="p">(</span><span class="nx">tail</span><span class="p">(</span><span class="nx">xs</span><span class="p">)))</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">ends</span> <span class="o">=</span> <span class="nx">check</span> <span class="p">(</span><span class="nx">islast</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">gen</span> <span class="o">=</span> <span class="p">(</span><span class="nx">acc</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">check</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">acc</span><span class="p">(()=&gt;</span><span class="nx">v</span><span class="p">)</span>
+                                                <span class="p">(</span><span class="nx">check</span><span class="p">(</span><span class="nx">gen</span><span class="p">(</span><span class="nx">check</span><span class="p">)(</span><span class="nx">acc</span><span class="p">)(</span><span class="nx">fn</span><span class="p">))(</span><span class="nx">fn</span><span class="p">(</span><span class="nx">v</span><span class="p">)))</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">range</span> <span class="o">=</span> <span class="p">(</span><span class="nx">start</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">end</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">gen</span><span class="p">(</span><span class="nx">list</span><span class="p">)(</span><span class="nx">eq</span><span class="p">(</span><span class="nx">end</span><span class="p">))(</span><span class="nx">id</span><span class="p">)(</span><span class="nx">incr</span><span class="p">(</span><span class="nx">start</span><span class="p">))</span>
+</pre></div>
+
+
+<p>filter es una function que avanza sin hacer nada con los elementos si no cumplen la funcion, y si la cumple llama a next(head(xs)), si no, llama a tail(xs)?</p>
 <h2 id="loops">Loops<a class="headerlink" href="#loops" title="Permanent link">&para;</a></h2>
 <p>Instead of <em>for loops</em>, we use recursion to iterate and manipulate values one by one.</p>
 <p>The layout of map looks like this:</p>
@@ -218,50 +260,10 @@ Something like the if/then blocks in other languages. We don't have anything but
 </pre></div>
 
 
-<h2 id="streams">Streams<a class="headerlink" href="#streams" title="Permanent link">&para;</a></h2>
-<p>If we start generalizing again, a way to iterate </p>
-<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">cons</span> <span class="o">=</span> <span class="p">(</span><span class="nx">xs</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">list</span><span class="p">(()=&gt;</span><span class="nx">head</span><span class="p">(</span><span class="nx">xs</span><span class="p">))(()=&gt;</span><span class="nx">cons</span><span class="p">(</span><span class="nx">tail</span><span class="p">(</span><span class="nx">xs</span><span class="p">))</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">cons</span> <span class="o">=</span> <span class="p">(</span><span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">gen</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">range</span> <span class="o">=</span> <span class="nx">i</span> <span class="p">=&gt;</span> <span class="nx">n</span> <span class="p">=&gt;</span> <span class="nx">gen</span> <span class="nx">numbers</span> <span class="p">(</span><span class="nx">i</span><span class="p">)</span>
-</pre></div>
-
-
-<p>Map is a list creator so we can join maps.</p>
-<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">ends</span> <span class="o">=</span> <span class="p">(</span><span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">xs</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">ifthen</span><span class="p">(</span><span class="nx">islast</span><span class="p">(</span><span class="nx">xs</span><span class="p">))</span>
-                                   <span class="p">(()=&gt;()=&gt;</span><span class="kc">null</span><span class="p">)</span>
-                                   <span class="p">(()=&gt;()=&gt;</span><span class="nx">next</span><span class="p">(</span><span class="nx">xs</span><span class="p">))</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">check</span> <span class="o">=</span> <span class="p">(</span><span class="nx">condition</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">xs</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">ifthen</span><span class="p">(</span><span class="nx">condition</span><span class="p">(</span><span class="nx">xs</span><span class="p">))</span>
-                                                  <span class="p">(()=&gt;()=&gt;</span><span class="kc">null</span><span class="p">)</span>
-                                                  <span class="p">(()=&gt;()=&gt;</span><span class="nx">next</span><span class="p">(</span><span class="nx">tail</span><span class="p">(</span><span class="nx">xs</span><span class="p">)))</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">ends</span> <span class="o">=</span> <span class="nx">check</span> <span class="p">(</span><span class="nx">islast</span><span class="p">)</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">gen</span> <span class="o">=</span> <span class="p">(</span><span class="nx">acc</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">check</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">acc</span><span class="p">(()=&gt;</span><span class="nx">v</span><span class="p">)</span>
-                                                <span class="p">(</span><span class="nx">check</span><span class="p">(</span><span class="nx">gen</span><span class="p">(</span><span class="nx">check</span><span class="p">)(</span><span class="nx">acc</span><span class="p">)(</span><span class="nx">fn</span><span class="p">))(</span><span class="nx">fn</span><span class="p">(</span><span class="nx">v</span><span class="p">)))</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">gen</span><span class="p">(</span><span class="nx">list</span><span class="p">)(</span><span class="nx">ends</span><span class="p">)</span>
-</pre></div>
-
-
 <h2 id="more">More<a class="headerlink" href="#more" title="Permanent link">&para;</a></h2>
 <p>There are many other functions that we should explore, like filter, reverse, index, etc.</p>
-<p>But I think by now we can appreciate that <a href="https://www.cs.kent.ac.uk/people/staff/dat/miranda/whyfp90.pdf">functions are really powerful</a> bulding blocks.</p>
-<p>Of course this syntax is very ilegible and cumbersome, and writing <code>map(fn, [1, 2, 3])</code> is way more expresive.</p>
+<p>But I think by now we can appreciate that <a href="https://www.cs.kent.ac.uk/people/staff/dat/miranda/whyfp90.pdf">functions are really powerful</a> building blocks.</p>
+<p>Of course this syntax is very illegible and cumbersome, and writing <code>map(fn, [1, 2, 3])</code> is way more expressive.</p>
 <p>This was just a <a href="https://www.youtube.com/watch?v=pUN3algpvMs">thought experiment</a>, an academic one. So don't try this at home.</p>
 </article>
 
