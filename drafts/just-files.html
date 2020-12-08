@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="/theme/css/pygments-default.css" type="text/css" />
   <link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
   <link href="/rss.xml" type="application/atom+xml" rel="alternate" title="README.txt RSS Feed" />
-  <meta name="description" content="A package manager is a program that gets a bunch of files "packaged" in a certain format from a repository of packages and places them on a filesystem. The manager part implies that it can keep track of installed packages, versions, dependencies, etc. Packages are basically a box that contains …">
+  <meta name="description" content="A virtualenv for system packages.">
   <meta name="keywords" content="">
   <meta name="author" content="hernantz">
 </head>
@@ -42,6 +42,13 @@ on <time datetime="2020-03-19T00:00:00-03:00">2020-03-19</time>,       under <a 
     </p>
   </summary>
   <p><img alt="Archive - Photo by  Fabien Barral" src="/images/just-files.jpg" title="Archive - Photo by  Fabien Barral"></p>
+<p>implementacion! =&gt; https://www.leshenko.net/p/ugit</p>
+<p>https://pnpm.js.org/
+https://serokell.io/blog/what-is-nix
+https://grassfedcode.com/python-packaging/
+https://github.com/uber/kraken using p2p for big binaries (docker images).
+http://kmkeen.com/maintainers-matter/
+https://www.btao.org/2020/10/02/npm-trust.html "A web of trust for npm"</p>
 <p>A package manager is a program that gets a bunch of files "packaged" in a certain format from a repository of packages and places them on a filesystem.</p>
 <p>The manager part implies that it can keep track of installed packages, versions, dependencies, etc.</p>
 <p>Packages are basically a box that contains files and metadata (checksums, content types, filepaths where to place the files, etc). Some may include compiled binaries or source files for building a project and testing it, reusable libraries, debug symbols, images, icons, documentation, songs, etc.</p>
@@ -136,10 +143,12 @@ Another possibility is that <code>pak env</code> puts you in a shell with <code>
 <p><code>pak update</code> updates all versions updating also the lock file</p>
 <p><code>pak update &lt;package-name==version&gt;</code> updates only the package name, updating also the lock file</p>
 <p><code>pak taste &lt;package-name&gt;</code> one off shell with the package installed</p>
+<p><code>pak audit</code> check for vulnerabilities.</p>
 <p><code>pak search &lt;package-name&gt;</code> search</p>
 <p><code>pak gc</code> removes all unreachable packages from the store.</p>
 <p>Hierarchy: package stores/environments/configs can be also defined in <code>~/.local/share/pak/</code>, etc.</p>
-<p>Sandboxing GUI apps should be done with another binary that allows to set firewalls and also allow GUI interactions to happen via portals like in flatpak (https://github.com/containers/bubblewrap). Another example would be Opensnitch.</p>
+<p>Sandboxing GUI apps should be done with another binary that allows to set firewalls and also allow GUI interactions to happen via portals like in flatpak (https://github.com/containers/bubblewrap). Another example would be Opensnitch.
+https://github.com/netblue30/firejail</p>
 <h2 id="how-it-works">How it works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h2>
 <p>Pak is a runtime environment manager.</p>
 <blockquote>

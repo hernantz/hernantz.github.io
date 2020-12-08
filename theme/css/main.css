@@ -1,7 +1,7 @@
 /* general */
 body {
   font-family: Helvetica;
-  background: #fff;
+  background: #f9f9f9;
   color: #444;
   line-height: 30px;
   margin: 0.8em 1em;
@@ -142,6 +142,7 @@ tr:nth-child(even) {
 
 /* code snippets */
 .highlight {
+  background: #fffbf1;
   font-size: 0.9em;
   border-left: 1px solid lightblue; }
 
