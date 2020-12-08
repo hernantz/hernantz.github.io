@@ -42,7 +42,7 @@ on <time datetime="2020-12-08T00:00:00-03:00">2020-12-08</time>,       under <a 
       tagged with <a href="http://hernantz.github.io/tag/database.html">database</a>, <a href="http://hernantz.github.io/tag/firebase.html">firebase</a> and <a href="http://hernantz.github.io/tag/denormalization.html">denormalization</a>.
     </p>
   </summary>
-  <p>Firestore (by Firebase) is a No-SQL JSON database (as a service) created with the premise of scaling horizontally, allowing concurrent updates to documents and even offline support for client apps, something traditional SQL backends cannot do without a good amount of optimization or thoughtful design.</p>
+  <p><a href="https://firebase.google.com/products/firestore" title="Firestore by Google">Firestore</a> (by Firebase) is a No-SQL JSON database (as a service) created with the premise of scaling horizontally, allowing concurrent updates to documents and even offline support for client apps, something traditional SQL backends cannot do without a good amount of optimization or <a href="https://www.youtube.com/watch?v=DEcwa68f-jY" title="dotJS 2019 - James Long - CRDTs for Mortals">thoughtful design</a>.</p>
 <p>In this new world of No-SQL, some things you learned for SQL must be unlearned. One of the most important difference is that de-normalizing data is ok.</p>
 <h2 id="when-is-denormalization-a-not-so-terrible-idea">When is denormalization a not so terrible idea?<a class="headerlink" href="#when-is-denormalization-a-not-so-terrible-idea" title="Permanent link">&para;</a></h2>
 <p>It is a very common pattern to see that data is more often read that written. So optimizing for this case is a sensible thing to do.</p>
@@ -108,7 +108,7 @@ on <time datetime="2020-12-08T00:00:00-03:00">2020-12-08</time>,       under <a 
 
 <p>This is just to check that:</p>
 <ol>
-<li>The author can change anything</li>
+<li>The author can change anything.</li>
 <li>Other users can only change the <code>likedBy</code> list.</li>
 <li>The only allowed change in the <code>likedBy</code> list is to add/remove yourself from the list.</li>
 </ol>
