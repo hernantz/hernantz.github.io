@@ -50,7 +50,7 @@ on <time datetime="2020-12-08T00:00:00-03:00">2020-12-08</time>,       under <a 
 <p>Serving pre-computed or aggregated data is generally less expensive, a stack every booming startup needs to model to not blow their SQL database, usually with Memcached or Redis. In Firestore rule still applies, since you are billed for every document access.</p>
 <h2 id="de-normalizing-client-side">De-normalizing client side.<a class="headerlink" href="#de-normalizing-client-side" title="Permanent link">&para;</a></h2>
 <p>Another way to think about Firestore is as a big FUSE filesystem of JSON documents that checks access rules for accessing a file or modifying a document and triggers callbacks for every update/create/delete action.</p>
-<p>Access rules are created using a limited language (for the sake of scalability) that only allows you to check the who is applying changes to a given document.</p>
+<p>Access rules are created using a <a href="https://firebase.google.com/docs/rules/rules-language" title="Security Rules language">limited language</a> (for the sake of scalability) that only allows you to check the who is applying changes to a given document.</p>
 <p>Say you have a collection of posts and you need to add the "liked by" feature ♥. Any client should only be able to add the current user as a new like, but not modify anything else in the document.</p>
 <p>Example document in the <code>/posts/</code> collection:</p>
 <div class="highlight"><pre><span></span><span class="p">{</span>

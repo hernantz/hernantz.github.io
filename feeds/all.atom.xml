@@ -7,7 +7,7 @@
 &lt;p&gt;Serving pre-computed or aggregated data is generally less expensive, a stack every booming startup needs to model to not blow their SQL database, usually with Memcached or Redis. In Firestore rule still applies, since you are billed for every document access.&lt;/p&gt;
 &lt;h2 id="de-normalizing-client-side"&gt;De-normalizing client side.&lt;a class="headerlink" href="#de-normalizing-client-side" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Another way to think about Firestore is as a big FUSE filesystem of JSON documents that checks access rules for accessing a file or modifying a document and triggers callbacks for every update/create/delete action.&lt;/p&gt;
-&lt;p&gt;Access rules are created using a limited language (for the sake of scalability) that only allows you to check the who is applying changes to a given document.&lt;/p&gt;
+&lt;p&gt;Access rules are created using a &lt;a href="https://firebase.google.com/docs/rules/rules-language" title="Security Rules language"&gt;limited language&lt;/a&gt; (for the sake of scalability) that only allows you to check the who is applying changes to a given document.&lt;/p&gt;
 &lt;p&gt;Say you have a collection of posts and you need to add the "liked by" feature ♥. Any client should only be able to add the current user as a new like, but not modify anything else in the document.&lt;/p&gt;
 &lt;p&gt;Example document in the &lt;code&gt;/posts/&lt;/code&gt; collection:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
