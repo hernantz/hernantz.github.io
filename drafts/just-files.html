@@ -44,6 +44,7 @@ on <time datetime="2020-03-19T00:00:00-03:00">2020-03-19</time>,       under <a 
   <p><img alt="Archive - Photo by  Fabien Barral" src="/images/just-files.jpg" title="Archive - Photo by  Fabien Barral"></p>
 <p>implementacion! =&gt; https://www.leshenko.net/p/ugit</p>
 <p>https://pnpm.js.org/
+https://jordan-wright.com/blog/post/2020-11-12-hunting-for-malicious-packages-on-pypi/
 https://serokell.io/blog/what-is-nix
 https://grassfedcode.com/python-packaging/
 https://github.com/uber/kraken using p2p for big binaries (docker images).
@@ -77,6 +78,11 @@ all packages need to be curated, or users would have to embrace the dependency h
 <p>"The downside is that the approach works best when packages are aware of the Nix approach. But the packages have not been written with Nix in mind, and some work is needed per package to adapt to the approach."</p>
 <p>https://drewdevault.com/dynlib.html -&gt; sharing packages is ok, sharing libs is an overkill</p>
 <p>Docker + docker-compose re implement a package distribution + process manager and orchestration + build system.</p>
+<h2 id="the-importance-of-a-manifest">The importance of a manifest<a class="headerlink" href="#the-importance-of-a-manifest" title="Permanent link">&para;</a></h2>
+<p>A file where you list your dependencies, that can be parsed by automated tools (that check for updates or vulnerabilties) is paramount for auditing your computer.
+This is the <code>Pakfile</code>. When you use the command line to add/remove packages, it simply updates this manifest.</p>
+<p>Other systems use shells scripts or Dockerfiles which have instructions that are hard to parse automatically.</p>
+<p>On the other hand, formatted plain text files can easily be manipulated by other tools.</p>
 <h2 id="misc">Misc<a class="headerlink" href="#misc" title="Permanent link">&para;</a></h2>
 <p>https://lwn.net/Articles/821367/ Merkle trees and build systems</p>
 <p>Transactional updates: https://www.youtube.com/watch?v=ureneyH06AE</p>
@@ -127,6 +133,11 @@ For building: https://zserge.com/posts/containers/ (Linux containers in a few li
 <p>runpak a sandboxed runtime for a binary (is flatpak without big runtimes).</p>
 <p>How to manage dotfiles and XDG-HOME, the user has to create those?</p>
 <p>nix-thesis: https://edolstra.github.io/pubs/phd-thesis.pdf</p>
+<h2 id="network-vs-package-management">Network vs Package management<a class="headerlink" href="#network-vs-package-management" title="Permanent link">&para;</a></h2>
+<p>Fetching packages from the internet should be a decoupled task from package management.
+A package can be obtained from a local file, over https, a magnet link, an ipfs link, ftp, etc. Almost all of the references + auth throught tokens or passwords could be done using a URI scheme.</p>
+<p>Pak should delegate this to a separate tool (is there something like a generic curl?), and only care about maintaining the local store.</p>
+<p>The bridge between these two worlds can be through a spawning a new process with CLI args for this tool to fetch the packages and put the file on a given directory. From there, pak will unpack the file and take control.</p>
 <h2 id="cli">CLI<a class="headerlink" href="#cli" title="Permanent link">&para;</a></h2>
 <p><code>--root</code> can change the default store directory.</p>
 <p>Maybe each <code>pak [un]install &lt;package-name==version&gt;</code></p>

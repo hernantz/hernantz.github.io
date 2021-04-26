@@ -44,7 +44,7 @@ on <time datetime="2020-04-23T00:00:00-03:00">2020-04-23</time>,       under <a 
   </summary>
   <p>Usually for optional params we use <code>None</code> as default in the function signature.
 If it is <code>None</code> we assume the user did not specify one.</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">param</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">param</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">param</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">param</span> <span class="o">=</span> <span class="n">get_system_default</span><span class="p">()</span>
     <span class="c1"># ...</span>
@@ -52,13 +52,11 @@ If it is <code>None</code> we assume the user did not specify one.</p>
 
 <span class="n">main</span><span class="p">(</span><span class="n">param</span><span class="o">=</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span>  <span class="c1"># use &#39;foo&#39;</span>
 <span class="n">main</span><span class="p">()</span>             <span class="c1"># dynamically set param</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>But what if <code>None</code> is a possible value too?</p>
-<div class="highlight"><pre><span></span><span class="n">main</span><span class="p">(</span><span class="n">param</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>   <span class="c1"># OOPS, will calculate anther value for param</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="n">main</span><span class="p">(</span><span class="n">param</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>   <span class="c1"># OOPS, will calculate anther value for param</span>
+</code></pre></div>
 
 <p>The parameter still needs to be optional, because we can calculate a good
 default if it is not set, but how can we know if an optional parameter was
@@ -66,35 +64,33 @@ explicitely set by the caller?</p>
 <p>One way would be make it a required parameter and expose the
 <code>get_system_default()</code> function. We then change the signature of our <code>main()</code>
 so that Python ensures param is always set.</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="c1"># ...</span>
 
 
 <span class="n">main</span><span class="p">(</span><span class="n">param</span><span class="o">=</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span>                      <span class="c1"># use &#39;foo&#39;</span>
 <span class="n">main</span><span class="p">(</span><span class="n">param</span><span class="o">=</span><span class="n">get_system_default</span><span class="p">())</span>       <span class="c1"># dynamically set param</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>With this approach we delegated that responsabilty to the user of our function,
 this is style and is perfectly feasable. But if <code>main()</code> is called a lot, we
 complicated things for our user.</p>
 <p>Another trick is to use the <code>**kwargs</code> dict and check if a param is there or
 not.</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="k">if</span> <span class="s1">&#39;param&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
         <span class="n">param</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;param&#39;</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">param</span> <span class="o">=</span> <span class="n">get_system_default</span><span class="p">()</span>
     <span class="c1"># ...</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>This also works fine, but we kind of loose visibility on what parameters
 <code>main()</code> accepts. This is a bummer if you are using autocomplete tools of other
 helpers that analyse the code.</p>
 <p>So my last trick kind of mitigates that by introducing a custom default value,
 the <code>NotSet</code> type.</p>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">NotSet</span><span class="p">():</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">NotSet</span><span class="p">():</span>
     <span class="k">pass</span>
 
 
@@ -105,8 +101,7 @@ the <code>NotSet</code> type.</p>
     <span class="k">if</span> <span class="n">param</span> <span class="ow">is</span> <span class="n">NOT_SET</span><span class="p">:</span>
         <span class="n">param</span> <span class="o">=</span> <span class="n">get_system_default</span><span class="p">()</span>
     <span class="c1"># ...</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>This is a unique type that won't collide with any other possible value for
 <code>param</code>. If it is <code>NOT_SET</code>, then it is not set :)</p>

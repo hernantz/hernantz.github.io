@@ -56,10 +56,9 @@ on <time datetime="2020-06-27T00:00:00-03:00">2020-06-27</time>,       under <a 
 <p>The short answer is: it depends, but probably more than one.</p>
 <p>For example command line args are great to explore an app from the  shell, and tinker around it's possibilities.</p>
 <p>When you already know what you want it would be great to set some defaults in a configuration file somewhere. Yes, you can always set an alias, like many distros do:</p>
-<div class="highlight"><pre><span></span>$ <span class="nb">type</span> ll
+<div class="highlight"><pre><span></span><code>$ <span class="nb">type</span> ll
 ll is aliased to <span class="sb">`</span>ls -alF<span class="sb">`</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>And yes, many apps allow for both <code>-s</code> short and long <code>--more-verbose</code> arguments.</p>
 <p>Alternatively, config files are naturally better documenting and declarative. Some file formats allow for comments and are great as starter templates to build upon. With files it's easier to make diffs and track changes over time.</p>
@@ -90,26 +89,22 @@ the program startup.</p>
 <p>No matter which tool you choose to manage, generate and populate the configuration artifact, the code of your app should only care about reading files, env vars and/or cli args.</p>
 <h2 id="naming-conventions-and-namespaces-for-settings">Naming conventions and namespaces for settings<a class="headerlink" href="#naming-conventions-and-namespaces-for-settings" title="Permanent link">&para;</a></h2>
 <p>There happen to be some formatting conventions for configuration parameters based on where they are set. For example, it is common to declare environment variables in uppercase:</p>
-<div class="highlight"><pre><span></span>$ <span class="nv">DEBUG</span><span class="o">=</span>yes <span class="nv">OTHER_CONFIG</span><span class="o">=</span><span class="m">10</span> myapp
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>$ <span class="nv">DEBUG</span><span class="o">=</span>yes <span class="nv">OTHER_CONFIG</span><span class="o">=</span><span class="m">10</span> myapp
+</code></pre></div>
 
 <p>Since the environment is a global and shared dictionary, it is a good practice to also apply some prefix to each setting to avoid collisions with other known settings, like <code>LOCALE</code>, <code>TZ</code>, etc. This prefix works as a namespace for your app.</p>
-<div class="highlight"><pre><span></span>$ <span class="nv">MY_APP_DEBUG</span><span class="o">=</span>yes <span class="nv">MY_APP_OTHER_CONFIG</span><span class="o">=</span><span class="m">10</span> myapp
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>$ <span class="nv">MY_APP_DEBUG</span><span class="o">=</span>yes <span class="nv">MY_APP_OTHER_CONFIG</span><span class="o">=</span><span class="m">10</span> myapp
+</code></pre></div>
 
 <p>but if you were to set this config in an .ini file, each setting should probably be in lower case, the namespace is implicit in the file path, i.e: <code>/etc/myapp/config.ini</code>.</p>
-<div class="highlight"><pre><span></span><span class="k">[settings]</span>
+<div class="highlight"><pre><span></span><code><span class="k">[settings]</span>
 <span class="na">debug</span><span class="o">=</span><span class="s">yes</span>
 <span class="na">other_config</span><span class="o">=</span><span class="s">10</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Command line arguments have yet another conventions:</p>
-<div class="highlight"><pre><span></span>$ myapp --debug<span class="o">=</span>yes --another-config<span class="o">=</span><span class="m">10</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>$ myapp --debug<span class="o">=</span>yes --another-config<span class="o">=</span><span class="m">10</span>
+</code></pre></div>
 
 <p>You probably noticed that the debug setting is a boolean value. These flags should accept different inputs like <code>yes|no</code>, <code>1|0</code>, <code>true|false</code> or <code>t|f</code>.</p>
 <p>It is important to be consistent in naming these variables, but to respect the conventions too.</p>
@@ -119,7 +114,7 @@ the program startup.</p>
 <p>The good practices that it suggests have an agnostic approach to configure applications, no matter if they are web, CLI or GUI apps, hosted on the cloud or running in your desktop.</p>
 <p>You can find out more documentation at <a href="https://classyconf.readthedocs.io/en/latest/index.html">Read the
 Docs</a> website, but here is a preview of how to use it.</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">classyconf</span> <span class="kn">import</span> <span class="n">Configuration</span><span class="p">,</span> <span class="n">Value</span><span class="p">,</span> <span class="n">Environment</span><span class="p">,</span> <span class="n">IniFile</span><span class="p">,</span> <span class="n">as_boolean</span><span class="p">,</span> <span class="n">EnvPrefix</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">classyconf</span> <span class="kn">import</span> <span class="n">Configuration</span><span class="p">,</span> <span class="n">Value</span><span class="p">,</span> <span class="n">Environment</span><span class="p">,</span> <span class="n">IniFile</span><span class="p">,</span> <span class="n">as_boolean</span><span class="p">,</span> <span class="n">EnvPrefix</span>
 
 
 <span class="k">class</span> <span class="nc">AppConfig</span><span class="p">(</span><span class="n">Configuration</span><span class="p">):</span>
@@ -132,40 +127,35 @@ Docs</a> website, but here is a preview of how to use it.</p>
 
     <span class="n">DEBUG</span> <span class="o">=</span> <span class="n">Value</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cast</span><span class="o">=</span><span class="n">as_boolean</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Toggle debugging mode.&quot;</span><span class="p">)</span>
     <span class="n">DATABASE</span> <span class="o">=</span> <span class="n">Value</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;postgres://localhost:5432/mydb&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Database connection.&quot;</span><span class="p">)</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>As you can see is very declarative. It uses the concept of loaders, which collect settings from different sources and merges them in the right order.</p>
 <p>This class can be extended according to different environments or needs.</p>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TestConfig</span><span class="p">(</span><span class="n">AppConfig</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">TestConfig</span><span class="p">(</span><span class="n">AppConfig</span><span class="p">):</span>
     <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
         <span class="n">loaders</span> <span class="o">=</span> <span class="p">[</span><span class="n">IniFile</span><span class="p">(</span><span class="s2">&quot;test_settings.ini&quot;</span><span class="p">),</span> <span class="n">IniFile</span><span class="p">(</span><span class="s2">&quot;config.ini&quot;</span><span class="p">)]</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>overridden at runtime</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">dev_config</span> <span class="o">=</span> <span class="n">AppConfig</span><span class="p">(</span><span class="n">loaders</span><span class="o">=</span><span class="p">[</span><span class="n">IniFile</span><span class="p">(</span><span class="s2">&quot;dev_settings.ini&quot;</span><span class="p">)])</span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">dev_config</span> <span class="o">=</span> <span class="n">AppConfig</span><span class="p">(</span><span class="n">loaders</span><span class="o">=</span><span class="p">[</span><span class="n">IniFile</span><span class="p">(</span><span class="s2">&quot;dev_settings.ini&quot;</span><span class="p">)])</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">dev_config</span><span class="o">.</span><span class="n">DEBUG</span>
 <span class="kc">True</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>accessed (and lazily evaluated) as dict or object</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">config</span><span class="o">.</span><span class="n">DEBUG</span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">config</span><span class="o">.</span><span class="n">DEBUG</span>
 <span class="kc">False</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;DEBUG&quot;</span><span class="p">]</span>
 <span class="kc">False</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>introspected and iterated</p>
-<div class="highlight"><pre><span></span> <span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">setting</span> <span class="ow">in</span> <span class="n">config</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code> <span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">setting</span> <span class="ow">in</span> <span class="n">config</span><span class="p">:</span>
 <span class="o">...</span>     <span class="nb">print</span><span class="p">(</span><span class="n">setting</span><span class="p">)</span>
 <span class="o">...</span>
 <span class="p">(</span><span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span> <span class="n">Value</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s2">&quot;DEBUG&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Toggle debugging on/off.&quot;</span><span class="p">))</span>
 <span class="p">(</span><span class="s1">&#39;DATABASE&#39;</span><span class="p">,</span> <span class="n">Value</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s2">&quot;DATABASE&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Database connection.&quot;</span><span class="p">))</span>
-</pre></div>
-
+</code></pre></div>
 
 <h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
 <p>The idea of this blog post was to highlight the importance of thinking configuration as an API, to follow best practices and conventions and the need to be flexible for different sources of configuration.</p>

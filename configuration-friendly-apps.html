@@ -72,7 +72,7 @@ configured. There is a difference between configuring a library vs configuring
 a project.</p>
 <p>Lets see an example of how <code>sqlalchemy</code>, a database toolkit library, provides
 us with the needed building blocks for us to use as we please.</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">String</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">String</span>
 <span class="kn">from</span> <span class="nn">sqlalchemy.ext.declarative</span> <span class="kn">import</span> <span class="n">declarative_base</span>
 <span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
 
@@ -88,8 +88,7 @@ us with the needed building blocks for us to use as we please.</p>
 
 <span class="c1"># Create all tables in the engine.</span>
 <span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>A library is meant to be a reusable piece of code that should not make
 assumptions on where and how it is going to be used. </p>
@@ -115,12 +114,11 @@ machine, it can be executed in production or in testing environments.</p>
 files, envirionment variables, etc.</p>
 <p>For example, there is a common pattern to read configurations in environment
 variables<sup id="fnref:0"><a class="footnote-ref" href="#fn:0">1</a></sup> that look similar to the code below:</p>
-<div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;DEBUG&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;DEBUG&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Why is getting config variables directly a bad idea?</p>
 <p>If env var <code>DEBUG=False</code> this code will print <code>True</code> because
@@ -149,7 +147,7 @@ have a single <code>config.py</code> file where settings are gathered, parsed an
 processed. The app imports that config module and distributes it to all the
 different libraries it is using.</p>
 <p>An example startup script for your app could be:</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">argparse</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">argparse</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">configparser</span>
 <span class="kn">from</span> <span class="nn">app</span> <span class="kn">import</span> <span class="n">main</span>
@@ -170,8 +168,7 @@ different libraries it is using.</p>
 
 <span class="k">if</span> <span class="n">__name___</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">main</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>This snippet uses <code>ChainMap</code><sup id="fnref:2"><a class="footnote-ref" href="#fn:2">3</a></sup> to lookup values in different dictionary-like objects. To our convenience, the <code>configparser</code> module has builtin support to read multiple <code>.ini</code> files and merge them.</p>
 <h3 id="a-single-executable-file">A single executable file<a class="headerlink" href="#a-single-executable-file" title="Permanent link">&para;</a></h3>
@@ -179,33 +176,30 @@ different libraries it is using.</p>
 environment there are:  <code>dev_settings.py</code>, <code>staging_settings.py</code>,
 <code>local_settings.py</code>, etc, and including different logic on them.</p>
 <p>A very simple example of custom logic is:</p>
-<div class="highlight"><pre><span></span><span class="c1"># base_settings.py</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># base_settings.py</span>
 <span class="n">PLUGINS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">]</span>
 
 
 <span class="c1"># dev_settings.py</span>
 <span class="kn">from</span> <span class="nn">base_settings</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="n">PLUGINS</span> <span class="o">=</span> <span class="n">PLUGINS</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;baz&#39;</span><span class="p">]</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Should be a single <code>settings.py</code>:</p>
-<div class="highlight"><pre><span></span><span class="c1"># settings.py</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># settings.py</span>
 <span class="n">config</span> <span class="o">=</span> <span class="n">ConfigParser</span><span class="p">(</span><span class="s1">&#39;config.ini&#39;</span><span class="p">)</span>
 
 <span class="c1"># this is what the app uses</span>
 <span class="n">PLUGINS</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;BASE_PLUGINS&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;EXTRA_PLUGINS&#39;</span><span class="p">]</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Which gets its config from a local ini file for example:</p>
-<div class="highlight"><pre><span></span><span class="c1"># /etc/app/config.ini for everyone</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># /etc/app/config.ini for everyone</span>
 <span class="na">BASE_PLUGINS</span> <span class="o">=</span> <span class="s">foo,bar</span>
 
 <span class="c1"># ~/.config/app/config.ini that a user overrides based on the template</span>
 <span class="na">EXTRA_PLUGINS</span> <span class="o">=</span> <span class="s">baz</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>This way the only thing that changes is pure configuration variables, but the
 same configuration code gets executed everywhere. We also were able to separate
@@ -238,12 +232,11 @@ secrets should also be kept outside the codebase and made configurable.</p>
 put into templates by Config Management/Orchestration tools and come handy when
 developing.</p>
 <p>Following the example above, a <code>config.ini.template</code> could look like this:</p>
-<div class="highlight"><pre><span></span><span class="c1"># config.ini.template that each environment can implement</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># config.ini.template that each environment can implement</span>
 <span class="c1">#</span>
 <span class="c1"># EXTRA_PLUGINS = one_plugin,another_plugin</span>
 <span class="c1"># SECRET_KEY = &lt;change me&gt;</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Even env vars can be put into a file (typically named <code>.env</code>) that gets loaded
 before the program starts. Many tools that manage processes/containers, like
@@ -271,7 +264,7 @@ project, it makes a good candidate to manage configuration templates for
 files, vars that will be injected into the environment, or how to keep
 secret/sensitive information protected.</p>
 <p>The development and operations flow has two clearly distinct realms:</p>
-<div class="highlight"><pre><span></span><span class="o">+-------+</span>           <span class="o">+-------+</span>          <span class="o">+--------+</span>         <span class="o">+-------+</span>         <span class="o">+-------+</span>
+<div class="highlight"><pre><span></span><code><span class="o">+-------+</span>           <span class="o">+-------+</span>          <span class="o">+--------+</span>         <span class="o">+-------+</span>         <span class="o">+-------+</span>
 <span class="o">|</span>       <span class="o">|</span>           <span class="o">|</span>       <span class="o">|</span>          <span class="o">|</span>        <span class="o">|</span>         <span class="o">|</span>       <span class="o">|</span>         <span class="o">|</span>       <span class="o">|</span>
 <span class="o">|</span> <span class="n">code</span>  <span class="o">+----------&gt;|</span> <span class="n">build</span> <span class="o">+---------&gt;|</span>        <span class="o">|&lt;--------+</span><span class="n">service</span><span class="o">|&lt;--------+</span> <span class="n">conf</span>  <span class="o">+</span>
 <span class="o">|</span>       <span class="o">|</span>           <span class="o">|</span>       <span class="o">|</span>          <span class="o">|</span>        <span class="o">|</span>         <span class="o">|</span>       <span class="o">|</span>         <span class="o">|</span>       <span class="o">|</span>
@@ -292,8 +285,7 @@ secret/sensitive information protected.</p>
 <span class="o">+-------------------+---------------------------------------------------------------+</span>
 <span class="o">|</span>    <span class="n">code</span> <span class="n">realm</span>     <span class="o">|</span>                   <span class="n">Devops</span><span class="o">/</span><span class="n">CM</span><span class="o">/</span><span class="n">Orchestraion</span> <span class="n">realm</span>                <span class="o">|</span>
 <span class="o">+-------------------+---------------------------------------------------------------+</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Notice that developers are also users of the software, that need to configure
 it and are constantly doing micro-releases while developing.</p>
@@ -310,7 +302,7 @@ the program.</p>
 <p>The <a href="https://en.wikipedia.org/wiki/Signal_(IPC)#SIGHUP" title="Posix signals">SIGHUP signal</a> is usually used to trigger a reload of configurations
 for daemons.</p>
 <p>In Python, this can be achieved with the <code>signal</code> module, as the following gist shows:</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">signal</span>
 
 <span class="k">def</span> <span class="nf">get_config</span><span class="p">(</span><span class="n">rel</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -344,33 +336,30 @@ for daemons.</p>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">run</span><span class="p">()</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Then, the program can be notified about new config by using <code>kill -1</code> or, with
 systemd:</p>
-<div class="highlight"><pre><span></span>$ sudo systemctl reload application.service
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>$ sudo systemctl reload application.service
+</code></pre></div>
 
 <p>If the app is part of a distributed cloud system, the same principle can still
 be used. For example, Consul, a tool for service and configuration discovery
 provides <code>consult-template</code>, a command to populate values from Consul <sup id="fnref:3"><a class="footnote-ref" href="#fn:3">4</a></sup> into
 automatically <a href="https://vimeo.com/109626825" title="Consul template demo">updated templates</a> that can emit reload commands to programs
 to pick it up.</p>
-<div class="highlight"><pre><span></span>$ consul-template <span class="se">\</span>
+<div class="highlight"><pre><span></span><code>$ consul-template <span class="se">\</span>
     -template <span class="s2">&quot;/tmp/nginx.ctmpl:/var/nginx/nginx.conf:nginx -s reload&quot;</span> <span class="se">\</span>
     -template <span class="s2">&quot;/tmp/redis.ctmpl:/var/redis/redis.conf:service redis restart&quot;</span> <span class="se">\</span>
     -template <span class="s2">&quot;/tmp/haproxy.ctmpl:/var/haproxy/haproxy.conf&quot;</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>As you can see, there is another tool in charge of managing configuration, building it and notifying our code about it.</p>
 <h2 id="introducing-prettyconf">Introducing prettyconf<a class="headerlink" href="#introducing-prettyconf" title="Permanent link">&para;</a></h2>
 <p><a href="https://github.com/osantana/prettyconf" title="Prettyconf">Prettyconf</a> is a framework agnostic python library created to make easy
 the separation of configuration and code. It lets you use the principles we
 discribed about configuration-discovery.</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">argparse</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">argparse</span>
 <span class="kn">from</span> <span class="nn">prettyconf</span> <span class="kn">import</span> <span class="n">Configuration</span>
 <span class="kn">from</span> <span class="nn">prettyconf.loaders</span> <span class="kn">import</span> <span class="n">CommandLine</span><span class="p">,</span> <span class="n">Environment</span><span class="p">,</span> <span class="n">IniFile</span>
 
@@ -391,8 +380,7 @@ discribed about configuration-discovery.</p>
 <span class="p">)</span>
 
 <span class="n">DEBUG_MODE</span> <span class="o">=</span> <span class="n">config</span><span class="p">(</span><span class="s1">&#39;debug&#39;</span><span class="p">,</span> <span class="n">cast</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">boolean</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>With the snippet above, the <code>debug</code> config will be discovered from the command
 line args, the environment or different <code>.ini</code> files, even following good naming

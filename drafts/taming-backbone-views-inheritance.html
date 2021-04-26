@@ -53,10 +53,9 @@ feed es diferente.</p>
 podes tener 100 de estos tipos de vistas, y cambian muy pocas cosas, como el template.
 Hacer prueba de instanciar una vista generica y solo pasarle el template, el $el, la coleccion, etc.</p>
 <h2 id="second-approach-extend-a-parent-view">Second approach: extend a parent view<a class="headerlink" href="#second-approach-extend-a-parent-view" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">BaseView</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">BaseView</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">();</span>
 <span class="kd">var</span> <span class="nx">ChildView</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">BaseView</span><span class="p">,</span> <span class="p">{});</span>
-</pre></div>
-
+</code></pre></div>
 
 <h2 id="third-approach-parent-view-contains-child-views">Third approach: parent view contains child views<a class="headerlink" href="#third-approach-parent-view-contains-child-views" title="Permanent link">&para;</a></h2>
 <h2 id="forth-approach-marionettejsbehaviour">Forth approach: MarionetteJS.Behaviour<a class="headerlink" href="#forth-approach-marionettejsbehaviour" title="Permanent link">&para;</a></h2>

@@ -53,7 +53,7 @@ saved/deleted.</p>
 application needs to store each user's resume (with experience, studies, etc).
 Whenever a new user is created, we'll ensure that it gets it's own <code>Resume</code>
 instance.</p>
-<div class="highlight"><pre><span></span><span class="c1"># somewhere inside cv/models.py</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># somewhere inside cv/models.py</span>
 
 <span class="kn">from</span> <span class="nn">django.dispatch</span> <span class="kn">import</span> <span class="n">receiver</span>
 <span class="kn">from</span> <span class="nn">django.core.signals</span> <span class="kn">import</span> <span class="n">post_save</span>
@@ -63,13 +63,12 @@ instance.</p>
 <span class="k">def</span> <span class="nf">create_user_cv</span><span class="p">(</span><span class="n">sender</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;created&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
         <span class="n">Resume</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get_or_create</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;instance&#39;</span><span class="p">))</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>If another piece of code is also interest in perfoming some action everytime a
 user is saved, like syncing user info with a 3rd party jobs board site for
 example, we could acomplish that with another handler:</p>
-<div class="highlight"><pre><span></span><span class="c1"># somewhere inside users/models.py</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># somewhere inside users/models.py</span>
 
 <span class="kn">from</span> <span class="nn">django.dispatch</span> <span class="kn">import</span> <span class="n">receiver</span>
 <span class="kn">from</span> <span class="nn">django.core.signals</span> <span class="kn">import</span> <span class="n">post_save</span>
@@ -81,8 +80,7 @@ example, we could acomplish that with another handler:</p>
     <span class="n">user</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;instance&#39;</span><span class="p">)</span>
     <span class="n">resume_data</span> <span class="o">=</span> <span class="n">model_to_dict</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">resume</span><span class="p">)</span>
     <span class="n">sync_with_jobsboard</span><span class="p">(</span><span class="n">user_data</span><span class="p">,</span> <span class="n">resume_data</span><span class="p">)</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Now this code expects a curriculum to be associated to this user and that won't
 be true for new members.</p>
@@ -94,7 +92,7 @@ not inmediatelly clear</strong>.</p>
 <p>The following snippet shows how to put everything in one place, gaining us some
 maintainability, but still allowing us differentiate recently created instances,
 <code>pre_save</code> and <code>post_save</code> code:</p>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
     <span class="c1"># ...</span>
 
     <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -116,8 +114,7 @@ maintainability, but still allowing us differentiate recently created instances,
         <span class="n">user_data</span> <span class="o">=</span> <span class="n">model_to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">resume_data</span> <span class="o">=</span> <span class="n">model_to_dict</span><span class="p">(</span><span class="n">resume</span><span class="p">)</span>
         <span class="n">sync_with_jobsboard</span><span class="p">(</span><span class="n">user_data</span><span class="p">,</span> <span class="n">resume_data</span><span class="p">)</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Model's <code>save()</code> method is also a pretty standard method to be overrided since
 it is called by other frameworks like DRF or the admin so it makes a good place
@@ -126,27 +123,25 @@ to hook in there our custom code.</p>
 <p>Truth be told, signals have broader applications that cannot be replaced by
 extending a single method.</p>
 <p>For example, when you have to track changes in <code>ManyToManyField</code> fields</p>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Question</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Question</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
     <span class="n">favorited</span> <span class="o">=</span> <span class="n">ManyToManyField</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Here we cannot use the <code>save()</code> because m2m instances are added or deleted
 through intermediate tables which are managed by Django. But we can make use of
 the <code>m2m_changed</code> signals for that: </p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">handle_fav_notifications</span><span class="p">(</span><span class="n">sender</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">handle_fav_notifications</span><span class="p">(</span><span class="n">sender</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Send an email to the author of a question whenever it gets fav&#39;ed&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;post_add&#39;</span><span class="p">:</span>
         <span class="n">instance</span><span class="o">.</span><span class="n">notify_new_favorite</span><span class="p">()</span>
 
 <span class="n">m2m_changed</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
     <span class="n">handle_fav_notifications</span><span class="p">,</span> <span class="n">sender</span><span class="o">=</span><span class="n">Question</span><span class="o">.</span><span class="n">favorited</span><span class="o">.</span><span class="n">through</span><span class="p">)</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>In case we needed to track multiple m2m relations, we can do all that in a
 single handler:</p>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FavableMixin</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">FavableMixin</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
     <span class="n">favorited</span> <span class="o">=</span> <span class="n">M2MField</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;favorite_</span><span class="si">%(class)s</span><span class="s1">&#39;</span><span class="p">)</span>
 
     <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
@@ -172,13 +167,12 @@ single handler:</p>
 <span class="k">def</span> <span class="nf">handle_fav_notifications</span><span class="p">(</span><span class="n">sender</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">FavableMixin</span><span class="p">)</span> <span class="ow">and</span> <span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;post_add&#39;</span><span class="p">:</span>
         <span class="n">instance</span><span class="o">.</span><span class="n">notify_new_favorite</span><span class="p">()</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Signals can also become handy when trying to <strong>react to code you do not own</strong>.
 This other example shows how we can hook some custom code into the <code>auth</code> third
 party app, without having to create a new login view:</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.contrib.auth.signals</span> <span class="kn">import</span> <span class="n">user_login_failed</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">django.contrib.auth.signals</span> <span class="kn">import</span> <span class="n">user_login_failed</span>
 
 
 <span class="k">def</span> <span class="nf">help_user_with_login_link</span><span class="p">(</span><span class="n">sender</span><span class="p">,</span> <span class="n">credentials</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -188,8 +182,7 @@ party app, without having to create a new login view:</p>
 
 <span class="c1"># Sent when the user failed to login successfully</span>
 <span class="n">user_login_failed</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">help_user_with_login_link</span><span class="p">)</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Django puts emphasis on <strong>following conventions</strong>, and signals shouldn't be the
 exception. You have to place signals and handlers somewhere the framework can
