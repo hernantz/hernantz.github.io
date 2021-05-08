@@ -43,7 +43,7 @@ on <time datetime="2020-03-19T00:00:00-03:00">2020-03-19</time>,       under <a 
   </summary>
   <p><img alt="Archive - Photo by  Fabien Barral" src="/images/just-files.jpg" title="Archive - Photo by  Fabien Barral"></p>
 <p>implementacion! =&gt; https://www.leshenko.net/p/ugit</p>
-<p>https://pnpm.js.org/
+<p>https://pnpm.js.org/ or pnpm.io
 https://jordan-wright.com/blog/post/2020-11-12-hunting-for-malicious-packages-on-pypi/
 https://serokell.io/blog/what-is-nix
 https://grassfedcode.com/python-packaging/
@@ -83,6 +83,7 @@ all packages need to be curated, or users would have to embrace the dependency h
 This is the <code>Pakfile</code>. When you use the command line to add/remove packages, it simply updates this manifest.</p>
 <p>Other systems use shells scripts or Dockerfiles which have instructions that are hard to parse automatically.</p>
 <p>On the other hand, formatted plain text files can easily be manipulated by other tools.</p>
+<p>In the packfile you can also override dependencies in the graph (like in pnpmjs).</p>
 <h2 id="misc">Misc<a class="headerlink" href="#misc" title="Permanent link">&para;</a></h2>
 <p>https://lwn.net/Articles/821367/ Merkle trees and build systems</p>
 <p>Transactional updates: https://www.youtube.com/watch?v=ureneyH06AE</p>
@@ -188,6 +189,7 @@ Pakfile.lock -&gt; json?</p>
 <p>When does dependency resolution happen? Before downloading the packages or after downloading all dependencies in parallel?
 When you say <code>pak install git</code>, we go get the <code>Pakfile.lock</code> for git. There we have a graph of all dependencies that we can compare with our local <code>Pakfile.lock</code> of our profile.
 If there is a sub-dependency at any point that conflicts we show an error. If there are no conflicts, we can download in parallel every sub-dependency.</p>
+<p>https://github.com/Henryws/pacstall</p>
 </article>
 
       <footer class="column-right light">
