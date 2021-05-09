@@ -118,14 +118,22 @@ on
      <a href="https://www.postgresql.org/docs/current/sql-altertable.html#SQL-ALTERTABLE-NOTES">
       makes it invisible
      </a>
-     to SQL queries, in order to make this operation super fast. New update and insert queries store a
+     to SQL queries, in order to make this operation super fast. New
+     <code>
+      UPDATE
+     </code>
+     or
+     <code>
+      INSERT
+     </code>
+     queries store a
      <code>
       NULL
      </code>
      value on that column, but disk space will not be reclaimed or re-used until, over time, existing rows are updated.
     </p>
     <p>
-     To deal with this amount of bloat the solution is to run the
+     To deal with a huge amount of bloat the solution is to run the
      <code>
       VACUUM FULL
      </code>
