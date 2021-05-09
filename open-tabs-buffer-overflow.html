@@ -1,89 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>Open tabs buffer overflow | README.txt</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
-  <link rel="stylesheet" media="(max-width: 750px)" href="/theme/css/mobile.css" type="text/css" />
-  <link rel="stylesheet" href="/theme/css/pygments-default.css" type="text/css" />
-  <link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
-  <link href="/rss.xml" type="application/atom+xml" rel="alternate" title="README.txt RSS Feed" />
-  <meta name="description" content="Ideas for surviving an open tabs buffer overflow.">
-  <meta name="keywords" content="ideas">
-  <meta name="author" content="hernantz">
-</head>
-
-<body>
+ <head>
+  <title>
+   Open tabs buffer overflow | README.txt
+  </title>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport"/>
+  <link href="/theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="/theme/css/mobile.css" media="(max-width: 750px)" rel="stylesheet" type="text/css"/>
+  <link href="/theme/css/pygments-default.css" rel="stylesheet" type="text/css"/>
+  <link href="/images/favicon.ico" rel="icon" type="image/x-icon"/>
+  <link href="/rss.xml" rel="alternate" title="README.txt RSS Feed" type="application/atom+xml"/>
+  <meta content="Ideas for surviving an open tabs buffer overflow." name="description"/>
+  <meta content="ideas" name="keywords"/>
+  <meta content="hernantz" name="author"/>
+  <link href="http://hernantz.github.io/open-tabs-buffer-overflow.html" rel="canonical"/>
+  <script type="application/ld+json">
+   {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "README.txt", "item": "http://hernantz.github.io"}, {"@type": "ListItem", "position": 2, "name": "Open tabs buffer overflow", "item": "http://hernantz.github.io/open-tabs-buffer-overflow.html"}]}
+  </script>
+  <script type="application/ld+json">
+   {"@context": "https://schema.org", "@type": "Article", "author": {"@type": "Person", "name": "hernantz"}, "publisher": {"@type": "Organization", "name": "README.txt"}, "headline": "Open tabs buffer overflow", "about": "Productivity", "datePublished": "2013-08-21 00:00"}
+  </script>
+ </head>
+ <body>
   <aside class="sidebar">
-    <a href="/"><img src="/images/avatar.png" height="75" width="75" /></a>
-
-      <nav>
-        <ul>
-            <li><a href="http://twitter.com/hernantz">twitter</i></a></li>
-            <li><a href="http://github.com/hernantz">github</i></a></li>
-            <li><a href="http://last.fm/user/hernantz">last.fm</i></a></li>
-            <li><a href="https://www.rottentomatoes.com/user/id/973196678">tomatoes</i></a></li>
-            <li><a href="/talks.html">talks</a></li>
-            <li><a href="/whoami.html">whoami</a></li>
-            <li><a href="/">blog</a></li>
-        </ul>
-      </nav>
-
+   <a href="/">
+    <img height="75" src="/images/avatar.png" width="75"/>
+   </a>
+   <nav>
+    <ul>
+     <li>
+      <a href="http://twitter.com/hernantz">
+       twitter
+      </a>
+     </li>
+     <li>
+      <a href="http://github.com/hernantz">
+       github
+      </a>
+     </li>
+     <li>
+      <a href="http://last.fm/user/hernantz">
+       last.fm
+      </a>
+     </li>
+     <li>
+      <a href="https://www.rottentomatoes.com/user/id/973196678">
+       tomatoes
+      </a>
+     </li>
+     <li>
+      <a href="/talks.html">
+       talks
+      </a>
+     </li>
+     <li>
+      <a href="/whoami.html">
+       whoami
+      </a>
+     </li>
+     <li>
+      <a href="/">
+       blog
+      </a>
+     </li>
+    </ul>
+   </nav>
   </aside>
   <main>
-        
-<article class="column-right">
-  <h1 class="main-title">Open tabs buffer overflow</h1>
-  <summary>
-    <p class="light">
+   <article class="column-right">
+    <h1 class="main-title">
+     Open tabs buffer overflow
+    </h1>
+    <summary>
+     <p class="light">
       Published
-on <time datetime="2013-08-21T00:00:00-03:00">2013-08-21</time>,       under <a href="http://hernantz.github.io/category/productivity.html">Productivity</a>,
-      tagged with <a href="http://hernantz.github.io/tag/ideas.html">ideas</a>.
+on
+      <time datetime="2013-08-21T00:00:00-03:00">
+       2013-08-21
+      </time>
+      ,       under
+      <a href="http://hernantz.github.io/category/productivity.html">
+       Productivity
+      </a>
+      ,
+      tagged with
+      <a href="http://hernantz.github.io/tag/ideas.html">
+       ideas
+      </a>
+      .
+     </p>
+    </summary>
+    <p>
+     <img alt="Bored Elon Musk knows" src="/images/genius-is-1-inspiration-and-99-closing-the-two-hundred-open-tabs-in-your-browser.png"/>
     </p>
-  </summary>
-  <p><img alt="Bored Elon Musk knows" src="/images/genius-is-1-inspiration-and-99-closing-the-two-hundred-open-tabs-in-your-browser.png"></p>
-<h2 id="the-interwebs-and-the-power-it-holds">The interwebs and the power it holds<a class="headerlink" href="#the-interwebs-and-the-power-it-holds" title="Permanent link">&para;</a></h2>
-<p>There is so much out there and just a click of distance. Funny videos, new
-music, interesting articles, tutorials, blog posts, games.</p>
-<p>So now I have lots of open tabs that I would like to close some day but there is
+    <h2 id="the-interwebs-and-the-power-it-holds">
+     The interwebs and the power it holds
+     <a class="headerlink" href="#the-interwebs-and-the-power-it-holds" title="Permanent link">
+      ¶
+     </a>
+    </h2>
+    <p>
+     There is so much out there and just a click of distance. Funny videos, new
+music, interesting articles, tutorials, blog posts, games.
+    </p>
+    <p>
+     So now I have lots of open tabs that I would like to close some day but there is
 always new content that keeps being added to my information processing buffer
-AKA open tabs buffer.</p>
-<h2 id="why-do-i-even-check-reddithackernews">Why do I even check reddit/hackernews?<a class="headerlink" href="#why-do-i-even-check-reddithackernews" title="Permanent link">&para;</a></h2>
-<p>Partly becouse it's addictive. Small dosis of information of stuff I like,
+AKA open tabs buffer.
+    </p>
+    <h2 id="why-do-i-even-check-reddithackernews">
+     Why do I even check reddit/hackernews?
+     <a class="headerlink" href="#why-do-i-even-check-reddithackernews" title="Permanent link">
+      ¶
+     </a>
+    </h2>
+    <p>
+     Partly becouse it's addictive. Small dosis of information of stuff I like,
 injected right to my brain. But mostly it's becouse this way, I feel less guilty
-about procrastinating.</p>
-<h2 id="ideas-for-surviving-an-open-tabs-buffer-overflow">Ideas for surviving an open tabs buffer overflow.<a class="headerlink" href="#ideas-for-surviving-an-open-tabs-buffer-overflow" title="Permanent link">&para;</a></h2>
-<p><a href="http://en.wikipedia.org/wiki/Triage" title="Triage mode">Triage mode</a> for new content, is my current approach. If I find something 
+about procrastinating.
+    </p>
+    <h2 id="ideas-for-surviving-an-open-tabs-buffer-overflow">
+     Ideas for surviving an open tabs buffer overflow.
+     <a class="headerlink" href="#ideas-for-surviving-an-open-tabs-buffer-overflow" title="Permanent link">
+      ¶
+     </a>
+    </h2>
+    <p>
+     <a href="http://en.wikipedia.org/wiki/Triage" title="Triage mode">
+      Triage mode
+     </a>
+     for new content, is my current approach. If I find something 
 that could be benefitial at some point, I throw it in the bookmarks limbo 
 (that place where goes everything I will never read), and I feel released that 
-it is in a safe place, and eventually I will read it.</p>
-<p>Also:</p>
-<ul>
-<li>Don't check for rss/newsletters/twitter/hackernews/reddit. You don't really 
-  need them, trust me.</li>
-<li>Fresh start. Don't reopen last tabs every session.  This will help you forget 
+it is in a safe place, and eventually I will read it.
+    </p>
+    <p>
+     Also:
+    </p>
+    <ul>
+     <li>
+      Don't check for rss/newsletters/twitter/hackernews/reddit. You don't really 
+  need them, trust me.
+     </li>
+     <li>
+      Fresh start. Don't reopen last tabs every session.  This will help you forget 
   what wasn't important when you open the browser and read what is important before 
-  closing the browser.</li>
-<li>Limit the number of browser tabs with a plugin.</li>
-<li>Use a read-it-later diggesting tool (like <a href="http://getpocket.com/">Pocket</a>), which also removes the 
-  comments and ads cutter from your read.</li>
-</ul>
-<h2 id="update-2016-04-03">Update 2016-04-03<a class="headerlink" href="#update-2016-04-03" title="Permanent link">&para;</a></h2>
-<p>So far my biggest improvements have come from the read-it-later solution, mainly
-because I can tag articles to easily find later like: <code>server</code> (for server setup
-and sysadmin tasks), <code>python</code>, <code>uix</code> (for ui/ux), <code>management</code> (everything
+  closing the browser.
+     </li>
+     <li>
+      Limit the number of browser tabs with a plugin.
+     </li>
+     <li>
+      Use a read-it-later diggesting tool (like
+      <a href="http://getpocket.com/">
+       Pocket
+      </a>
+      ), which also removes the 
+  comments and ads cutter from your read.
+     </li>
+    </ul>
+    <h2 id="update-2016-04-03">
+     Update 2016-04-03
+     <a class="headerlink" href="#update-2016-04-03" title="Permanent link">
+      ¶
+     </a>
+    </h2>
+    <p>
+     So far my biggest improvements have come from the read-it-later solution, mainly
+because I can tag articles to easily find later like:
+     <code>
+      server
+     </code>
+     (for server setup
+and sysadmin tasks),
+     <code>
+      python
+     </code>
+     ,
+     <code>
+      uix
+     </code>
+     (for ui/ux),
+     <code>
+      management
+     </code>
+     (everything
 related to managing projects/people), among others. The hardest part here is to
-remember that you once saved something interesting for later read.</p>
-<p>The other improvement has been to stop using the desktop to browse twitter.
+remember that you once saved something interesting for later read.
+    </p>
+    <p>
+     The other improvement has been to stop using the desktop to browse twitter.
 Instead I force myself to read it on a tablet, which is not so distracting and
-at the same time helps with the <em>triage process</em> since it is somewhat cumbersome
-to multitask on it.</p>
-</article>
-
-      <footer class="column-right light">
-        <nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> - <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | README.txt</nav>
-      </footer>
+at the same time helps with the
+     <em>
+      triage process
+     </em>
+     since it is somewhat cumbersome
+to multitask on it.
+    </p>
+   </article>
+   <footer class="column-right light">
+    <nav>
+     <a href="/">
+      Home
+     </a>
+     -
+     <a href="/archives.html">
+      Archives
+     </a>
+     -
+     <a href="/categories.html">
+      Categories
+     </a>
+     -
+     <a href="/tags.html">
+      Tags
+     </a>
+     -
+     <a href="/rss.xml">
+      RSS
+     </a>
+     -
+     <a href="https://creativecommons.org/licenses/by/4.0/">
+      License
+     </a>
+     | README.txt
+    </nav>
+   </footer>
   </main>
-</body>
+ </body>
 </html>

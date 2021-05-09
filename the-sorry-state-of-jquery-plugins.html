@@ -1,125 +1,271 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>The sorry state of jQuery plugins | README.txt</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
-  <link rel="stylesheet" media="(max-width: 750px)" href="/theme/css/mobile.css" type="text/css" />
-  <link rel="stylesheet" href="/theme/css/pygments-default.css" type="text/css" />
-  <link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
-  <link href="/rss.xml" type="application/atom+xml" rel="alternate" title="README.txt RSS Feed" />
-  <meta name="description" content="Customization is not enough, some plugins simply do too much.">
-  <meta name="keywords" content="backbone, javascript, bootstrap, jquery">
-  <meta name="author" content="hernantz">
-</head>
-
-<body>
+ <head>
+  <title>
+   The sorry state of jQuery plugins | README.txt
+  </title>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport"/>
+  <link href="/theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="/theme/css/mobile.css" media="(max-width: 750px)" rel="stylesheet" type="text/css"/>
+  <link href="/theme/css/pygments-default.css" rel="stylesheet" type="text/css"/>
+  <link href="/images/favicon.ico" rel="icon" type="image/x-icon"/>
+  <link href="/rss.xml" rel="alternate" title="README.txt RSS Feed" type="application/atom+xml"/>
+  <meta content="Customization is not enough, some plugins simply do too much." name="description"/>
+  <meta content="backbone, javascript, bootstrap, jquery" name="keywords"/>
+  <meta content="hernantz" name="author"/>
+  <link href="http://hernantz.github.io/the-sorry-state-of-jquery-plugins.html" rel="canonical"/>
+  <script type="application/ld+json">
+   {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "README.txt", "item": "http://hernantz.github.io"}, {"@type": "ListItem", "position": 2, "name": "The sorry state of jquery plugins", "item": "http://hernantz.github.io/the-sorry-state-of-jquery-plugins.html"}]}
+  </script>
+  <script type="application/ld+json">
+   {"@context": "https://schema.org", "@type": "Article", "author": {"@type": "Person", "name": "hernantz"}, "publisher": {"@type": "Organization", "name": "README.txt"}, "headline": "The sorry state of jQuery plugins", "about": "Programming", "datePublished": "2016-03-31 00:00"}
+  </script>
+ </head>
+ <body>
   <aside class="sidebar">
-    <a href="/"><img src="/images/avatar.png" height="75" width="75" /></a>
-
-      <nav>
-        <ul>
-            <li><a href="http://twitter.com/hernantz">twitter</i></a></li>
-            <li><a href="http://github.com/hernantz">github</i></a></li>
-            <li><a href="http://last.fm/user/hernantz">last.fm</i></a></li>
-            <li><a href="https://www.rottentomatoes.com/user/id/973196678">tomatoes</i></a></li>
-            <li><a href="/talks.html">talks</a></li>
-            <li><a href="/whoami.html">whoami</a></li>
-            <li><a href="/">blog</a></li>
-        </ul>
-      </nav>
-
+   <a href="/">
+    <img height="75" src="/images/avatar.png" width="75"/>
+   </a>
+   <nav>
+    <ul>
+     <li>
+      <a href="http://twitter.com/hernantz">
+       twitter
+      </a>
+     </li>
+     <li>
+      <a href="http://github.com/hernantz">
+       github
+      </a>
+     </li>
+     <li>
+      <a href="http://last.fm/user/hernantz">
+       last.fm
+      </a>
+     </li>
+     <li>
+      <a href="https://www.rottentomatoes.com/user/id/973196678">
+       tomatoes
+      </a>
+     </li>
+     <li>
+      <a href="/talks.html">
+       talks
+      </a>
+     </li>
+     <li>
+      <a href="/whoami.html">
+       whoami
+      </a>
+     </li>
+     <li>
+      <a href="/">
+       blog
+      </a>
+     </li>
+    </ul>
+   </nav>
   </aside>
   <main>
-        
-<article class="column-right">
-  <h1 class="main-title">The sorry state of jQuery plugins</h1>
-  <summary>
-    <p class="light">
+   <article class="column-right">
+    <h1 class="main-title">
+     The sorry state of jQuery plugins
+    </h1>
+    <summary>
+     <p class="light">
       Published
-on <time datetime="2016-03-31T00:00:00-03:00">2016-03-31</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
-      tagged with <a href="http://hernantz.github.io/tag/backbone.html">backbone</a>, <a href="http://hernantz.github.io/tag/javascript.html">javascript</a>, <a href="http://hernantz.github.io/tag/bootstrap.html">bootstrap</a> and <a href="http://hernantz.github.io/tag/jquery.html">jquery</a>.
+on
+      <time datetime="2016-03-31T00:00:00-03:00">
+       2016-03-31
+      </time>
+      ,       under
+      <a href="http://hernantz.github.io/category/programming.html">
+       Programming
+      </a>
+      ,
+      tagged with
+      <a href="http://hernantz.github.io/tag/backbone.html">
+       backbone
+      </a>
+      ,
+      <a href="http://hernantz.github.io/tag/javascript.html">
+       javascript
+      </a>
+      ,
+      <a href="http://hernantz.github.io/tag/bootstrap.html">
+       bootstrap
+      </a>
+      and
+      <a href="http://hernantz.github.io/tag/jquery.html">
+       jquery
+      </a>
+      .
+     </p>
+    </summary>
+    <p>
+     When adding jQuery widgets to enhance your web app, you'll find
+     <strong>
+      two possible
+approaches
+     </strong>
+     in their implementation: On one the plugin does everything for
+you (and by
+     <em>
+      everything
+     </em>
+     I simply mean
+     <em>
+      too much
+     </em>
+     ), on the other, the plugin
+does the minimum. But of course there is a wide range in between.
     </p>
-  </summary>
-  <p>When adding jQuery widgets to enhance your web app, you'll find <strong>two possible
-approaches</strong> in their implementation: On one the plugin does everything for
-you (and by <em>everything</em> I simply mean <em>too much</em>), on the other, the plugin
-does the minimum. But of course there is a wide range in between.</p>
-<p><img alt="Bootstrap 3 popovers" src="/images/popovers.png" title="Bootstrap 3 popovers"></p>
-<h2 id="the-way-of-jquery-plugins">The way of jQuery plugins<a class="headerlink" href="#the-way-of-jquery-plugins" title="Permanent link">&para;</a></h2>
-<p>To begin, lets see what Boostrap offers for using it's plugins. A plugin
-(ie. popover) can be instantiated directly via HTML with lots of <code>data-</code>
-attributes that will be picked up automatically:</p>
-<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">a</span> <span class="na">tabindex</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-danger&quot;</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">data-trigger</span><span class="o">=</span><span class="s">&quot;focus&quot;</span> 
-<span class="na">data-toggle</span><span class="o">=</span><span class="s">&quot;popover&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;Dismissible popover&quot;</span> <span class="na">data-placement</span><span class="o">=</span><span class="s">&quot;bottom&quot;</span>
-<span class="na">data-content</span><span class="o">=</span><span class="s">&quot;And here&#39;s some amazing content. It&#39;s very engaging. Right?&quot;</span><span class="p">&gt;</span>
+    <p>
+     <img alt="Bootstrap 3 popovers" src="/images/popovers.png" title="Bootstrap 3 popovers"/>
+    </p>
+    <h2 id="the-way-of-jquery-plugins">
+     The way of jQuery plugins
+     <a class="headerlink" href="#the-way-of-jquery-plugins" title="Permanent link">
+      ¶
+     </a>
+    </h2>
+    <p>
+     To begin, lets see what Boostrap offers for using it's plugins. A plugin
+(ie. popover) can be instantiated directly via HTML with lots of
+     <code>
+      data-
+     </code>
+     attributes that will be picked up automatically:
+    </p>
+    <div class="highlight">
+     <pre><span></span><code><span class="p">&lt;</span><span class="nt">a</span> <span class="na">tabindex</span><span class="o">=</span><span class="s">"0"</span> <span class="na">class</span><span class="o">=</span><span class="s">"btn btn-danger"</span> <span class="na">role</span><span class="o">=</span><span class="s">"button"</span> <span class="na">data-trigger</span><span class="o">=</span><span class="s">"focus"</span> 
+<span class="na">data-toggle</span><span class="o">=</span><span class="s">"popover"</span> <span class="na">title</span><span class="o">=</span><span class="s">"Dismissible popover"</span> <span class="na">data-placement</span><span class="o">=</span><span class="s">"bottom"</span>
+<span class="na">data-content</span><span class="o">=</span><span class="s">"And here's some amazing content. It's very engaging. Right?"</span><span class="p">&gt;</span>
 Click me!<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-</code></pre></div>
-
-<p>Or using JavaScript:</p>
-<div class="highlight"><pre><span></span><code><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#example&#39;</span><span class="p">).</span><span class="nx">popover</span><span class="p">(</span><span class="nx">optionsAndCallbacks</span><span class="p">);</span>
-</code></pre></div>
-
-<p>But both can be combined so that the JavaScript options override the <code>data-</code>
-attributes. Either way, most plugins follow these techniques and <strong>allow
-certain amount of customization</strong> so that we can hook into some of it's
-functionality via options and callbacks.</p>
-<p>A more extreme example would be the <a href="http://fullcalendar.io/" title="A JavaScript event calendar">fullCalendar</a> or the jQuery datepicker
+</code></pre>
+    </div>
+    <p>
+     Or using JavaScript:
+    </p>
+    <div class="highlight">
+     <pre><span></span><code><span class="nx">$</span><span class="p">(</span><span class="s1">'#example'</span><span class="p">).</span><span class="nx">popover</span><span class="p">(</span><span class="nx">optionsAndCallbacks</span><span class="p">);</span>
+</code></pre>
+    </div>
+    <p>
+     But both can be combined so that the JavaScript options override the
+     <code>
+      data-
+     </code>
+     attributes. Either way, most plugins follow these techniques and
+     <strong>
+      allow
+certain amount of customization
+     </strong>
+     so that we can hook into some of it's
+functionality via options and callbacks.
+    </p>
+    <p>
+     A more extreme example would be the
+     <a href="http://fullcalendar.io/" title="A JavaScript event calendar">
+      fullCalendar
+     </a>
+     or the jQuery datepicker
 plugins. They are in charge of rendering a rather complex DOM hierachy inside an
-empty <code>div</code> or <code>input</code> you define, and everything is done through configuration.
+empty
+     <code>
+      div
+     </code>
+     or
+     <code>
+      input
+     </code>
+     you define, and everything is done through configuration.
 Since the plugin is controlling some inner state you are forced to initialize it
-and follow the rules it immposes.</p>
-<p>This may work for simple scenarios, but when you need more control, you'll be
-forced to implement <em>hacky tricks</em> or even roll your own solution.</p>
-<h2 id="take-over-popovers">Take over popovers<a class="headerlink" href="#take-over-popovers" title="Permanent link">&para;</a></h2>
-<p>One of the best things about Bootstrap's widgets is that they can be represented
-entirely with HTML, without the need to initialize them through JavaScript.</p>
-<p>As a follow up of the popover example, the snippet below shows how to represent
-a popover widget. Notice how we can use classes like <code>bottom</code> to specify the state
-we want for this popover.</p>
-<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;popover bottom&quot;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;arrow&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">h3</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;popover-title&quot;</span><span class="p">&gt;</span>Popover title<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+and follow the rules it immposes.
+    </p>
+    <p>
+     This may work for simple scenarios, but when you need more control, you'll be
+forced to implement
+     <em>
+      hacky tricks
+     </em>
+     or even roll your own solution.
+    </p>
+    <h2 id="take-over-popovers">
+     Take over popovers
+     <a class="headerlink" href="#take-over-popovers" title="Permanent link">
+      ¶
+     </a>
+    </h2>
+    <p>
+     One of the best things about Bootstrap's widgets is that they can be represented
+entirely with HTML, without the need to initialize them through JavaScript.
+    </p>
+    <p>
+     As a follow up of the popover example, the snippet below shows how to represent
+a popover widget. Notice how we can use classes like
+     <code>
+      bottom
+     </code>
+     to specify the state
+we want for this popover.
+    </p>
+    <div class="highlight">
+     <pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"popover bottom"</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"arrow"</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">h3</span> <span class="na">class</span><span class="o">=</span><span class="s">"popover-title"</span><span class="p">&gt;</span>Popover title<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
 
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;popover-content&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"popover-content"</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Popover content here.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div>
-
-<p>Yes, it won't be positioned, and won't be dismissed when you click somewhere
-else in the page, but it can be reused as a template for your custom widget.</p>
-<p>Say we needed to take full control of a popover. I wrote a simple Backbone view
-to achieve that:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">PopoverBottom</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+</code></pre>
+    </div>
+    <p>
+     Yes, it won't be positioned, and won't be dismissed when you click somewhere
+else in the page, but it can be reused as a template for your custom widget.
+    </p>
+    <p>
+     Say we needed to take full control of a popover. I wrote a simple Backbone view
+to achieve that:
+    </p>
+    <div class="highlight">
+     <pre><span></span><code><span class="kd">var</span> <span class="nx">PopoverBottom</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
   <span class="nx">template</span><span class="o">:</span> <span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="nx">$popoverTmpl</span><span class="p">),</span>
   <span class="nx">attributes</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s1">&#39;class&#39;</span><span class="o">:</span> <span class="s1">&#39;popover bottom&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;tabindex&#39;</span><span class="o">:</span> <span class="s1">&#39;-1&#39;</span>  <span class="c1">// so that we can focus/blur</span>
+    <span class="s1">'class'</span><span class="o">:</span> <span class="s1">'popover bottom'</span><span class="p">,</span>
+    <span class="s1">'tabindex'</span><span class="o">:</span> <span class="s1">'-1'</span>  <span class="c1">// so that we can focus/blur</span>
   <span class="p">},</span>
   <span class="nx">events</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s1">&#39;blur&#39;</span><span class="o">:</span> <span class="s1">&#39;remove&#39;</span>
+    <span class="s1">'blur'</span><span class="o">:</span> <span class="s1">'remove'</span>
   <span class="p">},</span>
   <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">toJSON</span><span class="p">()));</span>
     <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">});</span>
-</code></pre></div>
-
-<p>We've got a minimum working piece of popover that we control, but it's not
+</code></pre>
+    </div>
+    <p>
+     We've got a minimum working piece of popover that we control, but it's not
 positioned. So we can make use of another library that knows how to position
-elements. In this case I'll use <a href="http://github.hubspot.com/tether/" title="Tether">Tether</a> and modify the popover view so
-that it can clean up itself before it's removed.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">Popover</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+elements. In this case I'll use
+     <a href="http://github.hubspot.com/tether/" title="Tether">
+      Tether
+     </a>
+     and modify the popover view so
+that it can clean up itself before it's removed.
+    </p>
+    <div class="highlight">
+     <pre><span></span><code><span class="kd">var</span> <span class="nx">Popover</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
   <span class="nx">template</span><span class="o">:</span> <span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="nx">popoverTmpl</span><span class="p">),</span>
   <span class="nx">attributes</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s1">&#39;class&#39;</span><span class="o">:</span> <span class="s1">&#39;popover bottom fade in&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;tabindex&#39;</span><span class="o">:</span> <span class="s1">&#39;-1&#39;</span>
+    <span class="s1">'class'</span><span class="o">:</span> <span class="s1">'popover bottom fade in'</span><span class="p">,</span>
+    <span class="s1">'tabindex'</span><span class="o">:</span> <span class="s1">'-1'</span>
   <span class="p">},</span>
   <span class="nx">events</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s1">&#39;blur&#39;</span><span class="o">:</span> <span class="s1">&#39;close&#39;</span>
+    <span class="s1">'blur'</span><span class="o">:</span> <span class="s1">'close'</span>
   <span class="p">},</span>
   <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">toJSON</span><span class="p">()));</span>
@@ -127,12 +273,12 @@ that it can clean up itself before it's removed.</p>
   <span class="p">},</span>
   <span class="nx">show</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$target</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">appendTo</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;display&#39;</span><span class="p">,</span> <span class="s1">&#39;block&#39;</span><span class="p">).</span><span class="nx">focus</span><span class="p">();</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="s1">'display'</span><span class="p">,</span> <span class="s1">'block'</span><span class="p">).</span><span class="nx">focus</span><span class="p">();</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">tether</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Tether</span><span class="p">({</span>
       <span class="nx">element</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">,</span>
       <span class="nx">target</span><span class="o">:</span> <span class="nx">$target</span><span class="p">,</span>
-      <span class="nx">attachment</span><span class="o">:</span> <span class="s1">&#39;top middle&#39;</span><span class="p">,</span>
-      <span class="nx">targetAttachment</span><span class="o">:</span> <span class="s1">&#39;bottom middle&#39;</span>
+      <span class="nx">attachment</span><span class="o">:</span> <span class="s1">'top middle'</span><span class="p">,</span>
+      <span class="nx">targetAttachment</span><span class="o">:</span> <span class="s1">'bottom middle'</span>
     <span class="p">});</span>
   <span class="p">},</span>
   <span class="nx">close</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -140,27 +286,83 @@ that it can clean up itself before it's removed.</p>
     <span class="k">this</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
   <span class="p">}</span>
 <span class="p">});</span>
-</code></pre></div>
-
-<p>We have combined Bootstrap for presentation, Backbone for logic and Tether as
-a helper for positioning elements. Live demo <a href="https://jsfiddle.net/p82fsx06/1/" title="Live demo">here</a>.</p>
-<h2 id="wishful-thinking">Wishful thinking<a class="headerlink" href="#wishful-thinking" title="Permanent link">&para;</a></h2>
-<p><a href="https://youtu.be/Qkm5h4032ko" title="Pamela Fox - Beyond jQuery Widgets: JS UI Library Design">This video</a> shows the process of hidding functionality and adding lots of
-cruft to <em>jqueryfy</em> a piece of code. This is exactly what we need to avoid.
+</code></pre>
+    </div>
+    <p>
+     We have combined Bootstrap for presentation, Backbone for logic and Tether as
+a helper for positioning elements. Live demo
+     <a href="https://jsfiddle.net/p82fsx06/1/" title="Live demo">
+      here
+     </a>
+     .
+    </p>
+    <h2 id="wishful-thinking">
+     Wishful thinking
+     <a class="headerlink" href="#wishful-thinking" title="Permanent link">
+      ¶
+     </a>
+    </h2>
+    <p>
+     <a href="https://youtu.be/Qkm5h4032ko" title="Pamela Fox - Beyond jQuery Widgets: JS UI Library Design">
+      This video
+     </a>
+     shows the process of hidding functionality and adding lots of
+cruft to
+     <em>
+      jqueryfy
+     </em>
+     a piece of code. This is exactly what we need to avoid.
 More often than not I see plugins hiding their methods behind closures, when
-they could be opening them as <strong>documented building blocks</strong> to be used at your
-will.</p>
-<p>It's perfectly fine if plugins expose a simple way to cover the 80% of use cases
+they could be opening them as
+     <strong>
+      documented building blocks
+     </strong>
+     to be used at your
+will.
+    </p>
+    <p>
+     It's perfectly fine if plugins expose a simple way to cover the 80% of use cases
 or some basic functionality. But it's clear that pure libraries tend to
-outperform ready-made plugins in terms of flexibility.</p>
-<p>If only plugins allowed a <strong>clear separation of UI and logic</strong>, and that logic
+outperform ready-made plugins in terms of flexibility.
+    </p>
+    <p>
+     If only plugins allowed a
+     <strong>
+      clear separation of UI and logic
+     </strong>
+     , and that logic
 be easily extendable, then you would be able seamlessly integrate it with the
-rest of your frameworks.</p>
-</article>
-
-      <footer class="column-right light">
-        <nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> - <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | README.txt</nav>
-      </footer>
+rest of your frameworks.
+    </p>
+   </article>
+   <footer class="column-right light">
+    <nav>
+     <a href="/">
+      Home
+     </a>
+     -
+     <a href="/archives.html">
+      Archives
+     </a>
+     -
+     <a href="/categories.html">
+      Categories
+     </a>
+     -
+     <a href="/tags.html">
+      Tags
+     </a>
+     -
+     <a href="/rss.xml">
+      RSS
+     </a>
+     -
+     <a href="https://creativecommons.org/licenses/by/4.0/">
+      License
+     </a>
+     | README.txt
+    </nav>
+   </footer>
   </main>
-</body>
+ </body>
 </html>
