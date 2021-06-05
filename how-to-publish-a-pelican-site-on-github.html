@@ -1,271 +1,99 @@
 <!DOCTYPE html>
+
 <html lang="en">
- <head>
-  <title>
-   How to publish a pelican site on Github | README.txt
-  </title>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport"/>
-  <link href="/theme/css/main.css" rel="stylesheet" type="text/css"/>
-  <link href="/theme/css/mobile.css" media="(max-width: 750px)" rel="stylesheet" type="text/css"/>
-  <link href="/theme/css/pygments-default.css" rel="stylesheet" type="text/css"/>
-  <link href="/images/favicon.ico" rel="icon" type="image/x-icon"/>
-  <link href="/rss.xml" rel="alternate" title="README.txt RSS Feed" type="application/atom+xml"/>
-  <meta content="Step by step guide on how to publish a pelican website on Github." name="description"/>
-  <meta content="pelican, git, python" name="keywords"/>
-  <meta content="hernantz" name="author"/>
-  <link href="http://hernantz.github.io/how-to-publish-a-pelican-site-on-github.html" rel="canonical"/>
-  <script type="application/ld+json">
-   {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "README.txt", "item": "http://hernantz.github.io"}, {"@type": "ListItem", "position": 2, "name": "How to publish a pelican site on github", "item": "http://hernantz.github.io/how-to-publish-a-pelican-site-on-github.html"}]}
-  </script>
-  <script type="application/ld+json">
-   {"@context": "https://schema.org", "@type": "Article", "author": {"@type": "Person", "name": "hernantz"}, "publisher": {"@type": "Organization", "name": "README.txt"}, "headline": "How to publish a pelican site on Github", "about": "Programming", "datePublished": "2014-05-18 00:00"}
-  </script>
- </head>
- <body>
-  <aside class="sidebar">
-   <a href="/">
-    <img height="75" src="/images/avatar.png" width="75"/>
-   </a>
-   <nav>
-    <ul>
-     <li>
-      <a href="http://twitter.com/hernantz">
-       twitter
-      </a>
-     </li>
-     <li>
-      <a href="http://github.com/hernantz">
-       github
-      </a>
-     </li>
-     <li>
-      <a href="http://last.fm/user/hernantz">
-       last.fm
-      </a>
-     </li>
-     <li>
-      <a href="https://www.rottentomatoes.com/user/id/973196678">
-       tomatoes
-      </a>
-     </li>
-     <li>
-      <a href="/talks.html">
-       talks
-      </a>
-     </li>
-     <li>
-      <a href="/whoami.html">
-       whoami
-      </a>
-     </li>
-     <li>
-      <a href="/">
-       blog
-      </a>
-     </li>
-    </ul>
-   </nav>
-  </aside>
-  <main>
-   <article class="column-right">
-    <h1 class="main-title">
-     How to publish a pelican site on Github
-    </h1>
-    <summary>
-     <p class="light">
+<head>
+<title>How to publish a pelican site on Github | README.txt</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport"/>
+<link href="/theme/css/main.css" rel="stylesheet" type="text/css"/>
+<link href="/theme/css/mobile.css" media="(max-width: 750px)" rel="stylesheet" type="text/css"/>
+<link href="/theme/css/pygments-default.css" rel="stylesheet" type="text/css"/>
+<link href="/images/favicon.ico" rel="icon" type="image/x-icon"/>
+<link href="/rss.xml" rel="alternate" title="README.txt RSS Feed" type="application/atom+xml"/>
+<meta content="Step by step guide on how to publish a pelican website on Github." name="description"/>
+<meta content="pelican, git, python" name="keywords"/>
+<meta content="hernantz" name="author"/>
+<link href="http://hernantz.github.io/how-to-publish-a-pelican-site-on-github.html" rel="canonical"/><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "README.txt", "item": "http://hernantz.github.io"}, {"@type": "ListItem", "position": 2, "name": "How to publish a pelican site on github", "item": "http://hernantz.github.io/how-to-publish-a-pelican-site-on-github.html"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "author": {"@type": "Person", "name": "hernantz"}, "publisher": {"@type": "Organization", "name": "README.txt"}, "headline": "How to publish a pelican site on Github", "about": "Programming", "datePublished": "2014-05-18 00:00"}</script></head>
+<body>
+<aside class="sidebar">
+<a href="/"><img height="75" src="/images/avatar.png" width="75"/></a>
+<nav>
+<ul>
+<li><a href="http://twitter.com/hernantz">twitter</a></li>
+<li><a href="http://github.com/hernantz">github</a></li>
+<li><a href="http://last.fm/user/hernantz">last.fm</a></li>
+<li><a href="https://www.rottentomatoes.com/user/id/973196678">tomatoes</a></li>
+<li><a href="/talks.html">talks</a></li>
+<li><a href="/whoami.html">whoami</a></li>
+<li><a href="/">blog</a></li>
+</ul>
+</nav>
+</aside>
+<main>
+<article class="column-right">
+<h1 class="main-title">How to publish a pelican site on Github</h1>
+<summary>
+<p class="light">
       Published
-on
-      <time datetime="2014-05-18T00:00:00-03:00">
-       2014-05-18
-      </time>
-      ,       under
-      <a href="http://hernantz.github.io/category/programming.html">
-       Programming
-      </a>
-      ,
-      tagged with
-      <a href="http://hernantz.github.io/tag/pelican.html">
-       pelican
-      </a>
-      ,
-      <a href="http://hernantz.github.io/tag/git.html">
-       git
-      </a>
-      and
-      <a href="http://hernantz.github.io/tag/python.html">
-       python
-      </a>
-      .
-     </p>
-    </summary>
-    <p>
-     <img alt="Pelican a static site publishing tool" src="/images/pelican-a-static-site-publishing-tool-github.png"/>
+on <time datetime="2014-05-18T00:00:00-03:00">2014-05-18</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
+      tagged with <a href="http://hernantz.github.io/tag/pelican.html">pelican</a>, <a href="http://hernantz.github.io/tag/git.html">git</a> and <a href="http://hernantz.github.io/tag/python.html">python</a>.
     </p>
-    <p>
-     This is a step by step guide on how to publish a pelican website on Github, and
+</summary>
+<p><img alt="Pelican a static site publishing tool" src="/images/pelican-a-static-site-publishing-tool-github.png"/></p>
+<p>This is a step by step guide on how to publish a pelican website on Github, and
 how not to get the site's codebase so tightly coupled to where it is deployed.
 If in the future we want to publish it somewhere else, there isn't much to be
 changed. Another thing to mention is that even though we reference pelican
 here, the process I'll show you can be applied to almost any static site
-generator tool.
-    </p>
-    <p>
-     1) Create a repository in Github following this exact naming convention:
-     <code>
-      username.github.io
-     </code>
-    </p>
-    <p>
-     2)
-     <a href="http://docs.getpelican.com/en/latest/install.html#kickstart-your-site">
-      Setup your pelican site
-     </a>
-     on a separate repository, ie my-blog, and
-     <a href="http://docs.getpelican.com/en/latest/content.html#writing-content">
-      start adding content
-     </a>
-     to it. You'll notice that the generated output goes
-by default to a folder (conveniently) named
-     <em>
-      output
-     </em>
-     , but it can be changed to
-something else with the
-     <code>
-      OUTPUT_PATH
-     </code>
-     setting in your
-     <code>
-      pelicanconf.py
-     </code>
-     file
-    </p>
-    <p>
-     3) We will make use of
-     <em>
-      git submodules
-     </em>
-     to point our output directory to the
-repo created in step 1, so that it holds what's going to be published in Github.
-    </p>
-    <div class="highlight">
-     <pre><span></span><code>git submodule add https://github.com/username/username.github.io.git output
-</code></pre>
-    </div>
-    <p>
-     Adding a git submodule will create another version controlled file called
-     <code>
-      .gitmodules
-     </code>
-     with the following content:
-    </p>
-    <div class="highlight">
-     <pre><span></span><code><span class="k">[submodule "output"]</span>
+generator tool.</p>
+<p>1) Create a repository in Github following this exact naming convention:
+<code>username.github.io</code></p>
+<p>2) <a href="http://docs.getpelican.com/en/latest/install.html#kickstart-your-site">Setup your pelican site</a> on a separate repository, ie my-blog, and
+<a href="http://docs.getpelican.com/en/latest/content.html#writing-content">start adding content</a> to it. You'll notice that the generated output goes
+by default to a folder (conveniently) named <em>output</em>, but it can be changed to
+something else with the <code>OUTPUT_PATH</code> setting in your <code>pelicanconf.py</code> file</p>
+<p>3) We will make use of <em>git submodules</em> to point our output directory to the
+repo created in step 1, so that it holds what's going to be published in Github.</p>
+<div class="highlight"><pre><span></span><code>git submodule add https://github.com/username/username.github.io.git output
+</code></pre></div>
+<p>Adding a git submodule will create another version controlled file called
+<code>.gitmodules</code> with the following content:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[submodule "output"]</span>
     <span class="na">path</span> <span class="o">=</span> <span class="s">output</span>
     <span class="na">url</span> <span class="o">=</span> <span class="s">https://github.com/username/username.github.io.git</span>
     <span class="na">ignore</span> <span class="o">=</span> <span class="s">all</span>
-</code></pre>
-    </div>
-    <p>
-     As the output directory is now managed by the independent git repository
+</code></pre></div>
+<p>As the output directory is now managed by the independent git repository
 from step 1, we don't want to have to version-control it again from our pelican
-site repo, and that's why we added the last
-     <em>
-      ignore
-     </em>
-     statement.
-    </p>
-    <p>
-     4) Pelican has two types of configuration files,
-     <code>
-      pelicanconf.py
-     </code>
-     for general
-settings, and
-     <code>
-      publishconf.py
-     </code>
-     that is used for publishing, as you probably
+site repo, and that's why we added the last <em>ignore</em> statement.</p>
+<p>4) Pelican has two types of configuration files, <code>pelicanconf.py</code> for general
+settings, and <code>publishconf.py</code> that is used for publishing, as you probably
 guessed. Pelican's Makefile comes with a built-in command to generate the
-output that will be published:
-    </p>
-    <div class="highlight">
-     <pre><span></span><code>make publish  <span class="c1"># generates output using publishconf.py</span>
-</code></pre>
-    </div>
-    <p>
-     But before running it, make sure the following settings are in
-     <code>
-      publishconf.py
-     </code>
-     :
-    </p>
-    <div class="highlight">
-     <pre><span></span><code><span class="c1"># don't delete our .git submodule dir</span>
+output that will be published:</p>
+<div class="highlight"><pre><span></span><code>make publish  <span class="c1"># generates output using publishconf.py</span>
+</code></pre></div>
+<p>But before running it, make sure the following settings are in <code>publishconf.py</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># don't delete our .git submodule dir</span>
 <span class="n">DELETE_OUTPUT_DIRECTORY</span> <span class="o">=</span> <span class="kc">False</span>
 
 <span class="c1"># use the correct abs url</span>
 <span class="n">SITEURL</span> <span class="o">=</span> <span class="s1">'http://username.github.io'</span>
 <span class="n">RELATIVE_URLS</span> <span class="o">=</span> <span class="kc">False</span>
-</code></pre>
-    </div>
-    <p>
-     <strong>
-      Heads up!
-     </strong>
-     Pelican regenerates the output automatically when running the http
-server and making changes to the contents. So
-     <code>
-      make publish
-     </code>
-     should be the last
-command to be run before releasing.
-    </p>
-    <p>
-     5) Now every time you regenerate your site contents and want to publish them, cd
+</code></pre></div>
+<p><strong>Heads up!</strong> Pelican regenerates the output automatically when running the http
+server and making changes to the contents. So <code>make publish</code> should be the last
+command to be run before releasing.</p>
+<p>5) Now every time you regenerate your site contents and want to publish them, cd
 to your output directory and run git commands (like add, commit, push, etc).
 Those commands will only take effect on your repo from step 1, because you are
 inside the output submodule. Once you push your new output content to your master
-branch of
-     <code>
-      username.github.io
-     </code>
-     , Github will take some minutes to update your site.
-And that's it.
-    </p>
-    <p>
-     Happy blogging!
-    </p>
-   </article>
-   <footer class="column-right light">
-    <nav>
-     <a href="/">
-      Home
-     </a>
-     -
-     <a href="/archives.html">
-      Archives
-     </a>
-     -
-     <a href="/categories.html">
-      Categories
-     </a>
-     -
-     <a href="/tags.html">
-      Tags
-     </a>
-     -
-     <a href="/rss.xml">
-      RSS
-     </a>
-     -
-     <a href="https://creativecommons.org/licenses/by/4.0/">
-      License
-     </a>
-     | README.txt
-    </nav>
-   </footer>
-  </main>
- </body>
+branch of <code>username.github.io</code>, Github will take some minutes to update your site.
+And that's it.</p>
+<p>Happy blogging!</p>
+</article>
+<footer class="column-right light">
+<nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> - <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | README.txt</nav>
+</footer>
+</main>
+</body>
 </html>

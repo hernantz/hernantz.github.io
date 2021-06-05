@@ -1,201 +1,77 @@
 <!DOCTYPE html>
+
 <html lang="en">
- <head>
-  <title>
-   Redux with backbone | README.txt
-  </title>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport"/>
-  <link href="/theme/css/main.css" rel="stylesheet" type="text/css"/>
-  <link href="/theme/css/mobile.css" media="(max-width: 750px)" rel="stylesheet" type="text/css"/>
-  <link href="/theme/css/pygments-default.css" rel="stylesheet" type="text/css"/>
-  <link href="/images/favicon.ico" rel="icon" type="image/x-icon"/>
-  <link href="/rss.xml" rel="alternate" title="README.txt RSS Feed" type="application/atom+xml"/>
-  <meta content="Strategies to implement an event-driven UI." name="description"/>
-  <meta content="backbone, javascript, best-practices" name="keywords"/>
-  <meta content="hernantz" name="author"/>
-  <link href="http://hernantz.github.io/drafts/redux-with-backbone.html" rel="canonical"/>
-  <script type="application/ld+json">
-   {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "README.txt", "item": "http://hernantz.github.io"}, {"@type": "ListItem", "position": 2, "name": "Drafts", "item": "http://hernantz.github.io/drafts"}, {"@type": "ListItem", "position": 3, "name": "Redux with backbone", "item": "http://hernantz.github.io/drafts/redux-with-backbone.html"}]}
-  </script>
-  <script type="application/ld+json">
-   {"@context": "https://schema.org", "@type": "Article", "author": {"@type": "Person", "name": "hernantz"}, "publisher": {"@type": "Organization", "name": "README.txt"}, "headline": "Redux with backbone", "about": "Programming", "datePublished": "2016-05-04 00:00"}
-  </script>
- </head>
- <body>
-  <aside class="sidebar">
-   <a href="/">
-    <img height="75" src="/images/avatar.png" width="75"/>
-   </a>
-   <nav>
-    <ul>
-     <li>
-      <a href="http://twitter.com/hernantz">
-       twitter
-      </a>
-     </li>
-     <li>
-      <a href="http://github.com/hernantz">
-       github
-      </a>
-     </li>
-     <li>
-      <a href="http://last.fm/user/hernantz">
-       last.fm
-      </a>
-     </li>
-     <li>
-      <a href="https://www.rottentomatoes.com/user/id/973196678">
-       tomatoes
-      </a>
-     </li>
-     <li>
-      <a href="/talks.html">
-       talks
-      </a>
-     </li>
-     <li>
-      <a href="/whoami.html">
-       whoami
-      </a>
-     </li>
-     <li>
-      <a href="/">
-       blog
-      </a>
-     </li>
-    </ul>
-   </nav>
-  </aside>
-  <main>
-   <article class="column-right">
-    <h1 class="main-title">
-     Redux with backbone
-    </h1>
-    <summary>
-     <p class="light">
+<head>
+<title>Redux with backbone | README.txt</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport"/>
+<link href="/theme/css/main.css" rel="stylesheet" type="text/css"/>
+<link href="/theme/css/mobile.css" media="(max-width: 750px)" rel="stylesheet" type="text/css"/>
+<link href="/theme/css/pygments-default.css" rel="stylesheet" type="text/css"/>
+<link href="/images/favicon.ico" rel="icon" type="image/x-icon"/>
+<link href="/rss.xml" rel="alternate" title="README.txt RSS Feed" type="application/atom+xml"/>
+<meta content="Strategies to implement an event-driven UI." name="description"/>
+<meta content="backbone, javascript, best-practices" name="keywords"/>
+<meta content="hernantz" name="author"/>
+<link href="http://hernantz.github.io/drafts/redux-with-backbone.html" rel="canonical"/><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "README.txt", "item": "http://hernantz.github.io"}, {"@type": "ListItem", "position": 2, "name": "Drafts", "item": "http://hernantz.github.io/drafts"}, {"@type": "ListItem", "position": 3, "name": "Redux with backbone", "item": "http://hernantz.github.io/drafts/redux-with-backbone.html"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "author": {"@type": "Person", "name": "hernantz"}, "publisher": {"@type": "Organization", "name": "README.txt"}, "headline": "Redux with backbone", "about": "Programming", "datePublished": "2016-05-04 00:00"}</script></head>
+<body>
+<aside class="sidebar">
+<a href="/"><img height="75" src="/images/avatar.png" width="75"/></a>
+<nav>
+<ul>
+<li><a href="http://twitter.com/hernantz">twitter</a></li>
+<li><a href="http://github.com/hernantz">github</a></li>
+<li><a href="http://last.fm/user/hernantz">last.fm</a></li>
+<li><a href="https://www.rottentomatoes.com/user/id/973196678">tomatoes</a></li>
+<li><a href="/talks.html">talks</a></li>
+<li><a href="/whoami.html">whoami</a></li>
+<li><a href="/">blog</a></li>
+</ul>
+</nav>
+</aside>
+<main>
+<article class="column-right">
+<h1 class="main-title">Redux with backbone</h1>
+<summary>
+<p class="light">
       Published
-on
-      <time datetime="2016-05-04T00:00:00-03:00">
-       2016-05-04
-      </time>
-      ,       under
-      <a href="http://hernantz.github.io/category/programming.html">
-       Programming
-      </a>
-      ,
-      tagged with
-      <a href="http://hernantz.github.io/tag/backbone.html">
-       backbone
-      </a>
-      ,
-      <a href="http://hernantz.github.io/tag/javascript.html">
-       javascript
-      </a>
-      and
-      <a href="http://hernantz.github.io/tag/best-practices.html">
-       best-practices
-      </a>
-      .
-     </p>
-    </summary>
-    <p>
-     <img alt="the arsenic waltz" src="/images/the-arsenic-waltz.jpg" title="The arsenic waltz"/>
+on <time datetime="2016-05-04T00:00:00-03:00">2016-05-04</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
+      tagged with <a href="http://hernantz.github.io/tag/backbone.html">backbone</a>, <a href="http://hernantz.github.io/tag/javascript.html">javascript</a> and <a href="http://hernantz.github.io/tag/best-practices.html">best-practices</a>.
     </p>
-    <p>
-     We know that Backbone has done a great job at provinding the
-     <strong>
-      bare minimum
-structure
-     </strong>
-     to build apps that separate logic from presentation, and thus, making them
-easier to reason about.
-    </p>
-    <p>
-     Because we are given just the basic tools in an unopinionated way, the implementation
-is left for the developer to design.
-    </p>
-    <p>
-     This post is an attempt to share some strategies I find useful for
-     <strong>
-      building an
-event-driven UI
-     </strong>
-     .
-    </p>
-    <p>
-     We need a way to pass data and events down a deep widget tree.
+</summary>
+<p><img alt="the arsenic waltz" src="/images/the-arsenic-waltz.jpg" title="The arsenic waltz"/></p>
+<p>We know that Backbone has done a great job at provinding the <strong>bare minimum
+structure</strong> to build apps that separate logic from presentation, and thus, making them
+easier to reason about.</p>
+<p>Because we are given just the basic tools in an unopinionated way, the implementation
+is left for the developer to design.</p>
+<p>This post is an attempt to share some strategies I find useful for <strong>building an
+event-driven UI</strong>.</p>
+<p>We need a way to pass data and events down a deep widget tree.
 If views receive everything they need by param, they are easier
-to understand and easier to test.
-    </p>
-    <p>
-     With events, they simply propagate them, marionette makes this transparent.
-    </p>
-    <p>
-     But with a deep hierarchy, at some point we need a Provider.
+to understand and easier to test.</p>
+<p>With events, they simply propagate them, marionette makes this transparent.</p>
+<p>But with a deep hierarchy, at some point we need a Provider.
 Provider implies a compromise between reusable child widgets, that
 don't care were data comes from or where events go to.
-A Provider gives all data it's child widget need.
-    </p>
-    <h1 id="a-mediator-is-needed">
-     A mediator is needed
-     <a class="headerlink" href="#a-mediator-is-needed" title="Permanent link">
-      ¶
-     </a>
-    </h1>
-    <p>
-     Remember that backbone encourages models and collections to be shared among
+A Provider gives all data it's child widget need.</p>
+<h1 id="a-mediator-is-needed">A mediator is needed<a class="headerlink" href="#a-mediator-is-needed" title="Permanent link">¶</a></h1>
+<p>Remember that backbone encourages models and collections to be shared among
 multiple views. Not only models can be attached to multiple views, but views
-can depend on multiple pieces of data too.
-    </p>
-    <p>
-     Explicar que hay que empezar a extraer logica de las vistas a ese controlador.
+can depend on multiple pieces of data too.</p>
+<p>Explicar que hay que empezar a extraer logica de las vistas a ese controlador.
 Vista padre
-Mucha jerarquia -&gt; se complica ir pasando eventos en un arbol muy grande -&gt; channels para solucionar eso.
-    </p>
-    <p>
-     This bad behaviour can be omitted by using an intermediary.
-    </p>
-    <p>
-     When/Where to fetch your data?
+Mucha jerarquia -&gt; se complica ir pasando eventos en un arbol muy grande -&gt; channels para solucionar eso.</p>
+<p>This bad behaviour can be omitted by using an intermediary.</p>
+<p>When/Where to fetch your data?
 Mostrar el approach de usar bacbkone como lo hacen en mixpanel:
-https://code.mixpanel.com/2015/04/08/straightening-our-backbone-a-lesson-in-event-driven-ui-development/
-    </p>
-    <p>
-     Usar MarionetteJS.Object?
-    </p>
-    <p>
-     https://www.youtube.com/watch?v=zKXz3pUkw9A
-    </p>
-   </article>
-   <footer class="column-right light">
-    <nav>
-     <a href="/">
-      Home
-     </a>
-     -
-     <a href="/archives.html">
-      Archives
-     </a>
-     -
-     <a href="/categories.html">
-      Categories
-     </a>
-     -
-     <a href="/tags.html">
-      Tags
-     </a>
-     -
-     <a href="/rss.xml">
-      RSS
-     </a>
-     -
-     <a href="https://creativecommons.org/licenses/by/4.0/">
-      License
-     </a>
-     | README.txt
-    </nav>
-   </footer>
-  </main>
- </body>
+https://code.mixpanel.com/2015/04/08/straightening-our-backbone-a-lesson-in-event-driven-ui-development/</p>
+<p>Usar MarionetteJS.Object?</p>
+<p>https://www.youtube.com/watch?v=zKXz3pUkw9A</p>
+</article>
+<footer class="column-right light">
+<nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> - <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | README.txt</nav>
+</footer>
+</main>
+</body>
 </html>

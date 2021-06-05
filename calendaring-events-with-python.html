@@ -1,269 +1,92 @@
 <!DOCTYPE html>
+
 <html lang="en">
- <head>
-  <title>
-   Calendaring events with Python | README.txt
-  </title>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport"/>
-  <link href="/theme/css/main.css" rel="stylesheet" type="text/css"/>
-  <link href="/theme/css/mobile.css" media="(max-width: 750px)" rel="stylesheet" type="text/css"/>
-  <link href="/theme/css/pygments-default.css" rel="stylesheet" type="text/css"/>
-  <link href="/images/favicon.ico" rel="icon" type="image/x-icon"/>
-  <link href="/rss.xml" rel="alternate" title="README.txt RSS Feed" type="application/atom+xml"/>
-  <meta content="Some gotchas you'll find when scheduling the next world's doomsday." name="description"/>
-  <meta content="python, timezones" name="keywords"/>
-  <meta content="hernantz" name="author"/>
-  <link href="http://hernantz.github.io/calendaring-events-with-python.html" rel="canonical"/>
-  <script type="application/ld+json">
-   {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "README.txt", "item": "http://hernantz.github.io"}, {"@type": "ListItem", "position": 2, "name": "Calendaring events with python", "item": "http://hernantz.github.io/calendaring-events-with-python.html"}]}
-  </script>
-  <script type="application/ld+json">
-   {"@context": "https://schema.org", "@type": "Article", "author": {"@type": "Person", "name": "hernantz"}, "publisher": {"@type": "Organization", "name": "README.txt"}, "headline": "Calendaring events with Python", "about": "Programming", "datePublished": "2017-04-13 00:00"}
-  </script>
- </head>
- <body>
-  <aside class="sidebar">
-   <a href="/">
-    <img height="75" src="/images/avatar.png" width="75"/>
-   </a>
-   <nav>
-    <ul>
-     <li>
-      <a href="http://twitter.com/hernantz">
-       twitter
-      </a>
-     </li>
-     <li>
-      <a href="http://github.com/hernantz">
-       github
-      </a>
-     </li>
-     <li>
-      <a href="http://last.fm/user/hernantz">
-       last.fm
-      </a>
-     </li>
-     <li>
-      <a href="https://www.rottentomatoes.com/user/id/973196678">
-       tomatoes
-      </a>
-     </li>
-     <li>
-      <a href="/talks.html">
-       talks
-      </a>
-     </li>
-     <li>
-      <a href="/whoami.html">
-       whoami
-      </a>
-     </li>
-     <li>
-      <a href="/">
-       blog
-      </a>
-     </li>
-    </ul>
-   </nav>
-  </aside>
-  <main>
-   <article class="column-right">
-    <h1 class="main-title">
-     Calendaring events with Python
-    </h1>
-    <summary>
-     <p class="light">
+<head>
+<title>Calendaring events with Python | README.txt</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport"/>
+<link href="/theme/css/main.css" rel="stylesheet" type="text/css"/>
+<link href="/theme/css/mobile.css" media="(max-width: 750px)" rel="stylesheet" type="text/css"/>
+<link href="/theme/css/pygments-default.css" rel="stylesheet" type="text/css"/>
+<link href="/images/favicon.ico" rel="icon" type="image/x-icon"/>
+<link href="/rss.xml" rel="alternate" title="README.txt RSS Feed" type="application/atom+xml"/>
+<meta content="Some gotchas you'll find when scheduling the next world's doomsday." name="description"/>
+<meta content="python, timezones" name="keywords"/>
+<meta content="hernantz" name="author"/>
+<link href="http://hernantz.github.io/calendaring-events-with-python.html" rel="canonical"/><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "README.txt", "item": "http://hernantz.github.io"}, {"@type": "ListItem", "position": 2, "name": "Calendaring events with python", "item": "http://hernantz.github.io/calendaring-events-with-python.html"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "author": {"@type": "Person", "name": "hernantz"}, "publisher": {"@type": "Organization", "name": "README.txt"}, "headline": "Calendaring events with Python", "about": "Programming", "datePublished": "2017-04-13 00:00"}</script></head>
+<body>
+<aside class="sidebar">
+<a href="/"><img height="75" src="/images/avatar.png" width="75"/></a>
+<nav>
+<ul>
+<li><a href="http://twitter.com/hernantz">twitter</a></li>
+<li><a href="http://github.com/hernantz">github</a></li>
+<li><a href="http://last.fm/user/hernantz">last.fm</a></li>
+<li><a href="https://www.rottentomatoes.com/user/id/973196678">tomatoes</a></li>
+<li><a href="/talks.html">talks</a></li>
+<li><a href="/whoami.html">whoami</a></li>
+<li><a href="/">blog</a></li>
+</ul>
+</nav>
+</aside>
+<main>
+<article class="column-right">
+<h1 class="main-title">Calendaring events with Python</h1>
+<summary>
+<p class="light">
       Published
-on
-      <time datetime="2017-04-13T00:00:00-03:00">
-       2017-04-13
-      </time>
-      ,       under
-      <a href="http://hernantz.github.io/category/programming.html">
-       Programming
-      </a>
-      ,
-      tagged with
-      <a href="http://hernantz.github.io/tag/python.html">
-       python
-      </a>
-      and
-      <a href="http://hernantz.github.io/tag/timezones.html">
-       timezones
-      </a>
-      .
-     </p>
-    </summary>
-    <p>
-     <img alt="Aztec sun stone" src="/images/aztec-calendar.png" title="Aztec sun stone"/>
+on <time datetime="2017-04-13T00:00:00-03:00">2017-04-13</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
+      tagged with <a href="http://hernantz.github.io/tag/python.html">python</a> and <a href="http://hernantz.github.io/tag/timezones.html">timezones</a>.
     </p>
-    <p>
-     2012 passed and the world did not end. Well, scheduling the next world's
+</summary>
+<p><img alt="Aztec sun stone" src="/images/aztec-calendar.png" title="Aztec sun stone"/></p>
+<p>2012 passed and the world did not end. Well, scheduling the next world's
 doomsday can be tricky, because working with dates is so. In this post I'll try
 to share some basic tips and gotchas I learned the hard way while building a
-calendaring app, that hopefully will make this task easier for you.
-    </p>
-    <h2 id="one-time-events">
-     One time events
-     <a class="headerlink" href="#one-time-events" title="Permanent link">
-      ¶
-     </a>
-    </h2>
-    <p>
-     Because of the way we track time, a single moment can happen at different times
+calendaring app, that hopefully will make this task easier for you.</p>
+<h2 id="one-time-events">One time events<a class="headerlink" href="#one-time-events" title="Permanent link">¶</a></h2>
+<p>Because of the way we track time, a single moment can happen at different times
 of the day for different people around the globe and a single date and time can
-never happen or happen twice thanks to
-     <a href="https://en.wikipedia.org/wiki/Daylight_saving_time" title="Daylight Saving Time">
-      DST
-     </a>
-     or government regulations
-     <sup id="fnref:1">
-      <a class="footnote-ref" href="#fn:1">
-       1
-      </a>
-     </sup>
-     .
-Yes, working with dates is
-     <a href="http://infiniteundo.com/post/25509354022/more-falsehoods-programmers-believe-about-time" title="More falsehoods programmers believe about time">
-      hard
-     </a>
-     .
-    </p>
-    <p>
-     <strong>
-      Dates mean nothing without the proper context
-     </strong>
-     , and that context is provided
-by what it is called a
-     <a href="https://en.wikipedia.org/wiki/Tz_database" title="Olson Database">
-      timezone
-     </a>
-     .
-    </p>
-    <p>
-     <strong>
-      A timezone doesn't mean just the offset
-     </strong>
-     , because that offset can change.
+never happen or happen twice thanks to <a href="https://en.wikipedia.org/wiki/Daylight_saving_time" title="Daylight Saving Time">DST</a> or government regulations <sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.
+Yes, working with dates is <a href="http://infiniteundo.com/post/25509354022/more-falsehoods-programmers-believe-about-time" title="More falsehoods programmers believe about time">hard</a>. </p>
+<p><strong>Dates mean nothing without the proper context</strong>, and that context is provided
+by what it is called a <a href="https://en.wikipedia.org/wiki/Tz_database" title="Olson Database">timezone</a>.</p>
+<p><strong>A timezone doesn't mean just the offset</strong>, because that offset can change.
 Instead they have names, and are attached to a geographical location, under a
 certain jurisdiction, unless we are speaking of the UTC timezone, which is a
-very special one.
-    </p>
-    <p>
-     We should think UTC time as the entire world's current time you compare all
+very special one.</p>
+<p>We should think UTC time as the entire world's current time you compare all
 other dates with. It is meant to be objective in the sense that it never was
-and won't ever be affected by local time changes.
-    </p>
-    <p>
-     Timezone information is available in the
-     <a href="https://en.wikipedia.org/wiki/Tz_database" title="Olson Database">
-      Olson database
-     </a>
-     . Since timezones
-change every now and then, it is vital to keep your software up to date
-     <sup id="fnref:3">
-      <a class="footnote-ref" href="#fn:3">
-       3
-      </a>
-     </sup>
-     .
+and won't ever be affected by local time changes.</p>
+<p>Timezone information is available in the <a href="https://en.wikipedia.org/wiki/Tz_database" title="Olson Database">Olson database</a>. Since timezones
+change every now and then, it is vital to keep your software up to date <sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>.
 If that is something you cannot control, be advised that the dates your system
-is dealing with might not be correct (i.e. in an embedded device).
-    </p>
-    <p>
-     Updates can be handled differently depending on the OS, program or language you
-use. For example, in Linux there is a package
-     <code>
-      tzdata
-     </code>
-     , but some programs like
-the browser or Postgres contain their own copies
-     <sup id="fnref:4">
-      <a class="footnote-ref" href="#fn:4">
-       4
-      </a>
-     </sup>
-     .
-    </p>
-    <p>
-     Python provides naive dates by default through it's
-     <code>
-      datetime
-     </code>
-     module, and it
-is someone else's responsibility to provide tz information, for example,
-     <code>
-      pytz
-     </code>
-     is a
-     <a href="http://pytz.sourceforge.net/" title="pytz - World Timezone Definitions for Python">
-      library
-     </a>
-     that
-     <em>
-      "brings the Olson tz database into Python"
-     </em>
-     providing
-timezone classes to use with
-     <code>
-      datetime
-     </code>
-     objects.
-    </p>
-    <div class="highlight">
-     <pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+is dealing with might not be correct (i.e. in an embedded device).</p>
+<p>Updates can be handled differently depending on the OS, program or language you
+use. For example, in Linux there is a package <code>tzdata</code>, but some programs like
+the browser or Postgres contain their own copies <sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>.</p>
+<p>Python provides naive dates by default through it's <code>datetime</code> module, and it
+is someone else's responsibility to provide tz information, for example, <code>pytz</code>
+is a <a href="http://pytz.sourceforge.net/" title="pytz - World Timezone Definitions for Python">library</a> that <em>"brings the Olson tz database into Python"</em> providing
+timezone classes to use with <code>datetime</code> objects.</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
 <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">57</span><span class="p">,</span> <span class="mi">800151</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span>
 <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">833276</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">pytz</span><span class="o">.</span><span class="n">utc</span><span class="o">.</span><span class="n">localize</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">())</span>
 <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">500463</span><span class="p">,</span> <span class="n">tzinfo</span><span class="o">=&lt;</span><span class="n">UTC</span><span class="o">&gt;</span><span class="p">)</span>
-</code></pre>
-    </div>
-    <p>
-     Some attempts have been made for providing extra help to disambiguate naive
-dates
-     <sup id="fnref:5">
-      <a class="footnote-ref" href="#fn:5">
-       5
-      </a>
-     </sup>
-     , but still, it is highly recommended that you
-     <strong>
-      convert dates to UTC
-as soon as they enter the system
-     </strong>
-     and work with them that way for calculations
-and queries. Despite the fact that you can take naive dates as being
-     <a href="http://lucumr.pocoo.org/2011/7/15/eppur-si-muove/" title="“Eppur si muove!”* – Dealing with Timezones in Python">
-      UTC
-implicitly
-     </a>
-     , I would suggest to still
-     <a href="https://julien.danjou.info/blog/2015/python-and-timezones" title="Timezones and Python">
-      attach the UTC tz
-     </a>
-     to them
-     <sup id="fnref:6">
-      <a class="footnote-ref" href="#fn:6">
-       6
-      </a>
-     </sup>
-     .
+</code></pre></div>
+<p>Some attempts have been made for providing extra help to disambiguate naive
+dates <sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>, but still, it is highly recommended that you <strong>convert dates to UTC
+as soon as they enter the system</strong> and work with them that way for calculations
+and queries. Despite the fact that you can take naive dates as being <a href="http://lucumr.pocoo.org/2011/7/15/eppur-si-muove/" title="“Eppur si muove!”* – Dealing with Timezones in Python">UTC
+implicitly</a>, I would suggest to still <a href="https://julien.danjou.info/blog/2015/python-and-timezones" title="Timezones and Python">attach the UTC tz</a> to them <sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup>.
 This way, all the information is there, and it becomes easier to reason about
-dates.
-    </p>
-    <p>
-     For example, when logging events, you can see logs that have the same date,
+dates.</p>
+<p>For example, when logging events, you can see logs that have the same date,
 that would seem to be duplicated because of DST. Instead if you have them in
-UTC and in the
-     <a href="https://en.wikipedia.org/wiki/ISO_8601" title="ISO 8601">
-      ISO format
-     </a>
-     , there is no place left for confusion.
-    </p>
-    <div class="highlight">
-     <pre><span></span><code><span class="s1">'2002-10-27T01:30:00'</span>  <span class="c1"># no timezone attached</span>
+UTC and in the <a href="https://en.wikipedia.org/wiki/ISO_8601" title="ISO 8601">ISO format</a>, there is no place left for confusion.</p>
+<div class="highlight"><pre><span></span><code><span class="s1">'2002-10-27T01:30:00'</span>  <span class="c1"># no timezone attached</span>
 <span class="s1">'2002-10-27T01:30:00'</span>
 
 <span class="s1">'2002-10-27T01:30:00-04:00'</span>  <span class="c1"># with timezone attached</span>
@@ -271,28 +94,13 @@ UTC and in the
 
 <span class="s1">'2002-10-27T05:30:00+00:00'</span>  <span class="c1"># in UTC, evidently there is an hour difference</span>
 <span class="s1">'2002-10-27T06:30:00+00:00'</span>
-</code></pre>
-    </div>
-    <p>
-     Even more, a sever could fire repeated crons or skip them if not configured to
-     <a href="http://www.creativedeletion.com/2015/08/07/why-not-to-use-server-local-time.html" title='Why not to ask the server for its "local time'>
-      use UTC
-     </a>
-     due to a DST switch.
-    </p>
-    <p>
-     When doing calculations, despite the fact that you can manipulate
-aware dates transparently
-     <sup id="fnref:7">
-      <a class="footnote-ref" href="#fn:7">
-       7
-      </a>
-     </sup>
-     the math is evident for the programmer if those
-dates are in UTC:
-    </p>
-    <div class="highlight">
-     <pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">buenos_aires</span>
+</code></pre></div>
+<p>Even more, a sever could fire repeated crons or skip them if not configured to
+<a href="http://www.creativedeletion.com/2015/08/07/why-not-to-use-server-local-time.html" title='Why not to ask the server for its "local time'>use UTC</a> due to a DST switch.</p>
+<p>When doing calculations, despite the fact that you can manipulate
+aware dates transparently <sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup> the math is evident for the programmer if those
+dates are in UTC:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">buenos_aires</span>
 <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
     <span class="n">tzinfo</span><span class="o">=&lt;</span><span class="n">DstTzInfo</span> <span class="s1">'America/Buenos_Aires'</span> <span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">1</span> <span class="n">day</span><span class="p">,</span> <span class="mi">21</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span> <span class="n">STD</span><span class="o">&gt;</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">madrid</span>
@@ -306,14 +114,10 @@ dates are in UTC:
 <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">tzinfo</span><span class="o">=&lt;</span><span class="n">UTC</span><span class="o">&gt;</span><span class="p">)</span> <span class="c1"># a one hour diff, obvi!</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">pytz</span><span class="o">.</span><span class="n">utc</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">buenos_aires</span><span class="p">)</span> <span class="o">-</span> <span class="n">pytz</span><span class="o">.</span><span class="n">utc</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">madrid</span><span class="p">)</span>
 <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3600</span><span class="p">)</span>  <span class="c1"># yeah! same results</span>
-</code></pre>
-    </div>
-    <p>
-     Moreover, event durations can be counter-intuitive if you don't keep in mind the
-in-between jumps of DST:
-    </p>
-    <div class="highlight">
-     <pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">eastern</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="s1">'US/Eastern'</span><span class="p">)</span>
+</code></pre></div>
+<p>Moreover, event durations can be counter-intuitive if you don't keep in mind the
+in-between jumps of DST:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">eastern</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="s1">'US/Eastern'</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">loc_dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2002</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">00</span><span class="p">)</span>  <span class="c1"># date occured twice</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">end</span> <span class="o">=</span> <span class="n">eastern</span><span class="o">.</span><span class="n">localize</span><span class="p">(</span><span class="n">loc_dt</span><span class="p">,</span> <span class="n">is_dst</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># notice the is_dst flag</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">end</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
@@ -323,29 +127,15 @@ in-between jumps of DST:
 <span class="s1">'2002-10-27T01:30:00-04:00'</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span>
 <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3600</span><span class="p">)</span>  <span class="c1"># same date, time and tz, but different offset</span>
-</code></pre>
-    </div>
-    <p>
-     If your are rendering these kind of events in some sort of calendar, you'll
+</code></pre></div>
+<p>If your are rendering these kind of events in some sort of calendar, you'll
 have to decide if dates or duration is what determines how to represent this
 event in a slot. And when building these dates, the user needs to disambiguate
-them explicitly, providing the
-     <code>
-      is_dst
-     </code>
-     flag.
-    </p>
-    <p>
-     Also, down the line of doing calculations in local timezones, we can see
-that when adding timedeltas to a
-     <code>
-      datetime
-     </code>
-     aware object, you may end up
-with the wrong result.
-    </p>
-    <div class="highlight">
-     <pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="c1"># Sunday, 7 April 2002, 02:00:00 clocks were turned forward 1 hour to</span>
+them explicitly, providing the <code>is_dst</code> flag.</p>
+<p>Also, down the line of doing calculations in local timezones, we can see
+that when adding timedeltas to a <code>datetime</code> aware object, you may end up
+with the wrong result.</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="c1"># Sunday, 7 April 2002, 02:00:00 clocks were turned forward 1 hour to</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="c1"># Sunday, 7 April 2002, 03:00:00 local daylight time instead</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">eastern</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="s1">'US/Eastern'</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">loc_dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2002</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
@@ -357,131 +147,56 @@ with the wrong result.
 <span class="s1">'2002-04-07T03:00:00-05:00'</span>  <span class="c1"># mmm they have the same offset, this is odd</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">eastern</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">est_dt</span><span class="p">)</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
 <span class="s1">'2002-04-07T04:00:00-04:00'</span>  <span class="c1"># this is what I expected</span>
-</code></pre>
-    </div>
-    <p>
-     Last, but not least, remember to never use
-     <code>
-      replace()
-     </code>
-     for attaching timezones.
+</code></pre></div>
+<p>Last, but not least, remember to never use <code>replace()</code> for attaching timezones.
 Otherwise you will very probably end up with the wrong date as a result. Use
-pytz's
-     <code>
-      normalize()
-     </code>
-     and
-     <code>
-      localize()
-     </code>
-     methods instead, since they use the tz
-table for convertions.
-    </p>
-    <div class="highlight">
-     <pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2002</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>  <span class="c1"># never existed in US/Eastern</span>
+pytz's <code>normalize()</code> and <code>localize()</code> methods instead, since they use the tz
+table for convertions.</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2002</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>  <span class="c1"># never existed in US/Eastern</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">dt</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">tzinfo</span><span class="o">=</span><span class="n">eastern</span><span class="p">)</span>
 <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2002</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span>
     <span class="n">tzinfo</span><span class="o">=&lt;</span><span class="n">DstTzInfo</span> <span class="s1">'US/Eastern'</span> <span class="n">LMT</span><span class="o">-</span><span class="mi">1</span> <span class="n">day</span><span class="p">,</span> <span class="mi">19</span><span class="p">:</span><span class="mi">04</span><span class="p">:</span><span class="mi">00</span> <span class="n">STD</span><span class="o">&gt;</span><span class="p">)</span>  <span class="c1"># what?</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">eastern</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">eastern</span><span class="o">.</span><span class="n">localize</span><span class="p">(</span><span class="n">dt</span><span class="p">))</span>
 <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2002</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span>
     <span class="n">tzinfo</span><span class="o">=&lt;</span><span class="n">DstTzInfo</span> <span class="s1">'US/Eastern'</span> <span class="n">EDT</span><span class="o">-</span><span class="mi">1</span> <span class="n">day</span><span class="p">,</span> <span class="mi">20</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span> <span class="n">DST</span><span class="o">&gt;</span><span class="p">)</span>  <span class="c1"># much better</span>
-</code></pre>
-    </div>
-    <p>
-     Moving on, now that we know that UTC aware dates everywhere
-     <a href="http://tommikaikkonen.github.io/timezones/" title="timezones">
-      is the way to
-go
-     </a>
-     , there are some extra details to pay attention to:
-    </p>
-    <ol>
-     <li>
-      It is a good idea to store the user's timezone, so that you are able
+</code></pre></div>
+<p>Moving on, now that we know that UTC aware dates everywhere <a href="http://tommikaikkonen.github.io/timezones/" title="timezones">is the way to
+go</a>, there are some extra details to pay attention to:</p>
+<ol>
+<li>It is a good idea to store the user's timezone, so that you are able
    to format dates in case you don't trust the clients ability to display them
-   correctly (due to an outdated db on their side, most likely, or just emails).
-     </li>
-     <li>
-      If events are attached to a certain location, like a flight for instance, and
+   correctly (due to an outdated db on their side, most likely, or just emails).</li>
+<li>If events are attached to a certain location, like a flight for instance, and
    that location changes it's timezone, then we need to recalculate all scheduled
-   dates for that location and notify users about it.
-      <a href="https://codeblog.jonskeet.uk/2019/03/27/storing-utc-is-not-a-silver-bullet/" title="Storing UTC is not a silver bullet">
-       Simply storing these
-   dates in UTC is not enough
-      </a>
-      .
-     </li>
-    </ol>
-    <p>
-     So storing
-     <strong>
-      the timezone of origin
-     </strong>
-     as way to get back to and from UTC is
-important.
-    </p>
-    <h2 id="recurring-events">
-     Recurring events
-     <a class="headerlink" href="#recurring-events" title="Permanent link">
-      ¶
-     </a>
-    </h2>
-    <p>
-     For generating a series of events you should use the
-     <code>
-      dateutils.rrule
-     </code>
-     package
-     <sup id="fnref:8">
-      <a class="footnote-ref" href="#fn:8">
-       8
-      </a>
-     </sup>
-     , which allows a great deal of configuration and manages corner cases like:
-     <em>
-      every last day of the month
-     </em>
-     .
-    </p>
-    <p>
-     But when it comes to creating recurring events, say every Monday at 11:00 am,
+   dates for that location and notify users about it. <a href="https://codeblog.jonskeet.uk/2019/03/27/storing-utc-is-not-a-silver-bullet/" title="Storing UTC is not a silver bullet">Simply storing these
+   dates in UTC is not enough</a>.</li>
+</ol>
+<p>So storing <strong>the timezone of origin</strong> as way to get back to and from UTC is
+important.</p>
+<h2 id="recurring-events">Recurring events<a class="headerlink" href="#recurring-events" title="Permanent link">¶</a></h2>
+<p>For generating a series of events you should use the <code>dateutils.rrule</code> package
+<sup id="fnref:8"><a class="footnote-ref" href="#fn:8">8</a></sup>, which allows a great deal of configuration and manages corner cases like:
+<em>every last day of the month</em>.</p>
+<p>But when it comes to creating recurring events, say every Monday at 11:00 am,
 the user wants those dates to always stay at 11:00 am even if there is a DST
-switch at some point.
-    </p>
-    <p>
-     The procedure is perfectly explained
-     <a href="https://coderwall.com/p/7t3qdq/datetimes-and-timezones-and-dst-oh-my">
-      here
-     </a>
-     and involves naive dates on
-purpose!
-    </p>
-    <p>
-     We first have to generate the occurrences regardless or the timezone settings,
-all at the same time. Because of the way this lib works (
-     <em>
-      basically by adding
-timedeltas
-     </em>
-     ), it is that we need to feed it with naive start and/or end dates:
-    </p>
-    <div class="highlight">
-     <pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">start</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2014</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># Feb 22</span>
+switch at some point.</p>
+<p>The procedure is perfectly explained <a href="https://coderwall.com/p/7t3qdq/datetimes-and-timezones-and-dst-oh-my">here</a> and involves naive dates on
+purpose!</p>
+<p>We first have to generate the occurrences regardless or the timezone settings,
+all at the same time. Because of the way this lib works (<em>basically by adding
+timedeltas</em>), it is that we need to feed it with naive start and/or end dates:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">start</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2014</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># Feb 22</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">end</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2014</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># March 24</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="n">rrule</span><span class="p">(</span><span class="n">WEEKLY</span><span class="p">,</span> <span class="n">dtstart</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">until</span><span class="o">=</span><span class="n">end</span><span class="p">,</span> <span class="n">byweekday</span><span class="o">=</span><span class="p">(</span><span class="n">MO</span><span class="p">,)))</span>
 <span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2014</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> 
  <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2014</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> 
  <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2014</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> 
  <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2014</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>  <span class="c1"># all at the same time</span>
-</code></pre>
-    </div>
-    <p>
-     Now we will attach the user's timezone to these dates and normalize them to
+</code></pre></div>
+<p>Now we will attach the user's timezone to these dates and normalize them to
 UTC. You can see that the change happens on the stored dates, but the time the
-user will see in their local timezone stays intact.
-    </p>
-    <div class="highlight">
-     <pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">tz</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="s1">'America/Chicago'</span><span class="p">)</span>  <span class="c1"># observes DST switch on March 9</span>
+user will see in their local timezone stays intact.</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">tz</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="s1">'America/Chicago'</span><span class="p">)</span>  <span class="c1"># observes DST switch on March 9</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">localized</span> <span class="o">=</span> <span class="p">[</span><span class="n">tz</span><span class="o">.</span><span class="n">localize</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span> <span class="k">for</span> <span class="n">dt</span> <span class="ow">in</span> <span class="n">dates</span><span class="p">]</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">dt</span> <span class="ow">in</span> <span class="n">localized</span><span class="p">:</span>
         <span class="nb">print</span> <span class="s1">'Central: </span><span class="si">{}</span><span class="s1">; UTC: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">dt</span><span class="o">.</span><span class="n">astimezone</span><span class="p">(</span><span class="n">pytz</span><span class="o">.</span><span class="n">utc</span><span class="p">))</span>
@@ -489,140 +204,57 @@ user will see in their local timezone stays intact.
 <span class="s1">'Central: 2014-03-03 11:00:00-06:00; UTC: 2014-03-03 17:00:00+00:00'</span>
 <span class="s1">'Central: 2014-03-10 11:00:00-05:00; UTC: 2014-03-10 16:00:00+00:00'</span>
 <span class="s1">'Central: 2014-03-17 11:00:00-05:00; UTC: 2014-03-17 16:00:00+00:00'</span>
-</code></pre>
-    </div>
-    <p>
-     You should also set the
-     <code>
-      is_dst
-     </code>
-     flag in when calling
-     <code>
-      localize()
-     </code>
-     if needed.
-    </p>
-    <h2 id="quering-events">
-     Quering events
-     <a class="headerlink" href="#quering-events" title="Permanent link">
-      ¶
-     </a>
-    </h2>
-    <p>
-     When retriving entries for a given period, we need to
-     <strong>
-      think in buckets
-determined by the user's localized start and end boundaries
-     </strong>
-     for that period.
-    </p>
-    <p>
-     For example, if we want today's entries, for a user with an offset of UTC-3, it
+</code></pre></div>
+<p>You should also set the <code>is_dst</code> flag in when calling <code>localize()</code> if needed.</p>
+<h2 id="quering-events">Quering events<a class="headerlink" href="#quering-events" title="Permanent link">¶</a></h2>
+<p>When retriving entries for a given period, we need to <strong>think in buckets
+determined by the user's localized start and end boundaries</strong> for that period.</p>
+<p>For example, if we want today's entries, for a user with an offset of UTC-3, it
 is important to request those dates in the UTC version of the user's 00:00 to
-23:59 time lapse.
-     <em>
-      Today
-     </em>
-     is relative to the timezone the user is currently at,
-and using
-     <em>
-      UTC's today
-     </em>
-     is not an option since it's going to get us entries
+23:59 time lapse. <em>Today</em> is relative to the timezone the user is currently at,
+and using <em>UTC's today</em> is not an option since it's going to get us entries
 from yesterday's 21:00 to today's 20:59 potentially including or excluding
-incorrect results. We need to normalize the user's date range to UTC:
-    </p>
-    <table>
-     <thead>
-      <tr>
-       <th>
-        UTC offset
-       </th>
-       <th>
-        Day start
-       </th>
-       <th>
-        Day end
-       </th>
-       <th>
-        Meaning
-       </th>
-      </tr>
-     </thead>
-     <tbody>
-      <tr>
-       <td>
-        -03:00
-       </td>
-       <td>
-        00:00
-       </td>
-       <td>
-        23:59
-       </td>
-       <td>
-        User's date range
-       </td>
-      </tr>
-      <tr>
-       <td>
-        +00:00
-       </td>
-       <td>
-        00:00
-       </td>
-       <td>
-        23:59
-       </td>
-       <td>
-        UTC's date range
-       </td>
-      </tr>
-      <tr>
-       <td>
-        -03:00
-       </td>
-       <td>
-        21:00
-       </td>
-       <td>
-        20:59
-       </td>
-       <td>
-        UTC's date range compared to user's
-       </td>
-      </tr>
-      <tr>
-       <td>
-        +00:00
-       </td>
-       <td>
-        03:00
-       </td>
-       <td>
-        02:59
-       </td>
-       <td>
-        User's date range normalized with UTC [✓]
-       </td>
-      </tr>
-     </tbody>
-    </table>
-    <p>
-     The following piece of code shows exactly how to query today's entries for a
-user. See how
-     <code>
-      time.min
-     </code>
-     and
-     <code>
-      time.max
-     </code>
-     come in handy when calculating the
-start and end boundaries for a date:
-    </p>
-    <div class="highlight">
-     <pre><span></span><code><span class="k">def</span> <span class="nf">today_only</span><span class="p">():</span>
+incorrect results. We need to normalize the user's date range to UTC:</p>
+<table>
+<thead>
+<tr>
+<th>UTC offset</th>
+<th>Day start</th>
+<th>Day end</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-03:00</td>
+<td>00:00</td>
+<td>23:59</td>
+<td>User's date range</td>
+</tr>
+<tr>
+<td>+00:00</td>
+<td>00:00</td>
+<td>23:59</td>
+<td>UTC's date range</td>
+</tr>
+<tr>
+<td>-03:00</td>
+<td>21:00</td>
+<td>20:59</td>
+<td>UTC's date range compared to user's</td>
+</tr>
+<tr>
+<td>+00:00</td>
+<td>03:00</td>
+<td>02:59</td>
+<td>User's date range normalized with UTC [✓]</td>
+</tr>
+</tbody>
+</table>
+<p>The following piece of code shows exactly how to query today's entries for a
+user. See how <code>time.min</code> and <code>time.max</code> come in handy when calculating the
+start and end boundaries for a date:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">today_only</span><span class="p">():</span>
     <span class="c1"># datetime.datetime.combine returns naive dates :(</span>
     <span class="n">local_now</span> <span class="o">=</span> <span class="n">user_tz</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">tzinfo</span><span class="o">=</span><span class="n">utc</span><span class="p">))</span>
     <span class="n">local_today_min</span> <span class="o">=</span> <span class="n">user_tz</span><span class="o">.</span><span class="n">localize</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">local_now</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">min</span><span class="p">))</span>
@@ -630,43 +262,18 @@ start and end boundaries for a date:
     <span class="n">today_min</span> <span class="o">=</span> <span class="n">utc</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">local_today_min</span><span class="p">)</span>
     <span class="n">today_max</span> <span class="o">=</span> <span class="n">utc</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">local_today_max</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">events</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">start</span><span class="o">&gt;=</span><span class="n">today_min</span><span class="p">,</span> <span class="n">end</span><span class="o">&lt;=</span><span class="n">today_max</span><span class="p">)</span>
-</code></pre>
-    </div>
-    <p>
-     For next/previous month or next/previous week you should use
-     <code>
-      rrule
-     </code>
-     which can
+</code></pre></div>
+<p>For next/previous month or next/previous week you should use <code>rrule</code> which can
 give you those dates, since the math is not as simple as adding 30 days to get
 the next month's results (not every month has the same length) or calculating
 when the next week starts. Then you just have to follow the same aforementioned
-approach.
-    </p>
-    <p>
-     Quering past or future events, with that sole condition, is a different story.
+approach.</p>
+<p>Quering past or future events, with that sole condition, is a different story.
 Since dates are typically stored in UTC and we care about entries before or
-after
-     <em>
-      now
-     </em>
-     , it doesn't matter which timezone the user is at,
-     <em>
-      now
-     </em>
-     represents
-the same moment in any timezone, so we don't have to translate the user's
-     <em>
-      now
-     </em>
-     to UTC's
-     <em>
-      now
-     </em>
-     .
-    </p>
-    <div class="highlight">
-     <pre><span></span><code><span class="c1"># Assuming event dates are stored in UTC (like postgres does).</span>
+after <em>now</em>, it doesn't matter which timezone the user is at, <em>now</em> represents
+the same moment in any timezone, so we don't have to translate the user's <em>now</em>
+to UTC's <em>now</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Assuming event dates are stored in UTC (like postgres does).</span>
 <span class="c1"># These convertions might not be needed depending on the storage engine</span>
 <span class="c1"># or frameworks you are using.</span>
 
@@ -677,51 +284,23 @@ the same moment in any timezone, so we don't have to translate the user's
 <span class="k">def</span> <span class="nf">future</span><span class="p">():</span>
     <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">tzinfo</span><span class="o">=</span><span class="n">utc</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">events</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">start</span><span class="o">&gt;=</span><span class="n">now</span><span class="p">)</span>
-</code></pre>
-    </div>
-    <p>
-     <strong>
-      Be extra carefull if you are caching these results afected by a date range
-     </strong>
-     ,
+</code></pre></div>
+<p><strong>Be extra carefull if you are caching these results afected by a date range</strong>,
 and make sure that the timezone is part of the cache's key. This way, if the
 timezone changes, because the user is on a trip for instance, the cache gets
 invalidated automatically for that user. Otherwise this week's promotions won't
 be correctly applied to customers in the case of an e-commerce site for
-example.
-    </p>
-    <h2 id="notification-events">
-     Notification events
-     <a class="headerlink" href="#notification-events" title="Permanent link">
-      ¶
-     </a>
-    </h2>
-    <p>
-     When it comes to scheduling events like digest emails of notifications/news,
+example.</p>
+<h2 id="notification-events">Notification events<a class="headerlink" href="#notification-events" title="Permanent link">¶</a></h2>
+<p>When it comes to scheduling events like digest emails of notifications/news,
 lists of pending tasks, aggregated activities, etc, you will also need to
-generate a series based on the user preferences for when to receive them.
-    </p>
-    <p>
-     You guessed it,
-     <code>
-      rrule
-     </code>
-     again to the rescue! But having all future occurrences
-generated in advance is wasteful.
-    </p>
-    <p>
-     In this use case you only care about the next recurrence after now. Every now
+generate a series based on the user preferences for when to receive them.</p>
+<p>You guessed it, <code>rrule</code> again to the rescue! But having all future occurrences
+generated in advance is wasteful.</p>
+<p>In this use case you only care about the next recurrence after now. Every now
 and then (i.e. every minute) you poll all scheduled reminders that expired,
-execute the task and calculate the next occurrence with a cron-like job
-     <sup id="fnref:9">
-      <a class="footnote-ref" href="#fn:9">
-       9
-      </a>
-     </sup>
-     .
-    </p>
-    <div class="highlight">
-     <pre><span></span><code><span class="n">user_tz</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="s1">'US/Eastern'</span><span class="p">)</span>
+execute the task and calculate the next occurrence with a cron-like job <sup id="fnref:9"><a class="footnote-ref" href="#fn:9">9</a></sup>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">user_tz</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="s1">'US/Eastern'</span><span class="p">)</span>
 <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span>
 <span class="n">days</span> <span class="o">=</span> <span class="p">[</span><span class="n">rrule</span><span class="o">.</span><span class="n">MO</span><span class="p">,</span> <span class="n">rrule</span><span class="o">.</span><span class="n">WE</span><span class="p">]</span>
 <span class="n">rule</span> <span class="o">=</span> <span class="n">rrule</span><span class="o">.</span><span class="n">rrule</span><span class="p">(</span><span class="n">rrule</span><span class="o">.</span><span class="n">WEEKLY</span><span class="p">,</span> <span class="n">dtstart</span><span class="o">=</span><span class="n">now</span><span class="p">,</span> <span class="n">byweekday</span><span class="o">=</span><span class="n">days</span><span class="p">,</span>
@@ -729,283 +308,98 @@ execute the task and calculate the next occurrence with a cron-like job
 
 <span class="c1"># Get the fist recurrence right after "now"</span>
 <span class="n">next_notification</span> <span class="o">=</span> <span class="n">user_tz</span><span class="o">.</span><span class="n">localize</span><span class="p">(</span><span class="n">rule</span><span class="o">.</span><span class="n">after</span><span class="p">(</span><span class="n">now</span><span class="p">))</span>
-</code></pre>
-    </div>
-    <p>
-     In case the user's timezone changes, remember to recalculate next occurrence.
-    </p>
-    <h1 id="conclusions">
-     Conclusions
-     <a class="headerlink" href="#conclusions" title="Permanent link">
-      ¶
-     </a>
-    </h1>
-    <p>
-     Timezones are like variables. They have a name and a value (the UTC offset),
-that changes over time thanks to some rules defined in the timezone's database.
-    </p>
-    <p>
-     Dates without timezones don't really represent any moment in particular.
-    </p>
-    <p>
-     Always use tz aware dates and specifically UTC aware dates inside your program,
+</code></pre></div>
+<p>In case the user's timezone changes, remember to recalculate next occurrence.</p>
+<h1 id="conclusions">Conclusions<a class="headerlink" href="#conclusions" title="Permanent link">¶</a></h1>
+<p>Timezones are like variables. They have a name and a value (the UTC offset),
+that changes over time thanks to some rules defined in the timezone's database.</p>
+<p>Dates without timezones don't really represent any moment in particular.</p>
+<p>Always use tz aware dates and specifically UTC aware dates inside your program,
 but keep a reference to a local timezone that makes sense in case you need to
-retrace changes.
-    </p>
-    <p>
-     For all this, it is vital to stay up to date with tz updates.
-    </p>
-    <p>
-     I hope you found this post useful. My idea was make it a compendium of all
+retrace changes.</p>
+<p>For all this, it is vital to stay up to date with tz updates.</p>
+<p>I hope you found this post useful. My idea was make it a compendium of all
 things related to dates I have read about, and had to work with in Python. So I
-suggest you to read all linked pages, they are there for a reason!
-    </p>
-    <div class="footnote">
-     <hr/>
-     <ol>
-      <li id="fn:1">
-       <p>
-        Many countries have started and stopped using DST and different times.
-       </p>
-       <blockquote>
-        <p>
-         For example, 1:30am on 27th Oct 2002 happened twice in the US/Eastern timezone when the
+suggest you to read all linked pages, they are there for a reason!</p>
+<div class="footnote">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>Many countries have started and stopped using DST and different times.</p>
+<blockquote>
+<p>For example, 1:30am on 27th Oct 2002 happened twice in the US/Eastern timezone when the
 clocks where put back at the end of Daylight Saving Time.
 Similarly, 2:30am on 7th April 2002 never happened at all in the US/Eastern timezone, as
-the clocks where put forward at 2:00am skipping the entire hour.
-        </p>
-        <p>
-         Extracts from
-         <em>
-          the pytz
-          <a href="http://pytz.sourceforge.net/" title="pytz - World Timezone Definitions for Python">
-           documentation
-          </a>
-         </em>
-        </p>
-       </blockquote>
-       <p>
-        Moreover, timezones can change for other reasons that just DST.
-       </p>
-       <blockquote>
-        <p>
-         In 1915 Warsaw switched from Warsaw time to Central European time with no daylight savings
+the clocks where put forward at 2:00am skipping the entire hour.</p>
+<p>Extracts from <em>the pytz <a href="http://pytz.sourceforge.net/" title="pytz - World Timezone Definitions for Python">documentation</a></em></p>
+</blockquote>
+<p>Moreover, timezones can change for other reasons that just DST. </p>
+<blockquote>
+<p>In 1915 Warsaw switched from Warsaw time to Central European time with no daylight savings
 transition. So at the stroke of midnight on August 5th 1915 the clocks were wound back 24
 minutes creating an ambiguous time period that cannot be specified without referring to the
 timezone abbreviation or the actual UTC offset. In this case midnight happened twice, neither
 time during a daylight saving time period. pytz handles this transition by treating the
 ambiguous period before the switch as daylight savings time, and the ambiguous period after
-as standard time.
-        </p>
-        <p>
-         Extracts from
-         <em>
-          the pytz
-          <a href="http://pytz.sourceforge.net/" title="pytz - World Timezone Definitions for Python">
-           documentation
-          </a>
-         </em>
-        </p>
-       </blockquote>
-       <p>
-        <a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">
-         ↩
-        </a>
-       </p>
-      </li>
-      <li id="fn:2">
-       <p>
-        If you see a date formatted like
-        <code>
-         yyyy-mm-ddThh:mm:ss-03:00
-        </code>
-        , it means that it's offset is UTC-3
-  but it also means that to convert it to UTC you have to make that
-        <code>
-         -03:00
-        </code>
-        part a
-        <code>
-         +00:00
-        </code>
-        , so in
-  this case you have to add three hours to the date for it to be in UTC.
-        <a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">
-         ↩
-        </a>
-       </p>
-      </li>
-      <li id="fn:3">
-       <p>
-        The ICANN organization, which is in charge of hosting the Olson Database, publishes updates through
-  a
-        <a href="https://mm.icann.org/mailman/listinfo/tz-announce" title="tz announce maling list">
-         mailing list
-        </a>
-        . Some languages like Elixir, have
-        <a href="http://www.creativedeletion.com/2015/12/03/timezone-updates-need-fixing.html" title="Timezone updates need to be fixed">
-         automatic builds
-        </a>
-        for their date packages
-  when the db gets updated.
-        <a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">
-         ↩
-        </a>
-       </p>
-      </li>
-      <li id="fn:4">
-       <p>
-        More information about programs, libraries and systems can be found
-        <a href="https://www.iana.org/time-zones/repository/tz-link.html" title="Sources for time zone and daylight saving time data">
-         here
-        </a>
-        .
-        <a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">
-         ↩
-        </a>
-       </p>
-      </li>
-      <li id="fn:5">
-       <p>
-        <a href="https://www.python.org/dev/peps/pep-0495/" title="PEP 495 -- Local Time Disambiguation">
-         PEP495
-        </a>
-        suggests adding an attribute called
-        <code>
-         fold
-        </code>
-        to instances of the
-        <code>
-         datetime
-        </code>
-        classes. For
-  example, on a system set to US/Eastern timezone:
-       </p>
-       <div class="highlight">
-        <pre><span></span><code>  &gt;&gt;&gt; dt = datetime(2014, 11, 2, 1, 30)
+as standard time.</p>
+<p>Extracts from <em>the pytz <a href="http://pytz.sourceforge.net/" title="pytz - World Timezone Definitions for Python">documentation</a></em></p>
+</blockquote>
+<p><a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">↩</a></p>
+</li>
+<li id="fn:2">
+<p>If you see a date formatted like <code>yyyy-mm-ddThh:mm:ss-03:00</code>, it means that it's offset is UTC-3
+  but it also means that to convert it to UTC you have to make that <code>-03:00</code> part a <code>+00:00</code>, so in
+  this case you have to add three hours to the date for it to be in UTC. <a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">↩</a></p>
+</li>
+<li id="fn:3">
+<p>The ICANN organization, which is in charge of hosting the Olson Database, publishes updates through
+  a <a href="https://mm.icann.org/mailman/listinfo/tz-announce" title="tz announce maling list">mailing list</a>. Some languages like Elixir, have <a href="http://www.creativedeletion.com/2015/12/03/timezone-updates-need-fixing.html" title="Timezone updates need to be fixed">automatic builds</a> for their date packages
+  when the db gets updated. <a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">↩</a></p>
+</li>
+<li id="fn:4">
+<p>More information about programs, libraries and systems can be found <a href="https://www.iana.org/time-zones/repository/tz-link.html" title="Sources for time zone and daylight saving time data">here</a>. <a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">↩</a></p>
+</li>
+<li id="fn:5">
+<p><a href="https://www.python.org/dev/peps/pep-0495/" title="PEP 495 -- Local Time Disambiguation">PEP495</a> suggests adding an attribute called <code>fold</code> to instances of the <code>datetime</code> classes. For
+  example, on a system set to US/Eastern timezone:</p>
+<div class="highlight"><pre><span></span><code>  &gt;&gt;&gt; dt = datetime(2014, 11, 2, 1, 30)
   &gt;&gt;&gt; dt.astimezone().strftime('%D %T %Z%z')
   '11/02/14 01:30:00 EDT-0400'
   &gt;&gt;&gt; dt.replace(fold=1).astimezone().strftime('%D %T %Z%z')
   '11/02/14 01:30:00 EST-0500'
-</code></pre>
-       </div>
-       <p>
-        This way we can represent just one moment in time in an ambiguous case.
-  Other ideas were also discussed in
-        <a href="https://www.python.org/dev/peps/pep-0431/" title="Timezone support improvements">
-         PEP431
-        </a>
-        <a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">
-         ↩
-        </a>
-       </p>
-      </li>
-      <li id="fn:6">
-       <p>
-        This is a peak at some of the terminology involved when dealing with dates:
-       </p>
-       <ul>
-        <li>
-         naive datetime – a datetime object without a timezone.
-        </li>
-        <li>
-         localized datetime – a datetime object with a timezone.
-        </li>
-        <li>
-         localizing – associating a naive datetime object with a timezone.
-        </li>
-        <li>
-         normalizing – shifting a localized datetime object from one timezone to another, this changes
-    both tzinfo and datetime object.
-        </li>
-       </ul>
-       <p>
-        As the Delorean docs
-        <a href="http://delorean.readthedocs.io/en/latest/quickstart.html" title="Delorean docs">
-         explain it
-        </a>
-        .
-        <a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 6 in the text">
-         ↩
-        </a>
-       </p>
-      </li>
-      <li id="fn:7">
-       <p>
-        Python cannot mix aware and naive dates or you will get a
-        <code>
-         TypeError:
-  can't compare offset-naive and offset-aware datetimes
-        </code>
-        exception.
-        <a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 7 in the text">
-         ↩
-        </a>
-       </p>
-      </li>
-      <li id="fn:8">
-       <p>
-        <a href="https://labix.org/python-dateutil" title="python-dateutil">
-         dateutils
-        </a>
-        is a must if your app makes intensive use of dates. It
-  also provides some other niceties like
-        <code>
-         relativedelta
-        </code>
-        and
-        <code>
-         parser.parse
-        </code>
-        .
-        <a class="footnote-backref" href="#fnref:8" title="Jump back to footnote 8 in the text">
-         ↩
-        </a>
-       </p>
-      </li>
-      <li id="fn:9">
-       <p>
-        If you are working with Django, you might find
-        <a href="https://github.com/ambitioninc/django-localized-recurrence" title="Django localized recurrence">
-         django-localized-recurrence
-        </a>
-        interesting.
-        <a class="footnote-backref" href="#fnref:9" title="Jump back to footnote 9 in the text">
-         ↩
-        </a>
-       </p>
-      </li>
-     </ol>
-    </div>
-   </article>
-   <footer class="column-right light">
-    <nav>
-     <a href="/">
-      Home
-     </a>
-     -
-     <a href="/archives.html">
-      Archives
-     </a>
-     -
-     <a href="/categories.html">
-      Categories
-     </a>
-     -
-     <a href="/tags.html">
-      Tags
-     </a>
-     -
-     <a href="/rss.xml">
-      RSS
-     </a>
-     -
-     <a href="https://creativecommons.org/licenses/by/4.0/">
-      License
-     </a>
-     | README.txt
-    </nav>
-   </footer>
-  </main>
- </body>
+</code></pre></div>
+<p>This way we can represent just one moment in time in an ambiguous case.
+  Other ideas were also discussed in <a href="https://www.python.org/dev/peps/pep-0431/" title="Timezone support improvements">PEP431</a> <a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">↩</a></p>
+</li>
+<li id="fn:6">
+<p>This is a peak at some of the terminology involved when dealing with dates:</p>
+<ul>
+<li>naive datetime – a datetime object without a timezone.</li>
+<li>localized datetime – a datetime object with a timezone.</li>
+<li>localizing – associating a naive datetime object with a timezone.</li>
+<li>normalizing – shifting a localized datetime object from one timezone to another, this changes
+    both tzinfo and datetime object.</li>
+</ul>
+<p>As the Delorean docs <a href="http://delorean.readthedocs.io/en/latest/quickstart.html" title="Delorean docs">explain it</a>. <a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 6 in the text">↩</a></p>
+</li>
+<li id="fn:7">
+<p>Python cannot mix aware and naive dates or you will get a <code>TypeError:
+  can't compare offset-naive and offset-aware datetimes</code> exception. <a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 7 in the text">↩</a></p>
+</li>
+<li id="fn:8">
+<p><a href="https://labix.org/python-dateutil" title="python-dateutil">dateutils</a> is a must if your app makes intensive use of dates. It
+  also provides some other niceties like <code>relativedelta</code> and <code>parser.parse</code>. <a class="footnote-backref" href="#fnref:8" title="Jump back to footnote 8 in the text">↩</a></p>
+</li>
+<li id="fn:9">
+<p>If you are working with Django, you might find <a href="https://github.com/ambitioninc/django-localized-recurrence" title="Django localized recurrence">django-localized-recurrence</a>
+  interesting. <a class="footnote-backref" href="#fnref:9" title="Jump back to footnote 9 in the text">↩</a></p>
+</li>
+</ol>
+</div>
+</article>
+<footer class="column-right light">
+<nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> - <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | README.txt</nav>
+</footer>
+</main>
+</body>
 </html>

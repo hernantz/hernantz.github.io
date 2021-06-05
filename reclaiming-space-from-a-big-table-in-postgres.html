@@ -1,183 +1,54 @@
 <!DOCTYPE html>
+
 <html lang="en">
- <head>
-  <title>
-   Reclaiming space from a big table in Postgres | README.txt
-  </title>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport"/>
-  <link href="/theme/css/main.css" rel="stylesheet" type="text/css"/>
-  <link href="/theme/css/mobile.css" media="(max-width: 750px)" rel="stylesheet" type="text/css"/>
-  <link href="/theme/css/pygments-default.css" rel="stylesheet" type="text/css"/>
-  <link href="/images/favicon.ico" rel="icon" type="image/x-icon"/>
-  <link href="/rss.xml" rel="alternate" title="README.txt RSS Feed" type="application/atom+xml"/>
-  <meta content="After deleting columns or updating lots of rows." name="description"/>
-  <meta content="database, postgres" name="keywords"/>
-  <meta content="hernantz" name="author"/>
-  <link href="http://hernantz.github.io/reclaiming-space-from-a-big-table-in-postgres.html" rel="canonical"/>
-  <script type="application/ld+json">
-   {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "README.txt", "item": "http://hernantz.github.io"}, {"@type": "ListItem", "position": 2, "name": "Reclaiming space from a big table in postgres", "item": "http://hernantz.github.io/reclaiming-space-from-a-big-table-in-postgres.html"}]}
-  </script>
-  <script type="application/ld+json">
-   {"@context": "https://schema.org", "@type": "Article", "author": {"@type": "Person", "name": "hernantz"}, "publisher": {"@type": "Organization", "name": "README.txt"}, "headline": "Reclaiming space from a big table in Postgres", "about": "Programming", "datePublished": "2021-05-08 00:00"}
-  </script>
- </head>
- <body>
-  <aside class="sidebar">
-   <a href="/">
-    <img height="75" src="/images/avatar.png" width="75"/>
-   </a>
-   <nav>
-    <ul>
-     <li>
-      <a href="http://twitter.com/hernantz">
-       twitter
-      </a>
-     </li>
-     <li>
-      <a href="http://github.com/hernantz">
-       github
-      </a>
-     </li>
-     <li>
-      <a href="http://last.fm/user/hernantz">
-       last.fm
-      </a>
-     </li>
-     <li>
-      <a href="https://www.rottentomatoes.com/user/id/973196678">
-       tomatoes
-      </a>
-     </li>
-     <li>
-      <a href="/talks.html">
-       talks
-      </a>
-     </li>
-     <li>
-      <a href="/whoami.html">
-       whoami
-      </a>
-     </li>
-     <li>
-      <a href="/">
-       blog
-      </a>
-     </li>
-    </ul>
-   </nav>
-  </aside>
-  <main>
-   <article class="column-right">
-    <h1 class="main-title">
-     Reclaiming space from a big table in Postgres
-    </h1>
-    <summary>
-     <p class="light">
+<head>
+<title>Reclaiming space from a big table in Postgres | README.txt</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport"/>
+<link href="/theme/css/main.css" rel="stylesheet" type="text/css"/>
+<link href="/theme/css/mobile.css" media="(max-width: 750px)" rel="stylesheet" type="text/css"/>
+<link href="/theme/css/pygments-default.css" rel="stylesheet" type="text/css"/>
+<link href="/images/favicon.ico" rel="icon" type="image/x-icon"/>
+<link href="/rss.xml" rel="alternate" title="README.txt RSS Feed" type="application/atom+xml"/>
+<meta content="After deleting columns or updating lots of rows." name="description"/>
+<meta content="database, postgres" name="keywords"/>
+<meta content="hernantz" name="author"/>
+<link href="http://hernantz.github.io/reclaiming-space-from-a-big-table-in-postgres.html" rel="canonical"/><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "README.txt", "item": "http://hernantz.github.io"}, {"@type": "ListItem", "position": 2, "name": "Reclaiming space from a big table in postgres", "item": "http://hernantz.github.io/reclaiming-space-from-a-big-table-in-postgres.html"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "author": {"@type": "Person", "name": "hernantz"}, "publisher": {"@type": "Organization", "name": "README.txt"}, "headline": "Reclaiming space from a big table in Postgres", "about": "Programming", "datePublished": "2021-05-08 00:00"}</script></head>
+<body>
+<aside class="sidebar">
+<a href="/"><img height="75" src="/images/avatar.png" width="75"/></a>
+<nav>
+<ul>
+<li><a href="http://twitter.com/hernantz">twitter</a></li>
+<li><a href="http://github.com/hernantz">github</a></li>
+<li><a href="http://last.fm/user/hernantz">last.fm</a></li>
+<li><a href="https://www.rottentomatoes.com/user/id/973196678">tomatoes</a></li>
+<li><a href="/talks.html">talks</a></li>
+<li><a href="/whoami.html">whoami</a></li>
+<li><a href="/">blog</a></li>
+</ul>
+</nav>
+</aside>
+<main>
+<article class="column-right">
+<h1 class="main-title">Reclaiming space from a big table in Postgres</h1>
+<summary>
+<p class="light">
       Published
-on
-      <time datetime="2021-05-08T00:00:00-03:00">
-       2021-05-08
-      </time>
-      ,       under
-      <a href="http://hernantz.github.io/category/programming.html">
-       Programming
-      </a>
-      ,
-      tagged with
-      <a href="http://hernantz.github.io/tag/database.html">
-       database
-      </a>
-      and
-      <a href="http://hernantz.github.io/tag/postgres.html">
-       postgres
-      </a>
-      .
-     </p>
-    </summary>
-    <p>
-     <img alt="Reclamed space from Postgres table" src="/images/Heroku-Postgres-Size.png" title="Reclamed space from Postgres table"/>
+on <time datetime="2021-05-08T00:00:00-03:00">2021-05-08</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
+      tagged with <a href="http://hernantz.github.io/tag/database.html">database</a> and <a href="http://hernantz.github.io/tag/postgres.html">postgres</a>.
     </p>
-    <p>
-     Shockingly to many, Postgres treats deletes and updates very similarly. Due to MVCC, tuples are marked and considered dead/obsolete when they are not reachable by any active transaction, yet they remain physically on disk taking space in the table. This is called bloat. It is the job of the autovacuum process, which needs to run periodically, to re-use that space. But it does not reclaim it back to the system. This might be specially noticeable after a bulk update where a big portion of a table's rows is affected (by an
-     <code>
-      UPDATE
-     </code>
-     or a
-     <code>
-      DELETE
-     </code>
-     ), disk space grows, and never shrinks back again.
-    </p>
-    <p>
-     The same applies when some columns are deleted from a table, autovacuum won't help us here either. The
-     <code>
-      DROP COLUMN
-     </code>
-     does not physically remove the column, but simply
-     <a href="https://www.postgresql.org/docs/current/sql-altertable.html#SQL-ALTERTABLE-NOTES">
-      makes it invisible
-     </a>
-     to SQL queries, in order to make this operation super fast. New
-     <code>
-      UPDATE
-     </code>
-     or
-     <code>
-      INSERT
-     </code>
-     queries store a
-     <code>
-      NULL
-     </code>
-     value on that column, but disk space will not be reclaimed or re-used until, over time, existing rows are updated.
-    </p>
-    <p>
-     To deal with a huge amount of bloat the solution is to run the
-     <code>
-      VACUUM FULL
-     </code>
-     command which takes an exclusive lock on the table and rewrites it completely.
-    </p>
-    <p>
-     If you cannot afford some downtime and this table is critical, then you can use
-     <a href="https://medium.com/miro-engineering/postgresql-bloat-pg-repack-and-deferred-constraints-d0ecf33337ec">
-      pg_repack
-     </a>
-     , a Postgres extension that will copy the content of the table by creating a shadow clone of it (which is also hot updated by triggers) and then performing a table rename swap, which happens very fast.
-    </p>
-    <p>
-     Usually these solutions should only be considered when a significant amount of space needs to be reclaimed from within the table, otherwise, autovacuum should be good enough.
-    </p>
-   </article>
-   <footer class="column-right light">
-    <nav>
-     <a href="/">
-      Home
-     </a>
-     -
-     <a href="/archives.html">
-      Archives
-     </a>
-     -
-     <a href="/categories.html">
-      Categories
-     </a>
-     -
-     <a href="/tags.html">
-      Tags
-     </a>
-     -
-     <a href="/rss.xml">
-      RSS
-     </a>
-     -
-     <a href="https://creativecommons.org/licenses/by/4.0/">
-      License
-     </a>
-     | README.txt
-    </nav>
-   </footer>
-  </main>
- </body>
+</summary>
+<p><img alt="Reclamed space from Postgres table" src="/images/Heroku-Postgres-Size.png" title="Reclamed space from Postgres table"/></p>
+<p>Shockingly to many, Postgres treats deletes and updates very similarly. Due to MVCC, tuples are marked and considered dead/obsolete when they are not reachable by any active transaction, yet they remain physically on disk taking space in the table. This is called bloat. It is the job of the autovacuum process, which needs to run periodically, to re-use that space. But it does not reclaim it back to the system. This might be specially noticeable after a bulk update where a big portion of a table's rows is affected (by an <code>UPDATE</code> or a <code>DELETE</code>), disk space grows, and never shrinks back again.</p>
+<p>The same applies when some columns are deleted from a table, autovacuum won't help us here either. The <code>DROP COLUMN</code> does not physically remove the column, but simply <a href="https://www.postgresql.org/docs/current/sql-altertable.html#SQL-ALTERTABLE-NOTES">makes it invisible</a> to SQL queries, in order to make this operation super fast. New <code>UPDATE</code> or <code>INSERT</code> queries store a <code>NULL</code> value on that column, but disk space will not be reclaimed or re-used until, over time, existing rows are updated.</p>
+<p>To deal with a huge amount of bloat the solution is to run the <code>VACUUM FULL</code> command which takes an exclusive lock on the table and rewrites it completely.</p>
+<p>If you cannot afford some downtime and this table is critical, then you can use <a href="https://medium.com/miro-engineering/postgresql-bloat-pg-repack-and-deferred-constraints-d0ecf33337ec">pg_repack</a>, a Postgres extension that will copy the content of the table by creating a shadow clone of it (which is also hot updated by triggers) and then performing a table rename swap, which happens very fast.</p>
+<p>Usually these solutions should only be considered when a significant amount of space needs to be reclaimed from within the table, otherwise, autovacuum should be good enough.</p>
+</article>
+<footer class="column-right light">
+<nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> - <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | README.txt</nav>
+</footer>
+</main>
+</body>
 </html>

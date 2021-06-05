@@ -1,176 +1,74 @@
 <!DOCTYPE html>
+
 <html lang="en">
- <head>
-  <title>
-   Architecture of a billing system | README.txt
-  </title>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport"/>
-  <link href="/theme/css/main.css" rel="stylesheet" type="text/css"/>
-  <link href="/theme/css/mobile.css" media="(max-width: 750px)" rel="stylesheet" type="text/css"/>
-  <link href="/theme/css/pygments-default.css" rel="stylesheet" type="text/css"/>
-  <link href="/images/favicon.ico" rel="icon" type="image/x-icon"/>
-  <link href="/rss.xml" rel="alternate" title="README.txt RSS Feed" type="application/atom+xml"/>
-  <meta content="Thought experiment to design a generic billing system." name="description"/>
-  <meta content="ideas" name="keywords"/>
-  <meta content="hernantz" name="author"/>
-  <link href="http://hernantz.github.io/drafts/architecture-of-a-billing-system.html" rel="canonical"/>
-  <script type="application/ld+json">
-   {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "README.txt", "item": "http://hernantz.github.io"}, {"@type": "ListItem", "position": 2, "name": "Drafts", "item": "http://hernantz.github.io/drafts"}, {"@type": "ListItem", "position": 3, "name": "Architecture of a billing system", "item": "http://hernantz.github.io/drafts/architecture-of-a-billing-system.html"}]}
-  </script>
-  <script type="application/ld+json">
-   {"@context": "https://schema.org", "@type": "Article", "author": {"@type": "Person", "name": "hernantz"}, "publisher": {"@type": "Organization", "name": "README.txt"}, "headline": "Architecture of a billing system", "about": "Programming", "datePublished": "2016-05-04 00:00"}
-  </script>
- </head>
- <body>
-  <aside class="sidebar">
-   <a href="/">
-    <img height="75" src="/images/avatar.png" width="75"/>
-   </a>
-   <nav>
-    <ul>
-     <li>
-      <a href="http://twitter.com/hernantz">
-       twitter
-      </a>
-     </li>
-     <li>
-      <a href="http://github.com/hernantz">
-       github
-      </a>
-     </li>
-     <li>
-      <a href="http://last.fm/user/hernantz">
-       last.fm
-      </a>
-     </li>
-     <li>
-      <a href="https://www.rottentomatoes.com/user/id/973196678">
-       tomatoes
-      </a>
-     </li>
-     <li>
-      <a href="/talks.html">
-       talks
-      </a>
-     </li>
-     <li>
-      <a href="/whoami.html">
-       whoami
-      </a>
-     </li>
-     <li>
-      <a href="/">
-       blog
-      </a>
-     </li>
-    </ul>
-   </nav>
-  </aside>
-  <main>
-   <article class="column-right">
-    <h1 class="main-title">
-     Architecture of a billing system
-    </h1>
-    <summary>
-     <p class="light">
+<head>
+<title>Architecture of a billing system | README.txt</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport"/>
+<link href="/theme/css/main.css" rel="stylesheet" type="text/css"/>
+<link href="/theme/css/mobile.css" media="(max-width: 750px)" rel="stylesheet" type="text/css"/>
+<link href="/theme/css/pygments-default.css" rel="stylesheet" type="text/css"/>
+<link href="/images/favicon.ico" rel="icon" type="image/x-icon"/>
+<link href="/rss.xml" rel="alternate" title="README.txt RSS Feed" type="application/atom+xml"/>
+<meta content="Thought experiment to design a generic billing system." name="description"/>
+<meta content="ideas" name="keywords"/>
+<meta content="hernantz" name="author"/>
+<link href="http://hernantz.github.io/drafts/architecture-of-a-billing-system.html" rel="canonical"/><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "README.txt", "item": "http://hernantz.github.io"}, {"@type": "ListItem", "position": 2, "name": "Drafts", "item": "http://hernantz.github.io/drafts"}, {"@type": "ListItem", "position": 3, "name": "Architecture of a billing system", "item": "http://hernantz.github.io/drafts/architecture-of-a-billing-system.html"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "author": {"@type": "Person", "name": "hernantz"}, "publisher": {"@type": "Organization", "name": "README.txt"}, "headline": "Architecture of a billing system", "about": "Programming", "datePublished": "2016-05-04 00:00"}</script></head>
+<body>
+<aside class="sidebar">
+<a href="/"><img height="75" src="/images/avatar.png" width="75"/></a>
+<nav>
+<ul>
+<li><a href="http://twitter.com/hernantz">twitter</a></li>
+<li><a href="http://github.com/hernantz">github</a></li>
+<li><a href="http://last.fm/user/hernantz">last.fm</a></li>
+<li><a href="https://www.rottentomatoes.com/user/id/973196678">tomatoes</a></li>
+<li><a href="/talks.html">talks</a></li>
+<li><a href="/whoami.html">whoami</a></li>
+<li><a href="/">blog</a></li>
+</ul>
+</nav>
+</aside>
+<main>
+<article class="column-right">
+<h1 class="main-title">Architecture of a billing system</h1>
+<summary>
+<p class="light">
       Published
-on
-      <time datetime="2016-05-04T00:00:00-03:00">
-       2016-05-04
-      </time>
-      ,       under
-      <a href="http://hernantz.github.io/category/programming.html">
-       Programming
-      </a>
-      ,
-      tagged with
-      <a href="http://hernantz.github.io/tag/ideas.html">
-       ideas
-      </a>
-      .
-     </p>
-    </summary>
-    <p>
-     <img alt="One dollar" src="/images/one-dollar.jpg" title="One dollar"/>
+on <time datetime="2016-05-04T00:00:00-03:00">2016-05-04</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
+      tagged with <a href="http://hernantz.github.io/tag/ideas.html">ideas</a>.
     </p>
-    <h2 id="abstract">
-     Abstract
-     <a class="headerlink" href="#abstract" title="Permanent link">
-      ¶
-     </a>
-    </h2>
-    <p>
-     This post is thougth experiment to design a billing system, trying to be generic
+</summary>
+<p><img alt="One dollar" src="/images/one-dollar.jpg" title="One dollar"/></p>
+<h2 id="abstract">Abstract<a class="headerlink" href="#abstract" title="Permanent link">¶</a></h2>
+<p>This post is thougth experiment to design a billing system, trying to be generic
 enough, so that hopefully it covers a wide range of situations (if not all of
-them), in which transactions that involve money take place.
-    </p>
-    <h2 id="scope">
-     Scope
-     <a class="headerlink" href="#scope" title="Permanent link">
-      ¶
-     </a>
-    </h2>
-    <p>
-     A billing system is part of the lifecycle of every organization.
-It is complex in nature and overlaps with other systems.
-    </p>
-    <p>
-     For instance, the
-     <strong>
-      accounting system
-     </strong>
-     , whose goal is to provide
-information about the assets and liabilities an organization has.
-    </p>
-    <p>
-     It has also responsabilities about
-     <strong>
-      permissions
-     </strong>
-     , because depending on
-your contract or credit balance you can access or not certain features.
-    </p>
-    <p>
-     It can be used as a
-     <strong>
-      metrics tracking
-     </strong>
-     system since certain
+them), in which transactions that involve money take place.</p>
+<h2 id="scope">Scope<a class="headerlink" href="#scope" title="Permanent link">¶</a></h2>
+<p>A billing system is part of the lifecycle of every organization.
+It is complex in nature and overlaps with other systems.</p>
+<p>For instance, the <strong>accounting system</strong>, whose goal is to provide
+information about the assets and liabilities an organization has.</p>
+<p>It has also responsabilities about <strong>permissions</strong>, because depending on
+your contract or credit balance you can access or not certain features.</p>
+<p>It can be used as a <strong>metrics tracking</strong> system since certain
 actions that clients perform may have an economic impact on your
 app (ie: tickets sold in a cinema, are also a metric for how many people
 watched the movie). It might also overlap with a stocks system, since each
-purchase or refund has to be accounted as a monetary and material transaction.
-    </p>
-    <p>
-     Getting paid is a whole topic on it's own. You can issue single invoice
+purchase or refund has to be accounted as a monetary and material transaction.</p>
+<p>Getting paid is a whole topic on it's own. You can issue single invoice
 but get paid in several instalments for example. These systems are known as
-     <strong>
-      payment gateways
-     </strong>
-     , an need to interact with the billing system too.
-    </p>
-    <p>
-     And finally it also has to articulate with certain
-     <strong>
-      CRM
-     </strong>
-     aspects,
+<strong>payment gateways</strong>, an need to interact with the billing system too.</p>
+<p>And finally it also has to articulate with certain <strong>CRM</strong> aspects,
 as we need to record our interactions with clients and their billing information
 to offer discounts, remind them of an contract expiration date, facilitate
-nurturing, etc.
-    </p>
-    <p>
-     These systems exist in every organization that handles money,
+nurturing, etc.</p>
+<p>These systems exist in every organization that handles money,
 but sometimes they turn invisible in the sense that they are embbeded in
-another system that does something similar, an Excel spreadsheet most likely.
-    </p>
-    <p>
-     Naturally each of these different systems is a complex beast on it's own and is
-better off implemented separatelly.
-    </p>
-    <p>
-     Take for example the accounting system. There are legal regulations that
+another system that does something similar, an Excel spreadsheet most likely.</p>
+<p>Naturally each of these different systems is a complex beast on it's own and is
+better off implemented separatelly.</p>
+<p>Take for example the accounting system. There are legal regulations that
 dictate how this is done, and they change from country to country.
 Some financial transactions have to be approved by regulatory authorities.
 The granularity level managed by the accounting system also differs, since
@@ -178,300 +76,108 @@ usually you only care about the totals, so maybe exporting aggregates obtained
 by the billing or stocks system is enough.
 Also in the case of the permissions systems, there are other considerations
 taken into account, like credentials, user roles, locks, etc.
-And finally payment gateways have
-     <a href="https://en.wikipedia.org/wiki/Payment_Card_Industry_Data_Security_Standard" title="PCI copliance">
-      very strict security requirements
-     </a>
-     that
-are better off delegated to a trusted third party system.
-    </p>
-    <p>
-     Because billing systems are also very tightly coupled with business rules,
+And finally payment gateways have <a href="https://en.wikipedia.org/wiki/Payment_Card_Industry_Data_Security_Standard" title="PCI copliance">very strict security requirements</a> that
+are better off delegated to a trusted third party system.</p>
+<p>Because billing systems are also very tightly coupled with business rules,
 it's really hard to build a generic catch-all solution, making it difficult to
-attempt a proper sepparation of
-     <a href="https://web.archive.org/web/20161101134056/http://www.machinalis.com/blog/separating-mechanism-from-policy/" title="Separating mechanism from policy">
-      mechanism and policy
-     </a>
-     . It's also evident
+attempt a proper sepparation of <a href="https://web.archive.org/web/20161101134056/http://www.machinalis.com/blog/separating-mechanism-from-policy/" title="Separating mechanism from policy">mechanism and policy</a>. It's also evident
 that the boundaries of these systems aren't so clear in terms of
 responsabilities, but this doesn't mean that a common underlying architecture
-cannot be identified.
-    </p>
-    <h2 id="requirements">
-     Requirements
-     <a class="headerlink" href="#requirements" title="Permanent link">
-      ¶
-     </a>
-    </h2>
-    <p>
-     From a 30k feet view, a billing system must:
-    </p>
-    <ul>
-     <li>
-      Determine what the customer's billing status is:
-      <strong>
-       <em>
-        who
-       </em>
-      </strong>
-      owes
-      <strong>
-       <em>
-        how much
-       </em>
-      </strong>
-      and
-      <strong>
-       <em>
-        why
-       </em>
-      </strong>
-      .
-     </li>
-     <li>
-      Articulate with other specialized systems (ie: be able to query and be
-  queried, import/export data).
-     </li>
-     <li>
-      Be flexible and fault tolerant. Flexible not only to
-      <strong>
-       <em>
-        adapt to ever changing
-  business rules
-       </em>
-      </strong>
-      , but also users should have the chance to change their
-  contracts, receive refunds, benefit from a discount or even a free-trial, etc.
-     </li>
-    </ul>
-    <p>
-     But first we must take a step back so that we can identify which are the sources
-of profit:
-    </p>
-    <ul>
-     <li>
-      <strong>
-       Free
-      </strong>
-      : the simplest one, no profits though.
-     </li>
-     <li>
-      <strong>
-       One time charges
-      </strong>
-      : when you purchase an item or single transaction service
-  like train tickets or house cleaning.
-     </li>
-     <li>
-      <strong>
-       Subscriptions
-      </strong>
-      : cable tv, hotel rooms, insurance, fixed term deposits,
-  where the amount is a product of time and a fixed plan fee.
-     </li>
-     <li>
-      <strong>
-       Usage-based
-      </strong>
-      : like power supply or cell data, there is a meter that
-  meassures consumption that might have different rates depending on demand.
-     </li>
-     <li>
-      <strong>
-       A combination
-      </strong>
-      of all these.
-     </li>
-    </ul>
-    <p>
-     All these sources of profit have to be translated to money somehow.
-For this to happen, we need to
-     <strong>
-      determine when to record that something has
-generated some profit
-     </strong>
-     that needs to be "collected".
-    </p>
-    <p>
-     In the case of single sales it's simple to identify that moment, since it's
+cannot be identified.</p>
+<h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">¶</a></h2>
+<p>From a 30k feet view, a billing system must:</p>
+<ul>
+<li>Determine what the customer's billing status is: <strong><em>who</em></strong> owes <strong><em>how much</em></strong> and
+  <strong><em>why</em></strong>.</li>
+<li>Articulate with other specialized systems (ie: be able to query and be
+  queried, import/export data).</li>
+<li>Be flexible and fault tolerant. Flexible not only to <strong><em>adapt to ever changing
+  business rules</em></strong>, but also users should have the chance to change their
+  contracts, receive refunds, benefit from a discount or even a free-trial, etc.</li>
+</ul>
+<p>But first we must take a step back so that we can identify which are the sources
+of profit:</p>
+<ul>
+<li><strong>Free</strong>: the simplest one, no profits though.</li>
+<li><strong>One time charges</strong>: when you purchase an item or single transaction service
+  like train tickets or house cleaning.</li>
+<li><strong>Subscriptions</strong>: cable tv, hotel rooms, insurance, fixed term deposits,
+  where the amount is a product of time and a fixed plan fee.</li>
+<li><strong>Usage-based</strong>: like power supply or cell data, there is a meter that
+  meassures consumption that might have different rates depending on demand.</li>
+<li><strong>A combination</strong> of all these.</li>
+</ul>
+<p>All these sources of profit have to be translated to money somehow.
+For this to happen, we need to <strong>determine when to record that something has
+generated some profit</strong> that needs to be "collected".</p>
+<p>In the case of single sales it's simple to identify that moment, since it's
 usually when the buy order is submitted or when the user receives the product.
 But to determine how much someone owes in case of subscriptions or usage-based
-models, we need a ticking clock, that ticks every minute, day, fortnight, etc.
-    </p>
-    <p>
-     Buying and selling items is an
-     <em>
-      atomic
-     </em>
-     operation per se, but transactions which
-are always
-     <em>
-      on-going
-     </em>
-     aren't and we have to make them atomic somehow. Non-atomic
+models, we need a ticking clock, that ticks every minute, day, fortnight, etc.</p>
+<p>Buying and selling items is an <em>atomic</em> operation per se, but transactions which
+are always <em>on-going</em> aren't and we have to make them atomic somehow. Non-atomic
 operations need a recurring tick that will meassure or sample some quantity
 and/or a rate, in order to determine the value of the transaction. Every
 meassurement taken can be understood as a transaction that resulted in some
-profit.
-    </p>
-    <p>
-     The other determination that needs to be taken is
-     <strong>
-      when to charge the
-customer
-     </strong>
-     , and for that it's up to the business owner to say if to use a
-     <strong>
-      pay upfront model
-     </strong>
-     (like when renting a house) or
-     <strong>
-      pay later model
-     </strong>
-     (like the
-telephone bill).
-    </p>
-    <h2 id="billing-entities">
-     Billing entities
-     <a class="headerlink" href="#billing-entities" title="Permanent link">
-      ¶
-     </a>
-    </h2>
-    <p>
-     To acomplish the goals of a billing system we need some basic building blocks:
-    </p>
-    <ul>
-     <li>
-      <strong>
-       Event
-      </strong>
-      : contains an atomic transaction and all it's context (type,
+profit.</p>
+<p>The other determination that needs to be taken is <strong>when to charge the
+customer</strong>, and for that it's up to the business owner to say if to use a
+<strong>pay upfront model</strong> (like when renting a house) or <strong>pay later model</strong> (like the
+telephone bill).</p>
+<h2 id="billing-entities">Billing entities<a class="headerlink" href="#billing-entities" title="Permanent link">¶</a></h2>
+<p>To acomplish the goals of a billing system we need some basic building blocks:</p>
+<ul>
+<li><strong>Event</strong>: contains an atomic transaction and all it's context (type,
   timestamp, description, amount, metadata, etc), it can be an invoice, a
-  refund, a product sale, a payment, etc.
-     </li>
-     <li>
-      <strong>
-       Meter
-      </strong>
-      : when billing based on consumption we need a meter that ticks every
+  refund, a product sale, a payment, etc.</li>
+<li><strong>Meter</strong>: when billing based on consumption we need a meter that ticks every
   X amount of time (every minute, day, month) and meassures the consumption of
   time, data, electricity, etc to create an event to account for that
   transaction. The interval depends on business rules. In case of
   subscriptions, it's the same idea, what is being consumed is time under
   contract, the only difference is that since the time consumed chaned at a
   constant phase, we might only care on changes in the pricing plans and
-  start/end dates, not every second that ticks.
-     </li>
-     <li>
-      <strong>
-       Journal
-      </strong>
-      : events are stored in an append-only journal. It contains all the
-  billing history of an account. Can be used for an audit.
-     </li>
-     <li>
-      <strong>
-       Processor
-      </strong>
-      : The journal can be digested by procressors that can understand
+  start/end dates, not every second that ticks.</li>
+<li><strong>Journal</strong>: events are stored in an append-only journal. It contains all the
+  billing history of an account. Can be used for an audit.</li>
+<li><strong>Processor</strong>: The journal can be digested by procressors that can understand
   the deltas between each event to determine the current status of an account.
   Since the journal is immutable, you can cache results up to a point for
   performance reasons, to obtain intermediate balances, determine totals,
   debts, which accounts are past-due, etc, but replaying events becomes
   problematic over time also due to changes in schema, so your processor will
-  need to understand every event, old and new.
-     </li>
-    </ul>
-    <p>
-     Contracts, payment gateways, stock management systems, permission systems, etc
-are all auxiliary entities that support a billing system.
-    </p>
-    <p>
-     This architecture is known as
-     <a href="https://martinfowler.com/articles/201701-event-driven.html" title="What do you mean by “Event-Driven”?">
-      event-sourcing
-     </a>
-     .
-    </p>
-    <h2 id="real-world-examples">
-     Real world examples
-     <a class="headerlink" href="#real-world-examples" title="Permanent link">
-      ¶
-     </a>
-    </h2>
-    <p>
-     So far I hope is clear what a billing system must do and what it needs to do it.
-But we still haven't tested our theory we real world examples.
-    </p>
-    <ul>
-     <li>
-      EPEC cobra de acuerdo al horario y al consumo.
-     </li>
-     <li>
-      Hotel
+  need to understand every event, old and new.</li>
+</ul>
+<p>Contracts, payment gateways, stock management systems, permission systems, etc
+are all auxiliary entities that support a billing system.</p>
+<p>This architecture is known as <a href="https://martinfowler.com/articles/201701-event-driven.html" title="What do you mean by “Event-Driven”?">event-sourcing</a>.</p>
+<h2 id="real-world-examples">Real world examples<a class="headerlink" href="#real-world-examples" title="Permanent link">¶</a></h2>
+<p>So far I hope is clear what a billing system must do and what it needs to do it.
+But we still haven't tested our theory we real world examples.</p>
+<ul>
+<li>EPEC cobra de acuerdo al horario y al consumo.</li>
+<li>Hotel
 And these can be combined (rent a room in a hotel, and cosume
-some snack from the mini-fridge). Holidays and weekends are more expensive, a change of room might happen.
-     </li>
-     <li>
-      Ad clicks and views for website
-     </li>
-     <li>
-      Sass app (trials, change in plan, discounts, etc)
-     </li>
-    </ul>
-    <p>
-     Every change is represented by an event. An event should never be mutated.
-Events should freeze all context needed to fully understand them.
-    </p>
-    <p>
-     Ability to schedule changes to take effect in the future. Example:
+some snack from the mini-fridge). Holidays and weekends are more expensive, a change of room might happen.</li>
+<li>Ad clicks and views for website</li>
+<li>Sass app (trials, change in plan, discounts, etc)</li>
+</ul>
+<p>Every change is represented by an event. An event should never be mutated.
+Events should freeze all context needed to fully understand them.</p>
+<p>Ability to schedule changes to take effect in the future. Example:
 apply this new plan next month.
 When applying changes (and even when scheduling them?), the system
 should look for conflicts in all transactions, including the ones
-that had not taken place yet. Payments should refer to the respective source invoice(s) = [1,2,3].
-    </p>
-    <p>
-     https://www.petekeen.net/stripe
-    </p>
-    <p>
-     Django billing
-    </p>
-    <p>
-     https://techblog.commercetools.com/webhooks-the-devil-in-the-details-ca7f7982c24f#.5z8ej1fli
-Lambda architecture
-    </p>
-    <p>
-     Happy billling!
-    </p>
-   </article>
-   <footer class="column-right light">
-    <nav>
-     <a href="/">
-      Home
-     </a>
-     -
-     <a href="/archives.html">
-      Archives
-     </a>
-     -
-     <a href="/categories.html">
-      Categories
-     </a>
-     -
-     <a href="/tags.html">
-      Tags
-     </a>
-     -
-     <a href="/rss.xml">
-      RSS
-     </a>
-     -
-     <a href="https://creativecommons.org/licenses/by/4.0/">
-      License
-     </a>
-     | README.txt
-    </nav>
-   </footer>
-  </main>
- </body>
+that had not taken place yet. Payments should refer to the respective source invoice(s) = [1,2,3].</p>
+<p>https://www.petekeen.net/stripe</p>
+<p>Django billing</p>
+<p>https://techblog.commercetools.com/webhooks-the-devil-in-the-details-ca7f7982c24f#.5z8ej1fli
+Lambda architecture</p>
+<p>Happy billling!</p>
+</article>
+<footer class="column-right light">
+<nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> - <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | README.txt</nav>
+</footer>
+</main>
+</body>
 </html>
