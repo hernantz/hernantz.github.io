@@ -39,14 +39,17 @@ on <time datetime="2020-03-19T00:00:00-03:00">2020-03-19</time>,       under <a 
     </p>
 </summary>
 <p><img alt="Archive - Photo by  Fabien Barral" src="/images/just-files.jpg" title="Archive - Photo by  Fabien Barral"/></p>
-<p>implementacion! =&gt; https://www.leshenko.net/p/ugit</p>
-<p>https://pnpm.js.org/ or pnpm.io
+<p>https://twitter.com/SusanPotter/status/1396456263517618181?s=1006
+implementacion! =&gt; https://www.leshenko.net/p/ugit
+https://www.npmjs.com/package/semver-resolver
+https://pnpm.js.org/ or pnpm.io
 https://jordan-wright.com/blog/post/2020-11-12-hunting-for-malicious-packages-on-pypi/
 https://serokell.io/blog/what-is-nix
 https://grassfedcode.com/python-packaging/
 https://github.com/uber/kraken using p2p for big binaries (docker images).
 http://kmkeen.com/maintainers-matter/
-https://www.btao.org/2020/10/02/npm-trust.html "A web of trust for npm"</p>
+https://www.btao.org/2020/10/02/npm-trust.html "A web of trust for npm"
+https://pypa-build.readthedocs.io/en/stable/mission.html</p>
 <p>A package manager is a program that gets a bunch of files "packaged" in a certain format from a repository of packages and places them on a filesystem.</p>
 <p>The manager part implies that it can keep track of installed packages, versions, dependencies, etc.</p>
 <p>Packages are basically a box that contains files and metadata (checksums, content types, filepaths where to place the files, etc). Some may include compiled binaries or source files for building a project and testing it, reusable libraries, debug symbols, images, icons, documentation, songs, etc.</p>
@@ -58,6 +61,17 @@ https://www.btao.org/2020/10/02/npm-trust.html "A web of trust for npm"</p>
 <p>Any package manager needs at least a dependency graph solver (semver maybe), filesystem inventory tracking and an archive format to transport files (tar balls maybe).</p>
 <p>We could agree that there should be only one package manager to rule them all. After all different policies simply dictate how packages are built. And some configurations could make the package manager versatile enough to resolve versioning and extract those files.</p>
 <p>But the ecosystem is very fragmented. Even within the Linux community, there are many different package managers. Policy and implementation gets mixed more often than not.</p>
+<h2 id="libraries-vs-applications">Libraries vs Applications<a class="headerlink" href="#libraries-vs-applications" title="Permanent link">¶</a></h2>
+<p>https://0ver.org/
+When we talk about versioning artifacts, we need to also talk about the strategies to do so, which depend on the type of artifact we are dealing with.
+A system library (like a GUI framework) are meant to provide building blocks for other projects. If they change a piece of code, that will impact all applications that use that library.
+The authors of the library need to a way to communicate breaking changes in the API.
+According to the <a href="https://www.hyrumslaw.com/">Hyrums Law</a>, any change is a potential bug/contract violation. Which is right, so any project needs to read the <a href="https://keepachangelog.com/">changelog</a> and run automated integration and unit tests before updating it's dependency tree.
+There are many versioning schemes, but the one that stands out is SemVer. Despite <a href="https://hynek.me/articles/semver-will-not-save-you">all critics</a>, it's the one that can provide semantics (duh) to each version change.
+Libraries might also have to maintain several versions at the same time, and back-port features/bugfixes.</p>
+<p>Security patches still need to be tested upstream for each app, to not break the system. Yes, a broken system is secure, but it is broken. The burden of shipping updates should be fall on the maintainers of each project, not on a sysadmin. There are nowadays bots that can create automatic notifications/integrations/etc and ship updates to systems that have automatic upgrades configured.</p>
+<p>Apps on the other hand might not have heavy dependency with other projects, and unless they change the format of files they work with (xml for example for Excel), they can follow a pretty loose or arbitrary semver like just v1, v2, v3 or only bump a major version for more marketing impact. Apps are the root of a dependency tree.  </p>
+<p>https://news.ycombinator.com/item?id=21967879</p>
 <h2 id="dependency-hell">Dependency hell<a class="headerlink" href="#dependency-hell" title="Permanent link">¶</a></h2>
 <p>https://utcc.utoronto.ca/~cks/space/blog/linux/MicrosoftTeamsBadArrogance</p>
 <p>As applications have plugin manager and dependencies, distributions have packages and dependencies too.
@@ -138,7 +152,7 @@ A package can be obtained from a local file, over https, a magnet link, an ipfs 
 <p>The bridge between these two worlds can be through a spawning a new process with CLI args for this tool to fetch the packages and put the file on a given directory. From there, pak will unpack the file and take control.</p>
 <h2 id="cli">CLI<a class="headerlink" href="#cli" title="Permanent link">¶</a></h2>
 <p><code>--root</code> can change the default store directory.</p>
-<p>Maybe each <code>pak [un]install &lt;package-name==version&gt;</code></p>
+<p>Maybe each <code>pak add/rm &lt;package-name==version&gt;</code></p>
 <p>This uses a local <code>Pakfile</code> in the pwd, other files can be used by passing the <code>--pakfile=&lt;path-to-pakfile&gt;</code> param or <code>PAKFILE</code> environment variable.</p>
 <p>All packages are installed in a content-addressable store <code>/var/lib/pak/&lt;package-name-and-version&gt;/&lt;package-md5-sum&gt;/</code>.</p>
 <p><code>Pakfile</code> lists dependencies and package metadata. It is better that KISS packages that have one file for each metadatum (version, sources, checksums, etc)</p>
@@ -186,10 +200,14 @@ Pakfile.lock -&gt; json?</p>
 <p>When does dependency resolution happen? Before downloading the packages or after downloading all dependencies in parallel?
 When you say <code>pak install git</code>, we go get the <code>Pakfile.lock</code> for git. There we have a graph of all dependencies that we can compare with our local <code>Pakfile.lock</code> of our profile.
 If there is a sub-dependency at any point that conflicts we show an error. If there are no conflicts, we can download in parallel every sub-dependency.</p>
-<p>https://github.com/Henryws/pacstall
-https://0ver.org/
-https://hynek.me/articles/semver-will-not-save-you =&gt; https://www.hyrumslaw.com/
-https://blog.replit.com/upm</p>
+<p>https://github.com/Henryws/pacstall</p>
+<p>https://blog.replit.com/upm</p>
+<p>Blog posts:
+- Just files (what are package manages)
+- Apps vs Libraries (branching strategy: trunk dev vs multi branch, config via files vs params, granular semver versioning vs 1ver).</p>
+<h2 id="authors-to-concatc">AUthors to concatc<a class="headerlink" href="#authors-to-concatc" title="Permanent link">¶</a></h2>
+<p>Russell Keith-Magee @freakboy3742
+Distr1</p>
 </article>
 <footer class="column-right light">
 <nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> - <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | README.txt</nav>
