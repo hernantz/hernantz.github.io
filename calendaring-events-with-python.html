@@ -221,7 +221,7 @@ incorrect results. We need to normalize the user's date range to UTC:</p>
 <th>UTC offset</th>
 <th>Day start</th>
 <th>Day end</th>
-<th>Meaning</th>
+<th align="left">Meaning</th>
 </tr>
 </thead>
 <tbody>
@@ -229,25 +229,25 @@ incorrect results. We need to normalize the user's date range to UTC:</p>
 <td>-03:00</td>
 <td>00:00</td>
 <td>23:59</td>
-<td>User's date range</td>
+<td align="left">User's date range</td>
 </tr>
 <tr>
 <td>+00:00</td>
 <td>00:00</td>
 <td>23:59</td>
-<td>UTC's date range</td>
+<td align="left">UTC's date range</td>
 </tr>
 <tr>
 <td>-03:00</td>
 <td>21:00</td>
 <td>20:59</td>
-<td>UTC's date range compared to user's</td>
+<td align="left">UTC's date range compared to user's</td>
 </tr>
 <tr>
 <td>+00:00</td>
 <td>03:00</td>
 <td>02:59</td>
-<td>User's date range normalized with UTC [✓]</td>
+<td align="left">User's date range normalized with UTC [✓]</td>
 </tr>
 </tbody>
 </table>
@@ -333,7 +333,7 @@ Similarly, 2:30am on 7th April 2002 never happened at all in the US/Eastern time
 the clocks where put forward at 2:00am skipping the entire hour.</p>
 <p>Extracts from <em>the pytz <a href="http://pytz.sourceforge.net/" title="pytz - World Timezone Definitions for Python">documentation</a></em></p>
 </blockquote>
-<p>Moreover, timezones can change for other reasons that just DST. </p>
+<p>Moreover, timezones can change for other reasons that just DST.</p>
 <blockquote>
 <p>In 1915 Warsaw switched from Warsaw time to Central European time with no daylight savings
 transition. So at the stroke of midnight on August 5th 1915 the clocks were wound back 24

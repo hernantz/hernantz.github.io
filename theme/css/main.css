@@ -37,7 +37,7 @@ img {
   border-radius: 0.3em;
   border: none; }
 
-code {
+p > code {
   background: #E8E8E8;
   font-family: inherit;
   padding: 0px 2px;
