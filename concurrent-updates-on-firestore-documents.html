@@ -104,7 +104,7 @@ document should achive the same result. Later upserts will not bring the
 document back to life.</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// Remove the joe document</span>
 <span class="k">await</span> <span class="nx">firebase</span><span class="p">.</span><span class="nx">firestore</span><span class="p">().</span><span class="nx">doc</span><span class="p">(</span><span class="s1">'/users/joe'</span><span class="p">).</span><span class="nx">set</span><span class="p">({</span>
-    <span class="s1">'deleted'</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s1">'deleted'</span><span class="o">:</span> <span class="kc">true</span>
 <span class="p">},</span> <span class="p">{</span> <span class="s1">'merge'</span><span class="o">:</span> <span class="kc">true</span> <span class="p">});</span>
 </code></pre></div>
 <h3 id="sentinel-values">Sentinel values<a class="headerlink" href="#sentinel-values" title="Permanent link">¶</a></h3>
@@ -148,11 +148,16 @@ update, we do update it.</p>
     <span class="nx">dateCreated</span><span class="p">,</span>
     <span class="s1">'name'</span><span class="o">:</span> <span class="s1">'Joe'</span><span class="p">,</span>
     <span class="s1">'surname'</span><span class="o">:</span> <span class="s1">'Doe'</span>
-<span class="p">},</span> <span class="p">{</span> <span class="s1">'merge'</span><span class="o">:</span> <span class="kc">true</span> <span class="p">})</span>
+<span class="p">},</span> <span class="p">{</span> <span class="s1">'merge'</span><span class="o">:</span> <span class="kc">true</span> <span class="p">});</span>
 </code></pre></div>
 <p>But this is not ideal, since there are no strong guarantees that this field
 would not be set more than once by concurrent transactions. It may be still be
 useful for backend code though.</p>
+<h3 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h3>
+<p>By leveraging on smaller updates/upserts that target different attributes or
+documents, divergent paths of your state tree, and using some of the sentinel
+values we can achieve some level of consistency, where conflicting unordered
+concurrent updates are mitigated.</p>
 </article>
 <footer class="column-right light">
 <nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> - <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | README.txt</nav>
