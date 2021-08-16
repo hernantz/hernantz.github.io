@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt - Programming</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/programming.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2021-08-16T00:00:00-03:00</updated><subtitle>- Mostly lies and rants in plain text.</subtitle><entry><title>Concurrent updates on Firestore documents</title><link href="http://hernantz.github.io/concurrent-updates-on-firestore-documents.html" rel="alternate"></link><published>2021-08-16T00:00:00-03:00</published><updated>2021-08-16T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2021-08-16:/concurrent-updates-on-firestore-documents.html</id><summary type="html">&lt;p&gt;Can we achieve eventual consistency? Maybe something close to it?&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://firebase.google.com/products/firestore" title="Firestore by Google"&gt;Firestore&lt;/a&gt; (by Firebase) is a JSON document-oriented database (as a
-service), that allows concurrent updates to documents and even offline support
-for client apps.&lt;/p&gt;
+service), that allows concurrent updates to documents, from different clients or
+the same client in different points in time, since it offers offline support for
+client apps that hold a dynamic local cache, that will eventually be synced with
+the server.&lt;/p&gt;
 &lt;p&gt;This doesn't mean that you don't have to also think about concurrent updates
 yourself. Eventual consistency is a topic on it's own, that involves a lot of
 academic papers and algorithms (like &lt;a href="https://www.youtube.com/watch?v=DEcwa68f-jY" title="dotJS 2019 - James Long - CRDTs for Mortals"&gt;CRDTs&lt;/a&gt; for instance).&lt;/p&gt;
@@ -12,16 +14,16 @@ Firestore primitives.&lt;/p&gt;
 &lt;p&gt;In Firestore, data is stored in documents within collections. Each document has
 a unique reference, in the form of a path: &lt;code&gt;/users/joe&lt;/code&gt;, where &lt;code&gt;/users/&lt;/code&gt; is the
 collection and &lt;code&gt;joe&lt;/code&gt; is the document in this case.&lt;/p&gt;
-&lt;p&gt;When writting simultaneosly to different documents (or paths) there is now
+&lt;p&gt;When writting simultaneosly to different documents (or paths) there is no
 problem whatsoever, &lt;code&gt;/users/annie&lt;/code&gt; and &lt;code&gt;/users/joe&lt;/code&gt; can receive concurrent
 updates without affecting each other.&lt;/p&gt;
-&lt;p&gt;Dividing data in as many divergent paths as possible is the best way to deal
-with concurrency. But it is not always convinient to have that many documents
-and subcollections for each possible value we want to update.&lt;/p&gt;
-&lt;p&gt;Each document might have multiple attributes. Each attribute is a path to a
-value if you will. Attributes can also be embedded maps with more attributes.&lt;/p&gt;
-&lt;p&gt;Here, the &lt;code&gt;joe&lt;/code&gt; document, has the &lt;code&gt;name&lt;/code&gt; and the &lt;code&gt;hobbies.reading&lt;/code&gt; paths for
-example.&lt;/p&gt;
+&lt;p&gt;Dividing data in as many divergent document paths as possible is the best way to
+deal with concurrency. But it is not always convinient to have that many
+documents and subcollections for each possible value we want to update.&lt;/p&gt;
+&lt;p&gt;Each document might have multiple attributes. Each attribute is also a path to a
+value, if you will. Attributes can also be embedded maps with more attributes.&lt;/p&gt;
+&lt;p&gt;Here, the &lt;code&gt;/users/joe&lt;/code&gt; document, has the &lt;code&gt;name&lt;/code&gt; and the &lt;code&gt;hobbies.reading&lt;/code&gt; paths
+for example.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="nt"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Joe&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
     &lt;span class="nt"&gt;&amp;quot;surname&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Doe&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
@@ -39,56 +41,65 @@ attributes.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;await&lt;/span&gt; &lt;span class="nx"&gt;firebase&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;firestore&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="nx"&gt;doc&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/users/joe&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;set&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
     &lt;span class="s1"&gt;&amp;#39;hobbies.reading&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
     &lt;span class="s1"&gt;&amp;#39;hobbies.painting&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;
-&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;merge&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="p"&gt;});&lt;/span&gt;
+&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;merge&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="p"&gt;});&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;You may have noticed we are using &lt;code&gt;set()&lt;/code&gt; with the &lt;code&gt;{merge: true}&lt;/code&gt; parameter.&lt;/p&gt;
 &lt;p&gt;When storing data, the &lt;em&gt;upsert&lt;/em&gt; operation becomes really handy, so that we don't
-have to check if a document exists or not before creating it. An, if it exits,
+have to check if a document exists or not before creating it. An, if it exists,
 we can also update/merge just attributes we care about (or adding another one
 like &lt;code&gt;hobbies.painting&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;One big caveat we need to consider is that we are aiming for some eventual
 consistency, by dividing a big JSON document into smaller paths that can be
 updated in little chunks. Since conflict resolution in Firestore is super
-simple: last write wins map, we need to think of JSON-diff patches that may
-be applied out of order, that mutate the big state tree of your app.&lt;/p&gt;
+simple: it's a &lt;em&gt;last write wins map&lt;/em&gt;, we need to think of the state of your app
+as a big JSON tree that is mutated by lots of JSON-diff patches that may be
+applied out of order.&lt;/p&gt;
 &lt;p&gt;Firestore offers transactions, but this comes at the cost of giving up a lot of
 concurrency (and offline support).&lt;/p&gt;
 &lt;p&gt;We are not achieving eventual consistency, but something close to it by avoiding
 conflicts as much as possible.&lt;/p&gt;
-&lt;p&gt;One last key concept to keep in mind is that we need our state map to only ever
-grow, but never delete data.  That way you never upsert data that has been
+&lt;p&gt;One last key concept to keep in mind is that we need our state tree to only ever
+grow, and never delete data. That way you never upsert data that has been
 deleted by another update, hence, a simple &lt;code&gt;deleted=true|false&lt;/code&gt; flag on every
-document should achive the same result.&lt;/p&gt;
+document should achive the same result. Later upserts will not bring the
+document back to life.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;// Remove the joe document&lt;/span&gt;
+&lt;span class="k"&gt;await&lt;/span&gt; &lt;span class="nx"&gt;firebase&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;firestore&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="nx"&gt;doc&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/users/joe&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;set&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;deleted&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;merge&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 &lt;h3 id="sentinel-values"&gt;Sentinel values&lt;a class="headerlink" href="#sentinel-values" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Sometimes, dividing the state tree of your app is not enough. Some attributes
 require special treatment, like counters, arrays or dates. Since the ordering of
 updates is something we don't want to solve, and this scenario will is noticible
 when enabling offline support, we need to make use of sentinel values.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://firebase.google.com/docs/reference/android/com/google/firebase/firestore/FieldValue" title="Sentinel values that can be used when writing document fields with set() or update()."&gt;Sentinels&lt;/a&gt; act like on the spot transactions to transform or update an attribute
+&lt;p&gt;&lt;a href="https://firebase.google.com/docs/reference/android/com/google/firebase/firestore/FieldValue" title="Sentinel values that can be used when writing document fields with set() or update()."&gt;Sentinels&lt;/a&gt; act like on-the-spot transactions to transform or update an attribute
 by considering it's current value at the moment the upsert occurs.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;await&lt;/span&gt; &lt;span class="nx"&gt;firebase&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;firestore&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="nx"&gt;collection&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;user&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;doc&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;joe&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;set&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
     &lt;span class="s1"&gt;&amp;#39;sessions&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;firebase&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;firestore&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;FieldValue&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;increment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;1&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
     &lt;span class="s1"&gt;&amp;#39;lastUpdated&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;firebase&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;firestore&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;FieldValue&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;ServerTimestamp&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nx"&gt;merge&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;merge&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="p"&gt;});&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Here we can log each &lt;code&gt;session&lt;/code&gt; in the app, by incrementing a counter. We don't
-care about the exact previous value, just that it is one more. The same goes
-with the &lt;code&gt;lastUpdated&lt;/code&gt;, we simply mark it to be whatever date the server has at
-the time of the update.&lt;/p&gt;
+care about the exact previous value, just that it is one extra unit. The same
+goes with the &lt;code&gt;lastUpdated&lt;/code&gt;, we simply mark it to be whatever date the server
+has at the time of the update.&lt;/p&gt;
 &lt;h3 id="default-sentinel-i-wish"&gt;Default sentinel (I wish)&lt;a class="headerlink" href="#default-sentinel-i-wish" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Now that we now how handy these sentinel values are, I would like to have
 another one that only sets a value in a document if it is empty or missing.&lt;/p&gt;
-&lt;p&gt;It could have an optional param &lt;code&gt;setDefault('default', exisiting=undefined)&lt;/code&gt;.
+&lt;p&gt;It could have an optional param &lt;code&gt;setDefault('default', existing=undefined)&lt;/code&gt;.
 So this will result in the value &lt;em&gt;default&lt;/em&gt; being set only if the existing value
 is &lt;code&gt;undefined&lt;/code&gt; (meaning not set).&lt;/p&gt;
-&lt;p&gt;An example use case is setting a value that should only be set once (like &lt;code&gt;dateCreated&lt;/code&gt;):&lt;/p&gt;
+&lt;p&gt;An example use case is setting a value that should only be set once (like
+&lt;code&gt;dateCreated&lt;/code&gt;):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;await&lt;/span&gt; &lt;span class="nx"&gt;firebase&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;firestore&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="nx"&gt;collection&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;users&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;doc&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;joe&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;set&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
-    &lt;span class="nx"&gt;dateCreated&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;firebase&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;firestore&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;FieldValue&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;SetDefault&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;firebase&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;firestore&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;FieldValue&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;ServerTimestamp&lt;/span&gt;&lt;span class="p"&gt;()),&lt;/span&gt;
-    &lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Joe&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="nx"&gt;surname&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Doe&amp;#39;&lt;/span&gt;
-&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;merge&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="p"&gt;});&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;dateCreated&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;firebase&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;firestore&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;FieldValue&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;SetDefault&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;firebase&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;firestore&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;FieldValue&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;ServerTimestamp&lt;/span&gt;&lt;span class="p"&gt;()),&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;name&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Joe&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;surname&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Doe&amp;#39;&lt;/span&gt;
+&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;merge&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="p"&gt;});&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Without having to check that this user exists and has the &lt;code&gt;dateCreated&lt;/code&gt; set.&lt;/p&gt;
@@ -100,9 +111,9 @@ update, we do update it.&lt;/p&gt;
 
 &lt;span class="k"&gt;await&lt;/span&gt; &lt;span class="nx"&gt;user&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;ref&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;set&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
     &lt;span class="nx"&gt;dateCreated&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Joe&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="nx"&gt;surname&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Doe&amp;#39;&lt;/span&gt;
-&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;merge&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="p"&gt;})&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;name&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Joe&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;surname&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Doe&amp;#39;&lt;/span&gt;
+&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;merge&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="p"&gt;})&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;But this is not ideal, since there are no strong guarantees that this field

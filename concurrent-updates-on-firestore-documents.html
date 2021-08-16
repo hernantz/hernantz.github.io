@@ -40,8 +40,10 @@ on <time datetime="2021-08-16T00:00:00-03:00">2021-08-16</time>,       under <a 
     </p>
 </summary>
 <p><a href="https://firebase.google.com/products/firestore" title="Firestore by Google">Firestore</a> (by Firebase) is a JSON document-oriented database (as a
-service), that allows concurrent updates to documents and even offline support
-for client apps.</p>
+service), that allows concurrent updates to documents, from different clients or
+the same client in different points in time, since it offers offline support for
+client apps that hold a dynamic local cache, that will eventually be synced with
+the server.</p>
 <p>This doesn't mean that you don't have to also think about concurrent updates
 yourself. Eventual consistency is a topic on it's own, that involves a lot of
 academic papers and algorithms (like <a href="https://www.youtube.com/watch?v=DEcwa68f-jY" title="dotJS 2019 - James Long - CRDTs for Mortals">CRDTs</a> for instance).</p>
@@ -52,16 +54,16 @@ Firestore primitives.</p>
 <p>In Firestore, data is stored in documents within collections. Each document has
 a unique reference, in the form of a path: <code>/users/joe</code>, where <code>/users/</code> is the
 collection and <code>joe</code> is the document in this case.</p>
-<p>When writting simultaneosly to different documents (or paths) there is now
+<p>When writting simultaneosly to different documents (or paths) there is no
 problem whatsoever, <code>/users/annie</code> and <code>/users/joe</code> can receive concurrent
 updates without affecting each other.</p>
-<p>Dividing data in as many divergent paths as possible is the best way to deal
-with concurrency. But it is not always convinient to have that many documents
-and subcollections for each possible value we want to update.</p>
-<p>Each document might have multiple attributes. Each attribute is a path to a
-value if you will. Attributes can also be embedded maps with more attributes.</p>
-<p>Here, the <code>joe</code> document, has the <code>name</code> and the <code>hobbies.reading</code> paths for
-example.</p>
+<p>Dividing data in as many divergent document paths as possible is the best way to
+deal with concurrency. But it is not always convinient to have that many
+documents and subcollections for each possible value we want to update.</p>
+<p>Each document might have multiple attributes. Each attribute is also a path to a
+value, if you will. Attributes can also be embedded maps with more attributes.</p>
+<p>Here, the <code>/users/joe</code> document, has the <code>name</code> and the <code>hobbies.reading</code> paths
+for example.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
     <span class="nt">"name"</span><span class="p">:</span> <span class="s2">"Joe"</span><span class="p">,</span>
     <span class="nt">"surname"</span><span class="p">:</span> <span class="s2">"Doe"</span><span class="p">,</span>
@@ -78,54 +80,62 @@ attributes.</p>
 <div class="highlight"><pre><span></span><code><span class="k">await</span> <span class="nx">firebase</span><span class="p">.</span><span class="nx">firestore</span><span class="p">().</span><span class="nx">doc</span><span class="p">(</span><span class="s1">'/users/joe'</span><span class="p">).</span><span class="nx">set</span><span class="p">({</span>
     <span class="s1">'hobbies.reading'</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="s1">'hobbies.painting'</span><span class="o">:</span> <span class="kc">false</span>
-<span class="p">},</span> <span class="p">{</span> <span class="nx">merge</span><span class="o">:</span> <span class="kc">true</span> <span class="p">});</span>
+<span class="p">},</span> <span class="p">{</span> <span class="s1">'merge'</span><span class="o">:</span> <span class="kc">true</span> <span class="p">});</span>
 </code></pre></div>
 <p>You may have noticed we are using <code>set()</code> with the <code>{merge: true}</code> parameter.</p>
 <p>When storing data, the <em>upsert</em> operation becomes really handy, so that we don't
-have to check if a document exists or not before creating it. An, if it exits,
+have to check if a document exists or not before creating it. An, if it exists,
 we can also update/merge just attributes we care about (or adding another one
 like <code>hobbies.painting</code>).</p>
 <p>One big caveat we need to consider is that we are aiming for some eventual
 consistency, by dividing a big JSON document into smaller paths that can be
 updated in little chunks. Since conflict resolution in Firestore is super
-simple: last write wins map, we need to think of JSON-diff patches that may
-be applied out of order, that mutate the big state tree of your app.</p>
+simple: it's a <em>last write wins map</em>, we need to think of the state of your app
+as a big JSON tree that is mutated by lots of JSON-diff patches that may be
+applied out of order.</p>
 <p>Firestore offers transactions, but this comes at the cost of giving up a lot of
 concurrency (and offline support).</p>
 <p>We are not achieving eventual consistency, but something close to it by avoiding
 conflicts as much as possible.</p>
-<p>One last key concept to keep in mind is that we need our state map to only ever
-grow, but never delete data.  That way you never upsert data that has been
+<p>One last key concept to keep in mind is that we need our state tree to only ever
+grow, and never delete data. That way you never upsert data that has been
 deleted by another update, hence, a simple <code>deleted=true|false</code> flag on every
-document should achive the same result.</p>
+document should achive the same result. Later upserts will not bring the
+document back to life.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Remove the joe document</span>
+<span class="k">await</span> <span class="nx">firebase</span><span class="p">.</span><span class="nx">firestore</span><span class="p">().</span><span class="nx">doc</span><span class="p">(</span><span class="s1">'/users/joe'</span><span class="p">).</span><span class="nx">set</span><span class="p">({</span>
+    <span class="s1">'deleted'</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+<span class="p">},</span> <span class="p">{</span> <span class="s1">'merge'</span><span class="o">:</span> <span class="kc">true</span> <span class="p">});</span>
+</code></pre></div>
 <h3 id="sentinel-values">Sentinel values<a class="headerlink" href="#sentinel-values" title="Permanent link">¶</a></h3>
 <p>Sometimes, dividing the state tree of your app is not enough. Some attributes
 require special treatment, like counters, arrays or dates. Since the ordering of
 updates is something we don't want to solve, and this scenario will is noticible
 when enabling offline support, we need to make use of sentinel values.</p>
-<p><a href="https://firebase.google.com/docs/reference/android/com/google/firebase/firestore/FieldValue" title="Sentinel values that can be used when writing document fields with set() or update().">Sentinels</a> act like on the spot transactions to transform or update an attribute
+<p><a href="https://firebase.google.com/docs/reference/android/com/google/firebase/firestore/FieldValue" title="Sentinel values that can be used when writing document fields with set() or update().">Sentinels</a> act like on-the-spot transactions to transform or update an attribute
 by considering it's current value at the moment the upsert occurs.</p>
 <div class="highlight"><pre><span></span><code><span class="k">await</span> <span class="nx">firebase</span><span class="p">.</span><span class="nx">firestore</span><span class="p">().</span><span class="nx">collection</span><span class="p">(</span><span class="s1">'user'</span><span class="p">).</span><span class="nx">doc</span><span class="p">(</span><span class="s1">'joe'</span><span class="p">).</span><span class="nx">set</span><span class="p">({</span>
     <span class="s1">'sessions'</span><span class="o">:</span> <span class="nx">firebase</span><span class="p">.</span><span class="nx">firestore</span><span class="p">.</span><span class="nx">FieldValue</span><span class="p">.</span><span class="nx">increment</span><span class="p">(</span><span class="mf">1</span><span class="p">),</span>
     <span class="s1">'lastUpdated'</span><span class="o">:</span> <span class="nx">firebase</span><span class="p">.</span><span class="nx">firestore</span><span class="p">.</span><span class="nx">FieldValue</span><span class="p">.</span><span class="nx">ServerTimestamp</span><span class="p">()</span>
-<span class="p">},</span> <span class="p">{</span><span class="nx">merge</span><span class="o">:</span> <span class="kc">true</span><span class="p">});</span>
+<span class="p">},</span> <span class="p">{</span> <span class="s1">'merge'</span><span class="o">:</span> <span class="kc">true</span> <span class="p">});</span>
 </code></pre></div>
 <p>Here we can log each <code>session</code> in the app, by incrementing a counter. We don't
-care about the exact previous value, just that it is one more. The same goes
-with the <code>lastUpdated</code>, we simply mark it to be whatever date the server has at
-the time of the update.</p>
+care about the exact previous value, just that it is one extra unit. The same
+goes with the <code>lastUpdated</code>, we simply mark it to be whatever date the server
+has at the time of the update.</p>
 <h3 id="default-sentinel-i-wish">Default sentinel (I wish)<a class="headerlink" href="#default-sentinel-i-wish" title="Permanent link">¶</a></h3>
 <p>Now that we now how handy these sentinel values are, I would like to have
 another one that only sets a value in a document if it is empty or missing.</p>
-<p>It could have an optional param <code>setDefault('default', exisiting=undefined)</code>.
+<p>It could have an optional param <code>setDefault('default', existing=undefined)</code>.
 So this will result in the value <em>default</em> being set only if the existing value
 is <code>undefined</code> (meaning not set).</p>
-<p>An example use case is setting a value that should only be set once (like <code>dateCreated</code>):</p>
+<p>An example use case is setting a value that should only be set once (like
+<code>dateCreated</code>):</p>
 <div class="highlight"><pre><span></span><code><span class="k">await</span> <span class="nx">firebase</span><span class="p">.</span><span class="nx">firestore</span><span class="p">().</span><span class="nx">collection</span><span class="p">(</span><span class="s1">'users'</span><span class="p">).</span><span class="nx">doc</span><span class="p">(</span><span class="s1">'joe'</span><span class="p">).</span><span class="nx">set</span><span class="p">({</span>
-    <span class="nx">dateCreated</span><span class="o">:</span> <span class="nx">firebase</span><span class="p">.</span><span class="nx">firestore</span><span class="p">.</span><span class="nx">FieldValue</span><span class="p">.</span><span class="nx">SetDefault</span><span class="p">(</span><span class="nx">firebase</span><span class="p">.</span><span class="nx">firestore</span><span class="p">.</span><span class="nx">FieldValue</span><span class="p">.</span><span class="nx">ServerTimestamp</span><span class="p">()),</span>
-    <span class="nx">name</span><span class="o">:</span> <span class="s1">'Joe'</span><span class="p">,</span>
-    <span class="nx">surname</span><span class="o">:</span> <span class="s1">'Doe'</span>
-<span class="p">},</span> <span class="p">{</span> <span class="nx">merge</span><span class="o">:</span> <span class="kc">true</span> <span class="p">});</span>
+    <span class="s1">'dateCreated'</span><span class="o">:</span> <span class="nx">firebase</span><span class="p">.</span><span class="nx">firestore</span><span class="p">.</span><span class="nx">FieldValue</span><span class="p">.</span><span class="nx">SetDefault</span><span class="p">(</span><span class="nx">firebase</span><span class="p">.</span><span class="nx">firestore</span><span class="p">.</span><span class="nx">FieldValue</span><span class="p">.</span><span class="nx">ServerTimestamp</span><span class="p">()),</span>
+    <span class="s1">'name'</span><span class="o">:</span> <span class="s1">'Joe'</span><span class="p">,</span>
+    <span class="s1">'surname'</span><span class="o">:</span> <span class="s1">'Doe'</span>
+<span class="p">},</span> <span class="p">{</span> <span class="s1">'merge'</span><span class="o">:</span> <span class="kc">true</span> <span class="p">});</span>
 </code></pre></div>
 <p>Without having to check that this user exists and has the <code>dateCreated</code> set.</p>
 <p>Unfortunately this feature does not exists at the moment. The workaround is to
@@ -136,9 +146,9 @@ update, we do update it.</p>
 
 <span class="k">await</span> <span class="nx">user</span><span class="p">.</span><span class="nx">ref</span><span class="p">.</span><span class="nx">set</span><span class="p">({</span>
     <span class="nx">dateCreated</span><span class="p">,</span>
-    <span class="nx">name</span><span class="o">:</span> <span class="s1">'Joe'</span><span class="p">,</span>
-    <span class="nx">surname</span><span class="o">:</span> <span class="s1">'Doe'</span>
-<span class="p">},</span> <span class="p">{</span> <span class="nx">merge</span><span class="o">:</span> <span class="kc">true</span> <span class="p">})</span>
+    <span class="s1">'name'</span><span class="o">:</span> <span class="s1">'Joe'</span><span class="p">,</span>
+    <span class="s1">'surname'</span><span class="o">:</span> <span class="s1">'Doe'</span>
+<span class="p">},</span> <span class="p">{</span> <span class="s1">'merge'</span><span class="o">:</span> <span class="kc">true</span> <span class="p">})</span>
 </code></pre></div>
 <p>But this is not ideal, since there are no strong guarantees that this field
 would not be set more than once by concurrent transactions. It may be still be
