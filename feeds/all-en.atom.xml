@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/all-en.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2021-08-16T00:00:00-03:00</updated><subtitle>- Mostly lies and rants in plain text.</subtitle><entry><title>Concurrent updates on Firestore documents</title><link href="http://hernantz.github.io/concurrent-updates-on-firestore-documents.html" rel="alternate"></link><published>2021-08-16T00:00:00-03:00</published><updated>2021-08-16T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2021-08-16:/concurrent-updates-on-firestore-documents.html</id><summary type="html">&lt;p&gt;Can we achieve eventual consistency? Maybe something close to it?&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://firebase.google.com/products/firestore" title="Firestore by Google"&gt;Firestore&lt;/a&gt; (by Firebase) is a JSON document-oriented database (as a
+<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/all-en.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2021-09-18T00:00:00-03:00</updated><subtitle>- Mostly lies and rants in plain text.</subtitle><entry><title>Endpoints matter</title><link href="http://hernantz.github.io/endpoints-matter.html" rel="alternate"></link><published>2021-09-18T00:00:00-03:00</published><updated>2021-09-18T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2021-09-18:/endpoints-matter.html</id><summary type="html">&lt;p&gt;Entities can be identified by IDs, but also paths.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In most applications, system entities do not exist aisolated from each other,
+but connected in one to one, many to many or one to may type of relations.&lt;/p&gt;
+&lt;p&gt;This means that there is more than one way to reach to a specific entity.&lt;/p&gt;
+&lt;p&gt;Although all entities should have a unique id, the &lt;em&gt;path&lt;/em&gt; to that entity is also
+important when designing REST APIs.&lt;/p&gt;
+&lt;p&gt;For example, in an blog website, we have &lt;code&gt;Posts&lt;/code&gt; and &lt;code&gt;Comment&lt;/code&gt; entities. We
+could imagine a posts endpoint in the form: &lt;code&gt;/posts/{postId}&lt;/code&gt;, but what about
+comments?&lt;/p&gt;
+&lt;p&gt;Comments only make sense in the context of a post, it would be akward to
+reference a comment by &lt;code&gt;/comments/{commentId}&lt;/code&gt; endpoint, or get all comments
+from a post through a &lt;code&gt;/comments/?postId={postId}&lt;/code&gt; filter or comments by their
+author: &lt;code&gt;/user/{userId}/comments/{commentId}&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;A more semantic path to a comment would be
+&lt;code&gt;/posts/{postId}/comments/&lt;/code&gt; and a specific comment by
+&lt;code&gt;/posts/{postId}/comments/{commentId}&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;One could argue that this pattern can also apply for comment replies in the
+form: &lt;code&gt;/posts/{postId}/comments/{commentId}/replies/{replyId}&lt;/code&gt; but it is
+probably abusing the pattern and the path to an entity is no longer clear.
+Although replies only make sense in the context of a comment they reply to.&lt;/p&gt;
+&lt;p&gt;Path design to reach connected entities will really depend what are the most
+common access paterns to those entieties. There are always hierarchies
+in the structure of any database after all.&lt;/p&gt;</content><category term="Programming"></category><category term="database"></category><category term="rest"></category><category term="api"></category></entry><entry><title>Concurrent updates on Firestore documents</title><link href="http://hernantz.github.io/concurrent-updates-on-firestore-documents.html" rel="alternate"></link><published>2021-08-16T00:00:00-03:00</published><updated>2021-08-16T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2021-08-16:/concurrent-updates-on-firestore-documents.html</id><summary type="html">&lt;p&gt;Can we achieve eventual consistency? Maybe something close to it?&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://firebase.google.com/products/firestore" title="Firestore by Google"&gt;Firestore&lt;/a&gt; (by Firebase) is a JSON document-oriented database (as a
 service), that allows concurrent updates to documents, from different clients or
 the same client in different points in time, since it offers offline support for
 client apps that hold a dynamic local cache, that will eventually be synced with
