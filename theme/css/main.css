@@ -4,7 +4,7 @@ body {
   background: #f9f9f9;
   color: #444;
   line-height: 30px;
-  margin: 0.8em 1em;
+  margin: 0.8em auto;
   word-wrap: break-word;
   display: flex;
   max-width: 45em;
@@ -143,7 +143,7 @@ tr:nth-child(even) {
 /* code snippets */
 .highlight {
   background: #fffbf1;
-  font-size: 0.9em;
+  font-size: 1em;
   border-left: 1px solid lightblue; }
 
 /* headers permalink */
