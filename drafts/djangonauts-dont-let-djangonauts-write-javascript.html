@@ -39,7 +39,7 @@ on <time datetime="2017-05-25T00:00:00-03:00">2017-05-25</time>,       under <a 
       tagged with <a href="http://hernantz.github.io/tag/python.html">python</a>, <a href="http://hernantz.github.io/tag/django.html">django</a>, <a href="http://hernantz.github.io/tag/javascript.html">javascript</a> and <a href="http://hernantz.github.io/tag/rants.html">rants</a>.
     </p>
 </summary>
-<p><img alt="The canonical HTML page structure" src="/images/djangonauts.png" title="The canonical HTML page structure"/></p>
+<p><img alt="The canonical website architecture" src="/images/djangonauts.png" title="The canonical website architecture"/></p>
 <blockquote>
 <p>JS Fatigue happens when people use tools
 they don't need to solve problems they
@@ -177,8 +177,8 @@ endpoints (URIs to locate resources on the web), HTTP verbs to perform actions
 on them, and HTML to represent those resources.</p>
 <p>When using <strong>HTML as the technology to render the app state</strong>, the browser is
 the client, not your SPA. User will always get the latest representation of your
-data, and what can be done with it. It treats API payloads as a kind of
-declarative UI language for full state interactions.</p>
+data, and what can be done with it. It treats synchronous API payloads as a kind
+of declarative UI language for full state interactions.</p>
 <p>The question is, how powerful is HTML alone?</p>
 <p>It is very powerful and expressive, and getting better still. We now have <a href="https://calendar.perfplanet.com/2016/prefer-defer-over-async/" title="Prefer DEFER Over ASYNC">async
 and defer</a> attributes to load non-blocking <code>&lt;script&gt;</code>'s in parallel,
