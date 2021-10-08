@@ -1,60 +1,65 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<title>Bugs are overrated | README.txt</title>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport"/>
-<link href="/theme/css/pygments-default.css" rel="stylesheet" type="text/css"/>
-<link href="/theme/css/main.css" rel="stylesheet" type="text/css"/>
-<link href="/theme/css/mobile.css" media="(max-width: 750px)" rel="stylesheet" type="text/css"/>
-<link href="/images/favicon.ico" rel="icon" type="image/x-icon"/>
-<link href="/rss.xml" rel="alternate" title="README.txt RSS Feed" type="application/atom+xml"/>
-<meta content="Everything that is not an emergency, can and should be planned." name="description"/>
-<meta content="rants, ideas, agile" name="keywords"/>
-<meta content="hernantz" name="author"/>
-<link href="http://hernantz.github.io/drafts/bugs-are-overrated.html" rel="canonical"/><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "README.txt", "item": "http://hernantz.github.io"}, {"@type": "ListItem", "position": 2, "name": "Drafts", "item": "http://hernantz.github.io/drafts"}, {"@type": "ListItem", "position": 3, "name": "Bugs are overrated", "item": "http://hernantz.github.io/drafts/bugs-are-overrated.html"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "author": {"@type": "Person", "name": "hernantz"}, "publisher": {"@type": "Organization", "name": "README.txt"}, "headline": "Bugs are overrated", "about": "Programming", "datePublished": "2015-05-15 00:00"}</script></head>
+  <title>Bugs are overrated | README.txt</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="/theme/css/pygments-default.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/dark/main.css" media="(prefers-color-scheme: dark)" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/dark/pygments-base16-applepips-dark.css" media="(prefers-color-scheme: dark)" type="text/css" />
+  <link rel="stylesheet" media="(max-width: 750px)" href="/theme/css/mobile.css" type="text/css" />
+  <link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
+  <link href="/rss.xml" type="application/atom+xml" rel="alternate" title="README.txt RSS Feed" />
+  <meta name="description" content="Everything that is not an emergency, can and should be planned.">
+  <meta name="keywords" content="rants, ideas, agile">
+  <meta name="author" content="hernantz">
+</head>
+
 <body>
-<aside class="sidebar">
-<a href="/"><img height="75" src="/images/avatar.png" width="75"/></a>
-<nav>
-<ul>
-<li><a href="http://twitter.com/hernantz">twitter</a></li>
-<li><a href="http://github.com/hernantz">github</a></li>
-<li><a href="http://last.fm/user/hernantz">last.fm</a></li>
-<li><a href="https://www.rottentomatoes.com/user/id/973196678">tomatoes</a></li>
-<li><a href="/talks.html">talks</a></li>
-<li><a href="/whoami.html">whoami</a></li>
-<li><a href="/">blog</a></li>
-</ul>
-</nav>
-</aside>
-<main>
+  <aside class="sidebar">
+    <a href="/"><img src="/images/avatar.png" height="75" width="75" /></a>
+
+      <nav>
+        <ul>
+            <li><a href="http://twitter.com/hernantz">twitter</i></a></li>
+            <li><a href="http://github.com/hernantz">github</i></a></li>
+            <li><a href="http://last.fm/user/hernantz">last.fm</i></a></li>
+            <li><a href="https://www.rottentomatoes.com/user/id/973196678">tomatoes</i></a></li>
+            <li><a href="/talks.html">talks</a></li>
+            <li><a href="/whoami.html">whoami</a></li>
+            <li><a href="/">blog</a></li>
+        </ul>
+      </nav>
+
+  </aside>
+  <main>
+        
 <article class="column-right">
-<h1 class="main-title">Bugs are overrated</h1>
-<summary>
-<p class="light">
+  <h1 class="main-title">Bugs are overrated</h1>
+  <summary>
+    <p class="light">
       Published
 on <time datetime="2015-05-15T00:00:00-03:00">2015-05-15</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
       tagged with <a href="http://hernantz.github.io/tag/rants.html">rants</a>, <a href="http://hernantz.github.io/tag/ideas.html">ideas</a> and <a href="http://hernantz.github.io/tag/agile.html">agile</a>.
     </p>
-</summary>
-<p><img alt="Medieval Beekeeper" src="/images/bugs-are-overrated.png" title="Medieval Beekeeper"/></p>
+  </summary>
+  <p><img alt="Medieval Beekeeper" src="/images/bugs-are-overrated.png" title="Medieval Beekeeper"></p>
 <p>Area mantenimiento</p>
 <p>He escrito estas propuestas porque creo que son factibles de implementar y porque con el trabajo hecho hasta el momento, llegamos a un punto de inflexión donde un cambio es posible y necesario.</p>
-<h2 id="problema-1-falta-de-impacto">Problema 1: Falta de impacto<a class="headerlink" href="#problema-1-falta-de-impacto" title="Permanent link">¶</a></h2>
+<h2 id="problema-1-falta-de-impacto">Problema 1: Falta de impacto<a class="headerlink" href="#problema-1-falta-de-impacto" title="Permanent link">&para;</a></h2>
 <p>Tratar el área de mantenimiento como un área separada tiene sus ventajas y desventajas.
 Al tener recursos humanos dedicados exclusivamente a resolver bugs, se puede evitar las burocracias de scrum, y atacar los problemas directamente. Esto posibilitó que en 11 meses de trabajo, pasamos de 40 tickets abiertos en el board de mantenimiento, que luego fue de un promedio de 20 tickets por varios meses, a un promedio de 2 tickets abiertos permanentemente. También fue fundamental el proceso de reviews para evitar introducir regresiones.</p>
 <p>Como desventajas ésta que los problemas que se atacan en esta área no tienen el impacto necesario en la planificación y trabajo del área de desarrollo principal. En la medida que los parches permitan "safar", las soluciones de fondo pierden relevancia frente a otras tareas como nuevas features, y en momentos críticos, como en la planning meeting, cuando hay que decidir que tareas entran en el sprint, los refactors y enhancements ligan primero.</p>
 <p>Como hay alguien que ataja las balas, siempre está latente el riesgo de "impunidad", donde cualquier problema que haya, se crea un ticket de mantenimiento y listo. El área de mantenimiento permite "ocultar" el verdadero estado del proyecto, ya que el área principal no tiene que afrontar las consecuencias de falta de refactor, falta de especificación, tareas mal hechas, etc.</p>
-<h2 id="solucion-problema-1-preventive-maintenance-and-constant-refactor">Solución problema 1: Preventive Maintenance and constant refactor<a class="headerlink" href="#solucion-problema-1-preventive-maintenance-and-constant-refactor" title="Permanent link">¶</a></h2>
+<h2 id="solucion-problema-1-preventive-maintenance-and-constant-refactor">Solución problema 1: Preventive Maintenance and constant refactor<a class="headerlink" href="#solucion-problema-1-preventive-maintenance-and-constant-refactor" title="Permanent link">&para;</a></h2>
 <p>https://pbs.twimg.com/media/CHFrCPkW8AAuJna.jpg
 Sun (now Oracle) estimates that over the lifetime of a standard piece of code, 20 percent of the effort will go into the original creation and testing of the code, and 80 percent of the effort will go into the subsequent maintenance and enhancement of the code.</p>
 <p>Es importante que nuestros sprint se empiecen a parecer más a esos números. La solución sería negociar un porcentaje fijo de puntos destinados a mantenimiento preventivo y mejoras, no se bien que porcentaje, pero un 50/50 o 40/60 no sería descabellado.
 Esto tiene la ventaja de que afecta la planificación, el cliente tiene restringido su libertad de acción (por su propio bien), se mejora la salud de la app (previniendo problemas futuros), y el cliente puede apreciar en que se gastan los puntos y está al tanto de los desafíos del proyecto, Patrick y el Brody siguen teniendo voz y voto en las planificaciones y groomings.
 El riesgo acá es que el cliente pueda tomar esta pérdida de libertad de acción con rechazo, sin ver sus beneficios.</p>
 <p>Ya se empezó a trabajar en esta dirección y creo que esta dando buenos resultados, pero es un punto importante a aclarar y acordar con Brody, cosa de evitar generar falsas expectativas sobre el equipo. Lo único que falta mejorar, de nuestro lado, es trabajar más sobre las prioridades de estas tareas de mantenimiento preventivo (ver propuesta 3 más adelante).</p>
-<h2 id="problema-2-sumidero-de-puntos">Problema 2: Sumidero de puntos<a class="headerlink" href="#problema-2-sumidero-de-puntos" title="Permanent link">¶</a></h2>
+<h2 id="problema-2-sumidero-de-puntos">Problema 2: Sumidero de puntos<a class="headerlink" href="#problema-2-sumidero-de-puntos" title="Permanent link">&para;</a></h2>
 <p>Esta pasando cada vez más seguido que los bugs son de baja prioridad, entonces esos recursos humanos dedicados pueden no estar siendo bien aprovechados. Hay tareas importantes en el backlog, que no se hacen, por falta de recursos, y tener una persona atendiendo cosas poco importantes, no planificadas en un marco global, es un derroche de plata/esfuerzo.
 Por otro lado, muchos de los bugs vienen como cambios de requerimiento encubiertos, nuevos requerimientos, refactors que no se hacen, etc.
 Esto hace que en el área de mantenimiento se trabaje no solo en bugs críticos sino en "muchos de puntos" que podrían ser planificados tranquilamente, ya que actualmente implican costos ocultos.</p>
@@ -65,17 +70,17 @@ DIV-4179: Content Editor: Production tasks populating date with 0 hr duration. N
 DIV-4002: Content Editor: Recurring series, change of content type does not get applied to entire series. El código para esto era inexistente, es decir, nunca anduvo. Se podría haber planificado.
 DIV-4274 enforce billing requirements on the backend when activating an account: No había ninguna validación en el backend. Se podría haber planificado.
 DIV-4066 Content Editor: empty text documents pop error when try to attach to content item. Un bug de muy baja prioridad.</p>
-<h2 id="solucion-problema-2-disciplina-y-triage-procedure-para-solo-hacer-lo-importante">Solución problema 2: Disciplina y triage procedure para sólo hacer lo importante.<a class="headerlink" href="#solucion-problema-2-disciplina-y-triage-procedure-para-solo-hacer-lo-importante" title="Permanent link">¶</a></h2>
+<h2 id="solucion-problema-2-disciplina-y-triage-procedure-para-solo-hacer-lo-importante">Solución problema 2: Disciplina y triage procedure para sólo hacer lo importante.<a class="headerlink" href="#solucion-problema-2-disciplina-y-triage-procedure-para-solo-hacer-lo-importante" title="Permanent link">&para;</a></h2>
 <p>Que el área mantenimiento sea sólo para emergencias, todo lo que puede ser planificable o no es un bug, se mueve al área de desarrollo.
 Como ejemplo donde sí se trabajó en el área de desarrollo un supuesto bug tengo la re-autenticación de Twitter, que no había sido terminada, se cargo como blocker bug, pero se trabajó en el área de desarrollo. También son ejemplo muchos de los UI-TWEAKS.</p>
-<h2 id="problema-3-tedio">Problema 3: Tedio<a class="headerlink" href="#problema-3-tedio" title="Permanent link">¶</a></h2>
+<h2 id="problema-3-tedio">Problema 3: Tedio<a class="headerlink" href="#problema-3-tedio" title="Permanent link">&para;</a></h2>
 <p>El área de mantenimiento ha estado mucho tiempo a cargo de la misma persona, hay una sola visión de los hechos, se rompe la noción de responsabilidades de equipo, y por sobre todo padezco de "síndrome de la piedra de Sísifo", ya que no hay una noción de "logro alcanzable".
 Personalmente estoy cansado y me gustaría un cambio de aire, creo que puedo ir haciendo aportes en el área de desarrollo.
 Creo también que es oportuno aclarar que trabajar con Tony y Christine ha sido muy bueno, porque trabajan con mucha responsabilidad y compromiso por obtener resultados concretos (es un compliment bueno para comunicar a Brody).</p>
-<h2 id="solucion-problema-3-rotacion">Solución problema 3: Rotación<a class="headerlink" href="#solucion-problema-3-rotacion" title="Permanent link">¶</a></h2>
+<h2 id="solucion-problema-3-rotacion">Solución problema 3: Rotación<a class="headerlink" href="#solucion-problema-3-rotacion" title="Permanent link">&para;</a></h2>
 <p>Que el área de mantenimiento rote entre los desarrolladores, cosa de que en cada sprint hay un responsable distinto. Como se hace con las groomings.
 Esto sería saludable para que todos los miembros del equipo experimenten en primera persona los desafíos que se presentan en este proyecto (esta área funciona como un cable a tierra del día a día de los usuarios) y haya una noción de compromiso colectivo. También, es oportunidad buenísima de aprender de nuestros errores (lo puedo afirmar con mi experiencia). A su vez, atacando los problemas 1 y 2, la cantidad de esfuerzo invertido en esta área bajará notoriamente.</p>
-<h1 id="por-que-hacemos-testing">Por qué hacemos testing<a class="headerlink" href="#por-que-hacemos-testing" title="Permanent link">¶</a></h1>
+<h1 id="por-que-hacemos-testing">Por qué hacemos testing<a class="headerlink" href="#por-que-hacemos-testing" title="Permanent link">&para;</a></h1>
 <p>Testing es una técnica que consiste en escribir tests para ejecutarlos contra la aplicacion y asi determinar si funciona bien o mal.
 Idealmente estos tests están automatizados. Esto es, nos tomamos el trabajo de escribir un software que prueba nuestro software. Así podemos tener feedback rápido de si la aplicación funciona o no.</p>
 <p>Existen tres desafios:
@@ -124,9 +129,10 @@ because unplanned work comes at the expense of...”
 He looks around professorially for an answer.
 Wes finally speaks up, “Planned work?”</p>
 </article>
-<footer class="column-right light">
-<nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> - <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | README.txt</nav>
-</footer>
-</main>
+
+      <footer class="column-right light">
+        <nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> - <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | README.txt</nav>
+      </footer>
+  </main>
 </body>
 </html>

@@ -1,46 +1,51 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<title>From zero to hero with ansible and django | README.txt</title>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport"/>
-<link href="/theme/css/pygments-default.css" rel="stylesheet" type="text/css"/>
-<link href="/theme/css/main.css" rel="stylesheet" type="text/css"/>
-<link href="/theme/css/mobile.css" media="(max-width: 750px)" rel="stylesheet" type="text/css"/>
-<link href="/images/favicon.ico" rel="icon" type="image/x-icon"/>
-<link href="/rss.xml" rel="alternate" title="README.txt RSS Feed" type="application/atom+xml"/>
-<meta content="An opinationed set the best practices for deploying django with ansible." name="description"/>
-<meta content="django, sysadmin, linux" name="keywords"/>
-<meta content="hernantz" name="author"/>
-<link href="http://hernantz.github.io/drafts/from-zero-to-hero-with-ansible-and-django.html" rel="canonical"/><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "README.txt", "item": "http://hernantz.github.io"}, {"@type": "ListItem", "position": 2, "name": "Drafts", "item": "http://hernantz.github.io/drafts"}, {"@type": "ListItem", "position": 3, "name": "From zero to hero with ansible and django", "item": "http://hernantz.github.io/drafts/from-zero-to-hero-with-ansible-and-django.html"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "author": {"@type": "Person", "name": "hernantz"}, "publisher": {"@type": "Organization", "name": "README.txt"}, "headline": "From zero to hero with ansible and django", "about": "sysadmin", "datePublished": "2015-02-25 00:00"}</script></head>
+  <title>From zero to hero with ansible and django | README.txt</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="/theme/css/pygments-default.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/dark/main.css" media="(prefers-color-scheme: dark)" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/dark/pygments-base16-applepips-dark.css" media="(prefers-color-scheme: dark)" type="text/css" />
+  <link rel="stylesheet" media="(max-width: 750px)" href="/theme/css/mobile.css" type="text/css" />
+  <link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
+  <link href="/rss.xml" type="application/atom+xml" rel="alternate" title="README.txt RSS Feed" />
+  <meta name="description" content="An opinationed set the best practices for deploying django with ansible.">
+  <meta name="keywords" content="django, sysadmin, linux">
+  <meta name="author" content="hernantz">
+</head>
+
 <body>
-<aside class="sidebar">
-<a href="/"><img height="75" src="/images/avatar.png" width="75"/></a>
-<nav>
-<ul>
-<li><a href="http://twitter.com/hernantz">twitter</a></li>
-<li><a href="http://github.com/hernantz">github</a></li>
-<li><a href="http://last.fm/user/hernantz">last.fm</a></li>
-<li><a href="https://www.rottentomatoes.com/user/id/973196678">tomatoes</a></li>
-<li><a href="/talks.html">talks</a></li>
-<li><a href="/whoami.html">whoami</a></li>
-<li><a href="/">blog</a></li>
-</ul>
-</nav>
-</aside>
-<main>
+  <aside class="sidebar">
+    <a href="/"><img src="/images/avatar.png" height="75" width="75" /></a>
+
+      <nav>
+        <ul>
+            <li><a href="http://twitter.com/hernantz">twitter</i></a></li>
+            <li><a href="http://github.com/hernantz">github</i></a></li>
+            <li><a href="http://last.fm/user/hernantz">last.fm</i></a></li>
+            <li><a href="https://www.rottentomatoes.com/user/id/973196678">tomatoes</i></a></li>
+            <li><a href="/talks.html">talks</a></li>
+            <li><a href="/whoami.html">whoami</a></li>
+            <li><a href="/">blog</a></li>
+        </ul>
+      </nav>
+
+  </aside>
+  <main>
+        
 <article class="column-right">
-<h1 class="main-title">From zero to hero with ansible and django</h1>
-<summary>
-<p class="light">
+  <h1 class="main-title">From zero to hero with ansible and django</h1>
+  <summary>
+    <p class="light">
       Published
 on <time datetime="2015-02-25T00:00:00-03:00">2015-02-25</time>,       under <a href="http://hernantz.github.io/category/sysadmin.html">sysadmin</a>,
       tagged with <a href="http://hernantz.github.io/tag/django.html">django</a>, <a href="http://hernantz.github.io/tag/sysadmin.html">sysadmin</a> and <a href="http://hernantz.github.io/tag/linux.html">linux</a>.
     </p>
-</summary>
-<p>Trying to put on paper an opinationed set the best practices for deploying django with ansible</p>
-<h2 id="get-yourself-into-the-party">Get yourself into the party<a class="headerlink" href="#get-yourself-into-the-party" title="Permanent link">¶</a></h2>
+  </summary>
+  <p>Trying to put on paper an opinationed set the best practices for deploying django with ansible</p>
+<h2 id="get-yourself-into-the-party">Get yourself into the party<a class="headerlink" href="#get-yourself-into-the-party" title="Permanent link">&para;</a></h2>
 <p>This is to gain sudo access to the remote machine and be automatically identified.
 For this to happen, this tree things need to be done:
 1) Have the required ssh packages installed. <code>openssh-server</code> installed on the remote machine, 
@@ -60,30 +65,30 @@ This can be done by the following command:
 <code>ssh-copy-id "&lt;user&gt;@&lt;host&gt; -p &lt;port&gt; -o UserKnownHostsFile=/path/to/local_known_hosts_file"</code>
 Your milage may vary, for instance Digital Ocean allows you to add public keys to your new droplets 
 when they're created.</p>
-<h2 id="keep-your-secret-vars-separate">Keep your secret vars separate<a class="headerlink" href="#keep-your-secret-vars-separate" title="Permanent link">¶</a></h2>
+<h2 id="keep-your-secret-vars-separate">Keep your secret vars separate<a class="headerlink" href="#keep-your-secret-vars-separate" title="Permanent link">&para;</a></h2>
 <p>The strategy I'm folloing with private variables/data is to ship a <code>something.template</code> file
 that will contain the data I want to make public (if any) and ask the user to copy that template
 and put it in the same directory but with the name <code>something</code>, a file that is ignored by the VCS, 
 and you would ask the users you trust to put whatever you need them to have in those files. </p>
 <p>create a deployer user with sudo privileges -&gt; YOU SHOULN'T NEED SUDO TO RUN APP
 copy your id-rsa.pub to the remote</p>
-<h2 id="bootstrap-a-secure-initial-setup">Bootstrap a secure initial setup<a class="headerlink" href="#bootstrap-a-secure-initial-setup" title="Permanent link">¶</a></h2>
+<h2 id="bootstrap-a-secure-initial-setup">Bootstrap a secure initial setup<a class="headerlink" href="#bootstrap-a-secure-initial-setup" title="Permanent link">&para;</a></h2>
 <p>setup secure initialsetup.yaml
 http://plusbryan.com/my-first-5-minutes-on-a-server-or-essential-security-for-linux-servers
 http://lattejed.com/first-five-and-a-half-minutes-on-a-server-with-ansible
 https://lextoumbourou.com/blog/posts/getting-started-with-ansible/#part-1</p>
-<h2 id="bro-tips">bro tips<a class="headerlink" href="#bro-tips" title="Permanent link">¶</a></h2>
+<h2 id="bro-tips">bro tips<a class="headerlink" href="#bro-tips" title="Permanent link">&para;</a></h2>
 <p>http://hakunin.com/six-ansible-practices#avoid-perpetually-changed-and-skipping-tasks
 Separate your setup and deploy playbooks
 your app has nothing to do with your server configuration</p>
 <p>Teach Ansible to talk to Github on your behalf
 Add Github to known_hosts properly and securely</p>
-<h2 id="nginx">Nginx<a class="headerlink" href="#nginx" title="Permanent link">¶</a></h2>
+<h2 id="nginx">Nginx<a class="headerlink" href="#nginx" title="Permanent link">&para;</a></h2>
 <p>https://serversforhackers.com/getting-started-with-ansible/
 ssl certificates
 disable default site 
 html5boilerplate nginx settings</p>
-<h2 id="django">Django<a class="headerlink" href="#django" title="Permanent link">¶</a></h2>
+<h2 id="django">Django<a class="headerlink" href="#django" title="Permanent link">&para;</a></h2>
 <p>http://www.stavros.io/posts/example-provisioning-and-deployment-ansible/
 collectstatic
 bower install</p>
@@ -97,9 +102,10 @@ http://getpocket.com/a/read/846424367</p>
 <p>PLACE VIRTUALENV IN /opt/project/venv</p>
 <p>http://musings.tinbrain.net/django-deploy/?utm_source=Django+Round-up&amp;utm_campaign=ccb0686e3c-Django_Round_Up_39&amp;utm_medium=email&amp;utm_term=0_2d6dd01daf-ccb0686e3c-320182857</p>
 </article>
-<footer class="column-right light">
-<nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> - <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | README.txt</nav>
-</footer>
-</main>
+
+      <footer class="column-right light">
+        <nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> - <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | README.txt</nav>
+      </footer>
+  </main>
 </body>
 </html>

@@ -1,44 +1,49 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<title>Just files | README.txt</title>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport"/>
-<link href="/theme/css/pygments-default.css" rel="stylesheet" type="text/css"/>
-<link href="/theme/css/main.css" rel="stylesheet" type="text/css"/>
-<link href="/theme/css/mobile.css" media="(max-width: 750px)" rel="stylesheet" type="text/css"/>
-<link href="/images/favicon.ico" rel="icon" type="image/x-icon"/>
-<link href="/rss.xml" rel="alternate" title="README.txt RSS Feed" type="application/atom+xml"/>
-<meta content="A virtualenv for system packages." name="description"/>
-<meta content="" name="keywords"/>
-<meta content="hernantz" name="author"/>
-<link href="http://hernantz.github.io/drafts/just-files.html" rel="canonical"/><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "README.txt", "item": "http://hernantz.github.io"}, {"@type": "ListItem", "position": 2, "name": "Drafts", "item": "http://hernantz.github.io/drafts"}, {"@type": "ListItem", "position": 3, "name": "Just files", "item": "http://hernantz.github.io/drafts/just-files.html"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "author": {"@type": "Person", "name": "hernantz"}, "publisher": {"@type": "Organization", "name": "README.txt"}, "headline": "Just files", "about": "misc", "datePublished": "2020-03-19 00:00"}</script></head>
+  <title>Just files | README.txt</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="/theme/css/pygments-default.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/dark/main.css" media="(prefers-color-scheme: dark)" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/dark/pygments-base16-applepips-dark.css" media="(prefers-color-scheme: dark)" type="text/css" />
+  <link rel="stylesheet" media="(max-width: 750px)" href="/theme/css/mobile.css" type="text/css" />
+  <link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
+  <link href="/rss.xml" type="application/atom+xml" rel="alternate" title="README.txt RSS Feed" />
+  <meta name="description" content="A virtualenv for system packages.">
+  <meta name="keywords" content="">
+  <meta name="author" content="hernantz">
+</head>
+
 <body>
-<aside class="sidebar">
-<a href="/"><img height="75" src="/images/avatar.png" width="75"/></a>
-<nav>
-<ul>
-<li><a href="http://twitter.com/hernantz">twitter</a></li>
-<li><a href="http://github.com/hernantz">github</a></li>
-<li><a href="http://last.fm/user/hernantz">last.fm</a></li>
-<li><a href="https://www.rottentomatoes.com/user/id/973196678">tomatoes</a></li>
-<li><a href="/talks.html">talks</a></li>
-<li><a href="/whoami.html">whoami</a></li>
-<li><a href="/">blog</a></li>
-</ul>
-</nav>
-</aside>
-<main>
+  <aside class="sidebar">
+    <a href="/"><img src="/images/avatar.png" height="75" width="75" /></a>
+
+      <nav>
+        <ul>
+            <li><a href="http://twitter.com/hernantz">twitter</i></a></li>
+            <li><a href="http://github.com/hernantz">github</i></a></li>
+            <li><a href="http://last.fm/user/hernantz">last.fm</i></a></li>
+            <li><a href="https://www.rottentomatoes.com/user/id/973196678">tomatoes</i></a></li>
+            <li><a href="/talks.html">talks</a></li>
+            <li><a href="/whoami.html">whoami</a></li>
+            <li><a href="/">blog</a></li>
+        </ul>
+      </nav>
+
+  </aside>
+  <main>
+        
 <article class="column-right">
-<h1 class="main-title">Just files</h1>
-<summary>
-<p class="light">
+  <h1 class="main-title">Just files</h1>
+  <summary>
+    <p class="light">
       Published
 on <time datetime="2020-03-19T00:00:00-03:00">2020-03-19</time>,       under <a href="http://hernantz.github.io/category/misc.html">misc</a>.
     </p>
-</summary>
-<p><img alt="Archive - Photo by  Fabien Barral" src="/images/just-files.jpg" title="Archive - Photo by  Fabien Barral"/></p>
+  </summary>
+  <p><img alt="Archive - Photo by  Fabien Barral" src="/images/just-files.jpg" title="Archive - Photo by  Fabien Barral"></p>
 <p>https://twitter.com/SusanPotter/status/1396456263517618181?s=1006
 implementacion! =&gt; https://www.leshenko.net/p/ugit
 https://www.npmjs.com/package/semver-resolver
@@ -61,7 +66,7 @@ https://pypa-build.readthedocs.io/en/stable/mission.html</p>
 <p>Any package manager needs at least a dependency graph solver (semver maybe), filesystem inventory tracking and an archive format to transport files (tar balls maybe).</p>
 <p>We could agree that there should be only one package manager to rule them all. After all different policies simply dictate how packages are built. And some configurations could make the package manager versatile enough to resolve versioning and extract those files.</p>
 <p>But the ecosystem is very fragmented. Even within the Linux community, there are many different package managers. Policy and implementation gets mixed more often than not.</p>
-<h2 id="libraries-vs-applications">Libraries vs Applications<a class="headerlink" href="#libraries-vs-applications" title="Permanent link">¶</a></h2>
+<h2 id="libraries-vs-applications">Libraries vs Applications<a class="headerlink" href="#libraries-vs-applications" title="Permanent link">&para;</a></h2>
 <p>https://0ver.org/
 When we talk about versioning artifacts, we need to also talk about the strategies to do so, which depend on the type of artifact we are dealing with.
 A system library (like a GUI framework) are meant to provide building blocks for other projects. If they change a piece of code, that will impact all applications that use that library.
@@ -72,7 +77,7 @@ Libraries might also have to maintain several versions at the same time, and bac
 <p>Security patches still need to be tested upstream for each app, to not break the system. Yes, a broken system is secure, but it is broken. The burden of shipping updates should be fall on the maintainers of each project, not on a sysadmin. There are nowadays bots that can create automatic notifications/integrations/etc and ship updates to systems that have automatic upgrades configured.</p>
 <p>Apps on the other hand might not have heavy dependency with other projects, and unless they change the format of files they work with (xml for example for Excel), they can follow a pretty loose or arbitrary semver like just v1, v2, v3 or only bump a major version for more marketing impact. Apps are the root of a dependency tree.  </p>
 <p>https://news.ycombinator.com/item?id=21967879</p>
-<h2 id="dependency-hell">Dependency hell<a class="headerlink" href="#dependency-hell" title="Permanent link">¶</a></h2>
+<h2 id="dependency-hell">Dependency hell<a class="headerlink" href="#dependency-hell" title="Permanent link">&para;</a></h2>
 <p>https://utcc.utoronto.ca/~cks/space/blog/linux/MicrosoftTeamsBadArrogance</p>
 <p>As applications have plugin manager and dependencies, distributions have packages and dependencies too.
 Like software which needs to be built + released, systems can also be built (packages installed) and released (services started, db migrations run, etc).</p>
@@ -89,13 +94,13 @@ all packages need to be curated, or users would have to embrace the dependency h
 <p>"The downside is that the approach works best when packages are aware of the Nix approach. But the packages have not been written with Nix in mind, and some work is needed per package to adapt to the approach."</p>
 <p>https://drewdevault.com/dynlib.html -&gt; sharing packages is ok, sharing libs is an overkill</p>
 <p>Docker + docker-compose re implement a package distribution + process manager and orchestration + build system.</p>
-<h2 id="the-importance-of-a-manifest">The importance of a manifest<a class="headerlink" href="#the-importance-of-a-manifest" title="Permanent link">¶</a></h2>
+<h2 id="the-importance-of-a-manifest">The importance of a manifest<a class="headerlink" href="#the-importance-of-a-manifest" title="Permanent link">&para;</a></h2>
 <p>A file where you list your dependencies, that can be parsed by automated tools (that check for updates or vulnerabilties) is paramount for auditing your computer.
 This is the <code>Pakfile</code>. When you use the command line to add/remove packages, it simply updates this manifest.</p>
 <p>Other systems use shells scripts or Dockerfiles which have instructions that are hard to parse automatically.</p>
 <p>On the other hand, formatted plain text files can easily be manipulated by other tools.</p>
 <p>In the packfile you can also override dependencies in the graph (like in pnpmjs).</p>
-<h2 id="misc">Misc<a class="headerlink" href="#misc" title="Permanent link">¶</a></h2>
+<h2 id="misc">Misc<a class="headerlink" href="#misc" title="Permanent link">&para;</a></h2>
 <p>https://lwn.net/Articles/821367/ Merkle trees and build systems</p>
 <p>Transactional updates: https://www.youtube.com/watch?v=ureneyH06AE</p>
 <p>We need a virtualenv but for system packages. Otherwise python, rust, javascript, etc re-implement the wheel over and over.</p>
@@ -145,12 +150,12 @@ For building: https://zserge.com/posts/containers/ (Linux containers in a few li
 <p>runpak a sandboxed runtime for a binary (is flatpak without big runtimes).</p>
 <p>How to manage dotfiles and XDG-HOME, the user has to create those? Yes, custom config files should be managed by the user, possibly by using custom packages.</p>
 <p>nix-thesis: https://edolstra.github.io/pubs/phd-thesis.pdf</p>
-<h2 id="network-vs-package-management">Network vs Package management<a class="headerlink" href="#network-vs-package-management" title="Permanent link">¶</a></h2>
+<h2 id="network-vs-package-management">Network vs Package management<a class="headerlink" href="#network-vs-package-management" title="Permanent link">&para;</a></h2>
 <p>Fetching packages from the internet should be a decoupled task from package management.
 A package can be obtained from a local file, over https, a magnet link, an ipfs link, ftp, etc. Almost all of the references + auth throught tokens or passwords could be done using a URI scheme.</p>
 <p>Pak should delegate this to a separate tool (is there something like a generic curl?), and only care about maintaining the local content-addressable store.</p>
 <p>The bridge between these two worlds can be through a spawning a new process with CLI args for this tool to fetch the packages and put the file on a given directory. From there, pak will unpack the file and take control.</p>
-<h2 id="cli">CLI<a class="headerlink" href="#cli" title="Permanent link">¶</a></h2>
+<h2 id="cli">CLI<a class="headerlink" href="#cli" title="Permanent link">&para;</a></h2>
 <p><code>--root</code> can change the default store directory.</p>
 <p>Maybe each <code>pak add/rm &lt;package-name==version&gt;</code></p>
 <p>This uses a local <code>Pakfile</code> in the pwd, other files can be used by passing the <code>--pakfile=&lt;path-to-pakfile&gt;</code> param or <code>PAKFILE</code> environment variable.</p>
@@ -172,7 +177,7 @@ Another possibility is that <code>pak env</code> puts you in a shell with <code>
 <p>Hierarchy: package stores/environments/configs can be also defined in <code>~/.local/share/pak/</code>, etc.</p>
 <p>Sandboxing GUI apps should be done with another binary that allows to set firewalls and also allow GUI interactions to happen via portals like in flatpak (https://github.com/containers/bubblewrap). Another example would be Opensnitch.
 https://github.com/netblue30/firejail</p>
-<h2 id="how-it-works">How it works<a class="headerlink" href="#how-it-works" title="Permanent link">¶</a></h2>
+<h2 id="how-it-works">How it works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h2>
 <p>Pak is a runtime environment manager.</p>
 <blockquote>
 <p>How the Nix user environment mechanism works. Essentially user environments are symlink trees that blend all currently installed packages into a single component so that they can be referenced from a single location. Another symlink layer manages generations of user environments. We can atomically switch between these generations by flipping symlinks. By adding the latter symlink to a user's PATH, packages can be automatically found without providing any absolute paths with hash codes in them that are difficult to remember.</p>
@@ -181,7 +186,7 @@ https://github.com/netblue30/firejail</p>
 An environment is defined in a Pakfile it might list dependencies of <code>.pak</code> files that can be pinned in a Pakfile.lock</p>
 <p>System directories should be mounted as RO. To avoid malicius packages from globally altering the system.</p>
 <p>There are no optional dependencies or "extras", if something is optional it can be installed explicitly by the user.</p>
-<h2 id="no-hooks">No hooks<a class="headerlink" href="#no-hooks" title="Permanent link">¶</a></h2>
+<h2 id="no-hooks">No hooks<a class="headerlink" href="#no-hooks" title="Permanent link">&para;</a></h2>
 <p>Some package managers allow you to run scripts after installing a package. This should be done with oneshot scripts in systemd (like run migrations for example). There are no pre/post install scripts or hooks, these have to be commands that every package provides and a user or system needs to run.
 https://michael.stapelberg.ch/posts/2019-07-20-hooks-and-triggers/ -&gt; in order to get rid of some hooks we need to turn scripts into configuration. For example new users and password need to be a file (systemd-homed?). The man program should detect the need to re-run it's index.</p>
 <p>https://www.youtube.com/watch?v=oPymb2-IXbg NixOS: How it works and how to install it!</p>
@@ -189,14 +194,14 @@ https://michael.stapelberg.ch/posts/2019-07-20-hooks-and-triggers/ -&gt; in orde
 <p>https://xkcd.com/2347/
 https://jmmv.dev/2020/08/config-files-vs-directories.html
 https://jmmv.dev/2020/08/database-directories.html</p>
-<h2 id="technology-stack">Technology stack<a class="headerlink" href="#technology-stack" title="Permanent link">¶</a></h2>
+<h2 id="technology-stack">Technology stack<a class="headerlink" href="#technology-stack" title="Permanent link">&para;</a></h2>
 <p>Use python 3.8 + nuitka (give a talk: compyling).</p>
 <p>Pakfile -&gt; toml
 Pakfile.lock -&gt; json?</p>
 <p>https://github.com/g-plane/tiny-package-manager</p>
 <p>Transport layer: http, but eventually we could add ipfs/torrents/ssh.</p>
 <p>Los packetes se pueden obtener de distintos repos/mirrors (http/ipfs/torrent/etc), that return a URI (http link, magnet link, etc) for a given key (package name)</p>
-<h2 id="dependency-resolution">Dependency resolution<a class="headerlink" href="#dependency-resolution" title="Permanent link">¶</a></h2>
+<h2 id="dependency-resolution">Dependency resolution<a class="headerlink" href="#dependency-resolution" title="Permanent link">&para;</a></h2>
 <p>When does dependency resolution happen? Before downloading the packages or after downloading all dependencies in parallel?
 When you say <code>pak install git</code>, we go get the <code>Pakfile.lock</code> for git. There we have a graph of all dependencies that we can compare with our local <code>Pakfile.lock</code> of our profile.
 If there is a sub-dependency at any point that conflicts we show an error. If there are no conflicts, we can download in parallel every sub-dependency.</p>
@@ -205,13 +210,14 @@ If there is a sub-dependency at any point that conflicts we show an error. If th
 <p>Blog posts:
 - Just files (what are package manages)
 - Apps vs Libraries (branching strategy: trunk dev vs multi branch, config via files vs params, granular semver versioning vs 1ver).</p>
-<h2 id="authors-to-concatc">AUthors to concatc<a class="headerlink" href="#authors-to-concatc" title="Permanent link">¶</a></h2>
+<h2 id="authors-to-concatc">AUthors to concatc<a class="headerlink" href="#authors-to-concatc" title="Permanent link">&para;</a></h2>
 <p>Russell Keith-Magee @freakboy3742
 Distr1</p>
 </article>
-<footer class="column-right light">
-<nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> - <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | README.txt</nav>
-</footer>
-</main>
+
+      <footer class="column-right light">
+        <nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> - <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | README.txt</nav>
+      </footer>
+  </main>
 </body>
 </html>

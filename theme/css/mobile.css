@@ -1,6 +1,7 @@
 body {
   flex-direction: column;
   align-content: flex-start;
+  margin: 1em;
   max-width: 40em;
 }
 

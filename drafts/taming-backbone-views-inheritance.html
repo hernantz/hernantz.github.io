@@ -1,68 +1,75 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<title>Taming Backbone view's inheritance | README.txt</title>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport"/>
-<link href="/theme/css/pygments-default.css" rel="stylesheet" type="text/css"/>
-<link href="/theme/css/main.css" rel="stylesheet" type="text/css"/>
-<link href="/theme/css/mobile.css" media="(max-width: 750px)" rel="stylesheet" type="text/css"/>
-<link href="/images/favicon.ico" rel="icon" type="image/x-icon"/>
-<link href="/rss.xml" rel="alternate" title="README.txt RSS Feed" type="application/atom+xml"/>
-<meta content="Some strategies to reuse code in your views" name="description"/>
-<meta content="backbone, javascript, best-practices" name="keywords"/>
-<meta content="hernantz" name="author"/>
-<link href="http://hernantz.github.io/drafts/taming-backbone-views-inheritance.html" rel="canonical"/><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "README.txt", "item": "http://hernantz.github.io"}, {"@type": "ListItem", "position": 2, "name": "Drafts", "item": "http://hernantz.github.io/drafts"}, {"@type": "ListItem", "position": 3, "name": "Taming backbone views inheritance", "item": "http://hernantz.github.io/drafts/taming-backbone-views-inheritance.html"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "author": {"@type": "Person", "name": "hernantz"}, "publisher": {"@type": "Organization", "name": "README.txt"}, "headline": "Taming Backbone view's inheritance", "about": "Programming", "datePublished": "2015-05-15 00:00"}</script></head>
+  <title>Taming Backbone view's inheritance | README.txt</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="/theme/css/pygments-default.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/dark/main.css" media="(prefers-color-scheme: dark)" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/dark/pygments-base16-applepips-dark.css" media="(prefers-color-scheme: dark)" type="text/css" />
+  <link rel="stylesheet" media="(max-width: 750px)" href="/theme/css/mobile.css" type="text/css" />
+  <link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
+  <link href="/rss.xml" type="application/atom+xml" rel="alternate" title="README.txt RSS Feed" />
+  <meta name="description" content="Some strategies to reuse code in your views">
+  <meta name="keywords" content="backbone, javascript, best-practices">
+  <meta name="author" content="hernantz">
+</head>
+
 <body>
-<aside class="sidebar">
-<a href="/"><img height="75" src="/images/avatar.png" width="75"/></a>
-<nav>
-<ul>
-<li><a href="http://twitter.com/hernantz">twitter</a></li>
-<li><a href="http://github.com/hernantz">github</a></li>
-<li><a href="http://last.fm/user/hernantz">last.fm</a></li>
-<li><a href="https://www.rottentomatoes.com/user/id/973196678">tomatoes</a></li>
-<li><a href="/talks.html">talks</a></li>
-<li><a href="/whoami.html">whoami</a></li>
-<li><a href="/">blog</a></li>
-</ul>
-</nav>
-</aside>
-<main>
+  <aside class="sidebar">
+    <a href="/"><img src="/images/avatar.png" height="75" width="75" /></a>
+
+      <nav>
+        <ul>
+            <li><a href="http://twitter.com/hernantz">twitter</i></a></li>
+            <li><a href="http://github.com/hernantz">github</i></a></li>
+            <li><a href="http://last.fm/user/hernantz">last.fm</i></a></li>
+            <li><a href="https://www.rottentomatoes.com/user/id/973196678">tomatoes</i></a></li>
+            <li><a href="/talks.html">talks</a></li>
+            <li><a href="/whoami.html">whoami</a></li>
+            <li><a href="/">blog</a></li>
+        </ul>
+      </nav>
+
+  </aside>
+  <main>
+        
 <article class="column-right">
-<h1 class="main-title">Taming Backbone view's inheritance</h1>
-<summary>
-<p class="light">
+  <h1 class="main-title">Taming Backbone view's inheritance</h1>
+  <summary>
+    <p class="light">
       Published
 on <time datetime="2015-05-15T00:00:00-03:00">2015-05-15</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
       tagged with <a href="http://hernantz.github.io/tag/backbone.html">backbone</a>, <a href="http://hernantz.github.io/tag/javascript.html">javascript</a> and <a href="http://hernantz.github.io/tag/best-practices.html">best-practices</a>.
     </p>
-</summary>
-<p><img alt="X-Ray by Eric Drooker" src="/images/x-ray.jpg" title="X-Ray by Eric Drooker"/></p>
+  </summary>
+  <p><img alt="X-Ray by Eric Drooker" src="/images/x-ray.jpg" title="X-Ray by Eric Drooker"></p>
 <p>Alternative title: DRYing out your Backbone views</p>
 <p>The idea of this post is to show some possible approaches to reuse code
 in your backbone views.</p>
 <p>Usar un timeline de recent activity feed como ejemplo. Tenemos cosas en comun (marcar como leido, por ejemplo) y cada
 feed es diferente.</p>
-<h2 id="first-approach-extend-a-generic-view">First approach: extend a generic view<a class="headerlink" href="#first-approach-extend-a-generic-view" title="Permanent link">¶</a></h2>
+<h2 id="first-approach-extend-a-generic-view">First approach: extend a generic view<a class="headerlink" href="#first-approach-extend-a-generic-view" title="Permanent link">&para;</a></h2>
 <p>MarionetteJS item view y collectionview
 podes tener 100 de estos tipos de vistas, y cambian muy pocas cosas, como el template.
 Hacer prueba de instanciar una vista generica y solo pasarle el template, el $el, la coleccion, etc.</p>
-<h2 id="second-approach-extend-a-parent-view">Second approach: extend a parent view<a class="headerlink" href="#second-approach-extend-a-parent-view" title="Permanent link">¶</a></h2>
+<h2 id="second-approach-extend-a-parent-view">Second approach: extend a parent view<a class="headerlink" href="#second-approach-extend-a-parent-view" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">BaseView</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">();</span>
 <span class="kd">var</span> <span class="nx">ChildView</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">BaseView</span><span class="p">,</span> <span class="p">{});</span>
 </code></pre></div>
-<h2 id="third-approach-parent-view-contains-child-views">Third approach: parent view contains child views<a class="headerlink" href="#third-approach-parent-view-contains-child-views" title="Permanent link">¶</a></h2>
-<h2 id="forth-approach-marionettejsbehaviour">Forth approach: MarionetteJS.Behaviour<a class="headerlink" href="#forth-approach-marionettejsbehaviour" title="Permanent link">¶</a></h2>
+
+<h2 id="third-approach-parent-view-contains-child-views">Third approach: parent view contains child views<a class="headerlink" href="#third-approach-parent-view-contains-child-views" title="Permanent link">&para;</a></h2>
+<h2 id="forth-approach-marionettejsbehaviour">Forth approach: MarionetteJS.Behaviour<a class="headerlink" href="#forth-approach-marionettejsbehaviour" title="Permanent link">&para;</a></h2>
 <p>LEER http://blog.siftscience.com/blog/2015/best-practices-for-building-large-react-applications
 Ejemplo modales + login o las columnas del dashboard de divvy
 https://www.youtube.com/watch?v=CTr-tTwRH3o
 https://www.youtube.com/watch?v=6wvAswHkarE</p>
 </article>
-<footer class="column-right light">
-<nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> - <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | README.txt</nav>
-</footer>
-</main>
+
+      <footer class="column-right light">
+        <nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> - <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | README.txt</nav>
+      </footer>
+  </main>
 </body>
 </html>

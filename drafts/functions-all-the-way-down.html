@@ -1,164 +1,201 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<title>Functions all the way down | README.txt</title>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport"/>
-<link href="/theme/css/pygments-default.css" rel="stylesheet" type="text/css"/>
-<link href="/theme/css/main.css" rel="stylesheet" type="text/css"/>
-<link href="/theme/css/mobile.css" media="(max-width: 750px)" rel="stylesheet" type="text/css"/>
-<link href="/images/favicon.ico" rel="icon" type="image/x-icon"/>
-<link href="/rss.xml" rel="alternate" title="README.txt RSS Feed" type="application/atom+xml"/>
-<meta content="A thought experiment on using functions everywhere" name="description"/>
-<meta content="fp, ideas, javascript" name="keywords"/>
-<meta content="hernantz" name="author"/>
-<link href="http://hernantz.github.io/drafts/functions-all-the-way-down.html" rel="canonical"/><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "README.txt", "item": "http://hernantz.github.io"}, {"@type": "ListItem", "position": 2, "name": "Drafts", "item": "http://hernantz.github.io/drafts"}, {"@type": "ListItem", "position": 3, "name": "Functions all the way down", "item": "http://hernantz.github.io/drafts/functions-all-the-way-down.html"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "author": {"@type": "Person", "name": "hernantz"}, "publisher": {"@type": "Organization", "name": "README.txt"}, "headline": "Functions all the way down", "about": "Programming", "datePublished": "2020-06-20 00:00"}</script></head>
+  <title>Functions all the way down | README.txt</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="/theme/css/pygments-default.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/dark/main.css" media="(prefers-color-scheme: dark)" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/dark/pygments-base16-applepips-dark.css" media="(prefers-color-scheme: dark)" type="text/css" />
+  <link rel="stylesheet" media="(max-width: 750px)" href="/theme/css/mobile.css" type="text/css" />
+  <link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
+  <link href="/rss.xml" type="application/atom+xml" rel="alternate" title="README.txt RSS Feed" />
+  <meta name="description" content="A thought experiment on using functions everywhere">
+  <meta name="keywords" content="fp, ideas, javascript">
+  <meta name="author" content="hernantz">
+</head>
+
 <body>
-<aside class="sidebar">
-<a href="/"><img height="75" src="/images/avatar.png" width="75"/></a>
-<nav>
-<ul>
-<li><a href="http://twitter.com/hernantz">twitter</a></li>
-<li><a href="http://github.com/hernantz">github</a></li>
-<li><a href="http://last.fm/user/hernantz">last.fm</a></li>
-<li><a href="https://www.rottentomatoes.com/user/id/973196678">tomatoes</a></li>
-<li><a href="/talks.html">talks</a></li>
-<li><a href="/whoami.html">whoami</a></li>
-<li><a href="/">blog</a></li>
-</ul>
-</nav>
-</aside>
-<main>
+  <aside class="sidebar">
+    <a href="/"><img src="/images/avatar.png" height="75" width="75" /></a>
+
+      <nav>
+        <ul>
+            <li><a href="http://twitter.com/hernantz">twitter</i></a></li>
+            <li><a href="http://github.com/hernantz">github</i></a></li>
+            <li><a href="http://last.fm/user/hernantz">last.fm</i></a></li>
+            <li><a href="https://www.rottentomatoes.com/user/id/973196678">tomatoes</i></a></li>
+            <li><a href="/talks.html">talks</a></li>
+            <li><a href="/whoami.html">whoami</a></li>
+            <li><a href="/">blog</a></li>
+        </ul>
+      </nav>
+
+  </aside>
+  <main>
+        
 <article class="column-right">
-<h1 class="main-title">Functions all the way down</h1>
-<summary>
-<p class="light">
+  <h1 class="main-title">Functions all the way down</h1>
+  <summary>
+    <p class="light">
       Published
 on <time datetime="2020-06-20T00:00:00-03:00">2020-06-20</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
       tagged with <a href="http://hernantz.github.io/tag/fp.html">fp</a>, <a href="http://hernantz.github.io/tag/ideas.html">ideas</a> and <a href="http://hernantz.github.io/tag/javascript.html">javascript</a>.
     </p>
-</summary>
-<p><img alt="tutles all the way down" src="/images/turtles-all-the-way-down.jpg" title="Turtles all the way down"/></p>
-<h2 id="computations">Computations<a class="headerlink" href="#computations" title="Permanent link">¶</a></h2>
+  </summary>
+  <p><img alt="tutles all the way down" src="/images/turtles-all-the-way-down.jpg" title="Turtles all the way down"></p>
+<h2 id="computations">Computations<a class="headerlink" href="#computations" title="Permanent link">&para;</a></h2>
 <p>The basic building block of a functional language is obviously a function. Functions represent computations that take inputs and return outputs as results.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">add</span> <span class="o">=</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span>
 </code></pre></div>
+
 <p>Since functions are first class citizens, functions can be values too, so functions can return functions.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">add</span> <span class="o">=</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span>
 </code></pre></div>
+
 <p>Here <code>add</code> is a function that takes an argument <code>x</code>, returns a function that takes and argument <code>y</code> and adds them together.
 This is called curring. It helps you write functions that are more composable.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">incr</span> <span class="o">=</span> <span class="nx">add</span><span class="p">(</span><span class="mf">1</span><span class="p">)</span>
 </code></pre></div>
+
 <p>Now <code>incr</code> is a new function that has been loaded with one param and can be passed around as a parameter to other functions or called later with the remaining param.</p>
 <div class="highlight"><pre><span></span><code><span class="nx">incr</span><span class="p">(</span><span class="mf">4</span><span class="p">)</span> <span class="c1">// will output 5</span>
 </code></pre></div>
+
 <p>Like we said, functions represent computations, but the results might not be always needed. So a way to defer computations until they are needed is to return expressions wrapped in functions.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">lazyadd</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span>
 </code></pre></div>
+
 <p>This way we can represent the eventual result as:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">sum</span> <span class="o">=</span> <span class="nx">lazyadd</span><span class="p">(</span><span class="mf">1</span><span class="p">)(</span><span class="mf">2</span><span class="p">)</span>
 <span class="nx">sum</span><span class="p">()</span> <span class="c1">// outputs 3</span>
 </code></pre></div>
-<h2 id="branches">Branches<a class="headerlink" href="#branches" title="Permanent link">¶</a></h2>
+
+<h2 id="branches">Branches<a class="headerlink" href="#branches" title="Permanent link">&para;</a></h2>
 <p>At some point we will need control structures to make decisions.
 Something like the if/then blocks in other languages. We don't have anything but functions here. So functions we use:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">truthy</span> <span class="o">=</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">x</span>
 <span class="kd">let</span> <span class="nx">falsy</span> <span class="o">=</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">y</span>
 </code></pre></div>
+
 <p>Along with these boolean representations we would need some form of primitive that returns them. We could assume in this case that <code>==</code> is baked into the language.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">eq</span> <span class="o">=</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">x</span> <span class="o">==</span> <span class="nx">y</span> <span class="o">?</span> <span class="nx">truthy</span> <span class="o">:</span> <span class="nx">falsy</span><span class="p">;</span>
 </code></pre></div>
+
 <p>Now that we can compare, we can make decisions.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">ifthen</span> <span class="o">=</span> <span class="p">(</span><span class="nx">bool</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">then</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">otherwise</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">bool</span><span class="p">(</span><span class="nx">then</span><span class="p">)(</span><span class="nx">otherwise</span><span class="p">)</span>
 </code></pre></div>
+
 <p>Or build more complex boolean logic.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">negate</span> <span class="o">=</span> <span class="p">(</span><span class="nx">bool</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">ifthen</span><span class="p">(</span><span class="nx">eq</span><span class="p">(</span><span class="nx">bool</span><span class="p">)(</span><span class="nx">truthy</span><span class="p">))(</span><span class="nx">falsy</span><span class="p">)(</span><span class="nx">truthy</span><span class="p">)</span>
 </code></pre></div>
+
 <p>We still have one problem, <code>x</code> and <code>y</code> are values already evaluated, we should only execute them if and only if they need to. For this we re-define our booleans as:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">truthy</span> <span class="o">=</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">x</span><span class="p">()</span>
 <span class="kd">let</span> <span class="nx">falsy</span> <span class="o">=</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">y</span><span class="p">()</span>
 </code></pre></div>
+
 <p>Booleans now represent branches in computation by functions that are executed lazily.</p>
-<h2 id="containers">Containers<a class="headerlink" href="#containers" title="Permanent link">¶</a></h2>
+<h2 id="containers">Containers<a class="headerlink" href="#containers" title="Permanent link">&para;</a></h2>
 <p>As we can see, functions can hold data as parameters and as return values. But how do we represent a container of x number of values?</p>
 <p>We could create a function that take n arguments.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">container</span> <span class="o">=</span> <span class="p">(</span><span class="nx">fst</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">snd</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="cm">/* do something */</span> <span class="p">}</span>
 </code></pre></div>
+
 <p>But we would need to create multiple functions for each size of containers we have to work with. It would be great to have just one function that represented all data containers, no matter their size.</p>
 <p>That abstraction we are looking for is the linked list.</p>
 <p>A linked list is basically a tuple of a value an a pointer to another tuple. So we need a function that accepts only two arguments.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">list</span> <span class="o">=</span> <span class="p">(</span><span class="nx">fst</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">snd</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="cm">/* do something */</span>  <span class="p">};</span>
 </code></pre></div>
+
 <p>Now I can create a list of any size, it is lists all the way down!</p>
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">numbers</span> <span class="o">=</span> <span class="nx">list</span><span class="p">(</span><span class="mf">1</span><span class="p">)(</span><span class="nx">list</span><span class="p">(</span><span class="mf">2</span><span class="p">)(</span><span class="mf">3</span><span class="p">))</span>
 </code></pre></div>
+
 <p>It would be very convenient to be able to tell when the list finishes, so lets establish the convention that the last element of any list is always the null value.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">numbers</span> <span class="o">=</span> <span class="nx">list</span><span class="p">(</span><span class="mf">1</span><span class="p">)(</span><span class="nx">list</span><span class="p">(</span><span class="mf">2</span><span class="p">)(</span><span class="nx">list</span><span class="p">(</span><span class="mf">3</span><span class="p">)(</span><span class="kc">null</span><span class="p">)))</span>
 </code></pre></div>
+
 <p>This way we can create lists that hold just one element.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">one</span> <span class="o">=</span> <span class="nx">list</span><span class="p">(</span><span class="mf">1</span><span class="p">)(</span><span class="kc">null</span><span class="p">)</span>
 </code></pre></div>
+
 <p>How to we get data back? After all this list should just be a container, and perform no calculations. We will return a getter function!</p>
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">list</span> <span class="o">=</span> <span class="p">(</span><span class="nx">fst</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">snd</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">getter</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">getter</span><span class="p">(</span><span class="nx">fst</span><span class="p">)(</span><span class="nx">snd</span><span class="p">)</span>
 </code></pre></div>
+
 <p>This function <code>list</code> takes only two arguments. And returns a generic getter, to extract any of these values back.</p>
 <p>Since we are working with just two values and we already know how to  make binary decisions, let's write aliases for those getters.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">head</span> <span class="o">=</span> <span class="p">(</span><span class="nx">xs</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">xs</span><span class="p">(</span><span class="nx">truthy</span><span class="p">)</span>
 <span class="kd">let</span> <span class="nx">tail</span> <span class="o">=</span> <span class="p">(</span><span class="nx">xs</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">xs</span><span class="p">(</span><span class="nx">falsy</span><span class="p">)</span>
 </code></pre></div>
+
 <p>This way we can access all the items inside the list.</p>
 <div class="highlight"><pre><span></span><code><span class="nx">head</span><span class="p">(</span><span class="nx">numbers</span><span class="p">)</span> <span class="c1">// 1</span>
 <span class="nx">head</span><span class="p">(</span><span class="nx">tail</span><span class="p">(</span><span class="nx">numbers</span><span class="p">))</span> <span class="c1">// 2</span>
 <span class="nx">tail</span><span class="p">(</span><span class="nx">tail</span><span class="p">(</span><span class="nx">numbers</span><span class="p">))</span> <span class="c1">// 3</span>
 </code></pre></div>
+
 <p>Now, this won't work unless we re-define our contract with lists.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">numbers</span> <span class="o">=</span> <span class="nx">list</span><span class="p">(()=&gt;</span><span class="mf">1</span><span class="p">)(()=&gt;</span><span class="nx">list</span><span class="p">(()=&gt;</span><span class="mf">2</span><span class="p">)(()=&gt;</span><span class="kc">null</span><span class="p">))</span>
 </code></pre></div>
+
 <p>Lists now contain functions that return values, only when inspected.</p>
-<h2 id="generators">Generators<a class="headerlink" href="#generators" title="Permanent link">¶</a></h2>
+<h2 id="generators">Generators<a class="headerlink" href="#generators" title="Permanent link">&para;</a></h2>
 <p>Not only our lists are immutable, but also lazy. This has a nice side effect. We have accidentally created lazy generators.</p>
 <p>This means we can represent infinite lists, like all the natural numbers that are computed only when accessed/evaluated:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">numbers</span> <span class="o">=</span> <span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">list</span><span class="p">(()=&gt;</span><span class="nx">n</span><span class="p">)(()=&gt;</span><span class="nx">numbers</span><span class="p">(</span><span class="nx">n</span><span class="o">+</span><span class="mf">1</span><span class="p">))</span>
 </code></pre></div>
+
 <p>If we start generalizing again, the signature of every generator would look like this: </p>
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">gen</span> <span class="o">=</span> <span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">list</span><span class="p">(()=&gt;</span><span class="nx">v</span><span class="p">)(()=&gt;</span><span class="nx">gen</span><span class="p">(</span><span class="nx">fn</span><span class="p">)(</span><span class="nx">fn</span><span class="p">(</span><span class="nx">v</span><span class="p">)))</span>
 </code></pre></div>
+
 <p>And now we can rewrite our natural numbers generator reusing the <code>incr</code> function.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">numbers</span> <span class="o">=</span> <span class="nx">gen</span><span class="p">(</span><span class="nx">incr</span><span class="p">)(</span><span class="mf">0</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="streams">Streams<a class="headerlink" href="#streams" title="Permanent link">¶</a></h2>
+
+<h2 id="streams">Streams<a class="headerlink" href="#streams" title="Permanent link">&para;</a></h2>
 <p>If we start generalizing again, a way to iterate </p>
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">cons</span> <span class="o">=</span> <span class="p">(</span><span class="nx">xs</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">list</span><span class="p">(()=&gt;</span><span class="nx">head</span><span class="p">(</span><span class="nx">xs</span><span class="p">))(()=&gt;</span><span class="nx">cons</span><span class="p">(</span><span class="nx">tail</span><span class="p">(</span><span class="nx">xs</span><span class="p">))</span>
 </code></pre></div>
+
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">cons</span> <span class="o">=</span> <span class="p">(</span><span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">gen</span>
 </code></pre></div>
+
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">range</span> <span class="o">=</span> <span class="nx">i</span> <span class="p">=&gt;</span> <span class="nx">n</span> <span class="p">=&gt;</span> <span class="nx">gen</span> <span class="nx">numbers</span> <span class="p">(</span><span class="nx">i</span><span class="p">)</span>
 </code></pre></div>
+
 <p>Map is a list creator so we can join maps.</p>
 <p>Imagine function next that lets you advance to the next value, based on a condition</p>
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">ends</span> <span class="o">=</span> <span class="p">(</span><span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">xs</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">ifthen</span><span class="p">(</span><span class="nx">islast</span><span class="p">(</span><span class="nx">xs</span><span class="p">))</span>
                                    <span class="p">(()=&gt;()=&gt;</span><span class="kc">null</span><span class="p">)</span>
                                    <span class="p">(()=&gt;()=&gt;</span><span class="nx">next</span><span class="p">(</span><span class="nx">xs</span><span class="p">))</span>
 </code></pre></div>
+
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">check</span> <span class="o">=</span> <span class="p">(</span><span class="nx">condition</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">xs</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">ifthen</span><span class="p">(</span><span class="nx">condition</span><span class="p">(</span><span class="nx">xs</span><span class="p">))</span>
                                                   <span class="p">(()=&gt;()=&gt;</span><span class="kc">null</span><span class="p">)</span>
                                                   <span class="p">(()=&gt;()=&gt;</span><span class="nx">next</span><span class="p">(</span><span class="nx">tail</span><span class="p">(</span><span class="nx">xs</span><span class="p">)))</span>
 </code></pre></div>
+
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">ends</span> <span class="o">=</span> <span class="nx">check</span> <span class="p">(</span><span class="nx">islast</span><span class="p">)</span>
 </code></pre></div>
+
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">gen</span> <span class="o">=</span> <span class="p">(</span><span class="nx">acc</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">check</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">acc</span><span class="p">(()=&gt;</span><span class="nx">v</span><span class="p">)</span>
                                                 <span class="p">(</span><span class="nx">check</span><span class="p">(</span><span class="nx">gen</span><span class="p">(</span><span class="nx">check</span><span class="p">)(</span><span class="nx">acc</span><span class="p">)(</span><span class="nx">fn</span><span class="p">))(</span><span class="nx">fn</span><span class="p">(</span><span class="nx">v</span><span class="p">)))</span>
 </code></pre></div>
+
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">range</span> <span class="o">=</span> <span class="p">(</span><span class="nx">start</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">end</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">gen</span><span class="p">(</span><span class="nx">list</span><span class="p">)(</span><span class="nx">eq</span><span class="p">(</span><span class="nx">end</span><span class="p">))(</span><span class="nx">id</span><span class="p">)(</span><span class="nx">incr</span><span class="p">(</span><span class="nx">start</span><span class="p">))</span>
 </code></pre></div>
+
 <p>filter es una function que avanza sin hacer nada con los elementos si no cumplen la funcion, y si la cumple llama a next(head(xs)), si no, llama a tail(xs)?</p>
-<h2 id="loops">Loops<a class="headerlink" href="#loops" title="Permanent link">¶</a></h2>
+<h2 id="loops">Loops<a class="headerlink" href="#loops" title="Permanent link">&para;</a></h2>
 <p>Instead of <em>for loops</em>, we use recursion to iterate and manipulate values one by one.</p>
 <p>The layout of map looks like this:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">map</span> <span class="o">=</span> <span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">xs</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">list</span><span class="p">(()=&gt;</span><span class="nx">fn</span><span class="p">(</span><span class="nx">head</span><span class="p">(</span><span class="nx">xs</span><span class="p">)))(()=&gt;</span><span class="nx">map</span><span class="p">(</span><span class="nx">fn</span><span class="p">)(</span><span class="nx">tail</span><span class="p">(</span><span class="nx">xs</span><span class="p">)))</span>
 </code></pre></div>
+
 <p>It takes a <code>fn</code> to apply to each element of <code>xs</code>, so we build a new <code>list</code> with the using <code>head</code> and recursively mapping the <code>tail</code>.</p>
 <p>We face our first problem with recursion. We need a base case:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">map</span> <span class="o">=</span> <span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">xs</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">list</span><span class="p">(()=&gt;</span><span class="nx">fn</span><span class="p">(</span><span class="nx">head</span><span class="p">(</span><span class="nx">xs</span><span class="p">)))</span>
@@ -166,16 +203,19 @@ Something like the if/then blocks in other languages. We don't have anything but
                                      <span class="p">(()=&gt;()=&gt;</span><span class="kc">null</span><span class="p">)</span>
                                      <span class="p">(()=&gt;()=&gt;</span><span class="nx">map</span><span class="p">(</span><span class="nx">fn</span><span class="p">)(</span><span class="nx">tail</span><span class="p">(</span><span class="nx">xs</span><span class="p">))))</span>
 </code></pre></div>
+
 <p>The base case is a helper function that tells us when to stop the recursion, in this case, when we reached the end of the list.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">islast</span> <span class="o">=</span> <span class="p">(</span><span class="nx">xs</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">eq</span><span class="p">(</span><span class="nx">tail</span><span class="p">(</span><span class="nx">xs</span><span class="p">))(</span><span class="kc">null</span><span class="p">)</span>
 <span class="nx">islast</span><span class="p">(</span><span class="nx">one</span><span class="p">)</span> <span class="c1">// truthy</span>
 </code></pre></div>
+
 <p>A more general implementation is to accept other function as the accumulator.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">fold</span> <span class="o">=</span> <span class="p">(</span><span class="nx">acc</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">xs</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">acc</span><span class="p">(()=&gt;</span><span class="nx">fn</span><span class="p">(</span><span class="nx">head</span><span class="p">(</span><span class="nx">xs</span><span class="p">)))</span>
                                        <span class="p">(</span><span class="nx">ifthen</span><span class="p">(</span><span class="nx">islast</span><span class="p">(</span><span class="nx">xs</span><span class="p">))</span>
                                               <span class="p">(()=&gt;()=&gt;</span><span class="kc">null</span><span class="p">)</span>
                                               <span class="p">(()=&gt;()=&gt;</span><span class="nx">fold</span><span class="p">(</span><span class="nx">acc</span><span class="p">)(</span><span class="nx">fn</span><span class="p">)(</span><span class="nx">tail</span><span class="p">(</span><span class="nx">xs</span><span class="p">))))</span>
 </code></pre></div>
+
 <p>With this abstraction we can not only compose <code>map</code>, but some functions like <code>sum</code> and <code>length</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">id</span> <span class="o">=</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">x</span>
 <span class="kd">let</span> <span class="nx">add</span> <span class="o">=</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">x</span><span class="p">()</span> <span class="o">+</span> <span class="nx">y</span><span class="p">()</span>
@@ -185,16 +225,18 @@ Something like the if/then blocks in other languages. We don't have anything but
 <span class="kd">let</span> <span class="nx">sum</span> <span class="o">=</span> <span class="nx">fold</span><span class="p">(</span><span class="nx">add</span><span class="p">)(</span><span class="nx">id</span><span class="p">)</span>
 <span class="kd">let</span> <span class="nx">length</span> <span class="o">=</span> <span class="nx">fold</span><span class="p">(</span><span class="nx">add</span><span class="p">)(</span><span class="nx">ones</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="more">More<a class="headerlink" href="#more" title="Permanent link">¶</a></h2>
+
+<h2 id="more">More<a class="headerlink" href="#more" title="Permanent link">&para;</a></h2>
 <p>There are many other functions that we should explore, like filter, reverse, index, etc.</p>
 <p>But I think by now we can appreciate that <a href="https://www.cs.kent.ac.uk/people/staff/dat/miranda/whyfp90.pdf">functions are really powerful</a> building blocks.</p>
 <p>Of course this syntax is very illegible and cumbersome, and writing <code>map(fn, [1, 2, 3])</code> is way more expressive.</p>
 <p>This was just a <a href="https://www.youtube.com/watch?v=pUN3algpvMs">thought experiment</a>, an academic one. So don't try this at home.</p>
 <p>https://www.youtube.com/watch?v=Em2jqwROdZc "Building Async/Await FROM SCRATCH using Generators"</p>
 </article>
-<footer class="column-right light">
-<nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> - <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | README.txt</nav>
-</footer>
-</main>
+
+      <footer class="column-right light">
+        <nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> - <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | README.txt</nav>
+      </footer>
+  </main>
 </body>
 </html>

@@ -1,47 +1,52 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<title>Configuration is an API, not an SDK | README.txt</title>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport"/>
-<link href="/theme/css/pygments-default.css" rel="stylesheet" type="text/css"/>
-<link href="/theme/css/main.css" rel="stylesheet" type="text/css"/>
-<link href="/theme/css/mobile.css" media="(max-width: 750px)" rel="stylesheet" type="text/css"/>
-<link href="/images/favicon.ico" rel="icon" type="image/x-icon"/>
-<link href="/rss.xml" rel="alternate" title="README.txt RSS Feed" type="application/atom+xml"/>
-<meta content="A configuration architecture for the working dev." name="description"/>
-<meta content="python, best-practices, tools, configuration, architecture" name="keywords"/>
-<meta content="hernantz" name="author"/>
-<link href="http://hernantz.github.io/configuration-is-an-api-not-an-sdk.html" rel="canonical"/><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "README.txt", "item": "http://hernantz.github.io"}, {"@type": "ListItem", "position": 2, "name": "Configuration is an api not an sdk", "item": "http://hernantz.github.io/configuration-is-an-api-not-an-sdk.html"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "author": {"@type": "Person", "name": "hernantz"}, "publisher": {"@type": "Organization", "name": "README.txt"}, "headline": "Configuration is an API, not an SDK", "about": "Programming", "datePublished": "2020-06-27 00:00"}</script></head>
+  <title>Configuration is an API, not an SDK | README.txt</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="/theme/css/pygments-default.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/dark/main.css" media="(prefers-color-scheme: dark)" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/dark/pygments-base16-applepips-dark.css" media="(prefers-color-scheme: dark)" type="text/css" />
+  <link rel="stylesheet" media="(max-width: 750px)" href="/theme/css/mobile.css" type="text/css" />
+  <link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
+  <link href="/rss.xml" type="application/atom+xml" rel="alternate" title="README.txt RSS Feed" />
+  <meta name="description" content="A configuration architecture for the working dev.">
+  <meta name="keywords" content="python, best-practices, tools, configuration, architecture">
+  <meta name="author" content="hernantz">
+</head>
+
 <body>
-<aside class="sidebar">
-<a href="/"><img height="75" src="/images/avatar.png" width="75"/></a>
-<nav>
-<ul>
-<li><a href="http://twitter.com/hernantz">twitter</a></li>
-<li><a href="http://github.com/hernantz">github</a></li>
-<li><a href="http://last.fm/user/hernantz">last.fm</a></li>
-<li><a href="https://www.rottentomatoes.com/user/id/973196678">tomatoes</a></li>
-<li><a href="/talks.html">talks</a></li>
-<li><a href="/whoami.html">whoami</a></li>
-<li><a href="/">blog</a></li>
-</ul>
-</nav>
-</aside>
-<main>
+  <aside class="sidebar">
+    <a href="/"><img src="/images/avatar.png" height="75" width="75" /></a>
+
+      <nav>
+        <ul>
+            <li><a href="http://twitter.com/hernantz">twitter</i></a></li>
+            <li><a href="http://github.com/hernantz">github</i></a></li>
+            <li><a href="http://last.fm/user/hernantz">last.fm</i></a></li>
+            <li><a href="https://www.rottentomatoes.com/user/id/973196678">tomatoes</i></a></li>
+            <li><a href="/talks.html">talks</a></li>
+            <li><a href="/whoami.html">whoami</a></li>
+            <li><a href="/">blog</a></li>
+        </ul>
+      </nav>
+
+  </aside>
+  <main>
+        
 <article class="column-right">
-<h1 class="main-title">Configuration is an API, not an SDK</h1>
-<summary>
-<p class="light">
+  <h1 class="main-title">Configuration is an API, not an SDK</h1>
+  <summary>
+    <p class="light">
       Published
 on <time datetime="2020-06-27T00:00:00-03:00">2020-06-27</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
       tagged with <a href="http://hernantz.github.io/tag/python.html">python</a>, <a href="http://hernantz.github.io/tag/best-practices.html">best-practices</a>, <a href="http://hernantz.github.io/tag/tools.html">tools</a>, <a href="http://hernantz.github.io/tag/configuration.html">configuration</a> and <a href="http://hernantz.github.io/tag/architecture.html">architecture</a>.
     </p>
-</summary>
-<p><img alt="Control room | photo by @patrykgradyscom at Unsplash" src="/images/control-room.jpg" title="Control room | photo by @patrykgradyscom at Unsplash"/></p>
+  </summary>
+  <p><img alt="Control room | photo by @patrykgradyscom at Unsplash" src="/images/control-room.jpg" title="Control room | photo by @patrykgradyscom at Unsplash"></p>
 <p>Configuration is every setting that needs to change based on the environment where the app is executed. It helps you <em>preset</em> the state of your app, without having to change the code. This is why it is important to provide a clear separation of configuration and code.</p>
-<h2 id="why-are-executable-config-files-a-bad-idea">Why are executable config files a bad idea?<a class="headerlink" href="#why-are-executable-config-files-a-bad-idea" title="Permanent link">¶</a></h2>
+<h2 id="why-are-executable-config-files-a-bad-idea">Why are executable config files a bad idea?<a class="headerlink" href="#why-are-executable-config-files-a-bad-idea" title="Permanent link">&para;</a></h2>
 <p><a href="http://hernantz.github.io/configuration-friendly-apps.html" title="Configuration-friendly apps">Configuration is just another API</a> of your app.</p>
 <p>It might be used by people with or without technical skills, that install or run your app.</p>
 <p>Executable files can be used as config sources like <code>.vimrc</code> for Vim, <code>Vagrantfile</code> for Vagrant, etc, but approach has some drawbacks.</p>
@@ -49,13 +54,14 @@ on <time datetime="2020-06-27T00:00:00-03:00">2020-06-27</time>,       under <a 
 <p>And second, your configuration is no longer hierarchical, your application cannot extract configuration from different sources by executing different files, because you cannot know in advance what is being executed. A programming language has control structures, can make calls to the internet, etc, so you can't known in advance the output you will get.</p>
 <p>If you need to let users alter the behaviour of your program, that is not strictly configuration, but there is a better solution for this: a plugin system.</p>
 <p>The best way to think of configuration is as a set of key/value dicts that need to be merged into a single config dict. No need to get fancy with yet another DSL.</p>
-<h2 id="what-configuration-format-should-i-use">What configuration format should I use?<a class="headerlink" href="#what-configuration-format-should-i-use" title="Permanent link">¶</a></h2>
+<h2 id="what-configuration-format-should-i-use">What configuration format should I use?<a class="headerlink" href="#what-configuration-format-should-i-use" title="Permanent link">&para;</a></h2>
 <p>The short answer is: it depends, but probably more than one.</p>
 <p>For example command line args are great to explore an app from the  shell, and tinker around it's possibilities.</p>
 <p>When you already know what you want it would be great to set some defaults in a configuration file somewhere. Yes, you can always set an alias, like many distros do:</p>
 <div class="highlight"><pre><span></span><code>$ <span class="nb">type</span> ll
 ll is aliased to <span class="sb">`</span>ls -alF<span class="sb">`</span>
 </code></pre></div>
+
 <p>And yes, many apps allow for both <code>-s</code> short and long <code>--more-verbose</code> arguments.</p>
 <p>Alternatively, config files are naturally better documenting and declarative. Some file formats allow for comments and are great as starter templates to build upon. With files it's easier to make diffs and track changes over time.</p>
 <p>Environment variables are the simplest way to configure apps/scripts. You just need to populate a global dictionary before executing it. There is no need to parse files or command line arguments. This practice is very common in cloud providers to inject credentials or connection strings for your app. Another example is <a href="http://qutebrowser.org/doc/userscripts.html">qutebrowser</a>; it allows the user to write <em>userscripts</em> and passes many environment variables to share the browser state before executing them.</p>
@@ -66,7 +72,7 @@ ll is aliased to <span class="sb">`</span>ls -alF<span class="sb">`</span>
 command line arguments cannot be easily changed from the outside after
 the program startup.</p>
 <p>What matters here is that env vars, command line args and files (.ini, .yml and .toml) are the most standard formats to configure apps. You should be able to configure any app with standard unix tools and a text editor. Stick to these formats when possible.</p>
-<h2 id="settings-discoverability">Settings discoverability<a class="headerlink" href="#settings-discoverability" title="Permanent link">¶</a></h2>
+<h2 id="settings-discoverability">Settings discoverability<a class="headerlink" href="#settings-discoverability" title="Permanent link">&para;</a></h2>
 <p>But what happens if a setting is passed as command line argument but also exist in a config file? Which source is more important?</p>
 <p>A proper settings-discoverability chain goes as follows:</p>
 <ol>
@@ -76,31 +82,35 @@ the program startup.</p>
 <li>Finally you fallback to hardcoded constants as defaults.</li>
 </ol>
 <p>Some of these sources may not be present or relevant to your app. But each one of these sources of configuration needs to be properly collected and overwritten with an explicit level of hierarchy. This gives more flexibility to your users, so they can run your app/script in the cloud or in their multiuser computers, using systemd or docker, etc.</p>
-<h2 id="using-the-right-tool-for-the-job">Using the right tool for the job<a class="headerlink" href="#using-the-right-tool-for-the-job" title="Permanent link">¶</a></h2>
+<h2 id="using-the-right-tool-for-the-job">Using the right tool for the job<a class="headerlink" href="#using-the-right-tool-for-the-job" title="Permanent link">&para;</a></h2>
 <p>Your application will require other tools, like compilers, installers, package managers, process supervisors, etc. These tools solve different problems of the architecture of your software.</p>
 <p>Configuration is also part of that architecture. Along with your program you will have to ship the configuration artifact. But this is not an issue that only comes up when you make a new release. When you are developing you are also making tiny releases on your laptop.</p>
 <p>So this raises the need for some tool to provide your code with the right configuration, in all its stages. Some of these tools are only used when developing or in production, ideally both envs match.</p>
 <p>There are many tools for managing configuration. For example, <a href="https://direnv.net/">direnv</a> and <a href="http://cr.yp.to/daemontools/envdir.html">envdir</a> load environment variables from directories and files. <a href="https://serverfault.com/a/438945">Systemd units</a> have a section to list them or point to an environment file populating the environment. <a href="https://docs.ansible.com/ansible/latest/">Ansible</a> includes a templating language to generate configuration files and place them anywhere in the system. <a href="https://docs.ansible.com/ansible/latest/user_guide/vault.html">Ansible Vault</a> can be used to provide the app with encrypted secrets.</p>
 <p>Some tools like <a href="https://github.com/hashicorp/consul-template">consul-template</a> or <a href="https://github.com/hashicorp/envconsul">envconsul</a> can also listen to changes in the configuration and issue a <code>SIGTERM</code> or (even better) a <code>SIGHUP</code> signal to your long running process, so that it can pick up new config values without downtime.</p>
 <p>No matter which tool you choose to manage, generate and populate the configuration artifact, the code of your app should only care about reading files, env vars and/or cli args.</p>
-<h2 id="naming-conventions-and-namespaces-for-settings">Naming conventions and namespaces for settings<a class="headerlink" href="#naming-conventions-and-namespaces-for-settings" title="Permanent link">¶</a></h2>
+<h2 id="naming-conventions-and-namespaces-for-settings">Naming conventions and namespaces for settings<a class="headerlink" href="#naming-conventions-and-namespaces-for-settings" title="Permanent link">&para;</a></h2>
 <p>There happen to be some formatting conventions for configuration parameters based on where they are set. For example, it is common to declare environment variables in uppercase:</p>
 <div class="highlight"><pre><span></span><code>$ <span class="nv">DEBUG</span><span class="o">=</span>yes <span class="nv">OTHER_CONFIG</span><span class="o">=</span><span class="m">10</span> myapp
 </code></pre></div>
+
 <p>Since the environment is a global and shared dictionary, it is a good practice to also apply some prefix to each setting to avoid collisions with other known settings, like <code>LOCALE</code>, <code>TZ</code>, etc. This prefix works as a namespace for your app.</p>
 <div class="highlight"><pre><span></span><code>$ <span class="nv">MY_APP_DEBUG</span><span class="o">=</span>yes <span class="nv">MY_APP_OTHER_CONFIG</span><span class="o">=</span><span class="m">10</span> myapp
 </code></pre></div>
+
 <p>but if you were to set this config in an .ini file, each setting should probably be in lower case, the namespace is implicit in the file path, i.e: <code>/etc/myapp/config.ini</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="k">[settings]</span>
 <span class="na">debug</span><span class="o">=</span><span class="s">yes</span>
 <span class="na">other_config</span><span class="o">=</span><span class="s">10</span>
 </code></pre></div>
+
 <p>Command line arguments have yet another conventions:</p>
 <div class="highlight"><pre><span></span><code>$ myapp --debug<span class="o">=</span>yes --another-config<span class="o">=</span><span class="m">10</span>
 </code></pre></div>
+
 <p>You probably noticed that the debug setting is a boolean value. These flags should accept different inputs like <code>yes|no</code>, <code>1|0</code>, <code>true|false</code> or <code>t|f</code>.</p>
 <p>It is important to be consistent in naming these variables, but to respect the conventions too.</p>
-<h2 id="a-solution-for-the-working-dev">A solution for the working dev<a class="headerlink" href="#a-solution-for-the-working-dev" title="Permanent link">¶</a></h2>
+<h2 id="a-solution-for-the-working-dev">A solution for the working dev<a class="headerlink" href="#a-solution-for-the-working-dev" title="Permanent link">&para;</a></h2>
 <p>If your app is written in Python, it's your lucky day.</p>
 <p><a href="https://github.com/hernantz/classyconf" title="Classyconf: configuration management for perfectionists with deadlines">Classyconf</a> is a library that helps you with a configuration architecture for perfectionists with deadlines™, or for the working dev if it sits you better.</p>
 <p>The good practices that it suggests have an agnostic approach to configure applications, no matter if they are web, CLI or GUI apps, hosted on the cloud or running in your desktop.</p>
@@ -113,44 +123,50 @@ Docs</a> website, but here is a preview of how to use it.</p>
 
     <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
         <span class="n">loaders</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">Environment</span><span class="p">(</span><span class="n">keyfmt</span><span class="o">=</span><span class="n">EnvPrefix</span><span class="p">(</span><span class="s2">"MY_APP_"</span><span class="p">)),</span>
-            <span class="n">IniFile</span><span class="p">(</span><span class="s2">"config.ini"</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="s2">"myapp"</span><span class="p">)</span>
+            <span class="n">Environment</span><span class="p">(</span><span class="n">keyfmt</span><span class="o">=</span><span class="n">EnvPrefix</span><span class="p">(</span><span class="s2">&quot;MY_APP_&quot;</span><span class="p">)),</span>
+            <span class="n">IniFile</span><span class="p">(</span><span class="s2">&quot;config.ini&quot;</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="s2">&quot;myapp&quot;</span><span class="p">)</span>
         <span class="p">]</span>
 
-    <span class="n">DEBUG</span> <span class="o">=</span> <span class="n">Value</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cast</span><span class="o">=</span><span class="n">as_boolean</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">"Toggle debugging mode."</span><span class="p">)</span>
-    <span class="n">DATABASE</span> <span class="o">=</span> <span class="n">Value</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">"postgres://localhost:5432/mydb"</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">"Database connection."</span><span class="p">)</span>
+    <span class="n">DEBUG</span> <span class="o">=</span> <span class="n">Value</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cast</span><span class="o">=</span><span class="n">as_boolean</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Toggle debugging mode.&quot;</span><span class="p">)</span>
+    <span class="n">DATABASE</span> <span class="o">=</span> <span class="n">Value</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;postgres://localhost:5432/mydb&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Database connection.&quot;</span><span class="p">)</span>
 </code></pre></div>
+
 <p>As you can see is very declarative. It uses the concept of loaders, which collect settings from different sources and merges them in the right order.</p>
 <p>This class can be extended according to different environments or needs.</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">TestConfig</span><span class="p">(</span><span class="n">AppConfig</span><span class="p">):</span>
     <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
-        <span class="n">loaders</span> <span class="o">=</span> <span class="p">[</span><span class="n">IniFile</span><span class="p">(</span><span class="s2">"test_settings.ini"</span><span class="p">),</span> <span class="n">IniFile</span><span class="p">(</span><span class="s2">"config.ini"</span><span class="p">)]</span>
+        <span class="n">loaders</span> <span class="o">=</span> <span class="p">[</span><span class="n">IniFile</span><span class="p">(</span><span class="s2">&quot;test_settings.ini&quot;</span><span class="p">),</span> <span class="n">IniFile</span><span class="p">(</span><span class="s2">&quot;config.ini&quot;</span><span class="p">)]</span>
 </code></pre></div>
+
 <p>overridden at runtime</p>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">dev_config</span> <span class="o">=</span> <span class="n">AppConfig</span><span class="p">(</span><span class="n">loaders</span><span class="o">=</span><span class="p">[</span><span class="n">IniFile</span><span class="p">(</span><span class="s2">"dev_settings.ini"</span><span class="p">)])</span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">dev_config</span> <span class="o">=</span> <span class="n">AppConfig</span><span class="p">(</span><span class="n">loaders</span><span class="o">=</span><span class="p">[</span><span class="n">IniFile</span><span class="p">(</span><span class="s2">&quot;dev_settings.ini&quot;</span><span class="p">)])</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">dev_config</span><span class="o">.</span><span class="n">DEBUG</span>
 <span class="kc">True</span>
 </code></pre></div>
+
 <p>accessed (and lazily evaluated) as dict or object</p>
 <div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">config</span><span class="o">.</span><span class="n">DEBUG</span>
 <span class="kc">False</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">config</span><span class="p">[</span><span class="s2">"DEBUG"</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;DEBUG&quot;</span><span class="p">]</span>
 <span class="kc">False</span>
 </code></pre></div>
+
 <p>introspected and iterated</p>
 <div class="highlight"><pre><span></span><code> <span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">setting</span> <span class="ow">in</span> <span class="n">config</span><span class="p">:</span>
 <span class="o">...</span>     <span class="nb">print</span><span class="p">(</span><span class="n">setting</span><span class="p">)</span>
 <span class="o">...</span>
-<span class="p">(</span><span class="s1">'DEBUG'</span><span class="p">,</span> <span class="n">Value</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s2">"DEBUG"</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">"Toggle debugging on/off."</span><span class="p">))</span>
-<span class="p">(</span><span class="s1">'DATABASE'</span><span class="p">,</span> <span class="n">Value</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s2">"DATABASE"</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">"Database connection."</span><span class="p">))</span>
+<span class="p">(</span><span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span> <span class="n">Value</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s2">&quot;DEBUG&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Toggle debugging on/off.&quot;</span><span class="p">))</span>
+<span class="p">(</span><span class="s1">&#39;DATABASE&#39;</span><span class="p">,</span> <span class="n">Value</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s2">&quot;DATABASE&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Database connection.&quot;</span><span class="p">))</span>
 </code></pre></div>
-<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h2>
+
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
 <p>The idea of this blog post was to highlight the importance of thinking configuration as an API, to follow best practices and conventions and the need to be flexible for different sources of configuration.</p>
 <p>I've shamelessly introduced <a href="https://github.com/hernantz/classyconf" title="Classyconf: configuration management for perfectionists with deadlines">classyconf</a> as a way to address all this topics, but I'm sure that similar libraries can be found for other languages as well.</p>
 </article>
-<footer class="column-right light">
-<nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> - <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | README.txt</nav>
-</footer>
-</main>
+
+      <footer class="column-right light">
+        <nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> - <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | README.txt</nav>
+      </footer>
+  </main>
 </body>
 </html>

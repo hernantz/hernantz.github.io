@@ -1,54 +1,59 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<title>Mock yourself, not your tests | README.txt</title>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport"/>
-<link href="/theme/css/pygments-default.css" rel="stylesheet" type="text/css"/>
-<link href="/theme/css/main.css" rel="stylesheet" type="text/css"/>
-<link href="/theme/css/mobile.css" media="(max-width: 750px)" rel="stylesheet" type="text/css"/>
-<link href="/images/favicon.ico" rel="icon" type="image/x-icon"/>
-<link href="/rss.xml" rel="alternate" title="README.txt RSS Feed" type="application/atom+xml"/>
-<meta content="Every mock is a smell, avoid them as much as you can." name="description"/>
-<meta content="testing, python, mocks, rants" name="keywords"/>
-<meta content="hernantz" name="author"/>
-<link href="http://hernantz.github.io/mock-yourself-not-your-tests.html" rel="canonical"/><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "README.txt", "item": "http://hernantz.github.io"}, {"@type": "ListItem", "position": 2, "name": "Mock yourself not your tests", "item": "http://hernantz.github.io/mock-yourself-not-your-tests.html"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "author": {"@type": "Person", "name": "hernantz"}, "publisher": {"@type": "Organization", "name": "README.txt"}, "headline": "Mock yourself, not your tests", "about": "Programming", "datePublished": "2015-07-27 00:00"}</script></head>
+  <title>Mock yourself, not your tests | README.txt</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="/theme/css/pygments-default.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/dark/main.css" media="(prefers-color-scheme: dark)" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/dark/pygments-base16-applepips-dark.css" media="(prefers-color-scheme: dark)" type="text/css" />
+  <link rel="stylesheet" media="(max-width: 750px)" href="/theme/css/mobile.css" type="text/css" />
+  <link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
+  <link href="/rss.xml" type="application/atom+xml" rel="alternate" title="README.txt RSS Feed" />
+  <meta name="description" content="Every mock is a smell, avoid them as much as you can.">
+  <meta name="keywords" content="testing, python, mocks, rants">
+  <meta name="author" content="hernantz">
+</head>
+
 <body>
-<aside class="sidebar">
-<a href="/"><img height="75" src="/images/avatar.png" width="75"/></a>
-<nav>
-<ul>
-<li><a href="http://twitter.com/hernantz">twitter</a></li>
-<li><a href="http://github.com/hernantz">github</a></li>
-<li><a href="http://last.fm/user/hernantz">last.fm</a></li>
-<li><a href="https://www.rottentomatoes.com/user/id/973196678">tomatoes</a></li>
-<li><a href="/talks.html">talks</a></li>
-<li><a href="/whoami.html">whoami</a></li>
-<li><a href="/">blog</a></li>
-</ul>
-</nav>
-</aside>
-<main>
+  <aside class="sidebar">
+    <a href="/"><img src="/images/avatar.png" height="75" width="75" /></a>
+
+      <nav>
+        <ul>
+            <li><a href="http://twitter.com/hernantz">twitter</i></a></li>
+            <li><a href="http://github.com/hernantz">github</i></a></li>
+            <li><a href="http://last.fm/user/hernantz">last.fm</i></a></li>
+            <li><a href="https://www.rottentomatoes.com/user/id/973196678">tomatoes</i></a></li>
+            <li><a href="/talks.html">talks</a></li>
+            <li><a href="/whoami.html">whoami</a></li>
+            <li><a href="/">blog</a></li>
+        </ul>
+      </nav>
+
+  </aside>
+  <main>
+        
 <article class="column-right">
-<h1 class="main-title">Mock yourself, not your tests</h1>
-<summary>
-<p class="light">
+  <h1 class="main-title">Mock yourself, not your tests</h1>
+  <summary>
+    <p class="light">
       Published
 on <time datetime="2015-07-27T00:00:00-03:00">2015-07-27</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
       tagged with <a href="http://hernantz.github.io/tag/testing.html">testing</a>, <a href="http://hernantz.github.io/tag/python.html">python</a>, <a href="http://hernantz.github.io/tag/mocks.html">mocks</a> and <a href="http://hernantz.github.io/tag/rants.html">rants</a>.
     </p>
-</summary>
-<p><em>tl;dr</em>: While sometimes mocks are needed, they should not be the first tool 
+  </summary>
+  <p><em>tl;dr</em>: While sometimes mocks are needed, they should not be the first tool 
 you use to write tests. It is a pity to be mocking your code when you could
 be writing meaningful tests at <em>almost</em> the same cost.</p>
-<p><img alt="stower-titanic" src="/images/mock-yourself-not-your-tests.jpg" title="Der Untergang der Titanic by Willy Stöwer"/></p>
+<p><img alt="stower-titanic" src="/images/mock-yourself-not-your-tests.jpg" title="Der Untergang der Titanic by Willy Stöwer"></p>
 <p>In this post I try to discourage the use of mocks when writing tests.
 I'm not completely against them (I see their value) but it's that sometimes 
 I feel like we abuse of them, just to make tests pass, feel comfortable of
 seeing another green dot in our test suite and to release ourselves from the
 burden of having to test our code.</p>
-<h2 id="why-do-we-use-mocks-anyway">Why do we use mocks anyway?<a class="headerlink" href="#why-do-we-use-mocks-anyway" title="Permanent link">¶</a></h2>
+<h2 id="why-do-we-use-mocks-anyway">Why do we use mocks anyway?<a class="headerlink" href="#why-do-we-use-mocks-anyway" title="Permanent link">&para;</a></h2>
 <p>Well, I'll name a few reasons that seem legit to me.</p>
 <p>One reason to use mocks is to <strong>force a desired state</strong> for your test
 and easily trigger side effects. Mocks facilitate a lot the testing of
@@ -59,7 +64,7 @@ short path to <strong>increase code coverage</strong>. But probably the primary 
 using mocks is to <strong>make a unit test more specific</strong>. Just testing exactly
 one piece of code, and thus, avoiding having to test things that (hopefully)
 are already tested.</p>
-<h3 id="testing-with-mocks">Testing with mocks<a class="headerlink" href="#testing-with-mocks" title="Permanent link">¶</a></h3>
+<h3 id="testing-with-mocks">Testing with mocks<a class="headerlink" href="#testing-with-mocks" title="Permanent link">&para;</a></h3>
 <p>Let's see some example code:</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Payment</span><span class="p">():</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">invoice_id</span><span class="p">,</span> <span class="n">credit_card</span><span class="p">):</span>
@@ -69,8 +74,9 @@ are already tested.</p>
         <span class="n">amount</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_amount</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">credit_card</span><span class="o">.</span><span class="n">has_credit</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">credit_card</span><span class="o">.</span><span class="n">withdraw</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s1">'processed'</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s1">&#39;processed&#39;</span>
 </code></pre></div>
+
 <p>As we can see, the <code>process()</code> method uses other objects (credit_card), called 
 collaborators. If we were to write a <strong>unit test</strong> for this method, we would 
 mock all its collaborators, so that we test the codepaths involved, and 
@@ -84,7 +90,7 @@ tests.</p>
 
 <span class="k">class</span> <span class="nc">PaymentTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 
-    <span class="nd">@mock</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">Payment</span><span class="p">,</span> <span class="s1">'calculate_amount'</span><span class="p">)</span>
+    <span class="nd">@mock</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">Payment</span><span class="p">,</span> <span class="s1">&#39;calculate_amount&#39;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">test_process_cc_with_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calculate_amount_mock</span><span class="p">):</span>
         <span class="n">cc</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
         <span class="n">calculate_amount_mock</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="mi">100</span>
@@ -93,7 +99,7 @@ tests.</p>
         <span class="n">payment</span><span class="o">.</span><span class="n">process</span><span class="p">()</span>
         <span class="n">cc</span><span class="o">.</span><span class="n">withdraw</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 
-    <span class="nd">@mock</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">Payment</span><span class="p">,</span> <span class="s1">'calculate_amount'</span><span class="p">)</span>
+    <span class="nd">@mock</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">Payment</span><span class="p">,</span> <span class="s1">&#39;calculate_amount&#39;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">test_process_cc_without_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calculate_amount_mock</span><span class="p">):</span>
         <span class="n">cc</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
         <span class="n">cc</span><span class="o">.</span><span class="n">has_credit</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="kc">False</span>
@@ -101,6 +107,7 @@ tests.</p>
         <span class="n">payment</span><span class="o">.</span><span class="n">process</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">cc</span><span class="o">.</span><span class="n">withdraw</span><span class="o">.</span><span class="n">called</span><span class="p">)</span>
 </code></pre></div>
+
 <p>Now let's think for a moment if these tests we just wrote tell us, with a good
 level of confidence, whether <code>process()</code> works or not. Or are we just asserting
 that some methods are called in a specific order with specific parameters. This
@@ -117,12 +124,13 @@ painfull.  As soon as you change a detail of the implementation your tests will
 functions that were not called, or mocks that fail to be applied because some
 method doesn't exist anymore, like:</p>
 <div class="highlight"><pre><span></span><code><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
-  <span class="n">File</span> <span class="s2">"test.py"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">9</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+  <span class="n">File</span> <span class="s2">&quot;test.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">9</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
     <span class="n">m</span><span class="o">.</span><span class="n">process_with_currency</span><span class="p">()</span>
-  <span class="n">File</span> <span class="s2">"/usr/local/lib/python2.7/site-packages/mock.py"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">65</span><span class="p">,</span> <span class="ow">in</span> <span class="fm">__getattr__</span>
-    <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">"Mock object has no attribute </span><span class="si">%r</span><span class="s2">"</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
-<span class="ne">AttributeError</span><span class="p">:</span> <span class="n">Mock</span> <span class="nb">object</span> <span class="n">has</span> <span class="n">no</span> <span class="n">attribute</span> <span class="s1">'some_old_method'</span>
+  <span class="n">File</span> <span class="s2">&quot;/usr/local/lib/python2.7/site-packages/mock.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">65</span><span class="p">,</span> <span class="ow">in</span> <span class="fm">__getattr__</span>
+    <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;Mock object has no attribute </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
+<span class="ne">AttributeError</span><span class="p">:</span> <span class="n">Mock</span> <span class="nb">object</span> <span class="n">has</span> <span class="n">no</span> <span class="n">attribute</span> <span class="s1">&#39;some_old_method&#39;</span>
 </code></pre></div>
+
 <p>Another drawback I wanted to point out is that mocks tend to be too permissive, in 
 the sense that they swallow errors that should occur because of a change in the 
 API of the mocked object.</p>
@@ -133,6 +141,7 @@ API of the mocked object.</p>
     <span class="k">def</span> <span class="nf">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">,</span> <span class="n">currency</span><span class="p">):</span>
         <span class="c1"># ...</span>
 </code></pre></div>
+
 <p>If suddenly I decided to change the signature of the <code>withdraw()</code> method, to
 charge the credit card with a specific currency, the mocked tests above would
 still pass successfully. They will not tell you anymore whether you have
@@ -153,7 +162,7 @@ just follow the object's api, making our tests a little bit less permissive.</p>
 
 <span class="k">class</span> <span class="nc">PaymentTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 
-    <span class="nd">@mock</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">Payment</span><span class="p">,</span> <span class="s1">'calculate_amount'</span><span class="p">,</span> <span class="n">autospec</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nd">@mock</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">Payment</span><span class="p">,</span> <span class="s1">&#39;calculate_amount&#39;</span><span class="p">,</span> <span class="n">autospec</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">test_process_cc_with_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calculate_amount_mock</span><span class="p">):</span>
         <span class="n">cc</span> <span class="o">=</span> <span class="n">CreditCardMock</span><span class="p">()</span>
         <span class="n">calculate_amount_mock</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="mi">100</span>
@@ -162,7 +171,7 @@ just follow the object's api, making our tests a little bit less permissive.</p>
         <span class="n">payment</span><span class="o">.</span><span class="n">process</span><span class="p">()</span>
         <span class="n">cc</span><span class="o">.</span><span class="n">withdraw</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 
-    <span class="nd">@mock</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">Payment</span><span class="p">,</span> <span class="s1">'calculate_amount'</span><span class="p">,</span> <span class="n">autospec</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nd">@mock</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">Payment</span><span class="p">,</span> <span class="s1">&#39;calculate_amount&#39;</span><span class="p">,</span> <span class="n">autospec</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">test_process_cc_without_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calculate_amount_mock</span><span class="p">):</span>
         <span class="n">cc</span> <span class="o">=</span> <span class="n">CreditCardMock</span><span class="p">()</span>
         <span class="n">cc</span><span class="o">.</span><span class="n">has_credit</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="kc">False</span>
@@ -170,13 +179,14 @@ just follow the object's api, making our tests a little bit less permissive.</p>
         <span class="n">payment</span><span class="o">.</span><span class="n">process</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">cc</span><span class="o">.</span><span class="n">withdraw</span><span class="o">.</span><span class="n">called</span><span class="p">)</span>
 </code></pre></div>
+
 <p>Or we could have gone a little bit further, and inject a double to our
 <code>process()</code> function, for example:</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">FakeCreditCard</span><span class="p">:</span>
-    <span class="sd">"""</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Replace our CreditCard with a double to avoid hitting the db or</span>
 <span class="sd">    3rd party services (if any).</span>
-<span class="sd">    """</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">amount</span> <span class="o">=</span> <span class="n">amount</span>
 
@@ -186,10 +196,11 @@ just follow the object's api, making our tests a little bit less permissive.</p>
     <span class="k">def</span> <span class="nf">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">amount</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">amount</span> <span class="o">-</span> <span class="n">amount</span>
 </code></pre></div>
+
 <p>This is also an interesting strategy, but, now you'll have to be maintaining
 this double by hand, every time you real object is updated.</p>
 <p>Let's try a completely different approach and see if we can do any better.</p>
-<h3 id="testing-without-mocks">Testing without mocks<a class="headerlink" href="#testing-without-mocks" title="Permanent link">¶</a></h3>
+<h3 id="testing-without-mocks">Testing without mocks<a class="headerlink" href="#testing-without-mocks" title="Permanent link">&para;</a></h3>
 <p>Now, how would I test this, without mocks?</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">mymodule</span> <span class="kn">import</span> <span class="n">Payment</span> 
 <span class="kn">from</span> <span class="nn">myfactories</span> <span class="kn">import</span> <span class="n">CreditCardFactory</span><span class="p">,</span> <span class="n">InvoiceFactory</span>
@@ -212,6 +223,7 @@ this double by hand, every time you real object is updated.</p>
         <span class="n">payment</span><span class="o">.</span><span class="n">process</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">cc</span><span class="o">.</span><span class="n">balance</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 </code></pre></div>
+
 <p>Comparing the test above, with the one that uses mocks, we can see that it has 
 almost the same amount of code, but this test is not bound to the implementation, 
 it is still deterministic, plus it tests goals in an automated way, similar to 
@@ -231,7 +243,7 @@ conditions.</p>
 <p>What's important is that factories <strong>build real objects</strong> for you in a
 declarative and straighforward way, which let's you focus on the bits of data
 you need to setup your test and leave the rest for the factory to implement.</p>
-<h2 id="in-the-quest-for-real-mocks">In the quest for <em>real mocks</em><a class="headerlink" href="#in-the-quest-for-real-mocks" title="Permanent link">¶</a></h2>
+<h2 id="in-the-quest-for-real-mocks">In the quest for <em>real mocks</em><a class="headerlink" href="#in-the-quest-for-real-mocks" title="Permanent link">&para;</a></h2>
 <p>Alright! This is looking better, but does this mean that we can get rid of
 mocks once for all? Nope.</p>
 <p>There are cases where it really makes sense to use mocks. I'll show you a couple
@@ -244,7 +256,7 @@ successfully and write better tests. These mocks are: </p>
 <li><strong>Verified</strong>: the interfaces of such mock are carefully maintained and mimic the
   real object.</li>
 </ul>
-<h3 id="example-1-a-verified-mock">Example 1: A verified mock<a class="headerlink" href="#example-1-a-verified-mock" title="Permanent link">¶</a></h3>
+<h3 id="example-1-a-verified-mock">Example 1: A verified mock<a class="headerlink" href="#example-1-a-verified-mock" title="Permanent link">&para;</a></h3>
 <p>Django gives us an in-memory mailbox that captures all outgoing emails. What's 
 interesting is that it sets up this dummy double  <strong>by default</strong> when you 
 inherit from <code>TestCase</code>, so writing these kind of tests becomes really easy.</p>
@@ -259,13 +271,14 @@ inherit from <code>TestCase</code>, so writing these kind of tests becomes reall
     <span class="k">def</span> <span class="nf">test_process_cc_with_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># this factory will create an Invoice and a User associated to </span>
         <span class="c1"># it, with the specified email</span>
-        <span class="n">InvoiceFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cost</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">user__email</span><span class="o">=</span><span class="s1">'foo@bar.com'</span><span class="p">)</span>
+        <span class="n">InvoiceFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cost</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">user__email</span><span class="o">=</span><span class="s1">&#39;foo@bar.com&#39;</span><span class="p">)</span>
         <span class="c1"># ... more code </span>
 
         <span class="c1"># Test that payment receipt email has been sent.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mail</span><span class="o">.</span><span class="n">outbox</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">mail</span><span class="o">.</span><span class="n">outbox</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">,</span> <span class="p">[</span><span class="s1">'foo@bar.com'</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">mail</span><span class="o">.</span><span class="n">outbox</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;foo@bar.com&#39;</span><span class="p">])</span>
 </code></pre></div>
+
 <p>Now, you might be thinking that I'm contradicting myself with this example,
 since no email is really being sent.</p>
 <p>That is a valid concern, but, provided that in my code, I interact with an
@@ -275,7 +288,7 @@ behaviour, I believe I can still make assertions about my code that are <em>good
 enough</em> (even though no mail is sent). That framework is responsible for
 providing us with a good <em>verified</em> stub.</p>
 <p><a href="https://testing.googleblog.com/2020/07/testing-on-toilet-dont-mock-types-you.html?m=1">Mocking types you don’t</a> own can make maintenance more difficult.</p>
-<h3 id="example-2-an-agnostic-mock">Example 2: An agnostic mock<a class="headerlink" href="#example-2-an-agnostic-mock" title="Permanent link">¶</a></h3>
+<h3 id="example-2-an-agnostic-mock">Example 2: An agnostic mock<a class="headerlink" href="#example-2-an-agnostic-mock" title="Permanent link">&para;</a></h3>
 <p>Say for example that you need to hit a 3rd party API that you don't own, that
 probably has throttle limitations, no sandbox/testing ground, you cannot setup
 and run it locally, or all these together. Doing live testing is not really an
@@ -289,14 +302,15 @@ test suite it runs under safe and repeatable conditions, without hitting the net
 
 <span class="k">class</span> <span class="nc">PaymentTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 
-    <span class="nd">@vcr</span><span class="o">.</span><span class="n">use_cassette</span><span class="p">(</span><span class="s1">'stripe_responses/cc_with_credit.yaml'</span><span class="p">)</span>
+    <span class="nd">@vcr</span><span class="o">.</span><span class="n">use_cassette</span><span class="p">(</span><span class="s1">&#39;stripe_responses/cc_with_credit.yaml&#39;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">test_process_cc_with_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># ... more code</span>
 
-    <span class="nd">@vcr</span><span class="o">.</span><span class="n">use_cassette</span><span class="p">(</span><span class="s1">'stripe_responses/cc_without_credit.yaml'</span><span class="p">)</span>
+    <span class="nd">@vcr</span><span class="o">.</span><span class="n">use_cassette</span><span class="p">(</span><span class="s1">&#39;stripe_responses/cc_without_credit.yaml&#39;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">test_process_cc_without_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># ... more code </span>
 </code></pre></div>
+
 <p>If the 3rd party API changes, you don't have to do anything but delete the
 recorded responses, and your test will do all the work for you, updating the
 test cases with the new responses.
@@ -307,16 +321,17 @@ reproduce, (like a 500 error response), you can achieve that with <a href="https
 <span class="k">class</span> <span class="nc">PaymentTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
     <span class="nd">@httpretty</span><span class="o">.</span><span class="n">activate</span>
     <span class="k">def</span> <span class="nf">test_process_handles_failure_from_stripe</span><span class="p">():</span>
-        <span class="n">httpretty</span><span class="o">.</span><span class="n">register_uri</span><span class="p">(</span><span class="n">httpretty</span><span class="o">.</span><span class="n">GET</span><span class="p">,</span> <span class="s1">'https://api.stripe.com'</span><span class="p">,</span>
-                               <span class="n">body</span><span class="o">=</span><span class="s1">'{"success": false}'</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
-                               <span class="n">content_type</span><span class="o">=</span><span class="s1">'text/json'</span><span class="p">)</span>
+        <span class="n">httpretty</span><span class="o">.</span><span class="n">register_uri</span><span class="p">(</span><span class="n">httpretty</span><span class="o">.</span><span class="n">GET</span><span class="p">,</span> <span class="s1">&#39;https://api.stripe.com&#39;</span><span class="p">,</span>
+                               <span class="n">body</span><span class="o">=</span><span class="s1">&#39;{&quot;success&quot;: false}&#39;</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+                               <span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;text/json&#39;</span><span class="p">)</span>
         <span class="c1"># ... more code</span>
         <span class="n">payment</span><span class="o">.</span><span class="n">process</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">payment</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="s1">'failed'</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">payment</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="s1">&#39;failed&#39;</span><span class="p">)</span>
 </code></pre></div>
+
 <p>I consider httpretty and vcr.py to be good examples of <em>agnostic</em> mocks, since
 they can be used no matter which network library you are using.</p>
-<h3 id="example-3-a-precise-mock">Example 3: A precise mock<a class="headerlink" href="#example-3-a-precise-mock" title="Permanent link">¶</a></h3>
+<h3 id="example-3-a-precise-mock">Example 3: A precise mock<a class="headerlink" href="#example-3-a-precise-mock" title="Permanent link">&para;</a></h3>
 <p>When you need to test code that deals with dates, mocks will be very handy
 too. Let's see an example.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
@@ -328,6 +343,7 @@ too. Let's see an example.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 </code></pre></div>
+
 <p>To test this, you would have to write tests that have almost the same code you
 are trying to test, and, depending on how precise the dates you are handling
 are, <strong>your tests could fail from time to time</strong>, ie: some tests might fail
@@ -337,8 +353,9 @@ millisecond.</p>
     <span class="k">def</span> <span class="nf">test_payment_date_is_saved</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># ... more code</span>
         <span class="n">payment</span><span class="o">.</span><span class="n">process</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">payment</span><span class="o">.</span><span class="n">date</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">())</span>  <span class="c1"># this won't work</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">payment</span><span class="o">.</span><span class="n">date</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">())</span>  <span class="c1"># this won&#39;t work</span>
 </code></pre></div>
+
 <p>Now, when we test using the <a href="https://github.com/spulec/freezegun">freezegun</a> module, we can ditch the <em>mock
 everything</em> strategy.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">freezegun</span> <span class="kn">import</span> <span class="n">freeze_time</span>
@@ -346,11 +363,12 @@ everything</em> strategy.</p>
 <span class="k">class</span> <span class="nc">PaymentTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">test_payment_date_is_saved</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># ... more code</span>
-        <span class="k">with</span> <span class="n">freeze_time</span><span class="p">(</span><span class="s1">'2012-01-01'</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">freeze_time</span><span class="p">(</span><span class="s1">&#39;2012-01-01&#39;</span><span class="p">):</span>
             <span class="n">payment</span><span class="o">.</span><span class="n">process</span><span class="p">()</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">payment</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%Y-%m-</span><span class="si">%d</span><span class="s1">'</span><span class="p">),</span> <span class="s1">'2012-01-02'</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">payment</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">),</span> <span class="s1">&#39;2012-01-02&#39;</span><span class="p">)</span>
 </code></pre></div>
+
 <p>You can see how we avoided mocking <code>datetime.now()</code> and we how we can even use
 <code>strftime()</code> in our tests. Because freezegun is <em>precise</em>, it only mocks
 datetime functions that are used to obtain the current time, and leaves
@@ -366,7 +384,8 @@ date using other libraries.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">date</span> <span class="o">=</span> <span class="n">arrow</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>  <span class="c1"># Our test still passes :)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 </code></pre></div>
-<h2 id="need-for-speed">Need for speed<a class="headerlink" href="#need-for-speed" title="Permanent link">¶</a></h2>
+
+<h2 id="need-for-speed">Need for speed<a class="headerlink" href="#need-for-speed" title="Permanent link">&para;</a></h2>
 <p>I mentioned that using mocks was a legit excuse for speeding your tests, and
 staying away from slow parts like the database. Well if you used an ORM and your
 data structures are pretty standard, then you may be able to <a href="http://www.machinalis.com/blog/optimizing-your-tests-in-django/">switch to an
@@ -379,10 +398,11 @@ against the db engine you use in production, and thus, gain also reliability.</p
 easy tricks to speed your tests like running them in parallel:</p>
 <div class="highlight"><pre><span></span><code>$ nosetests --processes<span class="o">=</span>NUM
 </code></pre></div>
+
 <p>provided that your tests <a href="http://nose.readthedocs.org/en/latest/plugins/multiprocess.html#beware">can run concurrently</a> and are IO bound, or simply
 <a href="https://twitter.com/df07/status/607562584401821696">throw hardware at the problem</a> with more RAM, a more powerful CPU or an
 SSD.</p>
-<h2 id="in-conclusion">In conclusion<a class="headerlink" href="#in-conclusion" title="Permanent link">¶</a></h2>
+<h2 id="in-conclusion">In conclusion<a class="headerlink" href="#in-conclusion" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Integration tests are one honking great idea, let's do more of those. Don't 
   rely exclusively in unit tests, test goals.</li>
@@ -395,9 +415,10 @@ SSD.</p>
 </ul>
 <p>Mock yourself not your tests :P</p>
 </article>
-<footer class="column-right light">
-<nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> - <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | README.txt</nav>
-</footer>
-</main>
+
+      <footer class="column-right light">
+        <nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> - <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | README.txt</nav>
+      </footer>
+  </main>
 </body>
 </html>

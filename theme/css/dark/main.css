@@ -1,0 +1,56 @@
+/* general */
+body {
+  background: #33393cff;;
+  color: darkgray; }
+
+h1, h2, h3, h4 {
+  color: beige; }
+
+p > code {
+  background: #39627dff;
+  color: gainsboro;
+  border: 1px solid #39627dff; }
+
+blockquote {
+  color: burlywood;
+  border-left: 0.3em solid #b0b0b0; }
+
+a {
+  color: deepskyblue; }
+
+a:visited {
+  color: #9378afff; }
+
+th {
+  border-bottom: 1px solid lightblue; }
+
+tr:nth-child(even) {
+  background: #f8f8f8; }
+
+strong {
+  color: beige;
+}
+
+/* site header */
+.main-title {
+  margin-top: 0;
+  color: goldenrod; }
+
+.main-title small {
+  color: antiquewhite; }
+
+/* aside */
+.sidebar nav a {
+  color: wheat; }
+
+.sidebar nav a:hover {
+  color: #227ce8; }
+
+/* code snippets */
+.highlight {
+  background: #fffbf1;
+  border-left: 1px solid lightblue; }
+
+/* helpers */
+.light {
+  color: antiquewhite; }
