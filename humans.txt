@@ -15,7 +15,6 @@ proposed artist/band. Sometimes I'm just reassigning them because that
 artist/band only has so few songs I like, that I  would rather have someone
 else's repertoire get so much better.
 
-|------------------------------+----------------------------+--------------------------|
 | Song                         | Original artist/band       | Proposed artist/band     |
 | ---------------------------- | -------------------------- | ------------------------ |
 | We are Family                | Sisters Sledge             | ABBA                     |
@@ -36,6 +35,8 @@ else's repertoire get so much better.
 | Girls and Boys               | Blur                       | Chemical Brothers        |
 | Letters From The Sky         | Civil Twilight             | Coldplay                 |
 | Renegades                    | X Embassadors              | Coldplay                 |
+| Feel Better Now              | Jean Tonique               | Daft Punk                |
+| Unreal                       | Dark                       | Dark Age                 |
 | Deny                         | Dimension Zero             | Darkest Hour             |
 | Hell is Within               | Dimension Zero             | Darkest Hour             |
 | Head over Heels              | Tears for Fears            | David Bowie              |
@@ -83,12 +84,14 @@ else's repertoire get so much better.
 | Consumed Future              | Dreamshade                 | In Flames                |
 | Roots To Sever               | BE'LAKOR                   | Insomnium                |
 | Abduction                    | Bruce Dickinson            | Iron Maiden              |
+| Everybody Walkin’ This Land  | Paul Cauthen               | Johnny Cash              |
 | Psycho Killer                | Talking Heads              | Joy Division             |
 | Steady as She Goes           | The Raconteurs             | Joy Division             |
 | Hellbreaker                  | Midnight Priest            | Judas Priest             |
 | Bad for Good                 | Skull Fist                 | Judas Priest             |
 | Proud To Be Loud             | Keel                       | KISS                     |
 | Stakk Attakk                 | Wrathchild                 | KISS                     |
+| Smile Again                  | Chaoseum                   | Korn                     |
 | The Only                     | Static X                   | Korn                     |
 | Last Hurrah                  | Bebe Rexha                 | Lady Gaga                |
 | Deadly Valentine             | Charlotte Gainsbourg       | Ladytron                 |
@@ -117,6 +120,7 @@ else's repertoire get so much better.
 | Acid Fuzz                    | Toxic Holocaust            | Municipal Waste          |
 | Self Control                 | Jesus Was Homeless         | Muse                     |
 | Honest Mistake               | The Bravery                | Muse                     |
+| Say OK                       | Vanessa Hudgens            | Nelly Furtado            |
 | King of the Kill             | Annihilator                | Newsted                  |
 | Gone Suvering                | Stone Sour                 | Newsted                  |
 | Absolute Zero                | Stone Sour                 | Newsted                  |
@@ -166,4 +170,3 @@ else's repertoire get so much better.
 | Take On Me                   | a-ha                       | Virus                    |
 | Movies                       | Alien Ant Farm             | Wezzer                   |
 | Black Betty                  | Ram Jam                    | ZZ Top                   |
-|------------------------------+----------------------------+--------------------------|
