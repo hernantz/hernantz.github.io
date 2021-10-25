@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt - Programming</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/programming.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2021-10-25T00:00:00-03:00</updated><subtitle>- Mostly lies and rants in plain text.</subtitle><entry><title>Djangonauts don't let djangonauts write Javascript</title><link href="http://hernantz.github.io/djangonauts-dont-let-djangonauts-write-javascript.html" rel="alternate"></link><published>2021-10-25T00:00:00-03:00</published><updated>2021-10-25T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2021-10-25:/djangonauts-dont-let-djangonauts-write-javascript.html</id><summary type="html">&lt;p&gt;&lt;img alt="The canonical website architecture" src="/images/djangonauts.png" title="The canonical website architecture"&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;JS Fatigue happens when people use tools
-they don't need to solve problems they
-don't have.&lt;/p&gt;
-&lt;p&gt;&lt;cite&gt; ― Lucas F. Costa, &lt;a href="https://lucasfcosta.com/2017/07/17/The-Ultimate-Guide-to-JavaScript-Fatigue.html"&gt;The Ultimate Guide to JavaScript Fatigue: Realities of our industry&lt;/a&gt;&lt;/cite&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="documents-vs-apps"&gt;Documents vs Apps&lt;a class="headerlink" href="#documents-vs-apps" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;90%, if not more, of websites are just &lt;a href="https://mckinley.cc/blog/20210831.html" title="Documents ≠ Programs"&gt;documents&lt;/a&gt;. They render text, images and
-forms on your screen …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="The canonical website architecture" src="/images/djangonauts.png" title="The canonical website architecture"&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt - Programming</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/programming.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2021-10-25T00:00:00-03:00</updated><subtitle>- Mostly lies and rants in plain text.</subtitle><entry><title>Djangonauts don't let djangonauts write Javascript</title><link href="http://hernantz.github.io/djangonauts-dont-let-djangonauts-write-javascript.html" rel="alternate"></link><published>2021-10-25T00:00:00-03:00</published><updated>2021-10-25T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2021-10-25:/djangonauts-dont-let-djangonauts-write-javascript.html</id><summary type="html">&lt;p&gt;Why and how to fight JS fatigue with some Django.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="The canonical website architecture" src="/images/djangonauts.png" title="The canonical website architecture"&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;JS Fatigue happens when people use tools
 they don't need to solve problems they
