@@ -1,5 +1,324 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/all-en.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2021-09-18T00:00:00-03:00</updated><subtitle>- Mostly lies and rants in plain text.</subtitle><entry><title>Endpoints matter</title><link href="http://hernantz.github.io/endpoints-matter.html" rel="alternate"></link><published>2021-09-18T00:00:00-03:00</published><updated>2021-09-18T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2021-09-18:/endpoints-matter.html</id><summary type="html">&lt;p&gt;Entities can be identified by IDs, but also paths.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In most applications, system entities do not exist aisolated from each other,
+<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/all-en.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2021-10-25T00:00:00-03:00</updated><subtitle>- Mostly lies and rants in plain text.</subtitle><entry><title>Djangonauts don't let djangonauts write Javascript</title><link href="http://hernantz.github.io/djangonauts-dont-let-djangonauts-write-javascript.html" rel="alternate"></link><published>2021-10-25T00:00:00-03:00</published><updated>2021-10-25T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2021-10-25:/djangonauts-dont-let-djangonauts-write-javascript.html</id><summary type="html">&lt;p&gt;&lt;img alt="The canonical website architecture" src="/images/djangonauts.png" title="The canonical website architecture"&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;JS Fatigue happens when people use tools
+they don't need to solve problems they
+don't have.&lt;/p&gt;
+&lt;p&gt;&lt;cite&gt; ― Lucas F. Costa, &lt;a href="https://lucasfcosta.com/2017/07/17/The-Ultimate-Guide-to-JavaScript-Fatigue.html"&gt;The Ultimate Guide to JavaScript Fatigue: Realities of our industry&lt;/a&gt;&lt;/cite&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="documents-vs-apps"&gt;Documents vs Apps&lt;a class="headerlink" href="#documents-vs-apps" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;90%, if not more, of websites are just &lt;a href="https://mckinley.cc/blog/20210831.html" title="Documents ≠ Programs"&gt;documents&lt;/a&gt;. They render text, images and
+forms on your screen …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="The canonical website architecture" src="/images/djangonauts.png" title="The canonical website architecture"&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;JS Fatigue happens when people use tools
+they don't need to solve problems they
+don't have.&lt;/p&gt;
+&lt;p&gt;&lt;cite&gt; ― Lucas F. Costa, &lt;a href="https://lucasfcosta.com/2017/07/17/The-Ultimate-Guide-to-JavaScript-Fatigue.html"&gt;The Ultimate Guide to JavaScript Fatigue: Realities of our industry&lt;/a&gt;&lt;/cite&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="documents-vs-apps"&gt;Documents vs Apps&lt;a class="headerlink" href="#documents-vs-apps" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;90%, if not more, of websites are just &lt;a href="https://mckinley.cc/blog/20210831.html" title="Documents ≠ Programs"&gt;documents&lt;/a&gt;. They render text, images and
+forms on your screen. The rest are apps.&lt;/p&gt;
+&lt;p&gt;Apps have their own needs. They mimic a desktop UI, have custom widgets, need to
+work offline sometimes and handle lot's of state and complex workflows.&lt;/p&gt;
+&lt;p&gt;Apps don't feel like they belong to the web. Can you open multiple tabs of the
+same site? Is text selectable? Can you read a printable version of it? Does back
+and forth navigation work? Are URLs semantic and &lt;a href="https://jeffhuang.com/designed_to_last/" title="This Page is Designed to Last"&gt;bookmarkable&lt;/a&gt;? Can screen
+readers understand your site? Is it crawlable and SEO friendly?&lt;/p&gt;
+&lt;p&gt;If you say no to most of this questions, then you are in presence of an app, not
+a web page. Maybe a website is not best suited for this type of projects.&lt;/p&gt;
+&lt;p&gt;A native app would be better instead of re-implementing entire cross platform
+libraries and frameworks to work on top of a document rendering engine. Yet the
+industry has pushed/forced websites to become surrogates of native apps. But
+this is a symptom of a much deeper problem.&lt;/p&gt;
+&lt;p&gt;I guess the market fragmentation of OS's is to blame here. Browsers are becoming
+a layer of sanity on top of all the different platforms and run-times out there,
+where developers only care about implementing some API's to bridge to the
+camera, network, disk, etc, built on top of open standards. Webapps become
+discoverable, portable and easily installable.&lt;/p&gt;
+&lt;p&gt;But still, the DOM and Javascript lag behind as a cross-platform GUI framework
+that can replace native apps. Either wasm will fill this gap someday, or Java
+applets make a comeback, maybe?&lt;/p&gt;
+&lt;h2 id="architecture-smells"&gt;Architecture smells&lt;a class="headerlink" href="#architecture-smells" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Every architecture has a &lt;a href="https://htmx.org/essays/complexity-budget/" title="Complexity Budgets"&gt;Complexity Budget&lt;/a&gt;. It is important to define what
+the best way to spend it is. What features will need more attention, what's the
+essence of the application, what purpose it serves, in what problem space it
+dwells.&lt;/p&gt;
+&lt;p&gt;Not spending the complexity budget wisely means cognitive overhead in your
+codebase, over-engineered solutions, accidental complexity, reduced speed of
+development.&lt;/p&gt;
+&lt;p&gt;Single page apps (SPAs) are a form of micro services architecture. A
+decentralized architecture where there are clients and servers.&lt;/p&gt;
+&lt;p&gt;Micro services in general and client-server architectures in particular are hard
+to get right. They can be an overkill for most projects, specially websites.&lt;/p&gt;
+&lt;p&gt;A lot of infrastructure is needed, coordination between specialized teams,
+multiple points of failure, API deprecation policies, etc, that increase
+development and maintainability costs. There's a lot that can go wrong.&lt;/p&gt;
+&lt;p&gt;As code smells, architecture smells do exists too.&lt;/p&gt;
+&lt;p&gt;A poor micro services architecture can be detected when in order to develop a
+feature, you need to touch three repos and instantiate several services to test
+it locally. In a similar note, if you have to modify the client code along with
+the server code to reflect a new change in a page and deploy both changes at the
+same time, it may be that you didn't need a SPA to begin with.&lt;/p&gt;
+&lt;p&gt;The tight coupling between client and server (which indicates that it is still a
+monolith), or between micro services (another monolith), are one of those smells
+or thinks that feel wrong.&lt;/p&gt;
+&lt;p&gt;Another architecture smell is using your SPA as the &lt;a href="https://htmx.org/essays/splitting-your-apis/" title="Splitting Your Data &amp;amp; APIs: Going Further"&gt;only consumer of your API&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Creating a JSON API just because in the future you might need for other clients
+indicates an early optimization decision. &lt;a href="https://max.engineer/server-informed-ui" title="Don’t Build A General Purpose API To Power Your Own Front End"&gt;YAGNI&lt;/a&gt;. JSON APIs are targeted for
+code consumption, not for human interaction, are usually generic or agnostic
+from any UI, are stable and versioned, etc. Generic APIs might suffer &lt;a href="https://intercoolerjs.org/2016/02/17/api-churn-vs-security.html" title="The API Churn/Security Trade-off"&gt;from an
+expressivity/security tradeoff&lt;/a&gt;, because everything you make available to the
+UI, could also be leaked for malign users. Moreover, this single client SPA
+requires duplication of logic, models, validation, etc, which the backend will
+also have to implement since clients cannot be trusted.&lt;/p&gt;
+&lt;h2 id="you-probably-dont-need-a-spa"&gt;You probably don't need a SPA&lt;a class="headerlink" href="#you-probably-dont-need-a-spa" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href="http://wgross.net/essays/spas-are-harder" title="SPAs Are Just Harder, and Always Will Be"&gt;SPAs are hard&lt;/a&gt;. If not done correctly, you could be &lt;a href="https://svelte.dev/blog/virtual-dom-is-pure-overhead" title="Virtual DOM is pure overhead"&gt;adding megabytes worth
+of code&lt;/a&gt; that needs to be downloaded and executed, probably contributing to
+the current &lt;a href="https://javascript.works-hub.com/learn/a-javascript-free-frontend-61275" title="Developing a Javascript-free frontend"&gt;web obesity&lt;/a&gt; crisis.&lt;/p&gt;
+&lt;p&gt;Latest tendencies in the JS world show a &lt;a href="https://macwright.com/2020/05/10/spa-fatigue.html" title="Second-guessing the modern web"&gt;comeback to the old ways&lt;/a&gt;. Server
+side rendering so that we don't load a blank page as splash screen, GraphQL as a
+poor attempt to get back to the trusted backend's SQL, per page hot-loading of
+bundles trying to break up huge javascript files that bundle entire templates and
+models that might not be needed everywhere, etc.&lt;/p&gt;
+&lt;p&gt;This shows little or no benefit to end users of you website, but clearly incurs
+into costly development cycles: An ever-changing amount of frameworks, tooling
+(transpilers, bundlers, linters), libraries, DSLs and state management patterns
+that all compete to be the next hot thing in the industry. This contributes to
+churn in development teams that need to keep up with the &lt;a href="https://javascript.works-hub.com/learn/a-javascript-free-frontend-61275"&gt;javascript
+fatigue&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Big frontend codebases have become a &lt;a href="https://www.gregnavis.com/articles/the-architecture-no-one-needs.html" title="The Architecture No One Needs"&gt;liability&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Devs nowadays seem to just skip all this analysis, and are eager to start every
+project with:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nx"&gt;npm&lt;/span&gt; &lt;span class="nx"&gt;install&lt;/span&gt; &lt;span class="nx"&gt;create&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;react&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;app&lt;/span&gt; &lt;span class="nx"&gt;graphql&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;It all comes down to &lt;a href="https://journal.plausible.io/you-probably-dont-need-a-single-page-app" title="You probably don't need a single-page application"&gt;tradeoffs&lt;/a&gt;. What's driving these frontend heavy
+industry standards to be the default go to?&lt;/p&gt;
+&lt;p&gt;The answer to that could range from peer pressure, job stability, FOMO or
+probably not knowing other alternatives to create snappy websites.&lt;/p&gt;
+&lt;h2 id="no-js-low-js-sites"&gt;No JS / Low JS sites&lt;a class="headerlink" href="#no-js-low-js-sites" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;As the common proverb says: &lt;em&gt;“What has been will be again, what has been done
+will be done again; there is nothing new under the sun”&lt;/em&gt;, server side
+rendering and static site generators are &lt;a href="https://paramaggarwal.substack.com/p/how-websites-evolved-back-to-static-html-css-js-files-57ce549f81db" title="How Websites Evolved Back to Static HTML/CSS/JS Files"&gt;reviving&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This HTML centric architecture can be a very competitive alternative for
+interactive websites when modernized with a few tweaks.&lt;/p&gt;
+&lt;p&gt;If data is going to be represented as HTML, why not serve HTML directly? This
+has the nice property of less time to interactive websites, since there's no
+need for extra round-trips and hydrate/dehydrate JSON.
+Serving HTML isn't significantly more expensive than JSON. Like any text format
+it compresses well, browsers are very performant at parsing and rendering it.&lt;/p&gt;
+&lt;p&gt;The server describes the UI, it is the single source of truth, it has all the
+tools it needs to do so and it's &lt;a href="https://www.timr.co/server-side-rendering-is-a-thiel-truth" title="Server-Side Rendering is a Thiel Truth"&gt;cheaper&lt;/a&gt; to implement.&lt;/p&gt;
+&lt;p&gt;You go from using a JSON representation of your data:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;quot;account&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;account_number&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;42&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;balance&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+      &lt;span class="nt"&gt;&amp;quot;currency&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;usd&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+      &lt;span class="nt"&gt;&amp;quot;value&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;100.00&lt;/span&gt;
+    &lt;span class="p"&gt;},&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;links&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+      &lt;span class="nt"&gt;&amp;quot;deposits&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/accounts/42/deposits&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+      &lt;span class="nt"&gt;&amp;quot;withdrawals&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/accounts/42/withdrawals&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+      &lt;span class="nt"&gt;&amp;quot;transfers&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/accounts/42/transfers&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+      &lt;span class="nt"&gt;&amp;quot;close-requests&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/accounts/42/close-requests&amp;quot;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;To using it's HTML representation:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;dl&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;dt&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Name:&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;dt&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;dd&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;John Doe&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;dd&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;dt&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Account number:&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;dt&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;dd&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;42&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;dd&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;dt&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Balance:&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;dt&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;dd&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;100&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;dd&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;dl&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;nav&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;a&lt;/span&gt; &lt;span class="na"&gt;href&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/accounts/42/deposit&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Deposit&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;a&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;a&lt;/span&gt; &lt;span class="na"&gt;href&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/accounts/42/withdraw&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Withdraw&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;a&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;a&lt;/span&gt; &lt;span class="na"&gt;href&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/accounts/42/transfer&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Email&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;a&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;a&lt;/span&gt; &lt;span class="na"&gt;href&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/accounts/42/close&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Close&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;a&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;nav&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This is known as the &lt;a href="https://intercoolerjs.org/2016/05/08/hatoeas-is-for-humans.html" title="HATEOAS is for Humans"&gt;HATEOAS&lt;/a&gt;, just one aspect of REST. We still use
+endpoints (URIs to locate resources on the web), HTTP verbs to perform actions
+on them, and HTML to represent those resources.&lt;/p&gt;
+&lt;p&gt;When using &lt;strong&gt;HTML as the technology to render the app state&lt;/strong&gt;, the browser is
+the client, not your SPA. User will always get the latest representation of your
+data, and what can be done with it. It treats synchronous API payloads as a kind
+of declarative UI language for full state interactions.&lt;/p&gt;
+&lt;p&gt;The question is, how powerful is HTML alone?&lt;/p&gt;
+&lt;p&gt;It is very powerful and expressive, and getting better still. We now have &lt;a href="https://calendar.perfplanet.com/2016/prefer-defer-over-async/" title="Prefer DEFER Over ASYNC"&gt;async
+and defer&lt;/a&gt; attributes to load non-blocking &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt;'s in parallel,
+&lt;a href="https://html.com/semantic-markup/" title="What On Earth Is Semantic Markup? (And Why Should You Learn To Write It)"&gt;semantic markup tags&lt;/a&gt; to enrich human and program readability,
+&lt;a href="https://3perf.com/blog/link-rels/" title="Preload, prefetch and other &amp;lt;link&amp;gt; tags"&gt;preload&lt;/a&gt; &lt;code&gt;&amp;lt;link&amp;gt;&lt;/code&gt; directives for increasing performance of any document
+(pre-resolving DNS, pre-rendering another document, etc), the &lt;code&gt;&amp;lt;picture&amp;gt;&lt;/code&gt; tag
+can be used to load &lt;a href="https://www.html5rocks.com/en/tutorials/responsive/picture-element/" title="Built-in Browser Support for Responsive Images"&gt;responsive images&lt;/a&gt;, &lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; elements have native
+widgets for things like datetime pickers and &lt;a href="https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation" title="Client-side form validation"&gt;validation&lt;/a&gt; built-in,
+offscreen &lt;code&gt;&amp;lt;img&amp;gt;&lt;/code&gt; can be &lt;a href="https://addyosmani.com/blog/lazy-loading/" title="Native image lazy-loading for the web!"&gt;loaded lazily&lt;/a&gt;, there's even a built-in toggle
+using the &lt;code&gt;&amp;lt;details&amp;gt;&lt;/code&gt; and &lt;code&gt;&amp;lt;summary&amp;gt;&lt;/code&gt; tags!&lt;/p&gt;
+&lt;p&gt;But as powerful as it its, it still lacks some directives to make it more
+dynamic and reactive.&lt;/p&gt;
+&lt;p&gt;It's not that we need a Javascript everywhere solution for this. But Javascript
+can help with a &lt;strong&gt;progressive enhancement approach, through lightweight and
+unobtrusive libraries&lt;/strong&gt;, to provide a smoother experience for end users.&lt;/p&gt;
+&lt;p&gt;One of such libraries is &lt;a href="https://htmx.org/" title="high power tools for HTML"&gt;htmx&lt;/a&gt;. It doesn't advertise itself as a JS
+library, but as a backend agnostic HTML enhancer, extending it's capabilities
+with custom attributes, lazy loading or &lt;a href="https://github.com/utapyngo/django-render-partial" title="Django render partial"&gt;partial rendering&lt;/a&gt; small sections
+of the page through AJAX directives and smooth transitions.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;&amp;lt;!-- Load from unpkg, jspm.org or skypack.dev, just 10kb, no need for npm! --&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt; &lt;span class="na"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://unpkg.com/htmx.org@1.5.0&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class="c"&gt;&amp;lt;!-- have a button POST a click via AJAX --&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;button&lt;/span&gt; &lt;span class="na"&gt;hx-post&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/clicked&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;hx-swap&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;outerHTML&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  Click Me
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;button&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;In the example above, we can see that &lt;strong&gt;we are enhancing the HTML we already
+have&lt;/strong&gt;, with some &lt;code&gt;hx-&lt;/code&gt; directives to perform an http post request and replace
+the button with the server response.&lt;/p&gt;
+&lt;h3 id="perceived-performance"&gt;Perceived performance&lt;a class="headerlink" href="#perceived-performance" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;When loading websites, some latency is expected, but too much can lead users to
+multi task and abandon the page.&lt;/p&gt;
+&lt;p&gt;Pages have to load fast, and one of the best ways to make sure that's the case
+is to make extensive use of caching headers.&lt;/p&gt;
+&lt;p&gt;But even so, the user might still experience the blink of a full page load.&lt;/p&gt;
+&lt;p&gt;If instead you use ajax to fetch a link and swap the &lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt; while you display
+a nice animation for the transition.&lt;/p&gt;
+&lt;p&gt;Similar to what &lt;a href="https://github.com/turbolinks/turbolinks" title="Turbolinks"&gt;turbolinks&lt;/a&gt; does, with htmx, this &lt;a href="https://htmx.org/docs/#boosting" title="HTMX Boosting"&gt;can be done&lt;/a&gt; with
+the &lt;code&gt;hx-boost&lt;/code&gt; attribute.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="na"&gt;hx-boost&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;true&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;a&lt;/span&gt; &lt;span class="na"&gt;href&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/blog&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Blog&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;a&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This progressive enhancement trick can be improved by using something like
+&lt;a href="https://ricostacruz.com/nprogress/" title="Nprogress.js"&gt;Nprogress&lt;/a&gt; increase &lt;a href="http://www.chrisharrison.net/index.php/Research/ProgressBars2" title="Faster Progress Bars: Manipulating Perceived Duration with Visual Augmentations"&gt;perceived performance&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nx"&gt;htmx&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;on&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;htmx:beforeSend&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;evt&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+  &lt;span class="nx"&gt;NProgress&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;configure&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt; &lt;span class="nx"&gt;trickleSpeed&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;100&lt;/span&gt; &lt;span class="p"&gt;});&lt;/span&gt;
+  &lt;span class="nx"&gt;NProgress&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;start&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+  &lt;span class="nx"&gt;NProgress&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;0.4&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+
+&lt;span class="nx"&gt;htmx&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;on&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;htmx:afterOnLoad&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;evt&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+  &lt;span class="nx"&gt;NProgress&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;done&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The progress bar can be manipulated by changing their speed, so users have
+something to watch and stay on your page.&lt;/p&gt;
+&lt;p&gt;Hooking to some htmx events, we can plug our code to display the progress bar.&lt;/p&gt;
+&lt;p&gt;In this case we show a big first step and then every 100 ms we update the
+progress until it is completed.&lt;/p&gt;
+&lt;h3 id="its-turbo-time"&gt;It's turbo time!&lt;a class="headerlink" href="#its-turbo-time" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Although progress bars and ajax links can make your application &lt;em&gt;feel&lt;/em&gt; fast,
+there's a technique that can make it actually &lt;em&gt;be&lt;/em&gt; faster.&lt;/p&gt;
+&lt;p&gt;This technique consists on intelligently pre-fetching links before they get
+accessed.&lt;/p&gt;
+&lt;p&gt;When the user hovers over a link it takes about 300ms to actually click the
+link. &lt;a href="http://instantclick.io/click-test" title="Instaclick | Click test"&gt;Test your own hover timing here&lt;/a&gt;. Those wasted milliseconds can be
+used to preload the contents of the link.&lt;/p&gt;
+&lt;p&gt;Libraries like &lt;a href="https://instant.page/" title="Make your site’s pages instant in 1 minute and improve your conversion rate noticeably."&gt;instant.page&lt;/a&gt; or &lt;a href="http://instantclick.io/" title="InstantClick is a JavaScript library that dramatically speeds up your website, making navigation effectively instant in most cases."&gt;instantclick&lt;/a&gt;  are drop-in scripts
+that take use this strategy. Another interesting strategy is what
+&lt;a href="https://github.com/GoogleChromeLabs/quicklink" title="Quicklink"&gt;quicklink&lt;/a&gt; offers, which is to load visible links when the browser is idle.&lt;/p&gt;
+&lt;p&gt;Htmx doesn't lag behind, since it support extensions, you can make use of the
+&lt;a href="https://htmx.org/extensions/preload/" title="htmx | The preload Extension"&gt;preload&lt;/a&gt; directive to trigger it on &lt;code&gt;mouseover&lt;/code&gt; or &lt;code&gt;mousedown&lt;/code&gt; events.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="na"&gt;hx-ext&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;preload&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;a&lt;/span&gt; &lt;span class="na"&gt;href&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/my-next-page&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;preload&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;mouseover&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;preload-images&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;true&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Next Page&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;a&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This tools need to be used carefully since you might be over-fetching lots of
+pages that the user won't ever need, so it makes sense for certain navigation
+links like main menu or a tabbed pane.&lt;/p&gt;
+&lt;h3 id="partial-rendering"&gt;Partial rendering&lt;a class="headerlink" href="#partial-rendering" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;It often happens that the vast majority of the page is static, but there is a
+tiny portion that needs to be updated in response to an action, like clicking
+on a paginated list of results.&lt;/p&gt;
+&lt;p&gt;When htmx communicates with the backend, it sets certain HTTP headers that can
+be used to render partial content instead without screwing up scroll positions.&lt;/p&gt;
+&lt;p&gt;In Django land, &lt;a href="https://github.com/adamchainz/django-htmx" title="Django htmx"&gt;django-htmx&lt;/a&gt; provides some helpers that allow our views to
+render different content depending on the &lt;code&gt;request.htmx&lt;/code&gt; flag.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;my_view&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;htmx&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;template_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;partial.html&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;template_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;complete.html&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;render&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;template_name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Then in the &lt;code&gt;complete.html&lt;/code&gt; template, we can use:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;{% extends &amp;quot;base.html %}
+
+{% block main %}
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;main&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;h1&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Static content that doesn&amp;#39;t change&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;h1&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+
+  {% include &amp;quot;partial.html&amp;quot; %}
+
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;main&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+{% endblock %}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;And in the &lt;code&gt;partial.html&lt;/code&gt; template we just include only what is dynamic.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="na"&gt;hx-target&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;this&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;hx-swap&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;outerHTML&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;It is {% now &amp;quot;SHORT_DATETIME_FORMAT&amp;quot; %}&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;a&lt;/span&gt; &lt;span class="na"&gt;hx-get&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/my-view/&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;href&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Refresh&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;a&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;A nice addition to using partials, the &lt;a href="https://mitchel.me/slippers/docs/getting-started/" title="Build reusable components in Django without writing a single line of Python."&gt;slippers&lt;/a&gt; library lets you write
+reusable components that can be extended in your in your templates, which are
+more versatile than what Django offers out of the box.&lt;/p&gt;
+&lt;p&gt;If the snippet requires more interactivity, like a real time form validation,
+something like &lt;a href="https://www.django-unicorn.com/" title="A magical full-stack framework for Django"&gt;django-unicorn&lt;/a&gt; can be a good choice, since it uses
+morphdom, which &lt;a href="https://htmx.org/extensions/morphdom-swap/" title="The morphdom-swap Extension"&gt;htmx also supports&lt;/a&gt; to do HTML diffing, which can help
+preserve the focused element for example, instead of replacing the entire DOM
+sub-tree.&lt;/p&gt;
+&lt;h3 id="async-rendering"&gt;Async rendering&lt;a class="headerlink" href="#async-rendering" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;It often happens that the vast majority of the page is generic to every user,
+but there is a tiny portion that needs to be custom for logged in users, like
+the &lt;em&gt;"Hi user222"&lt;/em&gt; snippet included in most nav bars, which depends on each user
+being logged in or not.&lt;/p&gt;
+&lt;p&gt;This is a bummer, since the entire page could be perfectly cachable, if it
+wasn't for that piece of user specific content.&lt;/p&gt;
+&lt;p&gt;One way to overcome this is, is to use lazy/async rendering of those snippets.&lt;/p&gt;
+&lt;p&gt;Other times some parts of the page take more time to load, and it would be
+better to defer the rendering for later, once the user has loaded the rest of
+the content.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="na"&gt;hx-get&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/profile&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;hx-trigger&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;load&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;hx-swap&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;outerHTML&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;img&lt;/span&gt; &lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;htmx-indicator&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/spinner.gif&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code&gt;hx-trigger&lt;/code&gt; is activated when the element is &lt;code&gt;load&lt;/code&gt;ed (but can also accept
+other triggers like &lt;code&gt;revealed&lt;/code&gt;, &lt;code&gt;intersect&lt;/code&gt;, etc). The &lt;code&gt;htmx-indicator&lt;/code&gt; class is
+used to toggle it's visibility, useful to display some sort of placeholder or
+spinner.&lt;/p&gt;
+&lt;h3 id="javascript-is-fine"&gt;Javascript is fine&lt;a class="headerlink" href="#javascript-is-fine" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The techniques mentioned are good alternatives to SPA or heavy frameworks, but
+there is no silver bullet. More alternatives do exist, like &lt;a href="https://alpinejs.dev/" title="Your new, lightweight, JavaScript framework."&gt;alpine&lt;/a&gt; or
+&lt;a href="https://hyperscript.org/" title="hyperscript is an easy and approachable language designed for modern front-end web development"&gt;hyperscript&lt;/a&gt;, that let you express more UI behaviors within an HTML
+element.&lt;/p&gt;
+&lt;p&gt;Some libraries can be included from CDNs like unpkg, jspm.org or skypack.dev and
+using minimal dependency loaders like &lt;a href="https://habd.as/post/managing-async-dependencies-javascript/" title="Managing Async Dependencies with JavaScript"&gt;fetch-inject&lt;/a&gt;, so that no bundlers
+are required.&lt;/p&gt;
+&lt;p&gt;When the complexity budget of your project allows for it, there is nothing wrong
+with using Jquery, React or Vue for certain pages that are inherently complex
+and dynamic.&lt;/p&gt;
+&lt;h2 id="article"&gt;&amp;lt;/article&amp;gt;&lt;a class="headerlink" href="#article" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Going through my notes, I realized I started drafting this post circa 2017,
+when I first noticed the JS-all-the-things trend in the industry.&lt;/p&gt;
+&lt;p&gt;Four years later, the state of things hasn't gotten better, yet projects like
+htmx are gaining traction for small / hobby projects, which is promising.&lt;/p&gt;
+&lt;p&gt;Maybe this post inspires you to start your next project as a MPA, instead of a
+SPA, to avoid JS fatigue, save time and money.&lt;/p&gt;</content><category term="Programming"></category><category term="python"></category><category term="django"></category><category term="javascript"></category><category term="rants"></category></entry><entry><title>Endpoints matter</title><link href="http://hernantz.github.io/endpoints-matter.html" rel="alternate"></link><published>2021-09-18T00:00:00-03:00</published><updated>2021-09-18T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2021-09-18:/endpoints-matter.html</id><summary type="html">&lt;p&gt;Entities can be identified by IDs, but also paths.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In most applications, system entities do not exist aisolated from each other,
 but connected in one to one, many to many or one to may type of relations.&lt;/p&gt;
 &lt;p&gt;This means that there is more than one way to reach to a specific entity.&lt;/p&gt;
 &lt;p&gt;Although all entities should have a unique id, the &lt;em&gt;path&lt;/em&gt; to that entity is also
