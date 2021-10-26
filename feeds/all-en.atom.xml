@@ -52,7 +52,7 @@ the server code to reflect a new change in a page and deploy both changes at the
 same time, it may be that you didn't need a SPA to begin with.&lt;/p&gt;
 &lt;p&gt;The tight coupling between client and server (which indicates that it is still a
 monolith), or between micro services (another monolith), are one of those smells
-or thinks that feel wrong.&lt;/p&gt;
+or things that feel wrong.&lt;/p&gt;
 &lt;p&gt;Another architecture smell is using your SPA as the &lt;a href="https://htmx.org/essays/splitting-your-apis/" title="Splitting Your Data &amp;amp; APIs: Going Further"&gt;only consumer of your API&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Creating a JSON API just because in the future you might need for other clients
 indicates an early optimization decision. &lt;a href="https://max.engineer/server-informed-ui" title="Don’t Build A General Purpose API To Power Your Own Front End"&gt;YAGNI&lt;/a&gt;. JSON APIs are targeted for
