@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Let the code settle | README.txt</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="/theme/css/pygments-default.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/dark/main.css" media="(prefers-color-scheme: dark)" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/dark/pygments-base16-applepips-dark.css" media="(prefers-color-scheme: dark)" type="text/css" />
+  <link rel="stylesheet" media="(max-width: 750px)" href="/theme/css/mobile.css" type="text/css" />
+  <link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
+  <link href="/rss.xml" type="application/atom+xml" rel="alternate" title="README.txt RSS Feed" />
+  <meta name="description" content="Gain confidence when deploying critical changes.">
+  <meta name="keywords" content="best-practices">
+  <meta name="author" content="hernantz">
+</head>
+
+<body>
+  <aside class="sidebar">
+    <a href="/"><img src="/images/avatar.png" height="75" width="75" /></a>
+
+      <nav>
+        <ul>
+            <li><a href="http://twitter.com/hernantz">twitter</i></a></li>
+            <li><a href="http://github.com/hernantz">github</i></a></li>
+            <li><a href="http://last.fm/user/hernantz">last.fm</i></a></li>
+            <li><a href="https://www.rottentomatoes.com/user/id/973196678">tomatoes</i></a></li>
+            <li><a href="/talks.html">talks</a></li>
+            <li><a href="/whoami.html">whoami</a></li>
+            <li><a href="/">blog</a></li>
+        </ul>
+      </nav>
+
+  </aside>
+  <main>
+        
+<article class="column-right">
+  <h1 class="main-title">Let the code settle</h1>
+  <summary>
+    <p class="light">
+      Published
+on <time datetime="2022-01-20T00:00:00-03:00">2022-01-20</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
+      tagged with <a href="http://hernantz.github.io/tag/best-practices.html">best-practices</a>.
+    </p>
+  </summary>
+  <p>When working on an important feature for a live product, the risk of breaking
+some crucial part of it is higher.</p>
+<p>Automated tests, CI pipelines, QA workflows, PR reviews and feature flags are
+there to catch any possible errors before any change hits production.</p>
+<p>The risk will never be zero though.</p>
+<p>The production database might be orders of
+magnitude bigger than your testing database, users might be clicking buttons
+around in ways you could not anticipate, weird race conditions pop up, etc.</p>
+<p>It is better to deploy changes in small chunks that let you revert or
+immediately identify and fix a regression/bug that has just been introduced.</p>
+<p>But these errors not always pop up immediately.</p>
+<p>Your product's rush-hour could be in a different timezone; there are cronjobs
+that only execute at one moment in a day/week; some bugs are not detectable
+through an crash but rather it's a busyness logic that is wrong, so someone has
+to raise a complain, and not every user is eager to waste that time contacting
+your support team; etc.</p>
+<p>This is why, for critical changes, is best to <em>let the code settle</em>.</p>
+<p>Wait up a couple hours/days/weeks before deploying more critical changes. You will
+give the code enough exposure to real users and gain confidence for your next
+deployment.</p>
+</article>
+
+      <footer class="column-right light">
+        <nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> - <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | README.txt</nav>
+      </footer>
+  </main>
+</body>
+</html>

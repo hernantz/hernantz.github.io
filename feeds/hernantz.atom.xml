@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt - hernantz</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/hernantz.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2021-10-25T00:00:00-03:00</updated><subtitle>- Mostly lies and rants in plain text.</subtitle><entry><title>Djangonauts don't let djangonauts write Javascript</title><link href="http://hernantz.github.io/djangonauts-dont-let-djangonauts-write-javascript.html" rel="alternate"></link><published>2021-10-25T00:00:00-03:00</published><updated>2021-10-25T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2021-10-25:/djangonauts-dont-let-djangonauts-write-javascript.html</id><summary type="html">&lt;p&gt;Why and how to fight JS fatigue with some Django.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="The canonical website architecture" src="/images/djangonauts.png" title="The canonical website architecture"&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt - hernantz</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/hernantz.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2022-01-20T00:00:00-03:00</updated><subtitle>- Mostly lies and rants in plain text.</subtitle><entry><title>Let the code settle</title><link href="http://hernantz.github.io/let-the-code-settle.html" rel="alternate"></link><published>2022-01-20T00:00:00-03:00</published><updated>2022-01-20T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2022-01-20:/let-the-code-settle.html</id><summary type="html">&lt;p&gt;Gain confidence when deploying critical changes.&lt;/p&gt;</summary><content type="html">&lt;p&gt;When working on an important feature for a live product, the risk of breaking
+some crucial part of it is higher.&lt;/p&gt;
+&lt;p&gt;Automated tests, CI pipelines, QA workflows, PR reviews and feature flags are
+there to catch any possible errors before any change hits production.&lt;/p&gt;
+&lt;p&gt;The risk will never be zero though.&lt;/p&gt;
+&lt;p&gt;The production database might be orders of
+magnitude bigger than your testing database, users might be clicking buttons
+around in ways you could not anticipate, weird race conditions pop up, etc.&lt;/p&gt;
+&lt;p&gt;It is better to deploy changes in small chunks that let you revert or
+immediately identify and fix a regression/bug that has just been introduced.&lt;/p&gt;
+&lt;p&gt;But these errors not always pop up immediately.&lt;/p&gt;
+&lt;p&gt;Your product's rush-hour could be in a different timezone; there are cronjobs
+that only execute at one moment in a day/week; some bugs are not detectable
+through an crash but rather it's a busyness logic that is wrong, so someone has
+to raise a complain, and not every user is eager to waste that time contacting
+your support team; etc.&lt;/p&gt;
+&lt;p&gt;This is why, for critical changes, is best to &lt;em&gt;let the code settle&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Wait up a couple hours/days/weeks before deploying more critical changes. You will
+give the code enough exposure to real users and gain confidence for your next
+deployment.&lt;/p&gt;</content><category term="Programming"></category><category term="best-practices"></category></entry><entry><title>Djangonauts don't let djangonauts write Javascript</title><link href="http://hernantz.github.io/djangonauts-dont-let-djangonauts-write-javascript.html" rel="alternate"></link><published>2021-10-25T00:00:00-03:00</published><updated>2021-10-25T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2021-10-25:/djangonauts-dont-let-djangonauts-write-javascript.html</id><summary type="html">&lt;p&gt;Why and how to fight JS fatigue with some Django.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="The canonical website architecture" src="/images/djangonauts.png" title="The canonical website architecture"&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;JS Fatigue happens when people use tools
 they don't need to solve problems they
@@ -1063,11 +1082,11 @@ is now an orphan because of the Big Coffin Hunters killed his parents.&lt;/p&gt;
 &lt;p&gt;After Gabrielle Deschain's matricide, Roland and Jamie are sent to Hambry, to
 investigate reports of a skin-man murdering people. Vannay gives them silver
 bullets just in case the story is not made up.&lt;/p&gt;
-&lt;p&gt;They are also commanded to deliver young Bill to Serenity, which is nearby. The
-sisters that run the place agree to adopt Bill. They are taking many injured
+&lt;p&gt;They are also commanded to deliver Sheemie to Serenity, which is nearby. The
+sisters that run the place agree to adopt Sheemie. They are taking many injured
 folk and also another orphan.&lt;/p&gt;
 &lt;p&gt;They stay for one night there and one of the sisters proceeds to narrate a story
-&lt;em&gt;the wind through the keyhole&lt;/em&gt; to the ophans.&lt;/p&gt;
+&lt;em&gt;the wind through the keyhole&lt;/em&gt; to the orphans.&lt;/p&gt;
 &lt;p&gt;Again, a story within a story.&lt;/p&gt;
 &lt;p&gt;Within the following days, they finally they defeat the skin-changer.&lt;/p&gt;
 &lt;p&gt;On they way back to Gilead, the stay one more night at Serenity, and before

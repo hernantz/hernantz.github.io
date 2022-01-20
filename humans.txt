@@ -95,7 +95,7 @@ else's repertoire get so much better.
 | The Only                     | Static X                   | Korn                     |
 | Last Hurrah                  | Bebe Rexha                 | Lady Gaga                |
 | Deadly Valentine             | Charlotte Gainsbourg       | Ladytron                 |
-| Presuit of Happiness         | Lissie                     | Lana del Rey             |
+| Persuit of Happiness         | Lissie                     | Lana del Rey             |
 | Paper Planes                 | MIA                        | Lana del Rey             |
 | Smooth Criminal              | Alien Ant Farm             | Limp Bizkit              |
 | Butterfly                    | Crazy Town                 | Limp Bizkit              |
@@ -104,6 +104,7 @@ else's repertoire get so much better.
 | Papercut                     | Linkin Park                | Limp Bizkit              |
 | Boom                         | P.O.D.                     | Limp Bizkit              |
 | Just in Case                 | Static X                   | Limp Bizkit              |
+| End of the World             | Armor for Sleep            | Linkin Park              |
 | Dale Vieja Dale              | Ulises Bueno               | Los Caligaris            |
 | Panda                        | Astro                      | MGMT                     |
 | Pumped Up Kicks              | Foster The People          | MGMT                     |
@@ -129,6 +130,7 @@ else's repertoire get so much better.
 | I Fell in Love               | Gidge                      | Nicolas Jaar             |
 | Dead And Gone                | Shadows Fall               | Nightrage                |
 | Zombie Autopilot             | Unearth                    | Nightrage                |
+| In From Of Me                | Infected Mushroom          | Nine Inch Nails          |
 | I Am Weighless               | Septembre                  | Nirvana                  |
 | A Bloodred Path              | Gates of Ishtar            | Norther                  |
 | Colossus                     | In Mourning                | Omnium Gatherum          |
@@ -167,6 +169,8 @@ else's repertoire get so much better.
 | Legalise Drugs & Murder      | Electric Wizard            | Type O Negative          |
 | Wicked Game                  | HIM                        | Type O Negative          |
 | Black Magic Woman            | Santana                    | Type O Negative          |
+| Other Side                   | Sirenia                    | Unsun                    |
+| The Path To Decay            | Sirenia                    | Unsun                    |
 | Take On Me                   | a-ha                       | Virus                    |
 | Movies                       | Alien Ant Farm             | Wezzer                   |
 | Black Betty                  | Ram Jam                    | ZZ Top                   |
