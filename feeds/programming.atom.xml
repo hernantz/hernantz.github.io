@@ -63,24 +63,44 @@ to get right. They can be an overkill for most projects, specially websites.&lt;
 &lt;p&gt;A lot of infrastructure is needed, coordination between specialized teams,
 multiple points of failure, API deprecation policies, etc, that increase
 development and maintainability costs. There's a lot that can go wrong.&lt;/p&gt;
-&lt;p&gt;As code smells, architecture smells do exists too.&lt;/p&gt;
+&lt;p&gt;Just as there are code smells, architecture smells do exists too.&lt;/p&gt;
 &lt;p&gt;A poor micro services architecture can be detected when in order to develop a
 feature, you need to touch three repos and instantiate several services to test
 it locally. In a similar note, if you have to modify the client code along with
 the server code to reflect a new change in a page and deploy both changes at the
 same time, it may be that you didn't need a SPA to begin with.&lt;/p&gt;
-&lt;p&gt;The tight coupling between client and server (which indicates that it is still a
-monolith), or between micro services (another monolith), are one of those smells
-or things that feel wrong.&lt;/p&gt;
+&lt;p&gt;The tight coupling between client and server, or between micro services, is
+one of those smells that indicates your architecture is still a monolith in
+disguise.&lt;/p&gt;
 &lt;p&gt;Another architecture smell is using your SPA as the &lt;a href="https://htmx.org/essays/splitting-your-apis/" title="Splitting Your Data &amp;amp; APIs: Going Further"&gt;only consumer of your API&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Creating a JSON API just because in the future you might need for other clients
-indicates an early optimization decision. &lt;a href="https://max.engineer/server-informed-ui" title="Don’t Build A General Purpose API To Power Your Own Front End"&gt;YAGNI&lt;/a&gt;. JSON APIs are targeted for
-code consumption, not for human interaction, are usually generic or agnostic
-from any UI, are stable and versioned, etc. Generic APIs might suffer &lt;a href="https://intercoolerjs.org/2016/02/17/api-churn-vs-security.html" title="The API Churn/Security Trade-off"&gt;from an
-expressivity/security tradeoff&lt;/a&gt;, because everything you make available to the
-UI, could also be leaked for malign users. Moreover, this single client SPA
-requires duplication of logic, models, validation, etc, which the backend will
-also have to implement since clients cannot be trusted.&lt;/p&gt;
+like mobile devices or 3rd party aps indicates an early optimization decision.
+&lt;a href="https://max.engineer/server-informed-ui" title="Don’t Build A General Purpose API To Power Your Own Front End"&gt;YAGNI&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Restful APIs are usually generic or agnostic from any UI, need to be stable and
+versioned, etc. Generic APIs might suffer &lt;a href="https://intercoolerjs.org/2016/02/17/api-churn-vs-security.html" title="The API Churn/Security Trade-off"&gt;from an expressivity/security
+tradeoff&lt;/a&gt;, because everything you make available to the UI, could also be
+leaked for malign users. Moreover, this single client SPA requires duplication
+of logic, models, validation, etc, which the backend will also have to implement
+since clients cannot be trusted.&lt;/p&gt;
+&lt;h2 id="the-browser-is-the-client-you-dont-have-to-code"&gt;The browser is the client you don't have to code&lt;a class="headerlink" href="#the-browser-is-the-client-you-dont-have-to-code" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Exposing raw data through an HTTP JSON API is really targeted for program to
+program interaction.&lt;/p&gt;
+&lt;p&gt;The browser is one special program that doesn't really understand JSON as much
+as plain text, it only knows how to render and interact with HTML.&lt;/p&gt;
+&lt;p&gt;When you put the following anchor link in your response:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;a&lt;/span&gt; &lt;span class="na"&gt;href&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/page&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Visit page&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;a&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The browser will &lt;a href="https://www.youtube.com/watch?v=SmE4OwHztCc" title="So how does the browser actually render a website"&gt;eagerly parse the response&lt;/a&gt; from the server trying to
+render the UI on the screen as soon as possible. It recognizes that this tag
+really is a clickable piece of text that needs to be styled differently, the
+mouse pointer needs to change we it hovers over it and when clicked a new HTTP
+request will be issued, the navigation history will be updated, a progress bar
+will show an indication of a loading state and the result will be finally
+presented.&lt;/p&gt;
+&lt;p&gt;All of this default behavior, that users already expect, comes for free if you
+simply represent your data as HTML. Otherwise, this means more code, testing and
+bugs to get a similar user experience when you go full SPA mode.&lt;/p&gt;
 &lt;h2 id="you-probably-dont-need-a-spa"&gt;You probably don't need a SPA&lt;a class="headerlink" href="#you-probably-dont-need-a-spa" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;a href="http://wgross.net/essays/spas-are-harder" title="SPAs Are Just Harder, and Always Will Be"&gt;SPAs are hard&lt;/a&gt;. If not done correctly, you could be &lt;a href="https://svelte.dev/blog/virtual-dom-is-pure-overhead" title="Virtual DOM is pure overhead"&gt;adding megabytes worth
 of code&lt;/a&gt; that needs to be downloaded and executed, probably contributing to
@@ -328,7 +348,7 @@ when I first noticed the JS-all-the-things trend in the industry.&lt;/p&gt;
 &lt;p&gt;Four years later, the state of things hasn't gotten better, yet projects like
 htmx are gaining traction for small / hobby projects, which is promising.&lt;/p&gt;
 &lt;p&gt;Maybe this post inspires you to start your next project as a MPA, instead of a
-SPA, to avoid JS fatigue, save time and money.&lt;/p&gt;</content><category term="Programming"></category><category term="python"></category><category term="django"></category><category term="javascript"></category><category term="rants"></category></entry><entry><title>Endpoints matter</title><link href="http://hernantz.github.io/endpoints-matter.html" rel="alternate"></link><published>2021-09-18T00:00:00-03:00</published><updated>2021-09-18T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2021-09-18:/endpoints-matter.html</id><summary type="html">&lt;p&gt;Entities can be identified by IDs, but also paths.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In most applications, system entities do not exist aisolated from each other,
+SPA with the framework dujour, to avoid JS fatigue, save time and money.&lt;/p&gt;</content><category term="Programming"></category><category term="python"></category><category term="django"></category><category term="javascript"></category><category term="rants"></category></entry><entry><title>Endpoints matter</title><link href="http://hernantz.github.io/endpoints-matter.html" rel="alternate"></link><published>2021-09-18T00:00:00-03:00</published><updated>2021-09-18T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2021-09-18:/endpoints-matter.html</id><summary type="html">&lt;p&gt;Entities can be identified by IDs, but also paths.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In most applications, system entities do not exist isolated from each other,
 but connected in one to one, many to many or one to may type of relations.&lt;/p&gt;
 &lt;p&gt;This means that there is more than one way to reach to a specific entity.&lt;/p&gt;
 &lt;p&gt;Although all entities should have a unique id, the &lt;em&gt;path&lt;/em&gt; to that entity is also
@@ -336,7 +356,7 @@ important when designing REST APIs.&lt;/p&gt;
 &lt;p&gt;For example, in an blog website, we have &lt;code&gt;Posts&lt;/code&gt; and &lt;code&gt;Comment&lt;/code&gt; entities. We
 could imagine a posts endpoint in the form: &lt;code&gt;/posts/{postId}&lt;/code&gt;, but what about
 comments?&lt;/p&gt;
-&lt;p&gt;Comments only make sense in the context of a post, it would be akward to
+&lt;p&gt;Comments only make sense in the context of a post, it would be awkward to
 reference a comment by &lt;code&gt;/comments/{commentId}&lt;/code&gt; endpoint, or get all comments
 from a post through a &lt;code&gt;/comments/?postId={postId}&lt;/code&gt; filter or comments by their
 author: &lt;code&gt;/user/{userId}/comments/{commentId}&lt;/code&gt;.&lt;/p&gt;
@@ -348,7 +368,7 @@ form: &lt;code&gt;/posts/{postId}/comments/{commentId}/replies/{replyId}&lt;/cod
 probably abusing the pattern and the path to an entity is no longer clear.
 Although replies only make sense in the context of a comment they reply to.&lt;/p&gt;
 &lt;p&gt;Path design to reach connected entities will really depend what are the most
-common access paterns to those entieties. There are always hierarchies
+common access patterns to those entities. There are always hierarchies
 in the structure of any database after all.&lt;/p&gt;</content><category term="Programming"></category><category term="database"></category><category term="rest"></category><category term="api"></category></entry><entry><title>Concurrent updates on Firestore documents</title><link href="http://hernantz.github.io/concurrent-updates-on-firestore-documents.html" rel="alternate"></link><published>2021-08-16T00:00:00-03:00</published><updated>2021-08-16T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2021-08-16:/concurrent-updates-on-firestore-documents.html</id><summary type="html">&lt;p&gt;Can we achieve eventual consistency? Maybe something close to it?&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://firebase.google.com/products/firestore" title="Firestore by Google"&gt;Firestore&lt;/a&gt; (by Firebase) is a JSON document-oriented database (as a
 service), that allows concurrent updates to documents, from different clients or
 the same client in different points in time, since it offers offline support for

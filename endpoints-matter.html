@@ -44,7 +44,7 @@ on <time datetime="2021-09-18T00:00:00-03:00">2021-09-18</time>,       under <a 
       tagged with <a href="http://hernantz.github.io/tag/database.html">database</a>, <a href="http://hernantz.github.io/tag/rest.html">rest</a> and <a href="http://hernantz.github.io/tag/api.html">api</a>.
     </p>
   </summary>
-  <p>In most applications, system entities do not exist aisolated from each other,
+  <p>In most applications, system entities do not exist isolated from each other,
 but connected in one to one, many to many or one to may type of relations.</p>
 <p>This means that there is more than one way to reach to a specific entity.</p>
 <p>Although all entities should have a unique id, the <em>path</em> to that entity is also
@@ -52,7 +52,7 @@ important when designing REST APIs.</p>
 <p>For example, in an blog website, we have <code>Posts</code> and <code>Comment</code> entities. We
 could imagine a posts endpoint in the form: <code>/posts/{postId}</code>, but what about
 comments?</p>
-<p>Comments only make sense in the context of a post, it would be akward to
+<p>Comments only make sense in the context of a post, it would be awkward to
 reference a comment by <code>/comments/{commentId}</code> endpoint, or get all comments
 from a post through a <code>/comments/?postId={postId}</code> filter or comments by their
 author: <code>/user/{userId}/comments/{commentId}</code>.</p>
@@ -64,7 +64,7 @@ form: <code>/posts/{postId}/comments/{commentId}/replies/{replyId}</code> but it
 probably abusing the pattern and the path to an entity is no longer clear.
 Although replies only make sense in the context of a comment they reply to.</p>
 <p>Path design to reach connected entities will really depend what are the most
-common access paterns to those entieties. There are always hierarchies
+common access patterns to those entities. There are always hierarchies
 in the structure of any database after all.</p>
 </article>
 

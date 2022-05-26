@@ -47,18 +47,25 @@ on <time datetime="2020-03-19T00:00:00-03:00">2020-03-19</time>,       under <a 
 <p>https://twitter.com/SusanPotter/status/1396456263517618181?s=1006
 implementacion! =&gt; https://www.leshenko.net/p/ugit
 https://www.npmjs.com/package/semver-resolver
-https://pnpm.js.org/ or pnpm.io
-https://jordan-wright.com/blog/post/2020-11-12-hunting-for-malicious-packages-on-pypi/
+https://pnpm.js.org/ or pnpm.io</p>
+<p>https://jordan-wright.com/blog/post/2020-11-12-hunting-for-malicious-packages-on-pypi/
 https://serokell.io/blog/what-is-nix
 https://grassfedcode.com/python-packaging/
 https://github.com/uber/kraken using p2p for big binaries (docker images).
 http://kmkeen.com/maintainers-matter/
 https://www.btao.org/2020/10/02/npm-trust.html "A web of trust for npm"
 https://pypa-build.readthedocs.io/en/stable/mission.html
-https://github.com/spack/spack</p>
+https://github.com/spack/spack
+Never update anything: https://twitter.com/andrestaltz/status/1456883919614357508?t=87KsCPhZ_8p05OLfGPG0sg&amp;s=08</p>
+<p>https://blog.wesleyac.com/posts/the-curse-of-nixos</p>
+<p>https://asdf-vm.com/ "Manage multiple runtime versions with a single CLI tool" 
+Python has virtual environments and <code>pyenv</code>.
+Node has <code>nvm</code> and local <code>node_modules</code> folder.
+For ruby there's <code>rbenv</code>.
+And golang has goenv.</p>
 <p>A package manager is a program that gets a bunch of files "packaged" in a certain format from a repository of packages and places them on a filesystem.</p>
 <p>The manager part implies that it can keep track of installed packages, versions, dependencies, etc.</p>
-<p>Packages are basically a box that contains files and metadata (checksums, content types, filepaths where to place the files, etc). Some may include compiled binaries or source files for building a project and testing it, reusable libraries, debug symbols, images, icons, documentation, songs, etc.</p>
+<p>Packages are basically boxes that contain files and metadata (checksums, content types, filepaths where to place the files, etc). Some may include compiled binaries or source files for building a project and testing it, reusable libraries, debug symbols, images, icons, documentation, songs, etc.</p>
 <p>Guess what, plugins are also files, so your browser has a package-manager of sorts to handle those.</p>
 <p>Different programming languages ship with their own package managers to install libraries: <code>pip</code> for Python, <code>cargo</code> for Rust, <code>npm</code> for node, etc.</p>
 <p>A Linux distribution is a combination of a kernel + a package manager + a process manager. A kernel and a process manager can also be installed via the package manager, since they are also binary files.</p>
@@ -80,6 +87,7 @@ Libraries might also have to maintain several versions at the same time, and bac
 <p>https://news.ycombinator.com/item?id=21967879</p>
 <h2 id="dependency-hell">Dependency hell<a class="headerlink" href="#dependency-hell" title="Permanent link">&para;</a></h2>
 <p>https://utcc.utoronto.ca/~cks/space/blog/linux/MicrosoftTeamsBadArrogance</p>
+<p>https://iscinumpy.dev/post/bound-version-constraints/</p>
 <p>https://npm.github.io/how-npm-works-docs/npm3/how-npm3-works.html
 https://github.com/steinwurf/waf</p>
 <p>As applications have plugin manager and dependencies, distributions have packages and dependencies too.
@@ -110,12 +118,15 @@ This is the <code>Pakfile</code>. When you use the command line to add/remove pa
 <p>Reproducible builds come at the cost of more disk space, you need a lib which works fine with versions v0.[1-3], the user already installed v0.2 but you specified v0.1 in your dependencies, the user will get both copies installed (v0.1 and v0.2), even though only one was enough.</p>
 <p>Como se hace la configuracion desde directorios globales para packetes dentro de nix? /etc/systemd/units/my-app.service?</p>
 <p>Que pasa con los paquetes tradicionales cuando borras un servicio que es administrado por systemd?</p>
+<p>LastPyMile https://securitylab.disi.unitn.it/lib/exe/fetch.php?media=research_activities:experiments:esecfse2021.pdf</p>
 <p>https://cachix.org/
 https://www.redox-os.org/news/pkgar-introduction/
 https://github.com/whyrusleeping/gx
 https://github.com/mamba-org/mamba</p>
+<p>https://sethmlarson.dev/blog/security-for-package-maintainers</p>
 <p>Qué pasa si dos librerías dependen de de una misma dependencia pero en distintas versiones, es el mismo caso que dos apps distintas dependan de distintas versiónes de una misma librería. Para esto es necesario los locks. Uno puede especificar versiones de depenencias con rangos.
-Updates de seguridad implican actualizar todo? Si, sino se pierde la build reproducible. En fin: locks -&gt; build reproducible</p>
+Updates de seguridad implican actualizar todo? Si, sino se pierde la build reproducible. En fin: locks -&gt; build reproducible
+https://fossa.com/blog/three-pillars-reproducible-builds/</p>
 <p>https://www.youtube.com/watch?v=4ua5aeKKDzU
 https://en.wikipedia.org/wiki/Package_manager
 https://en.wikipedia.org/wiki/PackageKit
@@ -123,7 +134,7 @@ Pakfile -&gt; toml: contiene el listado de dependencias
 Packfile.lock -&gt; contiene el graph freezado de dependencias
 un clon de nix en C y sin el DSL
 http://holocm.org/
-https://www.gobolinux.org/at_a_glance.html
+https://www.gobolinux.org/at_a_glance.html Gobolinux : Redefining Linux filesystem hierarchy (https://news.ycombinator.com/item?id=29714825)
 https://wiki.archlinux.org/index.php/Pacman/Rosetta
 https://micromind.me/en/posts/from-docker-container-to-bootable-linux-disk-image/
 https://reproducible-builds.org/
@@ -151,13 +162,29 @@ https://sedimental.org/the_packaging_gradient.html</p>
 <p>https://www.youtube.com/watch?v=ULqoCjANK-I
 For building: https://zserge.com/posts/containers/ (Linux containers in a few lines of code).</p>
 <p>runpak a sandboxed runtime for a binary (is flatpak without big runtimes).</p>
-<p>How to manage dotfiles and XDG-HOME, the user has to create those? Yes, custom config files should be managed by the user, possibly by using custom packages.</p>
+<p>How to manage dotfiles and XDG-HOME, the user has to create those? Yes, custom config files should be managed by the user, possibly by using custom packages. https://www.reddit.com/r/linux/comments/uouh7p/xdgninja_a_tool_to_help_you_clean_up_your_home/
+https://myme.no/posts/2022-04-11-a-dotfile-history.html</p>
 <p>nix-thesis: https://edolstra.github.io/pubs/phd-thesis.pdf</p>
+<h2 id="binary-distribution">Binary distribution<a class="headerlink" href="#binary-distribution" title="Permanent link">&para;</a></h2>
+<p>Pak manages files, it doesn't care if they are compiled binaries, pictures or source code.
+So if you want to compile software for different systems, like alpine and debian, there should be two packages with different target binaries.
+Since packages are identified with UUIDs, other metadata fields should specify the target architecture, just like they specify the version, the author, description, etc.</p>
 <h2 id="network-vs-package-management">Network vs Package management<a class="headerlink" href="#network-vs-package-management" title="Permanent link">&para;</a></h2>
 <p>Fetching packages from the internet should be a decoupled task from package management.
 A package can be obtained from a local file, over https, a magnet link, an ipfs link, ftp, etc. Almost all of the references + auth throught tokens or passwords could be done using a URI scheme.</p>
 <p>Pak should delegate this to a separate tool (is there something like a generic curl?), and only care about maintaining the local content-addressable store.</p>
 <p>The bridge between these two worlds can be through a spawning a new process with CLI args for this tool to fetch the packages and put the file on a given directory. From there, pak will unpack the file and take control.</p>
+<h2 id="store-paths">Store paths<a class="headerlink" href="#store-paths" title="Permanent link">&para;</a></h2>
+<p>Having long paths within the store can be a problem when showing them in a traceback for instance.</p>
+<p>But essentially we can use the content hash of the <code>Packfile.lock</code> manifest to create unique paths to each dependency.</p>
+<p>Dependencies can be downloaded and unpacked in parallel but resolved sequentially.</p>
+<h2 id="federated-repositories">Federated repositories<a class="headerlink" href="#federated-repositories" title="Permanent link">&para;</a></h2>
+<p>There is the dependency confusion attack, victims think they are downloading a package named the same but with different code (because they refer to packages by name not by uuid)</p>
+<h2 id="packages-uuids">Packages UUIDs<a class="headerlink" href="#packages-uuids" title="Permanent link">&para;</a></h2>
+<p>Why not urls like java or go? because urls break or change.
+Why not names, because they can collide across repos
+UUIDS are unique across the globe that is immutable, urls and names might change.
+Now you can have multiple packages named "utils" that can be private or mean distinct dependencies for different projects, or be obtained from different repositories.</p>
 <h2 id="cli">CLI<a class="headerlink" href="#cli" title="Permanent link">&para;</a></h2>
 <p><code>--root</code> can change the default store directory.</p>
 <p>Maybe each <code>pak add/rm &lt;package-name==version&gt;</code></p>
@@ -170,6 +197,7 @@ A package can be obtained from a local file, over https, a magnet link, an ipfs 
 <p>It also creates symlinks in the global filesystem to all the files in the store. For example <code>/bin/nginx</code> is going to be a symlink to <code>/var/lib/pak/store/&lt;package-name-and-version&gt;/&lt;package-md5-sum&gt;/nginx</code>
 Another possibility is that <code>pak env</code> puts you in a shell with <code>$PATH</code> env var pointing to the different binaries in the store?</p>
 <p><code>pak env --list</code> lists all available envs in <code>/usr/share/pak/envs/</code></p>
+<p><code>pak --help</code> https://blog.craftyguy.net/cmdline-help/</p>
 <p><code>pak run &lt;commmand&gt;</code> run the command within the environment</p>
 <p><code>pak update</code> updates all versions updating also the lock file</p>
 <p><code>pak update &lt;package-name==version&gt;</code> updates only the package name, updating also the lock file</p>
@@ -180,6 +208,7 @@ Another possibility is that <code>pak env</code> puts you in a shell with <code>
 <p>Hierarchy: package stores/environments/configs can be also defined in <code>~/.local/share/pak/</code>, etc.</p>
 <p>Sandboxing GUI apps should be done with another binary that allows to set firewalls and also allow GUI interactions to happen via portals like in flatpak (https://github.com/containers/bubblewrap). Another example would be Opensnitch.
 https://github.com/netblue30/firejail</p>
+<p>Pak respects with <code>PAK_NO_COLOR</code> env or <code>--no-color</code> arg https://no-color.org/</p>
 <h2 id="how-it-works">How it works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h2>
 <p>Pak is a runtime environment manager.</p>
 <blockquote>
@@ -187,7 +216,7 @@ https://github.com/netblue30/firejail</p>
 </blockquote>
 <p>Besides exposing packages in a user's PATH, Nix profiles are also used in NixOS to automatically find other resources, such as manual pages (through MANPATH) and KDE desktop menu items (through XDG_DATA_DIRS).
 An environment is defined in a Pakfile it might list dependencies of <code>.pak</code> files that can be pinned in a Pakfile.lock</p>
-<p>System directories should be mounted as RO. To avoid malicius packages from globally altering the system.</p>
+<p>System directories should be mounted as RO. To avoid malicious packages from globally altering the system.</p>
 <p>There are no optional dependencies or "extras", if something is optional it can be installed explicitly by the user.</p>
 <h2 id="no-hooks">No hooks<a class="headerlink" href="#no-hooks" title="Permanent link">&para;</a></h2>
 <p>Some package managers allow you to run scripts after installing a package. This should be done with oneshot scripts in systemd (like run migrations for example). There are no pre/post install scripts or hooks, these have to be commands that every package provides and a user or system needs to run.
@@ -198,7 +227,8 @@ https://michael.stapelberg.ch/posts/2019-07-20-hooks-and-triggers/ -&gt; in orde
 https://jmmv.dev/2020/08/config-files-vs-directories.html
 https://jmmv.dev/2020/08/database-directories.html</p>
 <h2 id="technology-stack">Technology stack<a class="headerlink" href="#technology-stack" title="Permanent link">&para;</a></h2>
-<p>Use python 3.8 + nuitka (give a talk: compyling).</p>
+<p>Use python 3.8 + nuitka (give a talk: compyling). 
+Or use mypyc https://mypyc.readthedocs.io/en/latest/</p>
 <p>Pakfile -&gt; toml
 Pakfile.lock -&gt; json?</p>
 <p>https://github.com/g-plane/tiny-package-manager</p>
@@ -213,9 +243,13 @@ If there is a sub-dependency at any point that conflicts we show an error. If th
 <p>Blog posts:
 - Just files (what are package manages)
 - Apps vs Libraries (branching strategy: trunk dev vs multi branch, config via files vs params, granular semver versioning vs 1ver).</p>
-<h2 id="authors-to-concatc">AUthors to concatc<a class="headerlink" href="#authors-to-concatc" title="Permanent link">&para;</a></h2>
+<h2 id="authors-to-contact">Authors to contact<a class="headerlink" href="#authors-to-contact" title="Permanent link">&para;</a></h2>
 <p>Russell Keith-Magee @freakboy3742
 Distr1</p>
+<p>http://lists.busybox.net/pipermail/busybox/2010-December/074114.html "Understanding the bin, sbin, usr/bin , usr/sbin split" https://news.ycombinator.com/item?id=31336396
+https://www.freedesktop.org/wiki/Software/systemd/TheCaseForTheUsrMerge/ "The case for /Usr/ Merge"</p>
+<p>https://www.haskellforall.com/2022/05/the-golden-rule-of-software.html "blessed packages for build plans"</p>
+<p>https://about.appd8.io/</p>
 </article>
 
       <footer class="column-right light">

@@ -89,24 +89,44 @@ to get right. They can be an overkill for most projects, specially websites.</p>
 <p>A lot of infrastructure is needed, coordination between specialized teams,
 multiple points of failure, API deprecation policies, etc, that increase
 development and maintainability costs. There's a lot that can go wrong.</p>
-<p>As code smells, architecture smells do exists too.</p>
+<p>Just as there are code smells, architecture smells do exists too.</p>
 <p>A poor micro services architecture can be detected when in order to develop a
 feature, you need to touch three repos and instantiate several services to test
 it locally. In a similar note, if you have to modify the client code along with
 the server code to reflect a new change in a page and deploy both changes at the
 same time, it may be that you didn't need a SPA to begin with.</p>
-<p>The tight coupling between client and server (which indicates that it is still a
-monolith), or between micro services (another monolith), are one of those smells
-or things that feel wrong.</p>
+<p>The tight coupling between client and server, or between micro services, is
+one of those smells that indicates your architecture is still a monolith in
+disguise.</p>
 <p>Another architecture smell is using your SPA as the <a href="https://htmx.org/essays/splitting-your-apis/" title="Splitting Your Data &amp; APIs: Going Further">only consumer of your API</a>.</p>
 <p>Creating a JSON API just because in the future you might need for other clients
-indicates an early optimization decision. <a href="https://max.engineer/server-informed-ui" title="Don’t Build A General Purpose API To Power Your Own Front End">YAGNI</a>. JSON APIs are targeted for
-code consumption, not for human interaction, are usually generic or agnostic
-from any UI, are stable and versioned, etc. Generic APIs might suffer <a href="https://intercoolerjs.org/2016/02/17/api-churn-vs-security.html" title="The API Churn/Security Trade-off">from an
-expressivity/security tradeoff</a>, because everything you make available to the
-UI, could also be leaked for malign users. Moreover, this single client SPA
-requires duplication of logic, models, validation, etc, which the backend will
-also have to implement since clients cannot be trusted.</p>
+like mobile devices or 3rd party aps indicates an early optimization decision.
+<a href="https://max.engineer/server-informed-ui" title="Don’t Build A General Purpose API To Power Your Own Front End">YAGNI</a>.</p>
+<p>Restful APIs are usually generic or agnostic from any UI, need to be stable and
+versioned, etc. Generic APIs might suffer <a href="https://intercoolerjs.org/2016/02/17/api-churn-vs-security.html" title="The API Churn/Security Trade-off">from an expressivity/security
+tradeoff</a>, because everything you make available to the UI, could also be
+leaked for malign users. Moreover, this single client SPA requires duplication
+of logic, models, validation, etc, which the backend will also have to implement
+since clients cannot be trusted.</p>
+<h2 id="the-browser-is-the-client-you-dont-have-to-code">The browser is the client you don't have to code<a class="headerlink" href="#the-browser-is-the-client-you-dont-have-to-code" title="Permanent link">&para;</a></h2>
+<p>Exposing raw data through an HTTP JSON API is really targeted for program to
+program interaction.</p>
+<p>The browser is one special program that doesn't really understand JSON as much
+as plain text, it only knows how to render and interact with HTML.</p>
+<p>When you put the following anchor link in your response:</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/page&quot;</span><span class="p">&gt;</span>Visit page<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>The browser will <a href="https://www.youtube.com/watch?v=SmE4OwHztCc" title="So how does the browser actually render a website">eagerly parse the response</a> from the server trying to
+render the UI on the screen as soon as possible. It recognizes that this tag
+really is a clickable piece of text that needs to be styled differently, the
+mouse pointer needs to change we it hovers over it and when clicked a new HTTP
+request will be issued, the navigation history will be updated, a progress bar
+will show an indication of a loading state and the result will be finally
+presented.</p>
+<p>All of this default behavior, that users already expect, comes for free if you
+simply represent your data as HTML. Otherwise, this means more code, testing and
+bugs to get a similar user experience when you go full SPA mode.</p>
 <h2 id="you-probably-dont-need-a-spa">You probably don't need a SPA<a class="headerlink" href="#you-probably-dont-need-a-spa" title="Permanent link">&para;</a></h2>
 <p><a href="http://wgross.net/essays/spas-are-harder" title="SPAs Are Just Harder, and Always Will Be">SPAs are hard</a>. If not done correctly, you could be <a href="https://svelte.dev/blog/virtual-dom-is-pure-overhead" title="Virtual DOM is pure overhead">adding megabytes worth
 of code</a> that needs to be downloaded and executed, probably contributing to
@@ -354,7 +374,7 @@ when I first noticed the JS-all-the-things trend in the industry.</p>
 <p>Four years later, the state of things hasn't gotten better, yet projects like
 htmx are gaining traction for small / hobby projects, which is promising.</p>
 <p>Maybe this post inspires you to start your next project as a MPA, instead of a
-SPA, to avoid JS fatigue, save time and money.</p>
+SPA with the framework dujour, to avoid JS fatigue, save time and money.</p>
 </article>
 
       <footer class="column-right light">

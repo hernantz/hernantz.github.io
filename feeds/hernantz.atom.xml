@@ -63,24 +63,44 @@ to get right. They can be an overkill for most projects, specially websites.&lt;
 &lt;p&gt;A lot of infrastructure is needed, coordination between specialized teams,
 multiple points of failure, API deprecation policies, etc, that increase
 development and maintainability costs. There's a lot that can go wrong.&lt;/p&gt;
-&lt;p&gt;As code smells, architecture smells do exists too.&lt;/p&gt;
+&lt;p&gt;Just as there are code smells, architecture smells do exists too.&lt;/p&gt;
 &lt;p&gt;A poor micro services architecture can be detected when in order to develop a
 feature, you need to touch three repos and instantiate several services to test
 it locally. In a similar note, if you have to modify the client code along with
 the server code to reflect a new change in a page and deploy both changes at the
 same time, it may be that you didn't need a SPA to begin with.&lt;/p&gt;
-&lt;p&gt;The tight coupling between client and server (which indicates that it is still a
-monolith), or between micro services (another monolith), are one of those smells
-or things that feel wrong.&lt;/p&gt;
+&lt;p&gt;The tight coupling between client and server, or between micro services, is
+one of those smells that indicates your architecture is still a monolith in
+disguise.&lt;/p&gt;
 &lt;p&gt;Another architecture smell is using your SPA as the &lt;a href="https://htmx.org/essays/splitting-your-apis/" title="Splitting Your Data &amp;amp; APIs: Going Further"&gt;only consumer of your API&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Creating a JSON API just because in the future you might need for other clients
-indicates an early optimization decision. &lt;a href="https://max.engineer/server-informed-ui" title="Don’t Build A General Purpose API To Power Your Own Front End"&gt;YAGNI&lt;/a&gt;. JSON APIs are targeted for
-code consumption, not for human interaction, are usually generic or agnostic
-from any UI, are stable and versioned, etc. Generic APIs might suffer &lt;a href="https://intercoolerjs.org/2016/02/17/api-churn-vs-security.html" title="The API Churn/Security Trade-off"&gt;from an
-expressivity/security tradeoff&lt;/a&gt;, because everything you make available to the
-UI, could also be leaked for malign users. Moreover, this single client SPA
-requires duplication of logic, models, validation, etc, which the backend will
-also have to implement since clients cannot be trusted.&lt;/p&gt;
+like mobile devices or 3rd party aps indicates an early optimization decision.
+&lt;a href="https://max.engineer/server-informed-ui" title="Don’t Build A General Purpose API To Power Your Own Front End"&gt;YAGNI&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Restful APIs are usually generic or agnostic from any UI, need to be stable and
+versioned, etc. Generic APIs might suffer &lt;a href="https://intercoolerjs.org/2016/02/17/api-churn-vs-security.html" title="The API Churn/Security Trade-off"&gt;from an expressivity/security
+tradeoff&lt;/a&gt;, because everything you make available to the UI, could also be
+leaked for malign users. Moreover, this single client SPA requires duplication
+of logic, models, validation, etc, which the backend will also have to implement
+since clients cannot be trusted.&lt;/p&gt;
+&lt;h2 id="the-browser-is-the-client-you-dont-have-to-code"&gt;The browser is the client you don't have to code&lt;a class="headerlink" href="#the-browser-is-the-client-you-dont-have-to-code" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Exposing raw data through an HTTP JSON API is really targeted for program to
+program interaction.&lt;/p&gt;
+&lt;p&gt;The browser is one special program that doesn't really understand JSON as much
+as plain text, it only knows how to render and interact with HTML.&lt;/p&gt;
+&lt;p&gt;When you put the following anchor link in your response:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;a&lt;/span&gt; &lt;span class="na"&gt;href&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/page&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Visit page&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;a&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The browser will &lt;a href="https://www.youtube.com/watch?v=SmE4OwHztCc" title="So how does the browser actually render a website"&gt;eagerly parse the response&lt;/a&gt; from the server trying to
+render the UI on the screen as soon as possible. It recognizes that this tag
+really is a clickable piece of text that needs to be styled differently, the
+mouse pointer needs to change we it hovers over it and when clicked a new HTTP
+request will be issued, the navigation history will be updated, a progress bar
+will show an indication of a loading state and the result will be finally
+presented.&lt;/p&gt;
+&lt;p&gt;All of this default behavior, that users already expect, comes for free if you
+simply represent your data as HTML. Otherwise, this means more code, testing and
+bugs to get a similar user experience when you go full SPA mode.&lt;/p&gt;
 &lt;h2 id="you-probably-dont-need-a-spa"&gt;You probably don't need a SPA&lt;a class="headerlink" href="#you-probably-dont-need-a-spa" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;a href="http://wgross.net/essays/spas-are-harder" title="SPAs Are Just Harder, and Always Will Be"&gt;SPAs are hard&lt;/a&gt;. If not done correctly, you could be &lt;a href="https://svelte.dev/blog/virtual-dom-is-pure-overhead" title="Virtual DOM is pure overhead"&gt;adding megabytes worth
 of code&lt;/a&gt; that needs to be downloaded and executed, probably contributing to
@@ -328,7 +348,7 @@ when I first noticed the JS-all-the-things trend in the industry.&lt;/p&gt;
 &lt;p&gt;Four years later, the state of things hasn't gotten better, yet projects like
 htmx are gaining traction for small / hobby projects, which is promising.&lt;/p&gt;
 &lt;p&gt;Maybe this post inspires you to start your next project as a MPA, instead of a
-SPA, to avoid JS fatigue, save time and money.&lt;/p&gt;</content><category term="Programming"></category><category term="python"></category><category term="django"></category><category term="javascript"></category><category term="rants"></category></entry><entry><title>Endpoints matter</title><link href="http://hernantz.github.io/endpoints-matter.html" rel="alternate"></link><published>2021-09-18T00:00:00-03:00</published><updated>2021-09-18T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2021-09-18:/endpoints-matter.html</id><summary type="html">&lt;p&gt;Entities can be identified by IDs, but also paths.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In most applications, system entities do not exist aisolated from each other,
+SPA with the framework dujour, to avoid JS fatigue, save time and money.&lt;/p&gt;</content><category term="Programming"></category><category term="python"></category><category term="django"></category><category term="javascript"></category><category term="rants"></category></entry><entry><title>Endpoints matter</title><link href="http://hernantz.github.io/endpoints-matter.html" rel="alternate"></link><published>2021-09-18T00:00:00-03:00</published><updated>2021-09-18T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2021-09-18:/endpoints-matter.html</id><summary type="html">&lt;p&gt;Entities can be identified by IDs, but also paths.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In most applications, system entities do not exist isolated from each other,
 but connected in one to one, many to many or one to may type of relations.&lt;/p&gt;
 &lt;p&gt;This means that there is more than one way to reach to a specific entity.&lt;/p&gt;
 &lt;p&gt;Although all entities should have a unique id, the &lt;em&gt;path&lt;/em&gt; to that entity is also
@@ -336,7 +356,7 @@ important when designing REST APIs.&lt;/p&gt;
 &lt;p&gt;For example, in an blog website, we have &lt;code&gt;Posts&lt;/code&gt; and &lt;code&gt;Comment&lt;/code&gt; entities. We
 could imagine a posts endpoint in the form: &lt;code&gt;/posts/{postId}&lt;/code&gt;, but what about
 comments?&lt;/p&gt;
-&lt;p&gt;Comments only make sense in the context of a post, it would be akward to
+&lt;p&gt;Comments only make sense in the context of a post, it would be awkward to
 reference a comment by &lt;code&gt;/comments/{commentId}&lt;/code&gt; endpoint, or get all comments
 from a post through a &lt;code&gt;/comments/?postId={postId}&lt;/code&gt; filter or comments by their
 author: &lt;code&gt;/user/{userId}/comments/{commentId}&lt;/code&gt;.&lt;/p&gt;
@@ -348,7 +368,7 @@ form: &lt;code&gt;/posts/{postId}/comments/{commentId}/replies/{replyId}&lt;/cod
 probably abusing the pattern and the path to an entity is no longer clear.
 Although replies only make sense in the context of a comment they reply to.&lt;/p&gt;
 &lt;p&gt;Path design to reach connected entities will really depend what are the most
-common access paterns to those entieties. There are always hierarchies
+common access patterns to those entities. There are always hierarchies
 in the structure of any database after all.&lt;/p&gt;</content><category term="Programming"></category><category term="database"></category><category term="rest"></category><category term="api"></category></entry><entry><title>Concurrent updates on Firestore documents</title><link href="http://hernantz.github.io/concurrent-updates-on-firestore-documents.html" rel="alternate"></link><published>2021-08-16T00:00:00-03:00</published><updated>2021-08-16T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2021-08-16:/concurrent-updates-on-firestore-documents.html</id><summary type="html">&lt;p&gt;Can we achieve eventual consistency? Maybe something close to it?&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://firebase.google.com/products/firestore" title="Firestore by Google"&gt;Firestore&lt;/a&gt; (by Firebase) is a JSON document-oriented database (as a
 service), that allows concurrent updates to documents, from different clients or
 the same client in different points in time, since it offers offline support for
@@ -1123,6 +1143,8 @@ a similar destiny, and that's hunting him, giving him nightmares, he tells no
 one but Talitha, the matriarch of the town, during the sessions where she helped
 him with his arthritis. She also makes Andy, her robotic personal assistant,
 fond of telling horoscopes, promise that will help Roland in times of need.&lt;/p&gt;
+&lt;p&gt;I'm leaving this world soon, Roland. Some are born and some are dying — adds,
+looking at the children play with Andy on the street.&lt;/p&gt;
 &lt;p&gt;She dies of age, but gives Roland possession of her cross to lay at the Tower.
 At her burial Andy says O Discordia! (ordia! echoes Oy).&lt;/p&gt;
 &lt;p&gt;The ka-tet finds out that has been keeping secrets from each other, and Black
@@ -1259,7 +1281,7 @@ standing on the ledge.&lt;/p&gt;
 &lt;p&gt;The Crimson King, is there, wearing glasses and dressed in a red robe.&lt;/p&gt;
 &lt;p&gt;He is piling up black rocks, stacking them in what seems an impossible balance.&lt;/p&gt;
 &lt;p&gt;He is seated next to a lit furnace. A greenish smoke comes out of it, with a
-familiar smell. Yes, it's the devil's grass.&lt;/p&gt;
+familiar smell. It's the devil's grass.&lt;/p&gt;
 &lt;p&gt;When they make eye contact the pile crumbles — product of the distraction.&lt;/p&gt;
 &lt;p&gt;The Crimson Kings looks at the guns and then back to Roland. Childe Roland to
 the dark tower came! Long days and pleasant nights, Sai — says.&lt;/p&gt;
@@ -1280,8 +1302,7 @@ sleeve.&lt;/p&gt;
 &lt;h3 id="iii"&gt;III.&lt;a class="headerlink" href="#iii" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;I know why you came all this way for. You are looking for answers. But... each
 answer leads to more questions. And when we think we have all the answers, the
-questions change. So I'll give you something better instead. Redemption. Yet not
-for you, gunslinger.&lt;/p&gt;
+questions change. So I'll give you something better instead.&lt;/p&gt;
 &lt;p&gt;You have not forgotten the face of your father. This is what you were made for.&lt;/p&gt;
 &lt;p&gt;All this sacrifice, your existence, all the blood, all the tears, your loved
 ones left behind, their names echoing in the Tower right now, and everything
@@ -1289,10 +1310,18 @@ your ever cared, was used to construct this dark place.&lt;/p&gt;
 &lt;p&gt;Every door you have opened in your life, has been inside this tower. It will
 withstand the eons of time, and your story will prevail in it's murals, and in
 other worlds too, Roland. Trust me on this.&lt;/p&gt;
+&lt;p&gt;Inasmuch there wouldn't be a final judgement without free will and temptation,
+there wouldn't be a redemption if I hadn't put you through tough tests Roland,
+so that I did.&lt;/p&gt;
+&lt;p&gt;I won't fight you, rather I'm here to help you. That is the power of sacrifice.&lt;/p&gt;
+&lt;p&gt;Death gunslinger, yet not for you. This time, I am the sacrifice, and death is freedom.&lt;/p&gt;
 &lt;p&gt;The Crimson king takes a moment, a deep breath and continues.&lt;/p&gt;
 &lt;p&gt;This Tower is also my prison. — exhales. It's been my obsession, a heavyweight
 burden, and one of my most ambitious projects. One I though would never be able
 to finish.&lt;/p&gt;
+&lt;p&gt;I like stories that seem to fit into a bigger pattern, and for me, this one was
+part of it,” King says. “Everything that I've written for a long, long time has
+always been with the tower in the corner of my eye.&lt;/p&gt;
 &lt;p&gt;We all have our Tower, our epic quest. You are part of mine, gunslinger.&lt;/p&gt;
 &lt;p&gt;One grows fond of every character and story that tells. Each tale casts a
 universe into existence, each one takes a peace of you, it feeds from your
@@ -1378,12 +1407,21 @@ mortal after all, you will soon find out.&lt;/p&gt;
 downstairs. Where it leads it won't matter to me anymore, another tower
 perhaps!&lt;/p&gt;
 &lt;p&gt;What?! I though this was the Tower!&lt;/p&gt;
-&lt;p&gt;Yeah, well... Ka is a wheel. It manifests as a cycle, but it is spiraling in
-nature. Just like the steps of this tower. Seen from above it would appear you
-were walking in circles, yet you were moving. See, one does not swim in the
-same river twice. The river is no the same river, and you are not the same
-person. You are not the same person you were one second ago and you won't be
-the same person the next tower to reach.&lt;/p&gt;
+&lt;p&gt;Yeah, well... Ka is a wheel. But that is too pessimistic a view.&lt;/p&gt;
+&lt;p&gt;Through the mist of Ka, all things fade. Flesh, stones, even the stars. Enough
+turns of the wheel and the past becomes a memory of the past, forgotten, dead.
+But dead doesn't mean gone.&lt;/p&gt;
+&lt;p&gt;Some are born and some are dying.&lt;/p&gt;
+&lt;p&gt;These words send shivers to Roland.&lt;/p&gt;
+&lt;p&gt;After a smirk, the mad king continues — New life life emerges. The future turns
+into the past in a constant flow. The world moves on.&lt;/p&gt;
+&lt;p&gt;From the wrong perspective it manifests as a never ending cycle, but it is
+spiraling upwards in nature. Just like the steps of this tower. Seen from above
+it would appear you were walking in circles, yet you were moving.&lt;/p&gt;
+&lt;p&gt;Things repeat, yes, but, with effort, a little better than before.&lt;/p&gt;
+&lt;p&gt;See, one does not swim in the same river twice. The river is not the same river,
+and you are not the same one. You are not the same person you were one second
+ago and you won't be the same person the next tower to reach.&lt;/p&gt;
 &lt;p&gt;Roland is loosing it. That feeling frightens him. He needs to get back to firm
 ground now. To who he is. To what he think is real.&lt;/p&gt;
 &lt;p&gt;So... — the Crimson King stands up and walks up to the ledge of the Tower — I'm
@@ -1391,14 +1429,22 @@ ready whenever you are.&lt;/p&gt;
 &lt;p&gt;Roland also stands up, and aims his heavy, ancient and deadly pistols at the
 Crimson King.&lt;/p&gt;
 &lt;p&gt;Oh.. Can I ask for one last whim? — the Crimson King asks.&lt;/p&gt;
-&lt;p&gt;When this is over, please, say my name. Will ya? — says without waiting for an
-answer.&lt;/p&gt;
-&lt;p&gt;Fuck you! Fuck this Tower, fuck all of this! — the gunslinger yells. He fires
-his guns empty at the Crimson King. The whole twelve rounds.&lt;/p&gt;
+&lt;p&gt;When this is over, please, say my name. Will ya? — requested without waiting for
+an answer.&lt;/p&gt;
+&lt;p&gt;I just might. — Roland said with a nod and a still face.&lt;/p&gt;
+&lt;p&gt;After a few seconds of eye contact, as both may have been waiting for something
+else to happen, the suspense turned unbearable.&lt;/p&gt;
+&lt;p&gt;As the first rays of dawn appear in the horizon, couldn't help but notice how
+both epic an beautiful the scenery was from atop the Dark Tower. A surreal
+chant, almost a  battle hymn, emerged from the crimson fields below, the roses
+were waking up. They were no regular roses, they were spiritual beings, they
+were angels.&lt;/p&gt;
+&lt;p&gt;O Discordia. — King muttered.&lt;/p&gt;
+&lt;p&gt;Suddenly, Roland fires his guns empty at the Crimson King. The whole twelve
+rounds.&lt;/p&gt;
 &lt;p&gt;Crows fly away with an alarmed cawing one more time. The creature that claimed
 to be his creator trips and falls down. His red robe contrast with the pitch
-black color of the Tower, it seems as if he was ablaze while falling, as the
-first rays of dawn appear in the horizon.&lt;/p&gt;
+black color of the Tower, it seems as if he was ablaze while falling.&lt;/p&gt;
 &lt;h3 id="v"&gt;V.&lt;a class="headerlink" href="#v" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Calmness slowly returns to Roland. As if the gunshots woke him up from a vivid
 nightmare. No more poisonous words are infesting his mind. The smoke from the
@@ -1428,7 +1474,7 @@ It is a horrible sight.&lt;/p&gt;
 &lt;p&gt;Is this a trick or are you truly dead? How many lies did you tell me? — says
 Roland to it's hollow eyes.&lt;/p&gt;
 &lt;p&gt;Just as he was told, there is a door right in front of the Tower.&lt;/p&gt;
-&lt;p&gt;You were right about that at least... Stephen King... — puts the skull into his
+&lt;p&gt;You were right about that at least... Sai King... — puts the skull into his
 bag.&lt;/p&gt;
 &lt;p&gt;The door is a ghostwood door. This one has no names written on it, but a single
 ancient rune, the rune of &lt;em&gt;Unknown&lt;/em&gt;.&lt;/p&gt;

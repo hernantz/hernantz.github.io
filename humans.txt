@@ -10,7 +10,7 @@ using `pelican` with the `pelican-left` theme
 Now that I have your attention, let me show you something I think about when
 listening to music: Redistibuting songs among bands. If you don't get it, it
 might be you need some imagination. Some of these songs are covers which are
-better than the originals. Others would have been better perfomed by the
+better than the originals. Others would have been better performed by the
 proposed artist/band. Sometimes I'm just reassigning them because that
 artist/band only has so few songs I like, that I  would rather have someone
 else's repertoire get so much better.
