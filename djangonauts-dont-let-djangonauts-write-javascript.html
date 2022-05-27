@@ -100,10 +100,10 @@ one of those smells that indicates your architecture is still a monolith in
 disguise.</p>
 <p>Another architecture smell is using your SPA as the <a href="https://htmx.org/essays/splitting-your-apis/" title="Splitting Your Data &amp; APIs: Going Further">only consumer of your API</a>.</p>
 <p>Creating a JSON API just because in the future you might need for other clients
-like mobile devices or 3rd party aps indicates an early optimization decision.
+like mobile devices or 3rd party apps indicates an early optimization decision.
 <a href="https://max.engineer/server-informed-ui" title="Don’t Build A General Purpose API To Power Your Own Front End">YAGNI</a>.</p>
 <p>Restful APIs are usually generic or agnostic from any UI, need to be stable and
-versioned, etc. Generic APIs might suffer <a href="https://intercoolerjs.org/2016/02/17/api-churn-vs-security.html" title="The API Churn/Security Trade-off">from an expressivity/security
+versioned, etc. Generic APIs might suffer <a href="https://intercoolerjs.org/2016/02/17/api-churn-vs-security.html" title="The API Churn/Security Trade-off">from an expressivity &amp; security
 tradeoff</a>, because everything you make available to the UI, could also be
 leaked for malign users. Moreover, this single client SPA requires duplication
 of logic, models, validation, etc, which the backend will also have to implement
@@ -127,42 +127,11 @@ presented.</p>
 <p>All of this default behavior, that users already expect, comes for free if you
 simply represent your data as HTML. Otherwise, this means more code, testing and
 bugs to get a similar user experience when you go full SPA mode.</p>
-<h2 id="you-probably-dont-need-a-spa">You probably don't need a SPA<a class="headerlink" href="#you-probably-dont-need-a-spa" title="Permanent link">&para;</a></h2>
-<p><a href="http://wgross.net/essays/spas-are-harder" title="SPAs Are Just Harder, and Always Will Be">SPAs are hard</a>. If not done correctly, you could be <a href="https://svelte.dev/blog/virtual-dom-is-pure-overhead" title="Virtual DOM is pure overhead">adding megabytes worth
-of code</a> that needs to be downloaded and executed, probably contributing to
-the current <a href="https://javascript.works-hub.com/learn/a-javascript-free-frontend-61275" title="Developing a Javascript-free frontend">web obesity</a> crisis.</p>
-<p>Latest tendencies in the JS world show a <a href="https://macwright.com/2020/05/10/spa-fatigue.html" title="Second-guessing the modern web">comeback to the old ways</a>. Server
-side rendering so that we don't load a blank page as splash screen, GraphQL as a
-poor attempt to get back to the trusted backend's SQL, per page hot-loading of
-bundles trying to break up huge javascript files that bundle entire templates and
-models that might not be needed everywhere, etc.</p>
-<p>This shows little or no benefit to end users of you website, but clearly incurs
-into costly development cycles: An ever-changing amount of frameworks, tooling
-(transpilers, bundlers, linters), libraries, DSLs and state management patterns
-that all compete to be the next hot thing in the industry. This contributes to
-churn in development teams that need to keep up with the <a href="https://javascript.works-hub.com/learn/a-javascript-free-frontend-61275">javascript
-fatigue</a>.</p>
-<p>Big frontend codebases have become a <a href="https://www.gregnavis.com/articles/the-architecture-no-one-needs.html" title="The Architecture No One Needs">liability</a>.</p>
-<p>Devs nowadays seem to just skip all this analysis, and are eager to start every
-project with:</p>
-<div class="highlight"><pre><span></span><code><span class="nx">npm</span> <span class="nx">install</span> <span class="nx">create</span><span class="o">-</span><span class="nx">react</span><span class="o">-</span><span class="nx">app</span> <span class="nx">graphql</span>
-</code></pre></div>
-
-<p>It all comes down to <a href="https://journal.plausible.io/you-probably-dont-need-a-single-page-app" title="You probably don't need a single-page application">tradeoffs</a>. What's driving these frontend heavy
-industry standards to be the default go to?</p>
-<p>The answer to that could range from peer pressure, job stability, FOMO or
-probably not knowing other alternatives to create snappy websites.</p>
-<h2 id="no-js-low-js-sites">No JS / Low JS sites<a class="headerlink" href="#no-js-low-js-sites" title="Permanent link">&para;</a></h2>
-<p>As the common proverb says: <em>“What has been will be again, what has been done
-will be done again; there is nothing new under the sun”</em>, server side
-rendering and static site generators are <a href="https://paramaggarwal.substack.com/p/how-websites-evolved-back-to-static-html-css-js-files-57ce549f81db" title="How Websites Evolved Back to Static HTML/CSS/JS Files">reviving</a>.</p>
-<p>This HTML centric architecture can be a very competitive alternative for
-interactive websites when modernized with a few tweaks.</p>
-<p>If data is going to be represented as HTML, why not serve HTML directly? This
-has the nice property of less time to interactive websites, since there's no
-need for extra round-trips and hydrate/dehydrate JSON.
-Serving HTML isn't significantly more expensive than JSON. Like any text format
-it compresses well, browsers are very performant at parsing and rendering it.</p>
+<p>If data is going to be represented as HTML, why not serve HTML directly?</p>
+<p>This has the nice property of less time to interactive websites, since there's
+no need for extra round-trips and hydrate/dehydrate JSON. Serving HTML isn't
+significantly more expensive than JSON. Like any text format it compresses well,
+browsers are very performant at parsing and rendering it.</p>
 <p>The server describes the UI, it is the single source of truth, it has all the
 tools it needs to do so and it's <a href="https://www.timr.co/server-side-rendering-is-a-thiel-truth" title="Server-Side Rendering is a Thiel Truth">cheaper</a> to implement.</p>
 <p>You go from using a JSON representation of your data:</p>
@@ -173,7 +142,7 @@ tools it needs to do so and it's <a href="https://www.timr.co/server-side-render
       <span class="nt">&quot;currency&quot;</span><span class="p">:</span> <span class="s2">&quot;usd&quot;</span><span class="p">,</span>
       <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="mf">100.00</span>
     <span class="p">},</span>
-    <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;actions&quot;</span><span class="p">:</span> <span class="p">{</span>
       <span class="nt">&quot;deposits&quot;</span><span class="p">:</span> <span class="s2">&quot;/accounts/42/deposits&quot;</span><span class="p">,</span>
       <span class="nt">&quot;withdrawals&quot;</span><span class="p">:</span> <span class="s2">&quot;/accounts/42/withdrawals&quot;</span><span class="p">,</span>
       <span class="nt">&quot;transfers&quot;</span><span class="p">:</span> <span class="s2">&quot;/accounts/42/transfers&quot;</span><span class="p">,</span>
@@ -207,6 +176,37 @@ on them, and HTML to represent those resources.</p>
 the client, not your SPA. User will always get the latest representation of your
 data, and what can be done with it. It treats synchronous API payloads as a kind
 of declarative UI language for full state interactions.</p>
+<h2 id="you-probably-dont-need-a-spa">You probably don't need a SPA<a class="headerlink" href="#you-probably-dont-need-a-spa" title="Permanent link">&para;</a></h2>
+<p><a href="http://wgross.net/essays/spas-are-harder" title="SPAs Are Just Harder, and Always Will Be">SPAs are hard</a>. If not done correctly, you could be <a href="https://svelte.dev/blog/virtual-dom-is-pure-overhead" title="Virtual DOM is pure overhead">adding megabytes worth
+of code</a> that need to be downloaded and executed, probably contributing to
+the current <a href="https://javascript.works-hub.com/learn/a-javascript-free-frontend-61275" title="Developing a Javascript-free frontend">web obesity</a> crisis.</p>
+<p>Latest tendencies in the JS world show a <a href="https://macwright.com/2020/05/10/spa-fatigue.html" title="Second-guessing the modern web">comeback to the old ways</a>. Server
+side rendering so that we don't load a blank page as splash screen, GraphQL as a
+poor attempt to get back to the trusted backend's SQL, per page hot-loading of
+bundles trying to break up huge javascript files that bundle entire templates and
+models that might not be needed everywhere, etc.</p>
+<p>This shows little or no benefit to end users of your website, but clearly incurs
+into costly development cycles: An ever-changing amount of frameworks, tooling
+(transpilers, bundlers, linters), libraries, DSLs and state management patterns
+that all compete to be the next hot thing in the industry. This contributes to
+churn in development teams that need to keep up with the <a href="https://javascript.works-hub.com/learn/a-javascript-free-frontend-61275">javascript
+fatigue</a>.</p>
+<p>Big frontend codebases have become a <a href="https://www.gregnavis.com/articles/the-architecture-no-one-needs.html" title="The Architecture No One Needs">liability</a>.</p>
+<p>Devs nowadays seem to just skip all this analysis, and are eager to start every
+project with:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">npm</span> <span class="nx">install</span> <span class="nx">create</span><span class="o">-</span><span class="nx">react</span><span class="o">-</span><span class="nx">app</span> <span class="nx">graphql</span>
+</code></pre></div>
+
+<p>It all comes down to <a href="https://journal.plausible.io/you-probably-dont-need-a-single-page-app" title="You probably don't need a single-page application">tradeoffs</a>. What's driving these frontend heavy
+industry standards to be the default go to?</p>
+<p>The answer to that could range from peer pressure, job stability, FOMO or
+probably not knowing other alternatives to create snappy websites.</p>
+<h2 id="no-js-low-js-sites">No JS / Low JS sites<a class="headerlink" href="#no-js-low-js-sites" title="Permanent link">&para;</a></h2>
+<p>As the common proverb says: <em>“What has been will be again, what has been done
+will be done again; there is nothing new under the sun”</em>, server side
+rendering and static site generators are <a href="https://paramaggarwal.substack.com/p/how-websites-evolved-back-to-static-html-css-js-files-57ce549f81db" title="How Websites Evolved Back to Static HTML/CSS/JS Files">reviving</a>.</p>
+<p>This HTML centric architecture can be a very competitive alternative for
+interactive websites when modernized with a few tweaks.</p>
 <p>The question is, how powerful is HTML alone?</p>
 <p>It is very powerful and expressive, and getting better still. We now have <a href="https://calendar.perfplanet.com/2016/prefer-defer-over-async/" title="Prefer DEFER Over ASYNC">async
 and defer</a> attributes to load non-blocking <code>&lt;script&gt;</code>'s in parallel,

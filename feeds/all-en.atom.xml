@@ -74,10 +74,10 @@ one of those smells that indicates your architecture is still a monolith in
 disguise.&lt;/p&gt;
 &lt;p&gt;Another architecture smell is using your SPA as the &lt;a href="https://htmx.org/essays/splitting-your-apis/" title="Splitting Your Data &amp;amp; APIs: Going Further"&gt;only consumer of your API&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Creating a JSON API just because in the future you might need for other clients
-like mobile devices or 3rd party aps indicates an early optimization decision.
+like mobile devices or 3rd party apps indicates an early optimization decision.
 &lt;a href="https://max.engineer/server-informed-ui" title="Don’t Build A General Purpose API To Power Your Own Front End"&gt;YAGNI&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Restful APIs are usually generic or agnostic from any UI, need to be stable and
-versioned, etc. Generic APIs might suffer &lt;a href="https://intercoolerjs.org/2016/02/17/api-churn-vs-security.html" title="The API Churn/Security Trade-off"&gt;from an expressivity/security
+versioned, etc. Generic APIs might suffer &lt;a href="https://intercoolerjs.org/2016/02/17/api-churn-vs-security.html" title="The API Churn/Security Trade-off"&gt;from an expressivity &amp;amp; security
 tradeoff&lt;/a&gt;, because everything you make available to the UI, could also be
 leaked for malign users. Moreover, this single client SPA requires duplication
 of logic, models, validation, etc, which the backend will also have to implement
@@ -101,42 +101,11 @@ presented.&lt;/p&gt;
 &lt;p&gt;All of this default behavior, that users already expect, comes for free if you
 simply represent your data as HTML. Otherwise, this means more code, testing and
 bugs to get a similar user experience when you go full SPA mode.&lt;/p&gt;
-&lt;h2 id="you-probably-dont-need-a-spa"&gt;You probably don't need a SPA&lt;a class="headerlink" href="#you-probably-dont-need-a-spa" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a href="http://wgross.net/essays/spas-are-harder" title="SPAs Are Just Harder, and Always Will Be"&gt;SPAs are hard&lt;/a&gt;. If not done correctly, you could be &lt;a href="https://svelte.dev/blog/virtual-dom-is-pure-overhead" title="Virtual DOM is pure overhead"&gt;adding megabytes worth
-of code&lt;/a&gt; that needs to be downloaded and executed, probably contributing to
-the current &lt;a href="https://javascript.works-hub.com/learn/a-javascript-free-frontend-61275" title="Developing a Javascript-free frontend"&gt;web obesity&lt;/a&gt; crisis.&lt;/p&gt;
-&lt;p&gt;Latest tendencies in the JS world show a &lt;a href="https://macwright.com/2020/05/10/spa-fatigue.html" title="Second-guessing the modern web"&gt;comeback to the old ways&lt;/a&gt;. Server
-side rendering so that we don't load a blank page as splash screen, GraphQL as a
-poor attempt to get back to the trusted backend's SQL, per page hot-loading of
-bundles trying to break up huge javascript files that bundle entire templates and
-models that might not be needed everywhere, etc.&lt;/p&gt;
-&lt;p&gt;This shows little or no benefit to end users of you website, but clearly incurs
-into costly development cycles: An ever-changing amount of frameworks, tooling
-(transpilers, bundlers, linters), libraries, DSLs and state management patterns
-that all compete to be the next hot thing in the industry. This contributes to
-churn in development teams that need to keep up with the &lt;a href="https://javascript.works-hub.com/learn/a-javascript-free-frontend-61275"&gt;javascript
-fatigue&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Big frontend codebases have become a &lt;a href="https://www.gregnavis.com/articles/the-architecture-no-one-needs.html" title="The Architecture No One Needs"&gt;liability&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Devs nowadays seem to just skip all this analysis, and are eager to start every
-project with:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nx"&gt;npm&lt;/span&gt; &lt;span class="nx"&gt;install&lt;/span&gt; &lt;span class="nx"&gt;create&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;react&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;app&lt;/span&gt; &lt;span class="nx"&gt;graphql&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;It all comes down to &lt;a href="https://journal.plausible.io/you-probably-dont-need-a-single-page-app" title="You probably don't need a single-page application"&gt;tradeoffs&lt;/a&gt;. What's driving these frontend heavy
-industry standards to be the default go to?&lt;/p&gt;
-&lt;p&gt;The answer to that could range from peer pressure, job stability, FOMO or
-probably not knowing other alternatives to create snappy websites.&lt;/p&gt;
-&lt;h2 id="no-js-low-js-sites"&gt;No JS / Low JS sites&lt;a class="headerlink" href="#no-js-low-js-sites" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;As the common proverb says: &lt;em&gt;“What has been will be again, what has been done
-will be done again; there is nothing new under the sun”&lt;/em&gt;, server side
-rendering and static site generators are &lt;a href="https://paramaggarwal.substack.com/p/how-websites-evolved-back-to-static-html-css-js-files-57ce549f81db" title="How Websites Evolved Back to Static HTML/CSS/JS Files"&gt;reviving&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;This HTML centric architecture can be a very competitive alternative for
-interactive websites when modernized with a few tweaks.&lt;/p&gt;
-&lt;p&gt;If data is going to be represented as HTML, why not serve HTML directly? This
-has the nice property of less time to interactive websites, since there's no
-need for extra round-trips and hydrate/dehydrate JSON.
-Serving HTML isn't significantly more expensive than JSON. Like any text format
-it compresses well, browsers are very performant at parsing and rendering it.&lt;/p&gt;
+&lt;p&gt;If data is going to be represented as HTML, why not serve HTML directly?&lt;/p&gt;
+&lt;p&gt;This has the nice property of less time to interactive websites, since there's
+no need for extra round-trips and hydrate/dehydrate JSON. Serving HTML isn't
+significantly more expensive than JSON. Like any text format it compresses well,
+browsers are very performant at parsing and rendering it.&lt;/p&gt;
 &lt;p&gt;The server describes the UI, it is the single source of truth, it has all the
 tools it needs to do so and it's &lt;a href="https://www.timr.co/server-side-rendering-is-a-thiel-truth" title="Server-Side Rendering is a Thiel Truth"&gt;cheaper&lt;/a&gt; to implement.&lt;/p&gt;
 &lt;p&gt;You go from using a JSON representation of your data:&lt;/p&gt;
@@ -147,7 +116,7 @@ tools it needs to do so and it's &lt;a href="https://www.timr.co/server-side-ren
       &lt;span class="nt"&gt;&amp;quot;currency&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;usd&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
       &lt;span class="nt"&gt;&amp;quot;value&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;100.00&lt;/span&gt;
     &lt;span class="p"&gt;},&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;quot;links&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;actions&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
       &lt;span class="nt"&gt;&amp;quot;deposits&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/accounts/42/deposits&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
       &lt;span class="nt"&gt;&amp;quot;withdrawals&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/accounts/42/withdrawals&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
       &lt;span class="nt"&gt;&amp;quot;transfers&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/accounts/42/transfers&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
@@ -181,6 +150,37 @@ on them, and HTML to represent those resources.&lt;/p&gt;
 the client, not your SPA. User will always get the latest representation of your
 data, and what can be done with it. It treats synchronous API payloads as a kind
 of declarative UI language for full state interactions.&lt;/p&gt;
+&lt;h2 id="you-probably-dont-need-a-spa"&gt;You probably don't need a SPA&lt;a class="headerlink" href="#you-probably-dont-need-a-spa" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href="http://wgross.net/essays/spas-are-harder" title="SPAs Are Just Harder, and Always Will Be"&gt;SPAs are hard&lt;/a&gt;. If not done correctly, you could be &lt;a href="https://svelte.dev/blog/virtual-dom-is-pure-overhead" title="Virtual DOM is pure overhead"&gt;adding megabytes worth
+of code&lt;/a&gt; that need to be downloaded and executed, probably contributing to
+the current &lt;a href="https://javascript.works-hub.com/learn/a-javascript-free-frontend-61275" title="Developing a Javascript-free frontend"&gt;web obesity&lt;/a&gt; crisis.&lt;/p&gt;
+&lt;p&gt;Latest tendencies in the JS world show a &lt;a href="https://macwright.com/2020/05/10/spa-fatigue.html" title="Second-guessing the modern web"&gt;comeback to the old ways&lt;/a&gt;. Server
+side rendering so that we don't load a blank page as splash screen, GraphQL as a
+poor attempt to get back to the trusted backend's SQL, per page hot-loading of
+bundles trying to break up huge javascript files that bundle entire templates and
+models that might not be needed everywhere, etc.&lt;/p&gt;
+&lt;p&gt;This shows little or no benefit to end users of your website, but clearly incurs
+into costly development cycles: An ever-changing amount of frameworks, tooling
+(transpilers, bundlers, linters), libraries, DSLs and state management patterns
+that all compete to be the next hot thing in the industry. This contributes to
+churn in development teams that need to keep up with the &lt;a href="https://javascript.works-hub.com/learn/a-javascript-free-frontend-61275"&gt;javascript
+fatigue&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Big frontend codebases have become a &lt;a href="https://www.gregnavis.com/articles/the-architecture-no-one-needs.html" title="The Architecture No One Needs"&gt;liability&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Devs nowadays seem to just skip all this analysis, and are eager to start every
+project with:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nx"&gt;npm&lt;/span&gt; &lt;span class="nx"&gt;install&lt;/span&gt; &lt;span class="nx"&gt;create&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;react&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;app&lt;/span&gt; &lt;span class="nx"&gt;graphql&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;It all comes down to &lt;a href="https://journal.plausible.io/you-probably-dont-need-a-single-page-app" title="You probably don't need a single-page application"&gt;tradeoffs&lt;/a&gt;. What's driving these frontend heavy
+industry standards to be the default go to?&lt;/p&gt;
+&lt;p&gt;The answer to that could range from peer pressure, job stability, FOMO or
+probably not knowing other alternatives to create snappy websites.&lt;/p&gt;
+&lt;h2 id="no-js-low-js-sites"&gt;No JS / Low JS sites&lt;a class="headerlink" href="#no-js-low-js-sites" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;As the common proverb says: &lt;em&gt;“What has been will be again, what has been done
+will be done again; there is nothing new under the sun”&lt;/em&gt;, server side
+rendering and static site generators are &lt;a href="https://paramaggarwal.substack.com/p/how-websites-evolved-back-to-static-html-css-js-files-57ce549f81db" title="How Websites Evolved Back to Static HTML/CSS/JS Files"&gt;reviving&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This HTML centric architecture can be a very competitive alternative for
+interactive websites when modernized with a few tweaks.&lt;/p&gt;
 &lt;p&gt;The question is, how powerful is HTML alone?&lt;/p&gt;
 &lt;p&gt;It is very powerful and expressive, and getting better still. We now have &lt;a href="https://calendar.perfplanet.com/2016/prefer-defer-over-async/" title="Prefer DEFER Over ASYNC"&gt;async
 and defer&lt;/a&gt; attributes to load non-blocking &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt;'s in parallel,
