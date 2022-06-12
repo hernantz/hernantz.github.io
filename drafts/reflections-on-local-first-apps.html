@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Reflections on Local first apps | README.txt</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="/theme/css/pygments-default.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/dark/main.css" media="(prefers-color-scheme: dark)" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/dark/pygments-base16-applepips-dark.css" media="(prefers-color-scheme: dark)" type="text/css" />
+  <link rel="stylesheet" media="(max-width: 750px)" href="/theme/css/mobile.css" type="text/css" />
+  <link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
+  <link href="/rss.xml" type="application/atom+xml" rel="alternate" title="README.txt RSS Feed" />
+  <meta name="description" content="While architecting a non-cloud app (like the good ol' desktop apps or mobile apps), you need to think what are the use cases for an always-on server in the cloud to act as a support service for the app. Share state and updates between users, since these users might not …">
+  <meta name="keywords" content="">
+  <meta name="author" content="hernantz">
+</head>
+
+<body>
+  <aside class="sidebar">
+    <a href="/"><img src="/images/avatar.png" height="75" width="75" /></a>
+
+      <nav>
+        <ul>
+            <li><a href="http://twitter.com/hernantz">twitter</i></a></li>
+            <li><a href="http://github.com/hernantz">github</i></a></li>
+            <li><a href="http://last.fm/user/hernantz">last.fm</i></a></li>
+            <li><a href="https://www.rottentomatoes.com/user/id/973196678">tomatoes</i></a></li>
+            <li><a href="/talks.html">talks</a></li>
+            <li><a href="/whoami.html">whoami</a></li>
+            <li><a href="/">blog</a></li>
+        </ul>
+      </nav>
+
+  </aside>
+  <main>
+        
+<article class="column-right">
+  <h1 class="main-title">Reflections on Local first apps</h1>
+  <summary>
+    <p class="light">
+      Published
+on <time datetime="2022-06-04T00:00:00-03:00">2022-06-04</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>.
+    </p>
+  </summary>
+  <p>While architecting a non-cloud app (like the good ol' desktop apps or mobile
+apps), you need to think what are the use cases for an always-on server in the
+cloud to act as a support service for the app.</p>
+<ol>
+<li>Share state and updates between users, since these users might not be connected at the same time.</li>
+<li>Share state between same user devices or different install/uninstall cycles. This is a special case of the previous item.</li>
+<li>Ensure deliverability or execution. For example, turn on an alarm, send a scheduled alert, etc. This actions should happen, no matter if the app is closed, has been uninstalled, or the user doesn't have access to the internet for example.</li>
+<li>Store massive amounts of data. The non-cloud app it's just a client that consumes data from a tiny window without storing all the data locally, but synchronize every now and then. Like email clients, or gallery/photo apps.</li>
+</ol>
+<p>The way this synchronization happens will depend on what type of data needs to be shared.
+If it's some sort of collaboration framework, then you need primitives for eventual consistency (CRDTs), sometimes, if each piece of data is immutable then a shared drive/filesystem could suffice (like a photo gallery app) it just reads and writes files.
+Sometimes these updates happen in realtime or in batches (git) and some form of conflict resolution mechanism is needed.</p>
+<p>Another interesting pattern is to mount remote filesystems, plan9 is an exotic OS that had this idea baked in, where you
+could share resources from other computers by mounting filesystems over the network.</p>
+<p>https://www.inkandswitch.com/local-first/</p>
+<ul>
+<li>Attribute based encryption https://www.zeutro.com/docs/zeutro_abe_whitepaper.pdf</li>
+<li>Automerge https://www.inkandswitch.com/local-first.html#multi-device</li>
+<li>Decent apps are like git repos, where commits are changes in data. https://wyag.thb.lt</li>
+</ul>
+</article>
+
+      <footer class="column-right light">
+        <nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> - <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | README.txt</nav>
+      </footer>
+  </main>
+</body>
+</html>

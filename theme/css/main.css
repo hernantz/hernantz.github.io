@@ -32,7 +32,7 @@ h3 {
 h4 {
   font-size: 1em; }
 
-img {
+img, video {
   max-width: 100%;
   border-radius: 0.3em;
   border: none; }
@@ -144,6 +144,10 @@ tr:nth-child(even) {
 .highlight {
   background: #fffbf1;
   border-left: 1px solid lightblue; }
+
+.highlight .err {
+  border: none;
+}
 
 /* headers permalink */
 .headerlink {

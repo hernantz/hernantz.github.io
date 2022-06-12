@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Inline form validation with Django and Htmx | README.txt</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="/theme/css/pygments-default.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/dark/main.css" media="(prefers-color-scheme: dark)" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/dark/pygments-base16-applepips-dark.css" media="(prefers-color-scheme: dark)" type="text/css" />
+  <link rel="stylesheet" media="(max-width: 750px)" href="/theme/css/mobile.css" type="text/css" />
+  <link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
+  <link href="/rss.xml" type="application/atom+xml" rel="alternate" title="README.txt RSS Feed" />
+  <meta name="description" content="Partial and progressive form validation without any Javascript.">
+  <meta name="keywords" content="python, django, javascript, htmx">
+  <meta name="author" content="hernantz">
+</head>
+
+<body>
+  <aside class="sidebar">
+    <a href="/"><img src="/images/avatar.png" height="75" width="75" /></a>
+
+      <nav>
+        <ul>
+            <li><a href="http://twitter.com/hernantz">twitter</i></a></li>
+            <li><a href="http://github.com/hernantz">github</i></a></li>
+            <li><a href="http://last.fm/user/hernantz">last.fm</i></a></li>
+            <li><a href="https://www.rottentomatoes.com/user/id/973196678">tomatoes</i></a></li>
+            <li><a href="/talks.html">talks</a></li>
+            <li><a href="/whoami.html">whoami</a></li>
+            <li><a href="/">blog</a></li>
+        </ul>
+      </nav>
+
+  </aside>
+  <main>
+        
+<article class="column-right">
+  <h1 class="main-title">Inline form validation with Django and Htmx</h1>
+  <summary>
+    <p class="light">
+      Published
+on <time datetime="2022-06-13T00:00:00-03:00">2022-06-13</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
+      tagged with <a href="http://hernantz.github.io/tag/python.html">python</a>, <a href="http://hernantz.github.io/tag/django.html">django</a>, <a href="http://hernantz.github.io/tag/javascript.html">javascript</a> and <a href="http://hernantz.github.io/tag/htmx.html">htmx</a>.
+    </p>
+  </summary>
+  <video autoplay loop>
+  <source src="/videos/htmx-inline-form-validation.mp4" type="video/mp4">
+</video>
+
+<p><a href="https://intercoolerjs.org/2016/05/08/hatoeas-is-for-humans.html" title="HATEOAS is for Humans">Hypermedia</a> as the engine of application state puts strong emphasis on
+giving control to the server to render the state of the data and what actions
+can be done with it.</p>
+<p>Although client side scripting is allowed, this should only be a sidecar for
+simple state manipulations. Most UI interactions that affect the state of the
+app would need a roundtrip to the server to get the new state of the data.</p>
+<h2 id="client-side-vs-server-side-validation">Client side vs server side validation<a class="headerlink" href="#client-side-vs-server-side-validation" title="Permanent link">&para;</a></h2>
+<p>Call me purist, but in a traditional MPA, frontend scripting should only help to
+aid in non-stateful changes, like toggling a dropdown, clearing an input, hiding
+an alert after X seconds, etc.</p>
+<p>Progressive form validation is a gray area. HTML already provides some basic
+attributes to control valid inputs like <code>required</code>, <code>maxlength</code>, <code>type</code>, etc:</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;id_email&quot;</span><span class="p">&gt;</span>What&#39;s your e-mail address?<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;email&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;id_email&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;email&quot;</span> <span class="na">required</span> <span class="na">maxlength</span><span class="o">=</span><span class="s">&quot;140&quot;</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>While valuable, this is no replacement for server side validation, since clients
+should never be trusted. Other times we need to do some validation that really
+depends on the values of other fields or lookups on a database (is this email
+already used?).</p>
+<p>What is really nice about client side validation is the short feedback cycle.
+The user can see the errors as the input is being manipulated or as soon as
+focus is set on the next form element. Otherwise the user would have to fill the
+entire form, wait for the server to validate and then scroll to see what errors
+where found.</p>
+<h2 id="partial-and-progressive-server-side-form-validation">Partial and progressive server side form validation<a class="headerlink" href="#partial-and-progressive-server-side-form-validation" title="Permanent link">&para;</a></h2>
+<p>With the help of <a href="https://htmx.org/" title="high power tools for HTML">htmx</a>, we will submit the form for validation after the
+user interacts with an input and we will partially update the field with the
+result from the server.</p>
+<p><img alt="htmx inline form validation" src="/images/htmx-server-side-form-validation.png" title="Htmx inline form validation"></p>
+<p>The idea is to wrap each form field with a <code>div</code> + some <code>hx-</code> directives. I'm using
+<code>hx-select</code> &amp; <code>hx-trigger=blur</code> directives to only replace current input element
+with the validation for that field.</p>
+<div class="highlight"><pre><span></span><code>  <span class="p">&lt;</span><span class="nt">div</span>
+      <span class="na">id</span><span class="o">=</span><span class="s">&quot;email_field&quot;</span>
+      <span class="err">{%</span> <span class="na">if</span> <span class="na">form</span><span class="err">.</span><span class="na">email</span><span class="err">.</span><span class="na">errors</span> <span class="err">%}</span><span class="na">class</span><span class="o">=</span><span class="s">&quot;error&quot;</span><span class="err">{%</span> <span class="na">endif</span> <span class="err">%}</span>
+      <span class="na">hx-select</span><span class="o">=</span><span class="s">&quot;#email_field&quot;</span>
+      <span class="na">hx-post</span><span class="o">=</span><span class="s">&quot;{% url &#39;form-demo&#39; %}&quot;</span>
+      <span class="na">hx-trigger</span><span class="o">=</span><span class="s">&quot;blur from:find input&quot;</span>
+      <span class="na">hx-target</span><span class="o">=</span><span class="s">&quot;#email_field&quot;</span><span class="p">&gt;</span>
+    {{ form.email.label_tag }}
+    {{ form.email }}
+    {{ form.email.errors }}
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>The <a href="https://github.com/hernantz/django-htmx-demo/pull/1/files" title="Example implementation">django backend code</a> is still pretty agnostic. If the form is invalid,
+django will re-render the page with the errors displayed. If the form is valid,
+and it was submitted via htmx request, we re-render the page (without any
+errors).</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">SignUpView</span><span class="p">(</span><span class="n">FormView</span><span class="p">):</span>
+    <span class="n">form_class</span><span class="p">:</span> <span class="n">forms</span><span class="o">.</span><span class="n">Form</span> <span class="o">=</span> <span class="n">SignupForm</span>
+    <span class="n">template_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;form-demo.html&#39;</span>
+    <span class="n">success_url</span> <span class="o">=</span> <span class="n">reverse_lazy</span><span class="p">(</span><span class="s1">&#39;form-demo&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">form_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">htmx</span><span class="p">:</span>
+            <span class="c1"># The submitted form is valid, just render it `as is` for htmx.</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">render_to_response</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="n">form</span><span class="o">=</span><span class="n">form</span><span class="p">))</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">form_valid</span><span class="p">(</span><span class="n">form</span><span class="p">)</span>
+</code></pre></div>
+
+<p>If the form is manually submitted through a regular http post request, we just
+follow the normal <code>FormView</code> flow, and we can redirect or make some change in
+the database.</p>
+<p>With this simple solution we get the best of both worlds. <strong>Immediate feedback</strong>
+to the user, <strong>no client-side code logic repetition</strong> for validating fields,
+progressive enhancement approach when JS is not available and it is <strong>framework
+agnostic</strong>, can be adapted with any CSS toolkit and any backend language.</p>
+</article>
+
+      <footer class="column-right light">
+        <nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> - <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | README.txt</nav>
+      </footer>
+  </main>
+</body>
+</html>
