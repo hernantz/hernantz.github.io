@@ -1,5 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/all-en.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2022-01-20T00:00:00-03:00</updated><subtitle>- Mostly lies and rants in plain text.</subtitle><entry><title>Let the code settle</title><link href="http://hernantz.github.io/let-the-code-settle.html" rel="alternate"></link><published>2022-01-20T00:00:00-03:00</published><updated>2022-01-20T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2022-01-20:/let-the-code-settle.html</id><summary type="html">&lt;p&gt;Gain confidence when deploying critical changes.&lt;/p&gt;</summary><content type="html">&lt;p&gt;When working on an important feature for a live product, the risk of breaking
+<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/all-en.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2022-06-13T00:00:00-03:00</updated><subtitle>- Mostly lies and rants in plain text.</subtitle><entry><title>Inline form validation with Django and Htmx</title><link href="http://hernantz.github.io/inline-form-validation-with-django-and-htmx.html" rel="alternate"></link><published>2022-06-13T00:00:00-03:00</published><updated>2022-06-13T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2022-06-13:/inline-form-validation-with-django-and-htmx.html</id><summary type="html">&lt;p&gt;Partial and progressive form validation without any Javascript.&lt;/p&gt;</summary><content type="html">&lt;video autoplay loop&gt;
+  &lt;source src="/videos/htmx-inline-form-validation.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+
+&lt;p&gt;&lt;a href="https://intercoolerjs.org/2016/05/08/hatoeas-is-for-humans.html" title="HATEOAS is for Humans"&gt;Hypermedia&lt;/a&gt; as the engine of application state puts strong emphasis on
+giving control to the server to render the state of the data and what actions
+can be done with it.&lt;/p&gt;
+&lt;p&gt;Although client side scripting is allowed, this should only be a sidecar for
+simple state manipulations. Most UI interactions that affect the state of the
+app would need a roundtrip to the server to get the new state of the data.&lt;/p&gt;
+&lt;h2 id="client-side-vs-server-side-validation"&gt;Client side vs server side validation&lt;a class="headerlink" href="#client-side-vs-server-side-validation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Call me purist, but in a traditional MPA, frontend scripting should only help to
+aid in non-stateful changes, like toggling a dropdown, clearing an input, hiding
+an alert after X seconds, etc.&lt;/p&gt;
+&lt;p&gt;Progressive form validation is a gray area. HTML already provides some basic
+attributes to control valid inputs like &lt;code&gt;required&lt;/code&gt;, &lt;code&gt;maxlength&lt;/code&gt;, &lt;code&gt;type&lt;/code&gt;, etc:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;label&lt;/span&gt; &lt;span class="na"&gt;for&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;id_email&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;What&amp;#39;s your e-mail address?&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;label&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;input&lt;/span&gt; &lt;span class="na"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;email&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;id_email&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;email&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;required&lt;/span&gt; &lt;span class="na"&gt;maxlength&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;140&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;While valuable, this is no replacement for server side validation, since clients
+should never be trusted. Other times we need to do some validation that really
+depends on the values of other fields or lookups on a database (is this email
+already used?).&lt;/p&gt;
+&lt;p&gt;What is really nice about client side validation is the short feedback cycle.
+The user can see the errors as the input is being manipulated or as soon as
+focus is set on the next form element. Otherwise the user would have to fill the
+entire form, wait for the server to validate and then scroll to see what errors
+where found.&lt;/p&gt;
+&lt;h2 id="partial-and-progressive-server-side-form-validation"&gt;Partial and progressive server side form validation&lt;a class="headerlink" href="#partial-and-progressive-server-side-form-validation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;With the help of &lt;a href="https://htmx.org/" title="high power tools for HTML"&gt;htmx&lt;/a&gt;, we will submit the form for validation after the
+user interacts with an input and we will partially update the field with the
+result from the server.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="htmx inline form validation" src="/images/htmx-server-side-form-validation.png" title="Htmx inline form validation"&gt;&lt;/p&gt;
+&lt;p&gt;The idea is to wrap each form field with a &lt;code&gt;div&lt;/code&gt; + some &lt;code&gt;hx-&lt;/code&gt; directives. I'm using
+&lt;code&gt;hx-select&lt;/code&gt; &amp;amp; &lt;code&gt;hx-trigger=blur&lt;/code&gt; directives to only replace current input element
+with the validation for that field.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;
+      &lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;email_field&amp;quot;&lt;/span&gt;
+      &lt;span class="err"&gt;{%&lt;/span&gt; &lt;span class="na"&gt;if&lt;/span&gt; &lt;span class="na"&gt;form&lt;/span&gt;&lt;span class="err"&gt;.&lt;/span&gt;&lt;span class="na"&gt;email&lt;/span&gt;&lt;span class="err"&gt;.&lt;/span&gt;&lt;span class="na"&gt;errors&lt;/span&gt; &lt;span class="err"&gt;%}&lt;/span&gt;&lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;error&amp;quot;&lt;/span&gt;&lt;span class="err"&gt;{%&lt;/span&gt; &lt;span class="na"&gt;endif&lt;/span&gt; &lt;span class="err"&gt;%}&lt;/span&gt;
+      &lt;span class="na"&gt;hx-select&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#email_field&amp;quot;&lt;/span&gt;
+      &lt;span class="na"&gt;hx-post&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;{% url &amp;#39;form-demo&amp;#39; %}&amp;quot;&lt;/span&gt;
+      &lt;span class="na"&gt;hx-trigger&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blur from:find input&amp;quot;&lt;/span&gt;
+      &lt;span class="na"&gt;hx-target&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#email_field&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    {{ form.email.label_tag }}
+    {{ form.email }}
+    {{ form.email.errors }}
+  &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;a href="https://github.com/hernantz/django-htmx-demo/pull/1/files" title="Example implementation"&gt;django backend code&lt;/a&gt; is still pretty agnostic. If the form is invalid,
+django will re-render the page with the errors displayed. If the form is valid,
+and it was submitted via htmx request, we re-render the page (without any
+errors).&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;SignUpView&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;FormView&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;form_class&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;forms&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Form&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;SignupForm&lt;/span&gt;
+    &lt;span class="n"&gt;template_name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;form-demo.html&amp;#39;&lt;/span&gt;
+    &lt;span class="n"&gt;success_url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;reverse_lazy&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;form-demo&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;form_valid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;htmx&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="c1"&gt;# The submitted form is valid, just render it `as is` for htmx.&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;render_to_response&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_context_data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;super&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;form_valid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If the form is manually submitted through a regular http post request, we just
+follow the normal &lt;code&gt;FormView&lt;/code&gt; flow, and we can redirect or make some change in
+the database.&lt;/p&gt;
+&lt;p&gt;With this simple solution, quick to implement and easy to maintain, we get the
+best of both worlds.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Immediate feedback&lt;/strong&gt; to the user, &lt;strong&gt;no client-side code logic repetition&lt;/strong&gt;
+ for validating fields, progressive enhancement approach when JS is not
+ available and it is &lt;strong&gt;framework agnostic&lt;/strong&gt;, can be adapted with any CSS toolkit
+ and any backend language.&lt;/p&gt;</content><category term="Programming"></category><category term="python"></category><category term="django"></category><category term="javascript"></category><category term="htmx"></category></entry><entry><title>Let the code settle</title><link href="http://hernantz.github.io/let-the-code-settle.html" rel="alternate"></link><published>2022-01-20T00:00:00-03:00</published><updated>2022-01-20T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2022-01-20:/let-the-code-settle.html</id><summary type="html">&lt;p&gt;Gain confidence when deploying critical changes.&lt;/p&gt;</summary><content type="html">&lt;p&gt;When working on an important feature for a live product, the risk of breaking
 some crucial part of it is higher.&lt;/p&gt;
 &lt;p&gt;Automated tests, CI pipelines, QA workflows, PR reviews and feature flags are
 there to catch any possible errors before any change hits production.&lt;/p&gt;
@@ -348,7 +422,7 @@ when I first noticed the JS-all-the-things trend in the industry.&lt;/p&gt;
 &lt;p&gt;Four years later, the state of things hasn't gotten better, yet projects like
 htmx are gaining traction for small / hobby projects, which is promising.&lt;/p&gt;
 &lt;p&gt;Maybe this post inspires you to start your next project as a MPA, instead of a
-SPA with the framework dujour, to avoid JS fatigue, save time and money.&lt;/p&gt;</content><category term="Programming"></category><category term="python"></category><category term="django"></category><category term="javascript"></category><category term="rants"></category></entry><entry><title>Endpoints matter</title><link href="http://hernantz.github.io/endpoints-matter.html" rel="alternate"></link><published>2021-09-18T00:00:00-03:00</published><updated>2021-09-18T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2021-09-18:/endpoints-matter.html</id><summary type="html">&lt;p&gt;Entities can be identified by IDs, but also paths.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In most applications, system entities do not exist isolated from each other,
+SPA with the framework dujour, to avoid JS fatigue, save time and money.&lt;/p&gt;</content><category term="Programming"></category><category term="python"></category><category term="django"></category><category term="javascript"></category><category term="rants"></category><category term="htmx"></category></entry><entry><title>Endpoints matter</title><link href="http://hernantz.github.io/endpoints-matter.html" rel="alternate"></link><published>2021-09-18T00:00:00-03:00</published><updated>2021-09-18T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2021-09-18:/endpoints-matter.html</id><summary type="html">&lt;p&gt;Entities can be identified by IDs, but also paths.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In most applications, system entities do not exist isolated from each other,
 but connected in one to one, many to many or one to may type of relations.&lt;/p&gt;
 &lt;p&gt;This means that there is more than one way to reach to a specific entity.&lt;/p&gt;
 &lt;p&gt;Although all entities should have a unique id, the &lt;em&gt;path&lt;/em&gt; to that entity is also
