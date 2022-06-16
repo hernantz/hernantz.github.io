@@ -28,6 +28,8 @@ The user can see the errors as the input is being manipulated or as soon as
 focus is set on the next form element. Otherwise the user would have to fill the
 entire form, wait for the server to validate and then scroll to see what errors
 where found.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Server side validation is required&lt;/strong&gt; for security, but &lt;strong&gt;client side
+validation is desirable&lt;/strong&gt; for it has better UX. Can't we have both?&lt;/p&gt;
 &lt;h2 id="partial-and-progressive-server-side-form-validation"&gt;Partial and progressive server side form validation&lt;a class="headerlink" href="#partial-and-progressive-server-side-form-validation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;With the help of &lt;a href="https://htmx.org/" title="high power tools for HTML"&gt;htmx&lt;/a&gt;, we will submit the form for validation after the
 user interacts with an input and we will partially update the field with the
