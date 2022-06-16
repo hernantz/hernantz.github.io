@@ -51,6 +51,7 @@ with the validation for that field.&lt;/p&gt;
   &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
+&lt;p&gt;&lt;img alt="htmx inline form validation" src="/images/htmx-inline-form-validation.png" title="Htmx inline form validation"&gt;&lt;/p&gt;
 &lt;p&gt;The &lt;a href="https://github.com/hernantz/django-htmx-demo/pull/1/files" title="Example implementation"&gt;django backend code&lt;/a&gt; is still pretty agnostic. If the form is invalid,
 django will re-render the page with the errors displayed. If the form is valid,
 and it was submitted via htmx request, we re-render the page (without any
