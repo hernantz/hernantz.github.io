@@ -44,6 +44,7 @@ on <time datetime="2020-03-19T00:00:00-03:00">2020-03-19</time>,       under <a 
     </p>
   </summary>
   <p><img alt="Archive - Photo by  Fabien Barral" src="/images/just-files.jpg" title="Archive - Photo by  Fabien Barral"></p>
+<p>MUST READ-&gt; https://medium.com/@sdboyer/so-you-want-to-write-a-package-manager-4ae9c17d9527</p>
 <p>https://twitter.com/SusanPotter/status/1396456263517618181?s=1006
 implementacion! =&gt; https://www.leshenko.net/p/ugit
 https://www.npmjs.com/package/semver-resolver
@@ -114,7 +115,9 @@ This is the <code>Pakfile</code>. When you use the command line to add/remove pa
 <h2 id="misc">Misc<a class="headerlink" href="#misc" title="Permanent link">&para;</a></h2>
 <p>https://lwn.net/Articles/821367/ Merkle trees and build systems</p>
 <p>Transactional updates: https://www.youtube.com/watch?v=ureneyH06AE</p>
+<p>Using config files over instalatioln wizzards makes your software a one step install, drop a file in a folder and done.</p>
 <p>We need a virtualenv but for system packages. Otherwise python, rust, javascript, etc re-implement the wheel over and over.</p>
+<p>Semver: https://enigma.com/blog/post/package-management-make-your-own-kind-of-map</p>
 <p>Reproducible builds come at the cost of more disk space, you need a lib which works fine with versions v0.[1-3], the user already installed v0.2 but you specified v0.1 in your dependencies, the user will get both copies installed (v0.1 and v0.2), even though only one was enough.</p>
 <p>Como se hace la configuracion desde directorios globales para packetes dentro de nix? /etc/systemd/units/my-app.service?</p>
 <p>Que pasa con los paquetes tradicionales cuando borras un servicio que es administrado por systemd?</p>
@@ -233,7 +236,8 @@ https://jmmv.dev/2020/08/database-directories.html</p>
 <p>Use python 3.8 + nuitka (give a talk: compyling). 
 Or use mypyc https://mypyc.readthedocs.io/en/latest/</p>
 <p>Pakfile -&gt; toml
-Pakfile.lock -&gt; json?</p>
+Pakfile.lock -&gt; json?
+https://github.com/tiangolo/typer</p>
 <p>https://github.com/g-plane/tiny-package-manager</p>
 <p>Transport layer: http, but eventually we could add ipfs/torrents/ssh.</p>
 <p>Los packetes se pueden obtener de distintos repos/mirrors (http/ipfs/torrent/etc), that return a URI (http link, magnet link, etc) for a given key (package name)</p>
