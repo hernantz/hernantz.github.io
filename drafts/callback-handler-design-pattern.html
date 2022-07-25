@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Callback handler design pattern | README.txt</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="/theme/css/pygments-default.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/dark/main.css" media="(prefers-color-scheme: dark)" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/dark/pygments-base16-applepips-dark.css" media="(prefers-color-scheme: dark)" type="text/css" />
+  <link rel="stylesheet" media="(max-width: 750px)" href="/theme/css/mobile.css" type="text/css" />
+  <link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
+  <link href="/rss.xml" type="application/atom+xml" rel="alternate" title="README.txt RSS Feed" />
+  <meta name="description" content="https://github.com/faif/python-patterns/blob/master/patterns/structural/front_controller.py I'm sure you have used this pattern at some time: from fastapi import FastAPI app = FastAPI() @app.get("/") def read_root(): return {"Hello": "World"} It is very popular with libraries/frameworks like Flask, FastAPI, Red Engine, etc This …">
+  <meta name="keywords" content="">
+  <meta name="author" content="hernantz">
+</head>
+
+<body>
+  <aside class="sidebar">
+    <a href="/"><img src="/images/avatar.png" height="75" width="75" /></a>
+
+      <nav>
+        <ul>
+            <li><a href="http://twitter.com/hernantz">twitter</i></a></li>
+            <li><a href="http://github.com/hernantz">github</i></a></li>
+            <li><a href="http://last.fm/user/hernantz">last.fm</i></a></li>
+            <li><a href="https://www.rottentomatoes.com/user/id/973196678">tomatoes</i></a></li>
+            <li><a href="/talks.html">talks</a></li>
+            <li><a href="/whoami.html">whoami</a></li>
+            <li><a href="/">blog</a></li>
+        </ul>
+      </nav>
+
+  </aside>
+  <main>
+        
+<article class="column-right">
+  <h1 class="main-title">Callback handler design pattern</h1>
+  <summary>
+    <p class="light">
+      Published
+on <time datetime="2022-07-03T00:00:00-03:00">2022-07-03</time>,       under <a href="http://hernantz.github.io/category/misc.html">misc</a>.
+    </p>
+  </summary>
+  <p>https://github.com/faif/python-patterns/blob/master/patterns/structural/front_controller.py</p>
+<p>I'm sure you have used this pattern at some time:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
+
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">read_root</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;Hello&quot;</span><span class="p">:</span> <span class="s2">&quot;World&quot;</span><span class="p">}</span>
+</code></pre></div>
+
+<p>It is very popular with libraries/frameworks like Flask, FastAPI, Red Engine,
+etc</p>
+<p>This approach can help organize the code in a very concise way. An <code>app</code> object
+that can dispatch the execution of code to it's registered functions or
+callbacks.</p>
+<p>The <code>app</code> can be configured and by using decorators it can be very flexible and
+powerful.</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">App</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">handler_fns</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">default_handler</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Decorator function that binds events with processing functions.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            app = App()</span>
+
+<span class="sd">            @app.handler(event=&#39;example&#39;)</span>
+<span class="sd">            def my_handler(event):</span>
+<span class="sd">                return [{&#39;other&#39;: &#39;event&#39;}]</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            bind: Event or list of events to bind to the decorated function.</span>
+<span class="sd">                  If left unset, the decorated function will override de</span>
+<span class="sd">                  default handler.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">def</span> <span class="nf">_decorator</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">handler_fns</span><span class="p">[</span><span class="n">event</span><span class="p">]</span> <span class="o">=</span> <span class="n">fn</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Registered handler </span><span class="si">%s</span><span class="s1"> for event </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">fn</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">_decorator</span>
+
+    <span class="k">def</span> <span class="nf">handle_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Starts a backend service to receive events.&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">proc_fn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handler_fns</span><span class="p">[</span><span class="n">event</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Event </span><span class="si">%s</span><span class="s1"> does not have any handlers associated, using default handler&#39;</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span>
+            <span class="n">proc_fn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_handler</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">proc_fn</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Processed event. Event &quot;</span><span class="si">%s</span><span class="s1">&quot; in &quot;</span><span class="si">%s</span><span class="s1">&quot; seconds&#39;</span><span class="p">,</span> <span class="n">event</span><span class="p">,</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">res</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">&#39;Exception processing event: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span>
+            <span class="k">raise</span>
+</code></pre></div>
+
+<p>[2]: "Fast Api"</p>
+</article>
+
+      <footer class="column-right light">
+        <nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> - <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | README.txt</nav>
+      </footer>
+  </main>
+</body>
+</html>
