@@ -69,24 +69,24 @@ documents and subcollections for each possible value we want to update.</p>
 value, if you will. Attributes can also be embedded maps with more attributes.</p>
 <p>Here, the <code>/users/joe</code> document, has the <code>name</code> and the <code>hobbies.reading</code> paths
 for example.</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Joe&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;surname&quot;</span><span class="p">:</span> <span class="s2">&quot;Doe&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;hobbies&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;skiing&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-        <span class="nt">&quot;reading&quot;</span><span class="p">:</span> <span class="kc">false</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Joe&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;surname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Doe&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;hobbies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;skiing&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;reading&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 
 <p>Imagine having a <em>profile</em> section in your app and a separate <em>hobbies</em> screen.
 Two concurrent operations could update the same user, since we can effectively
 write to different paths in the document, without causing any clashes with other
 attributes.</p>
-<div class="highlight"><pre><span></span><code><span class="k">await</span> <span class="nx">firebase</span><span class="p">.</span><span class="nx">firestore</span><span class="p">().</span><span class="nx">doc</span><span class="p">(</span><span class="s1">&#39;/users/joe&#39;</span><span class="p">).</span><span class="nx">set</span><span class="p">({</span>
-    <span class="s1">&#39;hobbies.reading&#39;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s1">&#39;hobbies.painting&#39;</span><span class="o">:</span> <span class="kc">false</span>
-<span class="p">},</span> <span class="p">{</span> <span class="s1">&#39;merge&#39;</span><span class="o">:</span> <span class="kc">true</span> <span class="p">});</span>
+<div class="highlight"><pre><span></span><code><span class="k">await</span><span class="w"> </span><span class="nx">firebase</span><span class="p">.</span><span class="nx">firestore</span><span class="p">().</span><span class="nx">doc</span><span class="p">(</span><span class="s1">&#39;/users/joe&#39;</span><span class="p">).</span><span class="nx">set</span><span class="p">({</span><span class="w"></span>
+<span class="w">    </span><span class="s1">&#39;hobbies.reading&#39;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s1">&#39;hobbies.painting&#39;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;merge&#39;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">});</span><span class="w"></span>
 </code></pre></div>
 
 <p>You may have noticed we are using <code>set()</code> with the <code>{merge: true}</code> parameter.</p>
@@ -109,10 +109,10 @@ grow, and never delete data. That way you never upsert data that has been
 deleted by another update, hence, a simple <code>deleted=true|false</code> flag on every
 document should achive the same result. Later upserts will not bring the
 document back to life.</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// Remove the joe document</span>
-<span class="k">await</span> <span class="nx">firebase</span><span class="p">.</span><span class="nx">firestore</span><span class="p">().</span><span class="nx">doc</span><span class="p">(</span><span class="s1">&#39;/users/joe&#39;</span><span class="p">).</span><span class="nx">set</span><span class="p">({</span>
-    <span class="s1">&#39;deleted&#39;</span><span class="o">:</span> <span class="kc">true</span>
-<span class="p">},</span> <span class="p">{</span> <span class="s1">&#39;merge&#39;</span><span class="o">:</span> <span class="kc">true</span> <span class="p">});</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// Remove the joe document</span><span class="w"></span>
+<span class="k">await</span><span class="w"> </span><span class="nx">firebase</span><span class="p">.</span><span class="nx">firestore</span><span class="p">().</span><span class="nx">doc</span><span class="p">(</span><span class="s1">&#39;/users/joe&#39;</span><span class="p">).</span><span class="nx">set</span><span class="p">({</span><span class="w"></span>
+<span class="w">    </span><span class="s1">&#39;deleted&#39;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;merge&#39;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">});</span><span class="w"></span>
 </code></pre></div>
 
 <h3 id="sentinel-values">Sentinel values<a class="headerlink" href="#sentinel-values" title="Permanent link">&para;</a></h3>
@@ -122,10 +122,10 @@ updates is something we don't want to solve, and this scenario will is noticible
 when enabling offline support, we need to make use of sentinel values.</p>
 <p><a href="https://firebase.google.com/docs/reference/android/com/google/firebase/firestore/FieldValue" title="Sentinel values that can be used when writing document fields with set() or update().">Sentinels</a> act like on-the-spot transactions to transform or update an attribute
 by considering it's current value at the moment the upsert occurs.</p>
-<div class="highlight"><pre><span></span><code><span class="k">await</span> <span class="nx">firebase</span><span class="p">.</span><span class="nx">firestore</span><span class="p">().</span><span class="nx">collection</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">).</span><span class="nx">doc</span><span class="p">(</span><span class="s1">&#39;joe&#39;</span><span class="p">).</span><span class="nx">set</span><span class="p">({</span>
-    <span class="s1">&#39;sessions&#39;</span><span class="o">:</span> <span class="nx">firebase</span><span class="p">.</span><span class="nx">firestore</span><span class="p">.</span><span class="nx">FieldValue</span><span class="p">.</span><span class="nx">increment</span><span class="p">(</span><span class="mf">1</span><span class="p">),</span>
-    <span class="s1">&#39;lastUpdated&#39;</span><span class="o">:</span> <span class="nx">firebase</span><span class="p">.</span><span class="nx">firestore</span><span class="p">.</span><span class="nx">FieldValue</span><span class="p">.</span><span class="nx">ServerTimestamp</span><span class="p">()</span>
-<span class="p">},</span> <span class="p">{</span> <span class="s1">&#39;merge&#39;</span><span class="o">:</span> <span class="kc">true</span> <span class="p">});</span>
+<div class="highlight"><pre><span></span><code><span class="k">await</span><span class="w"> </span><span class="nx">firebase</span><span class="p">.</span><span class="nx">firestore</span><span class="p">().</span><span class="nx">collection</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">).</span><span class="nx">doc</span><span class="p">(</span><span class="s1">&#39;joe&#39;</span><span class="p">).</span><span class="nx">set</span><span class="p">({</span><span class="w"></span>
+<span class="w">    </span><span class="s1">&#39;sessions&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">firebase</span><span class="p">.</span><span class="nx">firestore</span><span class="p">.</span><span class="nx">FieldValue</span><span class="p">.</span><span class="nx">increment</span><span class="p">(</span><span class="mf">1</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="s1">&#39;lastUpdated&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">firebase</span><span class="p">.</span><span class="nx">firestore</span><span class="p">.</span><span class="nx">FieldValue</span><span class="p">.</span><span class="nx">ServerTimestamp</span><span class="p">()</span><span class="w"></span>
+<span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;merge&#39;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">});</span><span class="w"></span>
 </code></pre></div>
 
 <p>Here we can log each <code>session</code> in the app, by incrementing a counter. We don't
@@ -140,25 +140,25 @@ So this will result in the value <em>default</em> being set only if the existing
 is <code>undefined</code> (meaning not set).</p>
 <p>An example use case is setting a value that should only be set once (like
 <code>dateCreated</code>):</p>
-<div class="highlight"><pre><span></span><code><span class="k">await</span> <span class="nx">firebase</span><span class="p">.</span><span class="nx">firestore</span><span class="p">().</span><span class="nx">collection</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">).</span><span class="nx">doc</span><span class="p">(</span><span class="s1">&#39;joe&#39;</span><span class="p">).</span><span class="nx">set</span><span class="p">({</span>
-    <span class="s1">&#39;dateCreated&#39;</span><span class="o">:</span> <span class="nx">firebase</span><span class="p">.</span><span class="nx">firestore</span><span class="p">.</span><span class="nx">FieldValue</span><span class="p">.</span><span class="nx">SetDefault</span><span class="p">(</span><span class="nx">firebase</span><span class="p">.</span><span class="nx">firestore</span><span class="p">.</span><span class="nx">FieldValue</span><span class="p">.</span><span class="nx">ServerTimestamp</span><span class="p">()),</span>
-    <span class="s1">&#39;name&#39;</span><span class="o">:</span> <span class="s1">&#39;Joe&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;surname&#39;</span><span class="o">:</span> <span class="s1">&#39;Doe&#39;</span>
-<span class="p">},</span> <span class="p">{</span> <span class="s1">&#39;merge&#39;</span><span class="o">:</span> <span class="kc">true</span> <span class="p">});</span>
+<div class="highlight"><pre><span></span><code><span class="k">await</span><span class="w"> </span><span class="nx">firebase</span><span class="p">.</span><span class="nx">firestore</span><span class="p">().</span><span class="nx">collection</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">).</span><span class="nx">doc</span><span class="p">(</span><span class="s1">&#39;joe&#39;</span><span class="p">).</span><span class="nx">set</span><span class="p">({</span><span class="w"></span>
+<span class="w">    </span><span class="s1">&#39;dateCreated&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">firebase</span><span class="p">.</span><span class="nx">firestore</span><span class="p">.</span><span class="nx">FieldValue</span><span class="p">.</span><span class="nx">SetDefault</span><span class="p">(</span><span class="nx">firebase</span><span class="p">.</span><span class="nx">firestore</span><span class="p">.</span><span class="nx">FieldValue</span><span class="p">.</span><span class="nx">ServerTimestamp</span><span class="p">()),</span><span class="w"></span>
+<span class="w">    </span><span class="s1">&#39;name&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Joe&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s1">&#39;surname&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Doe&#39;</span><span class="w"></span>
+<span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;merge&#39;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">});</span><span class="w"></span>
 </code></pre></div>
 
 <p>Without having to check that this user exists and has the <code>dateCreated</code> set.</p>
 <p>Unfortunately this feature does not exists at the moment. The workaround is to
 first fetch the current document and if that value is not set or needs and
 update, we do update it.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">firebase</span><span class="p">.</span><span class="nx">firestore</span><span class="p">().</span><span class="nx">collection</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">).</span><span class="nx">doc</span><span class="p">(</span><span class="s1">&#39;joe&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">();</span>
-<span class="kd">const</span> <span class="nx">dateCreated</span> <span class="o">=</span> <span class="nx">user</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;dateCreated&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="nx">firebase</span><span class="p">.</span><span class="nx">firestore</span><span class="p">.</span><span class="nx">FieldValue</span><span class="p">.</span><span class="nx">ServerTimestamp</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">firebase</span><span class="p">.</span><span class="nx">firestore</span><span class="p">().</span><span class="nx">collection</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">).</span><span class="nx">doc</span><span class="p">(</span><span class="s1">&#39;joe&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">();</span><span class="w"></span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">dateCreated</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">user</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;dateCreated&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">firebase</span><span class="p">.</span><span class="nx">firestore</span><span class="p">.</span><span class="nx">FieldValue</span><span class="p">.</span><span class="nx">ServerTimestamp</span><span class="p">();</span><span class="w"></span>
 
-<span class="k">await</span> <span class="nx">user</span><span class="p">.</span><span class="nx">ref</span><span class="p">.</span><span class="nx">set</span><span class="p">({</span>
-    <span class="nx">dateCreated</span><span class="p">,</span>
-    <span class="s1">&#39;name&#39;</span><span class="o">:</span> <span class="s1">&#39;Joe&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;surname&#39;</span><span class="o">:</span> <span class="s1">&#39;Doe&#39;</span>
-<span class="p">},</span> <span class="p">{</span> <span class="s1">&#39;merge&#39;</span><span class="o">:</span> <span class="kc">true</span> <span class="p">});</span>
+<span class="k">await</span><span class="w"> </span><span class="nx">user</span><span class="p">.</span><span class="nx">ref</span><span class="p">.</span><span class="nx">set</span><span class="p">({</span><span class="w"></span>
+<span class="w">    </span><span class="nx">dateCreated</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s1">&#39;name&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Joe&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s1">&#39;surname&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Doe&#39;</span><span class="w"></span>
+<span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;merge&#39;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">});</span><span class="w"></span>
 </code></pre></div>
 
 <p>But this is not ideal, since there are no strong guarantees that this field

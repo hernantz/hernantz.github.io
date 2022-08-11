@@ -196,11 +196,11 @@ environment there are:  <code>dev_settings.py</code>, <code>staging_settings.py<
 </code></pre></div>
 
 <p>Which gets its config from a local ini file for example:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># /etc/app/config.ini for everyone</span>
-<span class="na">BASE_PLUGINS</span> <span class="o">=</span> <span class="s">foo,bar</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># /etc/app/config.ini for everyone</span><span class="w"></span>
+<span class="na">BASE_PLUGINS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">foo,bar</span><span class="w"></span>
 
-<span class="c1"># ~/.config/app/config.ini that a user overrides based on the template</span>
-<span class="na">EXTRA_PLUGINS</span> <span class="o">=</span> <span class="s">baz</span>
+<span class="c1"># ~/.config/app/config.ini that a user overrides based on the template</span><span class="w"></span>
+<span class="na">EXTRA_PLUGINS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">baz</span><span class="w"></span>
 </code></pre></div>
 
 <p>This way the only thing that changes is pure configuration variables, but the
@@ -234,10 +234,10 @@ secrets should also be kept outside the codebase and made configurable.</p>
 put into templates by Config Management/Orchestration tools and come handy when
 developing.</p>
 <p>Following the example above, a <code>config.ini.template</code> could look like this:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># config.ini.template that each environment can implement</span>
-<span class="c1">#</span>
-<span class="c1"># EXTRA_PLUGINS = one_plugin,another_plugin</span>
-<span class="c1"># SECRET_KEY = &lt;change me&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># config.ini.template that each environment can implement</span><span class="w"></span>
+<span class="c1">#</span><span class="w"></span>
+<span class="c1"># EXTRA_PLUGINS = one_plugin,another_plugin</span><span class="w"></span>
+<span class="c1"># SECRET_KEY = &lt;change me&gt;</span><span class="w"></span>
 </code></pre></div>
 
 <p>Even env vars can be put into a file (typically named <code>.env</code>) that gets loaded

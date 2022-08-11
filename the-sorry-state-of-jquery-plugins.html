@@ -60,7 +60,7 @@ Click me!<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&g
 </code></pre></div>
 
 <p>Or using JavaScript:</p>
-<div class="highlight"><pre><span></span><code><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#example&#39;</span><span class="p">).</span><span class="nx">popover</span><span class="p">(</span><span class="nx">optionsAndCallbacks</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#example&#39;</span><span class="p">).</span><span class="nx">popover</span><span class="p">(</span><span class="nx">optionsAndCallbacks</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 
 <p>But both can be combined so that the JavaScript options override the <code>data-</code>
@@ -94,54 +94,54 @@ we want for this popover.</p>
 else in the page, but it can be reused as a template for your custom widget.</p>
 <p>Say we needed to take full control of a popover. I wrote a simple Backbone view
 to achieve that:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">PopoverBottom</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
-  <span class="nx">template</span><span class="o">:</span> <span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="nx">$popoverTmpl</span><span class="p">),</span>
-  <span class="nx">attributes</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s1">&#39;class&#39;</span><span class="o">:</span> <span class="s1">&#39;popover bottom&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;tabindex&#39;</span><span class="o">:</span> <span class="s1">&#39;-1&#39;</span>  <span class="c1">// so that we can focus/blur</span>
-  <span class="p">},</span>
-  <span class="nx">events</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s1">&#39;blur&#39;</span><span class="o">:</span> <span class="s1">&#39;remove&#39;</span>
-  <span class="p">},</span>
-  <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">toJSON</span><span class="p">()));</span>
-    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">});</span>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">PopoverBottom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span><span class="w"></span>
+<span class="w">  </span><span class="nx">template</span><span class="o">:</span><span class="w"> </span><span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="nx">$popoverTmpl</span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="nx">attributes</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="s1">&#39;class&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;popover bottom&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s1">&#39;tabindex&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;-1&#39;</span><span class="w">  </span><span class="c1">// so that we can focus/blur</span><span class="w"></span>
+<span class="w">  </span><span class="p">},</span><span class="w"></span>
+<span class="w">  </span><span class="nx">events</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="s1">&#39;blur&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;remove&#39;</span><span class="w"></span>
+<span class="w">  </span><span class="p">},</span><span class="w"></span>
+<span class="w">  </span><span class="nx">render</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">toJSON</span><span class="p">()));</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">});</span><span class="w"></span>
 </code></pre></div>
 
 <p>We've got a minimum working piece of popover that we control, but it's not
 positioned. So we can make use of another library that knows how to position
 elements. In this case I'll use <a href="http://github.hubspot.com/tether/" title="Tether">Tether</a> and modify the popover view so
 that it can clean up itself before it's removed.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">Popover</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
-  <span class="nx">template</span><span class="o">:</span> <span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="nx">popoverTmpl</span><span class="p">),</span>
-  <span class="nx">attributes</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s1">&#39;class&#39;</span><span class="o">:</span> <span class="s1">&#39;popover bottom fade in&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;tabindex&#39;</span><span class="o">:</span> <span class="s1">&#39;-1&#39;</span>
-  <span class="p">},</span>
-  <span class="nx">events</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s1">&#39;blur&#39;</span><span class="o">:</span> <span class="s1">&#39;close&#39;</span>
-  <span class="p">},</span>
-  <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">toJSON</span><span class="p">()));</span>
-    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
-  <span class="p">},</span>
-  <span class="nx">show</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$target</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">appendTo</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;display&#39;</span><span class="p">,</span> <span class="s1">&#39;block&#39;</span><span class="p">).</span><span class="nx">focus</span><span class="p">();</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">tether</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">Tether</span><span class="p">({</span>
-      <span class="nx">element</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">,</span>
-      <span class="nx">target</span><span class="o">:</span> <span class="nx">$target</span><span class="p">,</span>
-      <span class="nx">attachment</span><span class="o">:</span> <span class="s1">&#39;top middle&#39;</span><span class="p">,</span>
-      <span class="nx">targetAttachment</span><span class="o">:</span> <span class="s1">&#39;bottom middle&#39;</span>
-    <span class="p">});</span>
-  <span class="p">},</span>
-  <span class="nx">close</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">tether</span><span class="p">)</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">tether</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span> <span class="p">}</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
-  <span class="p">}</span>
-<span class="p">});</span>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">Popover</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span><span class="w"></span>
+<span class="w">  </span><span class="nx">template</span><span class="o">:</span><span class="w"> </span><span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="nx">popoverTmpl</span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="nx">attributes</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="s1">&#39;class&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;popover bottom fade in&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s1">&#39;tabindex&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;-1&#39;</span><span class="w"></span>
+<span class="w">  </span><span class="p">},</span><span class="w"></span>
+<span class="w">  </span><span class="nx">events</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="s1">&#39;blur&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;close&#39;</span><span class="w"></span>
+<span class="w">  </span><span class="p">},</span><span class="w"></span>
+<span class="w">  </span><span class="nx">render</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">toJSON</span><span class="p">()));</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">},</span><span class="w"></span>
+<span class="w">  </span><span class="nx">show</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">$target</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">appendTo</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;display&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;block&#39;</span><span class="p">).</span><span class="nx">focus</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">tether</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Tether</span><span class="p">({</span><span class="w"></span>
+<span class="w">      </span><span class="nx">element</span><span class="o">:</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nx">target</span><span class="o">:</span><span class="w"> </span><span class="nx">$target</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nx">attachment</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;top middle&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nx">targetAttachment</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;bottom middle&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="p">});</span><span class="w"></span>
+<span class="w">  </span><span class="p">},</span><span class="w"></span>
+<span class="w">  </span><span class="nx">close</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">tether</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">tether</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">});</span><span class="w"></span>
 </code></pre></div>
 
 <p>We have combined Bootstrap for presentation, Backbone for logic and Tether as
