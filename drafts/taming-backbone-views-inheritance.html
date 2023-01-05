@@ -34,16 +34,15 @@
 
   </aside>
   <main>
-        
 <article class="column-right">
   <h1 class="main-title">Taming Backbone view's inheritance</h1>
-  <summary>
+  <section>
     <p class="light">
       Published
 on <time datetime="2015-05-15T00:00:00-03:00">2015-05-15</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
       tagged with <a href="http://hernantz.github.io/tag/backbone.html">backbone</a>, <a href="http://hernantz.github.io/tag/javascript.html">javascript</a> and <a href="http://hernantz.github.io/tag/best-practices.html">best-practices</a>.
     </p>
-  </summary>
+  </section>
   <p><img alt="X-Ray by Eric Drooker" src="/images/x-ray.jpg" title="X-Ray by Eric Drooker"></p>
 <p>Alternative title: DRYing out your Backbone views</p>
 <p>The idea of this post is to show some possible approaches to reuse code
@@ -55,8 +54,8 @@ feed es diferente.</p>
 podes tener 100 de estos tipos de vistas, y cambian muy pocas cosas, como el template.
 Hacer prueba de instanciar una vista generica y solo pasarle el template, el $el, la coleccion, etc.</p>
 <h2 id="second-approach-extend-a-parent-view">Second approach: extend a parent view<a class="headerlink" href="#second-approach-extend-a-parent-view" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">BaseView</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">();</span><span class="w"></span>
-<span class="kd">var</span><span class="w"> </span><span class="nx">ChildView</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">BaseView</span><span class="p">,</span><span class="w"> </span><span class="p">{});</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">BaseView</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">();</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">ChildView</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">BaseView</span><span class="p">,</span><span class="w"> </span><span class="p">{});</span>
 </code></pre></div>
 
 <h2 id="third-approach-parent-view-contains-child-views">Third approach: parent view contains child views<a class="headerlink" href="#third-approach-parent-view-contains-child-views" title="Permanent link">&para;</a></h2>

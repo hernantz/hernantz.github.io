@@ -34,16 +34,15 @@
 
   </aside>
   <main>
-        
 <article class="column-right">
   <h1 class="main-title">Django's signal to noise ratio</h1>
-  <summary>
+  <section>
     <p class="light">
       Published
 on <time datetime="2016-04-29T00:00:00-03:00">2016-04-29</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
       tagged with <a href="http://hernantz.github.io/tag/django.html">django</a>, <a href="http://hernantz.github.io/tag/python.html">python</a> and <a href="http://hernantz.github.io/tag/best-practices.html">best-practices</a>.
     </p>
-  </summary>
+  </section>
   <p><img alt="Contact (1997) scene" src="/images/signal-to-noise-ratio.png" title="Contact (1997)"></p>
 <h2 id="noise">Noise<a class="headerlink" href="#noise" title="Permanent link">&para;</a></h2>
 <p>Signals allow decoupled applications get notified when actions occur elsewhere
@@ -133,7 +132,7 @@ extending a single method.</p>
 through intermediate tables which are managed by Django. But we can make use of
 the <code>m2m_changed</code> signals for that: </p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">handle_fav_notifications</span><span class="p">(</span><span class="n">sender</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Send an email to the author of a question whenever it gets fav&#39;ed&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Send an email to the author of a question whenever it gets fav&#39;ed&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;post_add&#39;</span><span class="p">:</span>
         <span class="n">instance</span><span class="o">.</span><span class="n">notify_new_favorite</span><span class="p">()</span>
 
@@ -178,7 +177,7 @@ party app, without having to create a new login view:</p>
 
 
 <span class="k">def</span> <span class="nf">help_user_with_login_link</span><span class="p">(</span><span class="n">sender</span><span class="p">,</span> <span class="n">credentials</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Let&#39;s help our forgetful users login, and email them a login link.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Let&#39;s help our forgetful users login, and email them a login link.&quot;&quot;&quot;</span>
    <span class="k">if</span> <span class="n">update_and_get_failure_logins</span><span class="p">(</span><span class="n">credentials</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">MAX_LOGIN_ATTEMPTS</span><span class="p">:</span>
         <span class="n">send_login_link</span><span class="p">(</span><span class="n">credentials</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
 

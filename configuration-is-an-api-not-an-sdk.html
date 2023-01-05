@@ -34,16 +34,15 @@
 
   </aside>
   <main>
-        
 <article class="column-right">
   <h1 class="main-title">Configuration is an API, not an SDK</h1>
-  <summary>
+  <section>
     <p class="light">
       Published
 on <time datetime="2020-06-27T00:00:00-03:00">2020-06-27</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
       tagged with <a href="http://hernantz.github.io/tag/python.html">python</a>, <a href="http://hernantz.github.io/tag/best-practices.html">best-practices</a>, <a href="http://hernantz.github.io/tag/tools.html">tools</a>, <a href="http://hernantz.github.io/tag/configuration.html">configuration</a> and <a href="http://hernantz.github.io/tag/architecture.html">architecture</a>.
     </p>
-  </summary>
+  </section>
   <p><img alt="Control room | photo by @patrykgradyscom at Unsplash" src="/images/control-room.jpg" title="Control room | photo by @patrykgradyscom at Unsplash"></p>
 <p>Configuration is every setting that needs to change based on the environment
 where the app is executed. It helps you <em>preset</em> the state of your app, without
@@ -77,8 +76,8 @@ tinker around it's possibilities. Many apps allow for both <code>-s</code> short
 <p>When you already know what you want it would be great to set some defaults in a
 configuration file somewhere. Yes, you can always set an alias, like many
 distros do:</p>
-<div class="highlight"><pre><span></span><code>$ <span class="nb">type</span> ll
-ll is aliased to <span class="sb">`</span>ls -alF<span class="sb">`</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">type</span><span class="w"> </span>ll
+ll<span class="w"> </span>is<span class="w"> </span>aliased<span class="w"> </span>to<span class="w"> </span><span class="sb">`</span>ls<span class="w"> </span>-alF<span class="sb">`</span>
 </code></pre></div>
 
 <p>Alternatively, config files are naturally better documenting and declarative.
@@ -147,26 +146,26 @@ files, env vars and/or cli args.</p>
 <p>There happen to be some formatting conventions for configuration parameters
 based on where they are set. For example, it is common to declare environment
 variables in uppercase:</p>
-<div class="highlight"><pre><span></span><code>$ <span class="nv">DEBUG</span><span class="o">=</span>yes <span class="nv">OTHER_CONFIG</span><span class="o">=</span><span class="m">10</span> myapp
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nv">DEBUG</span><span class="o">=</span>yes<span class="w"> </span><span class="nv">OTHER_CONFIG</span><span class="o">=</span><span class="m">10</span><span class="w"> </span>myapp
 </code></pre></div>
 
 <p>Since the environment is a global and shared dictionary, it is a good practice
 to also apply some prefix to each setting to avoid collisions with other known
 settings, like <code>LOCALE</code>, <code>TZ</code>, etc. This prefix works as a namespace for your
 app.</p>
-<div class="highlight"><pre><span></span><code>$ <span class="nv">MY_APP_DEBUG</span><span class="o">=</span>yes <span class="nv">MY_APP_OTHER_CONFIG</span><span class="o">=</span><span class="m">10</span> myapp
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nv">MY_APP_DEBUG</span><span class="o">=</span>yes<span class="w"> </span><span class="nv">MY_APP_OTHER_CONFIG</span><span class="o">=</span><span class="m">10</span><span class="w"> </span>myapp
 </code></pre></div>
 
 <p>but if you were to set this config in an .ini file, each setting should probably
 be in lower case, the namespace is implicit in the file path, i.e:
 <code>/etc/myapp/config.ini</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="k">[settings]</span><span class="w"></span>
-<span class="na">debug</span><span class="o">=</span><span class="s">yes</span><span class="w"></span>
-<span class="na">other_config</span><span class="o">=</span><span class="s">10</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">[settings]</span>
+<span class="na">debug</span><span class="o">=</span><span class="s">yes</span>
+<span class="na">other_config</span><span class="o">=</span><span class="s">10</span>
 </code></pre></div>
 
 <p>Command line arguments have yet another conventions:</p>
-<div class="highlight"><pre><span></span><code>$ myapp --debug<span class="o">=</span>yes --another-config<span class="o">=</span><span class="m">10</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>myapp<span class="w"> </span>--debug<span class="o">=</span>yes<span class="w"> </span>--another-config<span class="o">=</span><span class="m">10</span>
 </code></pre></div>
 
 <p>You probably noticed that the debug setting is a boolean value. These flags

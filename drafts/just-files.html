@@ -34,15 +34,14 @@
 
   </aside>
   <main>
-        
 <article class="column-right">
   <h1 class="main-title">Just files</h1>
-  <summary>
+  <section>
     <p class="light">
       Published
 on <time datetime="2020-03-19T00:00:00-03:00">2020-03-19</time>,       under <a href="http://hernantz.github.io/category/misc.html">misc</a>.
     </p>
-  </summary>
+  </section>
   <p><img alt="Archive - Photo by  Fabien Barral" src="/images/just-files.jpg" title="Archive - Photo by  Fabien Barral"></p>
 <p>MUST READ-&gt; https://medium.com/@sdboyer/so-you-want-to-write-a-package-manager-4ae9c17d9527</p>
 <p>https://twitter.com/SusanPotter/status/1396456263517618181?s=1006
@@ -235,12 +234,41 @@ https://jmmv.dev/2020/08/database-directories.html</p>
 <h2 id="technology-stack">Technology stack<a class="headerlink" href="#technology-stack" title="Permanent link">&para;</a></h2>
 <p>Use python 3.8 + nuitka (give a talk: compyling). 
 Or use mypyc https://mypyc.readthedocs.io/en/latest/</p>
+<p>https://blog.wolt.com/engineering/2022/08/11/project-template-for-modern-python-packages/</p>
 <p>Pakfile -&gt; toml
 Pakfile.lock -&gt; json?
 https://github.com/tiangolo/typer</p>
 <p>https://github.com/g-plane/tiny-package-manager</p>
+<p>12 tools that will rewrite your #Python code for you:</p>
+<ul>
+<li>
+<p>pyupgrade - Python idioms
+  https://github.com/asottile/pyupgrade</p>
+</li>
+<li>
+<p>Black - formatting
+  https://github.com/psf/black</p>
+</li>
+<li>
+<p>isort - import sorting
+  https://github.com/PyCQA/isort</p>
+</li>
+<li>
+<p>autoflake - remove unused imports
+  https://github.com/PyCQA/autoflake</p>
+</li>
+<li>
+<p>flynt - format strings
+  https://github.com/PyCQA/isort</p>
+</li>
+<li>
+<p>Monkeytype - add type hints
+  https://github.com/instagram/MonkeyType</p>
+</li>
+</ul>
+<h2 id="repositories">Repositories<a class="headerlink" href="#repositories" title="Permanent link">&para;</a></h2>
 <p>Transport layer: http, but eventually we could add ipfs/torrents/ssh.</p>
-<p>Los packetes se pueden obtener de distintos repos/mirrors (http/ipfs/torrent/etc), that return a URI (http link, magnet link, etc) for a given key (package name)</p>
+<p>Packages can be fetched from different repos/mirrors (http/ipfs/torrent/etc), that return a URI (http link, magnet link, etc) for a given key (package name)</p>
 <h2 id="dependency-resolution">Dependency resolution<a class="headerlink" href="#dependency-resolution" title="Permanent link">&para;</a></h2>
 <p>When does dependency resolution happen? Before downloading the packages or after downloading all dependencies in parallel?
 When you say <code>pak install git</code>, we go get the <code>Pakfile.lock</code> for git. There we have a graph of all dependencies that we can compare with our local <code>Pakfile.lock</code> of our profile.
@@ -250,6 +278,16 @@ If there is a sub-dependency at any point that conflicts we show an error. If th
 <p>Blog posts:
 - Just files (what are package manages)
 - Apps vs Libraries (branching strategy: trunk dev vs multi branch, config via files vs params, granular semver versioning vs 1ver).</p>
+<h2 id="building">Building<a class="headerlink" href="#building" title="Permanent link">&para;</a></h2>
+<p>Dev environments and build tools should also be bootstraped using <code>pak</code> and <code>pak run</code> to execute builds.</p>
+<p>In this case https://bob.build/ is a tools that needs to be installed somehow and depends on nix and runs commands inside of a nix shell, why not first enter a shell and then run any commands like build inside? The problem with bob.build is that it also needs to implement the list of dependencies in it's own build file format.</p>
+<p>How do you install bob? Pak could be the only tool you need to boostrap any dev environment.</p>
+<h2 id="what-about-dev-custom-tools-like-the-editor">What about dev custom tools like the editor?<a class="headerlink" href="#what-about-dev-custom-tools-like-the-editor" title="Permanent link">&para;</a></h2>
+<p>Pakfiles list the required files to run, not an exaustive list. This means that other files might exists in the PATH at runtime.
+A package might be installed in different systems with different "global" libraries.</p>
+<p>For example, a GUI app can co-exist with other GUI apps. Installing one app or package does not imply that others have to be removed from the binary path so long as there is no conflict.</p>
+<p>This way if you want to install a dev environment, you can install the current project and it will be installed into your current runtime (with your editor of choice, music player, etc)</p>
+<p>??The idea of a runtime is needed so that a package can also be distributed to a "platform" to be run. Like Flatpak does??</p>
 <h2 id="authors-to-contact">Authors to contact<a class="headerlink" href="#authors-to-contact" title="Permanent link">&para;</a></h2>
 <p>Russell Keith-Magee @freakboy3742
 Distr1</p>

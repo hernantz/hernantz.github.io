@@ -34,16 +34,15 @@
 
   </aside>
   <main>
-        
 <article class="column-right">
   <h1 class="main-title">Configuration-friendly apps</h1>
-  <summary>
+  <section>
     <p class="light">
       Published
 on <time datetime="2018-05-11T00:00:00-03:00">2018-05-11</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
       tagged with <a href="http://hernantz.github.io/tag/python.html">python</a>, <a href="http://hernantz.github.io/tag/best-practices.html">best-practices</a>, <a href="http://hernantz.github.io/tag/configuration.html">configuration</a>, <a href="http://hernantz.github.io/tag/architecture.html">architecture</a> and <a href="http://hernantz.github.io/tag/tools.html">tools</a>.
     </p>
-  </summary>
+  </section>
   <p><img alt="configuration management" src="/images/configuration.png" title="Configuration management"></p>
 <p>Configuration is just another API of your app. It allows us to preset or modify
 it's behavior based on where it is installed and how it will be executed,
@@ -196,11 +195,11 @@ environment there are:  <code>dev_settings.py</code>, <code>staging_settings.py<
 </code></pre></div>
 
 <p>Which gets its config from a local ini file for example:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># /etc/app/config.ini for everyone</span><span class="w"></span>
-<span class="na">BASE_PLUGINS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">foo,bar</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="c1"># /etc/app/config.ini for everyone</span>
+<span class="na">BASE_PLUGINS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">foo,bar</span>
 
-<span class="c1"># ~/.config/app/config.ini that a user overrides based on the template</span><span class="w"></span>
-<span class="na">EXTRA_PLUGINS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">baz</span><span class="w"></span>
+<span class="c1"># ~/.config/app/config.ini that a user overrides based on the template</span>
+<span class="na">EXTRA_PLUGINS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">baz</span>
 </code></pre></div>
 
 <p>This way the only thing that changes is pure configuration variables, but the
@@ -234,10 +233,10 @@ secrets should also be kept outside the codebase and made configurable.</p>
 put into templates by Config Management/Orchestration tools and come handy when
 developing.</p>
 <p>Following the example above, a <code>config.ini.template</code> could look like this:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># config.ini.template that each environment can implement</span><span class="w"></span>
-<span class="c1">#</span><span class="w"></span>
-<span class="c1"># EXTRA_PLUGINS = one_plugin,another_plugin</span><span class="w"></span>
-<span class="c1"># SECRET_KEY = &lt;change me&gt;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="c1"># config.ini.template that each environment can implement</span>
+<span class="c1">#</span>
+<span class="c1"># EXTRA_PLUGINS = one_plugin,another_plugin</span>
+<span class="c1"># SECRET_KEY = &lt;change me&gt;</span>
 </code></pre></div>
 
 <p>Even env vars can be put into a file (typically named <code>.env</code>) that gets loaded
@@ -342,7 +341,7 @@ for daemons.</p>
 
 <p>Then, the program can be notified about new config by using <code>kill -1</code> or, with
 systemd:</p>
-<div class="highlight"><pre><span></span><code>$ sudo systemctl reload application.service
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>reload<span class="w"> </span>application.service
 </code></pre></div>
 
 <p>If the app is part of a distributed cloud system, the same principle can still
@@ -350,10 +349,10 @@ be used. For example, Consul, a tool for service and configuration discovery
 provides <code>consult-template</code>, a command to populate values from Consul <sup id="fnref:3"><a class="footnote-ref" href="#fn:3">4</a></sup> into
 automatically <a href="https://vimeo.com/109626825" title="Consul template demo">updated templates</a> that can emit reload commands to programs
 to pick it up.</p>
-<div class="highlight"><pre><span></span><code>$ consul-template <span class="se">\</span>
-    -template <span class="s2">&quot;/tmp/nginx.ctmpl:/var/nginx/nginx.conf:nginx -s reload&quot;</span> <span class="se">\</span>
-    -template <span class="s2">&quot;/tmp/redis.ctmpl:/var/redis/redis.conf:service redis restart&quot;</span> <span class="se">\</span>
-    -template <span class="s2">&quot;/tmp/haproxy.ctmpl:/var/haproxy/haproxy.conf&quot;</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>consul-template<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-template<span class="w"> </span><span class="s2">&quot;/tmp/nginx.ctmpl:/var/nginx/nginx.conf:nginx -s reload&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-template<span class="w"> </span><span class="s2">&quot;/tmp/redis.ctmpl:/var/redis/redis.conf:service redis restart&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-template<span class="w"> </span><span class="s2">&quot;/tmp/haproxy.ctmpl:/var/haproxy/haproxy.conf&quot;</span>
 </code></pre></div>
 
 <p>As you can see, there is another tool in charge of managing configuration, building it and notifying our code about it.</p>

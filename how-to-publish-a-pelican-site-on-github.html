@@ -34,16 +34,15 @@
 
   </aside>
   <main>
-        
 <article class="column-right">
   <h1 class="main-title">How to publish a pelican site on Github</h1>
-  <summary>
+  <section>
     <p class="light">
       Published
 on <time datetime="2014-05-18T00:00:00-03:00">2014-05-18</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
       tagged with <a href="http://hernantz.github.io/tag/pelican.html">pelican</a>, <a href="http://hernantz.github.io/tag/git.html">git</a> and <a href="http://hernantz.github.io/tag/python.html">python</a>.
     </p>
-  </summary>
+  </section>
   <p><img alt="Pelican a static site publishing tool" src="/images/pelican-a-static-site-publishing-tool-github.png"></p>
 <p>This is a step by step guide on how to publish a pelican website on Github, and
 how not to get the site's codebase so tightly coupled to where it is deployed.
@@ -59,15 +58,15 @@ by default to a folder (conveniently) named <em>output</em>, but it can be chang
 something else with the <code>OUTPUT_PATH</code> setting in your <code>pelicanconf.py</code> file</p>
 <p>3) We will make use of <em>git submodules</em> to point our output directory to the
 repo created in step 1, so that it holds what's going to be published in Github.</p>
-<div class="highlight"><pre><span></span><code>git submodule add https://github.com/username/username.github.io.git output
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>submodule<span class="w"> </span>add<span class="w"> </span>https://github.com/username/username.github.io.git<span class="w"> </span>output
 </code></pre></div>
 
 <p>Adding a git submodule will create another version controlled file called
 <code>.gitmodules</code> with the following content:</p>
-<div class="highlight"><pre><span></span><code><span class="k">[submodule &quot;output&quot;]</span><span class="w"></span>
-<span class="w">    </span><span class="na">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">output</span><span class="w"></span>
-<span class="w">    </span><span class="na">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">https://github.com/username/username.github.io.git</span><span class="w"></span>
-<span class="w">    </span><span class="na">ignore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">all</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">[submodule &quot;output&quot;]</span>
+<span class="w">    </span><span class="na">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">output</span>
+<span class="w">    </span><span class="na">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">https://github.com/username/username.github.io.git</span>
+<span class="w">    </span><span class="na">ignore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">all</span>
 </code></pre></div>
 
 <p>As the output directory is now managed by the independent git repository
@@ -77,7 +76,7 @@ site repo, and that's why we added the last <em>ignore</em> statement.</p>
 settings, and <code>publishconf.py</code> that is used for publishing, as you probably
 guessed. Pelican's Makefile comes with a built-in command to generate the
 output that will be published:</p>
-<div class="highlight"><pre><span></span><code>make publish  <span class="c1"># generates output using publishconf.py</span>
+<div class="highlight"><pre><span></span><code>make<span class="w"> </span>publish<span class="w">  </span><span class="c1"># generates output using publishconf.py</span>
 </code></pre></div>
 
 <p>But before running it, make sure the following settings are in <code>publishconf.py</code>:</p>

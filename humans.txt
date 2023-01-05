@@ -148,6 +148,7 @@ else's repertoire get so much better.
 | White Walls                        | Between the Buried and Me  | Revocation                |
 | Divination And Violition           | Cephalic Carnage           | Rings of Saturn           |
 | Rockin' in the Free Wold           | Neil Young                 | Rocky Erickson            |
+| Help I'm Alive                     | Metric                     | Santigold                 |
 | Empire of the Clouds               | Iron Maiden                | Savatage                  |
 | Replica                            | Sonata Arctica             | Savatage                  |
 | Changes                            | Tesla                      | Savatage                  |
@@ -162,6 +163,7 @@ else's repertoire get so much better.
 | Bitter End                         | Placebo                    | The Music                 |
 | Savior                             | Rise Against               | The Offspring             |
 | I Fought the Law                   | The Clash                  | The Ramones               |
+| Holiday                            | Confidence Man             | The Ting Tings            |
 | Amor Fati                          | Washed Out                 | The Verve                 |
 | In the Stars                       | Witchfynde                 | The Who                   |
 | Root Tonic                         | Thompson Town Flowers      | Thievery Corporation      |

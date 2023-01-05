@@ -34,16 +34,15 @@
 
   </aside>
   <main>
-        
 <article class="column-right">
   <h1 class="main-title">Mock yourself, not your tests</h1>
-  <summary>
+  <section>
     <p class="light">
       Published
 on <time datetime="2015-07-27T00:00:00-03:00">2015-07-27</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
       tagged with <a href="http://hernantz.github.io/tag/testing.html">testing</a>, <a href="http://hernantz.github.io/tag/python.html">python</a>, <a href="http://hernantz.github.io/tag/mocks.html">mocks</a> and <a href="http://hernantz.github.io/tag/rants.html">rants</a>.
     </p>
-  </summary>
+  </section>
   <p><em>tl;dr</em>: While sometimes mocks are needed, they should not be the first tool 
 you use to write tests. It is a pity to be mocking your code when you could
 be writing meaningful tests at <em>almost</em> the same cost.</p>
@@ -183,7 +182,7 @@ just follow the object's api, making our tests a little bit less permissive.</p>
 <p>Or we could have gone a little bit further, and inject a double to our
 <code>process()</code> function, for example:</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">FakeCreditCard</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Replace our CreditCard with a double to avoid hitting the db or</span>
 <span class="sd">    3rd party services (if any).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -396,7 +395,7 @@ is to <a href="https://gist.github.com/zekefast/07fa5434afcd0ba77f9b" title="Run
 against the db engine you use in production, and thus, gain also reliability.</p>
 <p>In case you don't want to mess with custom setups for testing, there are some
 easy tricks to speed your tests like running them in parallel:</p>
-<div class="highlight"><pre><span></span><code>$ nosetests --processes<span class="o">=</span>NUM
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>nosetests<span class="w"> </span>--processes<span class="o">=</span>NUM
 </code></pre></div>
 
 <p>provided that your tests <a href="http://nose.readthedocs.org/en/latest/plugins/multiprocess.html#beware">can run concurrently</a> and are IO bound, or simply
