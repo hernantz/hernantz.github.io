@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt - Programming</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/programming.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2022-06-13T00:00:00-03:00</updated><subtitle>- Mostly lies and rants in plain text.</subtitle><entry><title>Inline form validation with Django and Htmx</title><link href="http://hernantz.github.io/inline-form-validation-with-django-and-htmx.html" rel="alternate"></link><published>2022-06-13T00:00:00-03:00</published><updated>2022-06-13T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2022-06-13:/inline-form-validation-with-django-and-htmx.html</id><summary type="html">&lt;p&gt;Partial and progressive form validation without any Javascript.&lt;/p&gt;</summary><content type="html">&lt;video autoplay loop&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt - Programming</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/programming.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2023-06-30T00:00:00-03:00</updated><subtitle>- Mostly lies and rants in plain text.</subtitle><entry><title>Checksums matter</title><link href="http://hernantz.github.io/checksums-matter.html" rel="alternate"></link><published>2023-06-30T00:00:00-03:00</published><updated>2023-06-30T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2023-06-30:/checksums-matter.html</id><summary type="html">&lt;p&gt;When serving files over the internet, TCP and SSL are not enough.&lt;/p&gt;</summary><content type="html">&lt;p&gt;When dealing with user uploaded files or static assets in your project it is a
+common practice to store the file in a CDN or the filesystem and an entry that
+references it on a database.&lt;/p&gt;
+&lt;p&gt;When serving those files, you send a url to the user to fetch the file.&lt;/p&gt;
+&lt;p&gt;Now you may think that just by using a token or https that will be enough to
+download the right file from the server, after all, the ssl handshake will
+ensure you connect to the right server, the url was built and served in a
+trusted environment and the TCP protocol will take care of ensuring the transfer
+succeeds and gracefully handle any network errors/disconnects.&lt;/p&gt;
+&lt;p&gt;The problem is that all those checks are important but missing one key point:
+You can correctly and securely get the wrong file. TCP and SSL are not enough.&lt;/p&gt;
+&lt;p&gt;Since the data is stored in a separate location or service, that service could
+be compromised and the files could be tempered. Not only that, the service could
+be temporally unavailable and instead of downloading the file you expected, your
+client downloaded an HTML error page.&lt;/p&gt;
+&lt;p&gt;A checksum is a hash of the file that can be served along the URI of the file so
+that the client can verify that the downloaded file is indeed the one intended
+to be downloaded from that URI.&lt;/p&gt;
+&lt;p&gt;As a bonus, no extra checks are needed from the client, since this will take
+care of problems with the file size, file format, etc. The checksums need to
+match, period.&lt;/p&gt;</content><category term="Programming"></category><category term="best-practices"></category></entry><entry><title>Inline form validation with Django and Htmx</title><link href="http://hernantz.github.io/inline-form-validation-with-django-and-htmx.html" rel="alternate"></link><published>2022-06-13T00:00:00-03:00</published><updated>2022-06-13T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2022-06-13:/inline-form-validation-with-django-and-htmx.html</id><summary type="html">&lt;p&gt;Partial and progressive form validation without any Javascript.&lt;/p&gt;</summary><content type="html">&lt;video autoplay loop&gt;
   &lt;source src="/videos/htmx-inline-form-validation.mp4" type="video/mp4"&gt;
 &lt;/video&gt;
 

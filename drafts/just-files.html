@@ -176,6 +176,7 @@ Since packages are identified with UUIDs, other metadata fields should specify t
 A package can be obtained from a local file, over https, a magnet link, an ipfs link, ftp, etc. Almost all of the references + auth throught tokens or passwords could be done using a URI scheme.</p>
 <p>Pak should delegate this to a separate tool (is there something like a generic curl?), and only care about maintaining the local content-addressable store.</p>
 <p>The bridge between these two worlds can be through a spawning a new process with CLI args for this tool to fetch the packages and put the file on a given directory. From there, pak will unpack the file and take control.</p>
+<p>https://github.com/opencontainers/.github/blob/master/docs/docs/introduction/digests.md</p>
 <h2 id="store-paths">Store paths<a class="headerlink" href="#store-paths" title="Permanent link">&para;</a></h2>
 <p>Having long paths within the store can be a problem when showing them in a traceback for instance.</p>
 <p>But essentially we can use the content hash of the <code>Packfile.lock</code> manifest to create unique paths to each dependency.</p>
@@ -234,6 +235,7 @@ https://jmmv.dev/2020/08/database-directories.html</p>
 <h2 id="technology-stack">Technology stack<a class="headerlink" href="#technology-stack" title="Permanent link">&para;</a></h2>
 <p>Use python 3.8 + nuitka (give a talk: compyling). 
 Or use mypyc https://mypyc.readthedocs.io/en/latest/</p>
+<p>https://github.com/exaloop/codon</p>
 <p>https://blog.wolt.com/engineering/2022/08/11/project-template-for-modern-python-packages/</p>
 <p>Pakfile -&gt; toml
 Pakfile.lock -&gt; json?
@@ -296,6 +298,8 @@ https://www.freedesktop.org/wiki/Software/systemd/TheCaseForTheUsrMerge/ "The ca
 <p>https://www.haskellforall.com/2022/05/the-golden-rule-of-software.html "blessed packages for build plans"</p>
 <p>https://about.appd8.io/
 https://notes.volution.ro/v1/2022/01/notes/fbf3f06c/ "Single binary executable packages"</p>
+<p>https://github.com/chainloop-dev/chainloop</p>
+<p>pak is not just a package manage, but an environment manager: https://twitter.com/enjalot/status/1637443699083804673?t=an3vlQjThFSUTpJjO7l7EQ&amp;s=08</p>
 <h2 id="signing-verifying-code">Signing &amp; verifying code<a class="headerlink" href="#signing-verifying-code" title="Permanent link">&para;</a></h2>
 <p>https://kushaldas.in/posts/using-sigstore-python-to-sign-and-verify-your-software-release.html</p>
 </article>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Checksums matter | README.txt</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="/theme/css/pygments-default.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/dark/main.css" media="(prefers-color-scheme: dark)" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/dark/pygments-base16-applepips-dark.css" media="(prefers-color-scheme: dark)" type="text/css" />
+  <link rel="stylesheet" media="(max-width: 750px)" href="/theme/css/mobile.css" type="text/css" />
+  <link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
+  <link href="/rss.xml" type="application/atom+xml" rel="alternate" title="README.txt RSS Feed" />
+  <meta name="description" content="When serving files over the internet, TCP and SSL are not enough.">
+  <meta name="keywords" content="best-practices">
+  <meta name="author" content="hernantz">
+</head>
+
+<body>
+  <aside class="sidebar">
+    <a href="/"><img src="/images/avatar.png" height="75" width="75" /></a>
+
+      <nav>
+        <ul>
+            <li><a href="http://twitter.com/hernantz">twitter</i></a></li>
+            <li><a href="http://github.com/hernantz">github</i></a></li>
+            <li><a href="http://last.fm/user/hernantz">last.fm</i></a></li>
+            <li><a href="https://www.rottentomatoes.com/user/id/973196678">tomatoes</i></a></li>
+            <li><a href="/talks.html">talks</a></li>
+            <li><a href="/whoami.html">whoami</a></li>
+            <li><a href="/">blog</a></li>
+        </ul>
+      </nav>
+
+  </aside>
+  <main>
+<article class="column-right">
+  <h1 class="main-title">Checksums matter</h1>
+  <section>
+    <p class="light">
+      Published
+on <time datetime="2023-06-30T00:00:00-03:00">2023-06-30</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
+      tagged with <a href="http://hernantz.github.io/tag/best-practices.html">best-practices</a>.
+    </p>
+  </section>
+  <p>When dealing with user uploaded files or static assets in your project it is a
+common practice to store the file in a CDN or the filesystem and an entry that
+references it on a database.</p>
+<p>When serving those files, you send a url to the user to fetch the file.</p>
+<p>Now you may think that just by using a token or https that will be enough to
+download the right file from the server, after all, the ssl handshake will
+ensure you connect to the right server, the url was built and served in a
+trusted environment and the TCP protocol will take care of ensuring the transfer
+succeeds and gracefully handle any network errors/disconnects.</p>
+<p>The problem is that all those checks are important but missing one key point:
+You can correctly and securely get the wrong file. TCP and SSL are not enough.</p>
+<p>Since the data is stored in a separate location or service, that service could
+be compromised and the files could be tempered. Not only that, the service could
+be temporally unavailable and instead of downloading the file you expected, your
+client downloaded an HTML error page.</p>
+<p>A checksum is a hash of the file that can be served along the URI of the file so
+that the client can verify that the downloaded file is indeed the one intended
+to be downloaded from that URI.</p>
+<p>As a bonus, no extra checks are needed from the client, since this will take
+care of problems with the file size, file format, etc. The checksums need to
+match, period.</p>
+</article>
+
+      <footer class="column-right light">
+        <nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> - <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | README.txt</nav>
+      </footer>
+  </main>
+</body>
+</html>
