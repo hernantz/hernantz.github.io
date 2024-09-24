@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Django UI components for perfectionists with deadlines. | README.txt</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="/theme/css/pygments-default.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/dark/main.css" media="(prefers-color-scheme: dark)" type="text/css" />
+  <link rel="stylesheet" href="/theme/css/dark/pygments-base16-applepips-dark.css" media="(prefers-color-scheme: dark)" type="text/css" />
+  <link rel="stylesheet" media="(max-width: 750px)" href="/theme/css/mobile.css" type="text/css" />
+  <link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
+  <link href="/rss.xml" type="application/atom+xml" rel="alternate" title="README.txt RSS Feed" />
+  <meta name="description" content="Server side rendering and UI components for a modern frontend.">
+  <meta name="keywords" content="htmx, django, css, architecture, best-practices, python, javascript">
+  <meta name="author" content="hernantz">
+</head>
+
+<body>
+  <aside class="sidebar">
+    <a href="/"><img src="/images/avatar.png" height="75" width="75" /></a>
+
+      <nav>
+        <ul>
+            <li><a href="http://twitter.com/hernantz">twitter</i></a></li>
+            <li><a href="http://github.com/hernantz">github</i></a></li>
+            <li><a href="http://last.fm/user/hernantz">last.fm</i></a></li>
+            <li><a href="https://www.rottentomatoes.com/user/id/973196678">tomatoes</i></a></li>
+            <li><a href="/talks.html">talks</a></li>
+            <li><a href="/whoami.html">whoami</a></li>
+            <li><a href="/">blog</a></li>
+        </ul>
+      </nav>
+
+  </aside>
+  <main>
+<article class="column-right">
+  <h1 class="main-title">Django UI components for perfectionists with deadlines.</h1>
+  <section>
+    <p class="light">
+      Published
+on <time datetime="2024-08-17T00:00:00-03:00">2024-08-17</time>,       under <a href="http://hernantz.github.io/category/programming.html">Programming</a>,
+      tagged with <a href="http://hernantz.github.io/tag/htmx.html">htmx</a>, <a href="http://hernantz.github.io/tag/django.html">django</a>, <a href="http://hernantz.github.io/tag/css.html">css</a>, <a href="http://hernantz.github.io/tag/architecture.html">architecture</a>, <a href="http://hernantz.github.io/tag/best-practices.html">best-practices</a>, <a href="http://hernantz.github.io/tag/python.html">python</a> and <a href="http://hernantz.github.io/tag/javascript.html">javascript</a>.
+    </p>
+  </section>
+  <p><img alt="Vintage bridge" src="/images/bridge.jpg" title="Vintage blueprint of a bridge"></p>
+<p>Building a maintainable frontend architecture is a common problem any django
+project needs to solve.</p>
+<p>In Django we have ways to architect our code into reusable apps, views &amp; models.</p>
+<p>But when it comes to the frontend side of things, its not necessarily strongly
+opinionated on this matter. Let's see what this means and what can we do about
+it.</p>
+<h2 id="standing-of-the-shoulders-of-giants">Standing of the shoulders of giants<a class="headerlink" href="#standing-of-the-shoulders-of-giants" title="Permanent link">&para;</a></h2>
+<p>I don't remember where I heard this, but <em>Any fool can build a bridge</em><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> is phrase
+that stuck with me. It meant that anyone can just throw money, people, energy,
+take their time and eventually something will be built). It takes an engineer to
+build the "right" bridge (timely and on budget).</p>
+<p>This applies to any kind of project (that needs to take you from where you are
+to where you want to be, like a bridge does). Software projects are not the
+exception.</p>
+<p>As engineers we must understand that we live in a world of constraints and
+tradeoffs. Every project has a <a href="https://htmx.org/essays/complexity-budget/" title="Complexity Budget">complexity budget</a>: what features are worth it,
+how to spend your time and resources. Budgeting your efforts is not an easy
+task. You need to place your bets wisely.</p>
+<p>Unless you are on the edge of innovation, most of the problems might already be
+solved, you just need to stand on the shoulders of giants.</p>
+<p>... or ride unicorns rather.</p>
+<p>There is a reason Django's pet used to be a lovely winged pony. And there is a
+reason why it's motto is <em>a framework for perfectionists with deadlines</em>.</p>
+<p>After 19 years (as of today) it is a solid and cohesive framework that solves
+most of your problems, with great docs and an awesome community, authentication,
+admin interface, ORM &amp; migrations, permissions, routing and 3rd party
+extensions, it's 90% of what you will need. But, like we said, it doesn't have
+strong opinions on how you build your frontend architecture.</p>
+<p>Sadly that left an empty space for other frameworks and solutions outside our
+loved django-land to take place. It is still very common to see frontend heavy
+frameworks like Vue or React be used for this. But these frameworks introduce a
+ton of accidental complexity:</p>
+<ul>
+<li>State management &amp; synchronization between your frontend and backend</li>
+<li>API Churn (how much data to expose on your json endpoints)</li>
+<li>Your team skills are now divided, your codebase is now polyglot</li>
+<li>There is duplication of business logic and validation</li>
+<li>Framework wars and decision fatigue, with ton of changes version after version</li>
+<li>More build steps, more dependencies, you need to keep and eye on load times, etc</li>
+<li>Turns out you still need to make that db query and render that HTML after all</li>
+</ul>
+<h2 id="everything-old-is-new-again">Everything old is new again<a class="headerlink" href="#everything-old-is-new-again" title="Permanent link">&para;</a></h2>
+<p>We say that history doesn't repeat itself but often rhymes. Well guess what,
+luckily for us, in the recent years the tides are turning.</p>
+<p>Postgres was the DB you needed, monoliths are not seen as something necessarily
+wrong, and server side rendering is cool again.</p>
+<p>What are the problems a good frontend architecture needs to solve anyways?</p>
+<p>For a modern frontend, you need three pillars: interactivity to dynamically
+display or update fragments of the page, a maintainable &amp; composable CSS
+framework, and lastly, a way to create reusable snippets of HTML.</p>
+<h2 id="interactivity">Interactivity<a class="headerlink" href="#interactivity" title="Permanent link">&para;</a></h2>
+<p>A low code library that is becoming very popular is HTMX, which by adding some
+attributes on you HTML templates lets you interact with the server and update
+portions of the page.</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/htmx.org@2.0.2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+<span class="cm">&lt;!-- have a button POST a click via AJAX --&gt;</span>
+<span class="p">&lt;</span><span class="nt">button</span>
+  <span class="na">hx-post</span><span class="o">=</span><span class="s">&quot;/clicked&quot;</span>
+  <span class="na">hx-swap</span><span class="o">=</span><span class="s">&quot;outerHTML&quot;</span>
+  <span class="na">hx-target</span><span class="o">=</span><span class="s">&quot;#some-element&quot;</span><span class="p">&gt;</span>
+    Click Me
+<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;some-element&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>This content will be replaced with a server response<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>The server knows the state of your data, it has all the business logic, all the
+validations and a privileged access to the DB. The client (your browser) simply
+needs to request it and, since it already understands HTML natively, it will
+draw the UI for you. The browser becomes your frontend application or client
+(but one you didn't need to program).</p>
+<p>Now, not all interactivity implies a need to reach to the server. There is the
+need for client side state manipulation as well. For example disabling a button,
+showing/hiding a dropdown, clearing a form, etc UI interactions that belong to
+the frontend.</p>
+<p>This is where a small library like alpine.js shines, which also follows the same
+pattern of inlining directives as part of the HTML element declaration.</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;//unpkg.com/alpinejs&quot;</span> <span class="na">defer</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">x-data</span><span class="o">=</span><span class="s">&quot;{ open: false }&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="err">@</span><span class="na">click</span><span class="o">=</span><span class="s">&quot;open = true&quot;</span><span class="p">&gt;</span>Expand<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">x-show</span><span class="o">=</span><span class="s">&quot;open&quot;</span><span class="p">&gt;</span>
+        Content...
+    <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>Like HTMX, Alpine.js has a handful of directives and plugins for extensibility, and don't require
+any <a href="https://jvns.ca/blog/2023/02/16/writing-javascript-without-a-build-system/" title="Writing Javascript without a build system">build tools</a>.</p>
+<h2 id="styles">Styles<a class="headerlink" href="#styles" title="Permanent link">&para;</a></h2>
+<p>Unless you are building a website for Japan, where every pixel is different (and
+this is intended for cultural reasons)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>, you will need to design some reusable
+base styles for your product or brand to bring a cohesive user experience for
+you visitors.</p>
+<p>This is not as simple as it sounds. Writing maintainable CSS is very hard.</p>
+<p>CSS is a global mutable object that every browser interprets with their nuances.
+It's easy to start writing your generic names for classes (naming is hard) that
+can cause collisions, or doing to much by mixing layout definitions with
+coloring, spacing styles that aren't responsive, and then you need to add super
+specific selectors to adjust the rules for each page, making your stylesheets
+hard to maintain.</p>
+<div class="highlight"><pre><span></span><code><span class="p">.</span><span class="nc">widget</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">position</span><span class="p">:</span><span class="w"> </span><span class="kc">absolute</span><span class="p">;</span>
+<span class="w">    </span><span class="k">top</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">    </span><span class="k">left</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">    </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="kc">red</span><span class="p">;</span>
+<span class="w">    </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mf">1.5</span><span class="kt">em</span><span class="p">;</span>
+<span class="w">    </span><span class="k">text-transform</span><span class="p">:</span><span class="w"> </span><span class="kc">uppercase</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">#</span><span class="nn">content</span><span class="w"> </span><span class="nt">article</span><span class="w"> </span><span class="nt">h1</span><span class="p">:</span><span class="nd">first-child</span><span class="w"> </span><span class="p">.</span><span class="nc">widget</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="kt">px</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Luckily for us, this has to be a solved issue right? Let's ride unicorns!</p>
+<p><a href="https://tailwindcss.com/" title="Rapidly build modern websites without ever leaving your HTML">TailwindCSS</a> (I'm sure you heard about it) is a utility first css framework that
+provides composable classes for managing spacing, coloring, responsive layouts,
+transition effects, etc that you can cherry pick and customize.</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;</span><span class="nt">button</span><span class="w"> </span><span class="nt">class</span><span class="o">=</span><span class="s2">&quot;bg-indigo-600 px-4 py-3 text-center text-sm font-semibold</span>
+<span class="s2">    inline-block text-white cursor-pointer uppercase transition duration-200</span>
+<span class="s2">    ease-in-out rounded-md hover:bg-indigo-700 focus-visible:outline-none</span>
+<span class="s2">    focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2</span>
+<span class="s2">    active:scale-95&quot;</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="nt">Tailwind</span><span class="w"> </span><span class="nt">Button</span>
+<span class="o">&lt;/</span><span class="nt">button</span><span class="o">&gt;</span>
+</code></pre></div>
+
+<p>Yes it looks like a ton of text on the screen but this is a technique called
+<a href="https://johnpolacek.github.io/the-case-for-atomic-css/" title="The Case for Atomic / Utility-First CSS">Atomic CSS</a>, similar to the new trend called locality of behavior where you have
+all the context you need when working on a piece of you codebase. And also, you
+shouldn't copy and paste this everywhere you need a button.</p>
+<p>In case you wanted to reduce the repetition, one way to do it is to extract some
+styles into a single class and give it a semantic and descriptive name like
+<code>btn-primary</code>.</p>
+<p>But if you abuse of this technique you'll be re-creating a styles framework
+again, we have deadlines to meet! Better off, we want to stand on the shoulders
+of giants.</p>
+<p>Let's ride unicorns! <a href="https://daisyui.com/" title="The most popular component library for Tailwind CSS">DaisyUI</a> is a CSS library built on top of tailwind (one of
+many) offering many of these classes (already well documented) that you can also
+theme and customize to use in your templates.</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-primary&quot;</span><span class="p">&gt;</span>
+    Click me
+<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>And remember, DaisyUI is tailwind after all, so you can mix these classes with
+regular tailwind classes.</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn w-64 rounded-full&quot;</span><span class="p">&gt;</span>
+    Click me
+<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<h2 id="components">Components<a class="headerlink" href="#components" title="Permanent link">&para;</a></h2>
+<p>Another way to reduce repetition of classes is to think in terms of widgets or
+components. Daisy UI also <a href="https://daisyui.com/components/">provides</a> a ton of widgets like cards, tabs, profile
+pictures &amp; forms ready to use.</p>
+<p>The thing with the widgets is that they often include a mix of CSS + HTML
+structure. And sometimes you need to have variations of those widgets. Like
+having a product card widget show a button or some tags.</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card bg-base-100 w-96 shadow-xl&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">figure</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">img</span>
+      <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://img.daisyui.com/image.webp&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Shoes&quot;</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">figure</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-body&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h2</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-title&quot;</span><span class="p">&gt;</span>Shoes!<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>If a dog chews shoes whose shoes does he choose?<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-actions justify-end&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-primary&quot;</span><span class="p">&gt;</span>Buy Now<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+      <span class="cm">&lt;!-- --- OR --- --&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;badge badge-outline&quot;</span><span class="p">&gt;</span>Fashion<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;badge badge-outline&quot;</span><span class="p">&gt;</span>Products<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>The structure in this example includes some containers like the <code>.card</code> and
+<code>.card-body</code> divs, and some child elements like <code>.card-title</code> and
+<code>.card-actions</code> classes.</p>
+<p>How would we turn this into a reusable template in Django?</p>
+<p>Django already comes with a template engine that is pretty powerful. We can
+parametrize text of course like the title or the description, but what about
+child HTML nodes for the <code>.card-actions</code>?</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card bg-base-100 w-96 shadow-xl&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">figure</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">img</span>
+      <span class="na">src</span><span class="o">=</span><span class="s">&quot;{% static img %}&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Shoes&quot;</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">figure</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-body&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h2</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-title&quot;</span><span class="p">&gt;</span>{{ title }}<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ description }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-actions justify-end&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-primary&quot;</span><span class="p">&gt;</span>Buy Now<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+      <span class="cm">&lt;!-- --- OR --- --&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;badge badge-outline&quot;</span><span class="p">&gt;</span>Fashion<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;badge badge-outline&quot;</span><span class="p">&gt;</span>Products<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>In this case we would need to add each possible child element in an if/else
+block.</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card bg-base-100 w-96 shadow-xl&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">figure</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">img</span>
+      <span class="na">src</span><span class="o">=</span><span class="s">&quot;{% static img %}&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Shoes&quot;</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">figure</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-body&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h2</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-title&quot;</span><span class="p">&gt;</span>{{ title }}<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ description }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-actions justify-end&quot;</span><span class="p">&gt;</span>
+      {% if action == &#39;button&#39; %}
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-primary&quot;</span><span class="p">&gt;</span>Buy Now<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+      {% else %}
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;badge badge-outline&quot;</span><span class="p">&gt;</span>{{ tag }}<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+      {% endif %}
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>And then we need to pass what type of widget we would like to render using the
+builtin include tag. Every new possible variation of that widget would require
+us to modify that <code>if</code>/<code>else</code> structure we implemented earlier.</p>
+<div class="highlight"><pre><span></span><code>{% include &#39;product-card.html&#39; with type=&#39;button&#39; %}
+</code></pre></div>
+
+<p>Alternatively, if we wanted to allow for any type of <code>.card-actions</code> to be
+inserted, we could create a base template with certain block tags (something
+very common for page layouts).</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card bg-base-100 w-96 shadow-xl&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">figure</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">img</span>
+      <span class="na">src</span><span class="o">=</span><span class="s">&quot;{% static img %}&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Shoes&quot;</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">figure</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-body&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h2</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-title&quot;</span><span class="p">&gt;</span>{{ title }}<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ description }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-actions justify-end&quot;</span><span class="p">&gt;</span>
+      {% block actions %} {% endblock %}
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>And then use the extends template tag to create each variation of this component
+or widget.</p>
+<div class="highlight"><pre><span></span><code>{% extends &#39;product-card-base.html&#39; }
+
+{% block actions %}
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-primary&quot;</span><span class="p">&gt;</span>Buy Now<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+{% endblock %}
+</code></pre></div>
+
+<p>And we elegantly solved the extensibility of the base product card for any type
+of actions we want to include, but again, this might result in having multiple
+instances of templates for each variation anyways.</p>
+<div class="highlight"><pre><span></span><code>{% include &#39;product-card-button.html&#39; %}
+</code></pre></div>
+
+<p>Is there a way to still write decoupled &amp; re-usable widget templates with
+minimal overhead?</p>
+<p>A better solution for writing widgets as components that have small variations
+is to use a <a href="https://django-cotton.com/" title="Django Cotton - Modern UI Composition for Django">component library</a>, like <code>django-cotton</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card bg-base-100 w-96 shadow-xl&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">figure</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">img</span>
+      <span class="na">src</span><span class="o">=</span><span class="s">&quot;{% static img %}&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Shoes&quot;</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">figure</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-body&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h2</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-title&quot;</span><span class="p">&gt;</span>{{ title }}<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+    {{ slot }}
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-actions justify-end&quot;</span><span class="p">&gt;</span>
+      {{ actions }}
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>In this case we are using regular template variables for the <code>title</code>, but you
+will notice the <code>slot</code> special variable and the <code>actions</code> as well.</p>
+<p>By placing this template in a special location in your project (like the
+<code>cotton</code> folder within your apps) you have created a reusable component!</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">c-product</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;Item Title&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Description of the product<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">c-slot</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;actions&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-primary&quot;</span><span class="p">&gt;</span>Buy Now<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">c-slot</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">c-product</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>If you named the template <code>product.html</code>, you'll now have access to a special
+tag derived from the name we have to this component.</p>
+<p>You can pass still variables as text for the title, but also components can be
+nested, and the <code>{{slot}}</code> variable will take any HTML enclosed in the component
+tags.</p>
+<p>The paragraph is what will replace the unnamed <code>{{slot}}</code> placeholder.</p>
+<p>Lastly the <code>&lt;c-slot&gt;</code> element is interpreted as a named HTML snippet, that will
+be placed in the <code>{{actions}}</code> placeholder.</p>
+<p>With this approach we can instantiate <em>inline</em> any number of variations of our
+product cards without any modifications to other templates.</p>
+<p>You can also nest or embed components into other components. In this case I'm
+showing that the button inside the <code>{{actions}}</code> slot could be a separate
+component, this allows for great deal of composability of our widgets.</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">c-product</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;Item Title&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Description of the product<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">c-slot</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;actions&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">c-button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;primary&quot;</span><span class="p">&gt;</span>Buy Now<span class="p">&lt;/</span><span class="nt">c-button</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">c-slot</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">c-product</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>I would like to also mention that <code>django-cotton</code> is one of many libraries
+competing in this market.</p>
+<p><code>django-components</code> has <a href="https://emilstenstrom.github.io/django-components/latest/" title="Create simple reusable template components in Django">very similar features</a>, but uses a python class first
+approach, similar to how we work with forms or views, with many methods you can
+override and a registration mechanism (like how we override django admin views).</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># In a file called [project root]/components/product/product.py</span>
+<span class="kn">from</span> <span class="nn">django_components</span> <span class="kn">import</span> <span class="n">Component</span><span class="p">,</span> <span class="n">register</span>
+
+<span class="nd">@register</span><span class="p">(</span><span class="s2">&quot;product&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">ProductComponent</span><span class="p">(</span><span class="n">Component</span><span class="p">):</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;product.html&quot;</span>
+
+    <span class="k">def</span> <span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">description</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">title</span><span class="o">.</span><span class="n">title</span><span class="p">(),</span>  <span class="c1"># titlelize!</span>
+            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">description</span>
+        <span class="p">}</span>
+
+    <span class="k">class</span> <span class="nc">Media</span><span class="p">:</span>
+        <span class="n">css</span> <span class="o">=</span> <span class="s2">&quot;style.css&quot;</span>
+        <span class="n">js</span> <span class="o">=</span> <span class="s2">&quot;script.js&quot;</span>
+</code></pre></div>
+
+<p>Here is an example of how would you render it, that will look more familiar hopefully.</p>
+<div class="highlight"><pre><span></span><code>{% load component_tags %}
+
+{% component &quot;product&quot; title=&quot;Title&quot; description=&quot;Foo&quot; %}
+    {% fill &quot;actions&quot; %}
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-primary&quot;</span><span class="p">&gt;</span>Buy Now<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    {% endfill %}
+{% endcomponent %}
+</code></pre></div>
+
+<p>As you can appreciate, this syntax is much closer to how other template tags are
+used in django.</p>
+<h2 id="a-pragmatic-frontend-architecture">A pragmatic frontend architecture<a class="headerlink" href="#a-pragmatic-frontend-architecture" title="Permanent link">&para;</a></h2>
+<p>This is what I would suggest as a frontend architecture for perfectionists with
+deadlines. Still building on top of what django provides, I believe it is a more
+pragmatic approach without, too much overhead for the working dev.</p>
+<p>These extra technologies you can learn in a weekend. And what's funny is that,
+in their docs, they have references and examples of how they interoperate with
+each other.</p>
+<p>I would say Htmx and TailwindCSS are very solid choices now, and we shall see which
+component library gains more popularity. Ideally some of these libraries to to
+define and manipulate reusable components make it into the framework in the near
+future.</p>
+<h2 id="noteworthy-mentions">Noteworthy mentions<a class="headerlink" href="#noteworthy-mentions" title="Permanent link">&para;</a></h2>
+<p>I would like to take a moment to mention some other libraries that are worth
+checking out.</p>
+<p><code>django-template-partials</code> lets you define and render fragments of templates, which
+works great when using Htmx for partial page updates. Also <code>django-unicorn</code> mixes
+the idea of components with templates and views that can be updated dynamically.
+Very interesting concept.</p>
+<p>Another noteworthy mentions, but this time related to similar talks in the 2024
+<a href="https://2024.djangocon.us/schedule/">DjangoConUS</a> conference are:</p>
+<ul>
+<li>API Maybe: Bootstrapping a Web Application circa 2024, by Carlton Gibson</li>
+<li>Django + Alpine.js + htmx Ups &amp; Downs, by Karen Tracey</li>
+<li>Choosing Wisely: SPA vs. HTMX for Your Next Web Project, by Chris May</li>
+<li>An Opinionated Guide to Modern Django Forms, by Josh Thomas</li>
+</ul>
+<p>All discussing some of the technologies I presented, which shows that there is
+some consensus about the problems and their possible solutions. Hopefully this
+gives you the encouragement to start playing with them and appreciate how they
+solve these problems without too much overhead.</p>
+<h2 id="one-more-thing">One more thing<a class="headerlink" href="#one-more-thing" title="Permanent link">&para;</a></h2>
+<p>A very recent project was released called fasthml and it copies an idea other
+present in other frameworks for solving the UI <a href="https://about.fastht.ml/components" title="Python HTML components">composability problem</a>.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">fasthtml</span> <span class="kn">import</span> <span class="n">ft</span>
+
+<span class="n">ft</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span>
+    <span class="s2">&quot;Choose an option&quot;</span><span class="p">,</span>
+    <span class="n">ft</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span>
+        <span class="n">ft</span><span class="o">.</span><span class="n">Option</span><span class="p">(</span><span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="n">selected</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+        <span class="n">ft</span><span class="o">.</span><span class="n">Option</span><span class="p">(</span><span class="s2">&quot;two&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="n">selected</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+        <span class="n">ft</span><span class="o">.</span><span class="n">Option</span><span class="p">(</span><span class="s2">&quot;three&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span>
+        <span class="bp">cls</span><span class="o">=</span><span class="s2">&quot;selector&quot;</span><span class="p">,</span>
+        <span class="n">_id</span><span class="o">=</span><span class="s2">&quot;counter&quot;</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">_for</span><span class="o">=</span><span class="s2">&quot;counter&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Templating HTML is nothing but building a tree of nodes.</p>
+<p>By using python for building your template structure, you no longer need to
+learn a new syntax and place logic in separate files. You have access to all the
+language constructs and utilities: classes, functions, decorators, type
+annotations, etc, Plus your favorite debugger now works.</p>
+<p>I don't think something like this will ever make it into Django since it is
+already married to templates, but it is an interesting idea nevertheless.</p>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:1">
+<p>The original quote, which is, "Any idiot can build a bridge that stands, but it takes an engineer to build a bridge that barely stands," is attributed to Colin C. Williams (?). The <a href="https://www.reddit.com/r/civilengineering/comments/qe3oik/any_idiot_can_build_a_bridge_that_stands_but_it/">quote</a> emphasizes the importance of precision and efficiency in engineering, suggesting that anyone can build something strong with unlimited resources, but it takes real skill to design something that’s cost-effective and just strong enough.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Japanese web design is <a href="https://randomwire.com/why-japanese-web-design-is-so-different/" title="Why Japanese Web Design Is So… Different">often noted</a> for its <a href="https://randomwire.com/japanese-web-design-redux/" title="Japanese Web Design Redux">unique approach</a> among the design community, characterized by information-dense layouts, rich use of text/imagery, and overwhelming visual aesthetics that prioritize content variety over minimalist trends (more common in the West). This style is often a reflection of <a href="https://www.youtube.com/watch?v=vi8pyS076a8" title="Japanese web design: weird, but it works. Here's why">cultural preferences</a> for conveying more detailed information and providing users with many options upfront.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+</article>
+
+      <footer class="column-right light">
+        <nav><a href="/">Home</a> - <a href="/archives.html">Archives</a> - <a href="/categories.html">Categories</a> - <a href="/tags.html">Tags</a> - <a href="/rss.xml">RSS</a> - <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | README.txt</nav>
+      </footer>
+  </main>
+</body>
+</html>
