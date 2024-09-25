@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Django's signal to noise ratio | README.txt</title>
+  <title>Django's signal to noise | README.txt</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="stylesheet" href="/theme/css/pygments-default.css" type="text/css" />
@@ -11,7 +11,7 @@
   <link rel="stylesheet" media="(max-width: 750px)" href="/theme/css/mobile.css" type="text/css" />
   <link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
   <link href="/rss.xml" type="application/atom+xml" rel="alternate" title="README.txt RSS Feed" />
-  <meta name="description" content="Keeping a balance between decoupled and maintenable code.">
+  <meta name="description" content="Keeping a balance between decoupled and maintainable code.">
   <meta name="keywords" content="django, python, best-practices">
   <meta name="author" content="hernantz">
 </head>
@@ -35,7 +35,7 @@
   </aside>
   <main>
 <article class="column-right">
-  <h1 class="main-title">Django's signal to noise ratio</h1>
+  <h1 class="main-title">Django's signal to noise</h1>
   <section>
     <p class="light">
       Published
@@ -66,9 +66,9 @@ instance.</p>
         <span class="n">Resume</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get_or_create</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;instance&#39;</span><span class="p">))</span>
 </code></pre></div>
 
-<p>If another piece of code is also interest in perfoming some action everytime a
+<p>If another piece of code is also interest in performing some action every time a
 user is saved, like syncing user info with a 3rd party jobs board site for
-example, we could acomplish that with another handler:</p>
+example, we could accomplish that with another handler:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># somewhere inside users/models.py</span>
 
 <span class="kn">from</span> <span class="nn">django.dispatch</span> <span class="kn">import</span> <span class="n">receiver</span>
@@ -85,10 +85,10 @@ example, we could acomplish that with another handler:</p>
 
 <p>Now this code expects a curriculum to be associated to this user and that won't
 be true for new members.</p>
-<p>Whilst this special case could be catched by proper testing, as code grows
-<strong>you'll have a hard time traking moving pieces</strong>, scattered throughout
+<p>Whilst this special case could be caught by proper testing, as code grows
+<strong>you'll have a hard time tracking moving pieces</strong>, scattered throughout
 different handlers. Specially because <strong>the order in which they get executed is
-not inmediatelly clear</strong>.</p>
+not immediately clear</strong>.</p>
 <h2 id="silence">Silence<a class="headerlink" href="#silence" title="Permanent link">&para;</a></h2>
 <p>The following snippet shows how to put everything in one place, gaining us some
 maintainability, but still allowing us differentiate recently created instances,
@@ -196,6 +196,12 @@ between decoupled and maintenable code. As a general rule I would suggest to
 <strong>avoid using signals for code you own</strong>. Instead put everything inside a method
 or view, and <em>try to avoid them</em> for code you don't own, <strong>except when it sounds
 like a good idea</strong>.</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nv">instance</span>.<span class="nv">pk</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">not</span><span class="w"> </span><span class="nv">None</span><span class="w"> </span><span class="nv">and</span><span class="w"> </span><span class="nv">not</span><span class="w"> </span><span class="nv">instance</span>.<span class="nv">jobs</span>.<span class="nv">filter</span><span class="ss">(</span><span class="nv">active</span><span class="o">=</span><span class="nv">True</span><span class="ss">)</span>.<span class="nv">exists</span><span class="ss">()</span>
+<span class="w">        </span><span class="nv">instance</span>.<span class="nv">active</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">False</span>
+</code></pre></div>
+
+<p>Tiene que hacer un count, no se puede crear una instancia en active
+Testing becomes obscure</p>
 </article>
 
       <footer class="column-right light">

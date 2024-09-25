@@ -48,7 +48,7 @@ common practice to store the file in a CDN or the filesystem and an entry that
 references it on a database.</p>
 <p>When serving those files, you send a url to the user to fetch the file.</p>
 <p>Now you may think that just by using a token or https that will be enough to
-download the right file from the server, after all, the ssl handshake will
+download the right file from the server, after all, the SSL handshake will
 ensure you connect to the right server, the url was built and served in a
 trusted environment and the TCP protocol will take care of ensuring the transfer
 succeeds and gracefully handle any network errors/disconnects.</p>
@@ -59,8 +59,8 @@ be compromised and the files could be tempered. Not only that, the service could
 be temporally unavailable and instead of downloading the file you expected, your
 client downloaded an HTML error page.</p>
 <p>A checksum is a hash of the file that can be served along the URI of the file so
-that the client can verify that the downloaded file is indeed the one intended
-to be downloaded from that URI.</p>
+that the <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity" title="Subresource Integrity">client can verify</a> that the downloaded file is indeed the one
+intended to be downloaded from that URI.</p>
 <p>As a bonus, no extra checks are needed from the client, since this will take
 care of problems with the file size, file format, etc. The checksums need to
 match, period.</p>

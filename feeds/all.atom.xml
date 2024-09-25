@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/all.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2024-09-24T00:00:00-03:00</updated><subtitle>- Mostly lies and rants in plain text.</subtitle><entry><title>Django UI components for perfectionists with deadlines.</title><link href="http://hernantz.github.io/django-ui-components-for-perfectionists-with-deadlines.html" rel="alternate"></link><published>2024-09-24T00:00:00-03:00</published><updated>2024-09-24T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2024-09-24:/django-ui-components-for-perfectionists-with-deadlines.html</id><summary type="html">&lt;p&gt;Server side rendering and UI components for a modern frontend.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Vintage bridge" src="/images/bridge.jpg" title="Vintage blueprint of a bridge"&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/all.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2024-09-24T00:00:00-03:00</updated><subtitle>- Mostly lies and rants in plain text.</subtitle><entry><title>Django UI components for perfectionists with deadlines</title><link href="http://hernantz.github.io/django-ui-components-for-perfectionists-with-deadlines.html" rel="alternate"></link><published>2024-09-24T00:00:00-03:00</published><updated>2024-09-24T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2024-09-24:/django-ui-components-for-perfectionists-with-deadlines.html</id><summary type="html">&lt;p&gt;Server side rendering and UI components for a modern frontend.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Vintage bridge" src="/images/bridge.jpg" title="Vintage blueprint of a bridge"&gt;&lt;/p&gt;
 &lt;p&gt;Building a maintainable frontend architecture is a common problem any django
 project needs to solve.&lt;/p&gt;
 &lt;p&gt;In Django we have ways to architect our code into reusable apps, views &amp;amp; models.&lt;/p&gt;
@@ -424,7 +424,7 @@ common practice to store the file in a CDN or the filesystem and an entry that
 references it on a database.&lt;/p&gt;
 &lt;p&gt;When serving those files, you send a url to the user to fetch the file.&lt;/p&gt;
 &lt;p&gt;Now you may think that just by using a token or https that will be enough to
-download the right file from the server, after all, the ssl handshake will
+download the right file from the server, after all, the SSL handshake will
 ensure you connect to the right server, the url was built and served in a
 trusted environment and the TCP protocol will take care of ensuring the transfer
 succeeds and gracefully handle any network errors/disconnects.&lt;/p&gt;
@@ -435,11 +435,11 @@ be compromised and the files could be tempered. Not only that, the service could
 be temporally unavailable and instead of downloading the file you expected, your
 client downloaded an HTML error page.&lt;/p&gt;
 &lt;p&gt;A checksum is a hash of the file that can be served along the URI of the file so
-that the client can verify that the downloaded file is indeed the one intended
-to be downloaded from that URI.&lt;/p&gt;
+that the &lt;a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity" title="Subresource Integrity"&gt;client can verify&lt;/a&gt; that the downloaded file is indeed the one
+intended to be downloaded from that URI.&lt;/p&gt;
 &lt;p&gt;As a bonus, no extra checks are needed from the client, since this will take
 care of problems with the file size, file format, etc. The checksums need to
-match, period.&lt;/p&gt;</content><category term="Programming"></category><category term="best-practices"></category></entry><entry><title>The only bakery in town</title><link href="http://hernantz.github.io/the-only-bakery-in-town.html" rel="alternate"></link><published>2023-02-10T00:00:00-03:00</published><updated>2023-02-10T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2023-02-10:/the-only-bakery-in-town.html</id><summary type="html">&lt;p&gt;A short story about a town, a bakery and monopolies&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="The only bakery in town by MidJourney" src="/images/the-only-bakery-in-town.png" title="The only bakery in town by MidJourney"&gt;&lt;/p&gt;
+match, period.&lt;/p&gt;</content><category term="Programming"></category><category term="best-practices"></category></entry><entry><title>The only bakery in town</title><link href="http://hernantz.github.io/the-only-bakery-in-town.html" rel="alternate"></link><published>2023-02-10T00:00:00-03:00</published><updated>2023-02-10T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2023-02-10:/the-only-bakery-in-town.html</id><summary type="html">&lt;p&gt;A short story about a town, a bakery and monopolies.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="The only bakery in town by MidJourney" src="/images/the-only-bakery-in-town.png" title="The only bakery in town by MidJourney"&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;"It is hard to imagine a more stupid or more dangerous way of making decisions than by putting those decisions in the hands of people who pay no price for being wrong."&lt;/p&gt;
 &lt;p&gt;― Thomas Sowell&lt;/p&gt;
@@ -509,7 +509,7 @@ same pastries or specialize on just some licensed products? Wouldn't these speci
 &lt;p&gt;Little they knew this was a lesson they would have to learn every few generations, despite how determined they were now to not to make the same mistake again.&lt;/p&gt;
 &lt;p&gt;Except for "The Only Butcher Shop", which was run by a wealthy and greedy businessman, and who had a monopoly on the meat industry, at least in that town.&lt;/p&gt;
 &lt;p&gt;Someone should do something about it.&lt;/p&gt;
-&lt;p&gt;The end.&lt;/p&gt;</content><category term="Politics"></category><category term="writings"></category><category term="economy"></category><category term="libertarianism"></category></entry><entry><title>Read this after your next meeting</title><link href="http://hernantz.github.io/read-this-after-your-next-meeting.html" rel="alternate"></link><published>2023-01-05T00:00:00-03:00</published><updated>2023-01-05T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2023-01-05:/read-this-after-your-next-meeting.html</id><summary type="html">&lt;p&gt;Changing the purpose of meetings in an async first environment&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Knights of the round table" src="/images/knights-of-the-round-table.jpg" title="Knights of the round table"&gt;&lt;/p&gt;
+&lt;p&gt;The end.&lt;/p&gt;</content><category term="Politics"></category><category term="writings"></category><category term="economy"></category><category term="libertarianism"></category></entry><entry><title>Read this after your next meeting</title><link href="http://hernantz.github.io/read-this-after-your-next-meeting.html" rel="alternate"></link><published>2023-01-05T00:00:00-03:00</published><updated>2023-01-05T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2023-01-05:/read-this-after-your-next-meeting.html</id><summary type="html">&lt;p&gt;Changing the purpose of meetings in an async first environment.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Knights of the round table" src="/images/knights-of-the-round-table.jpg" title="Knights of the round table"&gt;&lt;/p&gt;
 &lt;p&gt;Throughout my career, I've seen lots of companies that consider meetings as work. I, on the contrary, think of them as a &lt;a href="https://twitter.com/tobi/status/1610313464454561795" title="Meetings are a usually a bug."&gt;bug in communication&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;They are a symptom of a much deeper issue: lack of clarity, lack of trust or someone simply likes to have an audience and feel important.&lt;/p&gt;
 &lt;p&gt;For information exchange and collaboration, async communication is the king.&lt;/p&gt;
@@ -3621,7 +3621,7 @@ The view should be able to render the model in whatever that state might be.&lt;
 &lt;p&gt;As stated in the docs, philosophically, Backbone is an attempt to discover the minimal set of data-structuring (models and collections) and user interface (views and URLs) primitives that are generally useful when building web applications with JavaScript.&lt;/p&gt;
 &lt;p&gt;With backbone you are in charge of managing state. So we saw some examples of real-world apps and their requirements.&lt;/p&gt;
 &lt;p&gt;I think it succeeds in it's goals, and leaves the developer with a set of tools (instead of products) to be used as needed. But some best-practices and patterns need to evolve organically.&lt;/p&gt;
-&lt;p&gt;Maybe the next step from here is a set of new tools, like &lt;a href="https://marionettejs.com/"&gt;Marionette&lt;/a&gt; proposes?&lt;/p&gt;</content><category term="Programming"></category><category term="backbone"></category><category term="javascript"></category><category term="best-practices"></category></entry><entry><title>Django's signal to noise ratio</title><link href="http://hernantz.github.io/djangos-signal-to-noise-ratio.html" rel="alternate"></link><published>2016-04-29T00:00:00-03:00</published><updated>2016-04-29T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2016-04-29:/djangos-signal-to-noise-ratio.html</id><summary type="html">&lt;p&gt;Keeping a balance between decoupled and maintenable code.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Contact (1997) scene" src="/images/signal-to-noise-ratio.png" title="Contact (1997)"&gt;&lt;/p&gt;
+&lt;p&gt;Maybe the next step from here is a set of new tools, like &lt;a href="https://marionettejs.com/"&gt;Marionette&lt;/a&gt; proposes?&lt;/p&gt;</content><category term="Programming"></category><category term="backbone"></category><category term="javascript"></category><category term="best-practices"></category></entry><entry><title>Django's signal to noise</title><link href="http://hernantz.github.io/djangos-signal-to-noise.html" rel="alternate"></link><published>2016-04-29T00:00:00-03:00</published><updated>2016-04-29T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2016-04-29:/djangos-signal-to-noise.html</id><summary type="html">&lt;p&gt;Keeping a balance between decoupled and maintainable code.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Contact (1997) scene" src="/images/signal-to-noise-ratio.png" title="Contact (1997)"&gt;&lt;/p&gt;
 &lt;h2 id="noise"&gt;Noise&lt;a class="headerlink" href="#noise" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Signals allow decoupled applications get notified when actions occur elsewhere
 in the project. This decoupling can become unmaintainable if not enough care
@@ -3644,9 +3644,9 @@ instance.&lt;/p&gt;
         &lt;span class="n"&gt;Resume&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;objects&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_or_create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;user&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;instance&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;If another piece of code is also interest in perfoming some action everytime a
+&lt;p&gt;If another piece of code is also interest in performing some action every time a
 user is saved, like syncing user info with a 3rd party jobs board site for
-example, we could acomplish that with another handler:&lt;/p&gt;
+example, we could accomplish that with another handler:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# somewhere inside users/models.py&lt;/span&gt;
 
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.dispatch&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;receiver&lt;/span&gt;
@@ -3663,10 +3663,10 @@ example, we could acomplish that with another handler:&lt;/p&gt;
 
 &lt;p&gt;Now this code expects a curriculum to be associated to this user and that won't
 be true for new members.&lt;/p&gt;
-&lt;p&gt;Whilst this special case could be catched by proper testing, as code grows
-&lt;strong&gt;you'll have a hard time traking moving pieces&lt;/strong&gt;, scattered throughout
+&lt;p&gt;Whilst this special case could be caught by proper testing, as code grows
+&lt;strong&gt;you'll have a hard time tracking moving pieces&lt;/strong&gt;, scattered throughout
 different handlers. Specially because &lt;strong&gt;the order in which they get executed is
-not inmediatelly clear&lt;/strong&gt;.&lt;/p&gt;
+not immediately clear&lt;/strong&gt;.&lt;/p&gt;
 &lt;h2 id="silence"&gt;Silence&lt;a class="headerlink" href="#silence" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The following snippet shows how to put everything in one place, gaining us some
 maintainability, but still allowing us differentiate recently created instances,
@@ -3773,7 +3773,13 @@ module and import it explicitly in the app's config file, as suggested by
 between decoupled and maintenable code. As a general rule I would suggest to
 &lt;strong&gt;avoid using signals for code you own&lt;/strong&gt;. Instead put everything inside a method
 or view, and &lt;em&gt;try to avoid them&lt;/em&gt; for code you don't own, &lt;strong&gt;except when it sounds
-like a good idea&lt;/strong&gt;.&lt;/p&gt;</content><category term="Programming"></category><category term="django"></category><category term="python"></category><category term="best-practices"></category></entry><entry><title>The sorry state of jQuery plugins</title><link href="http://hernantz.github.io/the-sorry-state-of-jquery-plugins.html" rel="alternate"></link><published>2016-03-31T00:00:00-03:00</published><updated>2016-03-31T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2016-03-31:/the-sorry-state-of-jquery-plugins.html</id><summary type="html">&lt;p&gt;Customization is not enough, some plugins simply do too much.&lt;/p&gt;</summary><content type="html">&lt;p&gt;When adding jQuery widgets to enhance your web app, you'll find &lt;strong&gt;two possible
+like a good idea&lt;/strong&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;instance&lt;/span&gt;.&lt;span class="nv"&gt;pk&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;not&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;None&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;and&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;not&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;instance&lt;/span&gt;.&lt;span class="nv"&gt;jobs&lt;/span&gt;.&lt;span class="nv"&gt;filter&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;active&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;True&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;.&lt;span class="nv"&gt;exists&lt;/span&gt;&lt;span class="ss"&gt;()&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nv"&gt;instance&lt;/span&gt;.&lt;span class="nv"&gt;active&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;False&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Tiene que hacer un count, no se puede crear una instancia en active
+Testing becomes obscure&lt;/p&gt;</content><category term="Programming"></category><category term="django"></category><category term="python"></category><category term="best-practices"></category></entry><entry><title>The sorry state of jQuery plugins</title><link href="http://hernantz.github.io/the-sorry-state-of-jquery-plugins.html" rel="alternate"></link><published>2016-03-31T00:00:00-03:00</published><updated>2016-03-31T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2016-03-31:/the-sorry-state-of-jquery-plugins.html</id><summary type="html">&lt;p&gt;Customization is not enough, some plugins simply do too much.&lt;/p&gt;</summary><content type="html">&lt;p&gt;When adding jQuery widgets to enhance your web app, you'll find &lt;strong&gt;two possible
 approaches&lt;/strong&gt; in their implementation: On one the plugin does everything for
 you (and by &lt;em&gt;everything&lt;/em&gt; I simply mean &lt;em&gt;too much&lt;/em&gt;), on the other, the plugin
 does the minimum. But of course there is a wide range in between.&lt;/p&gt;
