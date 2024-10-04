@@ -53,7 +53,7 @@ it.</p>
 <h2 id="standing-of-the-shoulders-of-giants">Standing of the shoulders of giants<a class="headerlink" href="#standing-of-the-shoulders-of-giants" title="Permanent link">&para;</a></h2>
 <p>I don't remember where I heard this, but <em>Any fool can build a bridge</em><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> is phrase
 that stuck with me. It meant that anyone can just throw money, people, energy,
-take their time and eventually something will be built). It takes an engineer to
+take their time and eventually something will be built. It takes an engineer to
 build the "right" bridge (timely and on budget).</p>
 <p>This applies to any kind of project (that needs to take you from where you are
 to where you want to be, like a bridge does). Software projects are not the
@@ -75,27 +75,27 @@ strong opinions on how you build your frontend architecture.</p>
 <p>Sadly that left an empty space for other frameworks and solutions outside our
 loved django-land to take place. It is still very common to see frontend heavy
 frameworks like Vue or React be used for this. But these frameworks introduce a
-ton of accidental complexity:</p>
+ton of <strong>accidental complexity</strong>:</p>
 <ul>
 <li>State management &amp; synchronization between your frontend and backend</li>
-<li>API Churn (how much data to expose on your json endpoints)</li>
+<li>API Churn (how much data <a href="https://intercoolerjs.org/2016/02/17/api-churn-vs-security.html" title="The API Churn/Security Trade-off">to expose</a> on your json endpoints)</li>
 <li>Your team skills are now divided, your codebase is now polyglot</li>
 <li>There is duplication of business logic and validation</li>
 <li>Framework wars and decision fatigue, with ton of changes version after version</li>
 <li>More build steps, more dependencies, you need to keep and eye on load times, etc</li>
-<li>Turns out you still need to make that db query and render that HTML after all</li>
 </ul>
+<p>And it turns out you still need to make that db query and render that HTML after all!</p>
 <h2 id="everything-old-is-new-again">Everything old is new again<a class="headerlink" href="#everything-old-is-new-again" title="Permanent link">&para;</a></h2>
 <p>We say that history doesn't repeat itself but often rhymes. Well guess what,
 luckily for us, in the recent years the tides are turning.</p>
 <p>Postgres was the DB you needed, monoliths are not seen as something necessarily
-wrong, and server side rendering is cool again.</p>
+wrong, and <strong>server side rendering is cool again</strong>.</p>
 <p>What are the problems a good frontend architecture needs to solve anyways?</p>
 <p>For a modern frontend, you need three pillars: interactivity to dynamically
 display or update fragments of the page, a maintainable &amp; composable CSS
 framework, and lastly, a way to create reusable snippets of HTML.</p>
 <h2 id="interactivity">Interactivity<a class="headerlink" href="#interactivity" title="Permanent link">&para;</a></h2>
-<p>A low code library that is becoming very popular is HTMX, which by adding some
+<p>A low code library that is becoming very popular is <a href="https://htmx.org/" title="high power tools for HTML">HTMX</a>, which by adding some
 attributes on you HTML templates lets you interact with the server and update
 portions of the page.</p>
 <div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/htmx.org@2.0.2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
@@ -122,8 +122,8 @@ draw the UI for you. The browser becomes your frontend application or client
 need for client side state manipulation as well. For example disabling a button,
 showing/hiding a dropdown, clearing a form, etc UI interactions that belong to
 the frontend.</p>
-<p>This is where a small library like alpine.js shines, which also follows the same
-pattern of inlining directives as part of the HTML element declaration.</p>
+<p>This is where a small library like <a href="https://alpinejs.dev/" title="Your new, lightweight, JavaScript framework.">alpine.js</a> shines, which also follows
+the same pattern of inlining directives as part of the HTML element declaration.</p>
 <div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;//unpkg.com/alpinejs&quot;</span> <span class="na">defer</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 
 <span class="p">&lt;</span><span class="nt">div</span> <span class="na">x-data</span><span class="o">=</span><span class="s">&quot;{ open: false }&quot;</span><span class="p">&gt;</span>
@@ -217,8 +217,9 @@ having a product card widget show a button or some tags.</p>
     <span class="p">&lt;</span><span class="nt">h2</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-title&quot;</span><span class="p">&gt;</span>Shoes!<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>If a dog chews shoes whose shoes does he choose?<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-actions justify-end&quot;</span><span class="p">&gt;</span>
+      <span class="cm">&lt;!-- --- SHOW THIS --- --&gt;</span>
       <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-primary&quot;</span><span class="p">&gt;</span>Buy Now<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-      <span class="cm">&lt;!-- --- OR --- --&gt;</span>
+      <span class="cm">&lt;!-- --- OR THIS --- --&gt;</span>
       <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;badge badge-outline&quot;</span><span class="p">&gt;</span>Fashion<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
       <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;badge badge-outline&quot;</span><span class="p">&gt;</span>Products<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
     <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
@@ -242,8 +243,9 @@ child HTML nodes for the <code>.card-actions</code>?</p>
     <span class="p">&lt;</span><span class="nt">h2</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-title&quot;</span><span class="p">&gt;</span>{{ title }}<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ description }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-actions justify-end&quot;</span><span class="p">&gt;</span>
+      <span class="cm">&lt;!-- --- SHOW THIS --- --&gt;</span>
       <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-primary&quot;</span><span class="p">&gt;</span>Buy Now<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-      <span class="cm">&lt;!-- --- OR --- --&gt;</span>
+      <span class="cm">&lt;!-- --- OR THIS --- --&gt;</span>
       <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;badge badge-outline&quot;</span><span class="p">&gt;</span>Fashion<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
       <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;badge badge-outline&quot;</span><span class="p">&gt;</span>Products<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
     <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
@@ -263,9 +265,11 @@ block.</p>
     <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ description }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-actions justify-end&quot;</span><span class="p">&gt;</span>
       {% if action == &#39;button&#39; %}
-      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-primary&quot;</span><span class="p">&gt;</span>Buy Now<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-primary&quot;</span><span class="p">&gt;</span>Buy Now<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+      {% elif action == &#39;tag&#39; %}
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;badge badge-outline&quot;</span><span class="p">&gt;</span>{{ tag }}<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
       {% else %}
-      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;badge badge-outline&quot;</span><span class="p">&gt;</span>{{ tag }}<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        {# something else? #}
       {% endif %}
     <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
@@ -275,7 +279,11 @@ block.</p>
 <p>And then we need to pass what type of widget we would like to render using the
 builtin include tag. Every new possible variation of that widget would require
 us to modify that <code>if</code>/<code>else</code> structure we implemented earlier.</p>
-<div class="highlight"><pre><span></span><code>{% include &#39;product-card.html&#39; with type=&#39;button&#39; %}
+<div class="highlight"><pre><span></span><code>{% include &#39;product-card.html&#39; with action=&#39;button&#39; %}
+
+<span class="cm">&lt;!-- --- OR THIS --- --&gt;</span>
+
+{% include &#39;product-card.html&#39; with action=&#39;tag&#39; %}
 </code></pre></div>
 
 <p>Alternatively, if we wanted to allow for any type of <code>.card-actions</code> to be
@@ -309,6 +317,10 @@ or widget.</p>
 of actions we want to include, but again, this might result in having multiple
 instances of templates for each variation anyways.</p>
 <div class="highlight"><pre><span></span><code>{% include &#39;product-card-button.html&#39; %}
+
+<span class="cm">&lt;!-- --- OR THIS --- --&gt;</span>
+
+{% include &#39;product-card-tags.html&#39; %}
 </code></pre></div>
 
 <p>Is there a way to still write decoupled &amp; re-usable widget templates with
@@ -354,7 +366,7 @@ be placed in the <code>{{actions}}</code> placeholder.</p>
 product cards without any modifications to other templates.</p>
 <p>You can also nest or embed components into other components. In this case I'm
 showing that the button inside the <code>{{actions}}</code> slot could be a separate
-component, this allows for great deal of composability of our widgets.</p>
+component, this allows for great deal of <em>composability</em> of our widgets.</p>
 <div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">c-product</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;Item Title&quot;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Description of the product<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">c-slot</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;actions&quot;</span><span class="p">&gt;</span>
@@ -400,12 +412,13 @@ override and a registration mechanism (like how we override django admin views).
 used in django.</p>
 <h2 id="a-pragmatic-frontend-architecture">A pragmatic frontend architecture<a class="headerlink" href="#a-pragmatic-frontend-architecture" title="Permanent link">&para;</a></h2>
 <p>This is what I would suggest as a frontend architecture for perfectionists with
-deadlines. Still building on top of what django provides, I believe it is a more
-pragmatic approach without, too much overhead for the working dev.</p>
+deadlines. Still building on top of what django provides, <strong>enhanced server side
+rendered HTML</strong> is a more pragmatic approach, without too much overhead for the
+working dev.</p>
 <p>These extra technologies you can learn in a weekend. And what's funny is that,
 in their docs, they have references and examples of how they interoperate with
 each other.</p>
-<p>I would say Htmx and TailwindCSS are very solid choices now, and we shall see which
+<p>I would say HTMX and TailwindCSS are very solid choices now, and we shall see which
 component library gains more popularity. Ideally some of these libraries to to
 define and manipulate reusable components make it into the framework in the near
 future.</p>

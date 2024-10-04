@@ -9,7 +9,7 @@ it.&lt;/p&gt;
 &lt;h2 id="standing-of-the-shoulders-of-giants"&gt;Standing of the shoulders of giants&lt;a class="headerlink" href="#standing-of-the-shoulders-of-giants" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I don't remember where I heard this, but &lt;em&gt;Any fool can build a bridge&lt;/em&gt;&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt; is phrase
 that stuck with me. It meant that anyone can just throw money, people, energy,
-take their time and eventually something will be built). It takes an engineer to
+take their time and eventually something will be built. It takes an engineer to
 build the "right" bridge (timely and on budget).&lt;/p&gt;
 &lt;p&gt;This applies to any kind of project (that needs to take you from where you are
 to where you want to be, like a bridge does). Software projects are not the
@@ -31,27 +31,27 @@ strong opinions on how you build your frontend architecture.&lt;/p&gt;
 &lt;p&gt;Sadly that left an empty space for other frameworks and solutions outside our
 loved django-land to take place. It is still very common to see frontend heavy
 frameworks like Vue or React be used for this. But these frameworks introduce a
-ton of accidental complexity:&lt;/p&gt;
+ton of &lt;strong&gt;accidental complexity&lt;/strong&gt;:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;State management &amp;amp; synchronization between your frontend and backend&lt;/li&gt;
-&lt;li&gt;API Churn (how much data to expose on your json endpoints)&lt;/li&gt;
+&lt;li&gt;API Churn (how much data &lt;a href="https://intercoolerjs.org/2016/02/17/api-churn-vs-security.html" title="The API Churn/Security Trade-off"&gt;to expose&lt;/a&gt; on your json endpoints)&lt;/li&gt;
 &lt;li&gt;Your team skills are now divided, your codebase is now polyglot&lt;/li&gt;
 &lt;li&gt;There is duplication of business logic and validation&lt;/li&gt;
 &lt;li&gt;Framework wars and decision fatigue, with ton of changes version after version&lt;/li&gt;
 &lt;li&gt;More build steps, more dependencies, you need to keep and eye on load times, etc&lt;/li&gt;
-&lt;li&gt;Turns out you still need to make that db query and render that HTML after all&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;And it turns out you still need to make that db query and render that HTML after all!&lt;/p&gt;
 &lt;h2 id="everything-old-is-new-again"&gt;Everything old is new again&lt;a class="headerlink" href="#everything-old-is-new-again" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;We say that history doesn't repeat itself but often rhymes. Well guess what,
 luckily for us, in the recent years the tides are turning.&lt;/p&gt;
 &lt;p&gt;Postgres was the DB you needed, monoliths are not seen as something necessarily
-wrong, and server side rendering is cool again.&lt;/p&gt;
+wrong, and &lt;strong&gt;server side rendering is cool again&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;What are the problems a good frontend architecture needs to solve anyways?&lt;/p&gt;
 &lt;p&gt;For a modern frontend, you need three pillars: interactivity to dynamically
 display or update fragments of the page, a maintainable &amp;amp; composable CSS
 framework, and lastly, a way to create reusable snippets of HTML.&lt;/p&gt;
 &lt;h2 id="interactivity"&gt;Interactivity&lt;a class="headerlink" href="#interactivity" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;A low code library that is becoming very popular is HTMX, which by adding some
+&lt;p&gt;A low code library that is becoming very popular is &lt;a href="https://htmx.org/" title="high power tools for HTML"&gt;HTMX&lt;/a&gt;, which by adding some
 attributes on you HTML templates lets you interact with the server and update
 portions of the page.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt; &lt;span class="na"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://unpkg.com/htmx.org@2.0.2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
@@ -78,8 +78,8 @@ draw the UI for you. The browser becomes your frontend application or client
 need for client side state manipulation as well. For example disabling a button,
 showing/hiding a dropdown, clearing a form, etc UI interactions that belong to
 the frontend.&lt;/p&gt;
-&lt;p&gt;This is where a small library like alpine.js shines, which also follows the same
-pattern of inlining directives as part of the HTML element declaration.&lt;/p&gt;
+&lt;p&gt;This is where a small library like &lt;a href="https://alpinejs.dev/" title="Your new, lightweight, JavaScript framework."&gt;alpine.js&lt;/a&gt; shines, which also follows
+the same pattern of inlining directives as part of the HTML element declaration.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt; &lt;span class="na"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;//unpkg.com/alpinejs&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;defer&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
 
 &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="na"&gt;x-data&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;{ open: false }&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
@@ -173,8 +173,9 @@ having a product card widget show a button or some tags.&lt;/p&gt;
     &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;h2&lt;/span&gt; &lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;card-title&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Shoes!&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;h2&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
     &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;If a dog chews shoes whose shoes does he choose?&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
     &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;card-actions justify-end&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class="cm"&gt;&amp;lt;!-- --- SHOW THIS --- --&amp;gt;&lt;/span&gt;
       &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;button&lt;/span&gt; &lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;btn btn-primary&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Buy Now&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;button&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class="cm"&gt;&amp;lt;!-- --- OR --- --&amp;gt;&lt;/span&gt;
+      &lt;span class="cm"&gt;&amp;lt;!-- --- OR THIS --- --&amp;gt;&lt;/span&gt;
       &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;badge badge-outline&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Fashion&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
       &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;badge badge-outline&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Products&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
     &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
@@ -198,8 +199,9 @@ child HTML nodes for the &lt;code&gt;.card-actions&lt;/code&gt;?&lt;/p&gt;
     &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;h2&lt;/span&gt; &lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;card-title&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;{{ title }}&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;h2&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
     &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;{{ description }}&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
     &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;card-actions justify-end&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class="cm"&gt;&amp;lt;!-- --- SHOW THIS --- --&amp;gt;&lt;/span&gt;
       &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;button&lt;/span&gt; &lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;btn btn-primary&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Buy Now&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;button&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class="cm"&gt;&amp;lt;!-- --- OR --- --&amp;gt;&lt;/span&gt;
+      &lt;span class="cm"&gt;&amp;lt;!-- --- OR THIS --- --&amp;gt;&lt;/span&gt;
       &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;badge badge-outline&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Fashion&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
       &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;badge badge-outline&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Products&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
     &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
@@ -219,9 +221,11 @@ block.&lt;/p&gt;
     &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;{{ description }}&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
     &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;card-actions justify-end&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
       {% if action == &amp;#39;button&amp;#39; %}
-      &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;button&lt;/span&gt; &lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;btn btn-primary&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Buy Now&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;button&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;button&lt;/span&gt; &lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;btn btn-primary&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Buy Now&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;button&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+      {% elif action == &amp;#39;tag&amp;#39; %}
+        &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;badge badge-outline&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;{{ tag }}&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
       {% else %}
-      &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;badge badge-outline&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;{{ tag }}&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+        {# something else? #}
       {% endif %}
     &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
   &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
@@ -231,7 +235,11 @@ block.&lt;/p&gt;
 &lt;p&gt;And then we need to pass what type of widget we would like to render using the
 builtin include tag. Every new possible variation of that widget would require
 us to modify that &lt;code&gt;if&lt;/code&gt;/&lt;code&gt;else&lt;/code&gt; structure we implemented earlier.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;{% include &amp;#39;product-card.html&amp;#39; with type=&amp;#39;button&amp;#39; %}
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;{% include &amp;#39;product-card.html&amp;#39; with action=&amp;#39;button&amp;#39; %}
+
+&lt;span class="cm"&gt;&amp;lt;!-- --- OR THIS --- --&amp;gt;&lt;/span&gt;
+
+{% include &amp;#39;product-card.html&amp;#39; with action=&amp;#39;tag&amp;#39; %}
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Alternatively, if we wanted to allow for any type of &lt;code&gt;.card-actions&lt;/code&gt; to be
@@ -265,6 +273,10 @@ or widget.&lt;/p&gt;
 of actions we want to include, but again, this might result in having multiple
 instances of templates for each variation anyways.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;{% include &amp;#39;product-card-button.html&amp;#39; %}
+
+&lt;span class="cm"&gt;&amp;lt;!-- --- OR THIS --- --&amp;gt;&lt;/span&gt;
+
+{% include &amp;#39;product-card-tags.html&amp;#39; %}
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Is there a way to still write decoupled &amp;amp; re-usable widget templates with
@@ -310,7 +322,7 @@ be placed in the &lt;code&gt;{{actions}}&lt;/code&gt; placeholder.&lt;/p&gt;
 product cards without any modifications to other templates.&lt;/p&gt;
 &lt;p&gt;You can also nest or embed components into other components. In this case I'm
 showing that the button inside the &lt;code&gt;{{actions}}&lt;/code&gt; slot could be a separate
-component, this allows for great deal of composability of our widgets.&lt;/p&gt;
+component, this allows for great deal of &lt;em&gt;composability&lt;/em&gt; of our widgets.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;c-product&lt;/span&gt; &lt;span class="na"&gt;title&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Item Title&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
     &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Description of the product&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
     &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;c-slot&lt;/span&gt; &lt;span class="na"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;actions&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
@@ -356,12 +368,13 @@ override and a registration mechanism (like how we override django admin views).
 used in django.&lt;/p&gt;
 &lt;h2 id="a-pragmatic-frontend-architecture"&gt;A pragmatic frontend architecture&lt;a class="headerlink" href="#a-pragmatic-frontend-architecture" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This is what I would suggest as a frontend architecture for perfectionists with
-deadlines. Still building on top of what django provides, I believe it is a more
-pragmatic approach without, too much overhead for the working dev.&lt;/p&gt;
+deadlines. Still building on top of what django provides, &lt;strong&gt;enhanced server side
+rendered HTML&lt;/strong&gt; is a more pragmatic approach, without too much overhead for the
+working dev.&lt;/p&gt;
 &lt;p&gt;These extra technologies you can learn in a weekend. And what's funny is that,
 in their docs, they have references and examples of how they interoperate with
 each other.&lt;/p&gt;
-&lt;p&gt;I would say Htmx and TailwindCSS are very solid choices now, and we shall see which
+&lt;p&gt;I would say HTMX and TailwindCSS are very solid choices now, and we shall see which
 component library gains more popularity. Ideally some of these libraries to to
 define and manipulate reusable components make it into the framework in the near
 future.&lt;/p&gt;
