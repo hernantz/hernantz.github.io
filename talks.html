@@ -39,28 +39,30 @@
     <h1 class="main-title">talks</h1>
     <summary>
       <p class="light">
-<time datetime="2017-04-29T00:00:00-03:00">2017-04-29</time>        <h2 id="the-ring-goes-south">The ring goes south<a class="headerlink" href="#the-ring-goes-south" title="Permanent link">&para;</a></h2>
-<p>In the early days, Django didn't ship a built-in migrations framework. South
-was the most popular app to do that. This talk exposed some common pitfalls and
-quirks, some of them might still apply to newer Django versions. The title is
-based on a song from the Lord Of the Rings soundtrack.</p>
-<p>This talk was given at an in-company session at Machinalis offices
-(2014-04-30).</p>
-<h2 id="cada-mock-es-un-moco">Cada mock es un moco<a class="headerlink" href="#cada-mock-es-un-moco" title="Permanent link">&para;</a></h2>
-<p>While sometimes mocks are needed, they should not be the first tool you use to
-write tests. In this talk I try to explain why It is a pity to be mocking your
-code when you could be writing meaningful tests at <em>almost</em> the same cost.  The
-title reffers to moco (snot in spanish) and mock being <em>homonyms</em>. The contents
-of this talk are based on the contents of this post: <a href="http://hernantz.github.io/mock-yourself-not-your-tests.html" title="Mock yourself not your tests">Mock yourself not your
-tests</a>.</p>
-<p>This talk was given at an in-company session at Machinalis offices
-(2015-07-27).</p>
-<h2 id="tenemos-que-dejar-de-escribir-else-por-dos-anos">Tenemos que dejar de escribir else por dos años<a class="headerlink" href="#tenemos-que-dejar-de-escribir-else-por-dos-anos" title="Permanent link">&para;</a></h2>
-<p>In Python we strongly emphasize that code must be elegant and easy to
-interpret, but with PEP8 alone is not enough, many times our logic can be
-nested in a cataract of if(s) and else(s) difficult to maintain. In this talk
-we explored some strategies to avoid that unnecessary complexity.</p>
-<p>This talk was given at the first <a href="https://www.meetup.com/Cordoba-Python-Meetup/events/226908468/" title="Python Meetup Event">Cordoba Python Meetup</a> (2015-12-04).</p>
+<time datetime="2017-04-29T00:00:00-03:00">2017-04-29</time>        <h2 id="django-ui-components-for-perfectionists-with-deadlines">Django UI components for perfectionists with deadlines<a class="headerlink" href="#django-ui-components-for-perfectionists-with-deadlines" title="Permanent link">&para;</a></h2>
+<p>We pay great attention to how to write composable python code (with inheritance,
+decorators, modules, namespaces, etc). But when it comes to architecting the
+templates of your website, this is often overlooked, which rapidly degenerates
+in tons of copy&amp;paste of html, css and javascript.  Some might say that this is
+what React or Vue (et al) are all about and already solve, but having to render
+HTML on the client can increase the complexity of the application (introducing
+build steps, another language, more dependencies, etc).</p>
+<p>Writing reusable and composable UI components can be achieved using the good 'ol
+django templates, with the help of some libraries to fill in the gaps (like
+django-components, django-cotton and TailwindCSS) that we will explore and
+suggest as a possible solution.</p>
+<p>This talk was presented at <a href="https://2024.djangocon.us/talks/reusable-django-template-components-for-perfectionists-with-deadlines/" title="Django UI Components for Perfectionists with Deadlines">DjangoCon US</a> (2024-09-24) and can be watched
+online on <a href="https://www.youtube.com/watch?v=VQV-nkWTEiU" title=" Django UI Components for Perfectionists with Deadlines with Hernan Lozano">Youtube</a></p>
+<h2 id="djangonautas-no-dejen-que-djangonautas-escriban-javascript">Djangonautas! No dejen que djangonautas escriban Javascript!<a class="headerlink" href="#djangonautas-no-dejen-que-djangonautas-escriban-javascript" title="Permanent link">&para;</a></h2>
+<p>Knowing Javascript has become indispensable for web development, but perhaps too
+complicated, to the point that there is something known as javascript fatigue.
+In recent times, libraries and frameworks have emerged that propose a pattern
+more similar to how the websites of before were, but without skimping on the
+dynamism of modern websites. In this talk we discuss patterns and libraries such
+as htmx, django-unicorn, etc. designed to make a Django website more dynamic.</p>
+<p>This talk was given at <a href="https://eventos.python.org.ar/events/pyconar2021/activity/452/" title="PyconAr 2021">PyconAr 2021</a> (2021-10-26) and it's based on the blog
+post <a href="http://hernantz.github.io/djangonauts-dont-let-djangonauts-write-javascript.html" title="Djangonauts! Don't let djangonauts write Javascript!">Djangonauts! Don't let djangonauts write Javascript!</a> and can be watched
+online on <a href="https://www.youtube.com/watch?v=dEg-K3kMj60" title="PyConAr 2021 - Djangonautas! no dejen que los djangonautas escriban Javascript!">Youtube</a>.</p>
 <h2 id="el-fin-esta-cerca">El fin esta cerca!<a class="headerlink" href="#el-fin-esta-cerca" title="Permanent link">&para;</a></h2>
 <p>2012 passed and the world did not end. Well, scheduling the next world's
 doomsday can be tricky, because working with dates is so. In this talk I try to
@@ -70,26 +72,28 @@ contents of this talk are based on this post: <a href="http://hernantz.github.io
 Python</a>.</p>
 <p>This talk was given at an in-company session at Machinalis offices
 (2017-04-13) and at <a href="http://ar.pycon.org/" title="PyconAr">Pycon Argentina 2017</a> (2017-11-17).</p>
-<h2 id="una-configpy-para-configurarlos-a-todos">Una config.py para configurarlos a todos<a class="headerlink" href="#una-configpy-para-configurarlos-a-todos" title="Permanent link">&para;</a></h2>
-<p>Configuration management, understood as a way to alter the behavior of a
-program without changing the code, is a mechanism that requires a well thought
-architecture. In this talk I focus on static configuration in general, and an
-approach for python. The contents of this talk are based on this post: <a href="{filename}/one-configpy-to-config-all.md" title="One config.py to configure them all">One
-config.py to configure them all</a>. The title refers to The Lord of the Rings
-inscription: <em>"... One Ring to rule them all, One Ring to find them, One Ring
-to bring them all and in the darkness bind them"</em>.</p>
-<p>This talk was given at <a href="https://pydaylp.python.org.ar/" title="Pyday La plata 2018">Pyday La Plata 2018</a> (2018-05-12) and <a href="https://eventos.python.org.ar/events/pyconar2019/schedule" title="PyconAr 2019">PyconAr Buenos
-Aires 2019</a> (2019-12-06).</p>
-<h2 id="djangonautas-no-dejen-que-djangonautas-escriban-javascript">Djangonautas! No dejen que djangonautas escriban Javascript!<a class="headerlink" href="#djangonautas-no-dejen-que-djangonautas-escriban-javascript" title="Permanent link">&para;</a></h2>
-<p>Knowing Javascript has become indispensable for web development, but perhaps too
-complicated, to the point that there is something known as javascript fatigue.
-In recent times, libraries and frameworks have emerged that propose a pattern
-more similar to how the websites of before were, but without skimping on the
-dynamism of modern websites. In this talk we discuss patterns and libraries such
-as htmx, django-unicorn, etc. designed to make a Django website more dynamic.</p>
-<p>This talk was given at <a href="https://eventos.python.org.ar/events/pyconar2021/activity/452/" title="PyconAr 2021">PyconAr 2021</a> (2021-10-26) and it's based on the blog
-post <a href="http://hernantz.github.io/djangonauts-dont-let-djangonauts-write-javascript.html" title="Djangonauts! Don't let djangonauts write Javascript!">Djangonauts! Don't let djangonauts write Javascript!</a> and can be watch
-online on <a href="https://www.youtube.com/watch?v=dEg-K3kMj60" title="PyConAr 2021 - Djangonautas! no dejen que los djangonautas escriban Javascript!">Youtube</a>.</p>
+<h2 id="tenemos-que-dejar-de-escribir-else-por-dos-anos">Tenemos que dejar de escribir else por dos años<a class="headerlink" href="#tenemos-que-dejar-de-escribir-else-por-dos-anos" title="Permanent link">&para;</a></h2>
+<p>In Python we strongly emphasize that code must be elegant and easy to
+interpret, but with PEP8 alone is not enough, many times our logic can be
+nested in a cataract of if(s) and else(s) difficult to maintain. In this talk
+we explored some strategies to avoid that unnecessary complexity.</p>
+<p>This talk was given at the first <a href="https://www.meetup.com/Cordoba-Python-Meetup/events/226908468/" title="Python Meetup Event">Cordoba Python Meetup</a> (2015-12-04).</p>
+<h2 id="cada-mock-es-un-moco">Cada mock es un moco<a class="headerlink" href="#cada-mock-es-un-moco" title="Permanent link">&para;</a></h2>
+<p>While sometimes mocks are needed, they should not be the first tool you use to
+write tests. In this talk I try to explain why It is a pity to be mocking your
+code when you could be writing meaningful tests at <em>almost</em> the same cost.  The
+title reffers to moco (snot in spanish) and mock being <em>homonyms</em>. The contents
+of this talk are based on the contents of this post: <a href="http://hernantz.github.io/mock-yourself-not-your-tests.html" title="Mock yourself not your tests">Mock yourself not your
+tests</a>.</p>
+<p>This talk was given at an in-company session at Machinalis offices
+(2015-07-27).</p>
+<h2 id="the-ring-goes-south">The ring goes south<a class="headerlink" href="#the-ring-goes-south" title="Permanent link">&para;</a></h2>
+<p>In the early days, Django didn't ship a built-in migrations framework. South
+was the most popular app to do that. This talk exposed some common pitfalls and
+quirks, some of them might still apply to newer Django versions. The title is
+based on a song from the Lord Of the Rings soundtrack.</p>
+<p>This talk was given at an in-company session at Machinalis offices
+(2014-04-30).</p>
       </p>
     </summary>
   </article>
