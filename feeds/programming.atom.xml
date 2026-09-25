@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt - Programming</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/programming.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2024-09-24T00:00:00-03:00</updated><subtitle>- Mostly lies and rants in plain text.</subtitle><entry><title>Django UI components for perfectionists with deadlines</title><link href="http://hernantz.github.io/django-ui-components-for-perfectionists-with-deadlines.html" rel="alternate"></link><published>2024-09-24T00:00:00-03:00</published><updated>2024-09-24T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2024-09-24:/django-ui-components-for-perfectionists-with-deadlines.html</id><summary type="html">&lt;p&gt;Server side rendering and UI components for a modern frontend.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Vintage bridge" src="/images/bridge.jpg" title="Vintage blueprint of a bridge"&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt - Programming</title><link href="http://hernantz.github.io/" rel="alternate"/><link href="http://hernantz.github.io/feeds/programming.atom.xml" rel="self"/><id>http://hernantz.github.io/</id><updated>2024-09-24T00:00:00-03:00</updated><subtitle>- Mostly lies and rants in plain text.</subtitle><entry><title>Django UI components for perfectionists with deadlines</title><link href="http://hernantz.github.io/django-ui-components-for-perfectionists-with-deadlines.html" rel="alternate"/><published>2024-09-24T00:00:00-03:00</published><updated>2024-09-24T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2024-09-24:/django-ui-components-for-perfectionists-with-deadlines.html</id><summary type="html">&lt;p&gt;Server side rendering and UI components for a modern frontend.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Vintage bridge" src="/images/bridge.jpg" title="Vintage blueprint of a bridge"&gt;&lt;/p&gt;
 &lt;p&gt;Building a maintainable frontend architecture is a common problem any django
 project needs to solve.&lt;/p&gt;
 &lt;p&gt;In Django we have ways to architect our code into reusable apps, views &amp;amp; models.&lt;/p&gt;
 &lt;p&gt;But when it comes to the frontend side of things, its not necessarily strongly
 opinionated on this matter. Let's see what this means and what can we do about
 it.&lt;/p&gt;
-&lt;h2 id="standing-of-the-shoulders-of-giants"&gt;Standing of the shoulders of giants&lt;a class="headerlink" href="#standing-of-the-shoulders-of-giants" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The contents of this talk were presented at &lt;a href="https://2024.djangocon.us/talks/reusable-django-template-components-for-perfectionists-with-deadlines/" title="Django UI Components for Perfectionists with Deadlines"&gt;DjangoCon US 2024&lt;/a&gt; and can be
+watched online on &lt;a href="https://www.youtube.com/watch?v=VQV-nkWTEiU" title=" Django UI Components for Perfectionists with Deadlines with Hernan Lozano"&gt;Youtube&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="standing-on-the-shoulders-of-giants"&gt;Standing on the shoulders of giants&lt;a class="headerlink" href="#standing-on-the-shoulders-of-giants" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I don't remember where I heard this, but &lt;em&gt;Any fool can build a bridge&lt;/em&gt;&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt; is phrase
 that stuck with me. It meant that anyone can just throw money, people, energy,
 take their time and eventually something will be built. It takes an engineer to
@@ -337,19 +339,19 @@ competing in this market.&lt;/p&gt;
 approach, similar to how we work with forms or views, with many methods you can
 override and a registration mechanism (like how we override django admin views).&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# In a file called [project root]/components/product/product.py&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django_components&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Component&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;register&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;django_components&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Component&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;register&lt;/span&gt;
 
 &lt;span class="nd"&gt;@register&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;product&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;ProductComponent&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Component&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;ProductComponent&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Component&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;template_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;product.html&amp;quot;&lt;/span&gt;
 
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_context_data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;get_context_data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
             &lt;span class="s2"&gt;&amp;quot;title&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;  &lt;span class="c1"&gt;# titlelize!&lt;/span&gt;
             &lt;span class="s2"&gt;&amp;quot;description&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;
         &lt;span class="p"&gt;}&lt;/span&gt;
 
-    &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Media&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;Media&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;css&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;style.css&amp;quot;&lt;/span&gt;
         &lt;span class="n"&gt;js&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;script.js&amp;quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -400,7 +402,7 @@ solve these problems without too much overhead.&lt;/p&gt;
 &lt;h2 id="one-more-thing"&gt;One more thing&lt;a class="headerlink" href="#one-more-thing" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;A very recent project was released called fasthml and it copies an idea other
 present in other frameworks for solving the UI &lt;a href="https://about.fastht.ml/components" title="Python HTML components"&gt;composability problem&lt;/a&gt;.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;fasthtml&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ft&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;fasthtml&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ft&lt;/span&gt;
 
 &lt;span class="n"&gt;ft&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Label&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
     &lt;span class="s2"&gt;&amp;quot;Choose an option&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
@@ -432,7 +434,7 @@ already married to templates, but it is an interesting idea nevertheless.&lt;/p&
 &lt;p&gt;Japanese web design is &lt;a href="https://randomwire.com/why-japanese-web-design-is-so-different/" title="Why Japanese Web Design Is So… Different"&gt;often noted&lt;/a&gt; for its &lt;a href="https://randomwire.com/japanese-web-design-redux/" title="Japanese Web Design Redux"&gt;unique approach&lt;/a&gt; among the design community, characterized by information-dense layouts, rich use of text/imagery, and overwhelming visual aesthetics that prioritize content variety over minimalist trends (more common in the West). This style is often a reflection of &lt;a href="https://www.youtube.com/watch?v=vi8pyS076a8" title="Japanese web design: weird, but it works. Here's why"&gt;cultural preferences&lt;/a&gt; for conveying more detailed information and providing users with many options upfront.&amp;#160;&lt;a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</content><category term="Programming"></category><category term="htmx"></category><category term="django"></category><category term="css"></category><category term="architecture"></category><category term="best-practices"></category><category term="python"></category><category term="javascript"></category></entry><entry><title>Checksums matter</title><link href="http://hernantz.github.io/checksums-matter.html" rel="alternate"></link><published>2023-06-30T00:00:00-03:00</published><updated>2023-06-30T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2023-06-30:/checksums-matter.html</id><summary type="html">&lt;p&gt;When serving files over the internet, TCP and SSL are not enough.&lt;/p&gt;</summary><content type="html">&lt;p&gt;When dealing with user uploaded files or static assets in your project it is a
+&lt;/div&gt;</content><category term="Programming"/><category term="htmx"/><category term="django"/><category term="css"/><category term="architecture"/><category term="best-practices"/><category term="python"/><category term="javascript"/></entry><entry><title>Checksums matter</title><link href="http://hernantz.github.io/checksums-matter.html" rel="alternate"/><published>2023-06-30T00:00:00-03:00</published><updated>2023-06-30T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2023-06-30:/checksums-matter.html</id><summary type="html">&lt;p&gt;When serving files over the internet, TCP and SSL are not enough.&lt;/p&gt;</summary><content type="html">&lt;p&gt;When dealing with user uploaded files or static assets in your project it is a
 common practice to store the file in a CDN or the filesystem and an entry that
 references it on a database.&lt;/p&gt;
 &lt;p&gt;When serving those files, you send a url to the user to fetch the file.&lt;/p&gt;
@@ -452,7 +454,7 @@ that the &lt;a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subre
 intended to be downloaded from that URI.&lt;/p&gt;
 &lt;p&gt;As a bonus, no extra checks are needed from the client, since this will take
 care of problems with the file size, file format, etc. The checksums need to
-match, period.&lt;/p&gt;</content><category term="Programming"></category><category term="best-practices"></category></entry><entry><title>Inline form validation with Django and Htmx</title><link href="http://hernantz.github.io/inline-form-validation-with-django-and-htmx.html" rel="alternate"></link><published>2022-06-13T00:00:00-03:00</published><updated>2022-06-13T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2022-06-13:/inline-form-validation-with-django-and-htmx.html</id><summary type="html">&lt;p&gt;Partial and progressive form validation without any Javascript.&lt;/p&gt;</summary><content type="html">&lt;video autoplay loop&gt;
+match, period.&lt;/p&gt;</content><category term="Programming"/><category term="best-practices"/></entry><entry><title>Inline form validation with Django and Htmx</title><link href="http://hernantz.github.io/inline-form-validation-with-django-and-htmx.html" rel="alternate"/><published>2022-06-13T00:00:00-03:00</published><updated>2022-06-13T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2022-06-13:/inline-form-validation-with-django-and-htmx.html</id><summary type="html">&lt;p&gt;Partial and progressive form validation without any Javascript.&lt;/p&gt;</summary><content type="html">&lt;video autoplay loop&gt;
   &lt;source src="/videos/htmx-inline-form-validation.mp4" type="video/mp4"&gt;
 &lt;/video&gt;
 
@@ -509,12 +511,12 @@ with the validation for that field.&lt;/p&gt;
 django will re-render the page with the errors displayed. If the form is valid,
 and it was submitted via htmx request, we re-render the page (without any
 errors).&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;SignUpView&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;FormView&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;SignUpView&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;FormView&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;form_class&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;forms&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Form&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;SignupForm&lt;/span&gt;
     &lt;span class="n"&gt;template_name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;form-demo.html&amp;#39;&lt;/span&gt;
     &lt;span class="n"&gt;success_url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;reverse_lazy&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;form-demo&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;form_valid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;form_valid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;htmx&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
             &lt;span class="c1"&gt;# The submitted form is valid, just render it `as is` for htmx.&lt;/span&gt;
             &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;render_to_response&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_context_data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
@@ -529,7 +531,7 @@ best of both worlds.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Immediate feedback&lt;/strong&gt; to the user, &lt;strong&gt;no client-side code logic repetition&lt;/strong&gt;
  for validating fields, progressive enhancement approach when JS is not
  available and it is &lt;strong&gt;framework agnostic&lt;/strong&gt;, can be adapted with any CSS toolkit
- and any backend language.&lt;/p&gt;</content><category term="Programming"></category><category term="python"></category><category term="django"></category><category term="javascript"></category><category term="htmx"></category></entry><entry><title>Let the code settle</title><link href="http://hernantz.github.io/let-the-code-settle.html" rel="alternate"></link><published>2022-01-20T00:00:00-03:00</published><updated>2022-01-20T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2022-01-20:/let-the-code-settle.html</id><summary type="html">&lt;p&gt;Gain confidence when deploying critical changes.&lt;/p&gt;</summary><content type="html">&lt;p&gt;When working on an important feature for a live product, the risk of breaking
+ and any backend language.&lt;/p&gt;</content><category term="Programming"/><category term="python"/><category term="django"/><category term="javascript"/><category term="htmx"/></entry><entry><title>Let the code settle</title><link href="http://hernantz.github.io/let-the-code-settle.html" rel="alternate"/><published>2022-01-20T00:00:00-03:00</published><updated>2022-01-20T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2022-01-20:/let-the-code-settle.html</id><summary type="html">&lt;p&gt;Gain confidence when deploying critical changes.&lt;/p&gt;</summary><content type="html">&lt;p&gt;When working on an important feature for a live product, the risk of breaking
 some crucial part of it is higher.&lt;/p&gt;
 &lt;p&gt;Automated tests, CI pipelines, QA workflows, PR reviews and feature flags are
 there to catch any possible errors before any change hits production.&lt;/p&gt;
@@ -548,7 +550,7 @@ your support team; etc.&lt;/p&gt;
 &lt;p&gt;This is why, for critical changes, is best to &lt;em&gt;let the code settle&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;Wait up a couple hours/days/weeks before deploying more critical changes. You will
 give the code enough exposure to real users and gain confidence for your next
-deployment.&lt;/p&gt;</content><category term="Programming"></category><category term="best-practices"></category></entry><entry><title>Djangonauts don't let djangonauts write Javascript</title><link href="http://hernantz.github.io/djangonauts-dont-let-djangonauts-write-javascript.html" rel="alternate"></link><published>2021-10-25T00:00:00-03:00</published><updated>2021-10-25T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2021-10-25:/djangonauts-dont-let-djangonauts-write-javascript.html</id><summary type="html">&lt;p&gt;Why and how to fight JS fatigue with some Django and htmx.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="The canonical website architecture" src="/images/djangonauts.png" title="The canonical website architecture"&gt;&lt;/p&gt;
+deployment.&lt;/p&gt;</content><category term="Programming"/><category term="best-practices"/></entry><entry><title>Djangonauts don't let djangonauts write Javascript</title><link href="http://hernantz.github.io/djangonauts-dont-let-djangonauts-write-javascript.html" rel="alternate"/><published>2021-10-25T00:00:00-03:00</published><updated>2021-10-25T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2021-10-25:/djangonauts-dont-let-djangonauts-write-javascript.html</id><summary type="html">&lt;p&gt;Why and how to fight JS fatigue with some Django and htmx.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="The canonical website architecture" src="/images/djangonauts.png" title="The canonical website architecture"&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;JS Fatigue happens when people use tools
 they don't need to solve problems they
@@ -804,7 +806,7 @@ on a paginated list of results.&lt;/p&gt;
 be used to render partial content instead without screwing up scroll positions.&lt;/p&gt;
 &lt;p&gt;In Django land, &lt;a href="https://github.com/adamchainz/django-htmx" title="Django htmx"&gt;django-htmx&lt;/a&gt; provides some helpers that allow our views to
 render different content depending on the &lt;code&gt;request.htmx&lt;/code&gt; flag.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;my_view&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;my_view&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;htmx&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;template_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;partial.html&amp;quot;&lt;/span&gt;
     &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -878,7 +880,7 @@ when I first noticed the JS-all-the-things trend in the industry.&lt;/p&gt;
 &lt;p&gt;Four years later, the state of things hasn't gotten better, yet projects like
 htmx are gaining traction for small / hobby projects, which is promising.&lt;/p&gt;
 &lt;p&gt;Maybe this post inspires you to start your next project as a MPA, instead of a
-SPA with the framework dujour, to avoid JS fatigue, save time and money.&lt;/p&gt;</content><category term="Programming"></category><category term="python"></category><category term="django"></category><category term="javascript"></category><category term="rants"></category><category term="htmx"></category></entry><entry><title>Endpoints matter</title><link href="http://hernantz.github.io/endpoints-matter.html" rel="alternate"></link><published>2021-09-18T00:00:00-03:00</published><updated>2021-09-18T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2021-09-18:/endpoints-matter.html</id><summary type="html">&lt;p&gt;Entities can be identified by IDs, but also paths.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In most applications, system entities do not exist isolated from each other,
+SPA with the framework dujour, to avoid JS fatigue, save time and money.&lt;/p&gt;</content><category term="Programming"/><category term="python"/><category term="django"/><category term="javascript"/><category term="rants"/><category term="htmx"/></entry><entry><title>Endpoints matter</title><link href="http://hernantz.github.io/endpoints-matter.html" rel="alternate"/><published>2021-09-18T00:00:00-03:00</published><updated>2021-09-18T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2021-09-18:/endpoints-matter.html</id><summary type="html">&lt;p&gt;Entities can be identified by IDs, but also paths.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In most applications, system entities do not exist isolated from each other,
 but connected in one to one, many to many or one to may type of relations.&lt;/p&gt;
 &lt;p&gt;This means that there is more than one way to reach to a specific entity.&lt;/p&gt;
 &lt;p&gt;Although all entities should have a unique id, the &lt;em&gt;path&lt;/em&gt; to that entity is also
@@ -899,7 +901,7 @@ probably abusing the pattern and the path to an entity is no longer clear.
 Although replies only make sense in the context of a comment they reply to.&lt;/p&gt;
 &lt;p&gt;Path design to reach connected entities will really depend what are the most
 common access patterns to those entities. There are always hierarchies
-in the structure of any database after all.&lt;/p&gt;</content><category term="Programming"></category><category term="database"></category><category term="rest"></category><category term="api"></category></entry><entry><title>Concurrent updates on Firestore documents</title><link href="http://hernantz.github.io/concurrent-updates-on-firestore-documents.html" rel="alternate"></link><published>2021-08-16T00:00:00-03:00</published><updated>2021-08-16T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2021-08-16:/concurrent-updates-on-firestore-documents.html</id><summary type="html">&lt;p&gt;Can we achieve eventual consistency? Maybe something close to it?&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://firebase.google.com/products/firestore" title="Firestore by Google"&gt;Firestore&lt;/a&gt; (by Firebase) is a JSON document-oriented database (as a
+in the structure of any database after all.&lt;/p&gt;</content><category term="Programming"/><category term="database"/><category term="rest"/><category term="api"/></entry><entry><title>Concurrent updates on Firestore documents</title><link href="http://hernantz.github.io/concurrent-updates-on-firestore-documents.html" rel="alternate"/><published>2021-08-16T00:00:00-03:00</published><updated>2021-08-16T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2021-08-16:/concurrent-updates-on-firestore-documents.html</id><summary type="html">&lt;p&gt;Can we achieve eventual consistency? Maybe something close to it?&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://firebase.google.com/products/firestore" title="Firestore by Google"&gt;Firestore&lt;/a&gt; (by Firebase) is a JSON document-oriented database (as a
 service), that allows concurrent updates to documents, from different clients or
 the same client in different points in time, since it offers offline support for
 client apps that hold a dynamic local cache, that will eventually be synced with
@@ -1023,7 +1025,7 @@ useful for backend code though.&lt;/p&gt;
 &lt;p&gt;By leveraging on smaller updates/upserts that target different attributes or
 documents, divergent paths of your state tree, and using some of the sentinel
 values we can achieve some level of consistency, where conflicting unordered
-concurrent updates are mitigated.&lt;/p&gt;</content><category term="Programming"></category><category term="database"></category><category term="firebase"></category><category term="firestore"></category></entry><entry><title>Reclaiming space from a big table in Postgres</title><link href="http://hernantz.github.io/reclaiming-space-from-a-big-table-in-postgres.html" rel="alternate"></link><published>2021-05-08T00:00:00-03:00</published><updated>2021-05-08T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2021-05-08:/reclaiming-space-from-a-big-table-in-postgres.html</id><summary type="html">&lt;p&gt;After deleting columns or updating lots of rows.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Reclamed space from Postgres table" src="/images/Heroku-Postgres-Size.png" title="Reclamed space from Postgres table"&gt;&lt;/p&gt;
+concurrent updates are mitigated.&lt;/p&gt;</content><category term="Programming"/><category term="database"/><category term="firebase"/><category term="firestore"/></entry><entry><title>Reclaiming space from a big table in Postgres</title><link href="http://hernantz.github.io/reclaiming-space-from-a-big-table-in-postgres.html" rel="alternate"/><published>2021-05-08T00:00:00-03:00</published><updated>2021-05-08T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2021-05-08:/reclaiming-space-from-a-big-table-in-postgres.html</id><summary type="html">&lt;p&gt;After deleting columns or updating lots of rows.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Reclamed space from Postgres table" src="/images/Heroku-Postgres-Size.png" title="Reclamed space from Postgres table"&gt;&lt;/p&gt;
 &lt;p&gt;Shockingly to many, Postgres treats deletes and updates very similarly. Due to
 MVCC, tuples are marked and considered dead/obsolete when they are not reachable
 by any active transaction, yet they remain physically on disk taking space in
@@ -1046,7 +1048,7 @@ creating a shadow clone of it (which is also hot updated by triggers) and then
 performing a table rename swap, which happens very fast.&lt;/p&gt;
 &lt;p&gt;Usually these solutions should only be considered when a significant amount of
 space needs to be reclaimed from within the table, otherwise, autovacuum should
-be good enough.&lt;/p&gt;</content><category term="Programming"></category><category term="database"></category><category term="postgres"></category></entry><entry><title>No-SQL databases are glorified caches</title><link href="http://hernantz.github.io/no-sql-databases-are-glorified-caches.html" rel="alternate"></link><published>2021-04-26T00:00:00-03:00</published><updated>2021-04-26T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2021-04-26:/no-sql-databases-are-glorified-caches.html</id><summary type="html">&lt;p&gt;Thoughts on SQL vs No-SQL databases. When to use each.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Photo by Jan Antonin Kolar" src="images/jan-antonin-kolar-lRoX0shwjUQ-unsplash.jpg" title="Archives - Photo by Jan Antonin Kolar"&gt;&lt;/p&gt;
+be good enough.&lt;/p&gt;</content><category term="Programming"/><category term="database"/><category term="postgres"/></entry><entry><title>No-SQL databases are glorified caches</title><link href="http://hernantz.github.io/no-sql-databases-are-glorified-caches.html" rel="alternate"/><published>2021-04-26T00:00:00-03:00</published><updated>2021-04-26T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2021-04-26:/no-sql-databases-are-glorified-caches.html</id><summary type="html">&lt;p&gt;Thoughts on SQL vs No-SQL databases. When to use each.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Photo by Jan Antonin Kolar" src="images/jan-antonin-kolar-lRoX0shwjUQ-unsplash.jpg" title="Archives - Photo by Jan Antonin Kolar"&gt;&lt;/p&gt;
 &lt;p&gt;In any modern project, the question to SQL or not to SQL will pop up, so it's important to define the fundamentals of each paradigm.&lt;/p&gt;
 &lt;h2 id="flexibility"&gt;Flexibility&lt;a class="headerlink" href="#flexibility" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;At some stage in the life of your app, the API versioning will require that you maintain some degree of backwards compatibility in your schema, if your app is built on microservices or you have native clients and cannot guarantee that they will all be updated at the same time.&lt;/p&gt;
@@ -1070,7 +1072,7 @@ SQL databases often offer a great deal &lt;a href="https://postgresqlco.nf/tunin
 &lt;p&gt;On that note, and to be fair, many document databases offer other interesting features that include: real time reactivity, offline support, streaming/merging changes, direct access to clients to handle thousands of simultaneous connections, where there's no need to convert JSON to SQL back and forth through an HTTP API.&lt;/p&gt;
 &lt;p&gt;On the other hand, &lt;a href="https://blog.nelhage.com/post/some-opinionated-sql-takes/"&gt;SQL might be a poor API&lt;/a&gt;, but it is powerful, and along with ACID, strong consistency, transactional updates, and other features that are very important when dealing with money for example, not so much in a social network where transactions can be optimistic and consistency can be eventual.&lt;/p&gt;
 &lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Nowadays with JSON fields and de-normalization we can obtain many of the benefits of a document database, while keeping all the good parts a SQL database has to offer. I would even go as far as to claim that in all applications, you can't get away without a SQL system to run queries and aggregates. That being said, document databases might have a place in your stack, if you use them as a sort of scalable / filterable cache, while keeping a SQL source of truth around.&lt;/p&gt;</content><category term="Programming"></category><category term="database"></category><category term="postgres"></category><category term="sql"></category></entry><entry><title>De-normalize with Firestore sub-collections for fun and profit</title><link href="http://hernantz.github.io/de-normalize-with-firestore-sub-collections-for-fun-and-profit.html" rel="alternate"></link><published>2020-12-08T00:00:00-03:00</published><updated>2020-12-08T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2020-12-08:/de-normalize-with-firestore-sub-collections-for-fun-and-profit.html</id><summary type="html">&lt;p&gt;Can subcollections help denormalization be a not so terrible idea?&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://firebase.google.com/products/firestore" title="Firestore by Google"&gt;Firestore&lt;/a&gt; (by Firebase) is a No-SQL JSON database (as a service) created with the premise of scaling horizontally, allowing concurrent updates to documents and even offline support for client apps, something traditional SQL backends cannot do without a good amount of optimization or &lt;a href="https://www.youtube.com/watch?v=DEcwa68f-jY" title="dotJS 2019 - James Long - CRDTs for Mortals"&gt;thoughtful design&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Nowadays with JSON fields and de-normalization we can obtain many of the benefits of a document database, while keeping all the good parts a SQL database has to offer. I would even go as far as to claim that in all applications, you can't get away without a SQL system to run queries and aggregates. That being said, document databases might have a place in your stack, if you use them as a sort of scalable / filterable cache, while keeping a SQL source of truth around.&lt;/p&gt;</content><category term="Programming"/><category term="database"/><category term="postgres"/><category term="sql"/></entry><entry><title>De-normalize with Firestore sub-collections for fun and profit</title><link href="http://hernantz.github.io/de-normalize-with-firestore-sub-collections-for-fun-and-profit.html" rel="alternate"/><published>2020-12-08T00:00:00-03:00</published><updated>2020-12-08T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2020-12-08:/de-normalize-with-firestore-sub-collections-for-fun-and-profit.html</id><summary type="html">&lt;p&gt;Can subcollections help denormalization be a not so terrible idea?&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://firebase.google.com/products/firestore" title="Firestore by Google"&gt;Firestore&lt;/a&gt; (by Firebase) is a No-SQL JSON database (as a service) created with the premise of scaling horizontally, allowing concurrent updates to documents and even offline support for client apps, something traditional SQL backends cannot do without a good amount of optimization or &lt;a href="https://www.youtube.com/watch?v=DEcwa68f-jY" title="dotJS 2019 - James Long - CRDTs for Mortals"&gt;thoughtful design&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;In this new world of No-SQL, some things you learned for SQL must be unlearned. One of the most important difference is that de-normalizing data is ok.&lt;/p&gt;
 &lt;h2 id="when-is-denormalization-a-not-so-terrible-idea"&gt;When is denormalization a not so terrible idea?&lt;a class="headerlink" href="#when-is-denormalization-a-not-so-terrible-idea" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;It is a very common pattern to see that data is more often read that written. So optimizing for this case is a sensible thing to do.&lt;/p&gt;
@@ -1202,7 +1204,7 @@ SQL databases often offer a great deal &lt;a href="https://postgresqlco.nf/tunin
 &lt;span class="p"&gt;});&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;As you can see, the code is more maintainable and easier to reason about. We use the firestore triggers as routers and the subcollection as a queue of intents. Since denormalization happens in the backend, we know we can trust the end result.&lt;/p&gt;</content><category term="Programming"></category><category term="database"></category><category term="firebase"></category><category term="denormalization"></category><category term="firestore"></category></entry><entry><title>Configuration is an API, not an SDK</title><link href="http://hernantz.github.io/configuration-is-an-api-not-an-sdk.html" rel="alternate"></link><published>2020-06-27T00:00:00-03:00</published><updated>2020-06-27T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2020-06-27:/configuration-is-an-api-not-an-sdk.html</id><summary type="html">&lt;p&gt;A configuration architecture for the working dev.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Control room | photo by @patrykgradyscom at Unsplash" src="/images/control-room.jpg" title="Control room | photo by @patrykgradyscom at Unsplash"&gt;&lt;/p&gt;
+&lt;p&gt;As you can see, the code is more maintainable and easier to reason about. We use the firestore triggers as routers and the subcollection as a queue of intents. Since denormalization happens in the backend, we know we can trust the end result.&lt;/p&gt;</content><category term="Programming"/><category term="database"/><category term="firebase"/><category term="denormalization"/><category term="firestore"/></entry><entry><title>Configuration is an API, not an SDK</title><link href="http://hernantz.github.io/configuration-is-an-api-not-an-sdk.html" rel="alternate"/><published>2020-06-27T00:00:00-03:00</published><updated>2020-06-27T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2020-06-27:/configuration-is-an-api-not-an-sdk.html</id><summary type="html">&lt;p&gt;A configuration architecture for the working dev.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Control room | photo by @patrykgradyscom at Unsplash" src="/images/control-room.jpg" title="Control room | photo by @patrykgradyscom at Unsplash"&gt;&lt;/p&gt;
 &lt;p&gt;Configuration is every setting that needs to change based on the environment
 where the app is executed. It helps you &lt;em&gt;preset&lt;/em&gt; the state of your app, without
 having to change the code. This is why it is important to provide a clear
@@ -1342,12 +1344,12 @@ running in your desktop.&lt;/p&gt;
 &lt;p&gt;You can find out more documentation at &lt;a href="https://classyconf.readthedocs.io/en/latest/index.html"&gt;Read the
 Docs&lt;/a&gt; website, but here
 is a preview of how to use it.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;classyconf&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Configuration&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Value&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Environment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;IniFile&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;as_boolean&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;EnvPrefix&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;classyconf&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Configuration&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Value&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Environment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;IniFile&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;as_boolean&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;EnvPrefix&lt;/span&gt;
 
 
-&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;AppConfig&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Configuration&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;AppConfig&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Configuration&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
 
-    &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Meta&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;Meta&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;loaders&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
             &lt;span class="n"&gt;Environment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;keyfmt&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;EnvPrefix&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;MY_APP_&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt;
             &lt;span class="n"&gt;IniFile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;config.ini&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;section&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;myapp&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -1360,8 +1362,8 @@ is a preview of how to use it.&lt;/p&gt;
 &lt;p&gt;As you can see is very declarative. It uses the concept of loaders, which
 collect settings from different sources and merges them in the right order.&lt;/p&gt;
 &lt;p&gt;This class can be extended according to different environments or needs.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;TestConfig&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;AppConfig&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Meta&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;TestConfig&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;AppConfig&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;Meta&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;loaders&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;IniFile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;test_settings.ini&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;IniFile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;config.ini&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
@@ -1391,7 +1393,7 @@ collect settings from different sources and merges them in the right order.&lt;/
 configuration as an API, to follow best practices and conventions and the need
 to be flexible for different sources of configuration.&lt;/p&gt;
 &lt;p&gt;I've shamelessly introduced &lt;a href="https://github.com/hernantz/classyconf" title="Classyconf: configuration management for perfectionists with deadlines"&gt;classyconf&lt;/a&gt; as a way to address all this topics,
-but I'm sure that similar libraries can be found for other languages as well.&lt;/p&gt;</content><category term="Programming"></category><category term="python"></category><category term="best-practices"></category><category term="tools"></category><category term="configuration"></category><category term="architecture"></category></entry><entry><title>Deploying at 6am, a postmortem</title><link href="http://hernantz.github.io/deploying-at-6am-a-postmortem.html" rel="alternate"></link><published>2020-06-09T00:00:00-03:00</published><updated>2020-06-09T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2020-06-09:/deploying-at-6am-a-postmortem.html</id><summary type="html">&lt;p&gt;Another chapter in the IT nightmare stories.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Graph of number of active users" src="/images/demand.png" title="Graph of number of active users"&gt;&lt;/p&gt;
+but I'm sure that similar libraries can be found for other languages as well.&lt;/p&gt;</content><category term="Programming"/><category term="python"/><category term="best-practices"/><category term="tools"/><category term="configuration"/><category term="architecture"/></entry><entry><title>Deploying at 6am, a postmortem</title><link href="http://hernantz.github.io/deploying-at-6am-a-postmortem.html" rel="alternate"/><published>2020-06-09T00:00:00-03:00</published><updated>2020-06-09T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2020-06-09:/deploying-at-6am-a-postmortem.html</id><summary type="html">&lt;p&gt;Another chapter in the IT nightmare stories.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Graph of number of active users" src="/images/demand.png" title="Graph of number of active users"&gt;&lt;/p&gt;
 &lt;p&gt;Our webapp has a pretty predictable demand. We thought it is best to run deployments very early or at very late hours. If they require downtime that is.&lt;/p&gt;
 &lt;p&gt;This time we needed to delete a few tables that were growing too much and adding too little with features that no one uses (think of event logs etc) which we replaced with logs, duh!&lt;/p&gt;
 &lt;p&gt;So anyway at 6 am I started the deploy, once the app builds it runs the migrations, I put the site in maintenance mode, and the Django release command got stuck in running migrations.&lt;/p&gt;
@@ -1440,9 +1442,9 @@ but I'm sure that similar libraries can be found for other languages as well.&lt
 &lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;Immediately after, the lock was freed and the release finished successfully.&lt;/p&gt;</content><category term="Programming"></category><category term="devops"></category><category term="postgresql"></category></entry><entry><title>Default is not set</title><link href="http://hernantz.github.io/default-is-not-set.html" rel="alternate"></link><published>2020-04-23T00:00:00-03:00</published><updated>2020-04-23T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2020-04-23:/default-is-not-set.html</id><summary type="html">&lt;p&gt;How can you tell if an optional parameter was set or not?&lt;/p&gt;</summary><content type="html">&lt;p&gt;Usually for optional params we use &lt;code&gt;None&lt;/code&gt; as default in the function signature.
+&lt;p&gt;Immediately after, the lock was freed and the release finished successfully.&lt;/p&gt;</content><category term="Programming"/><category term="devops"/><category term="postgresql"/></entry><entry><title>Default is not set</title><link href="http://hernantz.github.io/default-is-not-set.html" rel="alternate"/><published>2020-04-23T00:00:00-03:00</published><updated>2020-04-23T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2020-04-23:/default-is-not-set.html</id><summary type="html">&lt;p&gt;How can you tell if an optional parameter was set or not?&lt;/p&gt;</summary><content type="html">&lt;p&gt;Usually for optional params we use &lt;code&gt;None&lt;/code&gt; as default in the function signature.
 If it is &lt;code&gt;None&lt;/code&gt; we assume the user did not specify one.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;param&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;param&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;param&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;param&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get_system_default&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     &lt;span class="c1"&gt;# ...&lt;/span&gt;
@@ -1462,7 +1464,7 @@ explicitely set by the caller?&lt;/p&gt;
 &lt;p&gt;One way would be make it a required parameter and expose the
 &lt;code&gt;get_system_default()&lt;/code&gt; function. We then change the signature of our &lt;code&gt;main()&lt;/code&gt;
 so that Python ensures param is always set.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;param&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;param&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="c1"&gt;# ...&lt;/span&gt;
 
 
@@ -1475,7 +1477,7 @@ this is style and is perfectly feasable. But if &lt;code&gt;main()&lt;/code&gt; 
 complicated things for our user.&lt;/p&gt;
 &lt;p&gt;Another trick is to use the &lt;code&gt;**kwargs&lt;/code&gt; dict and check if a param is there or
 not.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;param&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;param&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;param&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
     &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -1488,14 +1490,14 @@ not.&lt;/p&gt;
 helpers that analyse the code.&lt;/p&gt;
 &lt;p&gt;So my last trick kind of mitigates that by introducing a custom default value,
 the &lt;code&gt;NotSet&lt;/code&gt; type.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;NotSet&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;NotSet&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
     &lt;span class="k"&gt;pass&lt;/span&gt;
 
 
 &lt;span class="n"&gt;NOT_SET&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;NotSet&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 
 
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;param&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;NOT_SET&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;param&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;NOT_SET&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;param&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="n"&gt;NOT_SET&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;param&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get_system_default&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     &lt;span class="c1"&gt;# ...&lt;/span&gt;
@@ -1505,7 +1507,7 @@ the &lt;code&gt;NotSet&lt;/code&gt; type.&lt;/p&gt;
 &lt;code&gt;param&lt;/code&gt;. If it is &lt;code&gt;NOT_SET&lt;/code&gt;, then it is not set :)&lt;/p&gt;
 &lt;p&gt;I kind of like the first solution, but if you think that you will end up with
 lots of &lt;code&gt;get_system_default()&lt;/code&gt; calls everywhere in your code, at some point
-switching to this &lt;code&gt;NOT_SET&lt;/code&gt; approach would make sense.&lt;/p&gt;</content><category term="Programming"></category><category term="python"></category></entry><entry><title>Configuration-friendly apps</title><link href="http://hernantz.github.io/configuration-friendly-apps.html" rel="alternate"></link><published>2018-05-11T00:00:00-03:00</published><updated>2018-05-11T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2018-05-11:/configuration-friendly-apps.html</id><summary type="html">&lt;p&gt;Some guidelines for config management in general and Python apps in particular.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="configuration management" src="/images/configuration.png" title="Configuration management"&gt;&lt;/p&gt;
+switching to this &lt;code&gt;NOT_SET&lt;/code&gt; approach would make sense.&lt;/p&gt;</content><category term="Programming"/><category term="python"/></entry><entry><title>Configuration-friendly apps</title><link href="http://hernantz.github.io/configuration-friendly-apps.html" rel="alternate"/><published>2018-05-11T00:00:00-03:00</published><updated>2018-05-11T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2018-05-11:/configuration-friendly-apps.html</id><summary type="html">&lt;p&gt;Some guidelines for config management in general and Python apps in particular.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="configuration management" src="/images/configuration.png" title="Configuration management"&gt;&lt;/p&gt;
 &lt;p&gt;Configuration is just another API of your app. It allows us to preset or modify
 it's behavior based on where it is installed and how it will be executed,
 providing more flexibility to the users of such software.&lt;/p&gt;
@@ -1535,13 +1537,13 @@ configured. There is a difference between configuring a library vs configuring
 a project.&lt;/p&gt;
 &lt;p&gt;Lets see an example of how &lt;code&gt;sqlalchemy&lt;/code&gt;, a database toolkit library, provides
 us with the needed building blocks for us to use as we please.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sqlalchemy&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Column&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Integer&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sqlalchemy.ext.declarative&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;declarative_base&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sqlalchemy&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;create_engine&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;sqlalchemy&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Column&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Integer&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;sqlalchemy.ext.declarative&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;declarative_base&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;sqlalchemy&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;create_engine&lt;/span&gt;
 
 &lt;span class="n"&gt;Base&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;declarative_base&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 
-&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Person&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Base&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;Person&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Base&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;__tablename__&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;person&amp;#39;&lt;/span&gt;
     &lt;span class="nb"&gt;id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Column&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Integer&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;primary_key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Column&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;250&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;nullable&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -1610,11 +1612,11 @@ have a single &lt;code&gt;config.py&lt;/code&gt; file where settings are gathere
 processed. The app imports that config module and distributes it to all the
 different libraries it is using.&lt;/p&gt;
 &lt;p&gt;An example startup script for your app could be:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;argparse&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;configparser&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;app&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;collections&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ChainMap&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;argparse&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;os&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;configparser&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;app&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;collections&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ChainMap&lt;/span&gt;
 
 &lt;span class="n"&gt;defaults&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;debug&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
 
@@ -1644,7 +1646,7 @@ environment there are:  &lt;code&gt;dev_settings.py&lt;/code&gt;, &lt;code&gt;st
 
 
 &lt;span class="c1"&gt;# dev_settings.py&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;base_settings&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;base_settings&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
 &lt;span class="n"&gt;PLUGINS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;PLUGINS&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;baz&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
@@ -1765,24 +1767,24 @@ the program.&lt;/p&gt;
 &lt;p&gt;The &lt;a href="https://en.wikipedia.org/wiki/Signal_(IPC)#SIGHUP" title="Posix signals"&gt;SIGHUP signal&lt;/a&gt; is usually used to trigger a reload of configurations
 for daemons.&lt;/p&gt;
 &lt;p&gt;In Python, this can be achieved with the &lt;code&gt;signal&lt;/code&gt; module, as the following gist shows:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;signal&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;os&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;signal&lt;/span&gt;
 
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_config&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rel&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;config&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;get_config&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rel&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;config&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;rel&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;reload&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;config&lt;/span&gt;
 
 &lt;span class="n"&gt;running&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;
 
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;run&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;run&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
     &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="n"&gt;running&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="c1"&gt;# do something with get_config().foo&lt;/span&gt;
     &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="c1"&gt;# teardown&lt;/span&gt;
 
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;signal_handler&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;signum&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;frame&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;signal_handler&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;signum&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;frame&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="c1"&gt;# Use kill -15 &amp;lt;pid&amp;gt;&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;signum&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;signal&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SIGTERM&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="k"&gt;global&lt;/span&gt; &lt;span class="n"&gt;running&lt;/span&gt;
@@ -1822,9 +1824,9 @@ to pick it up.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://github.com/osantana/prettyconf" title="Prettyconf"&gt;Prettyconf&lt;/a&gt; is a framework agnostic python library created to make easy
 the separation of configuration and code. It lets you use the principles we
 discribed about configuration-discovery.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;argparse&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;prettyconf&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Configuration&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;prettyconf.loaders&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;CommandLine&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Environment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;IniFile&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;argparse&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;prettyconf&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Configuration&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;prettyconf.loaders&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;CommandLine&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Environment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;IniFile&lt;/span&gt;
 
 
 &lt;span class="n"&gt;parser&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;argparse&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ArgumentParser&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -1909,7 +1911,7 @@ like &lt;a href="https://www.docker.com/" title="Docker"&gt;docker&lt;/a&gt; or 
   extending functionality.&amp;#160;&lt;a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 5 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</content><category term="Programming"></category><category term="python"></category><category term="best-practices"></category><category term="configuration"></category><category term="architecture"></category><category term="tools"></category></entry><entry><title>Calendaring events with Python</title><link href="http://hernantz.github.io/calendaring-events-with-python.html" rel="alternate"></link><published>2017-04-13T00:00:00-03:00</published><updated>2017-04-13T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2017-04-13:/calendaring-events-with-python.html</id><summary type="html">&lt;p&gt;Some gotchas you'll find when scheduling the next world's doomsday.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Aztec sun stone" src="/images/aztec-calendar.png" title="Aztec sun stone"&gt;&lt;/p&gt;
+&lt;/div&gt;</content><category term="Programming"/><category term="python"/><category term="best-practices"/><category term="configuration"/><category term="architecture"/><category term="tools"/></entry><entry><title>Calendaring events with Python</title><link href="http://hernantz.github.io/calendaring-events-with-python.html" rel="alternate"/><published>2017-04-13T00:00:00-03:00</published><updated>2017-04-13T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2017-04-13:/calendaring-events-with-python.html</id><summary type="html">&lt;p&gt;Some gotchas you'll find when scheduling the next world's doomsday.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Aztec sun stone" src="/images/aztec-calendar.png" title="Aztec sun stone"&gt;&lt;/p&gt;
 &lt;p&gt;2012 passed and the world did not end. Well, scheduling the next world's
 doomsday can be tricky, because working with dates is so. In this post I'll try
 to share some basic tips and gotchas I learned the hard way while building a
@@ -2132,7 +2134,7 @@ incorrect results. We need to normalize the user's date range to UTC:&lt;/p&gt;
 &lt;p&gt;The following piece of code shows exactly how to query today's entries for a
 user. See how &lt;code&gt;time.min&lt;/code&gt; and &lt;code&gt;time.max&lt;/code&gt; come in handy when calculating the
 start and end boundaries for a date:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;today_only&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;today_only&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
     &lt;span class="c1"&gt;# datetime.datetime.combine returns naive dates :(&lt;/span&gt;
     &lt;span class="n"&gt;local_now&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;user_tz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;normalize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utcnow&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tzinfo&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;utc&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
     &lt;span class="n"&gt;local_today_min&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;user_tz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;localize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;combine&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;local_now&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;min&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
@@ -2156,11 +2158,11 @@ to UTC's &lt;em&gt;now&lt;/em&gt;.&lt;/p&gt;
 &lt;span class="c1"&gt;# These convertions might not be needed depending on the storage engine&lt;/span&gt;
 &lt;span class="c1"&gt;# or frameworks you are using.&lt;/span&gt;
 
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;past&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;past&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
     &lt;span class="n"&gt;now&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utcnow&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tzinfo&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;utc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;events&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;=&lt;/span&gt;&lt;span class="n"&gt;now&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;future&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;future&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
     &lt;span class="n"&gt;now&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utcnow&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tzinfo&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;utc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;events&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;=&lt;/span&gt;&lt;span class="n"&gt;now&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -2277,7 +2279,7 @@ as standard time.&lt;/p&gt;
   interesting.&amp;#160;&lt;a class="footnote-backref" href="#fnref:9" title="Jump back to footnote 9 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</content><category term="Programming"></category><category term="python"></category><category term="timezones"></category></entry><entry><title>The Backbone events waltz</title><link href="http://hernantz.github.io/the-backbone-events-waltz.html" rel="alternate"></link><published>2016-05-04T00:00:00-03:00</published><updated>2016-05-04T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2016-05-04:/the-backbone-events-waltz.html</id><summary type="html">&lt;p&gt;Snippets that will show you that minimalist means versatile.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="The Dance of Death by Isaac Cruikshank" src="/images/dance-of-death.jpg" title="The Dance of Death by Isaac Cruikshank"&gt;&lt;/p&gt;
+&lt;/div&gt;</content><category term="Programming"/><category term="python"/><category term="timezones"/></entry><entry><title>The Backbone events waltz</title><link href="http://hernantz.github.io/the-backbone-events-waltz.html" rel="alternate"/><published>2016-05-04T00:00:00-03:00</published><updated>2016-05-04T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2016-05-04:/the-backbone-events-waltz.html</id><summary type="html">&lt;p&gt;Snippets that will show you that minimalist means versatile.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="The Dance of Death by Isaac Cruikshank" src="/images/dance-of-death.jpg" title="The Dance of Death by Isaac Cruikshank"&gt;&lt;/p&gt;
 &lt;p&gt;It is said that perfection is achieved not when there is nothing else to add,
 but when there is nothing else to be removed.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://backbonejs.org/"&gt;Backbone&lt;/a&gt; is a minimalist library that tries to bring some sanity for javascript
@@ -2506,7 +2508,7 @@ The view should be able to render the model in whatever that state might be.&lt;
 &lt;p&gt;As stated in the docs, philosophically, Backbone is an attempt to discover the minimal set of data-structuring (models and collections) and user interface (views and URLs) primitives that are generally useful when building web applications with JavaScript.&lt;/p&gt;
 &lt;p&gt;With backbone you are in charge of managing state. So we saw some examples of real-world apps and their requirements.&lt;/p&gt;
 &lt;p&gt;I think it succeeds in it's goals, and leaves the developer with a set of tools (instead of products) to be used as needed. But some best-practices and patterns need to evolve organically.&lt;/p&gt;
-&lt;p&gt;Maybe the next step from here is a set of new tools, like &lt;a href="https://marionettejs.com/"&gt;Marionette&lt;/a&gt; proposes?&lt;/p&gt;</content><category term="Programming"></category><category term="backbone"></category><category term="javascript"></category><category term="best-practices"></category></entry><entry><title>Django's signal to noise</title><link href="http://hernantz.github.io/djangos-signal-to-noise.html" rel="alternate"></link><published>2016-04-29T00:00:00-03:00</published><updated>2016-04-29T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2016-04-29:/djangos-signal-to-noise.html</id><summary type="html">&lt;p&gt;Keeping a balance between decoupled and maintainable code.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Contact (1997) scene" src="/images/signal-to-noise-ratio.png" title="Contact (1997)"&gt;&lt;/p&gt;
+&lt;p&gt;Maybe the next step from here is a set of new tools, like &lt;a href="https://marionettejs.com/"&gt;Marionette&lt;/a&gt; proposes?&lt;/p&gt;</content><category term="Programming"/><category term="backbone"/><category term="javascript"/><category term="best-practices"/></entry><entry><title>Django's signal to noise</title><link href="http://hernantz.github.io/djangos-signal-to-noise.html" rel="alternate"/><published>2016-04-29T00:00:00-03:00</published><updated>2016-04-29T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2016-04-29:/djangos-signal-to-noise.html</id><summary type="html">&lt;p&gt;Keeping a balance between decoupled and maintainable code.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Contact (1997) scene" src="/images/signal-to-noise-ratio.png" title="Contact (1997)"&gt;&lt;/p&gt;
 &lt;h2 id="noise"&gt;Noise&lt;a class="headerlink" href="#noise" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Signals allow decoupled applications get notified when actions occur elsewhere
 in the project. This decoupling can become unmaintainable if not enough care
@@ -2519,12 +2521,12 @@ Whenever a new user is created, we'll ensure that it gets it's own &lt;code&gt;R
 instance.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# somewhere inside cv/models.py&lt;/span&gt;
 
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.dispatch&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;receiver&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.core.signals&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;post_save&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;users.models&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;User&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;django.dispatch&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;receiver&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;django.core.signals&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;post_save&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;users.models&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;User&lt;/span&gt;
 
 &lt;span class="nd"&gt;@receiver&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;post_save&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sender&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;User&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;create_user_cv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sender&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;create_user_cv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sender&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;created&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="n"&gt;Resume&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;objects&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_or_create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;user&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;instance&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -2534,13 +2536,13 @@ user is saved, like syncing user info with a 3rd party jobs board site for
 example, we could accomplish that with another handler:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# somewhere inside users/models.py&lt;/span&gt;
 
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.dispatch&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;receiver&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.core.signals&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;post_save&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.forms&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;model_to_dict&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;users.models&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;User&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;django.dispatch&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;receiver&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;django.core.signals&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;post_save&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;django.forms&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;model_to_dict&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;users.models&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;User&lt;/span&gt;
 
 &lt;span class="nd"&gt;@receiver&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;post_save&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sender&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;User&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;sync_jobsboard_with_users&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sender&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;sync_jobsboard_with_users&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sender&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;instance&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="n"&gt;resume_data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;model_to_dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;user&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;resume&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="n"&gt;sync_with_jobsboard&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;user_data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;resume_data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -2556,10 +2558,10 @@ not immediately clear&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;The following snippet shows how to put everything in one place, gaining us some
 maintainability, but still allowing us differentiate recently created instances,
 &lt;code&gt;pre_save&lt;/code&gt; and &lt;code&gt;post_save&lt;/code&gt; code:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;User&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;User&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="c1"&gt;# ...&lt;/span&gt;
 
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;save&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;save&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="c1"&gt;# pre save code&lt;/span&gt;
 
         &lt;span class="n"&gt;created&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pk&lt;/span&gt;
@@ -2587,14 +2589,14 @@ to hook in there our custom code.&lt;/p&gt;
 &lt;p&gt;Truth be told, signals have broader applications that cannot be replaced by
 extending a single method.&lt;/p&gt;
 &lt;p&gt;For example, when you have to track changes in &lt;code&gt;ManyToManyField&lt;/code&gt; fields&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Question&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;Question&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;favorited&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ManyToManyField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;User&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Here we cannot use the &lt;code&gt;save()&lt;/code&gt; because m2m instances are added or deleted
 through intermediate tables which are managed by Django. But we can make use of
 the &lt;code&gt;m2m_changed&lt;/code&gt; signals for that: &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;handle_fav_notifications&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sender&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;instance&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;action&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;handle_fav_notifications&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sender&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;instance&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;action&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Send an email to the author of a question whenever it gets fav&amp;#39;ed&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;action&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;post_add&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;instance&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;notify_new_favorite&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -2605,30 +2607,30 @@ the &lt;code&gt;m2m_changed&lt;/code&gt; signals for that: &lt;/p&gt;
 
 &lt;p&gt;In case we needed to track multiple m2m relations, we can do all that in a
 single handler:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;FavableMixin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;FavableMixin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;favorited&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;M2MField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;User&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;related_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;favorite_&lt;/span&gt;&lt;span class="si"&gt;%(class)s&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-    &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Meta&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;Meta&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;abstract&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;
 
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;notify_new_favorite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;notify_new_favorite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="k"&gt;pass&lt;/span&gt;
 
 
-&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Question&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;FavableMixin&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;Question&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;FavableMixin&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="k"&gt;pass&lt;/span&gt;
 
 
-&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Answer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;FavableMixin&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;Answer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;FavableMixin&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="k"&gt;pass&lt;/span&gt;
 
 
-&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Comment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;FavableMixin&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;Comment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;FavableMixin&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="k"&gt;pass&lt;/span&gt;
 
 
 &lt;span class="nd"&gt;@receiver&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m2m_changed&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dispatch_uid&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;m2m_fav_notifications&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;handle_fav_notifications&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sender&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;instance&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;action&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;handle_fav_notifications&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sender&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;instance&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;action&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;issubclass&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;instance&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;_meta&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;FavableMixin&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;action&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;post_add&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;instance&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;notify_new_favorite&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -2636,10 +2638,10 @@ single handler:&lt;/p&gt;
 &lt;p&gt;Signals can also become handy when trying to &lt;strong&gt;react to code you do not own&lt;/strong&gt;.
 This other example shows how we can hook some custom code into the &lt;code&gt;auth&lt;/code&gt; third
 party app, without having to create a new login view:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.contrib.auth.signals&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;user_login_failed&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;django.contrib.auth.signals&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;user_login_failed&lt;/span&gt;
 
 
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;help_user_with_login_link&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sender&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;credentials&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;help_user_with_login_link&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sender&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;credentials&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Let&amp;#39;s help our forgetful users login, and email them a login link.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;update_and_get_failure_logins&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;credentials&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;MAX_LOGIN_ATTEMPTS&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;send_login_link&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;credentials&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;email&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -2664,7 +2666,7 @@ like a good idea&lt;/strong&gt;.&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Tiene que hacer un count, no se puede crear una instancia en active
-Testing becomes obscure&lt;/p&gt;</content><category term="Programming"></category><category term="django"></category><category term="python"></category><category term="best-practices"></category></entry><entry><title>The sorry state of jQuery plugins</title><link href="http://hernantz.github.io/the-sorry-state-of-jquery-plugins.html" rel="alternate"></link><published>2016-03-31T00:00:00-03:00</published><updated>2016-03-31T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2016-03-31:/the-sorry-state-of-jquery-plugins.html</id><summary type="html">&lt;p&gt;Customization is not enough, some plugins simply do too much.&lt;/p&gt;</summary><content type="html">&lt;p&gt;When adding jQuery widgets to enhance your web app, you'll find &lt;strong&gt;two possible
+Testing becomes obscure&lt;/p&gt;</content><category term="Programming"/><category term="django"/><category term="python"/><category term="best-practices"/></entry><entry><title>The sorry state of jQuery plugins</title><link href="http://hernantz.github.io/the-sorry-state-of-jquery-plugins.html" rel="alternate"/><published>2016-03-31T00:00:00-03:00</published><updated>2016-03-31T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2016-03-31:/the-sorry-state-of-jquery-plugins.html</id><summary type="html">&lt;p&gt;Customization is not enough, some plugins simply do too much.&lt;/p&gt;</summary><content type="html">&lt;p&gt;When adding jQuery widgets to enhance your web app, you'll find &lt;strong&gt;two possible
 approaches&lt;/strong&gt; in their implementation: On one the plugin does everything for
 you (and by &lt;em&gt;everything&lt;/em&gt; I simply mean &lt;em&gt;too much&lt;/em&gt;), on the other, the plugin
 does the minimum. But of course there is a wide range in between.&lt;/p&gt;
@@ -2777,7 +2779,7 @@ or some basic functionality. But it's clear that pure libraries tend to
 outperform ready-made plugins in terms of flexibility.&lt;/p&gt;
 &lt;p&gt;If only plugins allowed a &lt;strong&gt;clear separation of UI and logic&lt;/strong&gt;, and that logic
 be easily extendable, then you would be able seamlessly integrate it with the
-rest of your frameworks.&lt;/p&gt;</content><category term="Programming"></category><category term="backbone"></category><category term="javascript"></category><category term="bootstrap"></category><category term="jquery"></category></entry><entry><title>The branch is dead, short live the branch!</title><link href="http://hernantz.github.io/the-branch-is-dead-short-live-the-branch.html" rel="alternate"></link><published>2015-08-28T00:00:00-03:00</published><updated>2015-08-28T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2015-08-28:/the-branch-is-dead-short-live-the-branch.html</id><summary type="html">&lt;p&gt;Implement big changesets little by little. Don't let Theseus' ship sink!&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;em&gt;tl;dr&lt;/em&gt;: When implementing big changesets, maintaining and merging long-lived
+rest of your frameworks.&lt;/p&gt;</content><category term="Programming"/><category term="backbone"/><category term="javascript"/><category term="bootstrap"/><category term="jquery"/></entry><entry><title>The branch is dead, short live the branch!</title><link href="http://hernantz.github.io/the-branch-is-dead-short-live-the-branch.html" rel="alternate"/><published>2015-08-28T00:00:00-03:00</published><updated>2015-08-28T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2015-08-28:/the-branch-is-dead-short-live-the-branch.html</id><summary type="html">&lt;p&gt;Implement big changesets little by little. Don't let Theseus' ship sink!&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;em&gt;tl;dr&lt;/em&gt;: When implementing big changesets, maintaining and merging long-lived
 branches is hard. Use short-lived branches instead, and merge them ASAP.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="The ship of Theseus" src="/images/ship.jpg"&gt;&lt;/p&gt;
 &lt;h2 id="the-theseus-paradox"&gt;The Theseus paradox&lt;a class="headerlink" href="#the-theseus-paradox" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
@@ -2896,7 +2898,7 @@ developer use the alias for the new code and at last, when all the codebase is
 using the alias, rename the original class.&lt;/p&gt;
 &lt;p&gt;Finally, you could try &lt;strong&gt;feature flags or compile time flags&lt;/strong&gt;, to &lt;a href="http://blog.travis-ci.com/2014-03-04-use-feature-flags-to-ship-changes-with-confidence/" title="Using Feature Flags to Ship Changes with Confidence"&gt;enable or
 disable certain parts&lt;/a&gt; of the system depending on some conditions, but
-keeping all the parts integrated in the same codebase.&lt;/p&gt;</content><category term="Programming"></category><category term="ideas"></category><category term="agile"></category><category term="git"></category></entry><entry><title>Mock yourself, not your tests</title><link href="http://hernantz.github.io/mock-yourself-not-your-tests.html" rel="alternate"></link><published>2015-07-27T00:00:00-03:00</published><updated>2015-07-27T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2015-07-27:/mock-yourself-not-your-tests.html</id><summary type="html">&lt;p&gt;Every mock is a smell, avoid them as much as you can.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;em&gt;tl;dr&lt;/em&gt;: While sometimes mocks are needed, they should not be the first tool 
+keeping all the parts integrated in the same codebase.&lt;/p&gt;</content><category term="Programming"/><category term="ideas"/><category term="agile"/><category term="git"/></entry><entry><title>Mock yourself, not your tests</title><link href="http://hernantz.github.io/mock-yourself-not-your-tests.html" rel="alternate"/><published>2015-07-27T00:00:00-03:00</published><updated>2015-07-27T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2015-07-27:/mock-yourself-not-your-tests.html</id><summary type="html">&lt;p&gt;Every mock is a smell, avoid them as much as you can.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;em&gt;tl;dr&lt;/em&gt;: While sometimes mocks are needed, they should not be the first tool 
 you use to write tests. It is a pity to be mocking your code when you could
 be writing meaningful tests at &lt;em&gt;almost&lt;/em&gt; the same cost.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="stower-titanic" src="/images/mock-yourself-not-your-tests.jpg" title="Der Untergang der Titanic by Willy Stöwer"&gt;&lt;/p&gt;
@@ -2918,11 +2920,11 @@ one piece of code, and thus, avoiding having to test things that (hopefully)
 are already tested.&lt;/p&gt;
 &lt;h3 id="testing-with-mocks"&gt;Testing with mocks&lt;a class="headerlink" href="#testing-with-mocks" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Let's see some example code:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;invoice_id&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;credit_card&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;invoice_id&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;credit_card&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="c1"&gt;# more code here&lt;/span&gt;
 
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;process&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;process&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="n"&gt;amount&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;calculate_amount&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
         &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;credit_card&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;has_credit&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
             &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;credit_card&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;withdraw&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;amount&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -2935,15 +2937,15 @@ mock all its collaborators, so that we test the codepaths involved, and
 only caring that the function calls the collaborators, nothing more. We do this, 
 because we are assuming that all the collaborators work and have their own unit 
 tests.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;mymodule&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Payment&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;mock&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Mock&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;unittest&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;mymodule&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Payment&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;mock&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Mock&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;unittest&lt;/span&gt;
 
 
-&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;PaymentTestCase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unittest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;PaymentTestCase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unittest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
 
     &lt;span class="nd"&gt;@mock&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;patch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;object&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;calculate_amount&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_process_cc_with_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;calculate_amount_mock&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;test_process_cc_with_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;calculate_amount_mock&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="n"&gt;cc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Mock&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
         &lt;span class="n"&gt;calculate_amount_mock&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;return_value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;
         &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;has_credit&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;return_value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;
@@ -2952,7 +2954,7 @@ tests.&lt;/p&gt;
         &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;withdraw&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;assert_called_with&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
     &lt;span class="nd"&gt;@mock&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;patch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;object&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;calculate_amount&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_process_cc_without_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;calculate_amount_mock&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;test_process_cc_without_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;calculate_amount_mock&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="n"&gt;cc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Mock&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
         &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;has_credit&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;return_value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;
         &lt;span class="n"&gt;payment&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -2986,11 +2988,11 @@ method doesn't exist anymore, like:&lt;/p&gt;
 &lt;p&gt;Another drawback I wanted to point out is that mocks tend to be too permissive, in 
 the sense that they swallow errors that should occur because of a change in the 
 API of the mocked object.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;CreditCard&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;CreditCard&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
     &lt;span class="c1"&gt;# ...&lt;/span&gt;
 
     &lt;span class="c1"&gt;# the old signature was: withdraw(self, amount)&lt;/span&gt;
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;withdraw&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;amount&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;currency&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;withdraw&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;amount&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;currency&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="c1"&gt;# ...&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
@@ -3003,19 +3005,19 @@ would still have to go change every test that assumed that this method worked an
 did not fail.&lt;/p&gt;
 &lt;p&gt;Yes, I'm aware of the &lt;code&gt;autospec=True&lt;/code&gt; param, that would restrict the mock to
 just follow the object's api, making our tests a little bit less permissive.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;mymodule&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;CreditCard&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;mock&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Mock&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;create_autospec&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;unittest&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;mymodule&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;CreditCard&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;mock&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Mock&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;create_autospec&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;unittest&lt;/span&gt;
 
 
 &lt;span class="c1"&gt;# create a mock that mimics the real CreditCard object&lt;/span&gt;
 &lt;span class="n"&gt;CreditCardMock&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;create_autospec&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;CreditCard&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;spec_set&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
 
-&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;PaymentTestCase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unittest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;PaymentTestCase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unittest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
 
     &lt;span class="nd"&gt;@mock&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;patch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;object&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;calculate_amount&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;autospec&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_process_cc_with_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;calculate_amount_mock&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;test_process_cc_with_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;calculate_amount_mock&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="n"&gt;cc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;CreditCardMock&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
         &lt;span class="n"&gt;calculate_amount_mock&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;return_value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;
         &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;has_credit&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;return_value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;
@@ -3024,7 +3026,7 @@ just follow the object's api, making our tests a little bit less permissive.&lt;
         &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;withdraw&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;assert_called_with&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
     &lt;span class="nd"&gt;@mock&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;patch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;object&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;calculate_amount&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;autospec&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_process_cc_without_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;calculate_amount_mock&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;test_process_cc_without_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;calculate_amount_mock&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="n"&gt;cc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;CreditCardMock&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
         &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;has_credit&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;return_value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;
         &lt;span class="n"&gt;payment&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -3034,18 +3036,18 @@ just follow the object's api, making our tests a little bit less permissive.&lt;
 
 &lt;p&gt;Or we could have gone a little bit further, and inject a double to our
 &lt;code&gt;process()&lt;/code&gt; function, for example:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;FakeCreditCard&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;FakeCreditCard&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
 &lt;span class="sd"&gt;    Replace our CreditCard with a double to avoid hitting the db or&lt;/span&gt;
 &lt;span class="sd"&gt;    3rd party services (if any).&lt;/span&gt;
 &lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;amount&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;amount&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;amount&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;amount&lt;/span&gt;
 
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;has_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;has_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;amount&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
 
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;withdraw&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;amount&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;withdraw&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;amount&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;amount&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;amount&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;amount&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
@@ -3054,21 +3056,21 @@ this double by hand, every time you real object is updated.&lt;/p&gt;
 &lt;p&gt;Let's try a completely different approach and see if we can do any better.&lt;/p&gt;
 &lt;h3 id="testing-without-mocks"&gt;Testing without mocks&lt;a class="headerlink" href="#testing-without-mocks" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Now, how would I test this, without mocks?&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;mymodule&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Payment&lt;/span&gt; 
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;myfactories&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;CreditCardFactory&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;InvoiceFactory&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;unittest&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;mymodule&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Payment&lt;/span&gt; 
+&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;myfactories&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;CreditCardFactory&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;InvoiceFactory&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;unittest&lt;/span&gt;
 
 
-&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;PaymentTestCase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unittest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;PaymentTestCase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unittest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
 
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_process_cc_with_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;test_process_cc_with_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="n"&gt;InvoiceFactory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cost&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
         &lt;span class="n"&gt;cc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;CreditCardFactory&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;balance&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
         &lt;span class="n"&gt;payment&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
         &lt;span class="n"&gt;payment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
         &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;assertEqual&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;balance&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_process_cc_without_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;test_process_cc_without_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="n"&gt;InvoiceFactory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cost&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
         &lt;span class="n"&gt;cc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;CreditCardFactory&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;balance&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
         &lt;span class="n"&gt;payment&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -3112,15 +3114,15 @@ successfully and write better tests. These mocks are: &lt;/p&gt;
 &lt;p&gt;Django gives us an in-memory mailbox that captures all outgoing emails. What's 
 interesting is that it sets up this dummy double  &lt;strong&gt;by default&lt;/strong&gt; when you 
 inherit from &lt;code&gt;TestCase&lt;/code&gt;, so writing these kind of tests becomes really easy.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;mymodule&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Payment&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;mymodule&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Payment&lt;/span&gt;
 &lt;span class="c1"&gt;# ...&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.core&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;mail&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.test&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;TestCase&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;django.core&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;mail&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;django.test&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;TestCase&lt;/span&gt;
 
 
-&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;PaymentTestCase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;PaymentTestCase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
 
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_process_cc_with_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;test_process_cc_with_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="c1"&gt;# this factory will create an Invoice and a User associated to &lt;/span&gt;
         &lt;span class="c1"&gt;# it, with the specified email&lt;/span&gt;
         &lt;span class="n"&gt;InvoiceFactory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cost&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;user__email&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;foo@bar.com&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -3147,19 +3149,19 @@ and run it locally, or all these together. Doing live testing is not really an
 option. But if you use something like &lt;a href="https://github.com/kevin1024/vcrpy"&gt;vrc.py&lt;/a&gt;, then you profit from testing
 against real requests/responses that are recorded, so that next time you run the
 test suite it runs under safe and repeatable conditions, without hitting the net.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;mymodule&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Payment&lt;/span&gt; 
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;mymodule&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Payment&lt;/span&gt; 
 &lt;span class="c1"&gt;# ...&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;vcr&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;vcr&lt;/span&gt;
 
 
-&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;PaymentTestCase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unittest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;PaymentTestCase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unittest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
 
     &lt;span class="nd"&gt;@vcr&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;use_cassette&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;stripe_responses/cc_with_credit.yaml&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_process_cc_with_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;test_process_cc_with_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="c1"&gt;# ... more code&lt;/span&gt;
 
     &lt;span class="nd"&gt;@vcr&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;use_cassette&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;stripe_responses/cc_without_credit.yaml&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_process_cc_without_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;test_process_cc_without_credit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="c1"&gt;# ... more code &lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
@@ -3168,11 +3170,11 @@ recorded responses, and your test will do all the work for you, updating the
 test cases with the new responses.
 Should you need more control over a certain response that is not easy to 
 reproduce, (like a 500 error response), you can achieve that with &lt;a href="https://github.com/gabrielfalcao/HTTPretty"&gt;httpretty&lt;/a&gt;.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;httpretty&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;httpretty&lt;/span&gt;
 
-&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;PaymentTestCase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unittest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;PaymentTestCase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unittest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="nd"&gt;@httpretty&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;activate&lt;/span&gt;
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_process_handles_failure_from_stripe&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;test_process_handles_failure_from_stripe&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
         &lt;span class="n"&gt;httpretty&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;register_uri&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;httpretty&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GET&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;https://api.stripe.com&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
                                &lt;span class="n"&gt;body&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;{&amp;quot;success&amp;quot;: false}&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;500&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
                                &lt;span class="n"&gt;content_type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;text/json&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -3186,11 +3188,11 @@ they can be used no matter which network library you are using.&lt;/p&gt;
 &lt;h3 id="example-3-a-precise-mock"&gt;Example 3: A precise mock&lt;a class="headerlink" href="#example-3-a-precise-mock" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;When you need to test code that deals with dates, mocks will be very handy
 too. Let's see an example.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;datetime&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;
 
-&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
 
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;process&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;process&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="c1"&gt;# ... more code&lt;/span&gt;
         &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;date&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;now&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
         &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;save&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -3201,8 +3203,8 @@ are trying to test, and, depending on how precise the dates you are handling
 are, &lt;strong&gt;your tests could fail from time to time&lt;/strong&gt;, ie: some tests might fail
 when you run them at midnight, or fail because of a difference of one
 millisecond.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;PaymentTestCase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unittest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_payment_date_is_saved&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;PaymentTestCase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unittest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;test_payment_date_is_saved&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="c1"&gt;# ... more code&lt;/span&gt;
         &lt;span class="n"&gt;payment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
         &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;assertEqual&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;payment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;date&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;now&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;  &lt;span class="c1"&gt;# this won&amp;#39;t work&lt;/span&gt;
@@ -3210,10 +3212,10 @@ millisecond.&lt;/p&gt;
 
 &lt;p&gt;Now, when we test using the &lt;a href="https://github.com/spulec/freezegun"&gt;freezegun&lt;/a&gt; module, we can ditch the &lt;em&gt;mock
 everything&lt;/em&gt; strategy.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;freezegun&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;freeze_time&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;freezegun&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;freeze_time&lt;/span&gt;
 
-&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;PaymentTestCase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unittest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_payment_date_is_saved&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;PaymentTestCase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unittest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;test_payment_date_is_saved&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="c1"&gt;# ... more code&lt;/span&gt;
         &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;freeze_time&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;2012-01-01&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
             &lt;span class="n"&gt;payment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -3227,11 +3229,11 @@ datetime functions that are used to obtain the current time, and leaves
 everything else untouched. We made time behave deterministically using a nice
 declarative API, that doesn't get in our way. We can even calculate the payment
 date using other libraries.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;arrow&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;arrow&lt;/span&gt;
 
-&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;Payment&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
 
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;process&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;process&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="c1"&gt;# ... more code&lt;/span&gt;
         &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;date&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;arrow&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;now&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;  &lt;span class="c1"&gt;# Our test still passes :)&lt;/span&gt;
         &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;save&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -3265,7 +3267,7 @@ SSD.&lt;/p&gt;
 &lt;li&gt;In times of need, apply well maintained global mocks, the closest possible to 
   the danger zone.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Mock yourself not your tests :P&lt;/p&gt;</content><category term="Programming"></category><category term="testing"></category><category term="python"></category><category term="mocks"></category><category term="rants"></category></entry><entry><title>How to publish a pelican site on Github</title><link href="http://hernantz.github.io/how-to-publish-a-pelican-site-on-github.html" rel="alternate"></link><published>2014-05-18T00:00:00-03:00</published><updated>2014-05-18T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2014-05-18:/how-to-publish-a-pelican-site-on-github.html</id><summary type="html">&lt;p&gt;Step by step guide on how to publish a pelican website on Github.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Pelican a static site publishing tool" src="/images/pelican-a-static-site-publishing-tool-github.png"&gt;&lt;/p&gt;
+&lt;p&gt;Mock yourself not your tests :P&lt;/p&gt;</content><category term="Programming"/><category term="testing"/><category term="python"/><category term="mocks"/><category term="rants"/></entry><entry><title>How to publish a pelican site on Github</title><link href="http://hernantz.github.io/how-to-publish-a-pelican-site-on-github.html" rel="alternate"/><published>2014-05-18T00:00:00-03:00</published><updated>2014-05-18T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2014-05-18:/how-to-publish-a-pelican-site-on-github.html</id><summary type="html">&lt;p&gt;Step by step guide on how to publish a pelican website on Github.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Pelican a static site publishing tool" src="/images/pelican-a-static-site-publishing-tool-github.png"&gt;&lt;/p&gt;
 &lt;p&gt;This is a step by step guide on how to publish a pelican website on Github, and
 how not to get the site's codebase so tightly coupled to where it is deployed.
 If in the future we want to publish it somewhere else, there isn't much to be
@@ -3319,4 +3321,4 @@ Those commands will only take effect on your repo from step 1, because you are
 inside the output submodule. Once you push your new output content to your master
 branch of &lt;code&gt;username.github.io&lt;/code&gt;, Github will take some minutes to update your site.
 And that's it.&lt;/p&gt;
-&lt;p&gt;Happy blogging!&lt;/p&gt;</content><category term="Programming"></category><category term="pelican"></category><category term="git"></category><category term="python"></category></entry></feed>
+&lt;p&gt;Happy blogging!&lt;/p&gt;</content><category term="Programming"/><category term="pelican"/><category term="git"/><category term="python"/></entry></feed>

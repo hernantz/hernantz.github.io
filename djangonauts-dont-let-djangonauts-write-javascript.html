@@ -299,7 +299,7 @@ on a paginated list of results.</p>
 be used to render partial content instead without screwing up scroll positions.</p>
 <p>In Django land, <a href="https://github.com/adamchainz/django-htmx" title="Django htmx">django-htmx</a> provides some helpers that allow our views to
 render different content depending on the <code>request.htmx</code> flag.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">my_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">my_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">htmx</span><span class="p">:</span>
         <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;partial.html&quot;</span>
     <span class="k">else</span><span class="p">:</span>

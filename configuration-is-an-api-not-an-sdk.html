@@ -183,12 +183,12 @@ running in your desktop.</p>
 <p>You can find out more documentation at <a href="https://classyconf.readthedocs.io/en/latest/index.html">Read the
 Docs</a> website, but here
 is a preview of how to use it.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">classyconf</span> <span class="kn">import</span> <span class="n">Configuration</span><span class="p">,</span> <span class="n">Value</span><span class="p">,</span> <span class="n">Environment</span><span class="p">,</span> <span class="n">IniFile</span><span class="p">,</span> <span class="n">as_boolean</span><span class="p">,</span> <span class="n">EnvPrefix</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">classyconf</span><span class="w"> </span><span class="kn">import</span> <span class="n">Configuration</span><span class="p">,</span> <span class="n">Value</span><span class="p">,</span> <span class="n">Environment</span><span class="p">,</span> <span class="n">IniFile</span><span class="p">,</span> <span class="n">as_boolean</span><span class="p">,</span> <span class="n">EnvPrefix</span>
 
 
-<span class="k">class</span> <span class="nc">AppConfig</span><span class="p">(</span><span class="n">Configuration</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">AppConfig</span><span class="p">(</span><span class="n">Configuration</span><span class="p">):</span>
 
-    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
         <span class="n">loaders</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">Environment</span><span class="p">(</span><span class="n">keyfmt</span><span class="o">=</span><span class="n">EnvPrefix</span><span class="p">(</span><span class="s2">&quot;MY_APP_&quot;</span><span class="p">)),</span>
             <span class="n">IniFile</span><span class="p">(</span><span class="s2">&quot;config.ini&quot;</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="s2">&quot;myapp&quot;</span><span class="p">)</span>
@@ -201,8 +201,8 @@ is a preview of how to use it.</p>
 <p>As you can see is very declarative. It uses the concept of loaders, which
 collect settings from different sources and merges them in the right order.</p>
 <p>This class can be extended according to different environments or needs.</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">TestConfig</span><span class="p">(</span><span class="n">AppConfig</span><span class="p">):</span>
-    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">TestConfig</span><span class="p">(</span><span class="n">AppConfig</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
         <span class="n">loaders</span> <span class="o">=</span> <span class="p">[</span><span class="n">IniFile</span><span class="p">(</span><span class="s2">&quot;test_settings.ini&quot;</span><span class="p">),</span> <span class="n">IniFile</span><span class="p">(</span><span class="s2">&quot;config.ini&quot;</span><span class="p">)]</span>
 </code></pre></div>
 

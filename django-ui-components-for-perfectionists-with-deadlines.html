@@ -52,7 +52,7 @@ opinionated on this matter. Let's see what this means and what can we do about
 it.</p>
 <p>The contents of this talk were presented at <a href="https://2024.djangocon.us/talks/reusable-django-template-components-for-perfectionists-with-deadlines/" title="Django UI Components for Perfectionists with Deadlines">DjangoCon US 2024</a> and can be
 watched online on <a href="https://www.youtube.com/watch?v=VQV-nkWTEiU" title=" Django UI Components for Perfectionists with Deadlines with Hernan Lozano">Youtube</a>.</p>
-<h2 id="standing-of-the-shoulders-of-giants">Standing of the shoulders of giants<a class="headerlink" href="#standing-of-the-shoulders-of-giants" title="Permanent link">&para;</a></h2>
+<h2 id="standing-on-the-shoulders-of-giants">Standing on the shoulders of giants<a class="headerlink" href="#standing-on-the-shoulders-of-giants" title="Permanent link">&para;</a></h2>
 <p>I don't remember where I heard this, but <em>Any fool can build a bridge</em><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> is phrase
 that stuck with me. It meant that anyone can just throw money, people, energy,
 take their time and eventually something will be built. It takes an engineer to
@@ -383,19 +383,19 @@ competing in this market.</p>
 approach, similar to how we work with forms or views, with many methods you can
 override and a registration mechanism (like how we override django admin views).</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># In a file called [project root]/components/product/product.py</span>
-<span class="kn">from</span> <span class="nn">django_components</span> <span class="kn">import</span> <span class="n">Component</span><span class="p">,</span> <span class="n">register</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django_components</span><span class="w"> </span><span class="kn">import</span> <span class="n">Component</span><span class="p">,</span> <span class="n">register</span>
 
 <span class="nd">@register</span><span class="p">(</span><span class="s2">&quot;product&quot;</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">ProductComponent</span><span class="p">(</span><span class="n">Component</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ProductComponent</span><span class="p">(</span><span class="n">Component</span><span class="p">):</span>
     <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;product.html&quot;</span>
 
-    <span class="k">def</span> <span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">description</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">description</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">{</span>
             <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">title</span><span class="o">.</span><span class="n">title</span><span class="p">(),</span>  <span class="c1"># titlelize!</span>
             <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">description</span>
         <span class="p">}</span>
 
-    <span class="k">class</span> <span class="nc">Media</span><span class="p">:</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Media</span><span class="p">:</span>
         <span class="n">css</span> <span class="o">=</span> <span class="s2">&quot;style.css&quot;</span>
         <span class="n">js</span> <span class="o">=</span> <span class="s2">&quot;script.js&quot;</span>
 </code></pre></div>
@@ -446,7 +446,7 @@ solve these problems without too much overhead.</p>
 <h2 id="one-more-thing">One more thing<a class="headerlink" href="#one-more-thing" title="Permanent link">&para;</a></h2>
 <p>A very recent project was released called fasthml and it copies an idea other
 present in other frameworks for solving the UI <a href="https://about.fastht.ml/components" title="Python HTML components">composability problem</a>.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">fasthtml</span> <span class="kn">import</span> <span class="n">ft</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">fasthtml</span><span class="w"> </span><span class="kn">import</span> <span class="n">ft</span>
 
 <span class="n">ft</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span>
     <span class="s2">&quot;Choose an option&quot;</span><span class="p">,</span>

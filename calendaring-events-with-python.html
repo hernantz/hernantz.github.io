@@ -266,7 +266,7 @@ incorrect results. We need to normalize the user's date range to UTC:</p>
 <p>The following piece of code shows exactly how to query today's entries for a
 user. See how <code>time.min</code> and <code>time.max</code> come in handy when calculating the
 start and end boundaries for a date:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">today_only</span><span class="p">():</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">today_only</span><span class="p">():</span>
     <span class="c1"># datetime.datetime.combine returns naive dates :(</span>
     <span class="n">local_now</span> <span class="o">=</span> <span class="n">user_tz</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">tzinfo</span><span class="o">=</span><span class="n">utc</span><span class="p">))</span>
     <span class="n">local_today_min</span> <span class="o">=</span> <span class="n">user_tz</span><span class="o">.</span><span class="n">localize</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">local_now</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">min</span><span class="p">))</span>
@@ -290,11 +290,11 @@ to UTC's <em>now</em>.</p>
 <span class="c1"># These convertions might not be needed depending on the storage engine</span>
 <span class="c1"># or frameworks you are using.</span>
 
-<span class="k">def</span> <span class="nf">past</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">past</span><span class="p">():</span>
     <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">tzinfo</span><span class="o">=</span><span class="n">utc</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">events</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">end</span><span class="o">&lt;=</span><span class="n">now</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">future</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">future</span><span class="p">():</span>
     <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">tzinfo</span><span class="o">=</span><span class="n">utc</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">events</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">start</span><span class="o">&gt;=</span><span class="n">now</span><span class="p">)</span>
 </code></pre></div>

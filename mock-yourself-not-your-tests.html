@@ -65,11 +65,11 @@ one piece of code, and thus, avoiding having to test things that (hopefully)
 are already tested.</p>
 <h3 id="testing-with-mocks">Testing with mocks<a class="headerlink" href="#testing-with-mocks" title="Permanent link">&para;</a></h3>
 <p>Let's see some example code:</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Payment</span><span class="p">():</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">invoice_id</span><span class="p">,</span> <span class="n">credit_card</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Payment</span><span class="p">():</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">invoice_id</span><span class="p">,</span> <span class="n">credit_card</span><span class="p">):</span>
         <span class="c1"># more code here</span>
 
-    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">amount</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_amount</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">credit_card</span><span class="o">.</span><span class="n">has_credit</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">credit_card</span><span class="o">.</span><span class="n">withdraw</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span>
@@ -82,15 +82,15 @@ mock all its collaborators, so that we test the codepaths involved, and
 only caring that the function calls the collaborators, nothing more. We do this, 
 because we are assuming that all the collaborators work and have their own unit 
 tests.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">mymodule</span> <span class="kn">import</span> <span class="n">Payment</span>
-<span class="kn">from</span> <span class="nn">mock</span> <span class="kn">import</span> <span class="n">Mock</span>
-<span class="kn">import</span> <span class="nn">unittest</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">mymodule</span><span class="w"> </span><span class="kn">import</span> <span class="n">Payment</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mock</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mock</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">unittest</span>
 
 
-<span class="k">class</span> <span class="nc">PaymentTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PaymentTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 
     <span class="nd">@mock</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">Payment</span><span class="p">,</span> <span class="s1">&#39;calculate_amount&#39;</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">test_process_cc_with_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calculate_amount_mock</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_process_cc_with_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calculate_amount_mock</span><span class="p">):</span>
         <span class="n">cc</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
         <span class="n">calculate_amount_mock</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="mi">100</span>
         <span class="n">cc</span><span class="o">.</span><span class="n">has_credit</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="kc">True</span>
@@ -99,7 +99,7 @@ tests.</p>
         <span class="n">cc</span><span class="o">.</span><span class="n">withdraw</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 
     <span class="nd">@mock</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">Payment</span><span class="p">,</span> <span class="s1">&#39;calculate_amount&#39;</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">test_process_cc_without_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calculate_amount_mock</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_process_cc_without_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calculate_amount_mock</span><span class="p">):</span>
         <span class="n">cc</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
         <span class="n">cc</span><span class="o">.</span><span class="n">has_credit</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="n">payment</span> <span class="o">=</span> <span class="n">Payment</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">cc</span><span class="p">)</span>
@@ -133,11 +133,11 @@ method doesn't exist anymore, like:</p>
 <p>Another drawback I wanted to point out is that mocks tend to be too permissive, in 
 the sense that they swallow errors that should occur because of a change in the 
 API of the mocked object.</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">CreditCard</span><span class="p">():</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">CreditCard</span><span class="p">():</span>
     <span class="c1"># ...</span>
 
     <span class="c1"># the old signature was: withdraw(self, amount)</span>
-    <span class="k">def</span> <span class="nf">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">,</span> <span class="n">currency</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">,</span> <span class="n">currency</span><span class="p">):</span>
         <span class="c1"># ...</span>
 </code></pre></div>
 
@@ -150,19 +150,19 @@ would still have to go change every test that assumed that this method worked an
 did not fail.</p>
 <p>Yes, I'm aware of the <code>autospec=True</code> param, that would restrict the mock to
 just follow the object's api, making our tests a little bit less permissive.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">mymodule</span> <span class="kn">import</span> <span class="n">Payment</span><span class="p">,</span> <span class="n">CreditCard</span>
-<span class="kn">from</span> <span class="nn">mock</span> <span class="kn">import</span> <span class="n">Mock</span><span class="p">,</span> <span class="n">create_autospec</span>
-<span class="kn">import</span> <span class="nn">unittest</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">mymodule</span><span class="w"> </span><span class="kn">import</span> <span class="n">Payment</span><span class="p">,</span> <span class="n">CreditCard</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mock</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mock</span><span class="p">,</span> <span class="n">create_autospec</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">unittest</span>
 
 
 <span class="c1"># create a mock that mimics the real CreditCard object</span>
 <span class="n">CreditCardMock</span> <span class="o">=</span> <span class="n">create_autospec</span><span class="p">(</span><span class="n">CreditCard</span><span class="p">,</span> <span class="n">spec_set</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">PaymentTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PaymentTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 
     <span class="nd">@mock</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">Payment</span><span class="p">,</span> <span class="s1">&#39;calculate_amount&#39;</span><span class="p">,</span> <span class="n">autospec</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">test_process_cc_with_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calculate_amount_mock</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_process_cc_with_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calculate_amount_mock</span><span class="p">):</span>
         <span class="n">cc</span> <span class="o">=</span> <span class="n">CreditCardMock</span><span class="p">()</span>
         <span class="n">calculate_amount_mock</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="mi">100</span>
         <span class="n">cc</span><span class="o">.</span><span class="n">has_credit</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="kc">True</span>
@@ -171,7 +171,7 @@ just follow the object's api, making our tests a little bit less permissive.</p>
         <span class="n">cc</span><span class="o">.</span><span class="n">withdraw</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 
     <span class="nd">@mock</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">Payment</span><span class="p">,</span> <span class="s1">&#39;calculate_amount&#39;</span><span class="p">,</span> <span class="n">autospec</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">test_process_cc_without_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calculate_amount_mock</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_process_cc_without_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calculate_amount_mock</span><span class="p">):</span>
         <span class="n">cc</span> <span class="o">=</span> <span class="n">CreditCardMock</span><span class="p">()</span>
         <span class="n">cc</span><span class="o">.</span><span class="n">has_credit</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="n">payment</span> <span class="o">=</span> <span class="n">Payment</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">cc</span><span class="p">)</span>
@@ -181,18 +181,18 @@ just follow the object's api, making our tests a little bit less permissive.</p>
 
 <p>Or we could have gone a little bit further, and inject a double to our
 <code>process()</code> function, for example:</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">FakeCreditCard</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">FakeCreditCard</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Replace our CreditCard with a double to avoid hitting the db or</span>
 <span class="sd">    3rd party services (if any).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">amount</span> <span class="o">=</span> <span class="n">amount</span>
 
-    <span class="k">def</span> <span class="nf">has_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">has_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">amount</span> <span class="o">&gt;</span> <span class="mi">0</span>
 
-    <span class="k">def</span> <span class="nf">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">amount</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">amount</span> <span class="o">-</span> <span class="n">amount</span>
 </code></pre></div>
 
@@ -201,21 +201,21 @@ this double by hand, every time you real object is updated.</p>
 <p>Let's try a completely different approach and see if we can do any better.</p>
 <h3 id="testing-without-mocks">Testing without mocks<a class="headerlink" href="#testing-without-mocks" title="Permanent link">&para;</a></h3>
 <p>Now, how would I test this, without mocks?</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">mymodule</span> <span class="kn">import</span> <span class="n">Payment</span> 
-<span class="kn">from</span> <span class="nn">myfactories</span> <span class="kn">import</span> <span class="n">CreditCardFactory</span><span class="p">,</span> <span class="n">InvoiceFactory</span>
-<span class="kn">import</span> <span class="nn">unittest</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">mymodule</span><span class="w"> </span><span class="kn">import</span> <span class="n">Payment</span> 
+<span class="kn">from</span><span class="w"> </span><span class="nn">myfactories</span><span class="w"> </span><span class="kn">import</span> <span class="n">CreditCardFactory</span><span class="p">,</span> <span class="n">InvoiceFactory</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">unittest</span>
 
 
-<span class="k">class</span> <span class="nc">PaymentTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PaymentTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="nf">test_process_cc_with_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_process_cc_with_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">InvoiceFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cost</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
         <span class="n">cc</span> <span class="o">=</span> <span class="n">CreditCardFactory</span><span class="p">(</span><span class="n">balance</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
         <span class="n">payment</span> <span class="o">=</span> <span class="n">Payment</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">cc</span><span class="p">)</span>
         <span class="n">payment</span><span class="o">.</span><span class="n">process</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">cc</span><span class="o">.</span><span class="n">balance</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">test_process_cc_without_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_process_cc_without_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">InvoiceFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cost</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
         <span class="n">cc</span> <span class="o">=</span> <span class="n">CreditCardFactory</span><span class="p">(</span><span class="n">balance</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="n">payment</span> <span class="o">=</span> <span class="n">Payment</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">cc</span><span class="p">)</span>
@@ -259,15 +259,15 @@ successfully and write better tests. These mocks are: </p>
 <p>Django gives us an in-memory mailbox that captures all outgoing emails. What's 
 interesting is that it sets up this dummy double  <strong>by default</strong> when you 
 inherit from <code>TestCase</code>, so writing these kind of tests becomes really easy.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">mymodule</span> <span class="kn">import</span> <span class="n">Payment</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">mymodule</span><span class="w"> </span><span class="kn">import</span> <span class="n">Payment</span>
 <span class="c1"># ...</span>
-<span class="kn">from</span> <span class="nn">django.core</span> <span class="kn">import</span> <span class="n">mail</span>
-<span class="kn">from</span> <span class="nn">django.test</span> <span class="kn">import</span> <span class="n">TestCase</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">mail</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.test</span><span class="w"> </span><span class="kn">import</span> <span class="n">TestCase</span>
 
 
-<span class="k">class</span> <span class="nc">PaymentTestCase</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PaymentTestCase</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="nf">test_process_cc_with_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_process_cc_with_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># this factory will create an Invoice and a User associated to </span>
         <span class="c1"># it, with the specified email</span>
         <span class="n">InvoiceFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cost</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">user__email</span><span class="o">=</span><span class="s1">&#39;foo@bar.com&#39;</span><span class="p">)</span>
@@ -294,19 +294,19 @@ and run it locally, or all these together. Doing live testing is not really an
 option. But if you use something like <a href="https://github.com/kevin1024/vcrpy">vrc.py</a>, then you profit from testing
 against real requests/responses that are recorded, so that next time you run the
 test suite it runs under safe and repeatable conditions, without hitting the net.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">mymodule</span> <span class="kn">import</span> <span class="n">Payment</span> 
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">mymodule</span><span class="w"> </span><span class="kn">import</span> <span class="n">Payment</span> 
 <span class="c1"># ...</span>
-<span class="kn">import</span> <span class="nn">vcr</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">vcr</span>
 
 
-<span class="k">class</span> <span class="nc">PaymentTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PaymentTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 
     <span class="nd">@vcr</span><span class="o">.</span><span class="n">use_cassette</span><span class="p">(</span><span class="s1">&#39;stripe_responses/cc_with_credit.yaml&#39;</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">test_process_cc_with_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_process_cc_with_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># ... more code</span>
 
     <span class="nd">@vcr</span><span class="o">.</span><span class="n">use_cassette</span><span class="p">(</span><span class="s1">&#39;stripe_responses/cc_without_credit.yaml&#39;</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">test_process_cc_without_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_process_cc_without_credit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># ... more code </span>
 </code></pre></div>
 
@@ -315,11 +315,11 @@ recorded responses, and your test will do all the work for you, updating the
 test cases with the new responses.
 Should you need more control over a certain response that is not easy to 
 reproduce, (like a 500 error response), you can achieve that with <a href="https://github.com/gabrielfalcao/HTTPretty">httpretty</a>.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">httpretty</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">httpretty</span>
 
-<span class="k">class</span> <span class="nc">PaymentTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PaymentTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
     <span class="nd">@httpretty</span><span class="o">.</span><span class="n">activate</span>
-    <span class="k">def</span> <span class="nf">test_process_handles_failure_from_stripe</span><span class="p">():</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_process_handles_failure_from_stripe</span><span class="p">():</span>
         <span class="n">httpretty</span><span class="o">.</span><span class="n">register_uri</span><span class="p">(</span><span class="n">httpretty</span><span class="o">.</span><span class="n">GET</span><span class="p">,</span> <span class="s1">&#39;https://api.stripe.com&#39;</span><span class="p">,</span>
                                <span class="n">body</span><span class="o">=</span><span class="s1">&#39;{&quot;success&quot;: false}&#39;</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
                                <span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;text/json&#39;</span><span class="p">)</span>
@@ -333,11 +333,11 @@ they can be used no matter which network library you are using.</p>
 <h3 id="example-3-a-precise-mock">Example 3: A precise mock<a class="headerlink" href="#example-3-a-precise-mock" title="Permanent link">&para;</a></h3>
 <p>When you need to test code that deals with dates, mocks will be very handy
 too. Let's see an example.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
 
-<span class="k">class</span> <span class="nc">Payment</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Payment</span><span class="p">:</span>
 
-    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># ... more code</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
@@ -348,8 +348,8 @@ are trying to test, and, depending on how precise the dates you are handling
 are, <strong>your tests could fail from time to time</strong>, ie: some tests might fail
 when you run them at midnight, or fail because of a difference of one
 millisecond.</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">PaymentTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">test_payment_date_is_saved</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">PaymentTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_payment_date_is_saved</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># ... more code</span>
         <span class="n">payment</span><span class="o">.</span><span class="n">process</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">payment</span><span class="o">.</span><span class="n">date</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">())</span>  <span class="c1"># this won&#39;t work</span>
@@ -357,10 +357,10 @@ millisecond.</p>
 
 <p>Now, when we test using the <a href="https://github.com/spulec/freezegun">freezegun</a> module, we can ditch the <em>mock
 everything</em> strategy.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">freezegun</span> <span class="kn">import</span> <span class="n">freeze_time</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">freezegun</span><span class="w"> </span><span class="kn">import</span> <span class="n">freeze_time</span>
 
-<span class="k">class</span> <span class="nc">PaymentTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">test_payment_date_is_saved</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PaymentTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_payment_date_is_saved</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># ... more code</span>
         <span class="k">with</span> <span class="n">freeze_time</span><span class="p">(</span><span class="s1">&#39;2012-01-01&#39;</span><span class="p">):</span>
             <span class="n">payment</span><span class="o">.</span><span class="n">process</span><span class="p">()</span>
@@ -374,11 +374,11 @@ datetime functions that are used to obtain the current time, and leaves
 everything else untouched. We made time behave deterministically using a nice
 declarative API, that doesn't get in our way. We can even calculate the payment
 date using other libraries.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">arrow</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">arrow</span>
 
-<span class="k">class</span> <span class="nc">Payment</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Payment</span><span class="p">:</span>
 
-    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># ... more code</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">date</span> <span class="o">=</span> <span class="n">arrow</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>  <span class="c1"># Our test still passes :)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>

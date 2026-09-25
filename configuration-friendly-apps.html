@@ -73,13 +73,13 @@ configured. There is a difference between configuring a library vs configuring
 a project.</p>
 <p>Lets see an example of how <code>sqlalchemy</code>, a database toolkit library, provides
 us with the needed building blocks for us to use as we please.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">String</span>
-<span class="kn">from</span> <span class="nn">sqlalchemy.ext.declarative</span> <span class="kn">import</span> <span class="n">declarative_base</span>
-<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy</span><span class="w"> </span><span class="kn">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">String</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy.ext.declarative</span><span class="w"> </span><span class="kn">import</span> <span class="n">declarative_base</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_engine</span>
 
 <span class="n">Base</span> <span class="o">=</span> <span class="n">declarative_base</span><span class="p">()</span>
 
-<span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Person</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
     <span class="n">__tablename__</span> <span class="o">=</span> <span class="s1">&#39;person&#39;</span>
     <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">250</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -148,11 +148,11 @@ have a single <code>config.py</code> file where settings are gathered, parsed an
 processed. The app imports that config module and distributes it to all the
 different libraries it is using.</p>
 <p>An example startup script for your app could be:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">argparse</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">configparser</span>
-<span class="kn">from</span> <span class="nn">app</span> <span class="kn">import</span> <span class="n">main</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">ChainMap</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">argparse</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">configparser</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">app</span><span class="w"> </span><span class="kn">import</span> <span class="n">main</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChainMap</span>
 
 <span class="n">defaults</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;debug&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
 
@@ -182,7 +182,7 @@ environment there are:  <code>dev_settings.py</code>, <code>staging_settings.py<
 
 
 <span class="c1"># dev_settings.py</span>
-<span class="kn">from</span> <span class="nn">base_settings</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">base_settings</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="n">PLUGINS</span> <span class="o">=</span> <span class="n">PLUGINS</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;baz&#39;</span><span class="p">]</span>
 </code></pre></div>
 
@@ -303,24 +303,24 @@ the program.</p>
 <p>The <a href="https://en.wikipedia.org/wiki/Signal_(IPC)#SIGHUP" title="Posix signals">SIGHUP signal</a> is usually used to trigger a reload of configurations
 for daemons.</p>
 <p>In Python, this can be achieved with the <code>signal</code> module, as the following gist shows:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">signal</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">signal</span>
 
-<span class="k">def</span> <span class="nf">get_config</span><span class="p">(</span><span class="n">rel</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="kn">import</span> <span class="nn">config</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_config</span><span class="p">(</span><span class="n">rel</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">config</span>
     <span class="k">if</span> <span class="n">rel</span><span class="p">:</span>
         <span class="n">reload</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">config</span>
 
 <span class="n">running</span> <span class="o">=</span> <span class="kc">True</span>
 
-<span class="k">def</span> <span class="nf">run</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">():</span>
     <span class="k">while</span> <span class="n">running</span><span class="p">:</span>
         <span class="c1"># do something with get_config().foo</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="c1"># teardown</span>
 
-<span class="k">def</span> <span class="nf">signal_handler</span><span class="p">(</span><span class="n">signum</span><span class="p">,</span> <span class="n">frame</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">signal_handler</span><span class="p">(</span><span class="n">signum</span><span class="p">,</span> <span class="n">frame</span><span class="p">):</span>
     <span class="c1"># Use kill -15 &lt;pid&gt;</span>
     <span class="k">if</span> <span class="n">signum</span> <span class="o">==</span> <span class="n">signal</span><span class="o">.</span><span class="n">SIGTERM</span><span class="p">:</span>
         <span class="k">global</span> <span class="n">running</span>
@@ -360,9 +360,9 @@ to pick it up.</p>
 <p><a href="https://github.com/osantana/prettyconf" title="Prettyconf">Prettyconf</a> is a framework agnostic python library created to make easy
 the separation of configuration and code. It lets you use the principles we
 discribed about configuration-discovery.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">argparse</span>
-<span class="kn">from</span> <span class="nn">prettyconf</span> <span class="kn">import</span> <span class="n">Configuration</span>
-<span class="kn">from</span> <span class="nn">prettyconf.loaders</span> <span class="kn">import</span> <span class="n">CommandLine</span><span class="p">,</span> <span class="n">Environment</span><span class="p">,</span> <span class="n">IniFile</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">argparse</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">prettyconf</span><span class="w"> </span><span class="kn">import</span> <span class="n">Configuration</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">prettyconf.loaders</span><span class="w"> </span><span class="kn">import</span> <span class="n">CommandLine</span><span class="p">,</span> <span class="n">Environment</span><span class="p">,</span> <span class="n">IniFile</span>
 
 
 <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>

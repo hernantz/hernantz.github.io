@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt - Writings</title><link href="http://hernantz.github.io/" rel="alternate"></link><link href="http://hernantz.github.io/feeds/writings.atom.xml" rel="self"></link><id>http://hernantz.github.io/</id><updated>2020-03-27T00:00:00-03:00</updated><subtitle>- Mostly lies and rants in plain text.</subtitle><entry><title>Childe Roland to the Dark Tower came</title><link href="http://hernantz.github.io/childe-roland-to-the-dark-tower-came.html" rel="alternate"></link><published>2020-03-27T00:00:00-03:00</published><updated>2020-03-27T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2020-03-27:/childe-roland-to-the-dark-tower-came.html</id><summary type="html">&lt;p&gt;My attempt to fixing the Dark Tower series.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Roland and the Dark Tower" src="/images/the-dark-tower.jpg" title="Roland and the Dark Tower"&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>README.txt - Writings</title><link href="http://hernantz.github.io/" rel="alternate"/><link href="http://hernantz.github.io/feeds/writings.atom.xml" rel="self"/><id>http://hernantz.github.io/</id><updated>2020-03-27T00:00:00-03:00</updated><subtitle>- Mostly lies and rants in plain text.</subtitle><entry><title>Childe Roland to the Dark Tower came</title><link href="http://hernantz.github.io/childe-roland-to-the-dark-tower-came.html" rel="alternate"/><published>2020-03-27T00:00:00-03:00</published><updated>2020-03-27T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2020-03-27:/childe-roland-to-the-dark-tower-came.html</id><summary type="html">&lt;p&gt;My attempt to fixing the Dark Tower series.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Roland and the Dark Tower" src="/images/the-dark-tower.jpg" title="Roland and the Dark Tower"&gt;&lt;/p&gt;
 &lt;p&gt;I tend to be very critic with the movies and books I consume. And, if the ideas
 behind them are any good, I get hooked and start to think of ways they could be
 improved.&lt;/p&gt;
@@ -33,11 +33,8 @@ been great material for a sequel of Salem's Lot, but here it felt weird.&lt;/p&g
 entirely on content from the series.&lt;/p&gt;
 &lt;h3 id="1-the-gunslinger"&gt;1. The gunslinger&lt;a class="headerlink" href="#1-the-gunslinger" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;First edition of course, stays almost intact, with some tweaks though.&lt;/p&gt;
-&lt;p&gt;Allie, the bartender girl, asks Roland when was the last time he has been with another
-woman or loved anyone. Here, he narrates the story of little sisters of Eluria,
-just before he started chasing the Man in Black.&lt;/p&gt;
-&lt;p&gt;This plays the nice effect on how Roland tells a story within a story when, once
-at Brown's place, recalls his time spent in Tull.&lt;/p&gt;
+&lt;p&gt;Allie, the bartender girl, asks Roland when was the last time he has been with another woman or loved anyone. Here, he narrates the story of little sisters of Eluria, just before he started chasing the Man in Black. He wouldn't tell the story of Susan, "the lovely girl at the window", to anybody, not yet.&lt;/p&gt;
+&lt;p&gt;This plays the nice effect on how Roland tells a story within a story when, once at Brown's place, recalls his time spent in Tull.&lt;/p&gt;
 &lt;p&gt;The town folk, rallied by the preacher woman, has beaten, raped and disfigured
 Allie. She begs Roland to kill her. O Discordia! she screams before getting a
 headshot (Discodia! cries Zoltan, the crow has been listening all along).&lt;/p&gt;
@@ -536,4 +533,4 @@ meaning of the Tower:&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;The vast and complex universe created by King is composed of all his novels
 together, tied around the Dark Tower. For me, he has accomplished his dream of
-creating something comparable in complexity to Tolkien's work.&lt;/p&gt;</content><category term="Writings"></category><category term="reviews"></category><category term="rants"></category><category term="fan-fiction"></category></entry></feed>
+creating something comparable in complexity to Tolkien's work.&lt;/p&gt;</content><category term="Writings"/><category term="reviews"/><category term="rants"/><category term="fan-fiction"/></entry></feed>
