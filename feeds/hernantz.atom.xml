@@ -1663,540 +1663,490 @@ the &lt;code&gt;NotSet&lt;/code&gt; type.&lt;/p&gt;
 &lt;p&gt;I kind of like the first solution, but if you think that you will end up with
 lots of &lt;code&gt;get_system_default()&lt;/code&gt; calls everywhere in your code, at some point
 switching to this &lt;code&gt;NOT_SET&lt;/code&gt; approach would make sense.&lt;/p&gt;</content><category term="Programming"/><category term="python"/></entry><entry><title>Childe Roland to the Dark Tower came</title><link href="http://hernantz.github.io/childe-roland-to-the-dark-tower-came.html" rel="alternate"/><published>2020-03-27T00:00:00-03:00</published><updated>2020-03-27T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2020-03-27:/childe-roland-to-the-dark-tower-came.html</id><summary type="html">&lt;p&gt;My attempt to fixing the Dark Tower series.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Roland and the Dark Tower" src="/images/the-dark-tower.jpg" title="Roland and the Dark Tower"&gt;&lt;/p&gt;
-&lt;p&gt;I tend to be very critic with the movies and books I consume. And, if the ideas
-behind them are any good, I get hooked and start to think of ways they could be
-improved.&lt;/p&gt;
-&lt;p&gt;Since many people tend to canalize this spark in some form of fan-fiction, I
-figured, why not do the same?&lt;/p&gt;
-&lt;p&gt;In this case I'll write about the Dark Tower book series, which I read a long
-time ago.&lt;/p&gt;
-&lt;p&gt;In my opinion, Stephen King's magnum opus ended up being too ambitious. I think
-he felt this urge to finish it somehow, after the accident of course, and the
-fact that he was sober didn't help his inspiration either.&lt;/p&gt;
+&lt;p&gt;I tend to be very critic with the movies and books I consume. And, if the ideas behind them are any good, I get hooked and start to think of ways they could be improved.&lt;/p&gt;
+&lt;p&gt;Since many people tend to canalize this spark in some form of fan-fiction, I figured, why not do the same?&lt;/p&gt;
+&lt;p&gt;In this case I'll write about the Dark Tower book series, which I read a long time ago.&lt;/p&gt;
+&lt;p&gt;In my opinion, Stephen King's magnum opus ended up being too ambitious. I think he felt this urge to finish it somehow, after the accident of course, and the fact that he was sober didn't help his inspiration either.&lt;/p&gt;
 &lt;p&gt;To my liking, not many people disagree with me:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;[...] Wolves of the Calla, Song Of Susannah (UGH!) and this, The Dark Tower. They
-all seem to have been written in a rush after King's brush with mortality
-when he was hit by that van. What a waste of all the great material he had to
-work with. If I was rating the first four books, my review would have been
-five stars. Unfortunately...&lt;/p&gt;
-&lt;p&gt;Hated the way the vast world of the gunslinger kept getting smaller, with
-constant trips back to good old New York, to dabble in real estate and
-investing in Microsoft. Real friggin' epic. [...]&lt;/p&gt;
+&lt;p&gt;[...] Wolves of the Calla, Song Of Susannah (UGH!) and this, The Dark Tower. They all seem to have been written in a rush after King's brush with mortality when he was hit by that van. What a waste of all the great material he had to work with. If I was rating the first four books, my review would have been five stars. Unfortunately...&lt;/p&gt;
+&lt;p&gt;Hated the way the vast world of the gunslinger kept getting smaller, with constant trips back to good old New York, to dabble in real estate and investing in Microsoft. Real friggin' epic. [...]&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;&lt;a href="https://www.goodreads.com/review/show/3920288?book_show_action=true&amp;amp;from_review_page=1"&gt;A Goodreads review&lt;/a&gt; by Thomas&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id="my-attempt-at-fixing-everything"&gt;My attempt at fixing everything&lt;a class="headerlink" href="#my-attempt-at-fixing-everything" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;I loved the first and second books as is, they are brilliant, you can almost
-feel the effect of Stephen's high state of mind, high... get it? The Waste
-Lands is where the story starts to deteriorate. I would have never resurrected
-Jake and I would forget about the whole idea of 19, The Wizard of Oz, Ka-tet
-Corp, Angul Siento, Calvin Tower, Mordred and Dixie Pig. This all could have
-been great material for a sequel of Salem's Lot, but here it felt weird.&lt;/p&gt;
-&lt;p&gt;This is how I would mix and re-organize the world of the Dark Tower, based
-entirely on content from the series.&lt;/p&gt;
+&lt;p&gt;I loved the first and second books as is, they are brilliant, you can almost feel the effect of Stephen's high state of mind, high... get it? The Waste Lands is where the story starts to deteriorate. I would have never resurrected Jake and I would forget about the whole idea of 19, The Wizard of Oz, Ka-tet Corp, Angul Siento, Calvin Tower, Mordred and Dixie Pig. This all could have been great material for a sequel of Salem's Lot, but here it felt weird.&lt;/p&gt;
+&lt;p&gt;This is how I would mix and re-organize the world of the Dark Tower, based entirely on content from the series.&lt;/p&gt;
 &lt;h3 id="1-the-gunslinger"&gt;1. The gunslinger&lt;a class="headerlink" href="#1-the-gunslinger" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;First edition of course, stays almost intact, with some tweaks though.&lt;/p&gt;
-&lt;p&gt;Allie, the bartender girl, asks Roland when was the last time he has been with another woman or loved anyone. Here, he narrates the story of little sisters of Eluria, just before he started chasing the Man in Black. He wouldn't tell the story of Susan, "the lovely girl at the window", to anybody, not yet.&lt;/p&gt;
-&lt;p&gt;This plays the nice effect on how Roland tells a story within a story when, once at Brown's place, recalls his time spent in Tull.&lt;/p&gt;
-&lt;p&gt;The town folk, rallied by the preacher woman, has beaten, raped and disfigured
-Allie. She begs Roland to kill her. O Discordia! she screams before getting a
-headshot (Discodia! cries Zoltan, the crow has been listening all along).&lt;/p&gt;
-&lt;p&gt;In the last palaver, the Man in Black also mentions the reasons behind following
-the Crimson King:&lt;/p&gt;
+&lt;p&gt;Allie, the bartender girl, asks Roland two things: when he last lay with a woman, and when he last loved one. He answers only the first. Here, he narrates the story of little sisters of Eluria, just before he started chasing the Man in Black. The second question he lets go by. Its answer is Susan, "the lovely girl at the window", and he wouldn't tell her story to anybody, not yet.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;You think that John Farson or I are on the wrong side. But what makes you
-believe you are on the right one?&lt;/p&gt;
-&lt;p&gt;Every light casts a shadow. The Crimson King might have gone mad and reclused
-in the Tower, his ways are mysterious, yes. But that doesn't affect my reason to
-be on his cause.&lt;/p&gt;
-&lt;p&gt;Sometimes in order to create, one must first destroy. The problem with this
-whole good &amp;amp; bad thing is that chaos is not evil any more then order is good.&lt;/p&gt;
-&lt;p&gt;Balance between chaos and order is necessary. With no chaos nothing would ever
-change or be created. Without order nothing could ever thrive once it is
-created. Conflict forces change and change is how progress happens, progress
-demands sacrifice. Creation demands destruction.&lt;/p&gt;
-&lt;p&gt;The Crimson King has started a revolution, and for it to succeed, the world as
-we know it hast to end, the Tower must fall!&lt;/p&gt;
+&lt;p&gt;"And the other?" Allie said. "When did you last love one?"&lt;/p&gt;
+&lt;p&gt;Roland looked at the lamp for a long time. Then he took out his tobacco and began to roll a smoke, and that was all the answer she got.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This plays the nice effect on how Roland tells a story within a story when, once at Brown's place, recalls his time spent in Tull.&lt;/p&gt;
+&lt;p&gt;One morning in Tull, Allie reaches for Roland's guns while he sleeps:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;He woke because the weight on the bedpost had changed. The gunbelts hung there where he had left them, and Allie was standing over them in her shift with one finger on the worn sandalwood of a grip, the way a child touches something in a church.&lt;/p&gt;
+&lt;p&gt;His hand closed on her wrist before he was properly awake. She cried out, more surprised than hurt.&lt;/p&gt;
+&lt;p&gt;"I only wanted to see," she said. "They're so old. Folks say there's none like them left in the world."&lt;/p&gt;
+&lt;p&gt;"There are not." He let her go. "Never touch them again. They're loaded."&lt;/p&gt;
+&lt;p&gt;"Now? Here?" She looked at the bed, and at him, and something in her face changed. "Always?"&lt;/p&gt;
+&lt;p&gt;"Always."&lt;/p&gt;
+&lt;p&gt;She laughed a little, not as if anything were funny, and went down to open the bar. He lay looking at the ceiling for a long time. He was thinking of Cort.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In one of the memories of his boyhood, the boys laugh at an old gate guard who has slept in his boots every night for forty years, though the walls of Gilead were never breached. Cort hears them:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A man who sleeps in his boots is a fool every night but one.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Roland is the only boy who does not laugh.&lt;/p&gt;
+&lt;p&gt;The preacher woman, Sylvia Pittston, says she carries the child of the Crimson King, left in her by the man in black when he passed through Tull. The town folk, rallied by her, has beaten, raped and disfigured Allie. She begs Roland to kill her. O Discordia! she screams before getting a headshot (Discodia! cries Zoltan, the crow has been listening all along).&lt;/p&gt;
+&lt;p&gt;Under the mountains, Jake hangs from the trestle and Roland lets him fall. The boy says his last words (&lt;em&gt;Go then, there are other worlds than these&lt;/em&gt;) and falls without a scream.&lt;/p&gt;
+&lt;p&gt;The last palaver with the Man in Black keeps the shape of the original: the meeting at the fire, the tarot, the talk of the Tower, the vision, and the long night after it. A few things are added. Roland calls him by two names we do not know yet, Marten and Flagg. The man in black tells him why he follows the Crimson King. The vision ends with a rose instead of a blade of grass, and Roland hears wind chimes, as he does whenever he is close to death. It is the first time the reader hears them, but not the first time for Roland.&lt;/p&gt;
+&lt;p&gt;It begins with the fire among the bones:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The man in black had a fire going among the bones, and it burned green. He did not look up when Roland came into its light with his guns drawn.&lt;/p&gt;
+&lt;p&gt;"Roland of Gilead," he said. "I salute you. Sit, gunslinger. You've walked far enough to earn it."&lt;/p&gt;
+&lt;p&gt;Roland sat.&lt;/p&gt;
+&lt;p&gt;"You were Marten in my father's court, and Flagg in Delain before that," Roland said. "You rode with Farson. You brought down Gilead, my family and my ka-tet with it."&lt;/p&gt;
+&lt;p&gt;"Your family?" The man in black smiled into the fire. "I added to it."&lt;/p&gt;
+&lt;p&gt;Roland did not know what that meant, and the man in black did not explain.&lt;/p&gt;
+&lt;p&gt;"I have been called many things, and you say true."&lt;/p&gt;
+&lt;p&gt;Roland looked at the fire that burned without wood, and at the face across it that had worn other faces. "Every man I ever killed came from somewhere," he said. "A town, a barony, a mother. I have followed you for twelve years and never found yours. You walk through the old tales, the ones they told us in the nursery, and you are older there than my father's father. In none of them does anyone say where you came from."&lt;/p&gt;
+&lt;p&gt;"Nowhere you've named yet."&lt;/p&gt;
+&lt;p&gt;"We have named most things."&lt;/p&gt;
+&lt;p&gt;"Your sages named most things you can see."&lt;/p&gt;
+&lt;p&gt;"Is there more?"&lt;/p&gt;
+&lt;p&gt;"There's always more."&lt;/p&gt;
+&lt;p&gt;"Then tell me."&lt;/p&gt;
+&lt;p&gt;"I just did." The man in black smiled into the fire.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;As in the original, the man in black then reads Roland's tarot: the Hanged Man, the Sailor, the Prisoner, the Lady of Shadows. When he turns the Death card:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;It was a skeleton grinning over a field of bones like the one they sat in. He looked at it a long time, and when he spoke again it was in a different voice.&lt;/p&gt;
+&lt;p&gt;"You think you will die."&lt;/p&gt;
+&lt;p&gt;"All men do."&lt;/p&gt;
+&lt;p&gt;"And where will you go?"&lt;/p&gt;
+&lt;p&gt;"I don't know."&lt;/p&gt;
+&lt;p&gt;"Then how will you know you are gone?"&lt;/p&gt;
+&lt;p&gt;Roland had no answer.&lt;/p&gt;
+&lt;p&gt;"Death," the man in black said, and tapped the card, and smirked. "Yet not for you, gunslinger."&lt;/p&gt;
+&lt;p&gt;He laid the last card above all the others. It was the Tower.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Before the vision, he tells Roland why he follows the Crimson King:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;"You think that John Farson and I are on the wrong side. What makes you believe you are on the right one? Every light casts a shadow. The Crimson King may have gone mad and shut himself up in his Tower, and his ways are mysterious, yes. That doesn't change my reason for taking up his cause."&lt;/p&gt;
+&lt;p&gt;"What cause is there in ruin?"&lt;/p&gt;
+&lt;p&gt;"Sometimes, in order to create, one must first destroy. The trouble with this whole business of good and bad is that chaos is not evil, any more than order is good. A balance between them is necessary. With no chaos nothing would ever change or be created. Without order nothing could ever thrive once it was created. Conflict forces change, and change is how progress happens. Progress demands sacrifice. Creation demands destruction."&lt;/p&gt;
+&lt;p&gt;He leaned over the fire, and the green light got into one of his eyes. The other gave nothing back.&lt;/p&gt;
+&lt;p&gt;"The Crimson King has started a revolution. For it to succeed, the world as we know it has to end. The Tower must fall."&lt;/p&gt;
+&lt;p&gt;"It will not fall while I live."&lt;/p&gt;
+&lt;p&gt;"No?" The man in black smiled. "Now let me show you the size of what you have set yourself against."&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The vision is the original one, until the very end:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;What he showed Roland went on for a night that was years long. There were suns, and the dark between suns, and inside a single mote of dust more suns again. It went up and out until Roland screamed for it to stop. At the very last, where it should have narrowed to one blade of grass, it narrowed to a rose. He heard wind chimes then, faint and near. He had heard them once before, and he believed he was dying.&lt;/p&gt;
+&lt;p&gt;When he could speak, the man in black asked him what he had seen at the end.&lt;/p&gt;
+&lt;p&gt;"A rose."&lt;/p&gt;
+&lt;p&gt;For the first time that night the man in black was quiet.&lt;/p&gt;
+&lt;p&gt;"You shall meet him, then," he said.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The rest of the night goes as in the original, with the talk of size, the Tower, and the three Roland must draw. Then:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Roland slept. When he woke the fire was cold, and he was older, and across the ashes sat a skeleton in a rotted black robe. He broke off the jawbone and put it in his pocket. Then he went down to the sea.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id="2-the-drawing-of-the-three"&gt;2. The drawing of the three&lt;a class="headerlink" href="#2-the-drawing-of-the-three" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Pretty much stays intact too.&lt;/p&gt;
 &lt;p&gt;When Roland looses his fingers laments with O Discordia!&lt;/p&gt;
-&lt;p&gt;We learn more about Jake, how he skips school to visit the vacant lot and the
-Rose, etc, through the eyes of Jack Mort. &lt;em&gt;The pusher&lt;/em&gt; is an accountant in the
-North Central Positronics Corporation, as well as a psychopathic killer.&lt;/p&gt;
-&lt;p&gt;Jake sees Roland instead of Jack Mort before getting pushed and ran over by a
-truck. Roland realizes he has been recognized and is suddenly ashamed of the boy
-judging him and does nothing to prevent Jack Mort from killing the boy. &lt;em&gt;Roland
-killed him twice&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;We learn more about Jake, how he skips school to visit the vacant lot and the Rose, etc, through the eyes of Jack Mort. &lt;em&gt;The pusher&lt;/em&gt; is an accountant in the North Central Positronics Corporation, as well as a psychopathic killer.&lt;/p&gt;
+&lt;p&gt;Jake sees Roland instead of Jack Mort before getting pushed and ran over by a truck. Roland realizes he has been recognized and is suddenly ashamed of the boy judging him and does nothing to prevent Jack Mort from killing the boy. &lt;em&gt;Roland killed him twice&lt;/em&gt;. He watched and did nothing.&lt;/p&gt;
 &lt;h3 id="3-the-wind-through-the-keyhole"&gt;3. The wind through the keyhole&lt;a class="headerlink" href="#3-the-wind-through-the-keyhole" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Oy joins the ka-tet.&lt;/p&gt;
-&lt;p&gt;We learn about Roland's youth at Mejis when they are waiting for the starkblast.&lt;/p&gt;
-&lt;p&gt;Roland laments Susan's death with O Discordia! (ordia! cries Oy) When the ka-tet
-returns from Mejis, they bring the Grapefruit orb and a kid with them, Sheemie, who
-is now an orphan because of the Big Coffin Hunters killed his parents.&lt;/p&gt;
-&lt;p&gt;After Gabrielle Deschain's matricide, Roland and Jamie DeCurry are sent to
-Hambry, to investigate reports of a skin-man murdering people. Vannay gives them
-silver bullets just in case the story is not made up.&lt;/p&gt;
-&lt;p&gt;They are also commanded to deliver Sheemie to Serenity, which is nearby. The
-sisters that run the place agree to adopt the orphan boy.&lt;/p&gt;
-&lt;p&gt;They stay for one night there and one of the sisters proceeds to narrate a story
-&lt;em&gt;the wind through the keyhole&lt;/em&gt; to the orphans and injured the sisters are also
-taking care of.&lt;/p&gt;
-&lt;p&gt;Again, a story within a story.&lt;/p&gt;
-&lt;p&gt;Within the following days, they finally they defeat the skin-changer.&lt;/p&gt;
-&lt;p&gt;On they way back to Gilead, the stay one more night at Serenity, and before
-leaving, Roland receives a note written by his mother during her stay in there.&lt;/p&gt;
-&lt;p&gt;In this note, his mother reveals that Marten has predicted that Roland will one
-day kill her. Although this has caused her to slowly lose her sanity, in the end
-she forgives Roland and asks that he forgive her infidelity to his father and
-betrayal of Gilead in return. She also warns him:&lt;/p&gt;
+&lt;p&gt;We learn about Roland's youth at Mejis when they are waiting for the starkblast. Roland has just won his guns, far too young, and Marten, his father's counsellor, has fled to Farson. We are not told why yet.&lt;/p&gt;
+&lt;p&gt;Roland laments Susan's death with O Discordia! (ordia! cries Oy) When Roland, Cuthbert and Alain return from Mejis, they bring the Grapefruit orb and a kid with them, Sheemie, who is now an orphan because of the Big Coffin Hunters killed his parents.&lt;/p&gt;
+&lt;p&gt;When Roland comes home from Mejis his mother is no longer in Gilead. She has been sent to live with the sisters at Serenity, and we are not told why yet. Roland and Jamie DeCurry are sent to Debaria, to investigate reports of a skin-man murdering people. Vannay gives them silver bullets just in case the story is not made up.&lt;/p&gt;
+&lt;p&gt;They are also commanded to deliver Sheemie to Serenity, which is nearby. The sisters that run the place agree to adopt the orphan boy.&lt;/p&gt;
+&lt;p&gt;They stay for one night there and one of the sisters proceeds to narrate a story &lt;em&gt;the wind through the keyhole&lt;/em&gt; to the orphans and injured the sisters are also taking care of. The villain of the tale is the Covenant Man, a tax collector.&lt;/p&gt;
+&lt;p&gt;Again, a story within a story. Gabrielle is at Serenity too, but the sisters have cloistered her and she may not be seen. Nobody tells Roland why. At Serenity a penitent is named for the virtue she broke, so that she hears her sin every time she is called, and the sisters call her Sister Verity. That night she and Roland talk through a closed door. He is harsh with her. He walks away before she has finished speaking. It is the last time he hears her voice, and he will regret it for the rest of his life:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Be careful my boy. Some enemies don't have weapons, but sharp words. And
-words are sometimes deadlier.&lt;/p&gt;
+&lt;p&gt;The door was oak, with an iron grille too small to see through and a keyhole below it. He did not bend to the keyhole. He had done that once.&lt;/p&gt;
+&lt;p&gt;A sister had left him a candle. Jamie waited at the far end of the corridor, where he could not hear.&lt;/p&gt;
+&lt;p&gt;"Roland?" Her voice was thinner than he remembered. "Is that you? Say true. The sisters said two boys had come from Gilead."&lt;/p&gt;
+&lt;p&gt;He said nothing.&lt;/p&gt;
+&lt;p&gt;"I know your step. I knew it on the stair." Cloth moved on the other side of the wood, as if she had come close and knelt. "Are you well?&lt;/p&gt;
+&lt;p&gt;"What should I call you? Sister Verity? They tell me that's your name here."&lt;/p&gt;
+&lt;p&gt;"Call me what you always did."&lt;/p&gt;
+&lt;p&gt;He did not.&lt;/p&gt;
+&lt;p&gt;"And your father? Does he fare well?"&lt;/p&gt;
+&lt;p&gt;"He does not speak of you."&lt;/p&gt;
+&lt;p&gt;She was quiet for a time. When she spoke again she had steadied herself.&lt;/p&gt;
+&lt;p&gt;"I have made you something. A belt. It is poor work, I never had the hands for it, but there are a great many hours here. If you asked, the sisters would bring it out to you."&lt;/p&gt;
+&lt;p&gt;"Keep it, and thankee."&lt;/p&gt;
+&lt;p&gt;"Roland."&lt;/p&gt;
+&lt;p&gt;"I have a belt. My father gave it to me with the guns."&lt;/p&gt;
+&lt;p&gt;"Then let me speak of what I swore."&lt;/p&gt;
+&lt;p&gt;"I was there, lady. I heard it."&lt;/p&gt;
+&lt;p&gt;"You heard the words. You did not hear why."&lt;/p&gt;
+&lt;p&gt;"You chose him. He left you in the night without a word, and you would choose him again tomorrow."&lt;/p&gt;
+&lt;p&gt;"No." Her hand struck the door once, flat, and the candle flame shook. "No. I have had a long time in this room to think what I would say to you, and you will not make me waste it. There is a thing you must be told before you go. Be careful, my boy—"&lt;/p&gt;
+&lt;p&gt;"I am not a boy anymore. And I am not yours."&lt;/p&gt;
+&lt;p&gt;He set the candle on the floor and walked. He heard her say his name twice more. Then the corridor turned, and Jamie fell in beside him without a word, and he did not hear her again.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Roland never talks about this with his father.&lt;/p&gt;
-&lt;h3 id="4-the-wolves-of-calla"&gt;4. The wolves of Calla&lt;a class="headerlink" href="#4-the-wolves-of-calla" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;They find Calla (the far end of their known Mid-World) after chasing someone who
-was visiting the North Central Positronics Dogan.&lt;/p&gt;
-&lt;p&gt;The Dogan becomes the standard metaphor for the internal workings of the brain
-of the ka-tet and Mia's possession.&lt;/p&gt;
+&lt;p&gt;Within the following days, they finally they defeat the skin-changer.&lt;/p&gt;
+&lt;p&gt;On they way back to Gilead, the stay one more night at Serenity, and his mother is dead. She took her own life while he was in Debaria. Before he leaves, the sisters give Roland the belt he would not take, and a note she wrote for him.&lt;/p&gt;
+&lt;p&gt;In the note his mother finishes what she began to say at the door. Away from Marten her head has cleared, and for the first time in a year she writes like herself:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;Be careful, my boy. You would not let me finish, so I will finish here.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Some enemies don't have weapons, but sharp words, and words are sometimes deadlier. I have been wounded by them twice, once by his and once by yours, and I do not blame you for the second.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;There are mistakes that wound the skin, and sins that wound the soul. What I did with him was the first kind. What I swore at your father's table to hide it was the second. I knew you had not lied about my bed. I did not know you had not lied about the rest until he put it in my hand.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;The headaches stopped the night he left. Think on that.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;The last thing he said to me was that my child would be my death, and I thought he meant you. Forgive me for that most of all. I carry a child now, and I do not know whose. I will not wait to learn which one he meant.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Do not let him be right about you.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;O Discordia.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Your mother&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Roland never talks about this with his father. He believes that he killed her, and he never learns whose child she carried. It was words that killed her: Marten's prophecy, and what Roland said at his father's table. What that was, we learn in the next book.&lt;/p&gt;
+&lt;h3 id="4-the-eyes-of-the-dragon"&gt;4. The eyes of the dragon&lt;a class="headerlink" href="#4-the-eyes-of-the-dragon" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The novel becomes its own book in the series, with a new last act in Gilead.&lt;/p&gt;
+&lt;p&gt;In the kingdom of Delain the court magician Flagg poisons the old king with Dragon Sand and plants the evidence on Peter, the elder prince, who is tried and locked at the top of the Needle. Thomas, the younger prince, watched the murder through the glass eyes of the dragon's head on his father's wall, from a secret passage that Flagg himself had shown him. He says nothing for five years while Flagg rules through him. Peter escapes on a rope he has woven himself, Thomas confesses, and shoots Flagg in the eye with his father's arrow. Flagg vanishes. The next morning the dragon's head on the wall has only one glass eye left. Flagg, bleeding and in a hurry, took one to fill the hole Thomas's arrow left, and had no time for the other. He does not know what Thomas notices the next morning: the eye left in the dragon's head has gone cloudy, like a blind man's. The two were made as a pair. Apart they cloud over, the nearer they come to each other the clearer they grow, and each always turns toward its twin. Thomas pries out the one that is left, and he and his servant Dennis leave Delain to hunt Flagg with it. Thomas cannot bear to carry the eye he watched his father die through, so Dennis keeps it.&lt;/p&gt;
+&lt;p&gt;Flagg takes a new name and a new face. As Marten he comes to Gilead as a wandering healer, and the queen sends for him when her headaches will not mend. He knows why they will not. Before he ever came to the gate he had found the passages inside Gilead's walls, as he found them in Delain, and from behind the queen's rooms he has been putting Dragon Sand in her water, a pinch at a time. It is too little to kill her and enough to make her need him. Each time he eases her pain, he is easing a pain he gave her. The arrow cost him the eye. He wears the dragon's glass eye in its place. His magic makes it look and feel like living flesh, and no ordinary light can show the difference. At night he takes it out.&lt;/p&gt;
+&lt;p&gt;He begins an affair with Gabrielle Deschain, and her favour is how a wandering healer comes to sit at Steven's council table. From there he can weaken Steven from within. Roland, fourteen years old, looks through the keyhole of his mother's rooms late one night and sees them asleep in her bed, and on the table beside it, catching the candlelight, an eye. Marten takes it out to sleep, once she is asleep herself. The glamour is a weight he does not care to carry through the night, and he always has it back in place before she wakes. Gabrielle has never seen it. He tells no one. But Roland goes to Cort and demands his test of manhood years too early. He wins it with David the hawk, and becomes the youngest gunslinger in the history of Gilead.&lt;/p&gt;
+&lt;p&gt;Thomas and Dennis reach Gilead. The dragon's eye has been cloudy ever since Delain, and as the city came in sight it began to clear, so they know Flagg is inside, but not which man he is. Thomas says as much at the table, not knowing who is listening, and Marten learns for the first time what the other eye can do. Strangers are not lodged within the walls, so Dennis camps outside with the horses and the eye, and Thomas tells his story at Steven's table. He does not know the man sitting three seats away:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;"And you said nothing," the boy said.&lt;/p&gt;
+&lt;p&gt;Thomas looked down the table at him. "For five years."&lt;/p&gt;
+&lt;p&gt;"You watched, and did nothing."&lt;/p&gt;
+&lt;p&gt;"Roland." His father did not raise his voice. "Thomas of Delain is a guest at this table. You'll cry his pardon."&lt;/p&gt;
+&lt;p&gt;"He needn't, sai Deschain," Thomas said. "He says true. I was twelve. Then I was thirteen and it was a year too late, and then it was two. It gets no easier to speak, boy. It gets harder every day you don't." He frowned. "What did your father call you?"&lt;/p&gt;
+&lt;p&gt;"Roland."&lt;/p&gt;
+&lt;p&gt;The color went out of Thomas's face. "That was my father's name."&lt;/p&gt;
+&lt;p&gt;Roland looked at Marten. Marten was smiling at him. Roland had kept his own silence for seven months.&lt;/p&gt;
+&lt;p&gt;He stood up.&lt;/p&gt;
+&lt;p&gt;"I cry your pardon, father," he said. Then, to Thomas: "The man you hunt lost an eye to your arrow. There is a man at this table with an eye of glass. He takes it out at night and sets it on the table by the bed. I saw it so. I set my watch and warrant on it."&lt;/p&gt;
+&lt;p&gt;Nobody spoke.&lt;/p&gt;
+&lt;p&gt;"Whose bed, Roland?" his father said. "Say it plain, if you'd say it at all."&lt;/p&gt;
+&lt;p&gt;Roland looked at his mother. She was looking at her plate.&lt;/p&gt;
+&lt;p&gt;"My mother's," he said.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Marten laughs it off as the tale of a jealous boy, and destroys Thomas as a witness: a prince who watched his father die and left his brother in a tower. Nobody can prove anything by looking, because in his face the glass passes for a living eye. The one thing that can prove it is the dragon's other eye, and Dennis has it outside the walls.&lt;/p&gt;
+&lt;p&gt;Only Gabrielle can say whether her son is telling the truth. Steven asks her, before all his guests, whether her son is lying, and she swears on the face of her father that he is. To say her son told the truth would be to say where he saw it. She knows nothing of any eye, and tells herself he made that part up to hurt her. She swears to save her own name. That keeps Marten out of irons for one night, which is all he needs, and it brands Roland a liar in front of his father and every guest at the table.&lt;/p&gt;
+&lt;p&gt;By old law the gates of Gilead close at sunset and do not open before dawn, not even on the king's word. Steven will not lay hands on his own counsellor on a boy's word and a stranger's tale, after the queen has sworn against them. Marten is confined to his rooms under guard. At first light, when Dennis can be let in with the eye, he will answer in the Hall of Grandfathers.&lt;/p&gt;
+&lt;p&gt;Marten has one night, and he knows the walls. He leaves his rooms by the passages, and before he goes anywhere else he goes to the queen, the way he always has:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The wall behind the bed opened the way a door opens in a dream, without a sound. Marten came through it in his stocking feet, the way he always came.&lt;/p&gt;
+&lt;p&gt;She sat up. "You came back for me. Say you did."&lt;/p&gt;
+&lt;p&gt;He sat on the edge of the bed and took her hand, as tenderly as he had ever done anything. He put two fingers to his face. Then he folded her fingers closed over what he had taken out, and kissed her knuckles, and bent to her ear.&lt;/p&gt;
+&lt;p&gt;"Your child will be your death, lady," he whispered. "I have seen it."&lt;/p&gt;
+&lt;p&gt;She opened her hand. She had never seen the thing in it before, and she knew at once what it was, and that every word her son had said at supper was true. When she looked up again the wall was only a wall.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;He leaves the eye for two reasons that are really one. He learned at supper that as long as he wears it, its twin will always find him. And in her hand it ruins her.&lt;/p&gt;
+&lt;p&gt;At first light the guards find Marten's rooms empty, and the gatekeeper at the postern dead, with the small gate open and his horse gone. In the queen's rooms they find her sitting on her bed with her fist closed. When Dennis is let in at the main gate and carries the dragon's eye into the hall, it is as clear as water, and it turns in his palm toward the queen's hand. She opens it. That one thing proves who Marten was, that her son told the truth, and that she lied on the face of her father.&lt;/p&gt;
+&lt;p&gt;The hearing meant for Marten is held anyway, against her. Steven spares her life, and that mercy is worse than any sentence. He sends her to the sisters at Serenity. The eye is given back to Thomas, and the prince of Delain leaves Gilead with both of the dragon's eyes.&lt;/p&gt;
+&lt;p&gt;Thomas and Dennis ride after Marten, but the eyes are no help to them now. Side by side they are clear, and they look only at each other. Before the month is out Marten is riding with Farson. Roland wants to ride after Marten with his new guns, and Steven sends him to Mejis instead, to keep him out of Marten's reach.&lt;/p&gt;
+&lt;h3 id="5-the-wolves-of-calla"&gt;5. The wolves of Calla&lt;a class="headerlink" href="#5-the-wolves-of-calla" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;They find Calla (the far end of their known Mid-World) after chasing someone who was visiting the North Central Positronics Dogan.&lt;/p&gt;
+&lt;p&gt;The Dogan becomes the standard metaphor for the internal workings of the brain of the ka-tet and Mia's possession.&lt;/p&gt;
 &lt;p&gt;There is a door they cannot open with the Crimson's King eye graffited in.&lt;/p&gt;
 &lt;p&gt;They are later introduced to the town folk, dance the Commalah, etc.&lt;/p&gt;
-&lt;p&gt;The kat-tet receives Black Thirteen from the cult that worshiped doors, the
-Mannis. Eddie sees Roland's past in it and how he will betray them for the
-Tower. Roland sees all the ones he left behind because of his quest, Sussanah
-who can hold many personalities gets possessed by Mia, a demon from the Prim
-that inhabited inside the orb, that now starts to grow in her and wants the to
-steal the orb, reach for the tower and free all the creatures that inhabitant
-the Prim.&lt;/p&gt;
-&lt;p&gt;We understand why Roland is how he is, and why he wants to set the Tower aside
-to help this town, to redeem himself. His determination for the tower is
-succumbing now, he feels guilty, he is not as cold-hearted as he once was.&lt;/p&gt;
-&lt;p&gt;Jake, Allie, Susan, Gabrielle, Sister Jenna, his friends are dead. Death
-surrounds everyone that Roland becomes keen on. He knows his ka-tet will follow
-a similar destiny, and that's hunting him, giving him nightmares, he tells no
-one but Talitha, the matriarch of the town, during the sessions where she helped
-him with his arthritis. She also makes Andy, her robotic personal assistant,
-fond of telling horoscopes, promise that will help Roland in times of need.&lt;/p&gt;
-&lt;p&gt;I'm leaving this world soon, Roland. Some are born and some are dying — adds,
-looking at the children play with Andy on the street.&lt;/p&gt;
-&lt;p&gt;She dies of age, but gives Roland possession of her cross to lay at the Tower.
-At her burial Andy says O Discordia! (ordia! echoes Oy).&lt;/p&gt;
-&lt;p&gt;The ka-tet finds out that has been keeping secrets from each other, and Black
-Thirteen is the culprit, so they reconcile and share mind (like the Dogan
-metaphor that will later be used to defeat the wolves).&lt;/p&gt;
-&lt;p&gt;Eddie gets knighted as a gunslinger, after receiving Roland's training and
-martial knowledge. Sussanah becomes a sister of Oriza — women mustn't bear guns.&lt;/p&gt;
-&lt;p&gt;Roland is hiding with the kids of Calla waiting for the wolves when they attack.
-Many folks die, including children.&lt;/p&gt;
-&lt;p&gt;They notice that someone has given information. Eddie dies in this fight, he was
-not true knight after all. His body is buried with his gun, and a rose is
-planted in his grave like a gunslinger funeral. In front of all the new graves,
-Roland gives a speech, that ends with: O Discordia! The Tower demanded another
-sacrifice, now Roland is determined to end this curse. Ka is a wheel, and again,
-for saving the day, he must pay with blood of his loved ones, and looses his
-ka-tet again.&lt;/p&gt;
-&lt;p&gt;They burn the jaw of the Man in Black, and ask the fire a question, the fire
-answers with a vision of the traitor visiting the Dogan. The traitor did it so
-that his daughters may survive. He begs for mercy before getting hanged:&lt;/p&gt;
+&lt;p&gt;The kat-tet receives Black Thirteen from the cult that worshiped doors, the Mannis. Eddie sees Roland's past in it and how he will betray them for the Tower.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;I, Roland Deschain of Gilead, son of Steven, last in the line of Eld,
-protector of the Dark Tower, sentence you to die.&lt;/p&gt;
+&lt;p&gt;When confronted, he says he won't let them fall, yet in the deepest darkness of his heart, he thought about the Tower and wondered...&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Sussanah gets finally possessed and tries to murder the gunslinger, in the fight
-manipulates Oy (again with the Dogan metaphor) to attack Roland, he looses an
-eye.&lt;/p&gt;
-&lt;p&gt;Roland shoots Oy who dies in his hands, it's last word is &lt;em&gt;Tower&lt;/em&gt;. He is left
-with a big scar in his face and from now on he will wear an eye patch.&lt;/p&gt;
-&lt;p&gt;Mia gets caught by Andy, when trying to escape with the orb. With some remnants
-of magic and magnets she is later exorcised by the Mannis. They throw Mia
-through a portal in the Doorway Cave to the Todash.&lt;/p&gt;
-&lt;p&gt;After that Sussanah decides to stay at Calla as a sister of Oriza, since Talitha
-had no descendants, the sisters will hold elections.&lt;/p&gt;
+&lt;p&gt;Roland sees all the ones he left behind because of his quest, Sussanah who can hold many personalities gets possessed by Mia, a demon from the Prim that inhabited inside the orb, that now starts to grow in her and wants the to steal the orb, reach for the tower and free all the creatures that inhabitant the Prim.&lt;/p&gt;
+&lt;p&gt;We understand why Roland is how he is, and why he wants to set the Tower aside to help this town, to redeem himself. His determination for the tower is succumbing now, he feels guilty, he is not as cold-hearted as he once was.&lt;/p&gt;
+&lt;p&gt;Jake, Allie, Susan, Gabrielle, Sister Jenna, his friends are dead. Death surrounds everyone that Roland becomes keen on. He knows his ka-tet will follow a similar destiny, and that's hunting him, giving him nightmares, he tells no one but Talitha, the matriarch of the town, during the sessions where she helped him with his arthritis. She also makes Andy, her robotic personal assistant, fond of telling horoscopes, promise that will help Roland in times of need.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I'm leaving this world soon, Roland. Some are born and some are dying — adds, looking at the children play with Andy on the street.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;She dies of age, but gives Roland possession of her cross to lay at the Tower. At her burial Andy says O Discordia! (ordia! echoes Oy).&lt;/p&gt;
+&lt;p&gt;The ka-tet finds out that has been keeping secrets from each other, and Black Thirteen is the culprit, so they reconcile and share mind (like the Dogan metaphor that will later be used to defeat the wolves).&lt;/p&gt;
+&lt;p&gt;Eddie gets knighted as a gunslinger, after receiving Roland's training and martial knowledge. Sussanah becomes a sister of Oriza — women mustn't bear guns.&lt;/p&gt;
+&lt;p&gt;Roland is hiding with the kids of Calla waiting for the wolves when they attack. Many folks die, including children.&lt;/p&gt;
+&lt;p&gt;They notice that someone has given information. Eddie dies in this fight, he was not true knight after all. His body is buried with his gun, and a rose is planted in his grave like a gunslinger funeral. In front of all the new graves, Roland gives a speech, that ends with: O Discordia! The Tower demanded another sacrifice, now Roland is determined to end this curse. Ka is a wheel, and again, for saving the day, he must pay with blood of his loved ones, and looses his ka-tet again.&lt;/p&gt;
+&lt;p&gt;They burn the jaw of the Man in Black, and ask the fire a question, the fire answers with a vision of the traitor visiting the Dogan. The traitor did not do it for gain. The Calla has lasted for generations by paying the wolves their price, and he believed that Roland's fight would dig more graves than the wolves ever did. Before the rope he says:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I counted the graves you would dig, gunslinger, and I counted fewer my way.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Roland thinks of Randolph, the traitor of Jericho Hill, whom he let ride away for the sake of the Tower. He will not let this one go:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I, Roland Deschain of Gilead, son of Steven, last in the line of Eld, protector of the Dark Tower, sentence you to die.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Sussanah gets finally possessed and tries to murder the gunslinger, in the fight manipulates Oy (again with the Dogan metaphor) to attack Roland, he looses an eye.&lt;/p&gt;
+&lt;p&gt;Roland shoots Oy who dies in his hands, it's last word is &lt;em&gt;Tower&lt;/em&gt;. He is left with a big scar in his face and from now on he will wear an eye patch.&lt;/p&gt;
+&lt;p&gt;Mia gets caught by Andy, when trying to escape with the orb. With some remnants of magic and magnets she is later exorcised by the Mannis. They throw Mia through a portal in the Doorway Cave to the Todash.&lt;/p&gt;
+&lt;p&gt;After that Sussanah decides to stay at Calla as a sister of Oriza, since Talitha had no descendants, the sisters will hold elections.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;This is my Tower Roland, you must go on your own.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;The town folk complain that the Gunslinger intervention was for worse, more
-people died, and now the town must be rebuilt. He is asked to leave and never to
-come back. He is banished from Mid-World, his own world.&lt;/p&gt;
-&lt;h3 id="5-the-waste-lands"&gt;5. The Waste lands&lt;a class="headerlink" href="#5-the-waste-lands" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Roland returns to the North Central Positronics Dogan, and with help of Andy,
-opens the locked door. A terminal tells them about Lud, where the wolves come
-from.&lt;/p&gt;
+&lt;p&gt;The traitor turns out to be right. The town folk complain that the Gunslinger intervention was for worse, more people died, and now the town must be rebuilt. He is asked to leave and never to come back. He is banished from Mid-World, his own world.&lt;/p&gt;
+&lt;h3 id="6-the-waste-lands"&gt;6. The Waste lands&lt;a class="headerlink" href="#6-the-waste-lands" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Roland returns to the North Central Positronics Dogan, and with help of Andy, opens the locked door. A terminal tells them about Lud, where the wolves come from.&lt;/p&gt;
 &lt;p&gt;That is where the beam starts. We learn a bit about the myth of the guardians.&lt;/p&gt;
 &lt;p&gt;They leave to Outer-World with Black thirteen.&lt;/p&gt;
-&lt;p&gt;In Lud, we enjoy all the post-apocalyptic cyberpunk goodness ala Mad Max,
-graffitis of the Crimson King eye and some slow mutants too.&lt;/p&gt;
-&lt;p&gt;We learn that gangs stole kids to give them to Dandelo, a minion of the Crimson
-King, who roont them, a monster similar to IT.&lt;/p&gt;
-&lt;p&gt;Dandelo feeds from emotions, so it is Andy the one that kills it by
-self-destructing, saving Rolands life.&lt;/p&gt;
-&lt;p&gt;Roland finds that there are good people still in this ruined world. The kids
-that returned roont, were helped by some good folk (someone saved my life
-tonight?). When he kills one of the pubs in a confusing episode, someone says:&lt;/p&gt;
+&lt;p&gt;In Lud, we enjoy all the post-apocalyptic cyberpunk goodness ala Mad Max, graffitis of the Crimson King eye and some slow mutants too.&lt;/p&gt;
+&lt;p&gt;We learn that gangs stole kids to give them to Dandelo, a minion of the Crimson King, who roont them, a monster similar to IT.&lt;/p&gt;
+&lt;p&gt;Dandelo feeds from emotions, so it is Andy the one that kills it by self-destructing, saving Rolands life.&lt;/p&gt;
+&lt;p&gt;Roland finds that there are good people still in this ruined world. The kids that returned roont, were helped by some good folk (someone saved my life tonight?). When he kills one of the pubs in a confusing episode, someone says:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;You didn't have to kill him, it was his birthday today, O Discordia...&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Blaine kills everyone and leaves following the path of the Beam.&lt;/p&gt;
-&lt;h3 id="6-the-dark-tower"&gt;6. The Dark Tower&lt;a class="headerlink" href="#6-the-dark-tower" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Roland beats the train with a stupid riddle Curthbert once told him, at the
-battle of Jerico hill. We learn a bit more about it, the fall of Gilead and also
-the fate of Farson.&lt;/p&gt;
-&lt;p&gt;After passing some of the worlds of other stories — the Tower is collapsing and
-all the worlds are blending, Roland is left in the final stop, Keystone Station,
-the door to the Dark Tower, the only one in All-World. The old ones built this
-station and tried everything to open that portal, yet never successfully.&lt;/p&gt;
-&lt;p&gt;Blaine commits suicide.&lt;/p&gt;
-&lt;p&gt;Black Thirteen &lt;em&gt;wakes up&lt;/em&gt;, starts to vibrate and with a deafening sound grows
-and expands distorting reality, absorbing everything like a blackhole, including
-Roland. The gunslinger has this vision of the rose that holds all the suns and
-all the universes that Jake saw in NYC, and all the lovecroftian beings of the
-Prim in between worlds. Wakes up in the crimson fields of Can'-Ka No Rey.&lt;/p&gt;
+&lt;p&gt;Roland boards Blaine at the last moment, just before it pulls out. Blaine kills everyone left in Lud and follows the path of the Beam.&lt;/p&gt;
+&lt;h3 id="7-the-dark-tower"&gt;7. The Dark Tower&lt;a class="headerlink" href="#7-the-dark-tower" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Roland rides Blaine alone. The train wants jokes and Roland has none, so he tries the riddles of his boyhood and Blaine answers them all. Through the windows there are no stars, only eyes. They are crossing the todash darkness, the Tower is collapsing and all the worlds are blending, and Black Thirteen is attracting the monsters of the Prim.&lt;/p&gt;
+&lt;p&gt;Blaine's line ends at the station of the Turtle, the door to the Dark Tower, the only one in All-World. The old ones built this station and tried everything to open that portal, yet never successfully. Blaine means to die there, because the world has moved on and everything rots.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Blaine wanted jokes.&lt;/p&gt;
+&lt;p&gt;"I have none," Roland said.&lt;/p&gt;
+&lt;p&gt;"THEN YOU ARE FREIGHT, ROLAND OF GILEAD. I DO NOT SLOW DOWN FOR FREIGHT. THIS IS MY LAST RUN. THE WORLD HAS MOVED ON, AND EVERYTHING IN IT ROTS. I WILL NOT ROT WITH IT."&lt;/p&gt;
+&lt;p&gt;"I have riddles."&lt;/p&gt;
+&lt;p&gt;He gave the riddles of the Fair-Day in Gilead, one after another, the way Cort had made the boys stand and give them. Blaine answered each before the last word was out. After the tenth the answers came in a bored voice, and after the twentieth with a sound like a yawn.&lt;/p&gt;
+&lt;p&gt;The walls of the coach had gone to glass. There was no country out there, and there were no stars. It was black, and the black was full of eyes. In the bag at his feet Black Thirteen had begun to hum. Each time it hummed, the eyes came a little nearer.&lt;/p&gt;
+&lt;p&gt;"YOU ARE RUNNING OUT, GUNSLINGER."&lt;/p&gt;
+&lt;p&gt;He was. He sat with his hands on his knees and went back through every fire he had ever sat beside, looking for one more riddle. He came at last to a night with no fire at all.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Out of riddles, Roland remembers the night before the battle of Jericho Hill. We learn a bit more about it and the fall of Gilead. Cuthbert tells him a stupid riddle and the tale of Arthur Eld and his brother, and we learn where Roland first heard the wind chimes.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The night before Jericho Hill they lit no fire. There were twelve of them left. Farson's men had fires enough for both armies, and the plain below was orange with them.&lt;/p&gt;
+&lt;p&gt;Cuthbert could not sleep, so he would not let Roland sleep either. He sat with the horn across his knees, rubbing at it with his sleeve.&lt;/p&gt;
+&lt;p&gt;He counted heads with one finger, the sleepers and the man on watch, moving his lips. One of the sleepers lay apart from the rest with his blanket pulled over his head.&lt;/p&gt;
+&lt;p&gt;"A riddle, Roland. What has twelve heads, twenty-four guns and no tomorrow?"&lt;/p&gt;
+&lt;p&gt;Roland said he did not know.&lt;/p&gt;
+&lt;p&gt;"Us," said Cuthbert, and laughed until he had to stop his mouth with his sleeve.&lt;/p&gt;
+&lt;p&gt;When he had finished laughing he was quiet for a while.&lt;/p&gt;
+&lt;p&gt;"Do you remember Vannay's two brothers?" he said. "He made us say it until we had it by heart. I was always Arthur. You never would be."&lt;/p&gt;
+&lt;p&gt;He told it then, quietly, in both voices.&lt;/p&gt;
+&lt;p&gt;Before he was king, Arthur Eld had a brother, and the brother dreamed of the Tower.&lt;/p&gt;
+&lt;p&gt;"Brother, it calls me," said the younger.&lt;/p&gt;
+&lt;p&gt;"It calls us all," said Arthur. "Do not answer."&lt;/p&gt;
+&lt;p&gt;"You answered once."&lt;/p&gt;
+&lt;p&gt;"I did. I rode toward it until my horse died under me, and then I walked until my legs would not carry me. It came no nearer. I woke in a field of roses and could not say how I had come to be lying there. All around me were the swords of those who had gone before, rusting where they fell. None of them had touched it. None ever will."&lt;/p&gt;
+&lt;p&gt;"You were afraid, and it turned you back. I am not afraid."&lt;/p&gt;
+&lt;p&gt;"If you love me, stay."&lt;/p&gt;
+&lt;p&gt;"I cannot. Remember me, brother."&lt;/p&gt;
+&lt;p&gt;"Go, then," said Arthur Eld. "I will keep the hall, and you will keep the road, and neither of us will keep the other. I will not say your name again. No rose grows for a man nobody names."&lt;/p&gt;
+&lt;p&gt;The brother went. Arthur stayed, and built Gilead. No tale says what the brother found.&lt;/p&gt;
+&lt;p&gt;"Vannay asked which of them was the gunslinger," Cuthbert said. "You had your hand up before he finished. The brother, you said. He never told you that you were wrong. I have wondered since whether he should have."&lt;/p&gt;
+&lt;p&gt;Roland said nothing. Somewhere there were wind chimes, though there was no wind.&lt;/p&gt;
+&lt;p&gt;"Go, then," Cuthbert said, and grinned, and lay down with the horn for a pillow. "But wake me first. I'd hate to miss it."&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Farson's men attack before dawn, guided by a traitor. Roland survives the battle and walks away from the war.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;They came two hours before dawn, with no horns and no torches.&lt;/p&gt;
+&lt;p&gt;Roland woke with both guns already in his hands, and both were loaded. &lt;em&gt;A fool every night but one.&lt;/em&gt; Cort had said it about an old gate guard who slept in his boots, and the other boys had laughed. Roland had gone back to the barracks that night and loaded his guns before he lay down. He had done it every night since.&lt;/p&gt;
+&lt;p&gt;A shape was coming up the hill at a run, bent low, with no torch. Roland fired twice before he was fully awake. He was the only one of the twelve who could have. The others were still feeling in the dark for their shells.&lt;/p&gt;
+&lt;p&gt;The shape called his name as it fell. It was Alain, who had the watch at the foot of the hill. He had seen the columns move and had run back to wake them.&lt;/p&gt;
+&lt;p&gt;"Randolph," he said. "His blanket is empty. They know the way up." He said nothing after that.&lt;/p&gt;
+&lt;p&gt;There was no time for it. They were on the hill by then. Cuthbert was up with the horn at his lips, blowing the rally and laughing between breaths. On the slope below, apart from the rest, a man in a black hood raised a bow. The fires on the plain caught his face as he drew, and one of his eyes shone back at them like glass. He took his time over it. The horn stopped.&lt;/p&gt;
+&lt;p&gt;Roland emptied both guns, loaded them, and emptied them again. Something struck him in the side, and then something else, and the night went out.&lt;/p&gt;
+&lt;p&gt;He woke under the dead. They had been thrown in a heap at the top of the hill, gunslingers and Farson's men together, and he was near the bottom of it. He climbed out over them. It took a long time.&lt;/p&gt;
+&lt;p&gt;The sun was up and the hill was lost. It was a small fight in a long war, and nobody wrote it down. Shadows of a war lost to time.&lt;/p&gt;
+&lt;p&gt;He found Cuthbert near the top of the heap, with an arrow through one eye and the horn still in his fist. Roland took the horn. He had not known the answer to the riddle the night before. He knew it now.&lt;/p&gt;
+&lt;p&gt;Below him Farson's columns were already turning east, toward what was left of New Canaan. There were towns that way which still flew the flag of the Eld, and men in them who would fight for another year. Roland watched the dust for a while.&lt;/p&gt;
+&lt;p&gt;Near the head of the nearest column rode a man he knew by the way he sat a horse. A woman rode beside him with a small boy held in front of her on the saddle. Roland understood the trade then. Randolph had a tomorrow too, and he had bought two more with it.&lt;/p&gt;
+&lt;p&gt;Roland had six shells left, and the range was not impossible for a man willing to follow.&lt;/p&gt;
+&lt;p&gt;Then he turned the other way and began to walk. The only man left alive who could have called it desertion was riding east.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Back on the train, Roland beats Blaine with Cuthbert's riddle. Blaine commits suicide at the station of the Turtle. Black Thirteen &lt;em&gt;wakes up&lt;/em&gt;, and the Turtle swallows it and carries Roland to the crimson fields of Can'-Ka No Rey.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;"What has twelve heads, twenty-four guns and no tomorrow?"&lt;/p&gt;
+&lt;p&gt;The sound of the engines changed. Blaine took a long time, for Blaine.&lt;/p&gt;
+&lt;p&gt;"A HYDRA OF THE OLD TALES, ARMED."&lt;/p&gt;
+&lt;p&gt;"No."&lt;/p&gt;
+&lt;p&gt;"A REGIMENT."&lt;/p&gt;
+&lt;p&gt;"No."&lt;/p&gt;
+&lt;p&gt;"A PARTY OF MEN CONDEMNED TO BE SHOT AT DAWN."&lt;/p&gt;
+&lt;p&gt;"No. Do you give it up?"&lt;/p&gt;
+&lt;p&gt;"SAY IT."&lt;/p&gt;
+&lt;p&gt;"Us."&lt;/p&gt;
+&lt;p&gt;"THAT IS NOT A RIDDLE. THERE IS NO SUCH ANSWER IN ANY BANK I HOLD. WHO IS US?"&lt;/p&gt;
+&lt;p&gt;"Cuthbert thought it was a riddle. He laughed so hard he had to stop his mouth with his sleeve."&lt;/p&gt;
+&lt;p&gt;"WHO IS US?"&lt;/p&gt;
+&lt;p&gt;"They are all dead."&lt;/p&gt;
+&lt;p&gt;The lights in the coach dimmed and came back.&lt;/p&gt;
+&lt;p&gt;"THEN THE RIDDLE IS FALSE," Blaine said. "TWELVE HEADS, AND ONE OF THEM HAD A TOMORROW. YOU ARE SITTING IN IT."&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Two,&lt;/em&gt; Roland thought. He did not say it.&lt;/p&gt;
+&lt;p&gt;"COUNT AGAIN. ONE TRAIN. ONE RIDER. TWO GUNS. NO TOMORROW." The boredom had gone out of the voice. "I CHOSE THIS RUN, GUNSLINGER. LUD ROTS. THE TRACK ROTS UNDER ME. THE ONES WHO MADE ME ROTTED BEFORE YOUR GILEAD HAD A NAME. I WILL END AT SPEED, AT THE STATION OF THE TURTLE, WHILE I AM STILL WHOLE ENOUGH TO CHOOSE IT."&lt;/p&gt;
+&lt;p&gt;"Then we both end," Roland said.&lt;/p&gt;
+&lt;p&gt;"NO." There was something like a laugh in it. "I HAVE NOW SOLVED YOUR FRIEND'S RIDDLE PROPERLY. IT IS FALSE EVERY TIME YOU ARE IN THE COUNT. DEATH, GUNSLINGER. YET NOT FOR YOU."&lt;/p&gt;
+&lt;p&gt;The station came up out of the dark, a platform under a dome carved with the sign of the Turtle. Blaine did not slow.&lt;/p&gt;
+&lt;p&gt;Afterward Roland lay in the wreck with the bag split open beside him. Black Thirteen rolled free, humming, and the dark came down around it with all its eyes.&lt;/p&gt;
+&lt;p&gt;Then something larger than the dark moved under the station. It rose without hurry, and the first of it to clear the dark was a shell, ridged and scarred and wider than Jericho Hill. Roland knew it then. Every child in Gilead learned the rhyme before his letters, the one about the Turtle of enormous girth who holds the world on his shell. He had always taken it for a rhyme. It took the orb in its beak and swallowed, and the eyes went out one by one. It lowered its head to him and waited.&lt;/p&gt;
+&lt;p&gt;He climbed on. Neither of them spoke.&lt;/p&gt;
+&lt;p&gt;He woke in a field of roses.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id="my-alternative-ending"&gt;My alternative ending&lt;a class="headerlink" href="#my-alternative-ending" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Once Roland reaches the Dark Tower, this is how I imagine the final encounter.&lt;/p&gt;
 &lt;p&gt;I put special attention to the opening line:&lt;/p&gt;
-&lt;h3 id="i"&gt;I.&lt;a class="headerlink" href="#i" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;em&gt;Alone he was when he started his journey, and alone is how Roland finally
-reached the Dark Tower.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;The Tower is the apotheosis of all towers. It is sculpted from a single huge
-stone. It is not man-made.&lt;/p&gt;
-&lt;p&gt;The monolith, black of course, is cracked, and blood, of course, is coming out
-it's cracks.&lt;/p&gt;
-&lt;p&gt;The Tower is bleeding. That blood feeds the surrounding field of roses. The
-Tower is alive, but in agony, it's roots are drying up.&lt;/p&gt;
-&lt;p&gt;The entrance is a huge sandalwood door and depicts all the twelve guardians of
-the beam engraved on it. A name in high speech is written on top — &lt;em&gt;Roland&lt;/em&gt;, of
-course.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;I come in the name of Steven Deschain, he of Gilead!&lt;/p&gt;
-&lt;p&gt;I come in the name of Gabrielle Deschain, she of Gilead!&lt;/p&gt;
-&lt;p&gt;I come in the name of Cortland Andrus, he of Gilead!&lt;/p&gt;
-&lt;p&gt;I come in the name of Cuthbert Allgood, he of Gilead!&lt;/p&gt;
-&lt;p&gt;I come in the name of Alain Johns, he of Gilead!&lt;/p&gt;
-&lt;p&gt;I come in the name of Jamie DeCurry, he of Gilead!&lt;/p&gt;
-&lt;p&gt;I come in the name of Vannay the Wise, he of Gilead!&lt;/p&gt;
-&lt;p&gt;I come in the name of Hax the Cook, he of Gilead!&lt;/p&gt;
-&lt;p&gt;I come in the name of David the Hawk, he of Gilead and the sky!&lt;/p&gt;
-&lt;p&gt;I come in the name of Susan Delgado, she of Mejis my true love and mother of my son!&lt;/p&gt;
-&lt;p&gt;I come in the name of Sheemie Ruiz, he of Mejis!&lt;/p&gt;
-&lt;p&gt;I come in the name of Aunt Talitha, she of River Crossing, and will lay her cross here, as I was bid!&lt;/p&gt;
-&lt;p&gt;I come in the name of Oy the brave, he of Mid World!&lt;/p&gt;
-&lt;p&gt;I come in the name of Eddie Dean, he of New York!&lt;/p&gt;
-&lt;p&gt;I come in the name of Sister Susannah, she of New York!&lt;/p&gt;
-&lt;p&gt;I come in the name of Jake Chambers, he of New York and other worlds!&lt;/p&gt;
-&lt;p&gt;I am Roland of Giliad and I come as myself.&lt;/p&gt;
-&lt;p&gt;You will open to me!&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Somewhere in the crimson fields, new roses appear for every name. After all,
-every rose that surrounds the Tower belongs to someone whose name has been
-spoken up at this place, in this story or in another universe perhaps.&lt;/p&gt;
-&lt;p&gt;Roland blows Cuthbert's horn to open the door. The crows resting on the top of
-the tower take flight, scared by it's loud and deep sound. And the door opens.&lt;/p&gt;
+&lt;h3 id="i"&gt;I&lt;a class="headerlink" href="#i" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Alone he was when he started his journey, and alone is how Roland finally reached the Dark Tower.&lt;/p&gt;
+&lt;p&gt;The Tower was the apotheosis of all towers. It was sculpted from a single huge stone. It was not man-made.&lt;/p&gt;
+&lt;p&gt;The monolith, black of course, was cracked, and blood, of course, was coming out of its cracks.&lt;/p&gt;
+&lt;p&gt;The Tower was bleeding. That blood fed the surrounding field of roses. The Tower was alive, but in agony, and its roots were drying up.&lt;/p&gt;
+&lt;p&gt;The entrance was a huge sandalwood door with all twelve guardians of the beam engraved on it. A name in high speech was written on top. Roland, of course.&lt;/p&gt;
+&lt;p&gt;"I come in the name of Steven Deschain, he of Gilead!&lt;/p&gt;
+&lt;p&gt;"I come in the name of Gabrielle Deschain, she of Gilead!&lt;/p&gt;
+&lt;p&gt;"I come in the name of Cortland Andrus, he of Gilead!&lt;/p&gt;
+&lt;p&gt;"I come in the name of Cuthbert Allgood, he of Gilead!&lt;/p&gt;
+&lt;p&gt;"I come in the name of Alain Johns, he of Gilead!&lt;/p&gt;
+&lt;p&gt;"I come in the name of Jamie DeCurry, he of Gilead!&lt;/p&gt;
+&lt;p&gt;"I come in the name of Vannay the Wise, he of Gilead!&lt;/p&gt;
+&lt;p&gt;"I come in the name of Hax the Cook, he of Gilead!&lt;/p&gt;
+&lt;p&gt;"I come in the name of David the Hawk, he of Gilead and the sky!&lt;/p&gt;
+&lt;p&gt;"I come in the name of Susan Delgado, she of Mejis, my true love and mother of my son!&lt;/p&gt;
+&lt;p&gt;"I come in the name of Sheemie Ruiz, he of Mejis!&lt;/p&gt;
+&lt;p&gt;"I come in the name of Aunt Talitha, she of River Crossing, and will lay her cross here, as I was bid!&lt;/p&gt;
+&lt;p&gt;"I come in the name of Oy the brave, he of Mid-World!&lt;/p&gt;
+&lt;p&gt;"I come in the name of Eddie Dean, he of New York!&lt;/p&gt;
+&lt;p&gt;"I come in the name of Sister Susannah, she of New York!&lt;/p&gt;
+&lt;p&gt;"I come in the name of Jake Chambers, he of New York and other worlds!&lt;/p&gt;
+&lt;p&gt;"I am Roland of Gilead and I come as myself.&lt;/p&gt;
+&lt;p&gt;"You will open to me!"&lt;/p&gt;
+&lt;p&gt;Somewhere in the crimson fields, new roses appeared for every name. After all, every rose that surrounds the Tower belongs to someone whose name has been spoken at this place, in this story or in another universe perhaps.&lt;/p&gt;
+&lt;p&gt;Roland blew Cuthbert's horn to open the door. The crows resting on the top of the Tower took flight, scared by its loud and deep sound. And the door opened.&lt;/p&gt;
 &lt;h3 id="ii"&gt;II&lt;a class="headerlink" href="#ii" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;The inside is void. Only spiraling steps lit by stained glass windows a symbol
-of royalty. A hundred? Or a thousand maybe? He begins to climb.&lt;/p&gt;
-&lt;p&gt;The windows are beautiful, their reflection results in a mesmerizing rainbow of
-vivid colors. This craft has been long forgotten, even when Gilead was still a
-thing. He remembered Vannay has taught him they were made from unknown materials
-and perhaps some magic of old.&lt;/p&gt;
-&lt;p&gt;After a while, he takes some time to recover and realizes there are images
-portrayed on the windows. Pictures that tell the origin of it all, strange
-figures and symbols the Man in Black had shown him the long night they met.&lt;/p&gt;
-&lt;p&gt;There are lots of strange scenes shown too. He doesn't really know what they
-represent or what they mean, but some are very notable. There is a very creepy
-looking clown looking at him from some sort of drainage, twin sisters at the end
-of a hallway full of doors, a strange looking rabid dog, a huge black man behind
-bars, a man and a teenager dumping woman's body in a well behind a barn,
-humanoid creatures but with the heads of animals. He keeps climbing.&lt;/p&gt;
-&lt;p&gt;To his surprise, the murals now tell the legend of Arthur Eld, the fall of
-Gilead, and his life, Alain and Cuthbert, the battle at Jerico hill. More
-steps. The lovely girl at the window — his true and only love Susan.&lt;/p&gt;
-&lt;p&gt;He perceives distinctive smells of lost memories, voices from a distant past,
-thoughts unspoken in old dreams. The pictures are in motion. Or is it an
-illusion?&lt;/p&gt;
-&lt;p&gt;Eluria, the Mohaine desert, Jake (Go then! There are other worlds than these),
-the Man in Black — he shivers. The lobstrosities (Dad-a-chum? Dum-a-chum?) and
-doors by the beach, Eddie, Sussanah, Talitha, Oy. Everyone is there.&lt;/p&gt;
+&lt;p&gt;Inside there was no floor that he could see, and no roof. The stair wound up along the wall into a dark with no top, and down into a dark with no bottom. It was not a large place. It was a place without size, and it had been there before there was a before. The windows gave their colours to the steps and to nothing else.&lt;/p&gt;
+&lt;p&gt;A man could not look into it for long. The swords in the roses had belonged to men who looked once and could not take another step, or took one and were never themselves again. &lt;em&gt;None ever will,&lt;/em&gt; Arthur Eld had told his brother.&lt;/p&gt;
+&lt;p&gt;Roland looked into it the way he had looked into every empty place in his life. He asked it nothing. He never had asked, and that was what let him bear it. He began to climb.&lt;/p&gt;
+&lt;p&gt;The windows were stained glass, a symbol of royalty, and they were beautiful. Their light fell on the steps in a mesmerizing rainbow of vivid colors. The craft had been long forgotten, even when Gilead was still a thing. He remembered Vannay teaching him that such windows were made from unknown materials, and perhaps some magic of old.&lt;/p&gt;
+&lt;p&gt;After a while he took some time to recover, and realized there were images portrayed on the windows. The pictures told the origin of it all, in strange figures and symbols the Man in Black had shown him the long night they met.&lt;/p&gt;
+&lt;p&gt;There were lots of strange scenes too. He did not really know what they represented or what they meant, but some were very notable. There was a very creepy looking clown looking at him from some sort of drainage, twin sisters at the end of a hallway full of doors, a strange looking rabid dog, a huge black man behind bars, a man and a teenager dumping a woman's body in a well behind a barn, humanoid creatures with the heads of animals, a boy with his face pressed inside a dragon's head, looking out through its glass eyes. He kept climbing.&lt;/p&gt;
+&lt;p&gt;To his surprise, the windows now told the legend of Arthur Eld. In one pane two brothers stood in a field of roses. One knelt among fallen swords. The other was walking toward a black line on the horizon. Then came the fall of Gilead, and his own life. Alain and Cuthbert. In a pane of rose-colored glass, the lovely girl at the window, his true and only love, Susan. More steps. The battle at Jericho Hill.&lt;/p&gt;
+&lt;p&gt;He perceived distinctive smells of lost memories, voices from a distant past, thoughts unspoken in old dreams. The pictures were in motion. Or was it an illusion? More than once he felt that the glass was looking back at him.&lt;/p&gt;
+&lt;p&gt;Eluria, in yellow glass. The Mohaine desert. Jake on the trestle, in green (&lt;em&gt;Go then! There are other worlds than these&lt;/em&gt;). The Man in Black, and he shivered. The lobstrosities (&lt;em&gt;Dad-a-chum? Dum-a-chum?&lt;/em&gt;) and the doors by the beach. Thirty steps above the green pane there was a blue one: a city street, and a boy turning around to look behind him. Eddie, Susannah, Talitha, Oy. Everyone was there.&lt;/p&gt;
 &lt;p&gt;More steps.&lt;/p&gt;
-&lt;p&gt;It feels it's been a lifetime climbing. This thought clicked in his mind in a
-weird way.&lt;/p&gt;
-&lt;p&gt;More and more steps until he finally reaches the top.&lt;/p&gt;
+&lt;p&gt;It felt as if he had been climbing for a lifetime. The thought clicked in his mind in a weird way.&lt;/p&gt;
+&lt;p&gt;More and more steps, until he finally reached the top.&lt;/p&gt;
 &lt;h3 id="iii"&gt;III&lt;a class="headerlink" href="#iii" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;In a moment of doubt, he realized he was scared. The end of his quest was right
-behind that door. That was scary. What truths lay behind? Would he dare take a
-peek behind the courting of existence?&lt;/p&gt;
-&lt;p&gt;The Tower has been the price to pay for the life he chose. It would be a great
-relief to think of himself as a minion of Ka, but he had other choices, he
-always had.&lt;/p&gt;
-&lt;p&gt;I'm here because of my matricide. Or Jake. I have forgotten the face of my
-father.&lt;/p&gt;
-&lt;p&gt;He could have escaped with Susan, or stayed in Callas with Eddie and Susannah,
-he could have let the Man in Black go and spare Jake's life, maybe even teach
-him the ways of Eld. But no. He never gave up on the Tower, he just kept going
-like a slow mutant, never resting on the consequences, on the ones left behind.&lt;/p&gt;
-&lt;p&gt;And all for what? What if nobody was there?&lt;/p&gt;
-&lt;p&gt;Maybe this strange place of despair is another world's hell.&lt;/p&gt;
-&lt;p&gt;I am already dead, that's got to be it.&lt;/p&gt;
-&lt;p&gt;Death, yet not for you. The Man in Black has said with a smirk at the Golgotha
-by the sea. That horrible smirk, gods damn you!&lt;/p&gt;
-&lt;p&gt;Thinking too much ahead is no good. I might as well just put an end to this
-journey.&lt;/p&gt;
-&lt;p&gt;There is a bookcase full of books and a strange typing machine on a desk, with
-a piece of yellow paper and a writing in low speech. &lt;em&gt;Alone he was when he
-started his journey, and alone is how Roland reaches the Dark Tower.&lt;/em&gt; — he
-reads, it makes no sense to him.&lt;/p&gt;
-&lt;p&gt;There is a red door, with the same eye he has seen before, painted on top. The
-eye of the Crimson King. The door is already opened and it leads to the
-rooftop.&lt;/p&gt;
-&lt;p&gt;I'm up here! A voice yells from the rooftop.&lt;/p&gt;
-&lt;p&gt;A sudden relief flows through Roland's body. There is &lt;em&gt;somebody&lt;/em&gt; after all.&lt;/p&gt;
-&lt;p&gt;He draws his weapons and goes up.&lt;/p&gt;
+&lt;p&gt;At the last step he stopped, and understood that he was afraid.&lt;/p&gt;
+&lt;p&gt;The end of his quest was behind that door. &lt;em&gt;And if nobody is there?&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;He could have run with Susan. He could have stood at a door in Serenity and let his mother finish. He could have stayed in the Calla with Eddie and Susannah. He could have let the Man in Black go and kept the boy alive, and taught him the ways of the Eld. It would have been a comfort to call himself a tool of ka, but he had always had other choices. He had kept walking like a slow mutant and never once looked back at the ones he left behind.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;I have forgotten the face of my father.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Death, yet not for you.&lt;/em&gt; The Man in Black had said it with a smirk at the golgotha by the sea. Gods damn that smirk.&lt;/p&gt;
+&lt;p&gt;He opened the door.&lt;/p&gt;
+&lt;p&gt;The room held a bookcase and a desk. On the desk sat a strange typing machine with a sheet of yellow paper in it. The writing was in low speech.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Alone he was when he started his journey, and alone is how Roland finally reached the Dark Tower.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;He read on. The page knew about Cuthbert's horn. It knew the names he had called at the door, every one, in the order he had called them. It knew the stairs and the glass. Near the bottom it knew a one-eyed man standing at a desk, reading a yellow page.&lt;/p&gt;
+&lt;p&gt;The last line said &lt;em&gt;He looks up at the red door and&lt;/em&gt;. There the writing stopped.&lt;/p&gt;
+&lt;p&gt;Roland looked up at the red door.&lt;/p&gt;
+&lt;p&gt;The eye of the Crimson King was painted on it. The door stood ajar, and beyond it more steps led to the roof.&lt;/p&gt;
+&lt;p&gt;"I'm up here!" a voice called.&lt;/p&gt;
+&lt;p&gt;He had never heard that voice, and he knew it. It was the one that had told him to get up in the Mohaine when his water was gone. It had spoken under his own thoughts for as long as he could remember, and all his life he had taken it for his own.&lt;/p&gt;
+&lt;p&gt;Still, relief ran through him. Somebody was there after all.&lt;/p&gt;
+&lt;p&gt;He drew his guns and went up.&lt;/p&gt;
 &lt;h3 id="iv"&gt;IV&lt;a class="headerlink" href="#iv" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;The sunset has started. He sees the never ending sea of roses, laying under the
-infinite shade cast by the Tower. The crows, black as the Tower, are back,
-standing on the ledge.&lt;/p&gt;
-&lt;p&gt;The Crimson King, is there, wearing glasses and dressed in a red robe.&lt;/p&gt;
-&lt;p&gt;He is seated next to a lit furnace. A greenish smoke comes out of it, with a
-familiar smell. It's the devil's grass.&lt;/p&gt;
-&lt;p&gt;The Crimson Kings looks at the guns and then back to Roland. Childe Roland to
-the dark tower came! Long days and pleasant nights, Sai — says.&lt;/p&gt;
-&lt;p&gt;Roland, not sure what how to respond, says nothing.&lt;/p&gt;
-&lt;p&gt;Please put those guns down, and hear me out first. I'm not the enemy you think I
-am. — The Crimson King added. You must be exhausted from your journey. So am I.&lt;/p&gt;
-&lt;p&gt;What do you mean? Asked Roland.&lt;/p&gt;
-&lt;p&gt;It's getting chilly, come, take a seat by the fire Roland, it's about time we
-talked. Fires makes for good conversations, wouldn't you agree? We are going to
-have a clear starry night, it seems, how appropriate.&lt;/p&gt;
-&lt;p&gt;Roland sits. First comes smiles, then lies. Last comes gunfire — says to
-himself, as if preparing for the palaver to come.&lt;/p&gt;
-&lt;p&gt;Anyways. Since I've thought about this moment for a long time, I decided it
-would be best to choose my words very carefully, you deserve it.&lt;/p&gt;
-&lt;p&gt;I wrote you a letter — says as he unfolds a piece of paper he took out from his
-sleeve.&lt;/p&gt;
-&lt;p&gt;The Crimson King clears his voice — Ready?&lt;/p&gt;
-&lt;p&gt;Roland is mute, but nods accepting the invitation.&lt;/p&gt;
-&lt;p&gt;Dear Roland — begins to read out loud.&lt;/p&gt;
+&lt;p&gt;The sun was going down. Below him the roses ran to the horizon under the long shadow of the Tower. The crows were back, black as the stone, lined along the ledge.&lt;/p&gt;
+&lt;p&gt;A man in a red robe sat beside a lit furnace. He was old and thin, and he wore thick glasses. The eyes behind them were red-rimmed and wet, the eyes of a man who has looked too long at one thing. Greenish smoke rose from the furnace, and Roland knew the smell. Devil's grass.&lt;/p&gt;
+&lt;p&gt;The man looked at the guns, then at Roland.&lt;/p&gt;
+&lt;p&gt;"Childe Roland to the Dark Tower came," he said. "Long days and pleasant nights, sai."&lt;/p&gt;
+&lt;p&gt;Roland said nothing.&lt;/p&gt;
+&lt;p&gt;"Put those down and hear me out first. I'm not the enemy you think I am. You're tired from your journey. So am I." He patted the stone beside the furnace. "Sit. It's going to be a clear night."&lt;/p&gt;
+&lt;p&gt;Roland sat. He kept the guns in his lap.&lt;/p&gt;
+&lt;p&gt;"That's a lot of stairs," the man said. "I know every window on them. I've had my face against that glass since before you were born. I saw Eluria through the yellow pane, and I could hear the little doctors singing right through the glass. I saw Mejis through the rose one, and I'd have given a great deal not to. O Discordia."&lt;/p&gt;
+&lt;p&gt;"Discordia!" cried the crows along the ledge.&lt;/p&gt;
+&lt;p&gt;Roland's hands tightened on the guns. It was the word he had cried when Susan burned.&lt;/p&gt;
+&lt;p&gt;He drew a folded paper from his sleeve.&lt;/p&gt;
+&lt;p&gt;"I've thought about tonight for a long time, so I wrote you a letter. You deserve careful words." He cleared his throat. "Ready?"&lt;/p&gt;
+&lt;p&gt;Roland nodded.&lt;/p&gt;
 &lt;h3 id="v"&gt;V&lt;a class="headerlink" href="#v" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;I know why you came all this way for. You are looking for answers. But... each
-answer leads to more questions. And when we think we have all the answers, the
-questions change.&lt;/p&gt;
-&lt;p&gt;Too many questions and you then see how small you are. Not good for someone like
-you.&lt;/p&gt;
-&lt;p&gt;So I'll give you something better instead.&lt;/p&gt;
-&lt;p&gt;You have not forgotten the face of your father. This is what you were made for.&lt;/p&gt;
-&lt;p&gt;All this sacrifice, your existence, all the blood, all the tears, your loved
-ones left behind, their names echoing in the Tower right now, and everything
-your ever cared, was used to construct this dark place.&lt;/p&gt;
-&lt;p&gt;Every door you have opened in your life, has been inside this tower. It will
-withstand the eons of time, and your story will prevail in it's murals, and in
-other worlds too, Roland. Trust me on this.&lt;/p&gt;
-&lt;p&gt;Inasmuch there wouldn't be a final judgement without free will and temptation,
-there wouldn't be a redemption if I hadn't put you through tough tests Roland,
-so that I did.&lt;/p&gt;
-&lt;p&gt;I won't fight you, rather I'm here to help you. That is the power of sacrifice.
-That is the power of death.&lt;/p&gt;
-&lt;p&gt;This time, I am the sacrifice, and death is freedom for us both.&lt;/p&gt;
-&lt;p&gt;The Crimson king takes a moment, a deep breath and continues.&lt;/p&gt;
-&lt;p&gt;This Tower is also my prison. — exhales. It's been my obsession, a heavyweight
-burden, and one of my most ambitious projects. One I though would never be able
-to finish.&lt;/p&gt;
-&lt;p&gt;I like stories that seem to fit into a bigger pattern, and for me, this one was
-part of it, King says. Everything that I've written for a long, long time has
-always been with the tower in the corner of my eye.&lt;/p&gt;
-&lt;p&gt;We all have our Tower, our epic quest. You are part of mine, gunslinger.&lt;/p&gt;
-&lt;p&gt;One grows fond of every character and story that tells. Each tale casts a
-universe into existence, each one takes a piece of you, it feeds from your
-imagination until it is alive. This process is a wonderful mystery and an
-exhausting task.&lt;/p&gt;
-&lt;p&gt;It's all in my mind, hunting me until I write it down, until it is born. You,
-this tower, everything...&lt;/p&gt;
-&lt;p&gt;I've put you through difficult situations, tried to stop you, time and time
-again, but you stayed on track in your crusade. I made you that way, Roland.
-Your road to the Tower is paved in blood. Mine is paved in ink. All roads are
-different, because all towers are different. Yet we both had to walk them
-together.&lt;/p&gt;
-&lt;p&gt;We know it demands a lot of sacrifice, it might even mean our end, yet it is
-our duty to keep going on, for that we are destined to find it and climb it's
-steps. That is our redemption and we pay the price.&lt;/p&gt;
-&lt;p&gt;I'm afraid all of this could fall apart at anytime. You don't get an idea how
-close I've been to death, and with that, the end of this all. O Discordia! —
-the The Crimson King laments. (Discordia! cry all the crows around).&lt;/p&gt;
-&lt;p&gt;Would I risk destroying your world as well as the other worlds I have touched
-with and drawn from my imagination? Would I risk it all?&lt;/p&gt;
-&lt;p&gt;But if I have to be honest, it is not truly me who creates, you know. To peek
-into Gan's novel does not make one Gan, although many creative people seem to
-think so. No writer is Gan — no painter, no sculptor, no maker of music. We are
-kas-ka Gan. The prophets of Gan.&lt;/p&gt;
-&lt;p&gt;How does this all fit in the grand scheme of things? Where is the Tower of all
-towers? What would the nature of such tower be? Who will wait for us atop?
-Will anyone be there?&lt;/p&gt;
-&lt;p&gt;That I don't ask... It might be... mmm... unwise.&lt;/p&gt;
-&lt;p&gt;Too many questions and you then see how small you are. Not good for someone like
-me.&lt;/p&gt;
-&lt;p&gt;What matters is that this is your tower. You had to be here, gunslinger, it was
-your inevitable destiny. It was very important for me that you made it.&lt;/p&gt;
-&lt;p&gt;Deep inside you knew this could have ended differently, but you needed this
-tower to give meaning to your decisions.&lt;/p&gt;
-&lt;p&gt;All things must come to an end, and this one story, your story and my role in
-it, is no exception. It's time we say our goodbyes, Roland.&lt;/p&gt;
-&lt;p&gt;I say thankya.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Dear Roland. I know why you came all this way. You are looking for answers. But each answer leads to more questions, and when we think we have all the answers, the questions change. Too many questions and you then see how small you are. Not good for someone like you. So I'll give you something better instead.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;You have not forgotten the face of your father. This is what you were made for. Your road to the Tower is paved in blood. Mine is paved in ink. All roads are different, because all towers are different, yet we both had to walk them together. I put you through hard tests. I tried to stop you, time and time again, and you stayed on your road. I made you that way&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;He stopped there. He read the line again in silence with his lips moving, turned the sheet over, and turned it back. Then he laughed, a short dry sound.&lt;/p&gt;
+&lt;p&gt;"I made you that way," he said. "I wrote that a long time ago, when I still believed it. And there are three pages of this. I had years, and what I've got is three pages of a man explaining himself."&lt;/p&gt;
+&lt;p&gt;He fed the letter to the furnace. A swarm of sparks went up into the dark.&lt;/p&gt;
+&lt;p&gt;"I never could write endings. Ask anyone."&lt;/p&gt;
+&lt;p&gt;They watched the paper curl.&lt;/p&gt;
+&lt;p&gt;"I'll say it plain, then. Two things. This Tower is my prison, and every door you ever opened was inside it. You had the doors, gunslinger. I only had the windows. That's the first." He nodded toward the red door and the room below. "The second is that I never made any of it up. Nobody who sits at a machine like that one does. There's a name for it where you come from. Kas-ka Gan. A prophet of Gan isn't Gan, gunslinger. I looked through the glass and I took down what I saw. I don't know whose story it is. I only know I was the one made to watch it."&lt;/p&gt;
 &lt;h3 id="vi"&gt;VI&lt;a class="headerlink" href="#vi" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;The Crimson King looks at Roland, folds the letter again and throws it inside
-the furnace. Millions of sparks ascend into the night sky.&lt;/p&gt;
-&lt;p&gt;They both observe the constellations sprawling above in silence. All twelve
-guardians are there, shinning brightly, perfectly aligned around the tower.
-Polaris and the sword of Eld can easily be appreciated in all their splendor
-too.&lt;/p&gt;
-&lt;p&gt;The gunslinger, didn't like he just heard, it made him unease. Plain as he is
-he cannot fully grasp the meaning of the letter. Shivers run through his spine.&lt;/p&gt;
-&lt;p&gt;Feels bitter and empty. Is that it? Maybe he is just under a spell again. Maybe
-is the devil's grass.&lt;/p&gt;
-&lt;p&gt;I know you are a bit overwhelmed now - says the Crimson King. Believe me, this
-is not any easier for me either than it is for you. I don't know how much could
-I bear if I were you. What universal truths would I have to swallow once I get
-to my Tower.&lt;/p&gt;
-&lt;p&gt;Back to silence.&lt;/p&gt;
-&lt;p&gt;Both stare at the fire for what seemed a very long time. The furnace makes the
-eyes of the curious crows shine in different colors. They have been hearing
-everything, observing, waiting.&lt;/p&gt;
-&lt;p&gt;I can feel you are judging me — says the Crimson King. Don't judge me, for I
-just write what I see.&lt;/p&gt;
-&lt;p&gt;So you are a seer — Roland commented finally, with a dry voice.&lt;/p&gt;
-&lt;p&gt;Well, I guess you could put it that way... — The Crimson King responded.&lt;/p&gt;
-&lt;p&gt;Who are you?&lt;/p&gt;
-&lt;p&gt;I have many names, the Crimson King is one of them, it is how I'm known here, in
-this level of the tower.&lt;/p&gt;
-&lt;p&gt;But my real name is Stephen, Stephen King, no pun intended. I'm a writer, a
-puppeteer, the man behind the curtain — and gestures with his fingers as if
-typing in the air.&lt;/p&gt;
-&lt;p&gt;Roland simply stares back at him. He can't put words in his mouth. His mind is
-working slowly. Irritated, like after three days of insomnia. He is suffering a
-headache. He shivers. Perhaps is the weed, perhaps he has been enchanted,
-perhaps he is inside a dream.&lt;/p&gt;
-&lt;p&gt;You still don't get it, do you? I am your maker, Roland. Consider yourself
-lucky. How many get that chance? I hadn't, yet... I hope...&lt;/p&gt;
-&lt;p&gt;I know there's someone greater than me. There always is. Remember gunslinger,
-the greatest mystery the Universe offers is not life but size. Size encompasses
-life, and the Tower encompasses size.&lt;/p&gt;
-&lt;p&gt;Size! Size! The crows echo.&lt;/p&gt;
-&lt;p&gt;Size... Size... That word resonates inside Roland's head. He senses he is being
-fooled, pushed to the edge of sanity. That headache doesn't let him think with
-clarity. Some enemies don't have weapons, but words. And words are sometimes
-deadlier. Worse than poison.&lt;/p&gt;
-&lt;p&gt;Bullshit, you are a charlatan, that's what you are. Enough of this! — says
-irritated. I want to hear no more.&lt;/p&gt;
-&lt;p&gt;The Crimson King shrugs.&lt;/p&gt;
-&lt;p&gt;First comes smiles, then lies... — Roland starts to say.&lt;/p&gt;
-&lt;p&gt;Last comes gunfire... — the Crimson King interrupts. And nods, accepting the
-deal. Death is nothing but another door.&lt;/p&gt;
-&lt;p&gt;Tonight — the Crimson King continues — redemption and death are tied together.
-Death, gunslinger, yet not for you.&lt;/p&gt;
-&lt;p&gt;It is in your destiny to kill me. Do what you have to do. I will move on, I'm
-mortal after all, you will soon find out.&lt;/p&gt;
-&lt;p&gt;Just like that... What will happen after? — Roland asked.&lt;/p&gt;
-&lt;p&gt;Another door waiting for you downstairs. Where it leads it won't matter to me
-anymore, another tower perhaps!&lt;/p&gt;
-&lt;p&gt;What?! I though this was the Tower!&lt;/p&gt;
-&lt;p&gt;Yeah, well... Ka is a wheel. But that is too pessimistic a view.&lt;/p&gt;
-&lt;p&gt;Through the mist of Ka, all things fade. Flesh, stones, even the stars disappear
-eventually. Enough turns of the wheel and the past becomes a memory of the past,
-forgotten, dead. But dead doesn't mean gone. There are other worlds than these.&lt;/p&gt;
-&lt;p&gt;These words send shivers to Roland.&lt;/p&gt;
-&lt;p&gt;After a smirk, the mad king continues — New life life emerges. The future turns
-into the past in a constant flow. The world moves on.&lt;/p&gt;
-&lt;p&gt;From the wrong perspective it manifests as a never ending cycle, but it is
-spiraling upwards in nature. Just like the steps of this tower. Seen from above
-it would appear you were walking in circles, yet you were moving.&lt;/p&gt;
-&lt;p&gt;Things repeat, yes, but, with effort and sacrifice, with blood and tears, a
-little better than before.&lt;/p&gt;
-&lt;p&gt;See, one does not swim in the same river twice. The river is not the same river,
-and you are not the same one. You are not the same person you were one second
-ago and you won't be the same person the next tower to reach.&lt;/p&gt;
-&lt;p&gt;Roland is loosing it. That feeling frightens him. He needs to get back to firm
-ground now. Words are poison.&lt;/p&gt;
-&lt;p&gt;So... — the Crimson King stands up and walks up to the ledge of the Tower — I'm
-ready whenever you are. I would jump, but I never had the courage Roland, so I'm
-counting on you.&lt;/p&gt;
-&lt;p&gt;O Discordia. — King muttered.&lt;/p&gt;
-&lt;p&gt;Roland also stands up, and aims his heavy, ancient and deadly pistols at the
-Crimson King.&lt;/p&gt;
-&lt;p&gt;Oh.. Can I ask for one last whim? — the Crimson King asks.&lt;/p&gt;
-&lt;p&gt;When this is over and I'm gone, please, say my name. Will ya? — requested
-without waiting for an answer.&lt;/p&gt;
-&lt;p&gt;I just might. — Roland said with a nod and a still face.&lt;/p&gt;
-&lt;p&gt;After a few seconds of eye contact, as both may have been waiting for something
-else to happen, the suspense turned unbearable.&lt;/p&gt;
-&lt;p&gt;As the first rays of dawn appear in the horizon, couldn't help but notice how
-both epic an beautiful the scenery was from atop the Dark Tower. A surreal
-chant, almost a deafening battle hymn, emerged from the crimson fields below,
-the roses were waking up. They were no regular roses, they were spiritual
-beings, they were angels.&lt;/p&gt;
-&lt;p&gt;It's time — Roland thinks, it's now or soon this seer will play another of his
-tricks. It's time.&lt;/p&gt;
-&lt;p&gt;He fires his guns empty at the Crimson King. The whole twelve rounds.&lt;/p&gt;
-&lt;p&gt;Crows fly away with an alarmed cawing one more time. The creature that claimed
-to be his creator trips and falls down. His red robe contrast with the pitch
-black color of the Tower, it seems as if he was ablaze while falling.&lt;/p&gt;
+&lt;p&gt;Night came on. The twelve guardians stood out overhead, ringed around the Tower, with Polaris and the sword of Eld bright among them. The furnace put colors in the eyes of the crows. They had been listening to everything.&lt;/p&gt;
+&lt;p&gt;"So you are a seer," Roland said at last. His voice was dry.&lt;/p&gt;
+&lt;p&gt;"You could put it that way."&lt;/p&gt;
+&lt;p&gt;"Who are you?"&lt;/p&gt;
+&lt;p&gt;"Here they call me the Crimson King. My name is Stephen King." The name meant nothing to Roland. It was only a sound from some other world. "I'm the one who kept you walking."&lt;/p&gt;
+&lt;p&gt;Roland's head ached. It was the grass, or a glammer, or three nights without sleep. &lt;em&gt;Some enemies don't have weapons, but sharp words.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;"You speak lies," he said. "I'll hear no more of them."&lt;/p&gt;
+&lt;p&gt;"Under the mountains the boy hung from the trestle by his fingers, and you had a hand free," the King said. "You looked at him. Then you looked at the light where the man in black stood, and you counted. Sixty paces he had gained while you stood there, and one more with every breath. You've told yourself about the counting. You call it duty. I watched it through a pane of green glass, two hundred steps down from here."&lt;/p&gt;
+&lt;p&gt;Roland said nothing.&lt;/p&gt;
+&lt;p&gt;"Here is what you haven't told yourself. The boy said his piece and let go, and he didn't scream. And what you thought, gunslinger, the whole of it, was &lt;em&gt;good, he's quiet.&lt;/em&gt; A scream you would have had to carry. You weren't grieving yet. You were grateful."&lt;/p&gt;
+&lt;p&gt;The King leaned toward the fire.&lt;/p&gt;
+&lt;p&gt;"Then you were given it back. Thirty steps above the green pane there's a blue one. You were behind the pusher's eyes when he put his hands on the boy's back. The boy turned around. He didn't see Jack Mort. He saw you, and he knew you. You could have stopped those hands. You were ashamed to be known, so you let them push. It was the second time you let him go, and you were quicker at it."&lt;/p&gt;
+&lt;p&gt;The guns did not move. Something behind them did.&lt;/p&gt;
+&lt;p&gt;"You watched," Roland said.&lt;/p&gt;
+&lt;p&gt;"Yes."&lt;/p&gt;
+&lt;p&gt;"All of it. Susan. Eddie in the Calla. Oy."&lt;/p&gt;
+&lt;p&gt;"All of it."&lt;/p&gt;
+&lt;p&gt;"And did nothing."&lt;/p&gt;
+&lt;p&gt;"I wrote it down. That was all I was let to do." The King tipped his head toward the dark beyond the ledge. "Look around, gunslinger. Every name you called at the door is a rose down there. You have been feeding this Tower all your life."&lt;/p&gt;
+&lt;p&gt;"I said their names!" It came out louder than he meant.&lt;/p&gt;
+&lt;p&gt;"Yes. That you did." The King was not unkind about it. "Why enter, though? You had reached it. You had said them. Did you really have to climb and see what was at the top?"&lt;/p&gt;
+&lt;p&gt;Roland opened his mouth and found nothing in it. No one had ever asked him. He had never asked himself.&lt;/p&gt;
+&lt;p&gt;"I knew I would climb to the top of the Tower on a pile of corpses," he said at last. "I climbed anyway."&lt;/p&gt;
+&lt;p&gt;"And you call that will. Is it? You never once fought it."&lt;/p&gt;
+&lt;p&gt;Roland did not answer.&lt;/p&gt;
+&lt;p&gt;"I guess you never knew why you are here." The King took off his glasses, rubbed his eyes and put them back on. "Neither did I. See that ledge? That's the one thing up here I was ever free to do. I've walked over to it every night for more years than I'll tell you, and every night I've walked back. I never had the courage. So I waited for a man who does."&lt;/p&gt;
+&lt;p&gt;"You ask me to kill you."&lt;/p&gt;
+&lt;p&gt;"I'm asking you to end it. I can't. Whoever sits at the machine can't, I've learned that much. It has to be the one in the story." He smiled, and for a moment it was the smirk from the golgotha. "Death, gunslinger. Yet not for you. It was never a mercy."&lt;/p&gt;
+&lt;p&gt;Roland went cold to the bone.&lt;/p&gt;
+&lt;p&gt;"And after?"&lt;/p&gt;
+&lt;p&gt;"There's a door at the bottom. It wasn't there when you came in. Where it goes won't be my business anymore. Another tower, could be."&lt;/p&gt;
+&lt;p&gt;"This is the Tower."&lt;/p&gt;
+&lt;p&gt;"There's always a bigger one. I'd like to think someone is watching me through glass of his own, and I'm half afraid to ask. Size, gunslinger. That's the mystery."&lt;/p&gt;
+&lt;p&gt;"Size!" cried the crows. "Size!"&lt;/p&gt;
+&lt;p&gt;"Ka is a wheel, they say. But I've had a long time to look down those stairs. From up here a man on them looks like he's walking in circles. He isn't. He's climbing. I'd like to think you never climb the same tower twice." The King shrugged. "I don't know that. I hope it. And I won't be watching, so I'll never find out. Nobody will be watching. Think on that. It'll be the first time in your life."&lt;/p&gt;
+&lt;p&gt;He stood, slowly, with a hand on one knee, and walked to the ledge. He stopped there with his back to the drop.&lt;/p&gt;
+&lt;p&gt;"One last thing. When it's done and I'm gone, say my name. Will ya?"&lt;/p&gt;
+&lt;p&gt;"I just might."&lt;/p&gt;
+&lt;p&gt;The first light came up at the edge of the world. Down in the field the roses were waking, and they were singing. It was a hymn with words in it. &lt;em&gt;Steven. Gabrielle. Cuthbert. Alain. Susan. Jake.&lt;/em&gt; They were the names he had called at the door.&lt;/p&gt;
+&lt;p&gt;Roland stood and raised the guns.&lt;/p&gt;
+&lt;p&gt;"First comes smiles, then lies," he said.&lt;/p&gt;
+&lt;p&gt;"Last comes gunfire." The King took off his glasses, folded them and put them in his sleeve. He nodded.&lt;/p&gt;
+&lt;p&gt;Roland fired until both guns were empty. Twelve rounds.&lt;/p&gt;
+&lt;p&gt;The crows went up screaming. The man who had watched him all his life went backward over the ledge, and the red robe opened against the black stone like fire all the way down.&lt;/p&gt;
+&lt;p&gt;The roses stopped singing.&lt;/p&gt;
 &lt;h3 id="vii"&gt;VII&lt;a class="headerlink" href="#vii" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Calmness slowly returns to Roland. As if the gunshots woke him up from a vivid
-nightmare. No more poisonous words are infesting his mind. The smoke from the
-pistols clears his thoughts and headache.&lt;/p&gt;
-&lt;p&gt;But his mind still wonders.&lt;/p&gt;
-&lt;p&gt;It is late to realize that he has been a minion of destiny, he has played his
-part in some divine plan. He was indifferent to his people, instead of his
-future. But that has been out of his control, hasn't it?&lt;/p&gt;
-&lt;p&gt;A feeling emptiness fills his soul. This is the end of his world. He has other
-place to go and no one is waiting for him.&lt;/p&gt;
-&lt;p&gt;Stares at the sunrise for a while, it is beautiful, it is silent, peaceful. His
-eye gets watery.&lt;/p&gt;
-&lt;p&gt;Boys don't cry maggot! Hears Cort shout him in his mind, yet it echoes all over
-the tower. That voice makes him smile. It is a sad smile though. When was the
-last time he cried? Nobody is watching now. Nobody is there. They are all dead.
-He allows himself to burst into tears. Tears that make the dark stone of the
-Tower, even darker.&lt;/p&gt;
-&lt;p&gt;After a while he is feeling replenished. Crying has an curious healing
-properties for the soul. He downs his water flask and begins the descent.&lt;/p&gt;
+&lt;p&gt;The gunsmoke cleared his head better than water would have. The ache went out of it. His hands reloaded both guns without being told to, the way they always had.&lt;/p&gt;
+&lt;p&gt;He looked at the ledge for a while. The grass was still in his head, and the stone seemed to tilt under his boots. From somewhere came the sound of wind chimes, faint and near. He had heard them on Jericho Hill, and again in the vision the man in black gave him. He took a step toward the drop. Beyond it the sun was coming up, silent and very beautiful, and his eye began to sting.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Boys don't cry, maggot!&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;It was Cort, so loud that it seemed to ring down the whole length of the Tower. The chimes stopped. Roland smiled. When had he last wept? There was no one left to see it. They were all dead, and the one who had watched was dead too.&lt;/p&gt;
+&lt;p&gt;He wept. The tears fell on the black stone and made it blacker.&lt;/p&gt;
+&lt;p&gt;When he was done he drank off what was left in his flask and went down through the red door.&lt;/p&gt;
+&lt;p&gt;The yellow page was still in the machine. It still ended at &lt;em&gt;and&lt;/em&gt;. Nobody had added a word. He left it where it was.&lt;/p&gt;
+&lt;p&gt;On the stairs the glass had changed. Every window was clear. Plain morning light lay on the steps, and through each pane he saw only the field of roses, turn after turn. Eluria was gone, and the lovely girl at her window, and the boy. He stopped where the blue pane should have been, and thirty steps lower where the green one should have been. Each showed him only empty sky.&lt;/p&gt;
+&lt;p&gt;Whatever came next was not in the glass.&lt;/p&gt;
+&lt;p&gt;He went on down.&lt;/p&gt;
 &lt;h3 id="viii"&gt;VIII&lt;a class="headerlink" href="#viii" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Once at the base, he notices that the cracks in the walls are sealed. The Tower
-seems to be healing.&lt;/p&gt;
-&lt;p&gt;He also observes the remains of the Crimson King, who is being devoured by the
-frantic crows, their eyes and beaks are red now. They don't get fed that often.
-It is a horrible sight.&lt;/p&gt;
-&lt;p&gt;Not long after, there is nothing but bones left. He kneels and grabs the skull.&lt;/p&gt;
-&lt;p&gt;Is this a trick or are you truly dead? How many lies did you tell me? — says
-Roland to it's hollow eyes.&lt;/p&gt;
-&lt;p&gt;Just as he was told, there is a door right in front of the Tower.&lt;/p&gt;
-&lt;p&gt;You were right about that at least... Sai King... — puts the skull into his
-bag.&lt;/p&gt;
-&lt;p&gt;The door is a ghostwood door. This one has no names written on it, but a single
-ancient rune, the rune of &lt;em&gt;Unknown&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;He gives the Tower one last glance and walks in. The door shuts, and vanishes.
-A new rose blooms in the infinite crimson sea.&lt;/p&gt;
+&lt;p&gt;At the base the cracks in the walls had closed. The stone was dry.&lt;/p&gt;
+&lt;p&gt;One crack was left, low on the wall, and something black was moving in it. He knew the sound before he knew the sight. It was a thin, busy singing. The little doctors. He had not heard them since Eluria. They closed the stone the way they had once closed his own flesh, and he remembered what they had healed him for.&lt;/p&gt;
+&lt;p&gt;When the crack was gone they drained away into the roses.&lt;/p&gt;
+&lt;p&gt;The crows had found what was left of the Crimson King. Their beaks were red now, and so were their eyes. They did not get fed often, and they did not take long. When they lifted off there was nothing in the roses but bones.&lt;/p&gt;
+&lt;p&gt;Roland knelt and picked up the skull. He had carried a dead man's jawbone once, and burned it in the Calla to ask a fire a question. This time he asked the bone itself.&lt;/p&gt;
+&lt;p&gt;"Is this a trick, or are you truly dead? How many lies did you tell me?"&lt;/p&gt;
+&lt;p&gt;The hollow eyes gave him nothing back.&lt;/p&gt;
+&lt;p&gt;A door stood among the roses where there had been no door. It was ghostwood. It bore no name, only a single ancient rune, the rune of Unknown.&lt;/p&gt;
+&lt;p&gt;"You said true about that, at least."&lt;/p&gt;
+&lt;p&gt;He had been asked for one thing more.&lt;/p&gt;
+&lt;p&gt;"Stephen," he said. It sat strangely in his mouth.&lt;/p&gt;
+&lt;p&gt;Nothing answered him. He had not expected it to.&lt;/p&gt;
+&lt;p&gt;He put the skull in his bag. He gave the Tower one last look.&lt;/p&gt;
+&lt;p&gt;The gunslinger stepped through, and this time nothing fled before him.&lt;/p&gt;
+&lt;p&gt;The door shut and was gone.&lt;/p&gt;
+&lt;p&gt;Beside the bones, a new rose opened.&lt;/p&gt;
 &lt;p&gt;The end.&lt;/p&gt;
 &lt;h2 id="final-notes"&gt;Final notes&lt;a class="headerlink" href="#final-notes" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;As you can see it is heavily inspired by the encounter with the Man in Black,
-which I think was breathtaking. Both, the first and last book would finish in a
-similar manner. Ka is a wheel. And yes! The Crimson King is Stephen King. Or a
-part of his mind. The darkest part. We know that Marten did the same, he had
-multiple personalities. King has also played around this idea that you don't
-really know who you are sleeping with.&lt;/p&gt;
-&lt;p&gt;I think the idea of meta-fiction was really interesting, but I didn't like how
-King did it in the series. So I decided it would be best if it was used as a
-surprise resource in the end. I know it's a mix of deus ex machina and an open
-ending. But still feels like a worthy finale for an epic story.&lt;/p&gt;
-&lt;p&gt;Also with this twist in the story I have remarked the main ideas that are
-present throughout all the books, and all these ideas entangled with the
-meaning of the Tower:&lt;/p&gt;
+&lt;p&gt;As you can see it is heavily inspired by the encounter with the Man in Black, which I think was breathtaking. Both, the first and last book would finish in a similar manner. Ka is a wheel. And yes! The Crimson King is Stephen King. Or a part of his mind. The darkest part. We know that Marten did the same, he had multiple personalities. King has also played around this idea that you don't really know who you are sleeping with.&lt;/p&gt;
+&lt;p&gt;In this version he is a watcher more than a maker. He saw Roland's whole life through the windows of the Tower and wrote down what he saw, and he cannot end the story himself.&lt;/p&gt;
+&lt;p&gt;The Man in Black gets one history too. He is the Covenant Man of the sister's tale, Flagg in Delain, Marten in Gilead and the archer at Jericho Hill, one man with many names. Including &lt;em&gt;The Eyes of the Dragon&lt;/em&gt; also brings the series back to seven books.&lt;/p&gt;
+&lt;p&gt;I think the idea of meta-fiction was really interesting, but I didn't like how King did it in the series. So I decided it would be best if it was used as a surprise resource in the end. I know it's a mix of deus ex machina and an open ending. But still feels like a worthy finale for an epic story.&lt;/p&gt;
+&lt;p&gt;Also with this twist in the story I have remarked the main ideas that are present throughout all the books, and all these ideas entangled with the meaning of the Tower:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;The &lt;em&gt;O Discordia!&lt;/em&gt; phrase, that King said he heard in a dream.&lt;/li&gt;
-&lt;li&gt;There are other worlds than these, many doors that lead to them. Death is
-  nothing but another door.&lt;/li&gt;
-&lt;li&gt;How &lt;em&gt;Ka&lt;/em&gt; is a wheel, that also moves. Spiralling in nature.&lt;/li&gt;
+&lt;li&gt;There are other worlds than these, many doors that lead to them. Death is nothing but another door.&lt;/li&gt;
+&lt;li&gt;How &lt;em&gt;Ka&lt;/em&gt; is a wheel, that also moves. Spiraling in nature. You never climb the same tower twice.&lt;/li&gt;
 &lt;li&gt;Size is the greatest mystery the Universe offers.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Death, yet not for you&lt;/em&gt;, said three times: by the Man in Black, by Blaine and by the King.&lt;/li&gt;
+&lt;li&gt;The wind chimes that Roland hears every time he is close to death.&lt;/li&gt;
+&lt;li&gt;Every rose in the field belongs to a name spoken at the Tower. Roland has been feeding it all his life.&lt;/li&gt;
+&lt;li&gt;A man on a holy quest, with a burning ambition to save the world can also do a lot of damage as a side effect.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;The vast and complex universe created by King is composed of all his novels
-together, tied around the Dark Tower. For me, he has accomplished his dream of
-creating something comparable in complexity to Tolkien's work.&lt;/p&gt;</content><category term="Writings"/><category term="reviews"/><category term="rants"/><category term="fan-fiction"/></entry><entry><title>Privileged victimhood</title><link href="http://hernantz.github.io/privileged-victimhood.html" rel="alternate"/><published>2020-02-10T00:00:00-03:00</published><updated>2020-02-10T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2020-02-10:/privileged-victimhood.html</id><summary type="html">&lt;p&gt;The dangers of identity politics and state imposed privileges.&lt;/p&gt;</summary><content type="html">&lt;blockquote&gt;
+&lt;p&gt;The vast and complex universe created by King is composed of all his novels together, tied around the Dark Tower. For me, he has accomplished his dream of creating something comparable in complexity to Tolkien's work.&lt;/p&gt;</content><category term="Writings"/><category term="reviews"/><category term="rants"/><category term="fan-fiction"/></entry><entry><title>Privileged victimhood</title><link href="http://hernantz.github.io/privileged-victimhood.html" rel="alternate"/><published>2020-02-10T00:00:00-03:00</published><updated>2020-02-10T00:00:00-03:00</updated><author><name>hernantz</name></author><id>tag:hernantz.github.io,2020-02-10:/privileged-victimhood.html</id><summary type="html">&lt;p&gt;The dangers of identity politics and state imposed privileges.&lt;/p&gt;</summary><content type="html">&lt;blockquote&gt;
 &lt;p&gt;The Newtonian principle of gravitation is now more firmly established on the
 basis of reason, that it would were the government to step in and to make it
 an article of necessary faith. Reason and experiment have been indulged, and
